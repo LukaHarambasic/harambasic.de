@@ -1,0 +1,29 @@
+@import 'settings';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  @media print {
+    width: $s-page-width;
+    height: $s-page-height;
+  }
+}
+
+body {
+  font-family: $ff;
+  line-height: 1.4;
+  background: $c-secondary;
+  color: $c-font-text;
+  @media print {
+    font-size: 12pt;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
