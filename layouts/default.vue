@@ -5,13 +5,12 @@
 </template>
 
 <script>
-  export default {
-    components: {
-    },
-  }
+export default {
+  components: {}
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 main {
   background: $c-secondary;
   display: flex;
@@ -24,6 +23,9 @@ main {
     background: $c-white;
     box-shadow: 0 0 40px $c-primary-shadow;
     border-radius: $radius;
+  }
+  @media print {
+    background: $c-white;
   }
 }
 </style>

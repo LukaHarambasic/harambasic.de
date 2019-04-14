@@ -1,62 +1,81 @@
 <template>
-  <li
-    v-if="item">
+  <li>
     <div
-      v-if="item.date.from || item.date.to || item.location"
+      v-if="date.from || date.to || location"
       class="information">
       <div
-        v-if="item.date.from || item.date.to"
+        v-if="date.from || date.to"
         class="date">
         <div
-          v-if="item.date.from"
-          v-text="item.date.from"
-          class="from" />
+          v-if="date.from"
+          class="from"
+          v-text="date.from"
+        />
         <div
-          v-if="item.date.to"
-          v-text="item.date.to"
-          class="to" />
+          v-if="date.to"
+          class="to"
+          v-text="date.to"
+        />
       </div>
       <div
-        v-if="item.location"
-        v-text="item.location"
-        class="location" />
+        v-if="location"
+        class="location"
+        v-text="location"
+      />
     </div>
     <div
-      v-if="item.title || item.position"
+      v-if="title || position"
       class="header">
       <h3
-        v-if="item.title"
-        v-text="item.title"
-        class="title" />
+        v-if="title"
+        class="title"
+        v-text="title"
+      />
       <h4
-        v-if="item.position"
-        v-text="position"
-        class="position" />
+        v-if="position"
+        class="position"
+        v-text="`(${position})`"
+      />
     </div>
     <p
-      v-if="item.description"
-      v-html="item.description"
+      v-if="description"
       :class="{ justify: justifyDescription }"
-      class="description" />
+      class="description"
+      v-html="description"
+    />
   </li>
 </template>
 
 <script>
 export default {
-  name: 'ListItem',
+  name: 'SegmentListItem',
   props: {
-    item: {
-      required: true,
-      type: Object
+    title: {
+      default: '',
+      type: String
+    },
+    description: {
+      default: '',
+      type: String
+    },
+    position: {
+      default: '',
+      type: String
+    },
+    location: {
+      default: '',
+      type: String
+    },
+    date: {
+      default: null,
+      type: Object,
+      validator: date => {
+        return date.hasOwnProperty('to') && date.hasOwnProperty('from')
+      }
     },
     justifyDescription: {
       default: false,
       type: Boolean
-    }
-  },
-  computed: {
-    position() {
-      return `(${this.item.position})`
     }
   }
 }
@@ -106,14 +125,14 @@ li {
       .from {
         margin: 0 $s-xxs 0 0;
         &::after {
-          content: "-";
+          content: '-';
           margin: 0 0 0 $s-xxs;
         }
       }
       .to {
         margin: 0 $s-xxs 0 0;
         &::after {
-          content: "•";
+          content: '•';
           margin: 0 0 0 $s-xxs;
         }
       }

@@ -1,58 +1,76 @@
 <template>
   <aside>
-    <page-headline
-      v-if="object.title"
-      :title="object.title" />
-    <div v-if="settings.showSkillLevel">
-      <skills-levels
-        class="skillsList"
-        v-for="(skills, index) in object.items"
+    <base-headline
+      :title="title"/>
+    <div 
+      v-if="showSkillLevel"> 
+      <skills-list-levels
+        v-for="(list, index) in lists"
         :key="index"
-        :object="skills"
-        :settings="settings" />
+        :title="list.title"
+        :skills="list.skills"
+        :sort-skills-by="sortSkillsBy"
+        :max-skill-level="maxSkillLevel"
+        class="list"
+      />
     </div>
-    <div v-else>
-      <skills-items
-        class="skillsList"
-        v-for="(skills, index) in object.items"
+    <div 
+      v-else>
+      <skills-list-items
+        v-for="(list, index) in lists"
         :key="index"
-        :object="skills" />
+        :title="list.title"
+        :skills="list.skills"
+        class="list"
+      />
     </div>
   </aside>
 </template>
 
 <script>
-import SkillsItems from '~/components/SkillsItems'
-import SkillsLevels from '~/components/SkillsLevels'
-import PageHeadline from '~/components/PageHeadline'
+import SkillsListItems from '~/components/SkillsListItems'
+import SkillsListLevels from '~/components/SkillsListLevels'
+import BaseHeadline from '~/components/BaseHeadline'
 
 export default {
   name: 'SkillsList',
   components: {
-    SkillsItems,
-    SkillsLevels,
-    PageHeadline
+    SkillsListItems,
+    SkillsListLevels,
+    BaseHeadline
   },
   props: {
-    object: {
-      required: true,
-      type: Object
+    title: {
+      default: '',
+      type: String
     },
-    settings: {
-      required: true,
-      type: Object
+    lists: {
+      default: null,
+      type: Array
+    },
+    showSkillLevel: {
+      default: true,
+      type: Boolean
+    },
+    sortSkillsBy: {
+      default: 'none',
+      type: String
+    },
+    maxSkillLevel: {
+      default: 5,
+      type: Number
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .skillsList {
-    margin: 0 0 $s-xs 0;
-    &:last-child {
-      @media screen and (max-width: $desktop) {
-        margin: 0
-      }
+.list {
+  margin: 0 0 $s-xs 0;
+  &:last-child {
+    @media screen and (max-width: $desktop) {
+      margin: 0;
     }
   }
+}
 </style>

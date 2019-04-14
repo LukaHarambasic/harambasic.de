@@ -1,13 +1,15 @@
 <template>
   <section>
     <h3
-      v-if="object.title"
-      v-text="object.title" />
+      v-if="title"
+      v-text="title"
+    />
     <ul>
       <li
-        v-for="skill in object.items"
+        v-for="skill in skills"
         :key="skill.title"
-        v-text="skill.title" />
+        v-html="skill.title"
+      />
     </ul>
   </section>
 </template>
@@ -16,9 +18,13 @@
 export default {
   name: 'SkillsItems',
   props: {
-    object: {
-      required: true,
-      type: Object
+    title: {
+      default: '',
+      type: String
+    },
+    skills: {
+      default: null,
+      type: Array
     }
   }
 }
@@ -42,14 +48,14 @@ section {
     li {
       margin: 0;
       display: inline;
-      white-space: nowrap; 
+      line-break: normal;
       &:after {
-        content: ",";
+        content: ',';
         margin: 0 $s-xxs 0 0;
       }
       &:last-child {
         &:after {
-          content: "";
+          content: '';
         }
       }
     }

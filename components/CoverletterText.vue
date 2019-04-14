@@ -3,92 +3,143 @@
     <div
       class="locationDate">
       <span
+        v-if="city"
         class="location"
-        v-if="person.address"
-        v-text="person.address.city"/>
+        v-text="city"
+      />
       <span
+        v-if="date"
         class="date"
-        v-text="today"/>
+        v-text="date"
+      />
     </div>
     <h2
+      v-if="headline"
       class="headline"
-      v-if="coverletter.headline"
-      v-text="coverletter.headline"/>
+      v-text="headline"
+    />
     <div
       class="welcome">
       <span
+        v-if="greeting"
+        v-text="greeting"
         class="greeting"
-        v-if="coverletter.greeting"
-        v-text="coverletter.greeting"/>
+      />
       <span
+        v-if="companyName.speech"
+        v-text="companyName.speech"
         class="speech"
-        v-if="company.name"
-        v-text="company.name.speech"/>
+      />
       <span
-        class="lastname"
-        v-if="company.name"
-        v-text="company.name.last"/>
+        v-if="companyName.first"
+        v-text="companyName.first"
+        class="first"
+      />
+      <span
+        v-if="companyName.last"
+        v-text="companyName.last"
+        class="last"
+      />
     </div>
     <div
       class="text">
       <p 
-        v-for="(paragraph, index) in coverletter.paragraphs" 
+        v-for="(paragraph, index) in paragraphs" 
         :key="index"
-        v-text="paragraph" />
+        v-html="paragraph"
+      />
     </div> 
-    <div>
+    <div
+      :class="{ signatureLines: addLinesForSignature }">
       <span
+        v-if="farewell"
         class="farewell"
-        v-if="coverletter.farewell"
-        v-text="coverletter.farewell"/>
+        v-text="farewell"
+      />
     </div>
     <div
       class="name">
       <span
+        v-if="personName"
         class="firstname"
-        v-if="person.name"
-        v-text="person.name.first"/>
+        v-text="personName.first"
+      />
       <span
-      class="lastname"
-        v-if="person.name"
-        v-text="person.name.last"/>
+        v-if="personName"
+        class="lastname"
+        v-text="personName.last"
+      />
     </div>
   </section>
 </template>
 
 <script>
-  export default {
-    name: 'CoverletterText',
-    props: {
-      person: {
-        type: Object,
-        required: true
-      },
-      company: {
-        type: Object,
-        required: true
-      },
-      coverletter: {
-        type: Object,
-        required: true
+export default {
+  name: 'CoverletterText',
+  props: {
+    companyName: {
+      default: null,
+      type: Object,
+      validator: value => {
+        const props = ['speech', 'first', 'last']
+        return props.every(key => key in value)
       }
     },
-    computed: {
-      today() {
+    personName: {
+      default: null,
+      type: Object,
+      validator: value => {
+        const props = ['first', 'last']
+        return props.every(key => key in value)
+      }
+    },
+    city: {
+      default: '',
+      type: String
+    },
+    manualDate: {
+      default: '',
+      type: String
+    },
+    greeting: {
+      default: '',
+      type: String
+    },
+    headline: {
+      default: '',
+      type: String
+    },
+    paragraphs: {
+      default: null,
+      type: Array
+    },
+    farewell: {
+      default: '',
+      type: String
+    },
+    addLinesForSignature: {
+      default: false,
+      type: Boolean
+    }
+  },
+  computed: {
+    date() {
+      if (!this.manualDate) {
         const today = new Date()
-        let day = today.getDay()
-        let month = today.getMonth() + 1
+        let day = this.addTrailingNull(today.getDate())
+        let month = this.addTrailingNull(today.getMonth() + 1)
         let year = today.getFullYear()
-        if (day < 10) {
-          day = '0' + day
-        } 
-        if (month < 10) {
-          month = '0' + month
-        } 
         return `${day}.${month}.${year}`
       }
+      return this.manualDate
+    }
+  },
+  methods: {
+    addTrailingNull(number) {
+      return number < 10 ? `0${number}` : number
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -106,23 +157,26 @@ section {
   }
   .headline {
     font-size: $fs-m;
+    color: $c-font-headline;
     margin: $s-s 0 $s-xl 0;
   }
   .welcome {
     margin: 0 0 $s 0;
-    .lastname {
-      &::after {
-        content: ',';
+    > span {
+      margin: 0 0.1rem 0 0;
+      &:last-of-type {
+        &::after {
+          content: ',';
+        }
       }
     }
   }
   .text {
     margin: 0 0 $s 0;
   }
-  .farewell {
-    &::after {
-      content: ',';
-    }
+
+  .signatureLines {
+    margin: 0 0 ($s * 3) 0;
   }
 }
 </style>

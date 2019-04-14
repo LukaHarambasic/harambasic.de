@@ -1,12 +1,13 @@
 <template>
   <div
-    class="page"
-    :class="{ first: isFirst}">
+    :class="{ first: isFirstCv }"
+    class="page">
     <slot />
     <page-footer
-      :links="footer"
-      :isFirst="isFirst"
-      :showLogo="settings.showLogo" />
+      :links="footerLinks"
+      :is-first="isFirstCv"
+      :logo-path="logoPath"
+    />
   </div>
 </template>
 
@@ -18,15 +19,15 @@ export default {
     PageFooter
   },
   props: {
-    isFirst: {
+    isFirstCv: {
       type: Boolean,
       default: false
     },
-    settings: {
-      required: true,
-      type: Object
+    logoPath: {
+      type: String,
+      default: ''
     },
-    footer: {
+    footerLinks: {
       required: true,
       type: Array
     }
@@ -58,9 +59,12 @@ export default {
     border-radius: 0;
   }
   @media print {
+    page-break-before: always;
     margin: 0;
     border-radius: 0;
     box-shadow: none;
+    height: auto;
+    width: auto;
   }
   &.first {
     background: linear-gradient(
