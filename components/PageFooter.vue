@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'PageFooter',
+  name: "PageFooter",
   props: {
     links: {
       type: Array,
@@ -32,14 +32,14 @@ export default {
     },
     logoPath: {
       type: String,
-      default: ''
+      default: ""
     },
     isFirst: {
       type: Boolean,
       default: false
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -55,7 +55,7 @@ footer {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  padding: $s-s 0;
+  padding: 0.8rem 0;
   border-radius: 0 0 $radius $radius;
   transform: translateY(100%);
   @media print {
@@ -63,7 +63,7 @@ footer {
     border-radius: 0;
     transform: none;
     margin: 0;
-    padding: $s-s 0 $s 0;
+    padding: 0.8rem 0 1rem 0;
   }
   &.first {
     @media screen and (max-width: $desktop) {
@@ -73,17 +73,17 @@ footer {
   @media screen and (max-width: $desktop) {
     width: 100%;
     height: auto;
-    padding: $s;
-    margin: 0 0 $s 0;
+    padding: 1rem;
+    margin: 0 0 1rem 0;
   }
   .logo {
     position: absolute;
     top: 0;
     right: 0;
-    width: $s * 3;
-    height: $s * 3;
-    margin-top: -($s * 1.5);
-    margin-right: $s * 3;
+    width: 1rem * 3;
+    height: 1rem * 3;
+    margin-top: -(1rem * 1.5);
+    margin-right: 1rem * 3;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     border-radius: 50%;
     transition: all 0.7s ease;
@@ -104,22 +104,22 @@ footer {
       flex-flow: column nowrap;
     }
     li {
-      margin-right: $s/2;
+      margin-right: 1rem/2;
       @media screen and (max-width: $desktop) {
         margin: 0;
       }
       &::after {
-        content: '•';
-        margin-left: $s/2;
+        content: "•";
+        margin-left: 1rem/2;
         @media screen and (max-width: $desktop) {
-          content: '';
+          content: "";
           margin: 0;
         }
       }
       &:last-of-type {
         margin: 0;
         &::after {
-          content: '';
+          content: "";
           margin: 0;
         }
       }

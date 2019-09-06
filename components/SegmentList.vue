@@ -33,12 +33,12 @@
 </template>
 
 <script>
-import SegmentListItem from '~/components/SegmentListItem'
-import SegmentListTimelineItem from '~/components/SegmentListTimelineItem'
-import BaseHeadline from '~/components/BaseHeadline'
+import SegmentListItem from "~/components/SegmentListItem";
+import SegmentListTimelineItem from "~/components/SegmentListTimelineItem";
+import BaseHeadline from "~/components/BaseHeadline";
 
 export default {
-  name: 'SegmentList',
+  name: "SegmentList",
   components: {
     SegmentListItem,
     SegmentListTimelineItem,
@@ -46,7 +46,7 @@ export default {
   },
   props: {
     title: {
-      default: '',
+      default: "",
       type: String
     },
     segments: {
@@ -62,12 +62,12 @@ export default {
       type: Boolean
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 section {
-  margin: 0 0 $s-l 0;
+  margin: 0 0 1.5rem 0;
   width: 100%;
   &:last-of-type {
     margin: 0;
@@ -80,7 +80,7 @@ section {
     flex-wrap: wrap;
     justify-content: space-between;
     @media screen and (max-width: $desktop) {
-      margin: $s-xs 0 0 0;
+      margin: 0.5rem 0 0 0;
     }
   }
 }

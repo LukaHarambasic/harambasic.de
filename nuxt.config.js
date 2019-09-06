@@ -8,7 +8,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Your CV',
+    title: 'Harambasic.de',
     meta: [
       { charset: 'utf-8' },
       {

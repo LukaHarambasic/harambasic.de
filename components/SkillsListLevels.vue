@@ -24,10 +24,10 @@
 
 <script>
 export default {
-  name: 'SkillsLevels',
+  name: "SkillsLevels",
   props: {
     title: {
-      default: '',
+      default: "",
       type: String
     },
     skills: {
@@ -39,35 +39,35 @@ export default {
       type: Number
     },
     sortSkillsBy: {
-      default: 'none',
+      default: "none",
       type: String
     }
   },
   computed: {
     sortedSkills() {
-      const skills = this.skills
+      const skills = this.skills;
       switch (this.sortSkillsBy) {
-        case 'decreasing':
-          return skills.sort((a, b) => b.level - a.level)
-        case 'increasing':
-          return skills.sort((a, b) => a.level - b.level)
-        case 'alphabetical':
+        case "decreasing":
+          return skills.sort((a, b) => b.level - a.level);
+        case "increasing":
+          return skills.sort((a, b) => a.level - b.level);
+        case "alphabetical":
           return skills.sort((a, b) => {
-            if (a.title < b.title) return -1
-            else if (a.title > b.title) return 1
-            return 0
-          })
+            if (a.title < b.title) return -1;
+            else if (a.title > b.title) return 1;
+            return 0;
+          });
         default:
-          return skills
+          return skills;
       }
     }
   },
   methods: {
     skillPercentage(level) {
-      return (level / this.maxSkillLevel) * 100
+      return (level / this.maxSkillLevel) * 100;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -100,7 +100,7 @@ section {
         background: $c-secondary;
         display: relative;
         width: 40%;
-        height: $s;
+        height: 1rem;
         border-radius: $radius;
         overflow: hidden;
         .filled {
@@ -108,7 +108,7 @@ section {
           top: 0;
           left: 0;
           border-radius: 0 $radius $radius 0;
-          height: $s;
+          height: 1rem;
           background: $c-accent;
           box-shadow: 0 0 8px $c-primary-shadow;
         }

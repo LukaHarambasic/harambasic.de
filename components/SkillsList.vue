@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import SkillsListItems from '~/components/SkillsListItems'
-import SkillsListLevels from '~/components/SkillsListLevels'
-import BaseHeadline from '~/components/BaseHeadline'
+import SkillsListItems from "~/components/SkillsListItems";
+import SkillsListLevels from "~/components/SkillsListLevels";
+import BaseHeadline from "~/components/BaseHeadline";
 
 export default {
-  name: 'SkillsList',
+  name: "SkillsList",
   components: {
     SkillsListItems,
     SkillsListLevels,
@@ -41,7 +41,7 @@ export default {
   },
   props: {
     title: {
-      default: '',
+      default: "",
       type: String
     },
     lists: {
@@ -53,7 +53,7 @@ export default {
       type: Boolean
     },
     sortSkillsBy: {
-      default: 'none',
+      default: "none",
       type: String
     },
     maxSkillLevel: {
@@ -61,12 +61,12 @@ export default {
       type: Number
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .list {
-  margin: 0 0 $s-xs 0;
+  margin: 0 0 0.5rem 0;
   &:last-child {
     @media screen and (max-width: $desktop) {
       margin: 0;

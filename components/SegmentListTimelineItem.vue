@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import SegmentListItem from '~/components/SegmentListItem'
+import SegmentListItem from "~/components/SegmentListItem";
 
 export default {
   components: {
@@ -21,26 +21,26 @@ export default {
   },
   props: {
     title: {
-      default: '',
+      default: "",
       type: String
     },
     description: {
-      default: '',
+      default: "",
       type: String
     },
     position: {
-      default: '',
+      default: "",
       type: String
     },
     location: {
-      default: '',
+      default: "",
       type: String
     },
     date: {
       default: null,
       type: Object,
       validator: date => {
-        return date.hasOwnProperty('to') && date.hasOwnProperty('from')
+        return date.hasOwnProperty("to") && date.hasOwnProperty("from");
       }
     },
     justifyDescription: {
@@ -48,24 +48,24 @@ export default {
       type: Boolean
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .timeline {
   position: relative;
-  margin: 0 0 0 $s-xs;
-  padding: 0 0 0 $s-s;
+  margin: 0 0 0 0.5rem;
+  padding: 0 0 0 0.8rem;
   border-left: 2px $c-secondary solid;
   &:after {
-    content: '';
+    content: "";
     top: 0px;
     left: -9px;
     position: absolute;
-    width: $s-xs;
-    height: $s-xs;
+    width: 0.5rem;
+    height: 0.5rem;
     background: $c-secondary;
-    border: $s-xxs $c-white solid;
+    border: 1rem-xxs $c-white solid;
     border-radius: 50%;
   }
   &:last-of-type {

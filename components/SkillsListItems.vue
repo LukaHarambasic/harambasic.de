@@ -16,10 +16,10 @@
 
 <script>
 export default {
-  name: 'SkillsItems',
+  name: "SkillsItems",
   props: {
     title: {
-      default: '',
+      default: "",
       type: String
     },
     skills: {
@@ -27,7 +27,7 @@ export default {
       type: Array
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -50,12 +50,12 @@ section {
       display: inline;
       line-break: normal;
       &:after {
-        content: ',';
-        margin: 0 $s-xxs 0 0;
+        content: ",";
+        margin: 0 1rem-xxs 0 0;
       }
       &:last-child {
         &:after {
-          content: '';
+          content: "";
         }
       }
     }

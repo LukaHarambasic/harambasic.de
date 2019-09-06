@@ -151,17 +151,17 @@ section {
     .location {
       &::after {
         content: ',';
-        margin: 0 $s-xxs 0 0;
+        margin: 0 1rem-xxs 0 0;
       }
     }
   }
   .headline {
     font-size: $fs-m;
     color: $c-font-headline;
-    margin: $s-s 0 $s-xl 0;
+    margin: 0.8rem 0 2rem 0;
   }
   .welcome {
-    margin: 0 0 $s 0;
+    margin: 0 0 1rem 0;
     > span {
       margin: 0 0.1rem 0 0;
       &:last-of-type {
@@ -172,11 +172,11 @@ section {
     }
   }
   .text {
-    margin: 0 0 $s 0;
+    margin: 0 0 1rem 0;
   }
 
   .signatureLines {
-    margin: 0 0 ($s * 3) 0;
+    margin: 0 0 (1rem * 3) 0;
   }
 }
 </style>
