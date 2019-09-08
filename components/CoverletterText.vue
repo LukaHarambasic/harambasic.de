@@ -1,74 +1,62 @@
 <template>
   <section>
-    <div
-      class="locationDate">
-      <span
-        v-if="city"
-        class="location"
-        v-text="city"
-      />
-      <span
-        v-if="date"
-        class="date"
-        v-text="date"
-      />
+    <div class="locationDate">
+      <span 
+        v-if="city" 
+        class="location" 
+        v-text="city"/>
+      <span 
+        v-if="date" 
+        class="date" 
+        v-text="date"/>
     </div>
-    <h2
-      v-if="headline"
-      class="headline"
-      v-text="headline"
-    />
-    <div
-      class="welcome">
-      <span
-        v-if="greeting"
-        v-text="greeting"
-        class="greeting"
-      />
-      <span
-        v-if="companyName.speech"
-        v-text="companyName.speech"
-        class="speech"
-      />
-      <span
-        v-if="companyName.first"
-        v-text="companyName.first"
-        class="first"
-      />
-      <span
-        v-if="companyName.last"
-        v-text="companyName.last"
-        class="last"
-      />
+    <h2 
+      v-if="headline" 
+      class="headline" 
+      v-text="headline"/>
+    <div class="welcome">
+      <span 
+        v-if="greeting" 
+        class="greeting" 
+        v-text="greeting"/>
+      <span 
+        v-if="companyName" 
+        class="speech" 
+        v-text="companyName.speech"/>
+      <span 
+        v-if="companyName" 
+        class="first" 
+        v-text="companyName.first"/>
+      <span 
+        v-if="companyName" 
+        class="last" 
+        v-text="companyName.last"/>
     </div>
-    <div
-      class="text">
+    <div class="text">
       <p 
         v-for="(paragraph, index) in paragraphs" 
-        :key="index"
-        v-html="paragraph"
-      />
-    </div> 
-    <div
-      :class="{ signatureLines: addLinesForSignature }">
-      <span
-        v-if="farewell"
-        class="farewell"
-        v-text="farewell"
-      />
+        :key="index" 
+        v-html="paragraph"/>
     </div>
-    <div
+    <div 
+      v-if="addLinesForSignature" 
+      :class="{ signatureLines: addLinesForSignature }">
+      <span 
+        v-if="farewell" 
+        class="farewell" 
+        v-text="farewell"/>
+    </div>
+    <div 
+      v-if="personName" 
       class="name">
-      <span
-        v-if="personName"
-        class="firstname"
-        v-text="personName.first"
-      />
-      <span
-        v-if="personName"
-        class="lastname"
-        v-text="personName.last"
-      />
+      <span 
+        v-if="personName" 
+        class="firstname" 
+        v-text="personName.first"/>
+      <span 
+        v-if="personName" 
+        class="lastname" 
+        v-text="personName.last"/>
     </div>
   </section>
 </template>
@@ -151,17 +139,17 @@ section {
     .location {
       &::after {
         content: ',';
-        margin: 0 1rem-xxs 0 0;
+        margin: 0 $s-xxs 0 0;
       }
     }
   }
   .headline {
     font-size: $fs-m;
     color: $c-font-headline;
-    margin: 0.8rem 0 2rem 0;
+    margin: $s-s 0 $s-xl 0;
   }
   .welcome {
-    margin: 0 0 1rem 0;
+    margin: 0 0 $s 0;
     > span {
       margin: 0 0.1rem 0 0;
       &:last-of-type {
@@ -172,11 +160,11 @@ section {
     }
   }
   .text {
-    margin: 0 0 1rem 0;
+    margin: 0 0 $s 0;
   }
 
   .signatureLines {
-    margin: 0 0 (1rem * 3) 0;
+    margin: 0 0 ($s * 3) 0;
   }
 }
 </style>

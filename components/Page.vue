@@ -41,10 +41,10 @@ export default {
   background: $c-white;
   box-shadow: 0 0 40px $c-primary-shadow;
   border-radius: $radius;
-  width: 1rem-page-width;
-  height: 1rem-page-height;
-  padding: (1rem * 4) (1rem * 3) (1rem * 3) (1rem * 3);
-  margin: (1rem * 6) 0 0 0;
+  width: $s-page-width;
+  height: $s-page-height;
+  padding: ($s * 4) ($s * 3) ($s * 3) ($s * 3);
+  margin: ($s * 6) 0 0 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -53,7 +53,7 @@ export default {
   @media screen and (max-width: $desktop) {
     width: 100%;
     height: auto;
-    padding: 1.5rem;
+    padding: $s-l;
     margin: 0;
     box-shadow: none;
     border-radius: 0;
@@ -81,7 +81,7 @@ export default {
     }
   }
   &:last-of-type {
-    margin-bottom: (1rem * 6);
+    margin-bottom: ($s * 6);
     @media print {
       margin: 0;
     }

@@ -4,8 +4,14 @@ lists:
   -
     title: Development
     skills:
-      - 
-        title: JavaScript (Vue.js, SAPUI5)
+      -
+        title: JavaScript
+        level: 4
+      -
+        title: Vue.js
+        level: 4
+      -
+        title: SAPUI5
         level: 4
       - 
         title: HTML5/CSS3
@@ -20,7 +26,7 @@ lists:
         title: SAP HANA
         level: 2
       - 
-        title: SAP Cloud Platform
+        title: SCP
         level: 3
       - 
         title: SQL
@@ -51,10 +57,10 @@ lists:
     skills:
       - 
         title: Project Management (Scrum)
-        level: 4
+        level: 3
       - 
         title: Design Thinking
-        level: 4
+        level: 3
       - 
         title: User Experience
         level: 3

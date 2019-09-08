@@ -8,7 +8,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Harambasic.de',
+    title: 'Harambasic',
     meta: [
       { charset: 'utf-8' },
       {
@@ -40,7 +40,10 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['normalize.css/normalize.css', '@/assets/scss/main.scss'],
+  css: ['normalize.css/normalize.css', '~/assets/scss/main.scss'],
+  styleResources: {
+    sass: ['~/assets/scss/main.scss']
+  },
 
   /*
   ** Plugins to load before mounting the App
@@ -50,7 +53,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: [['nuxt-sass-resources-loader', ['@/assets/scss/_settings.scss']]],
+  modules: ['@nuxtjs/style-resources'],
 
   /*
   ** Enviroment Vairbles
@@ -61,7 +64,6 @@ module.exports = {
   ** Generation configuration
   */
   generate: {},
-
   /*
   ** Build configuration
   */

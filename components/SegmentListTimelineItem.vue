@@ -54,18 +54,18 @@ export default {
 <style lang="scss" scoped>
 .timeline {
   position: relative;
-  margin: 0 0 0 0.5rem;
-  padding: 0 0 0 0.8rem;
+  margin: 0 0 0 $s-xs;
+  padding: 0 0 0 $s-s;
   border-left: 2px $c-secondary solid;
   &:after {
     content: "";
     top: 0px;
     left: -9px;
     position: absolute;
-    width: 0.5rem;
-    height: 0.5rem;
+    width: $s-xs;
+    height: $s-xs;
     background: $c-secondary;
-    border: 1rem-xxs $c-white solid;
+    border: $s-xxs $c-white solid;
     border-radius: 50%;
   }
   &:last-of-type {

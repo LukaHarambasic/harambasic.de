@@ -89,7 +89,7 @@ li {
   justify-content: flex-start;
   align-items: flex-start;
   margin: 0 0 0 0;
-  padding: 0 0 0.8rem 0;
+  padding: 0 0 $s-s 0;
   text-align: left;
   width: 100%;
   &:last-of-type {
@@ -123,17 +123,17 @@ li {
       display: flex;
       flex-flow: row nowrap;
       .from {
-        margin: 0 1rem-xxs 0 0;
+        margin: 0 $s-xxs 0 0;
         &::after {
           content: "-";
-          margin: 0 0 0 1rem-xxs;
+          margin: 0 0 0 $s-xxs;
         }
       }
       .to {
-        margin: 0 1rem-xxs 0 0;
+        margin: 0 $s-xxs 0 0;
         &::after {
           content: "•";
-          margin: 0 0 0 1rem-xxs;
+          margin: 0 0 0 $s-xxs;
         }
       }
     }

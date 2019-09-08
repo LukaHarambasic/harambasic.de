@@ -51,7 +51,7 @@ section {
       line-break: normal;
       &:after {
         content: ",";
-        margin: 0 1rem-xxs 0 0;
+        margin: 0 $s-xxs 0 0;
       }
       &:last-child {
         &:after {

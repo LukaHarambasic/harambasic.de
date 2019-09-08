@@ -10,8 +10,7 @@
         :image-path="settings.imagePath"
         :is-image-round="settings.isImageRound"
       />
-      <div 
-        class="main">
+      <div class="main">
         <segment-list
           v-if="education"
           :title="education.title"
@@ -27,7 +26,7 @@
           :justify-description="settings.justifyDescription"
         />
       </div>
-      <skills-list 
+      <skills-list
         v-if="skills"
         :title="skills.title"
         :lists="skills.lists"
@@ -65,14 +64,14 @@ import SegmentHeader from "~/components/SegmentHeader.vue";
 import SegmentList from "~/components/SegmentList.vue";
 import SkillsList from "~/components/SkillsList.vue";
 
-import settings from "~/content/settings.yml";
-import person from "~/content/person.yml";
-import experienceFirstPage from "~/content/experienceFirstPage.yml";
-import experienceSecondPage from "~/content/experienceSecondPage.yml";
-import education from "~/content/education.yml";
-import skills from "~/content/skills.yml";
-import voluntary from "~/content/voluntary.yml";
-import footer from "~/content/footer.yml";
+import settings from "~/assets/content/settings.yml";
+import person from "~/assets/content/person.yml";
+import experienceFirstPage from "~/assets/content/experienceFirstPage.yml";
+import experienceSecondPage from "~/assets/content/experienceSecondPage.yml";
+import education from "~/assets/content/education.yml";
+import skills from "~/assets/content/skills.yml";
+import voluntary from "~/assets/content/voluntary.yml";
+import footer from "~/assets/content/footer.yml";
 
 export default {
   name: "Cv",
@@ -117,12 +116,12 @@ export default {
     width: 30%;
     @media screen and (max-width: $desktop) {
       width: 100%;
-      margin: 1.5rem 0 0 0;
+      margin: $s-l 0 0 0;
     }
   }
   .voluntary {
     @media screen and (max-width: $desktop) {
-      margin: 0 0 2rem 0;
+      margin: 0 0 $s-xl 0;
     }
   }
 }

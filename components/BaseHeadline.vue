@@ -22,7 +22,7 @@ h2 {
   position: relative;
   color: $c-font-headline;
   text-align: left;
-  margin: 0 0 1rem-xxs 0;
+  margin: 0 0 $s-xxs 0;
   font-weight: 600;
 }
 </style>

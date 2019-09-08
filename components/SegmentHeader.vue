@@ -60,7 +60,7 @@ export default {
 header {
   width: 100%;
   height: 20%;
-  margin: 0 0 (1rem * 2) 0;
+  margin: 0 0 ($s * 2) 0;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -74,7 +74,7 @@ header {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     @media screen and (max-width: $desktop) {
       border-radius: $radius $radius 0 0;
-      margin: 2rem 0 0 0;
+      margin: $s-xl 0 0 0;
       max-height: auto;
       max-width: 80%;
     }
@@ -89,7 +89,7 @@ header {
     display: flex;
     flex-flow: column nowrap;
     align-content: stretch;
-    margin: 0 0 0 2rem;
+    margin: 0 0 0 $s-xl;
     h1 {
       color: $c-white;
       font-size: $fs-xl;
@@ -98,7 +98,7 @@ header {
       height: 80%;
       @media screen and (max-width: $desktop) {
         font-size: $fs-l * 1.5;
-        margin: 1rem 0 1rem 0;
+        margin: $s 0 $s 0;
       }
     }
     .information {
@@ -107,14 +107,14 @@ header {
       align-items: center;
       > span {
         position: relative;
-        margin: 0 1.5rem 0 0;
+        margin: 0 $s-l 0 0;
         &::after {
           content: "";
           position: absolute;
-          right: -1rem;
+          right: -$s;
           top: 0.37rem;
-          width: 0.5rem;
-          height: 0.5rem;
+          width: $s-xs;
+          height: $s-xs;
           background: $c-secondary;
           border-radius: 50%;
         }

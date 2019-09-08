@@ -66,7 +66,7 @@ export default {
 
 <style lang="scss" scoped>
 .list {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 $s-xs 0;
   &:last-child {
     @media screen and (max-width: $desktop) {
       margin: 0;

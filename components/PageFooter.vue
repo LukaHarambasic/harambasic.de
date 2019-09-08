@@ -55,7 +55,7 @@ footer {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem 0;
+  padding: $s-s 0;
   border-radius: 0 0 $radius $radius;
   transform: translateY(100%);
   @media print {
@@ -63,7 +63,7 @@ footer {
     border-radius: 0;
     transform: none;
     margin: 0;
-    padding: 0.8rem 0 1rem 0;
+    padding: $s-s 0 $s 0;
   }
   &.first {
     @media screen and (max-width: $desktop) {
@@ -73,17 +73,17 @@ footer {
   @media screen and (max-width: $desktop) {
     width: 100%;
     height: auto;
-    padding: 1rem;
-    margin: 0 0 1rem 0;
+    padding: $s;
+    margin: 0 0 $s 0;
   }
   .logo {
     position: absolute;
     top: 0;
     right: 0;
-    width: 1rem * 3;
-    height: 1rem * 3;
-    margin-top: -(1rem * 1.5);
-    margin-right: 1rem * 3;
+    width: $s * 3;
+    height: $s * 3;
+    margin-top: -($s * 1.5);
+    margin-right: $s * 3;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     border-radius: 50%;
     transition: all 0.7s ease;
@@ -104,13 +104,13 @@ footer {
       flex-flow: column nowrap;
     }
     li {
-      margin-right: 1rem/2;
+      margin-right: $s/2;
       @media screen and (max-width: $desktop) {
         margin: 0;
       }
       &::after {
         content: "•";
-        margin-left: 1rem/2;
+        margin-left: $s/2;
         @media screen and (max-width: $desktop) {
           content: "";
           margin: 0;

@@ -100,7 +100,7 @@ section {
         background: $c-secondary;
         display: relative;
         width: 40%;
-        height: 1rem;
+        height: $s;
         border-radius: $radius;
         overflow: hidden;
         .filled {
@@ -108,7 +108,7 @@ section {
           top: 0;
           left: 0;
           border-radius: 0 $radius $radius 0;
-          height: 1rem;
+          height: $s;
           background: $c-accent;
           box-shadow: 0 0 8px $c-primary-shadow;
         }

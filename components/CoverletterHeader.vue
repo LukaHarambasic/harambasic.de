@@ -38,10 +38,10 @@ header {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem 0;
+  padding: $s-s 0;
   border-radius: $radius $radius 0 0;
   > span {
-    margin: 0 1rem-xxs 0 0;
+    margin: 0 $s-xxs 0 0;
     &::after {
       content: ',';
     }

@@ -3,21 +3,21 @@ segments:
   -
     title: Q-Summit
     position: Head of IT Department
-    description: Introducing Slack Workspace, G Suite and HubSpot for over 100 members
+    description: Introducing Slack, G Suite and HubSpot for over 100 members
     location: Mannheim, Germany
     date:
-      from: 09/2018
-      to: today
+      from: 07/2018
+      to: 05/2019
   -
     title: Arbeitskreis Börse
     position: Head of IT Department
     description: "Implementing G Suite and maintaining IT infrastructure (e-mails, website, communication, planning, newsletter) for over 1.000 members"
     location: Mannheim, Germany
     date:
-      from: 09/2016
-      to: 04/2017
+      from: 04/2017
+      to: 08/2018
   -
-    title: Q-Summit - Innovation. Inspiration. Q.
+    title: Q-Summit
     position: Co-Head of IT Department
     description: Creating a first website and an internal communication structure
     location: Mannheim, Germany
@@ -30,20 +30,20 @@ segments:
     description: Organizing events and managing the website
     location: Ludwigshafen, Germany
     date:
-      from: 09/2016
-      to: 04/2017
+      from: 02/2015
+      to: 02/2016
   -
     title: TV Edigheim
     position: Youth Trainer
     description: Training two youth teams‌‌‌‌‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ ‌‌ 
     location: Ludwigshafen, Germany
     date:
-      from: 09/2016
-      to: 04/2017
+      from: 05/2012
+      to: 08/2016
   -
     title: Wirtschaftsgymnasium BBS W1
     position: Pupil Representative
-    description: Acting as link between students and teachers and organizing events.
+    description: Acting as link between students and teachers and organizing events
     location: Ludwigshafen, Germany
     date:
       from: 08/2012
