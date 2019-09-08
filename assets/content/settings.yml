@@ -4,7 +4,7 @@ logoPath: logo.svg
 # add two lines to add a signatur via your pdf programm
 addLinesForSignature: true 
 # add image path, default is profile.jpg, leave empty if you don't want a logo (can be found in static)
-imagePath: square.jpg
+imagePath: ../square.jpg
 # do you want a round image?
 isImageRound: false
 # do you want this dots?
@@ -16,4 +16,4 @@ showSkillLevel: false
 # what is your maximum skill level?
 maxSkillLevel: 5 
 # do you want the skills sorted? Here are your options: increasing / decreasing / alphabetical / none
-sortSkillsBy: decreasing 
+sortSkillsBy: decreasing
