@@ -2,6 +2,14 @@ title: Experience
 segments:
   -
     title: SAP SE
+    position: Associate Technology Consultant - Mobile UX
+    description: Creating custom frontends for our customers, focusing on User Experience
+    location: Walldorf, Germany
+    date:
+      from: 10/2019
+      to: today
+  -
+    title: SAP SE
     position: Bachelor Thesis
     description: SAP Work-Life - Evaluating Javascript Frontend Frameworks for enterprise use, including trend and requirements analysis
     location: Walldorf, Germany
