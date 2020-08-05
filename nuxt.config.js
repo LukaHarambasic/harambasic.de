@@ -29,7 +29,13 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~assets/style/main.sass'],
+  /*
+   ** Load Variables
+   */
+  styleResources: {
+    sass: ['~assets/style/_variables.sass'],
+  },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -43,12 +49,7 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
-    // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module',
-  ],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/style-resources'],
   /*
    ** Nuxt.js modules
    */
