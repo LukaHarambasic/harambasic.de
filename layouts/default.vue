@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header>
-      <h1>Luka Harambasic</h1>
+      <h1><nuxt-link to="/">Luka Harambasic</nuxt-link></h1>
       <nav>
         <ul>
           <li><nuxt-link to="/">Home</nuxt-link></li>
@@ -57,6 +57,13 @@ header
   margin: 0 0 4rem 0
   h1
     font-size: 1.75rem
+    a
+      color: $color-primary
+      text-decoration: none
+      border-bottom: 2px solid transparent
+      transition: $animation
+      &:hover
+        border-color: $color-primary
   nav
     ul
       display: flex

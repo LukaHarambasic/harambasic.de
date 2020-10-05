@@ -1,8 +1,6 @@
 <template>
-  <div class="container">
-    <h1>Luka Harambasic</h1>
-    <nuxt-link to="/projects">Projects</nuxt-link>
-    <nuxt-link to="/posts">Blog</nuxt-link>
+  <div class="content">
+    <h2>Hi! That's my website!</h2>
   </div>
 </template>
 
@@ -10,4 +8,12 @@
 export default {}
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="sass" scoped>
+.content
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+  align-content: center
+  align-items: center
+</style>
