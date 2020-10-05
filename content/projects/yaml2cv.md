@@ -12,17 +12,15 @@ links:
         title: GitHub
         url: https://github.com/LukaHarambasic/YAML2CV
 category: Development
-topics: 
+tags: 
     - Nuxt.js
     - Vue.js
     - CV
     - PDF
     - Open Source
-background: '#E2EBF0'
-color: dark
 ---
 
-# Why bother with Word or a graphics program when you can program?
+## Why bother with Word or a graphics program when you can program?
 
 I created my first CV as usual with Word and quickly felt limited by the WYSIWYG editor. I wanted to have everything exactly under my control and not make any compromises. The next logical step for me was Sketch. And although I was able to work pixel perfect, I also reached the limits here. Due to the editing of text, all elements often had to be realigned, which didn't feel optimal. Editing the text itself was no fun either. 
 

@@ -12,18 +12,16 @@ links:
         title: Instagram
         url: https://www.instagram.com/qsummit/?hl=en
 category: Development
-topics: 
+tags: 
     - Change Process
     - G Suite
     - Slack
     - HubSpot
     - Zapier
     - Wordpress
-background: '#071F77'
-color: light
 ---
 
-# Establish a bullet proof digital future
+## Establish a bullet proof digital future
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat convallis velit, auctor interdum eros sollicitudin a. Mauris sit amet tellus turpis. Aenean ante arcu, auctor in turpis nec, congue vehicula magna. Phasellus mattis eget est eu commodo. Suspendisse nec tortor non metus sagittis dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean ut arcu eget augue rhoncus maximus. Nulla at ipsum at libero mollis imperdiet. Donec pulvinar nisl ut ipsum scelerisque, ut commodo odio dapibus.
 

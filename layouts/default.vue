@@ -1,17 +1,103 @@
 <template>
-  <main>
-    <Nuxt />
-  </main>
+  <div class="container">
+    <header>
+      <h1>Luka Harambasic</h1>
+      <nav>
+        <ul>
+          <li><nuxt-link to="/">Home</nuxt-link></li>
+          <li><nuxt-link to="/projects">Projects</nuxt-link></li>
+          <li><nuxt-link to="/posts">Blog</nuxt-link></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <Nuxt />
+    </main>
+    <footer>
+      <ul>
+        <li><nuxt-link to="/">Home</nuxt-link></li>
+        <li><nuxt-link to="/projects">Projects</nuxt-link></li>
+        <li><nuxt-link to="/posts">Blog</nuxt-link></li>
+        <li><nuxt-link to="/imprint">Imprint</nuxt-link></li>
+        <li><nuxt-link to="/data-privacy">Data Privacy</nuxt-link></li>
+        <li><a href="mailto:hi@harambasic.de">Contact</a></li>
+      </ul>
+      <logo class="logo" />
+    </footer>
+  </div>
 </template>
 
+<script>
+import Logo from '~/components/Logo'
+export default {
+  components: { Logo },
+}
+</script>
+
 <style lang="sass">
-main
-  width: 100vw
-  height: 100vh
+.container
+  height: auto
+  min-height: 100vh
+  width: 64rem
+  margin: 4rem auto
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+  justify-content: flex-start
+  align-content: flex-start
+  align-items: stretch
+header
   display: flex
   flex-direction: row
   flex-wrap: nowrap
-  justify-content: center
+  justify-content: space-between
   align-content: center
   align-items: center
+  margin: 0 0 4rem 0
+  h1
+    font-size: 1.75rem
+  nav
+    ul
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+      justify-content: flex-start
+      align-content: flex-start
+      align-items: flex-start
+      li
+        margin: 0 0 0 1rem
+        a
+          color: $color-primary
+          text-decoration: none
+          border-bottom: 2px solid transparent
+          transition: $animation
+          &:hover
+            border-color: $color-primary
+footer
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: space-between
+  align-content: center
+  align-items: center
+  justify-self: flex-end
+  .logo
+    width: 3rem
+    height: 3rem
+  ul
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: flex-start
+    align-content: flex-start
+    align-items: flex-start
+    li
+      margin: 0 0 0 1rem
+      a
+        color: $color-primary
+        text-decoration: none
+        border-bottom: 2px solid transparent
+        transition: $animation
+        &:hover
+          border-color: $color-primary
 </style>
