@@ -39,11 +39,12 @@ export default {
   height: auto
   min-height: 100vh
   width: 64rem
-  margin: 4rem auto
+  padding: 4rem 0
+  margin: 0 auto
   display: flex
   flex-direction: column
   flex-wrap: nowrap
-  justify-content: flex-start
+  justify-content: space-between
   align-content: flex-start
   align-items: stretch
 header
@@ -73,6 +74,8 @@ header
           transition: $animation
           &:hover
             border-color: $color-primary
+main
+  flex: 1 1 auto
 footer
   display: flex
   flex-direction: row
@@ -80,7 +83,6 @@ footer
   justify-content: space-between
   align-content: center
   align-items: center
-  justify-self: flex-end
   .logo
     width: 3rem
     height: 3rem
