@@ -11,7 +11,6 @@
     </aside>
     <section>
       <h1 class="title" v-text="project.title" />
-      <hr class="divider" />
       <nuxt-content class="markdown" :document="project" />
       <div class="links">
         <a
@@ -83,16 +82,19 @@ section
   align-self: auto
 // content - title
 .title
-  font-size: 3rem
-  margin: 0 0 0 0
+  font-size: 1.75rem
+  margin: 0 0 2rem 0
+  background: $color-secondary
+  border-radius: $border-radius
+  padding: 1rem
 // content - divider
 .divider
-  height: .5rem
-  width: 100%
-  margin: 0 0 2rem 0
-  border-radius: $border-radius
+  //height: 2px
+  //width: 100%
+  //margin: 0 0 2rem 0
+  //border-radius: $border-radius
   border: none
-  background: $color-secondary
+  //background: $color-secondary
 // content - markdown
 .markdown
   margin: 0 0 2rem 0
