@@ -1,7 +1,7 @@
 ---
-title: Active Ambassadors
+title: Corona-Warn-App
 desc: Desc
-img: yaml2cv.png
+img: corona-warn-app.jpg
 alt: A beautiful CV generated from a YAML file
 time: 2017 - today
 links:
@@ -11,7 +11,6 @@ links:
     -
         title: GitHub
         url: https://github.com/LukaHarambasic/YAML2CV
-category: Development
 tags: 
     - Nuxt.js
     - Vue.js

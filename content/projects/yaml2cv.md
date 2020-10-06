@@ -11,7 +11,6 @@ links:
     -
         title: GitHub
         url: https://github.com/LukaHarambasic/YAML2CV
-category: Development
 tags: 
     - Nuxt.js
     - Vue.js

@@ -10,8 +10,7 @@ links:
         url: https://q-summit.com/
     -
         title: Instagram
-        url: https://www.instagram.com/qsummit/?hl=en
-category: Development
+        url: https://www.instagram.com/qsummit/
 tags: 
     - Change Process
     - G Suite

@@ -14,7 +14,6 @@ links:
     -
         title: LinkedIn
         url: https://www.linkedin.com/company/active-ambassadors
-category: Development
 tags: 
     - Doing good
     - NGO

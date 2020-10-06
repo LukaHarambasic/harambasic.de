@@ -37,14 +37,14 @@ ul
   align-content: stretch
   align-items: stretch
 li
-  width: calc((100% / 3) - (4rem / 3))
-  margin: 0 2rem 2rem 0
+  width: calc((100% / 3) - (8rem / 3)) //4rem between the 3 projects per row, space between can't be used as rows arent't filled from the start
+  margin: 0 4rem 4rem 0
   background: $color-secondary
   border-radius: $border-radius
-  padding: 1rem
+  padding: 1.5rem
   transition: $animation
-  &:nth-child(3)
-    margin: 0 0 2rem 0
+  &:nth-child(3n+3)
+    margin: 0 0 4rem 0
   &:hover
     cursor: pointer
     transform: scale(1.05)
