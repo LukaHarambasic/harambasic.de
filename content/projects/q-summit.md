@@ -1,7 +1,7 @@
 ---
 title: Q-Summit
 desc: Desc
-img: ../q-summit.png
+img: q-summit.png
 alt: A beautiful CV generated from a YAML file
 time: 2016 - 2017 & 2018 - 2019
 links:

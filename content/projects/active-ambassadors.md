@@ -1,27 +1,30 @@
 ---
-title: Q-Summit
+title: Active Ambassadors
 desc: Desc
-img: ../q-summit.png
-alt: A beautiful CV generated from a YAML file
-time: 2016 - 2017 & 2018 - 2019
+img: active-ambassadors.png
+alt: TBD
+time: April 2020 - today
 links:
     -
         title: Website
-        url: https://q-summit.com/
+        url: https://active-ambassadors.org/
     -
         title: Instagram
-        url: https://www.instagram.com/qsummit/?hl=en
+        url: https://www.instagram.com/active_ambassadors/
+    -
+        title: LinkedIn
+        url: https://www.linkedin.com/company/active-ambassadors
 category: Development
 tags: 
-    - Change Process
-    - G Suite
+    - Doing good
+    - NGO
+    - Nuxt.js
+    - Vue.js
+    - Airtable
     - Slack
-    - HubSpot
-    - Zapier
-    - Wordpress
 ---
 
-## Establish a bullet proof digital future
+## Imprint your jersey now
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat convallis velit, auctor interdum eros sollicitudin a. Mauris sit amet tellus turpis. Aenean ante arcu, auctor in turpis nec, congue vehicula magna. Phasellus mattis eget est eu commodo. Suspendisse nec tortor non metus sagittis dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean ut arcu eget augue rhoncus maximus. Nulla at ipsum at libero mollis imperdiet. Donec pulvinar nisl ut ipsum scelerisque, ut commodo odio dapibus.
 

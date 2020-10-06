@@ -1,7 +1,7 @@
 ---
 title: YAML2CV
 desc: Desc
-img: ../yaml2cv.png
+img: yaml2cv.png
 alt: A beautiful CV generated from a YAML file
 time: 2017 - today
 links:
