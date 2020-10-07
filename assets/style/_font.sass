@@ -21,7 +21,11 @@ h1, h2, h3, h4, h5, h6
     list-style: disc
     margin: 0 0 1rem 1rem
   a
-    color: $color-secondary
+    color: $color-primary
     font-weight: bold
+    border-bottom: 1px solid transparent
+    transition: $animation
+    text-decoration: none
     &:hover
       text-decoration: none
+      border-color: $color-primary

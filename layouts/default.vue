@@ -15,9 +15,6 @@
     </main>
     <footer>
       <ul>
-        <li><nuxt-link to="/">Home</nuxt-link></li>
-        <li><nuxt-link to="/projects">Projects</nuxt-link></li>
-        <li><nuxt-link to="/posts">Blog</nuxt-link></li>
         <li><nuxt-link to="/imprint">Imprint</nuxt-link></li>
         <li><nuxt-link to="/data-privacy">Data Privacy</nuxt-link></li>
         <li><a href="mailto:hi@harambasic.de">Contact</a></li>
@@ -82,7 +79,7 @@ header
           &:hover
             border-color: $color-primary
 main
-  flex: 1 1 auto
+  flex: 1 0 auto
 footer
   display: flex
   flex-direction: row

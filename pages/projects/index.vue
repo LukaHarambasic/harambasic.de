@@ -7,7 +7,11 @@
         :to="project.path"
         tag="li"
       >
-        <img class="image" :src="project.img" :alt="project.alt" />
+        <img
+          class="image"
+          :src="'/projects/' + project.img"
+          :alt="project.alt"
+        />
         <h2 class="title" v-text="project.title" />
       </nuxt-link>
     </ul>
@@ -17,7 +21,7 @@
 <script>
 export default {
   name: 'Index',
-  async asyncData({ $content, params }) {
+  async asyncData({ $content }) {
     const projects = await $content('projects')
       .only(['title', 'path', 'slug', 'img', 'alt'])
       .fetch()
