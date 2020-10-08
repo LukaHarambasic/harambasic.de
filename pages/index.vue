@@ -9,7 +9,7 @@
         <nuxt-link to="/blog">Blog</nuxt-link>. If you want to see my CV you can
         checkout <a href="https://www.linkedin.com/in/harambasic/">LinkedIn</a>.
         And if you still want to know more about me you can also write me a
-        <a href="mailto:hi@harambasic.de">mail</a>.
+        <a href="mailto:hi@harambasic.de">Mail</a>.
       </p>
     </div>
   </div>
@@ -21,12 +21,12 @@ export default {}
 
 <style lang="sass" scoped>
 .wrapper-center
-  flex: 1
   display: flex
-  flex-direction: column
+  flex-direction: row
   flex-wrap: nowrap
   justify-content: center
   align-content: center
   align-items: center
-  min-height: 100%
+.center
+  width: 60%
 </style>

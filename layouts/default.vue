@@ -80,6 +80,9 @@ header
             border-color: $color-primary
 main
   flex: 1 0 auto
+  display: contents
+  @supports not (display: contents)
+    margin: 4rem 0 0 0
 footer
   display: flex
   flex-direction: row
