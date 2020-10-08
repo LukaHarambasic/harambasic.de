@@ -24,6 +24,7 @@ export default {
   async asyncData({ $content }) {
     const projects = await $content('projects')
       .only(['title', 'path', 'slug', 'img', 'alt'])
+      .sortBy('title')
       .fetch()
     return {
       projects,
