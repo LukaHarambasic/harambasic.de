@@ -50,6 +50,8 @@ header
           text-decoration: none
           border-bottom: 2px solid transparent
           transition: $animation
+          &.nuxt-link-exact-active
+            border-color: $color-primary
           &:hover
             border-color: $color-primary
 </style>
