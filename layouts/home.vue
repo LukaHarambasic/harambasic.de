@@ -32,4 +32,7 @@ export default {
   align-items: stretch
 main
   flex: 1 0 auto
+  display: contents
+  @supports not (display: contents)
+    margin: 4rem 0 0 0
 </style>

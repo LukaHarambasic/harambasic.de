@@ -1,8 +1,8 @@
 ---
 title: Q-Summit
-desc: Desc
+desc: Q-Summit is a conference founded by students of the University of Mannheim in 2016. Q has a focus on the topics innovation and entrepreneurship while it tries to bring students, startups and corporations together. It not even took 5 years to grow to one of the largest student organised conferences in this field with more than 1000 participants.
 img: q-summit.png
-alt: A beautiful CV generated from a YAML file
+alt: The team behind Q-Summit 2019
 time: 2016 - 2017 & 2018 - 2019
 links:
     -
@@ -20,8 +20,12 @@ tags:
     - Wordpress
 ---
 
-## Establish a bullet proof digital future
+## An innovative innovation summit
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat convallis velit, auctor interdum eros sollicitudin a. Mauris sit amet tellus turpis. Aenean ante arcu, auctor in turpis nec, congue vehicula magna. Phasellus mattis eget est eu commodo. Suspendisse nec tortor non metus sagittis dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean ut arcu eget augue rhoncus maximus. Nulla at ipsum at libero mollis imperdiet. Donec pulvinar nisl ut ipsum scelerisque, ut commodo odio dapibus.
+Q-Summit is a conference founded by students of the University of Mannheim in 2016. Q has a focus on the topics innovation and entrepreneurship while it tries to bring students, startups and corporations together. It not even took 5 years to grow to one of the largest student organised conferences in this field with more than 1000 participants.
 
-Nullam viverra eu nulla non fringilla. Proin non eros ullamcorper, condimentum nulla sit amet, rhoncus purus. Suspendisse sagittis dapibus commodo. Nulla non tellus molestie, maximus purus et, consectetur nisi. Aenean vel ex in quam mollis hendrerit nec id velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In eu mi ut lorem consequat elementum. Nulla dui libero, vestibulum eu hendrerit quis, fringilla ullamcorper libero. In quis sodales odio. Proin faucibus, nisi at tristique ornare, ante leo faucibus tortor, non maximus ante metus at enim. Fusce id erat ipsum. Praesent varius mauris eget neque semper, nec rhoncus tellus porttitor. Maecenas neque dolor, malesuada ac eleifend sit amet, rhoncus nec sem. Integer pretium porta quam, in ullamcorper massa aliquam ac. Quisque pharetra purus et egestas convallis. Mauris pharetra aliquam erat, non facilisis odio tristique sit amet.
+I joined Q-summit in the first year and was responsible for the website and setting up internal and external tooling regarding communication, collaboration and process optimization. In the first year we completely focused on making things happen, to realize the conference.
+
+For the second year I decided to enjoy Q as a participant as I wasn't able to even listen to one presentation in the first year.
+
+But since this was a project of the heart I joined the team again to plan the third year and restructured how we communicated via Slack, implemented G Suite for collaboration, automated processes with Zapier and introduced HubSpot to simplify the communication with our partners. All that was implemented by myself for a team of around 100 students.

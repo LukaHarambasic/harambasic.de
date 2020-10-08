@@ -1,28 +1,29 @@
 ---
 title: Corona-Warn-App
-desc: Desc
+desc: I got the opportunity to work on the german Corona-Warn-App. While Google and Apple where still working on the Exposure Notification Framework we already started to build a native app based on the API. I focused on the UI implementation of the Android app. 
 img: corona-warn-app.jpg
-alt: A beautiful CV generated from a YAML file
-time: 2017 - today
+alt: A screenshot of the Corona-Warn-App homescreen.
+time: 2020 - today
 links:
     -
-        title: Preview
-        url: https://yaml2cv-demo.netlify.app/
+        title: Website
+        url: https://www.coronawarn.app/en/
     -
         title: GitHub
-        url: https://github.com/LukaHarambasic/YAML2CV
+        url: https://github.com/corona-warn-app/cwa-app-android
 tags: 
-    - Nuxt.js
-    - Vue.js
-    - CV
-    - PDF
-    - Open Source
+    - Android
+    - Kotlin
+    - Teamlead
+    - Scrum Master
 ---
 
-## Why bother with Word or a graphics program when you can program?
+## Technology to fight the crisis
 
-I created my first CV as usual with Word and quickly felt limited by the WYSIWYG editor. I wanted to have everything exactly under my control and not make any compromises. The next logical step for me was Sketch. And although I was able to work pixel perfect, I also reached the limits here. Due to the editing of text, all elements often had to be realigned, which didn't feel optimal. Editing the text itself was no fun either. 
+I got the opportunity to work on the german Corona-Warn-App. While Google and Apple where still working on the Exposure Notification Framework we already started to build a native app based on the API. I focused on the UI implementation of the Android app. 
 
-In the meantime my developer skills were good enough to release the first version of the CV Generator, I think it was still based on JSON. The goal was to create a tool where you could update your CV with minimal developer knowledge in a very easy way. I also wanted to host my CV on harambasic.de to be able to save my CV as PDF at any time.
+With a crazy motivated team we where able to deliver the app after 50 days. And I'll never forget the evening before our source code was published on GitHub.
 
-One of the most beautiful moments was when friends and then suddenly also strangers used my work. Even if it's not a big number of users it's just nice to see how something I developed for myself helps others.
+And the app is quite successful even if [some politicians haven't heard about it](https://www.youtube.com/watch?v=atAy8NGOoiw). I'm just proud that I was able to build something like this, I wouldn't have dared to dream about it.
+
+Some weeks after the final release I slowly stopped programming and took more responsibility in the team as teamlead and also Scrum Master.

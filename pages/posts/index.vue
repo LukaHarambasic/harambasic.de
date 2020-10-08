@@ -1,24 +1,34 @@
 <template>
-  <section>
-    <h2>Blog</h2>
-    <ul>
-      <li v-for="post in posts" :key="post.slug">
-        <nuxt-link :to="post.path" v-text="post.title" />
-      </li>
-    </ul>
-  </section>
+  <Items :items="posts" />
 </template>
 
 <script>
+import Items from '~/components/Items'
 export default {
   name: 'Index',
+  components: { Items },
   async asyncData({ $content }) {
-    const posts = await $content('posts').fetch()
+    const posts = await $content('posts')
+      .only(['title', 'path', 'slug', 'img', 'alt', 'dir'])
+      .sortBy('title')
+      .fetch()
     return {
       posts,
+    }
+  },
+  head() {
+    return {
+      title: 'Blog - Luka Harambasic',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'This is my blog.',
+        },
+      ],
     }
   },
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped></style>

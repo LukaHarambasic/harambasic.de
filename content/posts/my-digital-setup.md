@@ -1,7 +1,11 @@
 ---
 title: My digital setup
-description: For Meta.
-topics:
+desc:
+img: ivo-bau.png
+alt:
+time:
+links:
+tags: 
     - Dropbox
     - Google Drive
     - Google Calendar
@@ -9,3 +13,4 @@ topics:
     - Backup
     - ...
 ---
+
