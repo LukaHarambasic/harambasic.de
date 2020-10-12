@@ -22,10 +22,20 @@ h1, h2, h3, h4, h5, h6
     margin: 0 0 1rem 1rem
   a
     color: $color-primary
-    font-weight: bold
-    border-bottom: 1px solid transparent
+    border-bottom: 1px solid $color-primary
     transition: $animation
     text-decoration: none
     &:hover
       text-decoration: none
-      border-color: $color-primary
+      border-color: transparent
+  blockquote
+    padding: .5rem 1rem
+    border-left: .5rem solid $color-secondary
+    margin: 0 0 1rem 1rem
+    p
+      font-size: 1.2rem
+      font-weight: bold
+      &:last-of-type
+        margin: 0
+  iframe
+    margin: 0 0 1rem 0
