@@ -45,7 +45,13 @@
     >
       <g id="Final_Color_Dark" transform="translate(-100.000000, -100.000000)">
         <g id="Logo" transform="translate(100.000000, 100.000000)">
-          <circle id="Kreis" fill="#E2EBF0" cx="400" cy="400" r="400"></circle>
+          <circle
+            id="Kreis"
+            :fill="initials"
+            cx="400"
+            cy="400"
+            r="400"
+          ></circle>
           <g id="LH">
             <use
               fill="black"
@@ -53,7 +59,11 @@
               filter="url(#filter-2)"
               xlink:href="#path-1"
             ></use>
-            <use fill="#2E2E3E" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use
+              :fill="background"
+              fill-rule="evenodd"
+              xlink:href="#path-1"
+            ></use>
           </g>
         </g>
       </g>
@@ -64,6 +74,20 @@
 <script>
 export default {
   name: 'Logo',
+  props: {
+    mode: {
+      type: String,
+      default: 'dark',
+    },
+  },
+  computed: {
+    background() {
+      return this.mode === 'dark' ? '#E2EBF0' : '#2E2E3E'
+    },
+    initials() {
+      return this.mode === 'dark' ? '#2E2E3E' : '#E2EBF0'
+    },
+  },
 }
 </script>
 

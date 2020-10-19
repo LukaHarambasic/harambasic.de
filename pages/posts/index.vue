@@ -1,16 +1,16 @@
 <template>
-  <Items :items="posts" />
+  <ItemsList :items="posts" />
 </template>
 
 <script>
-import Items from '~/components/Items'
+import ItemsList from '~/components/ItemsList'
 export default {
   name: 'Index',
-  components: { Items },
+  components: { ItemsList },
   async asyncData({ $content }) {
     const posts = await $content('posts')
-      .only(['title', 'path', 'slug', 'img', 'alt', 'dir'])
-      .sortBy('title')
+      .only(['title', 'path', 'slug', 'img', 'alt', 'dir', 'created'])
+      .sortBy('created')
       .fetch()
     return {
       posts,

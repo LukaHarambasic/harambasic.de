@@ -1,12 +1,12 @@
 <template>
-  <Items :items="projects" />
+  <items-grid :items="projects" />
 </template>
 
 <script>
-import Items from '~/components/Items'
+import ItemsGrid from '~/components/ItemsGrid'
 export default {
   name: 'Index',
-  components: { Items },
+  components: { ItemsGrid },
   async asyncData({ $content }) {
     const projects = await $content('projects')
       .only(['title', 'path', 'slug', 'img', 'alt', 'dir'])
