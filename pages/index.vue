@@ -31,6 +31,8 @@ export default {
 .box
   width: 60%
   margin: 0 auto
+  @media screen and (max-width: $breakpoint-mobile)
+    width: 100%
 .strike-through
   text-decoration: line-through
 </style>

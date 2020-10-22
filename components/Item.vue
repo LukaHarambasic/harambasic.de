@@ -45,6 +45,8 @@ export default {
   justify-content: flex-start
   align-content: stretch
   align-items: stretch
+  @media screen and (max-width: $breakpoint-desktop)
+    flex-direction: column
 // sidebar
 aside
   order: 0
@@ -52,6 +54,9 @@ aside
   align-self: auto
   background: $color-light
   margin: 0 4rem 0 0
+  @media screen and (max-width: $breakpoint-desktop)
+    flex: auto
+    margin: 0
   .image
     margin: 0 0 1rem 0
     background: $color-secondary
@@ -91,6 +96,7 @@ section
 // content - markdown
 .markdown
   margin: 0 0 2rem 0
+  background: pink
 // content - links
 .links
   .link

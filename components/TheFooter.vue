@@ -25,9 +25,10 @@ footer
   justify-content: space-between
   align-content: center
   align-items: center
-  .logo
-    width: 3rem
-    height: 3rem
+  @media screen and (max-width: $breakpoint-mobile)
+    flex-direction: column
+    justify-content: center
+    margin: 4rem 0 0 0
   ul
     display: flex
     flex-direction: row
@@ -35,6 +36,8 @@ footer
     justify-content: flex-start
     align-content: flex-start
     align-items: flex-start
+    @media screen and (max-width: $breakpoint-mobile)
+      margin: 0 0 2rem 0
     li
       margin: 0 0 0 1rem
       a
@@ -44,4 +47,7 @@ footer
         transition: $animation
         &:hover
           border-color: $color-primary
+  .logo
+    width: 3rem
+    height: 3rem
 </style>

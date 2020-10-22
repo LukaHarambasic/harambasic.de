@@ -21,7 +21,7 @@ export default {
 .container
   height: auto
   min-height: 100vh
-  width: 64rem
+  width: $size-desktop
   padding: 4rem 0
   margin: 0 auto
   display: flex
@@ -30,6 +30,8 @@ export default {
   justify-content: space-between
   align-content: flex-start
   align-items: stretch
+  @media screen and (max-width: $breakpoint-desktop)
+    width: $size-mobile
 main
   flex: 1 0 auto
 </style>
