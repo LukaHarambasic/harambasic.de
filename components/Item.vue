@@ -96,7 +96,6 @@ section
 // content - markdown
 .markdown
   margin: 0 0 2rem 0
-  background: pink
 // content - links
 .links
   .link
