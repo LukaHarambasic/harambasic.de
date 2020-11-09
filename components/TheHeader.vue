@@ -19,6 +19,7 @@ export default {
 
 <style lang="sass" scoped>
 header
+  width: 100%
   display: flex
   flex-direction: row
   flex-wrap: nowrap

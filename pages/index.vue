@@ -29,7 +29,6 @@ export default {
 
 <style lang="sass" scoped>
 .box
-  width: 60%
   margin: 0 auto
   @media screen and (max-width: $breakpoint-mobile)
     width: 100%

@@ -34,6 +34,7 @@ export default {
     width: $size-mobile
 main
   flex: 1 0 auto
+  width: $size-desktop-content
   display: contents
   @supports not (display: contents)
     margin: 4rem 0 0 0

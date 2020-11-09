@@ -1,17 +1,14 @@
 <template>
-  <items-grid :items="projects" />
+  <projects-list :items="projects" />
 </template>
 
 <script>
-import ItemsGrid from '~/components/ItemsGrid'
+import ProjectsList from '~/components/ProjectsList'
 export default {
   name: 'Index',
-  components: { ItemsGrid },
+  components: { ProjectsList },
   async asyncData({ $content }) {
-    const projects = await $content('projects')
-      .only(['title', 'path', 'slug', 'img', 'alt', 'dir'])
-      .sortBy('title')
-      .fetch()
+    const projects = await $content('projects').sortBy('title').fetch()
     return {
       projects,
     }

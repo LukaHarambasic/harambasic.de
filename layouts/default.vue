@@ -29,9 +29,16 @@ export default {
   flex-wrap: nowrap
   justify-content: space-between
   align-content: flex-start
-  align-items: stretch
+  align-items: center
   @media screen and (max-width: $breakpoint-desktop)
     width: $size-mobile
 main
   flex: 1 0 auto
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+  justify-content: center
+  align-content: flex-start
+  align-items: center
+  width: $size-desktop-content
 </style>
