@@ -1,9 +1,8 @@
 ---
 title: YAML2CV
-desc: Desc
+desc: Why bother with Word or a graphics program when you can program? Hence I designed and developed a CV in Nuxt.js which takes the data from a YAML file. Just add a new entry in the YAML and the CV will be updated, afterwards you can host this as a static page on services like Netlify and Vercel.
 img: yaml2cv.png
 alt: A beautiful CV generated from a YAML file
-time: 2017 - today
 links:
     -
         title: Preview
@@ -11,12 +10,11 @@ links:
     -
         title: GitHub
         url: https://github.com/LukaHarambasic/YAML2CV
-tags: 
-    - Nuxt.js
-    - Vue.js
-    - CV
-    - PDF
-    - Open Source
+responsibilities:
+    - Idea
+    - Concept
+    - Design
+    - Development
 ---
 
-I created my first CV as usual with Word and quickly felt limited by the WYSIWYG editor. I wanted to have everything exactly under my control and not make any compromises. The next logical step for me was Sketch. And although I was able to work pixel perfect, I also reached the limits here. Due to the editing of text, all elements often had to be realigned, which didn't feel optimal. Editing the text itself was no fun either. 
+Why bother with Word or a graphics program when you can program? Hence I designed and developed a CV in Nuxt.js which takes the data from a YAML file. Just add a new entry in the YAML and the CV will be updated, afterwards you can host this as a static page on services like Netlify and Vercel.

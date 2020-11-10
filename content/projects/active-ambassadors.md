@@ -1,8 +1,8 @@
 ---
 title: Active Ambassadors
-desc: Active Ambassadors brings athletes and NGOs together to make a change.
+desc: A friend of mien thought that we could use do something good with our skills whilst raising awareness for NGOs. I set up our work environment: Slack, Google Drive, Google Meet, Website (Nuxt.js, Prismic, Netlify), Airtable, Mailchimp, and IFTTT. Currently, we are shifting our knowledge and task management towards Notion.
 img: active-ambassadors.png
-alt: The logo from Active Ambassadors
+alt: The logo from Active Ambassadors.
 links:
     -
         title: Website
@@ -16,9 +16,8 @@ links:
 responsibilities:
     - Co-Founder
     - Design
-    - Internal IT
     - Website
     - Process Automation
 ---
 
-This project was started in April 2020 from a good friend of mine and me. He thought that we could do something good with the skills we have. Also, both of us like to take new challenges. And the basic idea is really simple:
+A friend of mien thought that we could use do something good with our skills whilst raising awareness for NGOs. I set up our work environment: [Slack](https://slack.com/intl/en-de/), [Google Drive](https://www.google.com/intl/en_in/drive/), [Google Meet](https://meet.google.com/), Website ([Nuxt.js](https://nuxtjs.org/), [Prismic](https://prismic.io/), [Netlify](https://www.netlify.com/)), [Airtable](https://airtable.com/), [Mailchimp](https://mailchimp.com/), and [IFTTT](https://ifttt.com/). Currently, we are shifting our knowledge and task management towards [Notion](https://www.notion.so/).

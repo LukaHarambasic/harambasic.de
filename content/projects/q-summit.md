@@ -1,9 +1,8 @@
 ---
 title: Q-Summit
-desc: Q-Summit is a conference founded by students of the University of Mannheim in 2016. Q has a focus on the topics innovation and entrepreneurship while it tries to bring students, startups and corporations together. It not even took 5 years to grow to one of the largest student organised conferences in this field with more than 1000 participants.
+desc: Initially I set up the first version of the infrastructure, the focus was getting things done instead of doing it perfectly. The second iteration was more about a change process: I introduced tools like Slack, Google Workspace, Zapier and HubSpot to bring the benefits of cloud tools to more than 100 students.
 img: q-summit.png
 alt: The team behind Q-Summit 2019
-time: 2016 - 2017 & 2018 - 2019
 links:
     -
         title: Website
@@ -11,13 +10,10 @@ links:
     -
         title: Instagram
         url: https://www.instagram.com/qsummit/
-tags: 
-    - Change Process
-    - G Suite
-    - Slack
-    - HubSpot
-    - Zapier
-    - Wordpress
+responsibilities:
+    - Head of IT
+    - Digital Transformation
+    - Process Automation
 ---
 
-Q-Summit is a conference founded by students of the University of Mannheim in 2016. Q has a focus on the topics innovation and entrepreneurship while it tries to bring students, startups and corporations together. It not even took 5 years to grow to one of the largest student organised conferences in this field with more than 1000 participants.
+Initially I set up the first version of the infrastructure, the focus was getting things done instead of doing it perfectly. The second iteration was more about a change process. I introduced tools like [Slack](https://slack.com/), [Google Workspace](https://workspace.google.com/), [Zapier](https://zapier.com/) and [HubSpot](https://www.hubspot.com/) to bring the benefits of cloud tools to more than 100 students.

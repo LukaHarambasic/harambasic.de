@@ -24,8 +24,8 @@ footer
   flex-direction: row
   flex-wrap: nowrap
   justify-content: space-between
-  align-content: center
-  align-items: center
+  align-content: flex-start
+  align-items: flex-start
   @media screen and (max-width: $breakpoint-mobile)
     flex-direction: column
     justify-content: center

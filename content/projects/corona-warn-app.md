@@ -1,9 +1,8 @@
 ---
 title: Corona-Warn-App
-desc: I got the opportunity to work on the german Corona-Warn-App. While Google and Apple where still working on the Exposure Notification Framework we already started to build a native app based on the API. I focused on the UI implementation of the Android app. 
+desc: I worked on the Android version of the german Corona-Warn-App. In the beginning I focused on the UI implementation for version 1.0.0 which we delivered after 50 days. Some weeks later I slowly stopped programming and took more responsibility in the team as Teamlead and Scrum Master.
 img: corona-warn-app.jpg
 alt: A screenshot of the Corona-Warn-App homescreen.
-time: 2020 - today
 links:
     -
         title: Website
@@ -17,4 +16,4 @@ responsibilities:
     - Android Developer
 ---
 
-I got the opportunity to work on the german Corona-Warn-App. While Google and Apple where still working on the Exposure Notification Framework we already started to build a native app based on the API. I focused on the UI implementation of the Android app. 
+I worked on the Android version of the german Corona-Warn-App. In the beginning I focused on the UI implementation for version 1.0.0 which we delivered after 50 days. Some weeks later I slowly stopped programming and took more responsibility in the team as Teamlead and Scrum Master.

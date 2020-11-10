@@ -1,15 +1,14 @@
 ---
 title: Visitorcounter
-desc: The Visitorcounter was used to visualize in realtime where the visitors are during a recruitment event of SAP. 
+desc: The Visitorcounter was used to visualize in realtime where the visitors are during a recruitment event of SAP. It evolved from a two man team to a team of designers, backend and frontend developers. As the project grow on the people side we also improved the technology part: we used Calculation Views on SAP HANA to accumulate the data, built the frontend with Vue.js, and added the headless CMS Prismic.io. 
 img: visitorcounter.png
 alt: Together we developed version 1, in the background you can see the actual product.
-time: 2017 - 2018
 links:
-tags: 
-    - Vue.js
-    - SAP HANA
-    - IoT
-    - SAPUI5
+responsibilities:
+    - Co-Lead
+    - Architecture
+    - Design
+    - Development
 ---
 
-The Visitorcounter was used to visualize in realtime where the visitors are during a recruitment event of SAP. This information was displayed on a TV at the entrance and a projector in the foyer. For that, we build a web application with [SAPUI5.](https://sapui5.hana.ondemand.com/) Another team was responsible to collect the data with small IoT sensors mounted in the doors. The collected data was sent to the SAP IoT Service, the calculations took place happened in the frontend. As the first part was working fine we recognized that we should accumulate the data before the frontend access it.
+The Visitorcounter was used to visualize in realtime where the visitors are during a recruitment event of SAP. It evolved from a two man team to a team of designers, backend and frontend developers. As the project grow on the people side we also improved the technology part: we used [Calculation Views](https://help.sap.com/viewer/fc5ace7a367c434190a8047881f92ed8/2.0.03/en-US/d60ad1f0bb571014af49c9db1740d68c.html) on [SAP HANA](https://www.sap.com/products/hana.html) to accumulate the data, built the frontend with [Vue.js](https://vuejs.org/), and added the headless CMS [Prismic.io](http://prismic.io/).
