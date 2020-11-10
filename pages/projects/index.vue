@@ -8,7 +8,7 @@ export default {
   name: 'Index',
   components: { ProjectsList },
   async asyncData({ $content }) {
-    const projects = await $content('projects').sortBy('title').fetch()
+    const projects = await $content('projects').sortBy('prio', 'desc').fetch()
     return {
       projects,
     }

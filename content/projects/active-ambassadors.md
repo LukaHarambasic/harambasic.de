@@ -3,6 +3,7 @@ title: Active Ambassadors
 desc: A friend of mien thought that we could use do something good with our skills whilst raising awareness for NGOs. I set up our work environment with Slack, Google Drive, Google Meet, Website (Nuxt.js, Prismic, Netlify), Airtable, Mailchimp, and IFTTT. Currently, we are shifting our knowledge and task management towards Notion.
 img: active-ambassadors.png
 alt: The logo from Active Ambassadors.
+prio: 90
 links:
     -
         title: Website

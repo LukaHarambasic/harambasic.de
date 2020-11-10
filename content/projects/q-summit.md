@@ -3,6 +3,7 @@ title: Q-Summit
 desc: Initially I set up the first version of the infrastructure, the focus was getting things done instead of doing it perfectly. The second iteration was more about a change process. I introduced tools like Slack, Google Workspace, Zapier and HubSpot to bring the benefits of cloud tools to more than 100 students.
 img: q-summit.png
 alt: The team behind Q-Summit 2019
+prio: 80
 links:
     -
         title: Website

@@ -3,6 +3,7 @@ title: Visitorcounter
 desc: The Visitorcounter was used to visualize in realtime where the visitors are during a recruitment event of SAP. It evolved from a two man team to a team of designers, backend and frontend developers. As the project grow on the people side we also improved the technology part, we used Calculation Views on SAP HANA to accumulate the data, built the frontend with Vue.js, and added the headless CMS Prismic.io. 
 img: visitorcounter.png
 alt: Together we developed version 1, in the background you can see the actual product.
+prio: 10
 links:
 responsibilities:
     - Co-Lead
