@@ -37,5 +37,5 @@ main
   width: $size-desktop-content
   display: contents
   @supports not (display: contents)
-    margin: 4rem 0 0 0
+    // margin: 4rem 0 0 0
 </style>

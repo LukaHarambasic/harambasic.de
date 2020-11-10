@@ -11,6 +11,12 @@ links:
     -
         title: GitHub
         url: https://github.com/corona-warn-app/cwa-app-android
+    -
+        title: Play Store
+        url: https://play.google.com/store/apps/details?id=de.rki.coronawarnapp
+    -
+        title: App Store
+        url: https://apps.apple.com/de/app/corona-warn-app/id1512595757
 responsibilities: 
     - Teamlead
     - Scrum Master

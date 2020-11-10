@@ -112,10 +112,10 @@ export default {
         content: ''
     a
       color: $color-primary
-      border-bottom: 1px solid $color-primary
+      border-bottom: 2px solid rgba($color-primary, .5)
       transition: $animation
       text-decoration: none
       &:hover
         text-decoration: none
-        border-color: transparent
+        border-color: rgba($color-primary, .1)
 </style>

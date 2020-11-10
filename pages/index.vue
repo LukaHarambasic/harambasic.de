@@ -30,6 +30,7 @@ export default {
 <style lang="sass" scoped>
 .box
   margin: 0 auto
+  width: $size-desktop-content
   @media screen and (max-width: $breakpoint-mobile)
     width: 100%
 .strike-through

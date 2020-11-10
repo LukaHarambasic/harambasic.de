@@ -26,7 +26,6 @@ header
   justify-content: space-between
   align-content: center
   align-items: center
-  margin: 0 0 4rem 0
   @media screen and (max-width: $breakpoint-mobile)
     flex-direction: column
     justify-content: center

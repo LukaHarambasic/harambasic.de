@@ -41,4 +41,5 @@ main
   align-content: flex-start
   align-items: center
   width: $size-desktop-content
+  margin: 4rem 0 0 0
 </style>

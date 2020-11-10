@@ -51,4 +51,7 @@ footer
   .logo
     width: 3rem
     height: 3rem
+    transition: all 600ms ease-in-out
+    &:hover
+      transform: rotate(1turn)
 </style>
