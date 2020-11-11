@@ -3,9 +3,7 @@
     <ul class="projects">
       <li v-for="item in items" :key="item.slug" class="project">
         <div class="meta">
-          <!--          <img :src="fullImagePath(item.img)" :alt="item.alt" />-->
-          <!-- <responsive-image :src="fullImagePath(item.img)" :alt="item.alt" />-->
-          <nuxt-img :src="item.img" alt="Never forget alt tags!" />
+          <img :src="fullImagePath(item.img)" :alt="item.alt" />
         </div>
         <div class="content">
           <h2 class="title" v-text="item.title" />
