@@ -53,7 +53,6 @@ export default {
   align-content: flex-start
   align-items: flex-start
 .project
-  width: 100%
   margin: 0 0 4rem 0
   background: $color-secondary
   border-radius: $border-radius
@@ -64,6 +63,8 @@ export default {
   justify-content: space-between
   align-content: stretch
   align-items: flex-start
+  &:last-of-type
+    margin: 0
   @media screen and (max-width: $breakpoint-mobile)
     flex-direction: column
     flex-wrap: nowrap
@@ -107,6 +108,7 @@ export default {
         content: ''
   strong
     text-transform: uppercase
+    font-weight: bold
 .links
   margin: 1rem 0 0 0
   display: flex
@@ -124,10 +126,10 @@ export default {
         content: ''
     a
       color: $color-primary
-      border-bottom: 2px solid rgba($color-primary, .5)
+      border-bottom: 2px solid rgba($color-primary, 1)
       transition: $animation
       text-decoration: none
       &:hover
         text-decoration: none
-        border-color: rgba($color-primary, .1)
+        border-color: rgba($color-primary, .3)
 </style>

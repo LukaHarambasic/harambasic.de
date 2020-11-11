@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
-    <the-header />
+  <div class="grid">
+    <the-header class="header" />
     <main>
       <Nuxt />
     </main>
-    <the-footer />
+    <the-footer class="footer" />
   </div>
 </template>
 
@@ -18,30 +18,26 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.container
+.grid
+  display: grid
+  grid-template-columns: 1fr $size-desktop-content 1fr
+  grid-template-rows: auto 1fr auto
+  grid-template-areas: "header header header" ". main ." "footer footer footer"
+  row-gap: 4rem
   height: auto
   min-height: 100vh
   width: $size-desktop
   padding: 4rem 0
   margin: 0 auto
-  display: flex
-  flex-direction: column
-  flex-wrap: nowrap
-  justify-content: space-between
-  align-content: flex-start
-  align-items: center
   @media screen and (max-width: $breakpoint-desktop)
     width: $size-mobile
+    grid-template-columns: 1fr
+    grid-template-rows: auto 1fr auto
+    grid-template-areas: "header" "main" "footer"
 main
-  flex: 1 0 auto
-  display: flex
-  flex-direction: column
-  flex-wrap: nowrap
-  justify-content: center
-  align-content: flex-start
-  align-items: center
-  width: $size-desktop-content
-  margin: 4rem 0 0 0
-  @media screen and (max-width: $breakpoint-desktop)
-    width: 100%
+  grid-area: main
+.footer
+  grid-area: footer
+.header
+  grid-area: header
 </style>

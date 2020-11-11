@@ -1,17 +1,14 @@
 <template>
-  <ItemsList :items="posts" />
+  <PostsList :items="posts" />
 </template>
 
 <script>
-import ItemsList from '~/components/ItemsList'
+import PostsList from '@/components/PostsList'
 export default {
   name: 'Index',
-  components: { ItemsList },
+  components: { PostsList },
   async asyncData({ $content }) {
-    const posts = await $content('posts')
-      .only(['title', 'path', 'slug', 'img', 'alt', 'dir', 'created'])
-      .sortBy('created')
-      .fetch()
+    const posts = await $content('posts').sortBy('created').fetch()
     return {
       posts,
     }

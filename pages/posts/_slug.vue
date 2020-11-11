@@ -1,11 +1,11 @@
 <template>
-  <item :item="post" />
+  <post :item="post" />
 </template>
 
 <script>
-import Item from '~/components/Item'
+import Post from '@/components/Post'
 export default {
-  components: { Item },
+  components: { Post },
   async asyncData({ $content, params }) {
     const post = await $content('posts', params.slug).fetch()
     return {

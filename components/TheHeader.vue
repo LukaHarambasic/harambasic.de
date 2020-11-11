@@ -59,6 +59,8 @@ nav
         transition: $animation
         &.nuxt-link-exact-active
           border-color: $color-primary
+          &:hover
+            border-color: rgba($color-primary, .3)
         &:hover
           border-color: $color-primary
 </style>

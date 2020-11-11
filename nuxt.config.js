@@ -43,7 +43,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: [{ src: '@/plugins/filters.js' }],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -59,21 +59,6 @@ export default {
   modules: [
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
-    [
-      '@pivale/nuxt-image-loader-module',
-      {
-        imagesBaseDir: 'assets/images',
-        responsiveStyles: {
-          thumb: {
-            srcset: 'small 160w, medium 320w, large 640w',
-            sizes: '(min-width: 1280px) 100vw, 50vw',
-          },
-        },
-        responsiveLoader: {
-          placeholder: true,
-        },
-      },
-    ],
   ],
   /*
    ** Content module configuration
