@@ -45,9 +45,15 @@ li
     transition: $animation
     border-radius: $border-radius
     padding: 1rem
+    @media screen and (max-width: $breakpoint-mobile)
+      flex-direction: column
+      justify-content: flex-start
+      align-items: flex-start
     &:hover
       background: $color-secondary
     .title
       font-size: 1.5rem
     .date
+      @media screen and (max-width: $breakpoint-mobile)
+        margin: .5rem 0 0 0
 </style>
