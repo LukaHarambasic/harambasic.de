@@ -8,7 +8,7 @@
         <div class="content">
           <h2 class="title" v-text="item.title" />
           <ul class="responsibilities">
-            <li><h6>Responsibilities:</h6></li>
+            <li><strong>Responsibilities:</strong></li>
             <li
               v-for="responsibility in item.responsibilities"
               :key="responsibility"
@@ -105,7 +105,7 @@ export default {
     &:first-of-type
       &:after
         content: ''
-  h6
+  strong
     text-transform: uppercase
 .links
   margin: 1rem 0 0 0
