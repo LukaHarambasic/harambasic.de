@@ -59,20 +59,32 @@ export default {
   border-radius: $border-radius
   padding: 2rem
   display: flex
+  flex-direction: row
   flex-wrap: nowrap
   justify-content: space-between
   align-content: stretch
   align-items: flex-start
+  @media screen and (max-width: $breakpoint-mobile)
+    flex-direction: column
+    flex-wrap: nowrap
+    justify-content: space-between
+    align-content: stretch
+    align-items: flex-start
 .meta
   width: 30%
   background: $color-light
   border-radius: $border-radius
   padding: 1rem
   box-shadow: $box-shadow
+  @media screen and (max-width: $breakpoint-mobile)
+    width: 100%
   img
     border-radius: $border-radius
 .content
   width: calc(70% - 2rem)
+  @media screen and (max-width: $breakpoint-mobile)
+    width: 100%
+    margin: 2rem 0 0 0
 .title
   font-size: 1.75rem
 .responsibilities

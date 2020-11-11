@@ -29,6 +29,7 @@ footer
   @media screen and (max-width: $breakpoint-mobile)
     flex-direction: column
     justify-content: center
+    align-items: center
     margin: 4rem 0 0 0
   ul
     display: flex

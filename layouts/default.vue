@@ -42,4 +42,6 @@ main
   align-items: center
   width: $size-desktop-content
   margin: 4rem 0 0 0
+  @media screen and (max-width: $breakpoint-desktop)
+    width: 100%
 </style>
