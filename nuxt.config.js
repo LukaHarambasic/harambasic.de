@@ -26,6 +26,10 @@ export default {
         name: 'description',
         content: 'Get to know me, my projects and some of my ideas.',
       },
+      {
+        name: 'theme-color',
+        content: '#e2ebf0',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
