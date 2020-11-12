@@ -20,6 +20,10 @@
         </div>
       </li>
     </ul>
+    <p class="nuxt-content info">
+      If you want to learn more about the projects do not hesitate to send me an
+      <a href="mailto:hi@harambasic.de">mail</a>.
+    </p>
   </section>
 </template>
 
@@ -110,4 +114,9 @@ export default {
       &:hover
         text-decoration: none
         border-color: rgba($color-primary, .3)
+
+.info
+  font-size: 1rem
+  text-align: center
+  margin: 2rem 0 0 0
 </style>
