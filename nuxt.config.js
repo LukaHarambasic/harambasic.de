@@ -22,16 +22,71 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
+        name: 'theme-color',
+        content: '#e2ebf0',
+      },
+      { name: 'HandheldFriendly', content: 'True' },
+      {
         hid: 'description',
         name: 'description',
         content: 'Get to know me, my projects and some of my ideas.',
       },
+      { property: 'og:site_name', content: 'Luka Harambasic' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
       {
-        name: 'theme-color',
-        content: '#e2ebf0',
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://harambasic.de',
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'Luka Harambasic',
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: 'Get to know me, my projects and some of my ideas.',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: '/luka-harambasic-preview.png',
+      },
+      { property: 'og:image:width', content: '740' },
+      { property: 'og:image:height', content: '300' },
+
+      { name: 'twitter:site', content: '@luka_digital' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      {
+        hid: 'twitter:url',
+        name: 'twitter:url',
+        content: 'https://harambasic.de',
+      },
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content: 'Luka Harambasic',
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content: 'Get to know me, my projects and some of my ideas.',
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: '/luka-harambasic-preview.png',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        hid: 'canonical',
+        rel: 'canonical',
+        href: 'https://harambasic.de',
+      },
+    ],
   },
   /*
    ** Global CSS
