@@ -25,7 +25,8 @@ export default {
 .list
   opacity: .8
   font-size: .9rem
-  margin: .5rem 0 1rem 0
+  line-height: 1
+  margin: 0 0 1rem 0
   display: flex
   flex-direction: row
   flex-wrap: wrap

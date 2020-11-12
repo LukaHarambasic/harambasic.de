@@ -47,7 +47,7 @@
         <g id="Logo" transform="translate(100.000000, 100.000000)">
           <circle
             id="Kreis"
-            :fill="initials"
+            class="background"
             cx="400"
             cy="400"
             r="400"
@@ -60,7 +60,7 @@
               xlink:href="#path-1"
             ></use>
             <use
-              :fill="background"
+              class="initials"
               fill-rule="evenodd"
               xlink:href="#path-1"
             ></use>
@@ -74,21 +74,16 @@
 <script>
 export default {
   name: 'Logo',
-  props: {
-    mode: {
-      type: String,
-      default: 'dark',
-    },
-  },
-  computed: {
-    background() {
-      return this.mode === 'dark' ? '#E2EBF0' : '#2E2E3E'
-    },
-    initials() {
-      return this.mode === 'dark' ? '#2E2E3E' : '#E2EBF0'
-    },
-  },
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+.background
+  fill: $color-primary
+  @media (prefers-color-scheme: dark)
+    fill: $color-light
+.initials
+  fill: $color-light
+  @media (prefers-color-scheme: dark)
+    fill: $color-primary
+</style>
