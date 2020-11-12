@@ -1,3 +1,8 @@
+import global from './utils/global'
+import getSiteMeta from './utils/getMeta'
+
+const meta = getSiteMeta()
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -14,11 +19,12 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: 'Luka Harambasic',
+    title: global.siteTitle,
     htmlAttrs: {
       lang: 'en',
     },
     meta: [
+      ...meta,
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
@@ -29,55 +35,18 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Get to know me, my projects and some of my ideas.',
+        content: global.siteDesc || '',
       },
-      { property: 'og:site_name', content: 'Luka Harambasic' },
-      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: global.siteName || '' },
       {
-        hid: 'og:url',
-        property: 'og:url',
-        content: 'https://harambasic.de',
-      },
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: 'Luka Harambasic',
-      },
-      {
-        hid: 'og:description',
-        property: 'og:description',
-        content: 'Get to know me, my projects and some of my ideas.',
-      },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: '/luka-harambasic-preview.png',
+        hid: 'description',
+        name: 'description',
+        content: global.siteDesc || '',
       },
       { property: 'og:image:width', content: '740' },
       { property: 'og:image:height', content: '300' },
-
-      { name: 'twitter:site', content: '@luka_digital' },
+      { name: 'twitter:site', content: global.siteName || '' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      {
-        hid: 'twitter:url',
-        name: 'twitter:url',
-        content: 'https://harambasic.de',
-      },
-      {
-        hid: 'twitter:title',
-        name: 'twitter:title',
-        content: 'Luka Harambasic',
-      },
-      {
-        hid: 'twitter:description',
-        name: 'twitter:description',
-        content: 'Get to know me, my projects and some of my ideas.',
-      },
-      {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: '/luka-harambasic-preview.png',
-      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

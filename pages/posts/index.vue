@@ -4,6 +4,7 @@
 
 <script>
 import PostsList from '@/components/PostsList'
+import getSiteMeta from '@/utils/getMeta'
 export default {
   name: 'Index',
   components: { PostsList },
@@ -13,14 +14,26 @@ export default {
       posts,
     }
   },
+  computed: {
+    meta() {
+      const metaData = {
+        title: `Blog - Luka Harambasic`,
+        description: 'Here you find all my blog posts.',
+        url: `${this.$config.baseUrl}/posts`,
+        mainImage: `/luka_harambasic_blog.png`,
+      }
+      return getSiteMeta(metaData)
+    },
+  },
   head() {
     return {
-      title: 'Blog - Luka Harambasic',
-      meta: [
+      title: `Blog - Luka Harambasic`,
+      meta: [...this.meta],
+      link: [
         {
-          hid: 'description',
-          name: 'description',
-          content: 'This is my blog.',
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `${this.$config.baseUrl}/posts`,
         },
       ],
     }
