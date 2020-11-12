@@ -60,6 +60,8 @@ export default {
   padding: .5rem
   border-radius: $border-radius
   font-size: .9rem
+  @media (prefers-color-scheme: dark)
+    color: $color-primary
 section
   order: 0
   flex: 1 1 auto

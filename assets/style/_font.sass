@@ -1,6 +1,7 @@
 h1, h2, h3, h4, h5, h6
   font-weight: bold
 
+// continuous text
 .nuxt-content
   h1
     background: tomato
@@ -32,6 +33,8 @@ h1, h2, h3, h4, h5, h6
     &:hover
       text-decoration: none
       opacity: .6
+    @media (prefers-color-scheme: dark)
+      color: $color-light
   blockquote
     padding: .5rem 1rem
     border-left: .5rem solid $color-secondary
@@ -43,3 +46,6 @@ h1, h2, h3, h4, h5, h6
         margin: 0
   iframe
     margin: 0 0 1rem 0
+  &.stable-color
+    h1, h2, h3, h4, h5,strong , p, a, li
+      color: $color-primary

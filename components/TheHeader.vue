@@ -40,6 +40,10 @@ h1
     transition: $animation
     &:hover
       border-color: $color-primary
+    @media (prefers-color-scheme: dark)
+      color: $color-light
+      &:hover
+        border-color: $color-light
 nav
   ul
     display: flex
@@ -63,4 +67,12 @@ nav
             border-color: rgba($color-primary, .3)
         &:hover
           border-color: $color-primary
+        @media (prefers-color-scheme: dark)
+          color: $color-light
+          &.nuxt-link-exact-active
+            border-color: $color-light
+            &:hover
+              border-color: rgba($color-light, .3)
+          &:hover
+            border-color: $color-light
 </style>

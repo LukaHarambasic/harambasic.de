@@ -11,7 +11,7 @@
             :items="item.responsibilities"
             pre-text="Responsibilities:"
           />
-          <nuxt-content class="description" :document="item" />
+          <nuxt-content class="description stable-color" :document="item" />
           <ul class="links">
             <li v-for="link in item.links" :key="link.title">
               <a class="link" :href="link.url" v-text="link.title" />
@@ -81,6 +81,7 @@ export default {
     border-radius: $border-radius
 .content
   width: calc(70% - 2rem)
+  color: $color-primary
   @media screen and (max-width: $breakpoint-mobile)
     width: 100%
     margin: 2rem 0 0 0

@@ -45,6 +45,10 @@ li
     transition: $animation
     border-radius: $border-radius
     padding: 1rem
+    @media (prefers-color-scheme: dark)
+      color: $color-light
+      &:hover
+        color: $color-primary
     @media screen and (max-width: $breakpoint-mobile)
       flex-direction: column
       justify-content: flex-start

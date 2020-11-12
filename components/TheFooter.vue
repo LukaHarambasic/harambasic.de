@@ -49,6 +49,10 @@ footer
         transition: $animation
         &:hover
           border-color: $color-primary
+        @media (prefers-color-scheme: dark)
+          color: $color-light
+          &:hover
+            border-color: $color-light
   .logo
     width: 3rem
     height: 3rem
