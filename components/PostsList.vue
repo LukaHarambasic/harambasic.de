@@ -39,7 +39,7 @@ li
     justify-content: space-between
     align-content: stretch
     align-items: center
-    margin: 0 0 2rem 0
+    margin: 0 0 1rem 0
     text-decoration: none
     color: $color-primary
     transition: $animation
