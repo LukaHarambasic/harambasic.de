@@ -21,7 +21,7 @@ export default {
         title: this.post.title,
         description: this.post.description,
         url: `${this.$config.baseUrl}/posts/${this.$route.params.slug}`,
-        mainImage: `/posts/${this.post.img}`,
+        mainImage: `/posts/${this.post.image}`,
       }
       return getSiteMeta(metaData)
     },
@@ -55,7 +55,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `${this.$config.baseUrl}/articles/${this.$route.params.slug}`,
+          href: `${this.$config.baseUrl}/posts/${this.$route.params.slug}`,
         },
       ],
     }

@@ -101,12 +101,51 @@ export default {
    */
   build: {},
 
+  // Sitemap Configuration (https://github.com/nuxt-community/sitemap-module)
   sitemap: {
     hostname: global.siteUrl,
     routes() {
-      const routes = getRoutes()
-      console.log(routes)
-      return routes
+      return getRoutes()
     },
+  },
+
+  // RSS Feed Configuration (https://github.com/nuxt-community/feed-module)
+  feed() {
+    const baseUrlArticles = `${global.siteUrl}/articles`
+    const baseLinkFeedArticles = '/articles'
+    const feedFormats = {
+      rss: { type: 'rss2', file: 'rss.xml' },
+      json: { type: 'json1', file: 'feed.json' },
+    }
+    const { $content } = require('@nuxt/content')
+
+    const createFeedArticles = async function (feed) {
+      feed.options = {
+        title: global.siteName || '',
+        description: global.siteDesc || '',
+        link: baseUrlArticles,
+      }
+      const posts = await $content('posts').fetch()
+
+      posts.forEach((post) => {
+        const url = `${baseUrlArticles}/${post.slug}`
+
+        feed.addItem({
+          title: posts.title,
+          id: url,
+          link: url,
+          date: new Date(post.published),
+          description: post.description,
+          content: post.description,
+          author: global.twitterHandle,
+        })
+      })
+    }
+
+    return Object.values(feedFormats).map(({ file, type }) => ({
+      path: `${baseLinkFeedArticles}/${file}`,
+      type,
+      create: createFeedArticles,
+    }))
   },
 }

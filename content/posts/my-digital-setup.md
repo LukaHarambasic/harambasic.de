@@ -1,7 +1,7 @@
 ---
 title: My personal Notion setup
-desc: Can be used for meta and bold text like on news article.
-img: my-personal-notion-setup.png
+description: Can be used for meta and bold text like on news article.
+image: my-personal-notion-setup.png
 alt:
 tags: 
     - Dropbox

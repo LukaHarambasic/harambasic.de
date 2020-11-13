@@ -1,7 +1,7 @@
 <template>
   <article class="item">
     <section>
-      <img class="image" :src="fullImagePath(item.img)" :alt="item.alt" />
+      <img class="image" :src="fullImagePath(item.image)" :alt="item.alt" />
       <div class="row-space-between">
         <h1 class="title" v-text="item.title" />
         <time class="date">{{ item.createdAt | date }}</time>
@@ -33,8 +33,8 @@ export default {
     },
   },
   methods: {
-    fullImagePath(img) {
-      return `/posts/${img}`
+    fullImagePath(image) {
+      return `/posts/${image}`
     },
   },
 }
