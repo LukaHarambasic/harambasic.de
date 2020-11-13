@@ -69,6 +69,9 @@ section
 // content - title
 .title
   font-size: 1.75rem
+  line-height: 1.1
+  @media screen and (max-width: $breakpoint-mobile)
+    margin: 0 0 .5rem 0
 // content - markdown
 .markdown
   margin: 0 0 2rem 0
