@@ -114,7 +114,7 @@ export default {
   // Inspired by https://github.com/garethredfern/nuxt-basic-blog
   feed() {
     const baseUrlPosts = `${global.siteUrl}/posts`
-    const baseLinkFeedPosts = '/articles'
+    const baseLinkFeedPosts = '/posts'
     const feedFormats = {
       rss: { type: 'rss2', file: 'rss.xml' },
       json: { type: 'json1', file: 'feed.json' },
