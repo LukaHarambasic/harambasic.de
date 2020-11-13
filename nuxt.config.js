@@ -136,7 +136,7 @@ export default {
           link: url,
           date: new Date(post.createdAt),
           description: post.description,
-          content: post.content,
+          content: post.description,
           author: global.twitterHandle,
         })
       })
