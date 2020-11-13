@@ -1,4 +1,5 @@
 import global from './utils/global'
+import getRoutes from './utils/getRoutes'
 import getSiteMeta from './utils/getMeta'
 
 const meta = getSiteMeta()
@@ -87,6 +88,7 @@ export default {
   modules: [
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
+    '@nuxtjs/sitemap',
   ],
   /*
    ** Content module configuration
@@ -98,4 +100,11 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+
+  sitemap: {
+    hostname: global.siteUrl,
+    routes() {
+      return getRoutes()
+    },
+  },
 }
