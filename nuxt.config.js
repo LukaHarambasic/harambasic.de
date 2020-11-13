@@ -88,6 +88,7 @@ export default {
   modules: [
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
+    '@nuxtjs/feed',
     '@nuxtjs/sitemap',
   ],
   /*
@@ -120,7 +121,6 @@ export default {
       json: { type: 'json1', file: 'feed.json' },
     }
     const { $content } = require('@nuxt/content')
-
     const createFeed = async function (feed) {
       feed.options = {
         title: global.siteName || '',
@@ -128,10 +128,8 @@ export default {
         link: baseUrlPosts,
       }
       const posts = await $content('posts').fetch()
-
       posts.forEach((post) => {
         const url = `${baseUrlPosts}/${post.slug}`
-
         feed.addItem({
           title: posts.title,
           id: url,
@@ -143,7 +141,6 @@ export default {
         })
       })
     }
-
     return Object.values(feedFormats).map(({ file, type }) => ({
       path: `${baseLinkFeedPosts}/${file}`,
       type,
