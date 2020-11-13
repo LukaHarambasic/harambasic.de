@@ -102,6 +102,7 @@ export default {
   build: {},
 
   // Sitemap Configuration (https://github.com/nuxt-community/sitemap-module)
+  // Inspired by https://github.com/garethredfern/nuxt-basic-blog
   sitemap: {
     hostname: global.siteUrl,
     routes() {
@@ -110,25 +111,26 @@ export default {
   },
 
   // RSS Feed Configuration (https://github.com/nuxt-community/feed-module)
+  // Inspired by https://github.com/garethredfern/nuxt-basic-blog
   feed() {
-    const baseUrlArticles = `${global.siteUrl}/articles`
-    const baseLinkFeedArticles = '/articles'
+    const baseUrlPosts = `${global.siteUrl}/posts`
+    const baseLinkFeedPosts = '/articles'
     const feedFormats = {
       rss: { type: 'rss2', file: 'rss.xml' },
       json: { type: 'json1', file: 'feed.json' },
     }
     const { $content } = require('@nuxt/content')
 
-    const createFeedArticles = async function (feed) {
+    const createFeed = async function (feed) {
       feed.options = {
         title: global.siteName || '',
         description: global.siteDesc || '',
-        link: baseUrlArticles,
+        link: baseUrlPosts,
       }
       const posts = await $content('posts').fetch()
 
       posts.forEach((post) => {
-        const url = `${baseUrlArticles}/${post.slug}`
+        const url = `${baseUrlPosts}/${post.slug}`
 
         feed.addItem({
           title: posts.title,
@@ -143,9 +145,9 @@ export default {
     }
 
     return Object.values(feedFormats).map(({ file, type }) => ({
-      path: `${baseLinkFeedArticles}/${file}`,
+      path: `${baseLinkFeedPosts}/${file}`,
       type,
-      create: createFeedArticles,
+      create: createFeed,
     }))
   },
 }
