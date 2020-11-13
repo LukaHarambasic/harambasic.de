@@ -104,7 +104,9 @@ export default {
   sitemap: {
     hostname: global.siteUrl,
     routes() {
-      return getRoutes()
+      const routes = getRoutes()
+      console.log(routes)
+      return routes
     },
   },
 }
