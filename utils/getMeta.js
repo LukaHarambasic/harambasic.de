@@ -1,5 +1,12 @@
 import global from './global'
 
+const isUndefined = (value) => typeof value === 'undefined'
+
+const title = (meta) =>
+  isUndefined(meta)
+    ? global.siteTitle
+    : `${meta && meta.title} - Luka Harambasic`
+
 export default (meta) => {
   return [
     {
@@ -20,7 +27,7 @@ export default (meta) => {
     {
       hid: 'og:title',
       property: 'og:title',
-      content: `${meta && meta.title} - Luka Harambasic` || global.siteTitle,
+      content: title(meta),
     },
     {
       hid: 'og:description',
@@ -40,7 +47,7 @@ export default (meta) => {
     {
       hid: 'twitter:title',
       name: 'twitter:title',
-      content: (meta && meta.title) || global.siteTitle,
+      content: title(meta),
     },
     {
       hid: 'twitter:description',
