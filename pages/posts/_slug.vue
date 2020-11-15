@@ -6,6 +6,7 @@
 import Post from '@/components/Post'
 import global from '@/utils/global'
 import getSiteMeta from '@/utils/getMeta'
+
 export default {
   components: { Post },
   async asyncData({ $content, params }) {
@@ -20,8 +21,8 @@ export default {
         type: 'article',
         title: this.post.title,
         description: this.post.description,
-        url: `${this.$config.baseUrl}/posts/${this.$route.params.slug}`,
-        mainImage: `/posts/${this.post.image}`,
+        url: `/posts/${this.$route.params.slug}`,
+        img: `/posts/${this.post.image}`,
       }
       return getSiteMeta(metaData)
     },
@@ -55,7 +56,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `${this.$config.baseUrl}/posts/${this.$route.params.slug}`,
+          href: `${global.baseURL}/posts/${this.$route.params.slug}`,
         },
       ],
     }

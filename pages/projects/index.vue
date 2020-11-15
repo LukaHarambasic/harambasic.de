@@ -4,6 +4,7 @@
 
 <script>
 import getSiteMeta from '@/utils/getMeta'
+import global from '@/utils/global'
 import ProjectsList from '~/components/ProjectsList'
 export default {
   name: 'Index',
@@ -19,8 +20,8 @@ export default {
       const metaData = {
         title: `Projects - Luka Harambasic`,
         description: 'An overview about some selected projects I did.',
-        url: `${this.$config.baseUrl}/projects`,
-        mainImage: `/luka_harambasic_projects.png`,
+        url: `/projects`,
+        img: `/luka_harambasic_projects.png`,
       }
       return getSiteMeta(metaData)
     },
@@ -33,7 +34,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `${this.$config.baseUrl}/projects`,
+          href: `${global.baseURL}/projects`,
         },
       ],
     }

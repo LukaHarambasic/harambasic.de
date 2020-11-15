@@ -20,7 +20,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: global.siteTitle,
+    title: global.title,
     htmlAttrs: {
       lang: 'en',
     },
@@ -36,17 +36,12 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: global.siteDesc || '',
+        content: global.desc || '',
       },
-      { property: 'og:site_name', content: global.siteName || '' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: global.siteDesc || '',
-      },
+      { property: 'og:site_name', content: global.title || '' },
       { property: 'og:image:width', content: '740' },
       { property: 'og:image:height', content: '300' },
-      { name: 'twitter:site', content: global.siteName || '' },
+      { name: 'twitter:site', content: global.title || '' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
     link: [
@@ -105,7 +100,7 @@ export default {
   // Sitemap Configuration (https://github.com/nuxt-community/sitemap-module)
   // Inspired by https://github.com/garethredfern/nuxt-basic-blog
   sitemap: {
-    hostname: global.siteUrl,
+    hostname: global.baseURL,
     routes() {
       return getRoutes()
     },
@@ -114,7 +109,7 @@ export default {
   // RSS Feed Configuration (https://github.com/nuxt-community/feed-module)
   // Inspired by https://github.com/garethredfern/nuxt-basic-blog
   feed() {
-    const baseUrlPosts = `${global.siteUrl}/posts`
+    const baseUrlPosts = `${global.baseURL}/posts`
     const baseLinkFeedPosts = '/posts'
     const feedFormats = {
       rss: { type: 'rss2', file: 'rss.xml' },
@@ -123,8 +118,8 @@ export default {
     const { $content } = require('@nuxt/content')
     const createFeed = async function (feed) {
       feed.options = {
-        title: global.siteName || '',
-        description: global.siteDesc || '',
+        title: global.title || '',
+        description: global.desc || '',
         link: baseUrlPosts,
       }
       const posts = await $content('posts').fetch()

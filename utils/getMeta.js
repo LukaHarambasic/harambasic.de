@@ -1,63 +1,66 @@
 import global from './global'
 
-const isUndefined = (value) => typeof value === 'undefined'
+// string constructors
+const title = (title) => `${title} - Luka Harambasic`
 
-const title = (meta) =>
-  isUndefined(meta)
-    ? global.siteTitle
-    : `${meta && meta.title} - Luka Harambasic`
+const url = (url) => `${global.baseURL}${url}`
+
+// helper
+const inputOrGlobal = (input, global) =>
+  input === '' || typeof input === 'undefined' ? global : input
 
 export default (meta) => {
+  if (!meta) return []
   return [
     {
       hid: 'description',
       name: 'description',
-      content: (meta && meta.description) || global.siteDesc,
+      content: inputOrGlobal(meta.description, global.desc),
     },
     {
       hid: 'og:type',
       property: 'og:type',
-      content: (meta && meta.type) || global.siteType,
+      content: inputOrGlobal(meta.type, global.type),
     },
     {
       hid: 'og:url',
       property: 'og:url',
-      content: (meta && meta.url) || global.siteUrl,
+      content: inputOrGlobal(url(meta.url), global.baseURL),
     },
     {
       hid: 'og:title',
       property: 'og:title',
-      content: title(meta),
+      content: inputOrGlobal(title(meta.title), global.title),
     },
     {
       hid: 'og:description',
       property: 'og:description',
-      content: (meta && meta.description) || global.siteDesc,
+      content: inputOrGlobal(meta.description, global.desc),
     },
     {
       hid: 'og:image',
       property: 'og:image',
-      content: (meta && meta.mainImage) || global.mainImage,
+      content: inputOrGlobal(meta.img, global.img),
     },
     {
       hid: 'twitter:url',
       name: 'twitter:url',
-      content: (meta && meta.url) || global.siteUrl,
+      content: inputOrGlobal(url(meta.url), global.baseURL),
     },
     {
       hid: 'twitter:title',
       name: 'twitter:title',
-      content: title(meta),
+      content: inputOrGlobal(title(meta.title), global.title),
     },
     {
       hid: 'twitter:description',
       name: 'twitter:description',
-      content: (meta && meta.description) || global.siteDesc,
+      content: inputOrGlobal(meta.description, global.desc),
     },
     {
       hid: 'twitter:image',
       name: 'twitter:image',
-      content: (meta && meta.mainImage) || global.mainImage,
+      content: inputOrGlobal(meta.img, global.img),
     },
   ]
 }
