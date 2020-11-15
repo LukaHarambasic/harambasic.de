@@ -1,6 +1,5 @@
 ---
 title: Corona-Warn-App
-desc: I worked on the Android version of the german Corona-Warn-App. In the beginning I focused on the UI implementation for version 1.0.0 which we delivered after 50 days. Some weeks later I slowly stopped programming and took more responsibility in the team as Teamlead and Scrum Master.
 img: corona-warn-app.jpg
 alt: A screenshot of the Corona-Warn-App homescreen.
 prio: 1000
@@ -23,4 +22,4 @@ responsibilities:
     - Android Developer
 ---
 
-I worked on the Android version of the german Corona-Warn-App. In the beginning I focused on the UI implementation for version 1.0.0 which we delivered after 50 days. Some weeks later I slowly stopped programming and took more responsibility in the team as Teamlead and Scrum Master.
+I have been working on the Android version of the German Corona-Warn-App. In the beginning I concentrated on the UI implementation for version 1.0.0, which we shipped after only 50 days. A few weeks later I slowly stopped programming and took on more responsibility in the team as Teamlead and Scrum Master.
