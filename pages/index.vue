@@ -6,16 +6,10 @@
 
 <script>
 export default {
-  async asyncData({ $content, params }) {
+  async asyncData({ $content }) {
     const page = await $content('home').fetch()
-    console.log(page)
     return {
       page,
-    }
-  },
-  head() {
-    return {
-      title: 'Luka Harambasic',
     }
   },
 }
