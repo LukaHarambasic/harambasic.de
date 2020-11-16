@@ -51,17 +51,20 @@ export default {
     color: $color-primary
 .title
   font-weight: bold
-  font-size: 1.75rem
+  font-size: 1.5rem
   line-height: 1.1
-  margin: 0 0 .5rem 0
 .price
   background: $color-primary
   color: $color-light
-  padding: .5rem
+  padding: .2rem .5rem
   border-radius: $border-radius
   font-size: .9rem
   @media screen and (max-width: $breakpoint-mobile)
     margin: 0 0 .25rem .25rem
+.alternatives
+  margin: 0 0 .75rem 0
 ul
   list-style: none
+.content
+  line-height: 1.4
 </style>
