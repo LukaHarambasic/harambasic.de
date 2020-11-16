@@ -55,39 +55,17 @@ export default {
   background: $color-secondary
   padding: 1rem
   border-radius: $border-radius
+.title
+  font-size: 1.75rem
+  line-height: 1.1
+  margin: 0 0 .5rem 0
 .date
   background: $color-secondary
   padding: .5rem
   border-radius: $border-radius
   font-size: .9rem
+  @media screen and (max-width: $breakpoint-mobile)
+    margin: 0 0 .25rem .25rem
   @media (prefers-color-scheme: dark)
     color: $color-primary
-section
-  order: 0
-  flex: 1 1 auto
-  align-self: auto
-// content - title
-.title
-  font-size: 1.75rem
-  line-height: 1.1
-  @media screen and (max-width: $breakpoint-mobile)
-    margin: 0 0 .5rem 0
-// content - markdown
-.markdown
-  margin: 0 0 2rem 0
-// content - links
-.links
-  .link
-    display: inline-block
-    background: $color-primary
-    color: $color-light
-    padding: .75rem 1rem
-    border-radius: $border-radius
-    margin: 0 1rem 1rem 0
-    text-decoration: none
-    border: 2px solid $color-primary
-    transition: $animation
-    &:hover
-      background: $color-light
-      color: $color-primary
 </style>

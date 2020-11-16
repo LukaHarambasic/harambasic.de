@@ -26,7 +26,7 @@ export default {
   opacity: .8
   font-size: .9rem
   line-height: 1
-  margin: 0 0 1rem 0
+  margin: 0 0 0 0
   display: flex
   flex-direction: row
   flex-wrap: wrap
