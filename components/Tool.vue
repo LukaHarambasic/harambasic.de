@@ -2,9 +2,10 @@
   <div class="project">
     <div class="row-space-between">
       <div class="title" v-text="title" />
-      <div class="price" v-text="price" />
+      <div v-if="price" class="price" v-text="price" />
     </div>
     <meta-list
+      v-if="alternatives"
       class="alternatives"
       pre-text="Alternatives:"
       :items="alternativesArray"
@@ -36,7 +37,9 @@ export default {
   },
   computed: {
     alternativesArray() {
-      return this.alternatives.split(',')
+      return this.alternatives
+        .split(',')
+        .map((alternative) => alternative.trim())
     },
   },
 }
@@ -45,6 +48,7 @@ export default {
 <style lang="sass" scoped>
 .project
   background: $color-secondary
+  width: 100%
   padding: 2rem
   border-radius: $border-radius
   @media (prefers-color-scheme: dark)

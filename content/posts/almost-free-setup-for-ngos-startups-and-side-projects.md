@@ -47,35 +47,57 @@ As I'm a big fan of structured content I splitted our tools in four categories. 
 
 ### Website
 
-#### Nuxt.js
-
-#### Netlify
-
-#### Prismic
-
-#### GitHub
-
-#### Netcup
-
-#### Figma
+<tools-list>
+    <tool title="Netcup" price="17,55€/year" alternatives="Namecheap, Go Daddy, Strato">
+    Domain & Mail
+    </tool>
+    
+    <tool title="GitHub" price="free" alternatives="GitLab, Bitbucket">
+    </tool>
+    
+    <tool title="Netlify" price="free" alternatives="Vercel, Webspace">
+    </tool>
+    
+    <tool title="Prismic" price="free" alternatives="Strapi">
+    </tool>
+    
+    <tool title="Nuxt.js" price="free" alternatives="">
+    </tool>
+    
+    <tool title="Figma" price="free" alternatives="Adobe XD, Gimp">
+    </tool>
+</tools-list>
 
 ### Marketing
 
-#### Mailchimp
-
-#### TBD: Tool von Julia
+<tools-list>
+    <tool title="Mailchimp" price="free" alternatives="">
+    </tool>
+    
+    <tool title="TBD: Tool von Julia" price="free" alternatives="">
+    </tool>
+</tools-list>
 
 ### Knowledge/Tasks
 
-#### Notion
-
-#### Google Drive
+<tools-list>
+    <tool title="Notion" price="free" alternatives="Confluence">
+    </tool>
+    
+    <tool title="Google Drive" price="free" alternatives="One Drive, Dropbox">
+    </tool>
+</tools-list>
 
 ### Operations
 
-#### Airtable
+<tools-list>
+    <tool title="Airtable" price="free" alternatives="Google Sheets, Excel">
+    </tool>
+    
+    <tool title="IFTTT" price="free" alternatives="Zapier, Integromat">
+    </tool>
+</tools-list>
 
-#### IFTTT
 
 ## How we work
 
