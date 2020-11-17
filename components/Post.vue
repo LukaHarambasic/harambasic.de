@@ -7,16 +7,7 @@
         <time class="date">{{ item.createdAt | date }}</time>
       </div>
       <meta-list :items="item.tags" pre-text="Tags:" />
-      <nuxt-content class="markdown" :document="item" />
-      <div class="links">
-        <a
-          v-for="link in item.links"
-          :key="link.title"
-          class="link"
-          :href="link.url"
-          v-text="link.title"
-        />
-      </div>
+      <nuxt-content class="content" :document="item" />
     </section>
   </article>
 </template>
@@ -51,7 +42,7 @@ export default {
   @media screen and (max-width: $breakpoint-desktop)
     flex-direction: column
 .image
-  margin: 0 0 1rem 0
+  margin: 0 0 2rem 0
   background: $color-secondary
   padding: 1rem
   border-radius: $border-radius
@@ -68,4 +59,6 @@ export default {
     margin: 0 0 .25rem .25rem
   @media (prefers-color-scheme: dark)
     color: $color-primary
+.content
+  margin: 2rem 0 0 0
 </style>
