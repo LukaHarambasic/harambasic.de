@@ -23,7 +23,7 @@ export default {
 
 <style lang="sass" scoped>
 .list
-  margin: .25rem 0 .5rem 0
+  margin: 1rem 0
 ul
   list-style: none
 </style>

@@ -6,7 +6,7 @@
         <h1 class="title" v-text="item.title" />
         <time class="date">{{ item.createdAt | date }}</time>
       </div>
-      <meta-list :items="item.tags" pre-text="Tags:" />
+      <meta-list class="tags" :items="item.tags" pre-text="Tags:" />
       <nuxt-content class="content" :document="item" />
     </section>
   </article>
@@ -46,19 +46,21 @@ export default {
   background: $color-secondary
   padding: 1rem
   border-radius: $border-radius
+  width: 100%
+  min-width: 16rem
 .title
   font-size: 1.75rem
   line-height: 1.1
   margin: 0 0 .5rem 0
 .date
   background: $color-secondary
-  padding: .5rem
+  padding: .25rem .5rem
   border-radius: $border-radius
   font-size: .9rem
   @media screen and (max-width: $breakpoint-mobile)
     margin: 0 0 .25rem .25rem
   @media (prefers-color-scheme: dark)
     color: $color-primary
-.content
-  margin: 2rem 0 0 0
+.tags
+  margin: 2rem 0
 </style>

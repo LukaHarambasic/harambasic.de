@@ -76,7 +76,11 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/style-resources'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources',
+    '@nuxtjs/google-analytics',
+  ],
   /*
    ** Nuxt.js modules
    */
@@ -141,5 +145,12 @@ export default {
       type,
       create: createFeed,
     }))
+  },
+
+  // Google analytics
+  googleAnalytics: {
+    id: 'G-0NR1E7916J',
+    dev: false,
+    set: [{ field: 'anonymizeIp', value: true }],
   },
 }

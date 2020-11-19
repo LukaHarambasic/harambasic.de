@@ -24,9 +24,9 @@ export default {
 <style lang="sass" scoped>
 .list
   opacity: .8
-  font-size: .9rem
-  line-height: 1
-  margin: 0 0 0 0
+  font-size: 1rem
+  line-height: 1.4
+  margin: 0
   display: flex
   flex-direction: row
   flex-wrap: wrap
@@ -34,7 +34,7 @@ export default {
   align-content: flex-start
   align-items: flex-start
   li
-    margin: 0 .15rem 0 0
+    margin: 0 .2rem 0 0
     &:after
       content: ', '
     &:last-of-type,
