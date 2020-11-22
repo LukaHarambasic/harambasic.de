@@ -7,13 +7,13 @@ h1, h2, h3, h4, h5, h6
     background: tomato
   h2
     font-size: 1.75rem
-    margin: 2.5rem 0 1rem 0
+    margin: 2.5rem 0 .25rem 0
   h3
     font-size: 1.5rem
-    margin: 1.5rem 0 1rem 0
+    margin: 1.5rem 0 .25rem 0
   h4
     font-size: 1.5rem
-    margin: 1.5rem 0 1rem 0
+    margin: 1.5rem 0 .25rem 0
     font-weight: normal
   p
     margin: 0 0 2rem 0
@@ -23,8 +23,9 @@ h1, h2, h3, h4, h5, h6
       display: inline-block
   ul
     list-style: disc
-    margin: 0 0 2rem 2rem
+    margin: 0 0 2rem 0
     li
+      list-style: disc
       margin: .5rem 0 0 0
   a
     color: $color-primary
@@ -51,7 +52,8 @@ h1, h2, h3, h4, h5, h6
     font-style: italic
   img
     border-radius: $border-radius
-    border: .5rem solid $color-secondary
+    position: relative
+    border: 1rem solid $color-secondary
     margin: 1rem 0 .5rem 0 // .5rem + .5rem from p = 1rem
   iframe
     margin: 0 0 1rem 0

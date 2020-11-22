@@ -1,18 +1,15 @@
 <template>
   <article class="item">
     <section>
-      <div class="image">
-        <img :src="fullImagePath(item.image)" :alt="item.alt" />
-      </div>
+      <img class="image" :src="fullImagePath(item.image)" :alt="item.alt" />
       <div class="row-space-between">
         <h1 class="title" v-text="item.title" />
         <time class="date">{{ item.createdAt | date }}</time>
       </div>
       <meta-list class="tags" :items="item.tags" pre-text="Tags:" />
       <callout class="tldr">
-        <template #content>
-          {{ item.tldr }}
-        </template>
+        <strong slot="prefix">TL;DR</strong>
+        {{ item.tldr }}
       </callout>
       <nuxt-content class="content" :document="item" />
     </section>
@@ -54,10 +51,7 @@ export default {
   padding: 1rem
   border-radius: $border-radius
   width: 100%
-  min-height: 12rem
-  img
-    border-radius: $border-radius
-    background: tomato
+  min-height: 16rem
 .title
   font-size: 1.75rem
   line-height: 1.1

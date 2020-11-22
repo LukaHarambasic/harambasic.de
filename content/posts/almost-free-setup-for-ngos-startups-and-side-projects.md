@@ -4,82 +4,97 @@ description: TBD
 image: my-personal-notion-setup.png
 alt: TBD
 tags: 
-    - Dropbox
-    - Google Drive
-    - Google Calendar
     - Notion
-    - Backup
-tldr: Lorem Ipsum
+    - Google Drive
+    - Mailchimp
+    - Later
+    - UNUM
+    - Netlify
+    - Nuxt.js
+    - Airtable
+    - IFTTT
+    - Slack
+    - Google Meet
+tldr: The only thing you definitively should pay for is the domain, the free tiers of the other services are just fine for the beginning. And just use what you feel comfortable with, this post only reflects my personal preferences and can easily be transferred to other tools in the same area.
 ---
 
-Active-Ambassadors is an organisation founded by Leonard Schwier and myself. The idea was to raise awarness for NGOs with the skills we have developed over the last years. For that we'll send our active ambassadors DIY kits to iron a NGO of there choice on a jersey. We don't make profit, currently we are paying a lot of the stuff by ourselves. You can see everything on our transparency page. The team grew and we are currently four people as our two Julias joined! ❤️
+[Active Ambassadors](https://active-ambassadors.org/) is an organization founded by Leonard Schwier and myself. The idea was to raise awareness for NGOs with the skills we have developed over the last years. For that, we'll send our active ambassadors DIY kits to iron a NGO of their choice on a jersey. To accomplish this our team grew as Julia & Julia joined our journey ❤️
 
-Feel free to send as an email our a message on Instagram if you have any questions!
+We don't make a profit. Currently we pay most of it ourselves. You can see all expenses and income on our [transparency page](https://active-ambassadors.org/transparency).
 
-## Why this post?
+Feel free to send us [an email](mailto:luka@active-ambassadors.org) or a message on [Instagram](https://www.instagram.com/active_ambassadors/) if you have any questions!
 
-I love tools! And that's my role at Active Ambassadors, handling all the tools we use and automize as much as possible. Over the last years I set up larger working enviroments even on a larger scale so I thought it might be worth sharing all this. This post targets someone who has no idea what he/she is doing (don't hesitate to send me a mail or send a Tweet) but also should inspire people with similiar setups. If you have ideas how I could improve this setup even more I'm to listen! 🙂
+## Why should you read it?
 
-Before we start: you should have this two points in mind when reading this post:
+I want to inspire you how you can set up a professional working environment for your next idea without a lot of money. To give you an concrete example I'll talk over our set up at Active Ambassadors. All my knowledge, which I have acquired over the last years, has flowed into this.
 
-- We don't want to spend money on our IT setup, our target is to raise awarness for NGOs.
-- We work 100% remotly, some of us have even met!
+This post targets someone who has no idea what he/she is doing but also should inspire people with similar setups. Let me know if you have ideas how I can improve this setup even more ([E-Mail](mailto:hi@harambasic.de), [Twitter](https://twitter.com/luka_harambasic)). 🙂
 
-This post isn't a list of tools over tools just to mention them all, it's only the staff we are really using. But as some of the stuff couldn't be what you need I also added some alternatives I know, but I haven't used all of them, these are marked with *****.
+Before we start you should have this points in mind while reading this post:
 
-And I would set up somehow a similiar setup if I would found a new (digital) company.
+- We don't want to spend money on our IT setup, our target is to raise awareness for NGOs.
+- We work 100% remotely, some of us have even met!
+- This post isn't a list of tools over tools just to mention them all, it's only the staff we are really using.
+- I would set up the same for a (digital) company, club or side project.
 
 ## The tools we use
 
-As I'm a big fan of structured content I splitted our tools in four categories. I'll shortly go over them and explain how we use them. We are using all of these tools in the free tier, we only have to pay for the domain & emails.
+As I'm a big fan of structured content I split our tools into four categories. I'll shortly go over them and explain how we use them. We are using all of these tools in the free tier, we only have to pay for the domain & emails. If you are a registered NGO you even can use some of the premium tiers for free, e.g. on [Slack](https://slack.com/intl/en-de/help/articles/204368833-Apply-for-the-Slack-for-Nonprofits-discount) or [Google](https://www.google.com/nonprofits/offerings/g-suite/).
 
 ### Communication
 
 <meta-list-tools tools="Slack, Google Meet"></meta-list-tools>
 
-Our main communication tool is Slack, since we are a rather young team and grew up with messaging solutions no one had a problem to adapt it. And I'm personally also a big fan of sepearting communications, e.g. I don't want to have discussions about Active Ambassadors mixed up with my private chats in WhatsApp. As we use Google Calendar for invitations Google Meet was a natural fit.
+Our main communication tool is [Slack](https://slack.com/intl/en-de/), since we are a rather young team and grew up with messaging solutions no one had a problem to adapt it. And I'm personally also a big fan of separating communications, e.g. I don't want to have discussions about Active Ambassadors mixed up with my private chats in WhatsApp.
 
+As we use [Google Calendar](https://calendar.google.com/) for invitations [Google Meet](https://meet.google.com/) was a natural fit for our calls.
 
 ![Slack](/posts/almost-free-setup-for-ngos-startups-and-side-projects/slack.png)
 
-Slack strucutre:
-a-, b-, p-, r-
+As you can see we follow some simple naming conventions, to be honest they are a little bit overkill, but I'm used to it and I like conventions. These are inspired directly from [Slack](https://slack.com/intl/en-de/blog/collaboration/how-to-use-slack-channels-to-organize-your-work) and I used them in several teams and they just work even if everybody needs some time to get used to it.
+
+- **a-announcements:** Announcement channels are used to share some information with the whole workspace, e.g. about the christmas party or an all-hands.
+- **b-bots**: These channels are primarily used by bots which only share updates, e.g. a new comment on instagram, an new order or a closed deal in a CRM.
+- **p-projects:** These are not only for projects as they are [defined](https://en.wikipedia.org/wiki/Project#Formal_definition_in_the_project-management_realm), they also can be use as cross-team communication channels, e.g. for an event organization where multiple teams are needed.
+- **r-random:** Just stuff that doesn't fit in any other channel, e.g. you can create one for a [running dinner](https://en.wikipedia.org/wiki/Progressive_dinner) where everybody can share there meals without spamming other channels.
+
+In other workspaces I also used **t-teams** and **h-help** but for us this isn't currently needed as we are a small team.
 
 ### Operations
 
 <meta-list-tools tools="Airtable, IFTTT"></meta-list-tools>
 
-We moved from Google Sheets to Airtable as AIrtable provides an API which can be used by our website to list our expenses. We have two major categories with five sheets in Airtable.
+We moved from [Google Sheets](https://www.google.com/sheets/about/) to [Airtable](https://airtable.com/) because they offer an API which can be used by our website to display expenses and income. We have two major categories with five sheets:
 
-- **CRM**
+- **CRM** ([definition](https://en.wikipedia.org/wiki/Customer_relationship_management))
     - Active Ambassadors
     - Organisations
 - **Finance**
     - Expenses
     - Income
-    - Cost per DIY Kit
+    - Cost per DIY kit
 
-Our list of Active Ambassadors is somehow a mixture between a CRM and an order system, if an user fills out the form a new entry will be added with all the infomration we need. The user will also get a confirmation mail via Mailchimp. The new order is also communicated via Slack, this automation is done vie IFTTT.  That message in Slack triggers Leonard to start the printing and shipping process. Afterwards the status of the order is reflected manually in the sheet.
+Our list of Active Ambassadors is somehow a mixture between a CRM and an order system, if a user fills out the form a new entry will be added with all necessary information. The ambassador will also get a confirmation via [Mailchimp](https://mailchimp.com/). The new order is also communicated via Slack, this automation is done via [IFTTT](https://ifttt.com/home).  That message in Slack triggers Leonard to start the printing and shipping process. Afterward, the status of the order is reflected manually in the sheet.
 
 ![Airtable - Shipping](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_shipping.png)
 
-The organisations CRM is inspired by a standard sales funnel. But in reality it's just a Kanban board with four different states: First contact, Negotiation, Won, Lost. This helps us to keep track about organisations we already have contacted and also creates transparencs within the team.
+The organization's CRM is inspired by a standard [sales funnel](https://en.wikipedia.org/wiki/Purchase_funnel). In reality, it's just a [Kanban board](https://en.wikipedia.org/wiki/Kanban_board) with four different states: First contact, Negotiation, Won and Lost. This helps us to keep track of organizations we already have contacted and creates transparency within the team.
 
 
 ![Airtable - Organisations CRM](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_organisations.png)
 
-I think there isn't much to say about our finance screen, nothing fancy, pretty simple and straigth forward. This data is than reflected on our transparency page to let everybody know what expenses and what income we have.
+I think there isn't much to say about our finance sheets, nothing fancy, pretty simple, and straight forward. This data is then reflected on our [transparency page](https://active-ambassadors.org/transparency).
 
 
 ![Airtable - Finances](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_finance.png)
 
-After Notions give us the same functionallities to hookup other tools I would like to drop Airtable to reduce the number of tools we use.
+If [Notions](https://www.notion.so/) provides us with the same functionalities to connect other tools I would like to drop Airtable to reduce the number of tools we use.
 
 ### Marketing
 
 <meta-list-tools tools="Mailchimp, Later, UNUM"></meta-list-tools>
 
-In the beginning we wante dto se tup a newsletter now all our communication efforts go in to Instagram. To schedule and plan our posts Julia is using Later and UNUM and that's not something I'm fimiliar with, so take Julias word:
+In the beginning, we had a newsletter with [Mailchimp](https://mailchimp.com/), but now all our communication efforts go into [Instagram](https://www.instagram.com/active_ambassadors/). To schedule and plan our posts Julia is using [Later](https://later.com/) and [UNUM](https://www.unum.la/) and that's not something I'm familiar with, so take Julias word:
 
 > Aussage Julia
 
@@ -87,27 +102,29 @@ In the beginning we wante dto se tup a newsletter now all our communication effo
 
 <meta-list-tools tools="Notion, Google Drive"></meta-list-tools>
 
-Over the last few years Notion has satisfied the desire of prodcutivity junkies who want to design for there own needs with writing a line of code and slowly it spilled over in the business world (at least that's how it looked for myself). With Notion you can do almost everything: use it as a wiki, build a custom CRM, track your tasks or use it as a notebook. 
+Over the last few years, [Notion](https://www.notion.so/) has satisfied the desire of productivity junkies who want to design for their own needs by not writing a single line of code, and it slowly spilled over into the business world (at least it looked like that to me). With Notion, you can do almost everything: use it as a wiki, build a custom CRM, track your tasks, or use it as a notebook.
 
 ![Notion](/posts/almost-free-setup-for-ngos-startups-and-side-projects/notion.png)
 
 We decided to use it for our tasks with a simple Kanban board as well for some knowledge sharing. It's still work in progress, but it's growing.
 
-And Google Drive only exists as data grave, we only save documents (e.g. templates) or picutres, but our knowledge is completly in Notion.
+[Google Drive](https://www.google.com/intl/en_zm/drive/) only exists as data grave, we only save documents (e.g. templates) or pictures, but our knowledge is completely in Notion.
 
 ### Website
 
 <meta-list-tools tools="Nuxt.js, Netlify, Prismic, GitHub, Netcup, Figma"></meta-list-tools>
 
-The next paragrpahs will be very technical, if you aren't interested in this I still would recommend to get your hands on a domain, even if you aren't hosting a website. It's just ten times more professionell if I don't get an email from luka@active-ambassadors.org instead of dungeonmaster99@gmail.com
+<callout>
+The next paragraphs will be very technical, if you aren't interested in this I still would recommend getting your hands on a domain, even if you aren't hosting a website. It's just ten times more professional if you send an email from luka@active-ambassadors.org instead of dungeonmaster99@gmail.com.
+</callout>
 
-I built the website with Nuxt.js a Framework on top of Vue.js, so that's only something for you if you know how to do web development or you know someone. The website is publicly accessible via GitHub  the Versiion Control System of my chocie. These is linked to Netlify where each change to is directly deployed without any manual download or build process involved. During automatic build process the required data from Prismic our headless CMS and also Airtable are requested. But also a change to the content in Prismic would trigger a new build. I would like to have something similiar for AirTable as all the numbers on our transparency page are consumed from our sheets in AirTable. Because this isn't possible I trigger a new build every 24 hours via IFTTT as we don't relay on instant updates.
+I built the website with [Nuxt.js,](https://nuxtjs.org/) a framework on top of [Vue.js](https://vuejs.org/). So this is only something for you if you know how to do web development or if you know someone who is able to do it. The website is publicly accessible via [GitHub](https://github.com/) the [version control system](https://en.wikipedia.org/wiki/Version_control) of my choice. This is linked to [Netlify](https://www.netlify.com/) where each change is directly deployed without any manual download or build process involved. During the automatic build process, the required data from [Prismic](https://prismic.io/) our headless CMS, and also Airtable are requested. But also a change to the content in Prismic would trigger a new build. I would like to have something similar for AirTable as all the numbers on our transparency page are consumed from our sheets. Because this isn't possible I trigger a new build every 24 hours via IFTTT as we don't rely on instant updates.
 
-Last but not least are domain is managed at Netcup which costs us 17.55 €, but also the email hosting is managed via Netcup and is included in an webspace I own since years. If you are lucky you can get realy could deals at Netcup!
+The domain is managed at [Netcup](https://www.netcup.de/) which costs us 17.55 €, which also contains the email hosting.
 
-For creating mockups to discuss version two of our website I used Figma as everybody can access the files in realtime and also edit it or leave a comment. I also used Figma to create our logo.
+For creating mockups to discuss version two of our website I used [Figma](https://www.figma.com/) as everybody can access the files in realtime and also edit it or leave a comment. I also used Figma to create our logo.
 
-Most of this could be replaced by Wordpress and Webspace. I just prefer to have the full control over the performance and the layout while going for a best of breed approach. Each part of this setup can easily be replaced, e.g. Prismic with nuxt/content if we feel to only write Markdown or Strapi a self hosted version. Also Airtable could be exchanged with an CRM like HubSpot or Headless Shopify. Opportunities over oportunities and we always can do what's best in the current situation.
+Most of this could be replaced by [Wordpress](https://wordpress.com/) and Webspace, this is used by my mothers organization: [Respekt Menschen](http://home.respekt-menschen.de/) (respect humans). I just prefer to have full control over the performance and the layout while going for a [best of breed approach](https://www.gartner.com/en/information-technology/glossary/best-of-breed). Each part of this setup can easily be replaced, e.g. Prismic with [nuxt/content](https://content.nuxtjs.org/) if we feel to only write [Markdown](https://daringfireball.net/projects/markdown/syntax) or [Strapi](https://strapi.io/) (self-hosted).
 
 ## Refelction
 
