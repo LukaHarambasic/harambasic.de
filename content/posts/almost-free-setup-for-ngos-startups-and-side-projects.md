@@ -9,6 +9,7 @@ tags:
     - Google Calendar
     - Notion
     - Backup
+tldr: Lorem Ipsum
 ---
 
 Active-Ambassadors is an organisation founded by Leonard Schwier and myself. The idea was to raise awarness for NGOs with the skills we have developed over the last years. For that we'll send our active ambassadors DIY kits to iron a NGO of there choice on a jersey. We don't make profit, currently we are paying a lot of the stuff by ourselves. You can see everything on our transparency page. The team grew and we are currently four people as our two Julias joined! ❤️
