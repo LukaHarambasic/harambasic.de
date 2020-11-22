@@ -137,3 +137,8 @@ Most of this could be replaced by [Wordpress](https://wordpress.com/) and Webspa
 - become NGO to get G Suite and Slack Premium
 - if I would do it fulltime host most of the stuff myself, write own bots, host open source headless cms like strapi
 - Happy to pay if we are in the situation but would like to donate profits
+
+## Conclusion
+
+- Exchange what you feel good with
+- let me know if you want a deep dive in to one of the tools we use

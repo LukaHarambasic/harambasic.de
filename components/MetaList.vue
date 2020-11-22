@@ -1,5 +1,5 @@
 <template>
-  <ul class="list">
+  <ul class="meta-list">
     <li><strong v-text="preText" /></li>
     <li v-for="item in items" :key="item" v-text="item" />
   </ul>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.list
+.meta-list
   opacity: .8
   font-size: 1rem
   line-height: 1.4
@@ -35,6 +35,7 @@ export default {
   align-items: flex-start
   li
     margin: 0 .2rem 0 0
+    list-style: none
     &:after
       content: ', '
     &:last-of-type,

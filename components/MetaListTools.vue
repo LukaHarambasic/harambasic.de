@@ -24,6 +24,4 @@ export default {
 <style lang="sass" scoped>
 .tools
   margin: 0 0 1rem 0
-ul
-  list-style: none
 </style>

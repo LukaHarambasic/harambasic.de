@@ -111,6 +111,7 @@ export default {
       border-bottom: 2px solid rgba($color-primary, 1)
       transition: $animation
       text-decoration: none
+      line-height: 1
       &:hover
         text-decoration: none
         border-color: rgba($color-primary, .3)

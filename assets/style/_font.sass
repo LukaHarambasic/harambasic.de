@@ -22,21 +22,26 @@ h1, h2, h3, h4, h5, h6
     a
       display: inline-block
   ul
-    list-style: disc
-    margin: 0 0 2rem 0
+    margin: 0 0 0 2rem
     li
       list-style: disc
       margin: .5rem 0 0 0
+  > ul
+    margin: 0 0 2rem 2rem
   a
     color: $color-primary
-    font-weight: bold
+    border-bottom: 2px solid rgba($color-primary, 1)
     transition: $animation
     text-decoration: none
+    line-height: 1
     &:hover
       text-decoration: none
-      opacity: .6
+      border-color: rgba($color-primary, .3)
     @media (prefers-color-scheme: dark)
       color: $color-light
+      border-color: rgba($color-light, 1)
+      &:hover
+        border-bottom: 2px solid rgba($color-light, .3)
   blockquote
     padding: .5rem 1rem
     border-left: .5rem solid $color-secondary
@@ -54,7 +59,7 @@ h1, h2, h3, h4, h5, h6
     border-radius: $border-radius
     position: relative
     border: 1rem solid $color-secondary
-    margin: 1rem 0 .5rem 0 // .5rem + .5rem from p = 1rem
+    margin: 1rem 0 0 0
   iframe
     margin: 0 0 1rem 0
   &.stable-color

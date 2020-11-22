@@ -38,6 +38,7 @@ h1
     text-decoration: none
     border-bottom: 2px solid transparent
     transition: $animation
+    line-height: 1
     &:hover
       border-color: $color-primary
     @media (prefers-color-scheme: dark)
