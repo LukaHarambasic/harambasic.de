@@ -21,13 +21,16 @@ h1, h2, h3, h4, h5, h6
       margin: 0
     a
       display: inline-block
-  ul
+  ul, ol
     margin: 0 0 0 2rem
     li
-      list-style: disc
       margin: .5rem 0 0 0
-  > ul
+  > ul, ol
     margin: 0 0 2rem 2rem
+  ul
+    list-style: disc
+  ol
+    list-style: decimal-leading-zero
   a
     color: $color-primary
     border-bottom: 2px solid rgba($color-primary, 1)
