@@ -12,6 +12,14 @@
         {{ item.tldr }}
       </callout>
       <nuxt-content class="content" :document="item" />
+      <callout class="follow">
+        Do you have thoughts on this topic? Share them in
+        <a :href="item.tweet">this thread</a>. <br />
+        You can subscribe to this blog via <a href="/posts/rss.xml">RSS</a> or
+        follow me on
+        <a href="https://twitter.com/luka_harambasic">Twitter</a> to get the
+        latest updates.
+      </callout>
     </section>
   </article>
 </template>

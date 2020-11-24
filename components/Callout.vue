@@ -26,6 +26,9 @@ export default {
   border-radius: $border-radius
   background: $color-secondary
   color: $color-primary
+  @media screen and (max-width: $breakpoint-mobile)
+    flex-direction: column
+    justify-content: flex-start
   .content
     width: 100%
   > *
@@ -37,4 +40,15 @@ export default {
         background: $color-light
         border-radius: $border-radius
         padding: .25rem .5rem
+        @media screen and (max-width: $breakpoint-mobile)
+          margin: 0 0 1rem 0
+a
+  color: $color-primary
+  border-bottom: 2px solid rgba($color-primary, 1)
+  transition: $animation
+  text-decoration: none
+  line-height: 1
+  &:hover
+    text-decoration: none
+    border-color: rgba($color-primary, .3)
 </style>

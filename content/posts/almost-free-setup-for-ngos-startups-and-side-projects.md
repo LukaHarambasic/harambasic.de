@@ -16,6 +16,7 @@ tags:
     - Slack
     - Google Meet
 tldr: The only thing you definitively should pay for is the domain, the free tiers of the other services are just fine for the beginning. And just use what you feel comfortable with, this post only reflects my personal preferences and can easily be transferred to other tools in the same area.
+tweet: https://twitter.com/luka_harambasic
 ---
 
 [Active Ambassadors](https://active-ambassadors.org/) is an organization founded by Leonard Schwier and myself. The idea was to raise awareness for NGOs with the skills we have developed over the last years. For that, we'll send our active ambassadors DIY kits to iron a NGO of their choice on a jersey. To accomplish this our team grew as Julia & Julia joined our journey ❤️
@@ -126,14 +127,11 @@ For creating mockups to discuss version two of our website I used [Figma](https:
 
 Most of this could be replaced by [Wordpress](https://wordpress.com/) and Webspace, this is used by my mothers organization: [Respekt Menschen](http://home.respekt-menschen.de/) (respect humans). I just prefer to have full control over the performance and the layout while going for a [best of breed approach](https://www.gartner.com/en/information-technology/glossary/best-of-breed). Each part of this setup can easily be replaced, e.g. Prismic with [nuxt/content](https://content.nuxtjs.org/) if we feel to only write [Markdown](https://daringfireball.net/projects/markdown/syntax) or [Strapi](https://strapi.io/) (self-hosted).
 
-## Refelction
+## Refelction & Future plans
 
 - Open Source on own servers, but want to have low maintenance "costs" focus on the product
 - Work together in one city
 - Are all this tools necessary?
-
-## Future plans
-
 - become NGO to get G Suite and Slack Premium
 - if I would do it fulltime host most of the stuff myself, write own bots, host open source headless cms like strapi
 - Happy to pay if we are in the situation but would like to donate profits
@@ -142,3 +140,7 @@ Most of this could be replaced by [Wordpress](https://wordpress.com/) and Webspa
 
 - Exchange what you feel good with
 - let me know if you want a deep dive in to one of the tools we use
+
+<thanks>
+    Thanks to Max Mustermann for reading drafts of this post.
+</thanks>
