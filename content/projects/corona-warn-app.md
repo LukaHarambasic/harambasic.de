@@ -22,4 +22,4 @@ responsibilities:
     - Android Developer
 ---
 
-I have been working on the Android version of the German Corona-Warn-App. In the beginning I concentrated on the UI implementation for version 1.0.0, which we shipped after only 50 days. A few weeks later I slowly stopped programming and took on more responsibility in the team as Teamlead and Scrum Master.
+I worked on the Android version of the German Corona-Warn-App. In the beginning, I focused on the UI implementation for version 1.0.0, which was released after only 50 days of development. A few weeks later, I took on even more responsibility and facilitated the development team as team lead and scrum master

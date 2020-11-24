@@ -16,4 +16,4 @@ responsibilities:
     - Process Automation
 ---
 
-In the beginning I built the first version of the infrastructure, the focus was on getting things done rather than making them perfect. The second iteration was more about a change process. I introduced tools like [Slack](https://slack.com/), [Google Workspace](https://workspace.google.com/), [Zapier](https://zapier.com/) and [HubSpot](https://www.hubspot.com/) to bring the benefits of cloud tools to more than 100 students.
+Initially I set up the first version of the infrastructure, the focus was getting things done instead of doing it perfectly. Thereafter, I continuously improved the tech stack and introduced tools like [Slack](https://slack.com/), [Google Workspace](https://workspace.google.com/), [Zapier](https://zapier.com/) and [HubSpot](https://www.hubspot.com/) to fully leverage the benefits of cloud tools and facilitate the collaboration of more than 100 students.

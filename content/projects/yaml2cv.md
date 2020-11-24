@@ -17,4 +17,4 @@ responsibilities:
     - Development
 ---
 
-Why bother with Word or a graphics program when you can program? So I designed and developed a CV in Nuxt.js, which takes the data from a YAML file. Just add a new entry to the YAML file and the CV will be updated, then you can host it as a static page to services like Netlify and Vercel.
+Why bother with Word or a graphics program when creating your CV? Hence I designed and developed a tool in Nuxt.js which takes data from a YAML file and automatically created output in the design of a CV. It is easy to maintain as new entries can be added to the YAML and the CV will be updated automatically. The CV can be hosted as static page on services like [Netlify](https://www.netlify.com/) and [Vercel](https://vercel.com/).
