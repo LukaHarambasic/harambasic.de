@@ -15,7 +15,7 @@ tags:
     - IFTTT
     - Slack
     - Google Meet
-tldr: The only thing you definitively should pay for is the domain, the free tiers of the other services are just fine for the beginning. And just use what you feel comfortable with, this post only reflects my personal preferences and can easily be transferred to other tools in the same area.
+tldr: The only thing you definitively should pay for is the domain, the free tiers of the other services are just fine for the beginning. Use what you feel comfortable with, this post only reflects my personal preferences and can easily be transferred to other tools in the same area.
 tweet: https://twitter.com/luka_harambasic
 ---
 
@@ -46,7 +46,7 @@ As I'm a big fan of structured content I split our tools into four categories: (
 
 ### Communication
 
-*Slack, Google Meet*
+<meta-list-tools tools="Slack, Google Meet"></meta-list-tools>
 
 Our main communication tool is [Slack](https://slack.com/intl/en-de/), since we are a rather young team and grew up with messaging solutions no one had a problem to adapt it. I'm personally also a big fan of separating communications, e.g. I don't want to have discussions about Active Ambassadors mixed up with my private chats in WhatsApp.
 
@@ -65,7 +65,7 @@ In other workspaces I also used **t-teams** and **h-help** but for us this isn't
 
 ### Operations
 
-*Airtable, IFTTT*
+<meta-list-tools tools="Airtable, IFTTT"></meta-list-tools>
 
 We moved from [Google Sheets](https://www.google.com/sheets/about/) to [Airtable](https://airtable.com/) because they offer an API which can be consumed by our website to display expenses and incomes. We have two major categories with five sheets:
 
@@ -93,13 +93,13 @@ If [Notions](https://www.notion.so/) provides us with the same functionalities t
 
 ### Marketing
 
-*Mailchimp, Later, UNUM*
+<meta-list-tools tools="Mailchimp, Later, UNUM"></meta-list-tools>
 
 In the beginning, we had a newsletter with [Mailchimp](https://mailchimp.com/), but now all our communication efforts go into [Instagram](https://www.instagram.com/active_ambassadors/). To schedule and plan our posts Julia is using [Later](https://later.com/) and [UNUM](https://www.unum.la/) and that's not something I'm familiar with, so if you want I could ask Julia for a guest contribution.
 
 ### Knowledge/Tasks
 
-*Notion, Google Drive*
+<meta-list-tools tools="Notion, Google Drive"></meta-list-tools>
 
 Over the last few years, [Notion](https://www.notion.so/) has satisfied the desire of productivity junkies who want to create tools for their own needs by not writing a single line of code. It slowly spilled over into the business world, at least it looked like that to me. You can do almost everything: use it as a wiki, build a custom CRM, track your tasks, or use it as a notebook.
 
@@ -111,7 +111,7 @@ We decided to use it for our tasks with a simple Kanban board as well for some k
 
 ### Website
 
-*Nuxt.js, Netlify, Prismic, GitHub, Netcup, Figma*
+<meta-list-tools tools="Nuxt.js, Netlify, Prismic, GitHub, Netcup, Figma"></meta-list-tools>
 
 The next paragraphs will be very technical, if you aren't interested in this I still would recommend getting your hands on a domain, even if you aren't hosting a website. It's just ten times more professional if you send an email from luka@active-ambassadors.org instead of dungeonmaster99@gmail.com.
 
