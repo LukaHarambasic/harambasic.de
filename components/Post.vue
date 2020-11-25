@@ -1,14 +1,14 @@
 <template>
   <article class="item">
     <section>
-      <img class="image" :src="fullImagePath(item.image)" :alt="item.alt" />
+      <img class="image" :src="item.image" :alt="item.alt" />
       <div class="row-space-between">
         <h1 class="title" v-text="item.title" />
         <time class="date">{{ item.createdAt | date }}</time>
       </div>
       <meta-list class="tags" :items="item.tags" pre-text="Tags:" />
       <callout class="tldr">
-        <strong slot="prefix">TL;DR</strong>
+        <strong slot="sprefix">TL;DR</strong>
         {{ item.tldr }}
       </callout>
       <nuxt-content class="content" :document="item" />
@@ -33,11 +33,6 @@ export default {
     item: {
       type: Object,
       required: true,
-    },
-  },
-  methods: {
-    fullImagePath(image) {
-      return `/posts/${image}`
     },
   },
 }

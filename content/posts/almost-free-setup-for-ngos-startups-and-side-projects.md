@@ -1,7 +1,7 @@
 ---
 title: Almost free setup for NGOs, startups & side projects
 description: TBD
-image: my-personal-notion-setup.png
+image: /posts/almost-free-setup-for-ngos-startups-and-side-projects/header.png
 alt: TBD
 tags: 
     - Notion
