@@ -79,6 +79,8 @@ We moved from [Google Sheets](https://www.google.com/sheets/about/) to [Airtable
 
 Our list of Active Ambassadors is somehow a mixture between a CRM and an order system, if a user fills out the form a new entry will be added with all necessary information. The ambassador will also get a confirmation via [Mailchimp](https://mailchimp.com/). The new order is also communicated via Slack, this automation is done via [IFTTT](https://ifttt.com/home).  That message in Slack triggers Leonard to start the printing and shipping process. Afterward, the status of the order is reflected manually in the sheet.
 
+![Airtable - Shipping](/posts/almost-free-setup-for-ngos-startups-and-side-projects/operations_flow.png)
+
 ![Airtable - Shipping](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_shipping.png)
 
 The organization's CRM is inspired by a standard sales funnel. In reality, it's just a Kanban board with four different states: First contact, Negotiation, Won and Lost. This helps us to keep track of organizations we already have contacted and creates transparency within the team.
@@ -137,5 +139,5 @@ The other question I'm not completely sure about is if all this tools are necess
 
 <thanks>
     Please let me now if you want a deep dive on one of this tools or if I should explain my decision process.<br />
-    Thanks to Max Mustermann for reading drafts of this post.
+    Thanks to Leonard Schwier for reading drafts of this post.
 </thanks>
