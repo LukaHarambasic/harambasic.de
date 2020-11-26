@@ -21,20 +21,20 @@ tweet: https://twitter.com/luka_harambasic
 
 ## What's this post about?
 
-I want to inspire you how you can set up a professional working environment for your next idea with almost no money. To give you an concrete example I'll talk over our set up at [Active Ambassadors](https://active-ambassadors.org). All my knowledge, which I have acquired over the last years, has flowed into this.
+I want to inspire you how you can set up a professional working environment for your next idea with almost no money. To give you a concrete example: I'll talk over our set up at [Active Ambassadors](https://active-ambassadors.org). All my knowledge, which I have acquired over the last years, has flown into this.
 
 This post targets someone who has no idea what he/she is doing but also should inspire people with similar setups. Let me know if you have ideas how I can improve this setup even more ([E-Mail](mailto:hi@harambasic.de), [Twitter](https://twitter.com/luka_harambasic)). 🙂
 
 Before we start you should have this points in mind while reading this post:
 
 - We don't want to spend money on our IT setup, our goal is to raise awareness for NGOs.
-- We work 100% remotely, some of us have even met!
-- This post isn't a list of tools over tools just to mention them all, it's only the staff we are really using.
-- I would set up the same for a (digital) company, club or side project.
+- We work 100% remotely, some of us haven't even met!
+- This post isn't only there to list the tools, it's about the stuff we are really using.
+- I would follow the same setup the same for a (digital) company, club or side project.
 
 ## What's Active Ambassadors?
 
-[Active Ambassadors](https://active-ambassadors.org/) is an organization founded by Leonard Schwier and myself. The idea was to raise awareness for NGOs with the skills we have developed over the last years. For that, we'll send our active ambassadors DIY kits to iron a NGO of their choice on a jersey. To accomplish this our team grew as Julia & Julia joined our journey ❤️
+[Active Ambassadors](https://active-ambassadors.org/) is an organization founded by Leonard Schwier and myself. The idea was to raise awareness for NGOs with the skills we have developed over the last years. For that, we'll send our active ambassadors DIY kits to iron a logo of a NGO of their choice on a jersey. To accomplish this, our team grew as Julia & Julia joined our journey ❤️
 
 We don't make a profit. Currently we pay most of it ourselves. You can see all expenses and income on our [transparency page](https://active-ambassadors.org/transparency).
 
@@ -54,7 +54,7 @@ As we use [Google Calendar](https://calendar.google.com/) for invitations [Googl
 
 ![Slack](/posts/almost-free-setup-for-ngos-startups-and-side-projects/slack.png)
 
-As you can see we follow some simple naming conventions, to be honest they are a little bit overkill, but I'm used to it and I like conventions. These are inspired directly from [Slack](https://slack.com/intl/en-de/blog/collaboration/how-to-use-slack-channels-to-organize-your-work) and I used them in several teams and they just work even if everybody needs some time to get used to it.
+As you can see we follow some simple naming conventions, to be honest they are a little bit overkill, but I'm used to it and I like conventions. These are inspired directly by [Slack](https://slack.com/intl/en-de/blog/collaboration/how-to-use-slack-channels-to-organize-your-work) and I used them in several teams and they just work even if everybody needs some time to get used to it.
 
 - **a-announcements:** Announcement channels are used to share some information with the whole workspace, e.g. about the christmas party or an all-hands.
 - **b-bots**: These channels are primarily used by bots which only share updates, e.g. a new comment on instagram, an new order or a closed deal in a CRM.
@@ -67,7 +67,7 @@ In other workspaces I also used **t-teams** and **h-help** but for us this isn't
 
 <meta-list-tools tools="Airtable, IFTTT"></meta-list-tools>
 
-We moved from [Google Sheets](https://www.google.com/sheets/about/) to [Airtable](https://airtable.com/) because they offer an API which can be consumed by our website to display expenses and incomes. We have two major categories with five sheets:
+We moved from [Google Sheets](https://www.google.com/sheets/about/) to [AirTable](https://airtable.com/) because they offer an API which can be consumed by our website to display expenses and incomes. We have two major categories with five sheets:
 
 - **CRM** ([definition](https://en.wikipedia.org/wiki/Customer_relationship_management))
     - Active Ambassadors
@@ -83,15 +83,15 @@ Our list of Active Ambassadors is somehow a mixture between a CRM and an order s
 
 ![Airtable - Shipping](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_shipping.png)
 
-The organization's CRM is inspired by a standard sales funnel. In reality, it's just a Kanban board with four different states: First contact, Negotiation, Won and Lost. This helps us to keep track of organizations we already have contacted and creates transparency within the team.
+The organization's CRM is inspired by a standard [sales funnel](https://en.wikipedia.org/wiki/Purchase_funnel). In reality, it's just a [Kanban board](https://en.wikipedia.org/wiki/Kanban_board) with four different states: First contact, Negotiation, Won and Lost. This helps us to keep track of organizations we already have contacted and creates transparency within the team.
 
 ![Airtable - Organisations CRM](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_organisations.png)
 
-I think there isn't much to say about our finance sheets, nothing fancy, pretty simple, and straight forward. This data is then reflected on our transparency page.
+I think there isn't much to say about our finance sheets, nothing fancy, pretty simple, and straight forward. This data is then reflected on our [transparency page](https://active-ambassadors.org/transparency).
 
 ![Airtable - Finances](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_finance.png)
 
-If [Notions](https://www.notion.so/) provides us with the same functionalities to connect other tools I would like to drop Airtable to reduce the number of tools we use.
+If [Notions](https://www.notion.so/) provides us with the same functionalities to connect other tools I would like to drop AirTable to reduce the number of tools we use.
 
 ### Marketing
 
@@ -109,17 +109,19 @@ Over the last few years, [Notion](https://www.notion.so/) has satisfied the desi
 
 We decided to use it for our tasks with a simple Kanban board as well for some knowledge sharing. It's still work in progress, but it's growing.
 
-[Google Drive](https://www.google.com/intl/en_zm/drive/) only exists as data grave, we only save documents (e.g. templates) or pictures, but our knowledge is completely in Notion.
+[Google Drive](https://www.google.com/intl/en_zm/drive/) only exists as data grave, we only save documents (e.g. templates) or pictures, but our knowledge is completely on Notion.
 
 ### Website
 
 <meta-list-tools tools="Nuxt.js, Netlify, Prismic, GitHub, Netcup, Figma"></meta-list-tools>
 
+<callout>
 The next paragraphs will be very technical, if you aren't interested in this I still would recommend getting your hands on a domain, even if you aren't hosting a website. It's just ten times more professional if you send an email from luka@active-ambassadors.org instead of dungeonmaster99@gmail.com.
+</callout>
 
-I built the website with [Nuxt.js,](https://nuxtjs.org/) a framework on top of [Vue.js](https://vuejs.org/). So this is only something for you if you know how to do web development or if you know someone who is able to do it. The website is publicly accessible via [GitHub](https://github.com/) the [version control system](https://en.wikipedia.org/wiki/Version_control) of my choice. This is linked to [Netlify](https://www.netlify.com/) where each change is directly deployed without any manual download or build process involved. During the automatic build process, the required data from [Prismic](https://prismic.io/) our headless CMS, and also Airtable are requested. But also a change to the content in Prismic would trigger a new build. I would like to have something similar for AirTable as all the numbers on our transparency page are consumed from our sheets. Because this isn't possible I trigger a new build every 24 hours via IFTTT as we don't rely on instant updates.
+I built the website with [Nuxt.js,](https://nuxtjs.org/) a framework on top of [Vue.js](https://vuejs.org/). So this is only something for you if you know how to do web development or if you know someone who is able to do it. The website is publicly accessible via [GitHub](https://github.com/) the [version control system](https://en.wikipedia.org/wiki/Version_control) of my choice. This is linked to [Netlify](https://www.netlify.com/) where each change is directly deployed without any manual download or build process involved. During the automatic build process, the required data from [Prismic](https://prismic.io/) our headless CMS, and also AirTable are requested. But also a change to the content in Prismic would trigger a new build. I would like to have something similar for AirTable as all the numbers on our transparency page are consumed from our sheets. Because this isn't possible I trigger a new build every 24 hours via IFTTT as we don't rely on instant updates.
 
-The domain is managed at [Netcup](https://www.netcup.de/) which costs us 17.55 €, which also contains the email hosting.
+The domain is managed by [Netcup](https://www.netcup.de/) which costs us 17.55 € per year, which also contains the email hosting.
 
 For creating mockups, e.g. to discuss version two of our website, I used [Figma](https://www.figma.com/) as everybody can access the files in realtime and also edit it or leave a comment. I also used Figma to create our logo.
 
@@ -127,17 +129,17 @@ Most of this could be replaced by [Wordpress](https://wordpress.com/) and a webs
 
 ## Reflection
 
-We use a lot of [SaaS](https://en.wikipedia.org/wiki/Software_as_a_service) as it is easy to setup and maintain, but I personally think a complete open source approach would better fit our philosophy. But for now I think that's not realistic as it would increase dramatically the maintenance and also the costs, e.g. we would have to host servers for alternative solutions. To be honest the maintenance is the main argument as all of this happens in my free time. If I would have the time I would like to drop IFTTT and write my own bots and deploy them on our own server, the problem is just that the outcome would be the same and no value to the NGOs we want to support would be added.
+We use a lot of [SaaS](https://en.wikipedia.org/wiki/Software_as_a_service) as it is easy to setup and maintain, but I personally think a complete open source approach would better fit our philosophy. But for now I think that's not realistic as it would increase dramatically the maintenance effort and also the costs, e.g. we would have to host servers for alternative solutions. To be honest, the maintenance is the main argument as all of this happens in my free time. If I had the time I would like to drop IFTTT and write my own bots and deploy them on our own server, the problem is just that the outcome would be the same (+ additional effort) without adding value to the NGOs we want to support.
 
 The other question I'm not completely sure about is if all this tools are necessary? You definitely could run the same organization with phone calls and a notebook, but we like the digital life style and I'm not sure if we could drop one of the tools while staying on the same productivity level.
 
 ## This you should remember
 
 1. The free tier of many tools is completely sufficient.
-2. Get a fucking domain it don't has to cost 17.55€ a year there are even cheaper ones, but please get a domain and use it for your emails. I'll help you for free if you need support!
+2. Get a fucking domain it doesn't have to cost 17.55€ a year - there are even cheaper ones, but please get a domain and use it for your emails. I'll help you for free if you need support!
 3. Don't implicitly trust lists of tools, decide for yourself what you and your team needs.
 
 <thanks>
     Please let me now if you want a deep dive on one of this tools or if I should explain my decision process.<br />
-    Thanks to Leonard Schwier for reading drafts of this post.
+    Thanks to my friends for reading drafts of this post.
 </thanks>
