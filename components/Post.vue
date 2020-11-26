@@ -55,6 +55,10 @@ export default {
   border-radius: $border-radius
   width: 100%
   min-height: 16rem
+  @media screen and (max-width: $breakpoint-desktop)
+    min-height: 12rem
+  @media screen and (max-width: $breakpoint-mobile)
+    min-height: 8rem
 .title
   font-size: 1.75rem
   line-height: 1.1
