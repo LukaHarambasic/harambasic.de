@@ -149,7 +149,7 @@ export default {
 
   // Google analytics
   googleAnalytics: {
-    id: 'G-0NR1E7916J',
+    id: 'G-WWWZ7H8CN1',
     dev: false,
     set: [{ field: 'anonymizeIp', value: true }],
   },
