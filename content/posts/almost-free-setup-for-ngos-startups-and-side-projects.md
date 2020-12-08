@@ -17,6 +17,7 @@ tags:
     - Google Meet
 tldr: The only thing you should definitely pay for is the domain, the free levels of other services are more than enough to get you started. Use what you feel comfortable with. This post reflects only my personal preferences and can easily be transferred to other tools in the same area.
 tweet: https://twitter.com/luka_harambasic
+
 ---
 
 ## What's this post about?
