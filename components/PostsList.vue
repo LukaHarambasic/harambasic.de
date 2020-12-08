@@ -8,6 +8,13 @@
         </nuxt-link>
       </li>
     </ul>
+    <div class="update nuxt-content">
+      <p>
+        Check out the <a href="/posts/rss.xml">RSS feed</a> or
+        <a href="https://twitter.com/luka_harambasic">my Twitter account</a>
+        to keep up to date.
+      </p>
+    </div>
   </section>
 </template>
 
@@ -60,4 +67,7 @@ li
     .date
       @media screen and (max-width: $breakpoint-mobile)
         margin: .5rem 0 0 0
+.update
+  font-size: 1rem
+  text-align: center
 </style>
