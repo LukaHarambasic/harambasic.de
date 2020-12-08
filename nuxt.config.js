@@ -67,7 +67,14 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['@/plugins/filters.js', '@/plugins/globals.js'],
+  plugins: [
+    '@/plugins/filters.js',
+    '@/plugins/globals.js',
+    {
+      src: '@/plugins/googleAnalytics.js',
+      mode: 'client',
+    },
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -145,12 +152,5 @@ export default {
       type,
       create: createFeed,
     }))
-  },
-
-  // Google analytics
-  googleAnalytics: {
-    id: 'G-WWWZ7H8CN1',
-    dev: false,
-    set: [{ field: 'anonymizeIp', value: true }],
   },
 }

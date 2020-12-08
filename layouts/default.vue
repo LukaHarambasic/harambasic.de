@@ -1,5 +1,6 @@
 <template>
   <div class="grid">
+    <cookie />
     <the-header class="header" />
     <main>
       <Nuxt />
@@ -9,11 +10,12 @@
 </template>
 
 <script>
+import Cookie from '@/components/Cookie'
 import TheHeader from '~/components/TheHeader'
 import TheFooter from '~/components/TheFooter'
 
 export default {
-  components: { TheFooter, TheHeader },
+  components: { Cookie, TheFooter, TheHeader },
 }
 </script>
 
