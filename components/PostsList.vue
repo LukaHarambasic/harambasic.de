@@ -94,6 +94,8 @@ li
       line-height: 1.5rem
       padding: .5rem
       transition: $animation
+      @media screen and (max-width: $breakpoint-mobile)
+        display: none
       svg
         fill: $color-primary
         width: 2rem
