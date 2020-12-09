@@ -19,6 +19,10 @@
         follow me on
         <a href="https://twitter.com/luka_harambasic">Twitter</a> to get the
         latest updates.
+        <br />
+        And if you find typos fell free to open a
+        <a href="https://github.com/LukaHarambasic/harambasic.de/pulls">PR</a>
+        (for <a :href="gitHubURL">this file</a>).
       </callout>
     </section>
   </article>
@@ -35,8 +39,10 @@ export default {
       required: true,
     },
   },
-  created() {
-    console.log(this.item)
+  computed: {
+    gitHubURL() {
+      return `https://github.com/LukaHarambasic/harambasic.de/blob/main/content/posts/${this.item.slug}.md`
+    },
   },
 }
 </script>

@@ -2,7 +2,7 @@
 title: Almost free setup for NGOs, startups & side projects
 description: "I want to inspire you how you can set up a professional working environment for your next idea with almost no money. To give you a concrete example: I'll talk over our set up at Active Ambassadors. All my knowledge, which I have acquired over the last years, has flown into this."
 image: /posts/almost-free-setup-for-ngos-startups-and-side-projects/header.png
-alt: TBD
+alt: Hand drawn header image with the post title.
 tags: 
     - Notion
     - Google Drive
@@ -16,7 +16,7 @@ tags:
     - Slack
     - Google Meet
 tldr: The only thing you should definitely pay for is the domain, the free levels of other services are more than enough to get you started. Use what you feel comfortable with. This post reflects only my personal preferences and can easily be transferred to other tools in the same area.
-tweet: https://twitter.com/luka_harambasic
+tweet: https://twitter.com/luka_harambasic/status/1336460406307610625
 ---
 
 ## What's this post about?
