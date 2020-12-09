@@ -3,8 +3,18 @@
     <ul>
       <li>
         <nuxt-link v-for="item in items" :key="item.slug" :to="item.path">
-          <h2 class="title" v-text="item.title" />
-          <time class="date">{{ item.createdAt | date }}</time>
+          <div class="meta">
+            <h2 class="title" v-text="item.title" />
+            <time class="date">{{ item.createdAt | date }}</time>
+          </div>
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path
+                d="M9.31 6.71c-.39.39-.39 1.02 0 1.41L13.19 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.72 6.7c-.38-.38-1.02-.38-1.41.01z"
+              />
+            </svg>
+          </div>
         </nuxt-link>
       </li>
     </ul>
@@ -62,9 +72,36 @@ li
       align-items: flex-start
     &:hover
       background: $color-secondary
+      .icon
+        background: $color-light
+        svg
+          fill: $color-primary
+      @media (prefers-color-scheme: dark)
+        .icon
+          background: $color-primary
+          svg
+            fill: $color-secondary
+    .icon
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+      justify-content: center
+      align-content: center
+      align-items: center
+      background: $color-secondary
+      border-radius: 50%
+      font-size: 1.5rem
+      line-height: 1.5rem
+      padding: .5rem
+      transition: $animation
+      svg
+        fill: $color-primary
+        width: 2rem
+        height: 2rem
     .title
       font-size: 1.5rem
     .date
+      font-size: 1rem
       @media screen and (max-width: $breakpoint-mobile)
         margin: .5rem 0 0 0
 .update
