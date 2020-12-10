@@ -23,7 +23,7 @@
     <p class="nuxt-content info">
       If you want to learn more about the projects, please do not hesitate to
       send me an
-      <a href="mailto:hi@harambasic.de">mail</a>.
+      <a href="mailto:hi@harambasic.de">Email</a>.
     </p>
   </section>
 </template>

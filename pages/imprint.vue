@@ -5,6 +5,7 @@
     Information in accordance with Section 5 TMG
     <h3>Address</h3>
     <ul>
+      <li>Bühler Straße 7</li>
       <li>69126 Heidelberg</li>
       <li>Germany</li>
     </ul>
