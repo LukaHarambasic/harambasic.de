@@ -1,3 +1,6 @@
+import marked from 'marked'
+import readingTime from 'reading-time'
+
 import global from './utils/global'
 import getRoutes from './utils/getRoutes'
 import getSiteMeta from './utils/getMeta'
@@ -142,7 +145,7 @@ export default {
           link: url,
           date: new Date(post.createdAt),
           description: post.description,
-          content: post.description,
+          content: post.html,
           author: global.twitterHandle,
         })
       })
@@ -152,5 +155,13 @@ export default {
       type,
       create: createFeed,
     }))
+  },
+  hooks: {
+    'content:file:beforeInsert': (document) => {
+      if (document.extension === '.md') {
+        document.readingTime = readingTime(document.text)
+        document.html = marked(document.text)
+      }
+    },
   },
 }
