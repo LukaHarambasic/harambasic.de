@@ -140,6 +140,5 @@ The other question I'm not completely sure about is if all these tools are neces
 3. Don't implicitly trust lists of tools, decide for yourself what you and your team needs.
 
 <thanks>
-    Please let me now if you want a deep dive on one of this tools or if I should explain my decision process.<br />
-    Thanks to my friends for reading drafts of this post. ❤️
+    Please let me now if you want a deep dive on one of this tools or if I should explain my decision process.
 </thanks>
