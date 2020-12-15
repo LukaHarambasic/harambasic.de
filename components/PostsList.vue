@@ -1,11 +1,13 @@
 <template>
   <section>
     <ul>
-      <li>
+      <li class="h-feed">
         <nuxt-link v-for="item in items" :key="item.slug" :to="item.path">
           <div class="meta">
-            <h2 class="title" v-text="item.title" />
-            <time class="date">{{ item.createdAt | date }}</time>
+            <h2 class="title p-name" v-text="item.title" />
+            <time class="date dt-published" :datetime="item.createdAt">
+              {{ item.createdAt | date }}
+            </time>
           </div>
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

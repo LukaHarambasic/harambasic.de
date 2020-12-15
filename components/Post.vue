@@ -1,17 +1,21 @@
 <template>
-  <article class="item">
+  <article class="item h-entry">
     <section>
       <img class="image" :src="item.image" :alt="item.alt" />
       <div class="row-space-between">
-        <h1 class="title" v-text="item.title" />
-        <time class="date">{{ item.createdAt | date }}</time>
+        <h1 class="title p-name" v-text="item.title" />
+        <time class="date dt-published" :datetime="item.createdAt">
+          {{ item.createdAt | date }}
+        </time>
       </div>
-      <meta-list class="tags" :items="item.tags" pre-text="Tags:" />
-      <callout class="tldr">
+      <meta-list class="tags p-category" :items="item.tags" pre-text="Tags:" />
+      <callout class="tldr p-summary">
         <strong slot="sprefix">TL;DR</strong>
         {{ item.tldr }}
       </callout>
-      <nuxt-content class="content" :document="item" />
+      <nuxt-content class="content e-content" :document="item" />
+    </section>
+    <section>
       <callout class="follow">
         Do you have thoughts on this topic? Share them in
         <a :href="item.tweet">this thread</a>. <br />
