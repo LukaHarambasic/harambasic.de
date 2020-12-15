@@ -54,6 +54,11 @@ export default {
         rel: 'canonical',
         href: 'https://harambasic.de',
       },
+      {
+        rel: 'webmention',
+        href: 'https://webmention.io/harambasic.de/webmention',
+      },
+      { rel: 'pingback', href: 'https://webmention.io/harambasic.de/xmlrpc' },
     ],
   },
   /*
