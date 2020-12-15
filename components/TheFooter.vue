@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer role="contentinfo">
     <ul>
       <li><nuxt-link to="/imprint">Imprint</nuxt-link></li>
       <li><nuxt-link to="/data-privacy">Data Privacy</nuxt-link></li>

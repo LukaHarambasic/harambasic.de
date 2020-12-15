@@ -2,7 +2,7 @@
   <div class="grid">
     <cookie />
     <the-header class="header" />
-    <main>
+    <main role="main">
       <Nuxt />
     </main>
     <the-footer class="footer" />

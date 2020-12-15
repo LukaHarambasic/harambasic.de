@@ -1,7 +1,7 @@
 <template>
-  <header>
+  <header role="banner">
     <h1><nuxt-link to="/">Luka Harambasic</nuxt-link></h1>
-    <nav>
+    <nav role="navigation">
       <ul>
         <li><nuxt-link to="/">Home</nuxt-link></li>
         <li><nuxt-link to="/projects">Projects</nuxt-link></li>
