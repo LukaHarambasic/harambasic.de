@@ -1,5 +1,5 @@
 <template>
-  <article class="item h-entry">
+  <article class="post h-entry">
     <section>
       <img class="image" :src="item.image" :alt="item.alt" />
       <div class="row-space-between">
@@ -52,9 +52,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.item
+.post
   display: flex
-  flex-direction: row
+  flex-direction: column
   flex-wrap: nowrap
   justify-content: flex-start
   align-content: stretch
