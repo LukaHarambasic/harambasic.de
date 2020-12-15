@@ -28,6 +28,11 @@
         <a href="https://github.com/LukaHarambasic/harambasic.de/pulls">PR</a>
         (for <a :href="gitHubURL">this file</a>).
       </callout>
+      <div class="author">
+        <a href="https://harambasic.de" rel="author" class="p-author h-card"
+          >by Luka Harambasic</a
+        >
+      </div>
     </section>
   </article>
 </template>
@@ -95,4 +100,19 @@ export default {
       border-color: $color-primary
 .tags
   margin: 1rem 0 2rem 0
+.author
+  width: 100%
+  text-align: center
+  a
+    color: $color-primary
+    font-size: .9rem
+    text-decoration: none
+    transition: $animation
+    border-bottom: 2px solid transparent
+    &:hover
+      border-color: $color-primary
+    @media (prefers-color-scheme: dark)
+      color: $color-light
+      &:hover
+        border-color: $color-light
 </style>
