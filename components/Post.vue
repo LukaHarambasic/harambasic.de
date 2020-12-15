@@ -5,10 +5,10 @@
       <div class="row-space-between">
         <h1 class="title p-name" v-text="item.title" />
         <time class="date dt-published" :datetime="item.createdAt">
-          {{ item.createdAt | date }}
+          <a :href="fullPath" class="u-url">{{ item.createdAt | date }}</a>
         </time>
       </div>
-      <meta-list class="tags p-category" :items="item.tags" pre-text="Tags:" />
+      <meta-list class="tags" :items="item.tags" pre-text="Tags:" />
       <callout class="tldr p-summary">
         <strong slot="sprefix">TL;DR</strong>
         {{ item.tldr }}
@@ -44,6 +44,9 @@ export default {
     },
   },
   computed: {
+    fullPath() {
+      return `https://harambasic.de${this.item.path}`
+    },
     gitHubURL() {
       return `https://github.com/LukaHarambasic/harambasic.de/blob/main/content/posts/${this.item.slug}.md`
     },
@@ -83,8 +86,13 @@ export default {
   font-size: .9rem
   @media screen and (max-width: $breakpoint-mobile)
     margin: 0 0 .25rem .25rem
-  @media (prefers-color-scheme: dark)
+  a
     color: $color-primary
+    text-decoration: none
+    transition: $animation
+    border-bottom: 2px solid transparent
+    &:hover
+      border-color: $color-primary
 .tags
   margin: 1rem 0 2rem 0
 </style>

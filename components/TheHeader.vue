@@ -1,6 +1,10 @@
 <template>
   <header role="banner">
-    <h1><nuxt-link to="/">Luka Harambasic</nuxt-link></h1>
+    <h1>
+      <nuxt-link to="/" rel="author" class="p-author h-card"
+        >Luka Harambasic</nuxt-link
+      >
+    </h1>
     <nav role="navigation">
       <ul>
         <li><nuxt-link to="/">Home</nuxt-link></li>

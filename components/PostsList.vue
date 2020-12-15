@@ -6,7 +6,7 @@
           <div class="meta">
             <h2 class="title p-name" v-text="item.title" />
             <time class="date dt-published" :datetime="item.createdAt">
-              {{ item.createdAt | date }}
+              <a :href="fullPath" class="u-url">{{ item.createdAt | date }}</a>
             </time>
           </div>
           <div class="icon">
@@ -39,6 +39,11 @@ export default {
       required: true,
     },
   },
+  methods: {
+    fullPath(path) {
+      return `https://harambasic.de${path}`
+    },
+  },
 }
 </script>
 
@@ -51,12 +56,12 @@ ul
   align-content: space-between
   align-items: stretch
 li
-  a
+  > a
     display: flex
     flex-direction: row
     flex-wrap: nowrap
     justify-content: space-between
-    align-content: stretch
+    align-content: flex-start
     align-items: center
     margin: 0 0 1rem 0
     text-decoration: none
@@ -78,6 +83,9 @@ li
         background: $color-light
         svg
           fill: $color-primary
+      .date
+        a
+          color: $color-primary
       @media (prefers-color-scheme: dark)
         .icon
           background: $color-primary
@@ -108,6 +116,15 @@ li
       font-size: 1rem
       @media screen and (max-width: $breakpoint-mobile)
         margin: .5rem 0 0 0
+      a
+        color: $color-primary
+        text-decoration: none
+        transition: $animation
+        border-bottom: 2px solid transparent
+        &:hover
+          border-color: $color-primary
+        @media (prefers-color-scheme: dark)
+          color: $color-light
 .update
   font-size: 1rem
   text-align: center
