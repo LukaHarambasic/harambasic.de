@@ -1,11 +1,20 @@
 <template>
   <footer role="contentinfo">
-    <ul>
+    <ul class="social">
+      <li><a rel="me" href="https://github.com/LukaHarambasic">GitHub</a></li>
+      <li>
+        <a rel="me" href="https://twitter.com/luka_harambasic">Twitter</a>
+      </li>
+      <li>
+        <a rel="me" href="https://www.linkedin.com/in/harambasic/">Linkedin</a>
+      </li>
+    </ul>
+    <logo class="logo" />
+    <ul class="legal">
       <li><nuxt-link to="/imprint">Imprint</nuxt-link></li>
       <li><nuxt-link to="/data-privacy">Data Privacy</nuxt-link></li>
       <li><a href="mailto:hi@harambasic.de">Contact</a></li>
     </ul>
-    <logo class="logo" />
   </footer>
 </template>
 
@@ -31,6 +40,12 @@ footer
     justify-content: center
     align-items: center
     margin: 4rem 0 0 0
+    .social
+      order: 1
+    .legal
+      order: 2
+    .logo
+      order: 3
   ul
     display: flex
     flex-direction: row
@@ -39,9 +54,11 @@ footer
     align-content: flex-start
     align-items: flex-start
     @media screen and (max-width: $breakpoint-mobile)
-      margin: 0 0 2rem 0
+      margin: 0 0 1rem 0
     li
       margin: 0 0 0 1rem
+      &:first-of-type
+        margin: 0
       a
         color: $color-primary
         text-decoration: none
