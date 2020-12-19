@@ -11,11 +11,20 @@
 
 <script>
 import Cookie from '@/components/Cookie'
-import TheHeader from '~/components/TheHeader'
-import TheFooter from '~/components/TheFooter'
+import global from '@/assets/js/global'
+import TheHeader from '@/components/TheHeader'
+import TheFooter from '@/components/TheFooter'
 
 export default {
   components: { Cookie, TheFooter, TheHeader },
+  head() {
+    const { path } = this.$route
+    const pathWithSlash = path.endsWith('/') ? path : `${path}/`
+    const canonical = `${global.baseURL}${pathWithSlash}`
+    return {
+      link: [{ rel: 'canonical', href: canonical }],
+    }
+  },
 }
 </script>
 

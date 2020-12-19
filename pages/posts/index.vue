@@ -4,8 +4,8 @@
 
 <script>
 import PostsList from '@/components/PostsList'
-import global from '@/utils/global'
-import getSiteMeta from '@/utils/getMeta'
+import global from '@/assets/js/global'
+import getSiteMeta from '@/assets/js/getMeta'
 export default {
   name: 'Index',
   components: { PostsList },

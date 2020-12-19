@@ -4,8 +4,8 @@
 
 <script>
 import Post from '@/components/Post'
-import global from '@/utils/global'
-import getSiteMeta from '@/utils/getMeta'
+import global from '@/assets/js/global'
+import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
   components: { Post },

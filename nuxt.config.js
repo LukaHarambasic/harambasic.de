@@ -1,9 +1,9 @@
 import marked from 'marked'
 import readingTime from 'reading-time'
 
-import global from './utils/global'
-import getRoutes from './utils/getRoutes'
-import getSiteMeta from './utils/getMeta'
+import global from './assets/js/global'
+import getRoutes from './assets/js/getRoutes'
+import getSiteMeta from './assets/js/getMeta'
 
 const meta = getSiteMeta()
 
@@ -120,6 +120,7 @@ export default {
   // Inspired by https://github.com/garethredfern/nuxt-basic-blog
   sitemap: {
     hostname: global.baseURL,
+    trailingSlash: true,
     routes() {
       return getRoutes()
     },
