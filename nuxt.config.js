@@ -64,7 +64,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~assets/style/main.sass'],
+  css: ['@assets/style/main.sass', '@assets/style/fontfaces.css'],
   /*
    ** Load Variables
    */
