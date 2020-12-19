@@ -69,3 +69,28 @@ h1, h2, h3, h4, h5, h6
   &.stable-color
     h1, h2, h3, h4, h5,strong , p, a, li
       color: $color-primary
+  .nuxt-content-highlight
+    position: relative
+    &:hover
+      .filename
+        opacity: 1
+    .filename
+      color: $color-primary
+      font-family: $font-family
+      font-size: .9rem
+      position: absolute
+      top: .5rem
+      right: 1rem
+      font-style: italic
+      opacity: .6
+    pre, code
+      // font-family: 'JetBrains Mono', monospace
+    pre
+      background: $color-secondary
+      border-radius: $border-radius
+    code
+      font-size: 1rem
+      color: $color-primary
+      text-shadow: none
+      .token.operator
+        background: transparent
