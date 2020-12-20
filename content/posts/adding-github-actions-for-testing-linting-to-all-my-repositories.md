@@ -1,5 +1,5 @@
 ---
-title: Adding GitHub Actions for testing & linting to all my repositories
+title: Adding GitHub Actions for testing & linting to all my (npm) repositories
 description: TBD
 image: /posts/almost-free-setup-for-ngos-startups-and-side-projects/header.png
 alt: TBD
@@ -15,7 +15,9 @@ tweet: TBD
 TBD
 
 ![Pull request with GitHub Actions - Checks failed](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_failed.png)
+
 ![Pull request with GitHub Actions - Checks in progress](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_in_progress.png)
+
 ![Pull request with GitHub Actions - Checks passed](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_passed.png)
 
 ```yaml[.github/workflows/test.yml]
