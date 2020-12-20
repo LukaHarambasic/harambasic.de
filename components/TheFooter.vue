@@ -35,7 +35,7 @@ footer
   justify-content: space-between
   align-content: flex-start
   align-items: flex-start
-  @media screen and (max-width: $breakpoint-mobile)
+  @media screen and (max-width: $breakpoint-tablet)
     flex-direction: column
     justify-content: center
     align-items: center
@@ -53,7 +53,7 @@ footer
     justify-content: flex-start
     align-content: flex-start
     align-items: flex-start
-    @media screen and (max-width: $breakpoint-mobile)
+    @media screen and (max-width: $breakpoint-tablet)
       margin: 0 0 1rem 0
     li
       margin: 0 0 0 1rem
@@ -64,6 +64,8 @@ footer
         text-decoration: none
         border-bottom: 2px solid transparent
         transition: $animation
+        @media screen and (max-width: $breakpoint-mobile)
+          font-size: 1rem
         &:hover
           border-color: $color-primary
         @media (prefers-color-scheme: dark)

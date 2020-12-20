@@ -32,6 +32,8 @@ export default {
   .content
     width: 100%
   > *
+    word-break: break-word
+    overflow-wrap: break-word
     // separated over two lines for readability
     &:not(:only-child) // more than one children
       &:first-child // select the slot if it exists as I can't assign a class to a slot
