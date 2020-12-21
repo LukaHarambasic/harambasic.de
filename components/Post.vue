@@ -13,6 +13,7 @@
       </header>
       <callout class="tldr p-summary">
         <strong slot="prefix">TL;DR</strong>
+        <!-- eslint-disable-next-line vue/no-v-html-->
         <div v-html="item.tldr" />
       </callout>
       <nuxt-content class="content e-content" :document="item" />
