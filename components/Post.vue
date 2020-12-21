@@ -2,31 +2,27 @@
   <article class="post h-entry">
     <section>
       <img class="image" :src="item.image" :alt="item.alt" />
-      <div class="row-space-between">
+      <header>
         <h1 class="title p-name" v-text="item.title" />
-        <time class="date dt-published" :datetime="item.createdAt">
-          <a :href="fullPath" class="u-url">{{ item.createdAt | date }}</a>
-        </time>
-      </div>
-      <meta-list class="tags" :items="item.tags" pre-text="Tags:" />
+        <div class="row-space-between">
+          <meta-list class="tags" :items="item.tags" pre-text="Tags:" />
+          <time class="date dt-published" :datetime="item.createdAt">
+            <a :href="fullPath" class="u-url">{{ item.createdAt | date }}</a>
+          </time>
+        </div>
+      </header>
       <callout class="tldr p-summary">
-        <strong slot="sprefix">TL;DR</strong>
-        {{ item.tldr }}
+        <strong slot="prefix">TL;DR</strong>
+        <div v-html="item.tldr" />
       </callout>
       <nuxt-content class="content e-content" :document="item" />
     </section>
     <section>
       <callout class="follow">
-        Do you have thoughts on this topic? Share them in
-        <a :href="item.tweet">this thread</a>. <br />
-        You can subscribe to this blog via <a href="/posts/rss.xml">RSS</a> or
-        follow me on
-        <a href="https://twitter.com/luka_harambasic">Twitter</a> to get the
-        latest updates.
-        <br />
-        And if you find typos fell free to open a
-        <a href="https://github.com/LukaHarambasic/harambasic.de/pulls">PR</a>
-        (for <a :href="gitHubURL">this file</a>).
+        If you have any thoughts or questions feel free to share them in
+        <a :href="item.tweet">this thread</a> or send me an
+        <a href="maitlo:hi@harambasic.de">email</a>. And if you want to stay up
+        to date you can subscribe to the <a href="/posts/rss.xml">RSS feed</a>.
       </callout>
       <div class="author">
         <a href="https://harambasic.de" rel="author" class="p-author h-card"
@@ -82,15 +78,13 @@ export default {
     min-height: 8rem
 .title
   font-size: 1.75rem
-  line-height: 1.1
-  margin: 0 0 .5rem 0
+  line-height: 1.5
+  margin: 0 0 1rem 0
 .date
   background: $color-secondary
   padding: .25rem .5rem
   border-radius: $border-radius
   font-size: .9rem
-  @media screen and (max-width: $breakpoint-mobile)
-    margin: 0 0 .25rem .25rem
   a
     color: $color-primary
     text-decoration: none
@@ -99,7 +93,8 @@ export default {
     &:hover
       border-color: $color-primary
 .tags
-  margin: 1rem 0 2rem 0
+  @media screen and (max-width: $breakpoint-mobile)
+    margin: 0 0 1rem 0
 .author
   width: 100%
   text-align: center

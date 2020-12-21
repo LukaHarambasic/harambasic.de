@@ -42,7 +42,7 @@ export default {
   margin: 0 auto
   @media screen and (max-width: $breakpoint-desktop)
     width: $size-mobile
-    grid-template-columns: 1fr
+    grid-template-columns: minmax(0, 1fr)
     grid-template-rows: auto 1fr auto
     grid-template-areas: "header" "main" "footer"
 main

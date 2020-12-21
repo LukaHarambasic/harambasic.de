@@ -22,6 +22,7 @@ export default {
         description: 'Here you find all my blog posts.',
         url: `/posts`,
         img: `/luka_harambasic_blog.png`,
+        imgAlt: 'Blog - Luka Harambasic',
       }
       return getSiteMeta(metaData)
     },

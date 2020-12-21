@@ -44,7 +44,7 @@ export default {
       { property: 'og:site_name', content: global.title || '' },
       { property: 'og:image:width', content: '740' },
       { property: 'og:image:height', content: '300' },
-      { name: 'twitter:site', content: global.title || '' },
+      { name: 'twitter:site', content: global.twitterHandle || '' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
     link: [
@@ -64,7 +64,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~assets/style/main.sass'],
+  css: ['@assets/style/main.sass', '@assets/style/fontfaces.css'],
   /*
    ** Load Variables
    */
@@ -109,7 +109,9 @@ export default {
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
    */
-  content: {},
+  content: {
+    liveEdit: false,
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
