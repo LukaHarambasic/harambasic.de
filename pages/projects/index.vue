@@ -22,6 +22,7 @@ export default {
         description: 'An overview about some selected projects I did.',
         url: `/projects`,
         img: `/luka_harambasic_projects.png`,
+        imgAlt: 'Projects - Luka Harambasic',
       }
       return getSiteMeta(metaData)
     },

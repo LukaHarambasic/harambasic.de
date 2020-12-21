@@ -62,5 +62,10 @@ export default (meta) => {
       name: 'twitter:image',
       content: inputOrGlobal(meta.img, global.img),
     },
+    {
+      hid: 'twitter:image:alt',
+      name: 'twitter:image:alt',
+      content: inputOrGlobal(meta.imgAlt, global.imgAlt),
+    },
   ]
 }

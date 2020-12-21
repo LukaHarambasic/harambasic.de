@@ -4,6 +4,7 @@ export default {
   author: 'Luka Harambasic',
   desc: 'Get to know me, my projects and some of my ideas.',
   img: '/luka_harambasic_preview.png',
+  imgAlt: 'Luka Harambasic - personal website',
   type: 'website',
   twitterHandle: '@luka_digital',
   twitterURL: 'https://twitter.com/luka_digital',
