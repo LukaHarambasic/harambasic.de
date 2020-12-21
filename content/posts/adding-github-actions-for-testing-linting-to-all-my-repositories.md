@@ -16,7 +16,7 @@ tweet: TBD
 
 GitHub Actions are there to automate workflows directly in GitHub without the need of setting up a full-blown CI/CD pipeline. You can just use them by adding a file to your root directory. Also, the [pricing](https://github.com/pricing) is very accommodating. I think I won't run into the limits with my private projects especially as there aren't limitations for public repositories.
 
-During the time I worked on the Corona-Warn-App I noticed how powerful a CI/CD pipeline is. Therefore, it was clear to me that I want such a safety net for myself. If I'm rushing something or think it's just a quick fix I would love to see this in the PR and not in production. With these two small checks executed for every PR I'll spot errors more easily. It also opens up the possibilities for collaborations, as everybody has to fulfill the same checks.
+During the time I worked on the [german Corona-Warn-App](https://www.coronawarn.app/en/) I noticed how powerful a CI/CD pipeline is. Therefore, it was clear to me that I want such a safety net for myself. If I'm rushing something or think it's just a quick fix I would love to see this in the PR and not in production. With these two small checks executed for every PR I'll spot errors more easily. It also opens up the possibilities for collaborations, as everybody has to fulfill the same checks.
 
 ## Adding GitHub Actions
 
@@ -37,7 +37,7 @@ During the time I worked on the Corona-Warn-App I noticed how powerful a CI/CD p
 }
 ```
 
-2. Let `build` fail if `test` or `lint` don't succeed, for that you need to chain the checks with `&` and the final build step with `&&`
+2. (Optional) Let `build` fail if `test` or `lint` don't succeed, for that you need to chain the checks with `&` and the final build step with `&&`
 
 ```json
 "build": "npm run lint & npm run test && vue-cli-service build",
