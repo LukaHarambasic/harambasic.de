@@ -43,14 +43,14 @@ export default {
         },
         {
           property: 'article:tag',
-          content: this.post.tags ? this.post.tags.toString() : '',
+          content: this.post.tags ? this.post.tags.join(', ') : '',
         },
         { name: 'twitter:label1', content: 'Written by' },
         { name: 'twitter:data1', content: global.author || '' },
         { name: 'twitter:label2', content: 'Filed under' },
         {
           name: 'twitter:data2',
-          content: this.post.tags ? this.post.tags.toString() : '',
+          content: this.post.tags ? this.post.tags.join(', ') : '',
         },
       ],
       link: [
