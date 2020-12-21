@@ -40,7 +40,7 @@ export default (meta) => {
     {
       hid: 'og:image',
       property: 'og:image',
-      content: `${global.baseURL}/${parameterOrGlobal(meta.img, global.img)}`,
+      content: `${global.baseURL}${parameterOrGlobal(meta.img, global.img)}`,
     },
     {
       hid: 'twitter:url',
@@ -60,7 +60,7 @@ export default (meta) => {
     {
       hid: 'twitter:image',
       name: 'twitter:image',
-      content: `${global.baseURL}/${parameterOrGlobal(meta.img, global.img)}`,
+      content: `${global.baseURL}${parameterOrGlobal(meta.img, global.img)}`,
     },
     {
       hid: 'twitter:image:alt',
