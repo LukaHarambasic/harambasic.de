@@ -2,7 +2,8 @@
 title: Adding GitHub Actions for testing & linting to all my (npm/yarn) repositories
 description: GitHub Actions are easy to configure and should be used in all npm/yarn based projects. 
 image: /posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_passed.png
-alt: Passing GitHub Action Workflows with a successful build on a PR.
+alt: Passing GitHub Action Workflows with a successful build on a PR
+publishedAt: 2020-12-21
 tags: 
     - GitHub Actions
     - npm

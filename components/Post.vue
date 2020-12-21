@@ -6,8 +6,8 @@
         <h1 class="title p-name" v-text="item.title" />
         <div class="row-space-between">
           <meta-list class="tags" :items="item.tags" pre-text="Tags:" />
-          <time class="date dt-published" :datetime="item.createdAt">
-            <a :href="fullPath" class="u-url">{{ item.createdAt | date }}</a>
+          <time class="date dt-published" :datetime="item.publishedAt">
+            <a :href="fullPath" class="u-url">{{ item.publishedAt | date }}</a>
           </time>
         </div>
       </header>

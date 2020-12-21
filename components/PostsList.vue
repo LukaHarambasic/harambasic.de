@@ -5,8 +5,10 @@
         <nuxt-link :to="item.path">
           <div class="meta">
             <h2 class="title p-name" v-text="item.title" />
-            <time class="date dt-published" :datetime="item.createdAt">
-              <a :href="fullPath" class="u-url">{{ item.createdAt | date }}</a>
+            <time class="date dt-published" :datetime="item.publishedAt">
+              <a :href="fullPath" class="u-url">{{
+                item.publishedAt | date
+              }}</a>
             </time>
           </div>
           <div class="icon">

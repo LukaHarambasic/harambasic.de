@@ -151,7 +151,7 @@ export default {
           title: posts.title,
           id: url,
           link: url,
-          date: new Date(post.createdAt),
+          date: new Date(post.publishedAt),
           description: post.description,
           content: post.html,
           author: global.twitterHandle,

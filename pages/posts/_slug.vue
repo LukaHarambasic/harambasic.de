@@ -35,7 +35,7 @@ export default {
         ...this.meta,
         {
           property: 'article:published_time',
-          content: this.post.createdAt,
+          content: this.post.publishedAt,
         },
         {
           property: 'article:modified_time',
