@@ -19,16 +19,10 @@
     </section>
     <section>
       <callout class="follow">
-        Do you have thoughts on this topic? Share them in
-        <a :href="item.tweet">this thread</a>. <br />
-        You can subscribe to this blog via <a href="/posts/rss.xml">RSS</a> or
-        follow me on
-        <a href="https://twitter.com/luka_harambasic">Twitter</a> to get the
-        latest updates.
-        <br />
-        And if you find typos fell free to open a
-        <a href="https://github.com/LukaHarambasic/harambasic.de/pulls">PR</a>
-        (for <a :href="gitHubURL">this file</a>).
+        If you have any thoughts or questions feel free to share them in
+        <a :href="item.tweet">this thread</a> or send me an
+        <a href="maitlo:hi@harambasic.de">email</a>. And if you want to stay up
+        to date you can subscribe to the <a href="/posts/rss.xml">RSS feed</a>.
       </callout>
       <div class="author">
         <a href="https://harambasic.de" rel="author" class="p-author h-card"
