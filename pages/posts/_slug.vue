@@ -22,7 +22,7 @@ export default {
         title: this.post.title,
         description: this.post.description,
         url: `/posts/${this.$route.params.slug}`,
-        img: `/posts/${this.post.image}`,
+        img: `${this.post.image}`,
         imgAlt: this.post.alt,
       }
       return getSiteMeta(metaData)
