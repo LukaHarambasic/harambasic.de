@@ -117,9 +117,10 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
-
-  // Sitemap Configuration (https://github.com/nuxt-community/sitemap-module)
-  // Inspired by https://github.com/garethredfern/nuxt-basic-blog
+  /*
+   ** Sitemap Configuration (https://github.com/nuxt-community/sitemap-module)
+   ** Inspired by https://github.com/garethredfern/nuxt-basic-blog
+   */
   sitemap: {
     hostname: global.baseURL,
     trailingSlash: true,
@@ -127,9 +128,10 @@ export default {
       return getRoutes()
     },
   },
-
-  // RSS Feed Configuration (https://github.com/nuxt-community/feed-module)
-  // Inspired by https://github.com/garethredfern/nuxt-basic-blog
+  /*
+   ** RSS Feed Configuration (https://github.com/nuxt-community/feed-module)
+   ** Inspired by https://github.com/garethredfern/nuxt-basic-blog
+   */
   feed() {
     const baseUrlPosts = `${global.baseURL}/posts`
     const baseLinkFeedPosts = '/posts'
@@ -164,6 +166,10 @@ export default {
       create: createFeed,
     }))
   },
+  /*
+   ** Hook to render markdown as html for the rss feed,
+   ** also adds reading time (currently not used)
+   */
   hooks: {
     'content:file:beforeInsert': (document) => {
       if (document.extension === '.md') {
