@@ -55,7 +55,7 @@ It's redundant as the GitHub Actions run in parallel to the build task, and the 
 
 ![GitHub Action - Pull request with a failed test job which lead to a failing build](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_failed.png)
 
-Just add the following file to your root directory in `.github/workflows/`. The name attributes are visible in the PR (see image). You only have to change the last line per job if you also want to run something else, e.g. [Cypress](https://www.cypress.io/). So it's quite easy to adapt it to every other project even if my examples are based on [Vue.js](https://vuejs.org/) and [Nuxt.js](https://nuxtjs.org/):
+Just add the following file to your root directory in `.github/workflows/`. The name attributes are visible in the PR (see image). You only have to change the last line per job if you want to run something else, e.g. [Cypress](https://www.cypress.io/). So it's quite easy to adapt it to every other project even if my examples are based on [Vue.js](https://vuejs.org/) and [Nuxt.js](https://nuxtjs.org/):
 
 - [harambasic.de](http://harambasic.de) → only [lint](https://github.com/LukaHarambasic/harambasic.de/pull/22/files#diff-107e910e9f2ebfb9a741fa10b2aa7100cc1fc4f5f3aca2dfe78b905cbd73c0d2) was added (with this post) as I don't have tests until now
 - [jura.education](http://jura.education) → [checks](https://github.com/LukaHarambasic/jura.education/pull/6/files#diff-3ea54af4839eb75404d71b28252bead7e7ec8f676b1f815e1cde02629a75c165) with a lint and test job were added
