@@ -60,7 +60,7 @@ Just add the following file to your root directory in `.github/workflows/`. The 
 - [harambasic.de](http://harambasic.de) → only [lint](https://github.com/LukaHarambasic/harambasic.de/pull/22/files#diff-107e910e9f2ebfb9a741fa10b2aa7100cc1fc4f5f3aca2dfe78b905cbd73c0d2) was added (with this post) as I don't have tests until now
 - [jura.education](http://jura.education) → [checks](https://github.com/LukaHarambasic/jura.education/pull/6/files#diff-3ea54af4839eb75404d71b28252bead7e7ec8f676b1f815e1cde02629a75c165) with a lint and test job were added
 
-```yaml
+```yaml[.github/workflows/checks.yml]
 name: Checks
 on: push
 jobs:
