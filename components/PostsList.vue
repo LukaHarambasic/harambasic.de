@@ -103,7 +103,7 @@ li
       font-size: 1.5rem
       line-height: 1.5rem
       padding: .5rem
-      margin: .5rem 0 0 0
+      margin:  0 0 0 1rem
       transition: $animation
       @media screen and (max-width: $breakpoint-mobile)
         display: none
