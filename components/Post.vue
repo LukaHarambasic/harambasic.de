@@ -12,8 +12,8 @@
         </div>
       </header>
       <callout class="tldr p-summary">
-        <strong slot="sprefix">TL;DR</strong>
-        {{ item.tldr }}
+        <strong slot="prefix">TL;DR</strong>
+        <div v-html="item.tldr" />
       </callout>
       <nuxt-content class="content e-content" :document="item" />
     </section>

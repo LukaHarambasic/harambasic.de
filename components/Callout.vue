@@ -1,9 +1,9 @@
 <template>
   <div class="callout">
     <slot name="prefix" />
-    <p class="content">
+    <div class="content">
       <slot />
-    </p>
+    </div>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .callout
   display: flex
   flex-direction: row
@@ -31,8 +31,16 @@ export default {
     justify-content: flex-start
   .content
     width: 100%
+    a
+      color: $color-primary
+      border-bottom: 2px solid rgba($color-primary, 1)
+      transition: $animation
+      text-decoration: none
+      line-height: 1
+      &:hover
+        text-decoration: none
+        border-color: rgba($color-primary, .3)
   > *
-    word-break: break-word
     overflow-wrap: break-word
     // separated over two lines for readability
     &:not(:only-child) // more than one children
@@ -44,13 +52,4 @@ export default {
         padding: .25rem .5rem
         @media screen and (max-width: $breakpoint-mobile)
           margin: 0 0 1rem 0
-a
-  color: $color-primary
-  border-bottom: 2px solid rgba($color-primary, 1)
-  transition: $animation
-  text-decoration: none
-  line-height: 1
-  &:hover
-    text-decoration: none
-    border-color: rgba($color-primary, .3)
 </style>
