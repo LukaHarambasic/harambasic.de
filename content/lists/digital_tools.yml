@@ -1,0 +1,11 @@
+title: Digital Tools
+description: Tools I use day per day or used in the past. I recommend this tools because I think they are the best in there field.
+list:
+  - title: Notion
+    description: Customziable knowledge management, can easily be extended to a a Jira clone, content calendar or whtever what you need.
+    logo: /lists/digital_tools/notion.svg
+    url: https://notion.so
+  - title: Slack
+    description: Channel based communication tool which can be extended with bots.
+    logo: /lists/digital_tools/slack.svg
+    url: https://slack.com
