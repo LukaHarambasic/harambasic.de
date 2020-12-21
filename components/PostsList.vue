@@ -1,8 +1,8 @@
 <template>
   <section>
     <ul>
-      <li class="h-feed">
-        <nuxt-link v-for="item in items" :key="item.slug" :to="item.path">
+      <li v-for="item in items" :key="item.slug" class="h-feed">
+        <nuxt-link :to="item.path">
           <div class="meta">
             <h2 class="title p-name" v-text="item.title" />
             <time class="date dt-published" :datetime="item.createdAt">
