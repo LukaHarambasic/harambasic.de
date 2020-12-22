@@ -90,6 +90,10 @@ h1, h2, h3, h4, h5, h6
   &.stable-color
     h1, h2, h3, h4, h5,strong , p, a, li
       color: $color-primary
+    a
+      border-bottom: 2px solid rgba($color-primary, 1)
+      &:hover
+        border-color: rgba($color-primary, .3)
   .nuxt-content-highlight
     position: relative
     margin: 0 0 2rem 0
