@@ -10,7 +10,7 @@ export default {
   name: 'Index',
   components: { PostsList },
   async asyncData({ $content }) {
-    const posts = await $content('digital-tools').sortBy('slug').fetch()
+    const posts = await $content('posts').sortBy('published').fetch()
     return {
       posts,
     }
