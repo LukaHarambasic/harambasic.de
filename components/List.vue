@@ -10,7 +10,14 @@
           <a :href="entry.url">
             <img class="logo" :src="entry.logo" :alt="entry.title" />
             <div class="content">
-              <strong class="title" v-text="entry.title" />
+              <div class="header">
+                <strong class="title" v-text="entry.title" />
+                <strong
+                  v-if="entry.language"
+                  class="language"
+                  v-text="languageWithBrackets(entry.language)"
+                />
+              </div>
               <p class="description" v-text="entry.description" />
             </div>
           </a>
@@ -27,6 +34,12 @@ export default {
     item: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    languageWithBrackets(language) {
+      if (!language) return ''
+      return `(${language})`
     },
   },
 }
