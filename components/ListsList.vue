@@ -3,7 +3,10 @@
     <ul>
       <li v-for="item in items" :key="item.slug" class="h-feed">
         <nuxt-link :to="item.path">
-          <h2 class="title p-name" v-text="item.title" />
+          <div>
+            <h2 class="title p-name" v-text="item.title" />
+            <p v-text="item.description" />
+          </div>
           <!-- TODO extract in component and reuse in projectslist-->
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -97,7 +100,7 @@ li
       font-size: 1.5rem
       line-height: 1.5rem
       padding: .5rem
-      margin:  0 0 0 1rem
+      margin:  0 0 0 2rem
       transition: $animation
       @media screen and (max-width: $breakpoint-mobile)
         display: none
@@ -107,4 +110,7 @@ li
         height: 2rem
     .title
       font-size: 1.5rem
+.update
+  font-size: 1rem
+  text-align: center
 </style>
