@@ -52,7 +52,6 @@ header
     font-size: 1.75rem
     line-height: 1.5
     margin: 0 0 1rem 0
-  > p
 li
   > a
     display: flex
