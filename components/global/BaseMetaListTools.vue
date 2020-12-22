@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import BaseMetaList from '@/components/Base/BaseMetaList'
+import BaseMetaList from '@/components/global/BaseMetaList'
 export default {
   name: 'BaseMetaListTools',
   components: { BaseMetaList },

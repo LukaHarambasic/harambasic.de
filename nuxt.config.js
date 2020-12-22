@@ -77,7 +77,6 @@ export default {
    */
   plugins: [
     '@/plugins/filters.js',
-    '@/plugins/globals.js',
     {
       src: '@/plugins/googleAnalytics.js',
       mode: 'client',

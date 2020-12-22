@@ -31,10 +31,8 @@
 </template>
 
 <script>
-import BaseFootnote from '@/components/Base/BaseFootnote'
 export default {
   name: 'ListsDetail',
-  components: { BaseFootnote },
   props: {
     list: {
       type: Object,

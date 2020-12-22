@@ -28,11 +28,10 @@
 
 <script>
 import IconsArrow from '@/components/Icons/IconsArrow'
-import BaseFootnote from '@/components/Base/BaseFootnote'
 
 export default {
   name: 'PostsOverview',
-  components: { BaseFootnote, IconsArrow },
+  components: { IconsArrow },
   props: {
     posts: {
       type: Array,

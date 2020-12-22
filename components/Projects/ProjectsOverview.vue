@@ -30,12 +30,8 @@
 </template>
 
 <script>
-import BaseMetaList from '@/components/Base/BaseMetaList'
-import BaseFootnote from '@/components/Base/BaseFootnote'
-
 export default {
   name: 'ProjectsList',
-  components: { BaseFootnote, BaseMetaList },
   props: {
     projects: {
       type: Array,

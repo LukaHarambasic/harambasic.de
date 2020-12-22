@@ -37,11 +37,8 @@
 </template>
 
 <script>
-import BaseMetaList from '@/components/Base/BaseMetaList'
-
 export default {
   name: 'PostsDetails',
-  components: { BaseMetaList },
   props: {
     post: {
       type: Object,

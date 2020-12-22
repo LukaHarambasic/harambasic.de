@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import BaseFootnote from '@/components/Base/BaseFootnote'
 import IconsArrow from '@/components/Icons/IconsArrow'
+
 export default {
   name: 'ListsOverview',
-  components: { IconsArrow, BaseFootnote },
+  components: { IconsArrow },
   props: {
     lists: {
       type: Array,

@@ -19,10 +19,8 @@
 </template>
 
 <script>
-import BaseLogo from '@/components/Base/BaseLogo'
 export default {
   name: 'TheLayoutFooter',
-  components: { BaseLogo },
 }
 </script>
 
