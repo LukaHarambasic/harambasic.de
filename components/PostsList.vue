@@ -129,6 +129,7 @@ li
         @media (prefers-color-scheme: dark)
           color: $color-light
 .update
+  margin: 1rem 0 0 0
   font-size: 1rem
   text-align: center
 </style>

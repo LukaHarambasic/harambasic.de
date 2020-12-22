@@ -111,6 +111,7 @@ li
     .title
       font-size: 1.5rem
 .update
+  margin: 1rem 0 0 0
   font-size: 1rem
   text-align: center
 </style>
