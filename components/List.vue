@@ -56,6 +56,9 @@ header
     line-height: 1.5
     margin: 0 0 1rem 0
 li
+  @media screen and (max-width: $breakpoint-mobile)
+    width: calc(100% + (2 * 1rem))
+    margin: 0 0 0 -1rem
   > a
     display: flex
     flex-direction: row
