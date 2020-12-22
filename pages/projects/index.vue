@@ -1,23 +1,24 @@
 <template>
-  <projects-list :items="projects" />
+  <projects-overview :projects="projects" />
 </template>
 
 <script>
+import ProjectsOverview from '@/components/Projects/ProjectsOverview'
 import getSiteMeta from '@/assets/js/getMeta'
 import global from '@/assets/js/global'
-import ProjectsList from '~/components/ProjectsList'
+
 export default {
   name: 'Index',
-  components: { ProjectsList },
+  components: { ProjectsOverview },
   async asyncData({ $content }) {
-    const projects = await $content('projects').sortBy('prio', 'desc').fetch()
     return {
-      projects,
+      projects: await $content('projects').sortBy('prio', 'desc').fetch(),
     }
   },
   computed: {
     meta() {
       const metaData = {
+        // TODO: page title from globals
         title: `Projects - Luka Harambasic`,
         description: 'An overview about some selected projects I did.',
         url: `/projects`,
@@ -29,6 +30,7 @@ export default {
   },
   head() {
     return {
+      // TODO: page title from globals
       title: `Projects - Luka Harambasic`,
       meta: [...this.meta],
       link: [

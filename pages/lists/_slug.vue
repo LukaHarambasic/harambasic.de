@@ -1,18 +1,17 @@
 <template>
-  <list :item="list" />
+  <lists-details :list="list" />
 </template>
 
 <script>
-import List from '@/components/List'
+import ListsDetails from '@/components/Lists/ListsDetails'
 import global from '@/assets/js/global'
 import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
-  components: { List },
+  components: { ListsDetails },
   async asyncData({ $content, params }) {
-    const list = await $content('lists', params.slug).fetch()
     return {
-      list,
+      list: await $content('lists', params.slug).fetch(),
     }
   },
   computed: {
@@ -30,6 +29,7 @@ export default {
   },
   head() {
     return {
+      // TODO name from globals
       title: `${this.list.title} - Luka Harambasic`,
       meta: [...this.meta],
       link: [

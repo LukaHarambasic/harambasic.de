@@ -16,7 +16,7 @@
 import { bootstrap } from 'vue-gtag'
 
 export default {
-  name: 'Cookie',
+  name: 'TheLayoutCookie',
   data() {
     return {
       isOpen: true,

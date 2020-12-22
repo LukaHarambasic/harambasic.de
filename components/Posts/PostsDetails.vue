@@ -1,31 +1,33 @@
 <template>
   <article class="post h-entry">
     <section>
-      <img class="image" :src="item.image" :alt="item.alt" />
+      <img class="image" :src="post.image" :alt="post.alt" />
       <header>
-        <h1 class="title p-name" v-text="item.title" />
+        <h1 class="title p-name" v-text="post.title" />
         <div class="row-space-between">
-          <meta-list class="tags" :items="item.tags" pre-text="Tags:" />
-          <time class="date dt-published" :datetime="item.publishedAt">
-            <a :href="fullPath" class="u-url">{{ item.publishedAt | date }}</a>
+          <base-meta-list class="tags" :items="post.tags" pre-text="Tags:" />
+          <time class="date dt-published" :datetime="post.publishedAt">
+            <a :href="fullPath" class="u-url">{{ post.publishedAt | date }}</a>
           </time>
         </div>
       </header>
-      <callout class="tldr p-summary">
+      <base-callout class="tldr p-summary">
         <strong slot="prefix">TL;DR</strong>
         <!-- eslint-disable-next-line vue/no-v-html-->
-        <div v-html="item.tldr" />
-      </callout>
-      <nuxt-content class="content e-content" :document="item" />
+        <div v-html="post.tldr" />
+      </base-callout>
+      <nuxt-content class="content e-content" :document="post" />
     </section>
     <section>
-      <callout class="follow">
+      <base-callout class="follow">
+        <!-- TODO: mail and rss from global-->
         If you have any thoughts or questions feel free to share them in
-        <a :href="item.tweet">this thread</a> or send me an
+        <a :href="post.tweet">this thread</a> or send me an
         <a href="maitlo:hi@harambasic.de">email</a>. And if you want to stay up
         to date you can subscribe to the <a href="/posts/rss.xml">RSS feed</a>.
-      </callout>
+      </base-callout>
       <div class="author">
+        <!-- TODO: url and name form global-->
         <a href="https://harambasic.de" rel="author" class="p-author h-card"
           >by Luka Harambasic</a
         >
@@ -35,22 +37,21 @@
 </template>
 
 <script>
-import MetaList from '@/components/MetaList'
+import BaseMetaList from '@/components/Base/BaseMetaList'
+
 export default {
-  name: 'Item',
-  components: { MetaList },
+  name: 'PostsDetails',
+  components: { BaseMetaList },
   props: {
-    item: {
+    post: {
       type: Object,
       required: true,
     },
   },
   computed: {
     fullPath() {
-      return `https://harambasic.de${this.item.path}`
-    },
-    gitHubURL() {
-      return `https://github.com/LukaHarambasic/harambasic.de/blob/main/content/posts/${this.item.slug}.md`
+      // TODO: global
+      return `https://harambasic.de${this.post.path}`
     },
   },
 }

@@ -1,12 +1,12 @@
 <template>
-  <meta-list class="tools" :items="toolsArray" pre-text="Tools:" />
+  <base-meta-list class="tools" :items="toolsArray" pre-text="Tools:" />
 </template>
 
 <script>
-import MetaList from '@/components/MetaList'
+import BaseMetaList from '@/components/Base/BaseMetaList'
 export default {
-  name: 'MetaListTools',
-  components: { MetaList },
+  name: 'BaseMetaListTools',
+  components: { BaseMetaList },
   props: {
     tools: {
       type: String,

@@ -1,16 +1,13 @@
 <template>
   <section>
     <ul>
-      <li v-for="item in items" :key="item.slug" class="h-feed">
-        <nuxt-link :to="item.path">
-          <div class="meta">
-            <h2 class="title p-name" v-text="item.title" />
-            <time class="date dt-published" :datetime="item.publishedAt">
-              <a :href="fullPath" class="u-url">{{
-                item.publishedAt | date
-              }}</a>
-            </time>
+      <li v-for="list in lists" :key="list.slug" class="h-feed">
+        <nuxt-link :to="list.path">
+          <div>
+            <h2 class="title p-name" v-text="list.title" />
+            <p v-text="list.description" />
           </div>
+          <!-- TODO extract in component and reuse in projectslist-->
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M0 0h24v24H0V0z" fill="none" />
@@ -22,7 +19,9 @@
         </nuxt-link>
       </li>
     </ul>
+    <!-- TODO exchange with footnote component -->
     <div class="update nuxt-content">
+      <!-- TODO add rss feed for lists-->
       <p>
         Check out the <a href="/posts/rss.xml">RSS feed</a> or
         <a href="https://twitter.com/luka_harambasic">my Twitter account</a>
@@ -34,15 +33,16 @@
 
 <script>
 export default {
-  name: 'Items',
+  name: 'ListsOverview',
   props: {
-    items: {
+    lists: {
       type: Array,
       required: true,
     },
   },
   methods: {
     fullPath(path) {
+      // TODO use global
       return `https://harambasic.de${path}`
     },
   },
@@ -85,9 +85,6 @@ li
         background: $color-light
         svg
           fill: $color-primary
-      .date
-        a
-          color: $color-primary
       @media (prefers-color-scheme: dark)
         .icon
           background: $color-primary
@@ -105,7 +102,7 @@ li
       font-size: 1.5rem
       line-height: 1.5rem
       padding: .5rem
-      margin:  0 0 0 1rem
+      margin:  0 0 0 2rem
       transition: $animation
       @media screen and (max-width: $breakpoint-mobile)
         display: none
@@ -115,19 +112,6 @@ li
         height: 2rem
     .title
       font-size: 1.5rem
-    .date
-      font-size: 1rem
-      @media screen and (max-width: $breakpoint-mobile)
-        margin: .5rem 0 0 0
-      a
-        color: $color-primary
-        text-decoration: none
-        transition: $animation
-        border-bottom: 2px solid transparent
-        &:hover
-          border-color: $color-primary
-        @media (prefers-color-scheme: dark)
-          color: $color-light
 .update
   margin: 1rem 0 0 0
   font-size: 1rem

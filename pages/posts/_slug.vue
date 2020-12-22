@@ -1,18 +1,17 @@
 <template>
-  <post :item="post" />
+  <posts-details :post="post" />
 </template>
 
 <script>
-import Post from '@/components/Post'
+import PostsDetails from '@/components/Posts/PostsDetails'
 import global from '@/assets/js/global'
 import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
-  components: { Post },
+  components: { PostsDetails },
   async asyncData({ $content, params }) {
-    const post = await $content('posts', params.slug).fetch()
     return {
-      post,
+      post: await $content('posts', params.slug).fetch(),
     }
   },
   computed: {
@@ -30,6 +29,7 @@ export default {
   },
   head() {
     return {
+      // TODO: name form global -> page title
       title: `${this.post.title} - Luka Harambasic`,
       meta: [
         ...this.meta,

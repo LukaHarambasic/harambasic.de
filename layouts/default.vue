@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import Cookie from '@/components/Cookie'
+import Cookie from '@/components/Layout/TheLayoutCookie'
 import global from '@/assets/js/global'
-import TheHeader from '@/components/TheHeader'
-import TheFooter from '@/components/TheFooter'
+import TheHeader from '@/components/Layout/TheLayoutHeader'
+import TheFooter from '@/components/Layout/TheLayoutFooter'
 
 export default {
   components: { Cookie, TheFooter, TheHeader },

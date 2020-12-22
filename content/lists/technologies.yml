@@ -1,6 +1,6 @@
 title: Technologies
 description: Technologies I use!
-list:
+entries:
   - title: Vue.js
     description: TBD
     logo: /lists/digital_tools/notion.svg

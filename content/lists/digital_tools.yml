@@ -1,6 +1,6 @@
 title: Digital Tools
 description: Tools I use day per day or used in the past. I recommend this tools because I think they are the best in there field.
-list:
+entries:
   - title: Notion
     description: Customziable knowledge management, can easily be extended to a a Jira clone, content calendar or whtever what you need.
     logo: /lists/digital_tools/notion.svg

@@ -1,23 +1,23 @@
 <template>
-  <ListsList :items="lists" />
+  <lists-overview :lists="lists" />
 </template>
 
 <script>
-import ListsList from '@/components/ListsList'
+import ListsOverview from '@/components/Lists/ListsOverview'
 import global from '@/assets/js/global'
 import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
   name: 'Index',
-  components: { ListsList },
+  components: { ListsOverview },
   async asyncData({ $content }) {
-    const lists = await $content('lists').sortBy('title').fetch()
     return {
-      lists,
+      lists: await $content('lists').sortBy('title').fetch(),
     }
   },
   computed: {
     meta() {
+      // TODO name form globals
       const metaData = {
         title: `Lists - Luka Harambasic`,
         description: 'TBD', // TODO
@@ -30,6 +30,7 @@ export default {
   },
   head() {
     return {
+      // TODO name form globals
       title: `Lists - Luka Harambasic`,
       meta: [...this.meta],
       link: [

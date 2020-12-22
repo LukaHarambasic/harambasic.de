@@ -9,7 +9,7 @@
         <a rel="me" href="https://www.linkedin.com/in/harambasic/">Linkedin</a>
       </li>
     </ul>
-    <logo class="logo" />
+    <base-logo class="logo" />
     <ul class="legal">
       <li><nuxt-link to="/imprint">Imprint</nuxt-link></li>
       <li><nuxt-link to="/data-privacy">Data Privacy</nuxt-link></li>
@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo'
+import BaseLogo from '@/components/Base/BaseLogo'
 export default {
-  name: 'TheFooter',
-  components: { Logo },
+  name: 'TheLayoutFooter',
+  components: { BaseLogo },
 }
 </script>
 

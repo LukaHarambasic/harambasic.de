@@ -1,13 +1,17 @@
 <template>
   <section>
     <ul>
-      <li v-for="item in items" :key="item.slug" class="h-feed">
-        <nuxt-link :to="item.path">
-          <div>
-            <h2 class="title p-name" v-text="item.title" />
-            <p v-text="item.description" />
+      <li v-for="post in posts" :key="post.slug" class="h-feed">
+        <nuxt-link :to="post.path">
+          <div class="meta">
+            <h2 class="title p-name" v-text="post.title" />
+            <time class="date dt-published" :datetime="post.publishedAt">
+              <a :href="fullPath" class="u-url">
+                {{ post.publishedAt | date }}
+              </a>
+            </time>
           </div>
-          <!-- TODO extract in component and reuse in projectslist-->
+          <!-- TODO extract in base component -->
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M0 0h24v24H0V0z" fill="none" />
@@ -19,8 +23,9 @@
         </nuxt-link>
       </li>
     </ul>
+    <!-- TODO create footnote component -->
     <div class="update nuxt-content">
-      <!-- TODO add rss feed for lists-->
+      <!-- TODO twitter link from globals, maybe also add posts rss feed to globals -->
       <p>
         Check out the <a href="/posts/rss.xml">RSS feed</a> or
         <a href="https://twitter.com/luka_harambasic">my Twitter account</a>
@@ -32,15 +37,16 @@
 
 <script>
 export default {
-  name: 'Items',
+  name: 'PostsOverview',
   props: {
-    items: {
+    posts: {
       type: Array,
       required: true,
     },
   },
   methods: {
     fullPath(path) {
+      // TODO use global
       return `https://harambasic.de${path}`
     },
   },
@@ -83,6 +89,9 @@ li
         background: $color-light
         svg
           fill: $color-primary
+      .date
+        a
+          color: $color-primary
       @media (prefers-color-scheme: dark)
         .icon
           background: $color-primary
@@ -100,7 +109,7 @@ li
       font-size: 1.5rem
       line-height: 1.5rem
       padding: .5rem
-      margin:  0 0 0 2rem
+      margin:  0 0 0 1rem
       transition: $animation
       @media screen and (max-width: $breakpoint-mobile)
         display: none
@@ -110,6 +119,19 @@ li
         height: 2rem
     .title
       font-size: 1.5rem
+    .date
+      font-size: 1rem
+      @media screen and (max-width: $breakpoint-mobile)
+        margin: .5rem 0 0 0
+      a
+        color: $color-primary
+        text-decoration: none
+        transition: $animation
+        border-bottom: 2px solid transparent
+        &:hover
+          border-color: $color-primary
+        @media (prefers-color-scheme: dark)
+          color: $color-light
 .update
   margin: 1rem 0 0 0
   font-size: 1rem

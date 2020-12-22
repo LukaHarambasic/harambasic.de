@@ -1,12 +1,12 @@
 <template>
   <article class="post h-entry">
     <header>
-      <h1 class="p-name" v-text="item.title" />
-      <p v-text="item.description" />
+      <h1 class="p-name" v-text="list.title" />
+      <p v-text="list.description" />
     </header>
     <section>
       <ul>
-        <li v-for="entry in item.list" :key="entry.title">
+        <li v-for="entry in list.entries" :key="entry.title">
           <a :href="entry.url">
             <img class="logo" :src="entry.logo" :alt="entry.title" />
             <div class="content">
@@ -24,17 +24,18 @@
         </li>
       </ul>
     </section>
+    <!--    TODO: exchange with footnote component-->
     <section class="footnote nuxt-content">
-      <p v-if="item.footnote" v-text="item.footnote" />
+      <p v-if="list.footnote" v-text="list.footnote" />
     </section>
   </article>
 </template>
 
 <script>
 export default {
-  name: 'Item',
+  name: 'ListsDetail',
   props: {
-    item: {
+    list: {
       type: Object,
       required: true,
     },

@@ -11,6 +11,7 @@
     </ul>
     <h3>Contact Information</h3>
     <ul>
+      <!-- TODO: name & mail from global-->
       <li>Name: Luka Harambasic</li>
       <li>E-Mail: <a href="mailto:hi@harambasic.de">hi@harambasic.de</a></li>
     </ul>

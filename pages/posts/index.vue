@@ -1,22 +1,23 @@
 <template>
-  <PostsList :items="posts" />
+  <posts-overview :posts="posts" />
 </template>
 
 <script>
-import PostsList from '@/components/PostsList'
+import PostsOverview from '@/components/Posts/PostsOverview'
 import global from '@/assets/js/global'
 import getSiteMeta from '@/assets/js/getMeta'
+
 export default {
   name: 'Index',
-  components: { PostsList },
+  components: { PostsOverview },
   async asyncData({ $content }) {
-    const posts = await $content('posts').sortBy('published').fetch()
     return {
-      posts,
+      posts: await $content('posts').sortBy('published').fetch(),
     }
   },
   computed: {
     meta() {
+      // TODO name form globals
       const metaData = {
         title: `Blog - Luka Harambasic`,
         description: 'Here you find all my blog posts.',
@@ -29,6 +30,7 @@ export default {
   },
   head() {
     return {
+      // TODO name form globals
       title: `Blog - Luka Harambasic`,
       meta: [...this.meta],
       link: [

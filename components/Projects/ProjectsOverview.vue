@@ -1,25 +1,26 @@
 <template>
   <section>
     <ul class="projects">
-      <li v-for="item in items" :key="item.slug" class="project">
+      <li v-for="project in projects" :key="project.slug" class="project">
         <div class="meta">
-          <img :src="fullImagePath(item.img)" :alt="item.alt" />
+          <img :src="fullImagePath(project.img)" :alt="project.alt" />
         </div>
         <div class="content">
-          <h2 class="title" v-text="item.title" />
+          <h2 class="title" v-text="project.title" />
           <meta-list
-            :items="item.responsibilities"
+            :items="project.responsibilities"
             pre-text="Responsibilities:"
           />
-          <nuxt-content class="description stable-color" :document="item" />
+          <nuxt-content class="description stable-color" :document="project" />
           <ul class="links">
-            <li v-for="link in item.links" :key="link.title">
+            <li v-for="link in project.links" :key="link.title">
               <a class="link" :href="link.url" v-text="link.title" />
             </li>
           </ul>
         </div>
       </li>
     </ul>
+    <!-- TODO: mail from global-->
     <p class="nuxt-content info">
       If you want to learn more about the projects, please do not hesitate to
       send me an
@@ -29,12 +30,12 @@
 </template>
 
 <script>
-import MetaList from '@/components/MetaList'
+import MetaList from '@/components/Base/BaseMetaList'
 export default {
   name: 'ProjectsList',
   components: { MetaList },
   props: {
-    items: {
+    projects: {
       type: Array,
       required: true,
     },

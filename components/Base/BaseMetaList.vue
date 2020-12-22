@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'MetaList',
+  name: 'BaseMetaList',
   props: {
     preText: {
       type: String,
