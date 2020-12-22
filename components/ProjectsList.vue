@@ -92,8 +92,10 @@ export default {
     margin: 2rem 0 0 0
 .title
   font-size: 1.75rem
+.description
+  margin: 2rem 0 0 0
 .links
-  margin: 1rem 0 0 0
+  margin: 2rem 0 0 0
   display: flex
   flex-direction: row
   flex-wrap: wrap
