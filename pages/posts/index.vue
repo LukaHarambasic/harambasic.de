@@ -4,7 +4,6 @@
 
 <script>
 import PostsOverview from '@/components/Posts/PostsOverview'
-import global from '@/assets/js/global'
 import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
@@ -17,27 +16,25 @@ export default {
   },
   computed: {
     meta() {
-      // TODO name form globals
       const metaData = {
-        title: `Blog - Luka Harambasic`,
+        title: `Blog - ${this.globals.title}`,
         description: 'Here you find all my blog posts.',
         url: `/posts`,
         img: `/luka_harambasic_blog.png`,
-        imgAlt: 'Blog - Luka Harambasic',
+        imgAlt: `Blog - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)
     },
   },
   head() {
     return {
-      // TODO name form globals
-      title: `Blog - Luka Harambasic`,
+      title: this.meta.title,
       meta: [...this.meta],
       link: [
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `${global.baseURL}/posts`,
+          href: `${this.globals.baseURL}/posts`,
         },
       ],
     }

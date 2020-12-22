@@ -1,19 +1,19 @@
 <template>
   <footer role="contentinfo">
     <ul class="social">
-      <li><a rel="me" href="https://github.com/LukaHarambasic">GitHub</a></li>
+      <li><a rel="me" :href="globals.githubURL">GitHub</a></li>
       <li>
-        <a rel="me" href="https://twitter.com/luka_harambasic">Twitter</a>
+        <a rel="me" :href="globals.twitterURL">Twitter</a>
       </li>
       <li>
-        <a rel="me" href="https://www.linkedin.com/in/harambasic/">Linkedin</a>
+        <a rel="me" :href="globals.linkedinURL">Linkedin</a>
       </li>
     </ul>
     <base-logo class="logo" />
     <ul class="legal">
       <li><nuxt-link to="/imprint">Imprint</nuxt-link></li>
       <li><nuxt-link to="/data-privacy">Data Privacy</nuxt-link></li>
-      <li><a href="mailto:hi@harambasic.de">Contact</a></li>
+      <li><a :href="globals.mailto">Contact</a></li>
     </ul>
   </footer>
 </template>

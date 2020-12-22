@@ -20,11 +20,10 @@
         </div>
       </li>
     </ul>
-    <!-- TODO: mail from global -->
     <base-footnote>
       If you want to learn more about the projects, please do not hesitate to
       send me an
-      <a href="mailto:hi@harambasic.de">email</a>.
+      <a :href="globals.mailto">email</a>.
     </base-footnote>
   </section>
 </template>

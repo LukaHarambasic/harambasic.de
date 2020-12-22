@@ -1,4 +1,4 @@
-import global from './global'
+import global from './globals'
 
 // string constructors
 const title = (title) => `${title} - Luka Harambasic`

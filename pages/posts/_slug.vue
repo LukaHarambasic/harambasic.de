@@ -4,7 +4,6 @@
 
 <script>
 import PostsDetails from '@/components/Posts/PostsDetails'
-import global from '@/assets/js/global'
 import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
@@ -29,8 +28,7 @@ export default {
   },
   head() {
     return {
-      // TODO: name form global -> page title
-      title: `${this.post.title} - Luka Harambasic`,
+      title: `${this.post.title} - ${this.globals.title}`,
       meta: [
         ...this.meta,
         {
@@ -46,7 +44,7 @@ export default {
           content: this.post.tags ? this.post.tags.join(', ') : '',
         },
         { name: 'twitter:label1', content: 'Written by' },
-        { name: 'twitter:data1', content: global.author || '' },
+        { name: 'twitter:data1', content: this.globals.author || '' },
         { name: 'twitter:label2', content: 'Filed under' },
         {
           name: 'twitter:data2',

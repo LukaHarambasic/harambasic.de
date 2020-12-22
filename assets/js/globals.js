@@ -9,4 +9,7 @@ export default {
   twitterHandle: '@luka_digital',
   twitterURL: 'https://twitter.com/luka_digital',
   githubURL: 'https://github.com/LukaHarambasic/harambasic.de',
+  linkedinURL: 'https://www.linkedin.com/in/harambasic/',
+  blogFeedURL: 'https://harambasic.de/posts/rss.xml',
+  email: 'hi@harambasic.de',
 }

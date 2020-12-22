@@ -7,17 +7,16 @@
             <h2 class="title p-name" v-text="list.title" />
             <p v-text="list.description" />
           </div>
-          <!-- TODO extract in component and reuse in projectslist-->
           <div class="icon">
             <icons-arrow />
           </div>
         </nuxt-link>
       </li>
     </ul>
+    <!-- TODO add lists feed if wanted-->
     <base-footnote>
-      <!-- TODO add rss feed for lists-->
-      Check out the <a href="/posts/rss.xml">RSS feed</a> or
-      <a href="https://twitter.com/luka_harambasic">my Twitter account</a>
+      Check out the <a href="TBD">RSS feed</a> or
+      <a :href="globals.twitterURL">my Twitter account</a>
       to keep up to date.
     </base-footnote>
   </section>
@@ -33,12 +32,6 @@ export default {
     lists: {
       type: Array,
       required: true,
-    },
-  },
-  methods: {
-    fullPath(path) {
-      // TODO use global
-      return `https://harambasic.de${path}`
     },
   },
 }

@@ -20,16 +20,14 @@
     </section>
     <section>
       <base-callout class="follow">
-        <!-- TODO: mail and rss from global-->
         If you have any thoughts or questions feel free to share them in
         <a :href="post.tweet">this thread</a> or send me an
-        <a href="maitlo:hi@harambasic.de">email</a>. And if you want to stay up
-        to date you can subscribe to the <a href="/posts/rss.xml">RSS feed</a>.
+        <a :href="globals.mailto">email</a>. And if you want to stay up to date
+        you can subscribe to the <a :href="globals.blogFeedURL">RSS feed</a>.
       </base-callout>
       <div class="author">
-        <!-- TODO: url and name form global-->
-        <a href="https://harambasic.de" rel="author" class="p-author h-card"
-          >by Luka Harambasic</a
+        <a :href="globals.baseURL" rel="author" class="p-author h-card"
+          >by {{ globals.author }}</a
         >
       </div>
     </section>
@@ -47,8 +45,7 @@ export default {
   },
   computed: {
     fullPath() {
-      // TODO: global
-      return `https://harambasic.de${this.post.path}`
+      return `${this.globals.baseURL}${this.post.path}`
     },
   },
 }

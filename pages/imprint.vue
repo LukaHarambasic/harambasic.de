@@ -11,13 +11,14 @@
     </ul>
     <h3>Contact Information</h3>
     <ul>
-      <!-- TODO: name & mail from global-->
-      <li>Name: Luka Harambasic</li>
-      <li>E-Mail: <a href="mailto:hi@harambasic.de">hi@harambasic.de</a></li>
+      <li>Name: {{ globals.author }}</li>
+      <li>
+        E-Mail: <a :href="globals.mailto">{{ globals.email }}</a>
+      </li>
     </ul>
     <h3>Graphics and Image Sources</h3>
     <ul>
-      <li>Luka Harambasic</li>
+      <li>{{ globals.author }}</li>
     </ul>
     <h3>Disclaimer</h3>
     <h4>Accountability for content</h4>

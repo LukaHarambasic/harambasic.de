@@ -1,7 +1,7 @@
 <template>
   <header role="banner">
     <h1>
-      <nuxt-link to="/">Luka Harambasic</nuxt-link>
+      <nuxt-link to="/">{{ globals.title }}</nuxt-link>
     </h1>
     <nav role="navigation">
       <ul>

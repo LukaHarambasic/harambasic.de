@@ -1,7 +1,7 @@
 import marked from 'marked'
 import readingTime from 'reading-time'
 
-import global from './assets/js/global'
+import globals from './assets/js/globals'
 import getRoutes from './assets/js/getRoutes'
 import getSiteMeta from './assets/js/getMeta'
 
@@ -23,7 +23,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: global.title,
+    title: globals.title,
     htmlAttrs: {
       lang: 'en',
     },
@@ -39,12 +39,12 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: global.desc || '',
+        content: globals.desc || '',
       },
-      { property: 'og:site_name', content: global.title || '' },
+      { property: 'og:site_name', content: globals.title || '' },
       { property: 'og:image:width', content: '740' },
       { property: 'og:image:height', content: '300' },
-      { name: 'twitter:site', content: global.twitterHandle || '' },
+      { name: 'twitter:site', content: globals.twitterHandle || '' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
     link: [
@@ -52,7 +52,7 @@ export default {
       {
         hid: 'canonical',
         rel: 'canonical',
-        href: 'https://harambasic.de',
+        href: globals.baseURL,
       },
       {
         rel: 'webmention',
@@ -64,18 +64,19 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@assets/style/main.sass', '@assets/style/fontfaces.css'],
+  css: ['@/assets/style/main.sass', '@/assets/style/fontfaces.css'],
   /*
    ** Load Variables
    */
   styleResources: {
-    sass: ['~assets/style/_variables.sass'],
+    sass: ['@/assets/style/_variables.sass'],
   },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: [
+    '@/plugins/mixins.js',
     '@/plugins/filters.js',
     {
       src: '@/plugins/googleAnalytics.js',
@@ -121,7 +122,7 @@ export default {
    ** Inspired by https://github.com/garethredfern/nuxt-basic-blog
    */
   sitemap: {
-    hostname: global.baseURL,
+    hostname: globals.baseURL,
     trailingSlash: true,
     routes() {
       return getRoutes()
@@ -132,7 +133,7 @@ export default {
    ** Inspired by https://github.com/garethredfern/nuxt-basic-blog
    */
   feed() {
-    const baseUrlPosts = `${global.baseURL}/posts`
+    const baseUrlPosts = `${globals.baseURL}/posts`
     const baseLinkFeedPosts = '/posts'
     const feedFormats = {
       rss: { type: 'rss2', file: 'rss.xml' },
@@ -141,8 +142,8 @@ export default {
     const { $content } = require('@nuxt/content')
     const createFeed = async function (feed) {
       feed.options = {
-        title: global.title || '',
-        description: global.desc || '',
+        title: globals.title || '',
+        description: globals.desc || '',
         link: baseUrlPosts,
       }
       const posts = await $content('posts').fetch()
@@ -155,7 +156,7 @@ export default {
           date: new Date(post.publishedAt),
           description: post.description,
           content: post.html,
-          author: global.twitterHandle,
+          author: globals.twitterHandle,
         })
       })
     }

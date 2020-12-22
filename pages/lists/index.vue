@@ -4,7 +4,6 @@
 
 <script>
 import ListsOverview from '@/components/Lists/ListsOverview'
-import global from '@/assets/js/global'
 import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
@@ -17,27 +16,25 @@ export default {
   },
   computed: {
     meta() {
-      // TODO name form globals
       const metaData = {
-        title: `Lists - Luka Harambasic`,
+        title: `Lists - ${this.globals.title}`,
         description: 'TBD', // TODO
         url: `/lists`,
         img: `/luka_harambasic_lists.png`, // TODO create this image
-        imgAlt: 'Lists - Luka Harambasic',
+        imgAlt: `Lists - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)
     },
   },
   head() {
     return {
-      // TODO name form globals
-      title: `Lists - Luka Harambasic`,
+      title: this.meta.title,
       meta: [...this.meta],
       link: [
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `${global.baseURL}/lists`,
+          href: `${this.globals.baseURL}/lists`,
         },
       ],
     }

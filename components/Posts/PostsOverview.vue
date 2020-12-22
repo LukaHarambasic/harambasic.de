@@ -18,9 +18,8 @@
       </li>
     </ul>
     <base-footnote>
-      <!-- TODO twitter link from globals, maybe also add posts rss feed to globals -->
-      Check out the <a href="/posts/rss.xml">RSS feed</a> or
-      <a href="https://twitter.com/luka_harambasic">my Twitter account</a>
+      Check out the <a :href="globals.blogFeedURL">RSS feed</a> or
+      <a :href="globals.twitterURL">my Twitter account</a>
       to keep up to date.
     </base-footnote>
   </section>
@@ -40,8 +39,7 @@ export default {
   },
   methods: {
     fullPath(path) {
-      // TODO use global
-      return `https://harambasic.de${path}`
+      return `${this.globals.baseURL}${this.post.path}`
     },
   },
 }

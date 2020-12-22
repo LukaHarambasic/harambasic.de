@@ -4,7 +4,6 @@
 
 <script>
 import ListsDetails from '@/components/Lists/ListsDetails'
-import global from '@/assets/js/global'
 import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
@@ -29,14 +28,13 @@ export default {
   },
   head() {
     return {
-      // TODO name from globals
-      title: `${this.list.title} - Luka Harambasic`,
+      title: `${this.list.title} - ${this.globals.title}`,
       meta: [...this.meta],
       link: [
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `${global.baseURL}/lists/${this.$route.params.slug}`,
+          href: `${this.globals.baseURL}/lists/${this.$route.params.slug}`,
         },
       ],
     }

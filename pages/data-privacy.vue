@@ -4,8 +4,8 @@
     <p>
       Your privacy is important to us. It is Luka Harambasic's policy to respect
       your privacy regarding any information we may collect from you across our
-      website, <a href="http://harambasic.de">http://harambasic.de</a>, and
-      other sites we own and operate.
+      website, <a :href="globals.baseURL">{{ globals.baseURL }}</a
+      >, and other sites we own and operate.
     </p>
     <p>
       We only ask for personal information when we truly need it to provide a

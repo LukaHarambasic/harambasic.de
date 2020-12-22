@@ -11,7 +11,7 @@
 
 <script>
 import Cookie from '@/components/Layout/TheLayoutCookie'
-import global from '@/assets/js/global'
+import global from 'assets/js/globals'
 import TheHeader from '@/components/Layout/TheLayoutHeader'
 import TheFooter from '@/components/Layout/TheLayoutFooter'
 

@@ -5,7 +5,6 @@
 <script>
 import ProjectsOverview from '@/components/Projects/ProjectsOverview'
 import getSiteMeta from '@/assets/js/getMeta'
-import global from '@/assets/js/global'
 
 export default {
   name: 'Index',
@@ -18,26 +17,24 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        // TODO: page title from globals
-        title: `Projects - Luka Harambasic`,
+        title: `Projects - ${this.globals.title}`,
         description: 'An overview about some selected projects I did.',
         url: `/projects`,
         img: `/luka_harambasic_projects.png`,
-        imgAlt: 'Projects - Luka Harambasic',
+        imgAlt: `Projects - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)
     },
   },
   head() {
     return {
-      // TODO: page title from globals
-      title: `Projects - Luka Harambasic`,
+      title: this.meta.title,
       meta: [...this.meta],
       link: [
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `${global.baseURL}/projects`,
+          href: `${this.globals.baseURL}/projects`,
         },
       ],
     }
