@@ -24,6 +24,9 @@
         </li>
       </ul>
     </section>
+    <section class="footnote nuxt-content">
+      <p v-if="item.footnote" v-text="item.footnote" />
+    </section>
   </article>
 </template>
 
@@ -83,4 +86,7 @@ li
     .title
       font-size: 1.5rem
       font-weight: bold
+.footnote
+  font-size: 1rem
+  text-align: center
 </style>
