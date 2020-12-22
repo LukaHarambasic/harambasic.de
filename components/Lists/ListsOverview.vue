@@ -9,31 +9,26 @@
           </div>
           <!-- TODO extract in component and reuse in projectslist-->
           <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path
-                d="M9.31 6.71c-.39.39-.39 1.02 0 1.41L13.19 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.72 6.7c-.38-.38-1.02-.38-1.41.01z"
-              />
-            </svg>
+            <icons-arrow />
           </div>
         </nuxt-link>
       </li>
     </ul>
-    <!-- TODO exchange with footnote component -->
-    <div class="update nuxt-content">
+    <base-footnote>
       <!-- TODO add rss feed for lists-->
-      <p>
-        Check out the <a href="/posts/rss.xml">RSS feed</a> or
-        <a href="https://twitter.com/luka_harambasic">my Twitter account</a>
-        to keep up to date.
-      </p>
-    </div>
+      Check out the <a href="/posts/rss.xml">RSS feed</a> or
+      <a href="https://twitter.com/luka_harambasic">my Twitter account</a>
+      to keep up to date.
+    </base-footnote>
   </section>
 </template>
 
 <script>
+import BaseFootnote from '@/components/Base/BaseFootnote'
+import IconsArrow from '@/components/Icons/IconsArrow'
 export default {
   name: 'ListsOverview',
+  components: { IconsArrow, BaseFootnote },
   props: {
     lists: {
       type: Array,
@@ -112,8 +107,4 @@ li
         height: 2rem
     .title
       font-size: 1.5rem
-.update
-  margin: 1rem 0 0 0
-  font-size: 1rem
-  text-align: center
 </style>

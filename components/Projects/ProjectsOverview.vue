@@ -7,7 +7,7 @@
         </div>
         <div class="content">
           <h2 class="title" v-text="project.title" />
-          <meta-list
+          <base-meta-list
             :items="project.responsibilities"
             pre-text="Responsibilities:"
           />
@@ -20,20 +20,22 @@
         </div>
       </li>
     </ul>
-    <!-- TODO: mail from global-->
-    <p class="nuxt-content info">
+    <!-- TODO: mail from global -->
+    <base-footnote>
       If you want to learn more about the projects, please do not hesitate to
       send me an
-      <a href="mailto:hi@harambasic.de">Email</a>.
-    </p>
+      <a href="mailto:hi@harambasic.de">email</a>.
+    </base-footnote>
   </section>
 </template>
 
 <script>
-import MetaList from '@/components/Base/BaseMetaList'
+import BaseMetaList from '@/components/Base/BaseMetaList'
+import BaseFootnote from '@/components/Base/BaseFootnote'
+
 export default {
   name: 'ProjectsList',
-  components: { MetaList },
+  components: { BaseFootnote, BaseMetaList },
   props: {
     projects: {
       type: Array,
@@ -119,9 +121,4 @@ export default {
       &:hover
         text-decoration: none
         border-color: rgba($color-primary, .3)
-
-.info
-  font-size: 1rem
-  text-align: center
-  margin: 2rem 0 0 0
 </style>

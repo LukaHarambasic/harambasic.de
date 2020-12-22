@@ -24,16 +24,17 @@
         </li>
       </ul>
     </section>
-    <!--    TODO: exchange with footnote component-->
-    <section class="footnote nuxt-content">
-      <p v-if="list.footnote" v-text="list.footnote" />
-    </section>
+    <base-footnote v-if="list.footnote">
+      {{ list.footnote }}
+    </base-footnote>
   </article>
 </template>
 
 <script>
+import BaseFootnote from '@/components/Base/BaseFootnote'
 export default {
   name: 'ListsDetail',
+  components: { BaseFootnote },
   props: {
     list: {
       type: Object,
@@ -90,7 +91,4 @@ li
     .title
       font-size: 1.5rem
       font-weight: bold
-.footnote
-  font-size: 1rem
-  text-align: center
 </style>
