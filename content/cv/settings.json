@@ -1,0 +1,33 @@
+{
+  "style": {
+    "defaultStyling": true,
+    "colors": {
+      "primary": "#2E2E3E",
+      "accent": "#E1EBF0",
+      "background": "#ffffff",
+      "font": "#2E2E3E",
+      "fontOnPrimary": "#ffffff",
+      "fontOnAccent": "#ffffff"
+    },
+    "fonts": {
+      "headline": "Open Sans",
+      "body": "Open Sans"
+    }
+  },
+
+  "segments": {
+    "order": "custom",
+    "entries": {
+      "order": "custom"
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "order": "custom",
+    "entries": {
+      "order": "custom",
+      "display": "list",
+      "levelType": "number"
+    }
+  }
+}

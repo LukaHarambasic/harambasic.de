@@ -1,0 +1,27 @@
+{
+  "name": "Luka Harambasic",
+  "image": "/profile.jpg",
+  "information": [
+    {
+    "title": "hi@harambasic.de",
+    "url": "mailto:hi@harambasic.de"
+    }
+  ],
+  "footer": {
+    "logo": "/logo_light.svg",
+    "links": [
+      {
+      "title": "linkedin.com/in/harambasic",
+      "url": "http://linkedin.com/in/harambasic"
+      },
+      {
+      "title": "harambasic.de",
+      "url": "https://harambasic.de"
+      },
+      {
+      "title": "github.com/LukaHarambasic",
+      "url": "https://github.com/LukaHarambasic"
+      }
+    ]
+  }
+}

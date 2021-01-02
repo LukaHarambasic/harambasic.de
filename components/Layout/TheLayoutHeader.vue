@@ -9,6 +9,7 @@
         <li><nuxt-link to="/projects">Projects</nuxt-link></li>
         <li><nuxt-link to="/lists">Lists</nuxt-link></li>
         <li><nuxt-link to="/posts">Blog</nuxt-link></li>
+        <li><nuxt-link to="/cv">CV</nuxt-link></li>
       </ul>
     </nav>
   </header>

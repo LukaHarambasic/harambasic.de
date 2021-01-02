@@ -20,4 +20,16 @@ entries:
   - title: Axios
     description: TBD
     logo: /lists/digital_tools/notion.svg
-    url: TBD
+    url: TBD+
+  - title: Netlify
+    description:
+    logo:
+    url:
+  - title: Vercel
+    description:
+    logo:
+    url:
+  - title: GitHub Actions
+    description:
+    logo:
+    url:
