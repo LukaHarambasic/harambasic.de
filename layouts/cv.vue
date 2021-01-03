@@ -46,10 +46,16 @@ export default {
   min-height: 100vh
   @media (prefers-color-scheme: dark)
     background: $color-primary
+  @media screen and (max-width: $breakpoint-mobile)
+    padding: 2rem 0
 main
   grid-area: main
 .back
   position: absolute
+  z-index: 500
   top: 2rem
   left: 2rem
+  @media screen and (max-width: $breakpoint-mobile)
+    top: 1rem
+    left: 1rem
 </style>

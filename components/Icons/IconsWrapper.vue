@@ -29,14 +29,11 @@ export default {
   font-size: 1.5rem
   line-height: 1.5rem
   padding: .5rem
-  margin:  0 0 0 1rem
   transition: $animation
   &:hover
     cursor: pointer
   @media (prefers-color-scheme: dark)
     background: $color-primary
-  @media screen and (max-width: $breakpoint-mobile)
-    display: none
   svg
     fill: $color-primary
     width: 2rem
