@@ -90,6 +90,8 @@ export default {
     margin: 2rem 0 0 0
 .title
   font-size: 1.75rem
+  line-height: 1.1
+  margin: 0 0 .5rem 0
 .description
   margin: 2rem 0 0 0
 .links
