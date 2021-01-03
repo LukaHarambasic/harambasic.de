@@ -15,9 +15,9 @@
               <div class="header">
                 <strong class="title" v-text="entry.title" />
                 <strong
-                  v-if="entry.language"
-                  class="language"
-                  v-text="languageWithBrackets(entry.language)"
+                  v-if="entry.extra"
+                  class="extra"
+                  v-text="extraWithBrackets(entry.extra)"
                 />
               </div>
               <p class="description" v-text="entry.description" />
@@ -42,9 +42,9 @@ export default {
     },
   },
   methods: {
-    languageWithBrackets(language) {
-      if (!language) return ''
-      return `(${language})`
+    extraWithBrackets(extra) {
+      if (!extra) return ''
+      return `(${extra})`
     },
   },
 }
@@ -92,6 +92,9 @@ li
         border-radius: $border-radius
         box-shadow: $box-shadow
         padding: 1rem
+    .header
+      line-height: 1
+      margin: 0 0 .25rem 0
     .content
       grid-area: content
     .title
