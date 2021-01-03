@@ -77,7 +77,10 @@ li
       &:hover
         color: $color-primary
     @media screen and (max-width: $breakpoint-mobile)
-      // TODO
+      grid-template-areas: "logo" "content"
+      grid-template-columns: auto
+      grid-template-rows: 5rem 1fr
+      grid-gap: 1rem
     &:hover
       background: $color-secondary
     .logo
@@ -85,6 +88,8 @@ li
       height: 5rem
       display: grid
       justify-content: center
+      @media screen and (max-width: $breakpoint-mobile)
+        display: block
       img
         width: 5rem
         height: 5rem
