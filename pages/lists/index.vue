@@ -18,9 +18,10 @@ export default {
     meta() {
       const metaData = {
         title: `Lists - ${this.globals.title}`,
-        description: 'TBD', // TODO
+        description:
+          'Lists with content I recommend, e.g. development & digital tools.',
         url: `/lists`,
-        img: `/luka_harambasic_lists.png`, // TODO create this image
+        img: `/luka_harambasic_lists.png`,
         imgAlt: `Lists - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)

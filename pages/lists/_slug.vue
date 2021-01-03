@@ -16,12 +16,12 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        type: 'article', // TODO What type is a list?
+        type: 'article',
         title: this.list.title,
         description: this.list.description,
         url: `/lists/${this.$route.params.slug}`, // compare with canonical (line 39)
-        img: `${this.list.image}`,
-        imgAlt: this.list.alt,
+        img: this.list.image,
+        imgAlt: this.list.title,
       }
       return getSiteMeta(metaData)
     },

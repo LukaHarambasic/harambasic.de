@@ -1,5 +1,6 @@
 title: Development
 description: Everything I love to work with (focused on web development).
+image: /lists/development/main.png
 entries:
   - title: Vue.js
     description: "MY favorite JS framework, as it let you use what the web was made with: HTML and CSS! And Single File Components are just awesome."
