@@ -1,0 +1,15 @@
+export default {
+  baseURL: 'https://harambasic.de',
+  title: 'Luka Harambasic',
+  author: 'Luka Harambasic',
+  desc: 'Get to know me, my projects and some of my ideas.',
+  img: '/luka_harambasic_preview.png',
+  imgAlt: 'Luka Harambasic - personal website',
+  type: 'website',
+  twitterHandle: '@luka_digital',
+  twitterURL: 'https://twitter.com/luka_digital',
+  githubURL: 'https://github.com/LukaHarambasic/harambasic.de',
+  linkedinURL: 'https://www.linkedin.com/in/harambasic/',
+  blogFeedURL: 'https://harambasic.de/posts/rss.xml',
+  email: 'hi@harambasic.de',
+}

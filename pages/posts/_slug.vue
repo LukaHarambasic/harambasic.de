@@ -1,18 +1,16 @@
 <template>
-  <post :item="post" />
+  <posts-details :post="post" />
 </template>
 
 <script>
-import Post from '@/components/Post'
-import global from '@/assets/js/global'
+import PostsDetails from '@/components/Posts/PostsDetails'
 import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
-  components: { Post },
+  components: { PostsDetails },
   async asyncData({ $content, params }) {
-    const post = await $content('posts', params.slug).fetch()
     return {
-      post,
+      post: await $content('posts', params.slug).fetch(),
     }
   },
   computed: {
@@ -22,7 +20,7 @@ export default {
         title: this.post.title,
         description: this.post.description,
         url: `/posts/${this.$route.params.slug}`,
-        img: `${this.post.image}`,
+        img: this.post.image,
         imgAlt: this.post.alt,
       }
       return getSiteMeta(metaData)
@@ -30,7 +28,7 @@ export default {
   },
   head() {
     return {
-      title: `${this.post.title} - Luka Harambasic`,
+      title: `${this.post.title} - ${this.globals.title}`,
       meta: [
         ...this.meta,
         {
@@ -46,7 +44,7 @@ export default {
           content: this.post.tags ? this.post.tags.join(', ') : '',
         },
         { name: 'twitter:label1', content: 'Written by' },
-        { name: 'twitter:data1', content: global.author || '' },
+        { name: 'twitter:data1', content: this.globals.author || '' },
         { name: 'twitter:label2', content: 'Filed under' },
         {
           name: 'twitter:data2',

@@ -7,12 +7,14 @@
 <script>
 export default {
   async asyncData({ $content }) {
-    const page = await $content('home').fetch()
     return {
-      page,
+      page: await $content('home').fetch(),
     }
   },
 }
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="sass" scoped>
+h2
+  margin: 0 0 .25rem 0
+</style>

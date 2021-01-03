@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Expertise",
+    "entries": [
+      {
+        "title": "Project Management (Scrum)"
+      },
+      {
+        "title": "Design Thinking"
+      },
+      {
+        "title": "UX"
+      },
+      {
+        "title": "Communication"
+      },
+      {
+        "title": "Presentation"
+      }
+    ]
+  },
+  {
+    "title": "Development",
+    "entries": [
+      {
+        "title": "JavaScript"
+      },
+      {
+        "title": "Vue.js"
+      },
+      {
+        "title": "SAPUI5"
+      },
+      {
+        "title": "HTML5/CSS3"
+      },
+      {
+        "title": "Git"
+      },
+      {
+        "title": "Python"
+      },
+      {
+        "title": "SQL"
+      },
+      {
+        "title": "Kotlin"
+      }
+    ]
+  },
+  {
+    "title": "Software",
+    "entries": [
+      {
+        "title": "G Suite"
+      },
+      {
+        "title": "Office 365"
+      },
+      {
+        "title": "Sketch"
+      },
+      {
+        "title": "Figma"
+      },
+      {
+        "title": "Zapier"
+      }
+    ]
+  },
+  {
+    "title": "Language",
+    "entries": [
+      {
+        "title": "German"
+      },
+      {
+        "title": "English"
+      }
+    ]
+  }
+]

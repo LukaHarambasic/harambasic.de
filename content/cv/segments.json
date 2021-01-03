@@ -1,0 +1,125 @@
+[
+  {
+    "title": "Education",
+    "entries": [
+      {
+        "title": "Student at the Corporative State University Baden-Württemberg (DHBW)",
+        "location": "Mannheim, Germany",
+        "from": "09/2016",
+        "to": "09/2019",
+        "description": "Business Informatics (focusing on Sales and Consulting) at SAP"
+      },
+      {
+        "title": "Wirtschaftsgymnasium BBS W1 (Highschool focusing on Business Studies)",
+        "location": "Ludwigshafen, Germany",
+        "from": "07/2012",
+        "to": "07/2015",
+        "description": "Advanced Courses: Business Administration, Information Technology, Mathematics"
+      },
+      {
+        "title": "Wilhelm-von-Humboldt-Gymnasium",
+        "location": "Ludwigshafen, Germany",
+        "from": "07/2006",
+        "to": "07/2012"
+      }
+    ]
+  },
+  {
+    "title": "Experience",
+    "entries": [
+      {
+        "title": "SAP SE",
+        "position":  "Associate Technology Consultant - Mobile UX",
+        "location": "Walldorf, Germany",
+        "from": "10/2020",
+        "to": "today",
+        "description": "Developing mobile solutions, e.g. SAP Asset Manager and Corona-Warn-App"
+      },
+      {
+        "title": "SAP SE",
+        "position":  "Bachelor Thesis",
+        "location": "Walldorf, Germany",
+        "from": "02/2019",
+        "to": "05/2019",
+        "description": "SAP Work-Life - Evaluating JavaScript Frontend Frameworks for enterprise use, including trend and requirements analysis"
+      },
+      {
+        "title": "SAP SE",
+        "position":  "User Experience Design",
+        "location": "Walldorf, Germany",
+        "from": "08/2018",
+        "to": "11/2018",
+        "description": "SAP Analytics Cloud - Creating a prototype with new functionalities based on customer feedback"
+      },
+      {
+        "title": "SAP SE",
+        "position":  "Consulting",
+        "location": "Dresden, Germany",
+        "from": "02/2018",
+        "to": "05/2018",
+        "description": "Utilities and Waste - IoT (photovoltaic) showcase for municipal utilities"
+      },
+      {
+        "title": "SAP SE",
+        "position":  "SAPUI5 Development",
+        "location": "Walldorf, Germany",
+        "from": "08/2017",
+        "to": "11/2017",
+        "description": "SAP Work-Life - Developing a Custom Control to edit and display formatted text in SAPUI5"
+      },
+      {
+        "title": "SAP SE",
+        "position":  "Webdevelopment",
+        "location": "Walldorf, Germany",
+        "from": "01/2017",
+        "to": "04/2017",
+        "description": "Global Design Enablement - Conceptualizing and developing solutions to simplify existing processes"
+      }
+    ]
+  },
+  {
+    "title": "Voluntary",
+    "entries": [
+      {
+        "title": "Q-Summit",
+        "position":  "Head of IT Department",
+        "location": "Mannheim, Germany",
+        "from": "07/2018",
+        "to": "05/2019",
+        "description": "Introducing Slack, G Suite and HubSpot for over 100 members"
+      },
+      {
+        "title": "Arbeitskreis Börse",
+        "position":  "Head of IT Department",
+        "location": "Mannheim, Germany",
+        "from": "04/2017",
+        "to": "08/2018",
+        "description": "Implementing G Suite and maintaining IT infrastructure (e-mails, website, communication, planning, newsletter) for over 1.000 members\""
+      },
+      {
+        "title": "Q-Summit",
+        "position":  "Co-Head of IT Department",
+        "location": "Mannheim, Germany",
+        "from": "09/2016",
+        "to": "04/2017",
+        "description": "Creating a first website and an internal communication structure"
+      },
+      {
+        "title": "TV Edigheim",
+        "position":  "Deputy Head of Department & Youth Trainer",
+        "location": "Ludwigshafen, Germany",
+        "from": "05/2012",
+        "to": "08/2016",
+        "description": "Organizing events and managing the website and training two youth teams"
+      },
+      {
+        "title": "Wirtschaftsgymnasium BBS W1",
+        "position":  "Pupil Representative",
+        "location": "Ludwigshafen, Germany",
+        "from": "08/2012",
+        "to": "08/2014",
+        "description": "Acting as link between students and teachers and organizing events"
+      }
+    ]
+  }
+]
