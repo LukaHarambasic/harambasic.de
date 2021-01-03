@@ -1,10 +1,10 @@
 {
   "name": "Luka Harambasic",
   "image": "/profile.jpg",
-  "information": [
+  "list": [
     {
-    "title": "hi@harambasic.de",
-    "url": "mailto:hi@harambasic.de"
+      "title": "hi@harambasic.de",
+      "url": "mailto:hi@harambasic.de"
     }
   ],
   "footer": {

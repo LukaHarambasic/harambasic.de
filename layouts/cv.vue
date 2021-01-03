@@ -42,8 +42,10 @@ export default {
   grid-template-areas: ". main ."
   padding: 4rem 0
   margin: 0 auto
-  background: #F1F1F5
+  background: $color-grey
   min-height: 100vh
+  @media (prefers-color-scheme: dark)
+    background: $color-primary
 main
   grid-area: main
 .back

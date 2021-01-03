@@ -33,14 +33,22 @@ export default {
   transition: $animation
   &:hover
     cursor: pointer
+  @media (prefers-color-scheme: dark)
+    background: $color-primary
   @media screen and (max-width: $breakpoint-mobile)
     display: none
   svg
     fill: $color-primary
     width: 2rem
     height: 2rem
+    @media (prefers-color-scheme: dark)
+      fill: $color-secondary
   &.inverted
     background: $color-primary
+    @media (prefers-color-scheme: dark)
+      background: $color-secondary
     svg
       fill: $color-secondary
+      @media (prefers-color-scheme: dark)
+        fill: $color-primary
 </style>

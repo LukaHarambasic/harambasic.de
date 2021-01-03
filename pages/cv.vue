@@ -1,6 +1,7 @@
 <template>
   <client-only>
     <resume
+      class="cv"
       :segments="segments"
       :skills="skills"
       :information="information"
@@ -32,4 +33,7 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+.cv
+  border: 1px solid $color-dark
+</style>
