@@ -20,7 +20,11 @@ export default {
   components: { IconsBack, IconsWrapper, Cookie },
   methods: {
     back() {
-      this.$router.go(-1)
+      if (window.history.length === 2) {
+        this.$router.push('/')
+      } else {
+        this.$router.go(-1)
+      }
     },
   },
   head() {
