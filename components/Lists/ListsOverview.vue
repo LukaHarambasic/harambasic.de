@@ -15,7 +15,7 @@
     </ul>
     <!-- TODO add lists feed if wanted-->
     <base-footnote>
-      Check out the <a href="TBD">RSS feed</a> or
+      Check out
       <a :href="globals.twitterURL">my Twitter account</a>
       to keep up to date.
     </base-footnote>
