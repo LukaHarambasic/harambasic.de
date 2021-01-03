@@ -9,48 +9,52 @@ entries:
     description: Channel based communication tool which can be extended with bots.
     logo: /lists/digital_tools/slack.svg
     url: https://slack.com
-  - title: Google Workspaces
+  - title: Google Workspace
     description:
-    logo:
-    url:
-  - title: Toggl
+    logo: /lists/digital_tools/google.svg
+    url: https://workspace.google.com/
+  - title: Toggl Track
     description:
-    logo:
-    url:
+    logo: /lists/digital_tools/toggl.jpg
+    url: https://toggl.com/track/
   - title: Enpass
     description:
-    logo:
-    url:
+    logo: /lists/digital_tools/enpass.svg
+    url: https://www.enpass.io/
   - title: Dropbox
     description:
-    logo:
-    url:
+    logo: /lists/digital_tools/dropbox.svg
+    url: https://dropbox.com
   - title: Figma
     description:
-    logo:
-    url:
+    logo: /lists/digital_tools/figma.svg
+    url: https://www.figma.com/
   - title: VS Code
     description:
-    logo:
-    url:
-  - title: Pixelmator
+    logo: /lists/digital_tools/vscode.svg
+    url: https://code.visualstudio.com/
+  - title: Pixelmator Classic
     description:
-    logo:
-    url:
+    logo: /lists/digital_tools/pixelmator.png
+    url: https://www.pixelmator.com/mac/
   - title: Webstorm
     description:
-    logo:
-    url:
-  - title: Duet
-    description:
-    logo:
-    url:
+    logo: /lists/digital_tools/webstorm.svg
+    url: https://www.jetbrains.com/webstorm/
   - title: Clipy
     description:
-    logo:
-    url:
-  - title: Magnet Tool <<TBDw>>
+    logo: /lists/digital_tools/clipy.png
+    url: https://clipy-app.com/
+  - title: Rectangle
     description:
-    logo:
-    url:
+    logo: /lists/digital_tools/rectangle.png
+    url: https://rectangleapp.com/
+  - title: Spark
+    description:
+    logo: /lists/digital_tools/spark.svg
+    url: https://sparkmailapp.com/
+  - title: Bookmark Divider
+    description:
+    logo: /lists/digital_tools/bookmarkdivider.svg
+    url: https://bookmark-divider.netlify.app/
 

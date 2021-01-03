@@ -20,7 +20,6 @@ export default {
   components: { IconsBack, IconsWrapper, Cookie },
   methods: {
     back() {
-      console.log('BACK')
       this.$router.go(-1)
     },
   },
