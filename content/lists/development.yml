@@ -14,7 +14,7 @@ entries:
     logo: /lists/development/selenium.svg
     url: https://www.selenium.dev/
   - title: nuxt/content
-    description: File based CMS for Nuxt, apropos this website is powerde by nuxt/content.
+    description: File based CMS for Nuxt, apropos this website is powered by nuxt/content.
     logo: /lists/development/nuxtcontent.svg
     url: https://content.nuxtjs.org/
   - title: Netlify
@@ -22,7 +22,7 @@ entries:
     logo: /lists/development/netlify.svg
     url: https://www.netlify.com/
   - title: Vercel
-    description: Same as Netlify but I prefer Vercel for projects with serverless functions.
+    description: Same as Netlify, but I prefer Vercel for projects with serverless functions.
     logo: /lists/development/vercel.svg
     url: https://vercel.com/
   - title: GitHub Actions

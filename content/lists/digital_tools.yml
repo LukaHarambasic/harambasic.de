@@ -1,5 +1,5 @@
 title: Digital Tools
-description: Tools I use day per day or used in the past. I recommend this tools because I think they are the best in there field.
+description: Tools I use day per day or used in the past. I recommend this tools because I think they are the best in their field.
 entries:
   - title: Enpass
     description: I bought this password manager before they started the subscription model. Therefore, I can use it without any monthly fees.
@@ -14,7 +14,7 @@ entries:
     logo: /lists/digital_tools/figma.svg
     url: https://www.figma.com/
   - title: Webstorm
-    description: I like it as it just works and has all the features I need build in.
+    description: I like it as it just works and has all the features I need built-in.
     logo: /lists/digital_tools/webstorm.svg
     url: https://www.jetbrains.com/webstorm/
   - title: Clipy
@@ -58,6 +58,6 @@ entries:
     logo: /lists/digital_tools/google.svg
     url: https://workspace.google.com/
   - title: Toggl Track
-    description: It's interesting to know where I spend my time, I primarly use it for side projects.
+    description: It's interesting to know where I spend my time, I primarily use it for side projects.
     logo: /lists/digital_tools/toggl.jpg
     url: https://toggl.com/track/
