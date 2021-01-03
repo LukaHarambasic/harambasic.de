@@ -35,5 +35,7 @@ export default {
 
 <style lang="sass" scoped>
 .cv
-  border: 1px solid $color-dark
+  @media (prefers-color-scheme: dark)
+    border-radius: $border-radius
+    border: 1px solid $color-dark
 </style>
