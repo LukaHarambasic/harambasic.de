@@ -86,8 +86,8 @@ li
       display: grid
       justify-content: center
       img
-        width: 100%
-        height: 100%
+        width: 5rem
+        height: 5rem
         background: $color-light
         border-radius: $border-radius
         box-shadow: $box-shadow
