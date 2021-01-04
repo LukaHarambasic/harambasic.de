@@ -20,7 +20,7 @@ export default {
   components: { IconsBack, IconsWrapper, Cookie },
   methods: {
     back() {
-      if (window.history.length === 2) {
+      if (window.history.length <= 2) {
         this.$router.push('/')
       } else {
         this.$router.go(-1)
@@ -51,7 +51,9 @@ export default {
   @media (prefers-color-scheme: dark)
     background: $color-primary
   @media screen and (max-width: $breakpoint-mobile)
-    padding: 2rem 0
+    grid-template-columns: 1fr
+    grid-template-areas: "main"
+    padding: 2rem
 main
   grid-area: main
 .back
