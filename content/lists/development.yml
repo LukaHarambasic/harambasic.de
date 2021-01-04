@@ -34,3 +34,7 @@ entries:
     description: "Tool to help you host Google fonts without the CDN. Why should you care? GDPR, Performance, Control."
     logo:
     url: https://google-webfonts-helper.herokuapp.com/fonts
+  - title: vue-resume-component
+    description: My first npm package which is also powering the CV at this page.
+    logo: /lists/development/vueresumecomponent.svg
+    url: https://www.npmjs.com/package/vue-resume-component
