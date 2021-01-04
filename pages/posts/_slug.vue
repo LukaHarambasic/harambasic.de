@@ -51,13 +51,6 @@ export default {
           content: this.post.tags ? this.post.tags.join(', ') : '',
         },
       ],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: `${global.baseURL}/posts/${this.$route.params.slug}`,
-        },
-      ],
     }
   },
 }

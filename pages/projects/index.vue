@@ -30,13 +30,6 @@ export default {
     return {
       title: this.meta.title,
       meta: [...this.meta],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: `${this.globals.baseURL}/projects`,
-        },
-      ],
     }
   },
 }

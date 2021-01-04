@@ -30,13 +30,6 @@ export default {
     return {
       title: `${this.list.title} - ${this.globals.title}`,
       meta: [...this.meta],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: `${this.globals.baseURL}/lists/${this.$route.params.slug}`,
-        },
-      ],
     }
   },
 }
