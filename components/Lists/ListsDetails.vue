@@ -62,11 +62,11 @@ li
     width: calc(100% + (2 * 1rem))
     margin: 0 0 0 -1rem
   > a
-    display: grid
-    grid-template-areas: "logo content"
-    grid-template-columns: 5rem 1fr
-    grid-template-rows: auto
-    grid-gap: 2rem
+    display: flex
+    flex-wrap: nowrap
+    flex-direction: row
+    justify-content: start
+    align-content: start
     text-decoration: none
     color: $color-primary
     transition: $animation
@@ -77,19 +77,19 @@ li
       &:hover
         color: $color-primary
     @media screen and (max-width: $breakpoint-mobile)
-      grid-template-areas: "logo" "content"
-      grid-template-columns: auto
-      grid-template-rows: 5rem 1fr
-      grid-gap: 1rem
+      flex-direction: column
     &:hover
       background: $color-secondary
     .logo
-      grid-area: logo
+      flex: 0 0 auto
       height: 5rem
+      width: 5rem
+      margin: 0 2rem 0 0
       display: grid
       justify-content: center
       @media screen and (max-width: $breakpoint-mobile)
-        display: block
+        margin: 0 0 1rem 0
+        height: auto
       img
         width: 5rem
         height: 5rem
@@ -100,8 +100,6 @@ li
     .header
       line-height: 1
       margin: 0 0 .25rem 0
-    .content
-      grid-area: content
     .title
       font-size: 1.5rem
       font-weight: bold
