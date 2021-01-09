@@ -65,8 +65,8 @@ li
     display: flex
     flex-wrap: nowrap
     flex-direction: row
-    justify-content: start
-    align-content: start
+    justify-content: flex-start
+    align-content: flex-start
     text-decoration: none
     color: $color-primary
     transition: $animation
