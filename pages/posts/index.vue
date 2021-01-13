@@ -11,7 +11,7 @@ export default {
   components: { PostsOverview },
   async asyncData({ $content }) {
     return {
-      posts: await $content('posts').sortBy('published').fetch(),
+      posts: await $content('posts').sortBy('publishedAt', 'desc').fetch(),
     }
   },
   computed: {

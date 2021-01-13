@@ -6,7 +6,7 @@
           <div class="meta">
             <h2 class="title p-name" v-text="post.title" />
             <time class="date dt-published" :datetime="post.publishedAt">
-              <a :href="fullPath" class="u-url">
+              <a :href="fullPath(post.path)" class="u-url">
                 {{ post.publishedAt | date }}
               </a>
             </time>
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     fullPath(path) {
-      return `${this.globals.baseURL}${this.post.path}`
+      return `${this.globals.baseURL}${path}`
     },
   },
 }
