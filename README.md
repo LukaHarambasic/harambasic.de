@@ -32,4 +32,5 @@ $ npm run generate
 Copyright 2021 Luka Harambasic and other contributors
 
 Code licensed under the MIT License: http://opensource.org/licenses/MIT
+
 Articles licensed under CC-BY 4.0: https://creativecommons.org/licenses/by/4.0/
