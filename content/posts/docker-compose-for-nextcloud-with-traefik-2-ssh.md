@@ -3,7 +3,7 @@ title: Docker Compose for NextCloud with Traefik 2 (SSL)
 description: I faced some problems to set up NextCloud with Traefik and that's why I share my docker-compose.yml.
 image: /posts/docker-compose-for-nextcloud-with-traefik-2-ssh/header.png
 alt: Extract from the docker-compose.yml for a NextCloud set up with Traefik
-publishedAt: 1212-12-12
+publishedAt: 2021-01-13
 tags: 
     - NextCloud
     - Docker
