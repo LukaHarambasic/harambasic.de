@@ -10,7 +10,7 @@ tags:
     - Traefik
     - Docker Compose
 tldr: 'Here is the <a href="#complete-docker-composeyml">docker-compose.yml</a> you are looking for.'
-tweet: TBD
+tweet: https://twitter.com/luka_harambasic/status/1349487071614930944
 ---
 
 __This is not a tutorial!__
