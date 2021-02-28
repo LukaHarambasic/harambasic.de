@@ -20,6 +20,26 @@
     ]
   },
   {
+    "title": "Software",
+    "entries": [
+      {
+        "title": "Google Workspace"
+      },
+      {
+        "title": "Microsoft 365"
+      },
+      {
+        "title": "Sketch"
+      },
+      {
+        "title": "Figma"
+      },
+      {
+        "title": "Zapier"
+      }
+    ]
+  },
+  {
     "title": "Development",
     "entries": [
       {
@@ -49,33 +69,13 @@
     ]
   },
   {
-    "title": "Software",
-    "entries": [
-      {
-        "title": "G Suite"
-      },
-      {
-        "title": "Office 365"
-      },
-      {
-        "title": "Sketch"
-      },
-      {
-        "title": "Figma"
-      },
-      {
-        "title": "Zapier"
-      }
-    ]
-  },
-  {
     "title": "Language",
     "entries": [
       {
-        "title": "German"
+        "title": "German (native)"
       },
       {
-        "title": "English"
+        "title": "English (fluent)"
       }
     ]
   }

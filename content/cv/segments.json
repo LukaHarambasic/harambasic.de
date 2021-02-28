@@ -3,14 +3,15 @@
     "title": "Education",
     "entries": [
       {
-        "title": "Student at the Corporative State University Baden-Württemberg (DHBW)",
+        "title": "Corporative State University Baden-Württemberg (DHBW)",
         "location": "Mannheim, Germany",
         "from": "09/2016",
         "to": "09/2019",
-        "description": "Business Informatics (focusing on Sales and Consulting) at SAP"
+        "description": "Business Informatics (focusing on Sales and Consulting) with SAP"
       },
       {
-        "title": "Wirtschaftsgymnasium BBS W1 (Highschool focusing on Business Studies)",
+        "title": "Wirtschaftsgymnasium BBS W1",
+        "position": "Highschool",
         "location": "Ludwigshafen, Germany",
         "from": "07/2012",
         "to": "07/2015",
@@ -18,6 +19,7 @@
       },
       {
         "title": "Wilhelm-von-Humboldt-Gymnasium",
+        "position": "Highschool",
         "location": "Ludwigshafen, Germany",
         "from": "07/2006",
         "to": "07/2012"
@@ -25,15 +27,15 @@
     ]
   },
   {
-    "title": "Experience",
+    "title": "Professionell experience",
     "entries": [
       {
         "title": "SAP SE",
-        "position":  "Associate Technology Consultant - Mobile UX",
+        "position":  "Associate Technology Consultant",
         "location": "Walldorf, Germany",
-        "from": "10/2020",
+        "from": "10/2019",
         "to": "today",
-        "description": "Developing mobile solutions, e.g. SAP Asset Manager and Corona-Warn-App"
+        "description": "Developing mobile solutions focusing on user experience in the EMEA region, e.g. SAP Asset Manager and Corona-Warn-App"
       },
       {
         "title": "SAP SE",
@@ -53,7 +55,7 @@
       },
       {
         "title": "SAP SE",
-        "position":  "Consulting",
+        "position":  "Consultant",
         "location": "Dresden, Germany",
         "from": "02/2018",
         "to": "05/2018",
@@ -61,7 +63,7 @@
       },
       {
         "title": "SAP SE",
-        "position":  "SAPUI5 Development",
+        "position":  "Development",
         "location": "Walldorf, Germany",
         "from": "08/2017",
         "to": "11/2017",
@@ -69,7 +71,7 @@
       },
       {
         "title": "SAP SE",
-        "position":  "Webdevelopment",
+        "position": "Development",
         "location": "Walldorf, Germany",
         "from": "01/2017",
         "to": "04/2017",
@@ -78,47 +80,55 @@
     ]
   },
   {
-    "title": "Voluntary",
+    "title": "Volunteering experience",
     "entries": [
       {
-        "title": "Q-Summit",
-        "position":  "Head of IT Department",
+        "title": "Tech4Schools",
+        "position": "Consultant",
         "location": "Mannheim, Germany",
-        "from": "07/2018",
+        "from": "01/2021",
+        "to": "today",
+        "description": "Conducting trainings for teachers to empower them in the use of digital tools"
+      },
+      {
+        "title": "Active Ambassadors",
+        "position": "Founder",
+        "location": "Mannheim, Germany",
+        "from": "01/2021",
+        "to": "today",
+        "description": "Raising awareness for NGOs"
+      },
+      {
+        "title": "S-HUB",
+        "position": "Consultant",
+        "location": "Mannheim, Germany",
+        "from": "",
+        "to": "01/2020",
+        "description": "Supporting participants of the incubator by technical decisions"
+      },
+      {
+        "title": "Q-Summit",
+        "position": "Head of IT Department",
+        "location": "Mannheim, Germany",
+        "from": "09/2016",
         "to": "05/2019",
-        "description": "Introducing Slack, G Suite and HubSpot for over 100 members"
+        "description": "Introducing Slack, G Suite and HubSpot to the largest by students organized startup conference in germany"
       },
       {
         "title": "Arbeitskreis Börse",
-        "position":  "Head of IT Department",
+        "position": "Head of IT Department",
         "location": "Mannheim, Germany",
         "from": "04/2017",
         "to": "08/2018",
-        "description": "Implementing G Suite and maintaining IT infrastructure (e-mails, website, communication, planning, newsletter) for over 1.000 members\""
-      },
-      {
-        "title": "Q-Summit",
-        "position":  "Co-Head of IT Department",
-        "location": "Mannheim, Germany",
-        "from": "09/2016",
-        "to": "04/2017",
-        "description": "Creating a first website and an internal communication structure"
+        "description": "Implementing G Suite and maintaining IT infrastructure (e-mails, website, communication, planning, newsletter) for the oldest finance student society in germany"
       },
       {
         "title": "TV Edigheim",
-        "position":  "Deputy Head of Department & Youth Trainer",
+        "position": "Deputy Head of Department & Youth Trainer",
         "location": "Ludwigshafen, Germany",
         "from": "05/2012",
         "to": "08/2016",
-        "description": "Organizing events and managing the website and training two youth teams"
-      },
-      {
-        "title": "Wirtschaftsgymnasium BBS W1",
-        "position":  "Pupil Representative",
-        "location": "Ludwigshafen, Germany",
-        "from": "08/2012",
-        "to": "08/2014",
-        "description": "Acting as link between students and teachers and organizing events"
+        "description": "Organizing events, managing the website and training two youth teams at a local handball club"
       }
     ]
   }
