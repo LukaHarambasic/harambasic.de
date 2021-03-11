@@ -3,7 +3,7 @@ title: My Nerd Way
 description: How I became who I am
 image: TBD
 alt: TBD
-publishedAt: TBD
+publishedAt: 1970-01-01
 tags: 
     - TBD
 tldr: TBD
@@ -21,7 +21,11 @@ Inspired by alphalist podcast, nominate 3 others
 7. Studied -> learned ui5 and then vue/nuxt, headless cms, netlify/vercel
 8. Technology consultant
 
-List of "Nerd Ways"
+List of "Nerd Ways" -> https://harambasic.de/lists/nerd-ways
+
+## Preamble
+
+Inspire others, find it inspiring, idea form alphalist CTO
 
 ## 1. Get to know the internet
 
