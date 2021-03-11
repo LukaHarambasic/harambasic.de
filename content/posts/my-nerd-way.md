@@ -32,7 +32,7 @@ Inspire others, find it inspiring, idea form alphalist CTO
 // TODO: Add that I was something like 11
 There was and still is a plattform called _Knuddels_, now days I would describe it RTC with some extensions like minigames. If you where an active user you got promoted as a _Family Member_, with this new rank you got new features, and the one I remember most and somehow has kicked of my Nerd Way was the so called "homepage". If you visited my profile you could learn more about me on my homepage, I think it wasn't public facing only members where able to access it. My one was very boring, others had nice borders around each content box. I got curious and found some templates I could copy over, that weren't even HTML they were written in (BBCode)[https://en.wikipedia.org/wiki/BBCode]. I'm not sure when I have seen it the last time, maybe in a forum around that time? But just having something nice looking wasn't enough I wanted to make it my own. After a while I recognized how powerful the `style` attribute is, and I changed everything. The next community I joined was _Pennergame_, it was also browser based like _Knuddels_ but it was a game. You where in the role of a homeless collecting bottles to gain money to buy weapons and fight against other. Can't imagine what would happen if this game would have relaunched today and fourteen year old children would play it. In this game you had a clan with an information page which could be styled, again with BBCodes, but to make it even better you used images. I think it was the first time I used GIMP. As I write this I also understand why I am so addicted to the web. It accompanies me since my youth and everybody from my friends was able to access it (ok most of them :D).
 
-# The website builder
+## The website builder
 
 ![Website with an dropshadow and border radius as image](/posts/my-nerd-way/my_nerd_way_shadow_rounded_corner.png)
 
@@ -57,5 +57,6 @@ The next step was to publish my own website, to be honest I can't even remember 
 
 I also used `id` for everything instead of `class`. Every website had this glossy well-known Web 2.0 button. I think I used masks in GIMP the first time to achieve this. It was quite some fun to rebuild this in Figma, which is the third generation of graphic tools I use. 
 
-![Glossy Web 2.0 button with the text: Click Me](/posts/my-nerd-way/my_nerd_way_glossy_button.png)
+![Glossy Web 2.0 button with the text: Click Me](/posts/my-nerd-way/my_nerd_way_glossy_button.svg)
 
+Wood picture: https://unsplash.com/photos/q2Fyzn-KJOQ
