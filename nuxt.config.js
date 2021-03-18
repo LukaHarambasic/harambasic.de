@@ -119,9 +119,6 @@ export default {
   sitemap: {
     hostname: globals.baseURL,
     trailingSlash: true,
-    routes() {
-      return getRoutes()
-    },
   },
   /*
    ** RSS Feed Configuration (https://github.com/nuxt-community/feed-module)
