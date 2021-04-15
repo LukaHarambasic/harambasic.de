@@ -92,6 +92,10 @@ I had a lot of fun dealing with the topic so it was totally worth it. And for no
 - _Turn on your camera_: Not only in these remote times it is nice to see your counterpart. So please be the counterpart you wish
 If you want to get a more expensive inspiration I can recommend the video "[Next Level Video Calls | Best Homeoffice Setup Money Can Buy](https://www.youtube.com/watch?v=rnZ-FHfrpAM)" from Christoph Magnussen.
 
+[/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-apple-airpod-pro.mp3](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-apple-airpod-pro.mp3)
+
+[/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/light-cold.mp4](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/light-cold.mp4)
+
 <base-callout>I only linked to the manufactures, most of the time it's more expensive than other retailers. So please check the prices :)</base-callout>
 
 <base-thanks>Thanks to all my colleagues and friends who had to endure me during the trial and error phase.</base-thanks>
