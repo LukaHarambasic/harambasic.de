@@ -43,24 +43,11 @@ All of this is still pretty basic and I would like to do even more with it.
 
 One of the goals was to not spend a fortune but still have a significantly better quality than from my AirPod Pros. I also wanted a stand as I wasn't certain if I want to spend extra 20€ on an arm and I can tell you: get an arm for your microphone. Otherwise, it's quite annoying as it's always in the way, and you are too far away to get a nice audio quality. But it's still nice to have a microphone with an integrated stand as I can change locations, which is relevant for our podcast recordings. With all that in mind, I went for the [Rode NT-USB Mini](https://en.rode.com/microphones/nt-usb_mini) and until now, I only got compliments about the sound quality. But to be honest, 50% of the sound is the microphone arm, it just sounds more professional if you see this in my webcam image. If you don't need a built-in stand you should check out the [Rode Podcaster](https://en.rode.com/microphones/podcaster). As an alternative, I would go for some wired headphones with a microphone you got with smartphones are buy some for around 20€.
 
-**Sample** TBD
-
-- Air Pod Pro
-- NT-USB Mini
-
 ## Light
 
 > [Elgato Ring Light](https://www.elgato.com/en/ring-light) (200€)
 
 I was quickly certain that I want a Ring Light as I don't want to do a full-blown light setup and I like the look of a Ring Light. I may also have been influenced by the video "[Elgato's new Ringlight. But for whom?](https://www.youtube.com/watch?v=cmWhMVjlpB8)" (german). Most cheap Ring Lights come with a Tripod and in my current setup, this doesn't make any sense. I'm also thinking about getting a height-adjustable table, so I only wanted to go with a table clamp. I also had my first contact with Elgato due to my Streamdeck and I liked the product. For me, someone who knows nothing about light, I was struggling to pay so much money for something which makes me brighter. I went for this light because it was convenient, and I was pretty confident that the quality will be right. As an alternative, you can use a reading lamp or turn your desk to your window so that you benefit from natural light. Or maybe the [Razer Ring Light](https://www.razer.com/gb-en/streaming-accessories/razer-ring-light/RZ19-03660100-R3M1) is something for you with 90€.
-
-**Sample** TBD
-
-- Default Light
-- Without Light
-- Warm
-- Cold
-
 
 ## Camera
 
@@ -78,23 +65,25 @@ I watched some comparison videos to get an understanding of the differences and 
 
 Most 25€ Full-HD webcams would almost look the same on a small square in your favorite video call software, e.g. [this one](https://www.aukey.com/products/fhd-webcam-1080p-live-streaming-camera-with-stereo-microphone).
 
-**Sample** TBD
+## Sampels
 
-- Build In Macbook
-- Smartphone
-- GoPro Hero Black 8
-- Logitech Streamcam
+* Audio
+  * [Apple Airpod Pro](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-apple-airpod-pro.mp3)
+  * [Apple Macbook Pro 16"](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-apple-macbook-16.mp3)
+  * [Rode NT USB Mini](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-rode-nt-usb-mini.mp3)
+* Elgato Ringlight
+  * [Room Light](https://youtu.be/sezazYiPF1U)
+  * [Warm Light](https://youtu.be/RmJOWQRzV0g)
+  * [Cold Light](https://youtu.be/-EFDw52akpk)
+  * [Default Light](https://youtu.be/FjO4sqxct2o)
+* [Overall Setup](https://youtu.be/v9BVyhclOtk)
 
 ## Conclusion
 
-I had a lot of fun dealing with the topic so it was totally worth it. And for now, I have the perfect setup for my requirements. All of this could be a lot cheaper, but this would require more tinkering and is probably not as convenient as this setup. Having a setup like this is for me mainly about fun. And I'm still not a streamer or content creator who needs this. But there are two points you should follow:
+I had a lot of fun dealing with the topic so it was totally worth it. For now, I have the perfect setup for my requirements. All of this could be a lot cheaper, but this would require more tinkering and is probably not as convenient as this setup. Having a setup like this is for me mainly about fun. And I'm still not a streamer or content creator who needs this. There are two points you should follow:
 - _Always use a headset_: It can be quite annoying if your counterparts hear themselves in your microphone. Think about a long conference call...
 - _Turn on your camera_: Not only in these remote times it is nice to see your counterpart. So please be the counterpart you wish
 If you want to get a more expensive inspiration I can recommend the video "[Next Level Video Calls | Best Homeoffice Setup Money Can Buy](https://www.youtube.com/watch?v=rnZ-FHfrpAM)" from Christoph Magnussen.
-
-[/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-apple-airpod-pro.mp3](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-apple-airpod-pro.mp3)
-
-[/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/light-cold.mp4](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/light-cold.mp4)
 
 <base-callout>I only linked to the manufactures, most of the time it's more expensive than other retailers. So please check the prices :)</base-callout>
 
