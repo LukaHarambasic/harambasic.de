@@ -1,14 +1,14 @@
 <template>
   <article class="post h-entry">
     <header>
-      <h1 class="p-name" v-text="list.title" />
+      <h1 v-text="list.title" />
       <p v-text="list.description" />
     </header>
     <section>
       <ul>
-        <li v-for="entry in list.entries" :key="entry.title">
+        <li v-for="(entry, index) in list.entries" :key="index">
           <a :href="entry.url">
-            <div class="logo">
+            <div v-if="!list.hideLogos" class="logo">
               <img v-if="entry.logo" :src="entry.logo" :alt="entry.title" />
             </div>
             <div class="content">
@@ -71,7 +71,7 @@ li
     color: $color-primary
     transition: $animation
     border-radius: $border-radius
-    padding: 1rem
+    padding: 2rem
     @media (prefers-color-scheme: dark)
       color: $color-light
       &:hover
