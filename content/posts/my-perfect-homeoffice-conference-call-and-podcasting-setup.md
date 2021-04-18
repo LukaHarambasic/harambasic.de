@@ -11,7 +11,7 @@ tags:
     - Streamdeck
     - Ring Light
 tldr: You don't have to spend a fortune, but it's a lot of fun to put a little money in your hand.
-tweet: 
+tweet: https://twitter.com/luka_harambasic/status/1383820044082106371
 ---
 
 A friend had the idea for our podcast [Techmob Show](https://techmob.show) (german). I got one requirement before we would start the first recording: get a new microphone. During this time a colleague also stepped up his camera game which got me thinking. And so one thing led to another... 
