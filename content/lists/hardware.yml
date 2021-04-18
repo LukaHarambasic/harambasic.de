@@ -1,0 +1,20 @@
+title: Hardware
+description: Hardware I use regularly and recommend.
+image: /lists/hardware/main.png
+hideLogos: true
+entries:
+  - title: Apple MacBook Pro 15" (Mid 2014)
+    description: "Specs: 2,2 GHz Quad-Core Intel Core i7 (Processor), 16 GB (Memory), Intel Iris Pro 1536 MB (Graphics), 250 GB (Storage)"
+    url: https://support.apple.com/kb/SP704?locale=en_US&viewlocale=en_US
+  - title: Rode NT-USB Mini
+    description: Nice quality (as far as I can tell) and can be used without an arm.
+    url: https://en.rode.com/microphones/nt-usb_mini
+  - title: Logitech Streamcam
+    description: Supports default mounting options and produces a pretty good Full HD image.
+    url: https://www.logitech.com/de-de/products/webcams/streamcam.960-001281.html
+  - title: Elgato Ring Light
+    description: Quite expansive, but the warmness (Kelvin) and brightness can be adjusted seamlessly (Mobile & Desktop).
+    url: https://www.elgato.com/en/ring-light
+  - title:  Elgato Streamdeck
+    description: Programmable keyboard with displays which shows different keys depending on the context.
+    url: https://www.elgato.com/en/stream-deck

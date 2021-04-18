@@ -8,7 +8,7 @@ export default {
   type: 'website',
   twitterHandle: '@luka_harambasic',
   twitterURL: 'https://twitter.com/luka_harambasic',
-  githubURL: 'https://github.com/LukaHarambasic/harambasic.de',
+  githubURL: 'https://github.com/LukaHarambasic',
   linkedinURL: 'https://www.linkedin.com/in/harambasic/',
   blogFeedURL: 'https://harambasic.de/posts/rss.xml',
   email: 'hi@harambasic.de',
