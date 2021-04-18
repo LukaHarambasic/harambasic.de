@@ -1,10 +1,11 @@
 ---
-title: My perfect Homeoffice Conference Call & Podcasting Setup
-description: 
+title: My perfect Home-Office Conference Call & Podcasting Setup
+description: Overview for my perfect Homeoffice Conference Call & Podcasting Setup.
 image: /posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/setup_overview.png
-alt: 
-publishedAt: 1970-01-01
-tags:   
+alt: Desk with camera, ring light, display, microphone with an arm, stream deck and MacBook.
+publishedAt: 2021-04-18
+tags: 
+    - Home-Office 
     - Camera
     - Microphone
     - Streamdeck
@@ -53,7 +54,7 @@ I was quickly certain that I want a Ring Light as I don't want to do a full-blow
 
 > [Logitech Streamcam](https://www.logitech.com/de-de/products/webcams/streamcam.960-001281.html) (160 €)
 
-Like most people in home office I used my built-in laptop camera and to honest the first half of the year I never turned it on. In the meantime, my opinion changed and I think everyone should turn on their cameras. It still doesn't replace a real meeting, but it brings you a little closer. Most of the time the built-in camera is very unfavorable as it records your nostrils has a poor low light performance and a bad resolution.
+Like most people in Home-Office I used my built-in laptop camera and to honest the first half of the year I never turned it on. In the meantime, my opinion changed and I think everyone should turn on their cameras. It still doesn't replace a real meeting, but it brings you a little closer. Most of the time the built-in camera is very unfavorable as it records your nostrils has a poor low light performance and a bad resolution.
 
 My first idea was to use my smartphone, as it can record in 4K, and I always have it with me, and thanks to the [Elgato EpocCam Pro App](https://www.elgato.com/en/epoccam) it's not even a problem. There is one thing I mentioned, in the beginning, I want a plug-and-play solution. Yes, this setup is straightforward, but I have to set it up multiple times a day, every day. That's not what I imagine, and I hoped to solve it with my next idea: using my [GoPro Hero 8 Black](https://gopro.com/en/us/shop/cameras/hero8-black/CHDHX-801-master.html). Also, this works okay, but the software to use your GoPro as a Webcam is very buggy, every morning I had to do some of the following stuff (in random order): restart GoPro, unplug the cable, restart the program, unplug & shutdown GoPro, start the program without the GoPro being connected. The image quality was good, and I gained the freedom to move my laptop wherever I want. Before this, it was positioned under my widescreen monitor, now he is to the right of my display.
 
