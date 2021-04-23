@@ -3,6 +3,7 @@ title: Visitorcounter
 img: visitorcounter.png
 alt: Together we developed version 1, in the background you can see the actual product.
 prio: 10
+active: false
 links:
 responsibilities:
     - Co-Lead

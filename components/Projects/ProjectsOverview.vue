@@ -2,6 +2,7 @@
   <section>
     <ul class="projects">
       <li v-for="project in projects" :key="project.slug" class="project">
+        <div v-if="project.active" class="status" />
         <div class="meta">
           <img :src="fullImagePath(project.img)" :alt="project.alt" />
         </div>
@@ -54,6 +55,7 @@ export default {
   align-content: flex-start
   align-items: flex-start
 .project
+  position: relative
   margin: 0 0 4rem 0
   background: $color-secondary
   border-radius: $border-radius
@@ -72,6 +74,15 @@ export default {
     justify-content: space-between
     align-content: stretch
     align-items: flex-start
+.status
+  position: absolute
+  top: -1rem
+  right: -1rem
+  width: 2rem
+  height: 2rem
+  border-radius: 100%
+  background: #48c78e
+  box-shadow: var(--box-shadow)
 .meta
   width: 30%
   background: $color-light
@@ -103,12 +114,7 @@ export default {
   align-content: flex-start
   align-items: flex-start
   li
-    margin: 0 .15rem 0 0
-    &:after
-      content: ', '
-    &:last-of-type
-      &:after
-        content: ''
+    margin: 0 1rem 0 0
     a
       color: $color-primary
       border-bottom: 2px solid rgba($color-primary, 1)
