@@ -9,6 +9,7 @@ import getSiteMeta from '@/assets/js/getMeta'
 export default {
   name: 'Index',
   components: { ProjectsOverview },
+  layout: 'projects',
   async asyncData({ $content }) {
     return {
       projects: await $content('projects').sortBy('prio', 'desc').fetch(),

@@ -1,5 +1,5 @@
 <template>
-  <div class="icon" :class="{ inverted: 'inverted' }">
+  <div class="icon" :class="{ inverted: 'inverted', stable: 'stable' }">
     <slot />
   </div>
 </template>
@@ -9,6 +9,10 @@ export default {
   name: 'IconsWrapper',
   props: {
     inverted: {
+      type: Boolean,
+      default: false,
+    },
+    stable: {
       type: Boolean,
       default: false,
     },
@@ -25,7 +29,7 @@ export default {
   align-content: center
   align-items: center
   background: $color-secondary
-  border-radius: 50%
+  border-radius: 100%
   font-size: 1.5rem
   line-height: 1.5rem
   padding: .5rem
@@ -48,4 +52,9 @@ export default {
       fill: $color-secondary
       @media (prefers-color-scheme: dark)
         fill: $color-primary
+  &.stable
+    background: $color-secondary
+    border: 4px solid $color-primary
+    svg
+      fill: $color-primary
 </style>
