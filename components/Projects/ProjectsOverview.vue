@@ -2,7 +2,7 @@
   <section>
     <ul class="projects">
       <li v-for="project in projects" :key="project.slug" class="project">
-        <div v-if="project.active" class="status" />
+        <div v-if="project.active" class="status">active</div>
         <div class="meta">
           <img :src="fullImagePath(project.img)" :alt="project.alt" />
         </div>
@@ -78,11 +78,11 @@ export default {
   position: absolute
   top: -1rem
   right: -1rem
-  width: 2rem
-  height: 2rem
-  border-radius: 100%
+  border-radius: $border-radius
   background: #48c78e
-  box-shadow: var(--box-shadow)
+  box-shadow: $box-shadow
+  padding: .25rem .5rem
+  font-size: .9rem
 .meta
   width: 30%
   background: $color-light
