@@ -1,7 +1,26 @@
 <template>
   <section>
-    <ul class="projects">
-      <li v-for="project in projects" :key="project.slug" class="project">
+    <icons-wrapper
+      :stable="true"
+      class="navigation next"
+      @click.native="onNextPrev('next')"
+    >
+      <icons-next />
+    </icons-wrapper>
+    <icons-wrapper
+      :stable="true"
+      class="navigation prev"
+      @click.native="onNextPrev('prev')"
+    >
+      <icons-back />
+    </icons-wrapper>
+    <ul ref="projects" class="projects">
+      <li
+        v-for="project in projects"
+        :key="project.slug"
+        ref="project"
+        class="project"
+      >
         <div v-if="project.active" class="status">active</div>
         <div class="meta">
           <img :src="fullImagePath(project.img)" :alt="project.alt" />
@@ -30,8 +49,12 @@
 </template>
 
 <script>
+import IconsWrapper from '@/components/Icons/IconsWrapper'
+import IconsBack from '@/components/Icons/IconsBack'
+import IconsNext from '@/components/Icons/IconsNext'
 export default {
   name: 'ProjectsList',
+  components: { IconsWrapper, IconsNext, IconsBack },
   props: {
     projects: {
       type: Array,
@@ -39,6 +62,16 @@ export default {
     },
   },
   methods: {
+    onNextPrev(direction) {
+      const projects = this.$refs.projects
+      const project = this.$refs.project[0]
+      const currentScrollPosition = projects.scrollLeft
+      const newScrollPosition =
+        direction === 'next'
+          ? currentScrollPosition + project.offsetWidth
+          : currentScrollPosition - project.offsetWidth
+      projects.scroll(newScrollPosition, 0)
+    },
     fullImagePath(img) {
       return `/projects/${img}`
     },
@@ -47,16 +80,45 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+section
+  position: relative
+  .navigation
+    position: absolute
+    z-index: 200
+    height: 4rem
+    width: 4rem
+    top: calc(50% - 2rem)
+    box-shadow: $box-shadow
+    @media screen and (max-width: $breakpoint-mobile)
+      height: 3rem
+      width: 3rem
+      top: 25%
+    &.next
+      right: 1rem
+      @media screen and (max-width: $breakpoint-mobile)
+        right: -1.5rem
+    &.prev
+      left: 1rem
+      @media screen and (max-width: $breakpoint-mobile)
+        left: -1.5rem
 .projects
   display: flex
-  flex-direction: column
+  flex-direction: row
   flex-wrap: nowrap
   justify-content: flex-start
   align-content: flex-start
-  align-items: flex-start
+  align-items: stretch
+  overflow-x: scroll
+  scroll-snap-type: x mandatory
+  scroll-behavior: smooth
+  @media screen and (max-width: $breakpoint-mobile)
+    align-items: flex-start
 .project
   position: relative
-  margin: 0 0 4rem 0
+  scroll-snap-align: center
+  scroll-behavior: smooth
+  margin: 0 4rem 0 4rem
+  flex: 1 0 60%
   background: $color-secondary
   border-radius: $border-radius
   padding: 2rem
@@ -66,9 +128,9 @@ export default {
   justify-content: space-between
   align-content: stretch
   align-items: flex-start
-  &:last-of-type
-    margin: 0
   @media screen and (max-width: $breakpoint-mobile)
+    flex: 1 0 100%
+    margin: 0 1rem 0 1rem
     flex-direction: column
     flex-wrap: nowrap
     justify-content: space-between
@@ -76,8 +138,9 @@ export default {
     align-items: flex-start
 .status
   position: absolute
-  top: -1rem
-  right: -1rem
+  top: 1rem
+  right: 1rem
+  z-index: 500
   border-radius: $border-radius
   background: #48c78e
   box-shadow: $box-shadow
