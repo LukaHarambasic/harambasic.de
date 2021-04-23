@@ -109,7 +109,7 @@ section
   align-content: flex-start
   align-items: stretch
   overflow-x: scroll
-  scroll-snap-type: x mandatory
+  scroll-snap-type: x proximity
   scroll-behavior: smooth
   @media screen and (max-width: $breakpoint-mobile)
     align-items: flex-start
