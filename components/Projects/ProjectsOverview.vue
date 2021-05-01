@@ -89,7 +89,6 @@ export default {
   border-radius: $border-radius
   padding: 1rem
   box-shadow: $box-shadow
-  display: flex // fixes "invisible" space below image
   @media screen and (max-width: $breakpoint-mobile)
     width: 100%
   img
