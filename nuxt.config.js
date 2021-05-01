@@ -43,6 +43,7 @@ export default {
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
     link: [
+      { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         hid: 'canonical',
