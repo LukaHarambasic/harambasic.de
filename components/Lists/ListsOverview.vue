@@ -53,12 +53,11 @@ li
     justify-content: space-between
     align-content: flex-start
     align-items: center
-    margin: 0 0 1rem 0
     text-decoration: none
     color: $color-primary
     transition: $animation
     border-radius: $border-radius
-    padding: 1rem
+    padding: 2rem
     @media (prefers-color-scheme: dark)
       color: $color-light
       &:hover

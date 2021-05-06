@@ -65,7 +65,7 @@ li
     color: $color-primary
     transition: $animation
     border-radius: $border-radius
-    padding: 1rem
+    padding: 2rem
     @media (prefers-color-scheme: dark)
       color: $color-light
       &:hover
