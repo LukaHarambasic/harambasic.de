@@ -3,7 +3,7 @@ title: schmackofatz.
 img: schmackofatz.png
 alt: The map screen of schmackofatz where users see the restaurants around them.
 prio: 0
-active: false
+status: 2
 links:
     -
         title: Mockups

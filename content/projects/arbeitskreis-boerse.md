@@ -3,7 +3,7 @@ title: Arbeitskreis Börse
 img: arbeitskreis-boerse.jpg
 alt: Picture with my co-head in front of the Mannheim castle.
 prio: 70
-active: false
+status: 2
 links:
     -
         title: Website
