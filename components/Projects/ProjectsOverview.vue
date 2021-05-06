@@ -148,8 +148,9 @@ export default {
     flex-direction: row
     flex-wrap: nowrap
     justify-content: flex-start
+    font-size: 1rem
     // TODO align with date
-    padding: 0.25rem 0.5rem
+    padding: 0.35rem 0.5rem
     transition: $animation
     border-radius: $border-radius
     @media (prefers-color-scheme: dark)
