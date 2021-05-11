@@ -9,13 +9,13 @@ const meta = getSiteMeta()
 
 export default {
   /*
-   ** Nuxt target
-   ** See https://nuxtjs.org/api/configuration-target
+   * Nuxt target
+   * See https://nuxtjs.org/api/configuration-target
    */
   target: 'static',
   /*
-   ** Headers of the page
-   ** See https://nuxtjs.org/api/configuration-head
+   * Headers of the page
+   * See https://nuxtjs.org/api/configuration-head
    */
   head: {
     title: globals.title,
@@ -53,18 +53,18 @@ export default {
     ],
   },
   /*
-   ** Global CSS
+   * Global CSS
    */
   css: ['@/assets/style/main.sass', '@/assets/style/fontfaces.css'],
   /*
-   ** Load Variables
+   * Load Variables
    */
   styleResources: {
     sass: ['@/assets/style/_variables.sass'],
   },
   /*
-   ** Plugins to load before mounting the App
-   ** https://nuxtjs.org/guide/plugins
+   * Plugins to load before mounting the App
+   * https://nuxtjs.org/guide/plugins
    */
   plugins: [
     '@/plugins/mixins.js',
@@ -75,12 +75,12 @@ export default {
     },
   ],
   /*
-   ** Auto import components
-   ** See https://nuxtjs.org/api/configuration-components
+   * Auto import components
+   * See https://nuxtjs.org/api/configuration-components
    */
   components: true,
   /*
-   ** Nuxt.js dev-modules
+   * Nuxt.js dev-modules
    */
   buildModules: [
     '@nuxtjs/eslint-module',
@@ -88,7 +88,7 @@ export default {
     '@nuxtjs/google-analytics',
   ],
   /*
-   ** Nuxt.js modules
+   * Nuxt.js modules
    */
   modules: [
     // Doc: https://github.com/nuxt/content
@@ -97,20 +97,20 @@ export default {
     '@nuxtjs/sitemap',
   ],
   /*
-   ** Content module configuration
-   ** See https://content.nuxtjs.org/configuration
+   * Content module configuration
+   * See https://content.nuxtjs.org/configuration
    */
   content: {
     liveEdit: false,
   },
   /*
-   ** Build configuration
-   ** See https://nuxtjs.org/api/configuration-build/
+   * Build configuration
+   * See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
   /*
-   ** Sitemap Configuration (https://github.com/nuxt-community/sitemap-module)
-   ** Inspired by https://github.com/garethredfern/nuxt-basic-blog
+   * Sitemap Configuration (https://github.com/nuxt-community/sitemap-module)
+   * Inspired by https://github.com/garethredfern/nuxt-basic-blog
    */
   sitemap: {
     hostname: globals.baseURL,
@@ -120,8 +120,8 @@ export default {
     },
   },
   /*
-   ** RSS Feed Configuration (https://github.com/nuxt-community/feed-module)
-   ** Inspired by https://github.com/garethredfern/nuxt-basic-blog
+   * RSS Feed Configuration (https://github.com/nuxt-community/feed-module)
+   * Inspired by https://github.com/garethredfern/nuxt-basic-blog
    */
   feed() {
     const baseUrlPosts = `${globals.baseURL}/posts`
@@ -158,8 +158,8 @@ export default {
     }))
   },
   /*
-   ** Hook to render markdown as html for the rss feed,
-   ** also adds reading time (currently not used)
+   * Hook to render markdown as html for the rss feed,
+   * also adds reading time (currently not used)
    */
   hooks: {
     'content:file:beforeInsert': (document) => {
@@ -168,5 +168,12 @@ export default {
         document.html = marked(document.text)
       }
     },
+  },
+  /*
+   * Hope to fix audio files which only work on refresh
+   * https://nuxtjs.org/docs/2.x/deployment/netlify-deployment
+   */
+  generate: {
+    fallback: true,
   },
 }
