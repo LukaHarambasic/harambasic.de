@@ -60,7 +60,7 @@ li
     flex-wrap: nowrap
     justify-content: space-between
     align-content: flex-start
-    align-items: center
+    align-items: flex-start
     text-decoration: none
     color: $color-primary
     transition: $animation
