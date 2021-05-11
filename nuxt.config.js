@@ -169,11 +169,4 @@ export default {
       }
     },
   },
-  /*
-   * Hope to fix audio files which only work on refresh
-   * https://nuxtjs.org/docs/2.x/deployment/netlify-deployment
-   */
-  generate: {
-    fallback: true,
-  },
 }
