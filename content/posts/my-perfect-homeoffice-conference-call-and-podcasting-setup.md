@@ -69,9 +69,9 @@ Most 25 € Full-HD webcams would almost look the same on a small square in your
 ## Sampels
 
 * Audio
-  * [Apple Airpod Pro](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-apple-airpod-pro.mp3)
-  * [Apple Macbook Pro 16"](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-apple-macbook-16.mp3)
-  * [Rode NT USB Mini](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/audio-rode-nt-usb-mini.mp3)
+  * [Apple Airpod Pro](https://drive.google.com/file/d/1jPfFNk7pl9RGhFwLPKQDO-qPcwzv1duZ/view?usp=sharing)
+  * [Apple Macbook Pro 16"](https://drive.google.com/file/d/1F_qAQfunPNawBvkAo05kAmx9L-KjkRF6/view?usp=sharing)
+  * [Rode NT USB Mini](https://drive.google.com/file/d/1huQ1thtXkuRGjaaytHFkYUU_l8ebZZaR/view?usp=sharing)
 * Elgato Ringlight
   * [Room Light](https://youtu.be/sezazYiPF1U)
   * [Warm Light](https://youtu.be/RmJOWQRzV0g)
