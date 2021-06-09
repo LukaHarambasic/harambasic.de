@@ -172,7 +172,7 @@ export default {
       '2xl': 1536,
     },
     presets: {
-      blog: {
+      post: {
         modifiers: {
           sizes: 'xs:200px md:500px lg:1024px',
         },
