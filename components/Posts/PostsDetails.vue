@@ -1,7 +1,11 @@
 <template>
   <article class="post h-entry">
     <section>
-      <img class="image" :src="post.image" :alt="post.alt" />
+      <nuxt-picture
+        :src="post.image"
+        :alt="post.alt"
+        sizes="xs:200px md:500px lg:1024"
+      />
       <header>
         <h1 class="title p-name" v-text="post.title" />
         <div class="row-space-between">

@@ -93,6 +93,7 @@ export default {
   modules: [
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
+    '@nuxt/image',
     '@nuxtjs/feed',
     '@nuxtjs/sitemap',
   ],
@@ -156,6 +157,27 @@ export default {
       type,
       create: createFeed,
     }))
+  },
+  /*
+   * f
+   */
+  image: {
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+      '2xl': 1536,
+    },
+    presets: {
+      blog: {
+        modifiers: {
+          sizes: 'xs:200px md:500px lg:1024px',
+        },
+      },
+    },
   },
   /*
    * Hook to render markdown as html for the rss feed,
