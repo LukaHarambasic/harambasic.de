@@ -1,0 +1,15 @@
+sequenceDiagram
+    autonumber
+    participant L as Node.js
+    participant F as Feed
+    participant P as Persistence
+    participant W as Website
+    participant I as Instagram
+    L->>F: New Episode?
+    F->>L: New episode available
+    L->>P: Persist new episode
+    L->>W: Trigger new website build
+    L->>L: Generate cover
+    L->>I: Post cover
+
+
