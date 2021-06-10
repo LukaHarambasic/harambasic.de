@@ -30,7 +30,7 @@ The posts will be linked here after they are published.
 
 ![Sequence diagram](/posts/how-to-automate-your-podcast-and-everything-around/sequence.svg)
 
-All actors are only loosely coupled components. If a new podcast episode is detected via the RSS feed from Anchor.fm (1) this information is used in all following steps (2). Persisting the episode is needed for building the website (3), but it could also directly fetch it from the RSS feed during the build step, I might change this. Our website is a static build with Nuxt.js, for that a new build needs to be triggered after the data was updated (4). Finally, the podcast cover is generated and published on Instagram.
+All actors are only loosely coupled components. If a new podcast episode is detected via the RSS feed from Anchor.fm (1) this information is used in all following steps (2). Persisting the episode is needed for building the website (3), but it could also directly fetch it from the RSS feed during the build step, I might change this. Our website is a static build with Nuxt.js, for that a new build needs to be triggered after the data was updated (4). Finally, the podcast cover is generated (5) and published on Instagram (6).
 
 ## My motivation
 
