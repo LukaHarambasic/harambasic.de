@@ -11,13 +11,13 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
-    "@nuxt/content": "^1.11.1",
+    "@nuxt/content": "^1.5.3",
     "@nuxtjs/feed": "^2.0.0",
     "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "date-fns": "^2.16.1",
-    "marked": "^1.2.7",
-    "nuxt": "^2.14.12",
+    "marked": "^2.0.7",
+    "nuxt": "^2.2.0",
     "reading-time": "^1.2.1",
     "vue-gtag": "^1.10.0",
     "vue-resume-component": "^0.2.8"
