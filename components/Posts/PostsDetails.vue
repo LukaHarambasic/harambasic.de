@@ -67,20 +67,14 @@ export default {
   @media screen and (max-width: $breakpoint-desktop)
     flex-direction: column
 .image
+  margin: 0 0 2rem 0
   border-radius: $border-radius
   width: 100%
   min-height: 16rem
-  img
-    margin: 0 0 2rem 0
-    background: $color-secondary
-    padding: 1rem
-    border-radius: $border-radius
-    width: 100%
-    min-height: 16rem
-    @media screen and (max-width: $breakpoint-desktop)
-      min-height: 12rem
-    @media screen and (max-width: $breakpoint-mobile)
-      min-height: 8rem
+  @media screen and (max-width: $breakpoint-desktop)
+    min-height: 12rem
+  @media screen and (max-width: $breakpoint-mobile)
+    min-height: 8rem
 .title
   font-size: 1.75rem
   line-height: 1.5
