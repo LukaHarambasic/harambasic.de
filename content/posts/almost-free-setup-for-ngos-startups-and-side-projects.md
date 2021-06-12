@@ -43,6 +43,8 @@ Feel free to send us [an email](mailto:luka@active-ambassadors.org) or a message
 
 ## The tools we use
 
+<nuxt-picture preset="post" src="/posts/almost-free-setup-for-ngos-startups-and-side-projects/operations_flow.png" alt="Airtable - Shipping]"></nuxt-picture>
+
 As I'm a big fan of structured content I split our tools into four categories: (1) Communication, (2) Operations, (3) Marketing and (4) Website. I'll shortly go over them and explain how we use them. We are using all of these tools in the free tier, we only have to pay for the domain & emails. If you are a registered NGO you even can use some premium tiers for free, e.g. on [Slack](https://slack.com/intl/en-de/help/articles/204368833-Apply-for-the-Slack-for-Nonprofits-discount) or [Google](https://www.google.com/nonprofits/offerings/g-suite/).
 
 ### Communication
@@ -53,7 +55,7 @@ Our main communication tool is [Slack](https://slack.com/intl/en-de/), since we 
 
 As we use [Google Calendar](https://calendar.google.com/) for invitations [Google Meet](https://meet.google.com/) was a natural fit for our calls.
 
-![Slack](/posts/almost-free-setup-for-ngos-startups-and-side-projects/slack.png)
+<nuxt-picture preset="post" src="/posts/almost-free-setup-for-ngos-startups-and-side-projects/slack.png" alt="Slack Overview"></nuxt-picture>
 
 As you can see we follow some simple naming conventions, to be honest they are a little overkill, but I'm used to it and I like conventions. These are inspired directly by [Slack](https://slack.com/intl/en-de/blog/collaboration/how-to-use-slack-channels-to-organize-your-work) and I used them in several teams. They just work even if everybody needs some time to get used to it.
 
@@ -80,17 +82,15 @@ We moved from [Google Sheets](https://www.google.com/sheets/about/) to [AirTable
 
 Our list of Active Ambassadors is somehow a mixture between a CRM and an order system, if a user fills out the form a new entry will be added with all necessary information. The ambassador will also get a confirmation via [Mailchimp](https://mailchimp.com/). The new order is also communicated via Slack, this automation is done via [IFTTT](https://ifttt.com/home).  That message in Slack triggers Leonard to start the printing and shipping process. Afterward, the status of the order is reflected manually in the sheet.
 
-![Airtable - Shipping](/posts/almost-free-setup-for-ngos-startups-and-side-projects/operations_flow.png)
-
-![Airtable - Shipping](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_shipping.png)
+<nuxt-picture preset="post" src="/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_shipping.png" alt="Airtable - Shipping"></nuxt-picture>
 
 The organization's CRM is inspired by a standard [sales funnel](https://en.wikipedia.org/wiki/Purchase_funnel). In reality, it's just a [Kanban board](https://en.wikipedia.org/wiki/Kanban_board) with four different states: First contact, Negotiation, Won and Lost. This helps us to keep track of organizations we already have contacted and creates transparency within the team.
 
-![Airtable - Organisations CRM](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_organisations.png)
+<nuxt-picture preset="post" src="/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_organisations.png" alt="Airtable - Organisations CRM"></nuxt-picture>
 
 I think there isn't much to say about our finance sheets, nothing fancy, pretty simple, and straight forward. This data is reflected on our [transparency page](https://active-ambassadors.org/transparency).
 
-![Airtable - Finances](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_finance.png)
+<nuxt-picture preset="post" src="/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_finance.png" alt="Airtable - Finances"></nuxt-picture>
 
 If [Notions](https://www.notion.so/) provides us with the same functionalities to connect other tools I would like to drop AirTable to reduce the number of tools we use.
 
@@ -106,7 +106,7 @@ In the beginning, we had a newsletter with [Mailchimp](https://mailchimp.com/), 
 
 Over the last few years, [Notion](https://www.notion.so/) has satisfied the desire of productivity junkies who want to create tools for their own needs by not writing a single line of code. It slowly spilled over into the business world, at least it looked like that to me. You can do almost everything: use it as a wiki, build a custom CRM, track your tasks, or use it as a notebook.
 
-![Notion](/posts/almost-free-setup-for-ngos-startups-and-side-projects/notion.png)
+<nuxt-picture preset="post" src="/posts/almost-free-setup-for-ngos-startups-and-side-projects/notion.png" alt="Notion"></nuxt-picture>
 
 We decided to use it for our tasks with a simple Kanban board as well for some knowledge sharing. It's still work in progress, but it's growing.
 
