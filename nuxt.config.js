@@ -45,11 +45,6 @@ export default {
     link: [
       { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        hid: 'canonical',
-        rel: 'canonical',
-        href: globals.baseURL,
-      },
     ],
   },
   /*
