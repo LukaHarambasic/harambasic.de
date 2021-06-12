@@ -174,7 +174,7 @@ export default {
     presets: {
       post: {
         modifiers: {
-          sizes: 'xs:200px md:500px lg:1024px',
+          sizes: 'xs:200px md:768px lg:1024px',
         },
       },
     },
