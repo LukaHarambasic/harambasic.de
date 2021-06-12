@@ -1,7 +1,7 @@
 <template>
   <article class="post h-entry">
     <section>
-      <nuxt-img
+      <nuxt-picture
         class="image"
         :src="post.image"
         :alt="post.alt"
@@ -56,7 +56,8 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
+// scoped leads to problems with nuxt-picture
 .post
   display: flex
   flex-direction: column
@@ -66,47 +67,50 @@ export default {
   align-items: stretch
   @media screen and (max-width: $breakpoint-desktop)
     flex-direction: column
-.image
-  margin: 0 0 2rem 0
-  border-radius: $border-radius
-  width: 100%
-  min-height: 16rem
-  @media screen and (max-width: $breakpoint-desktop)
-    min-height: 12rem
-  @media screen and (max-width: $breakpoint-mobile)
-    min-height: 8rem
-.title
-  font-size: 1.75rem
-  line-height: 1.5
-  margin: 0 0 1rem 0
-.date
-  background: $color-secondary
-  padding: .25rem .5rem
-  border-radius: $border-radius
-  font-size: .9rem
-  a
-    color: $color-primary
-    text-decoration: none
-    transition: $animation
-    border-bottom: 2px solid transparent
-    &:hover
-      border-color: $color-primary
-.tags
-  @media screen and (max-width: $breakpoint-mobile)
+  .image
+    margin: 0 0 2rem 0
+    width: 100%
+    display: block
+    source, img
+      border-radius: $border-radius
+      width: 100%
+      min-height: 16rem
+      @media screen and (max-width: $breakpoint-desktop)
+        min-height: 12rem
+      @media screen and (max-width: $breakpoint-mobile)
+        min-height: 8rem
+  .title
+    font-size: 1.75rem
+    line-height: 1.5
     margin: 0 0 1rem 0
-.author
-  width: 100%
-  text-align: center
-  a
-    color: $color-primary
+  .date
+    background: $color-secondary
+    padding: .25rem .5rem
+    border-radius: $border-radius
     font-size: .9rem
-    text-decoration: none
-    transition: $animation
-    border-bottom: 2px solid transparent
-    &:hover
-      border-color: $color-primary
-    @media (prefers-color-scheme: dark)
-      color: $color-light
+    a
+      color: $color-primary
+      text-decoration: none
+      transition: $animation
+      border-bottom: 2px solid transparent
       &:hover
-        border-color: $color-light
+        border-color: $color-primary
+  .tags
+    @media screen and (max-width: $breakpoint-mobile)
+      margin: 0 0 1rem 0
+  .author
+    width: 100%
+    text-align: center
+    a
+      color: $color-primary
+      font-size: .9rem
+      text-decoration: none
+      transition: $animation
+      border-bottom: 2px solid transparent
+      &:hover
+        border-color: $color-primary
+      @media (prefers-color-scheme: dark)
+        color: $color-light
+        &:hover
+          border-color: $color-light
 </style>
