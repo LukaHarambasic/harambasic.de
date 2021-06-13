@@ -12,7 +12,7 @@ tweet: TBD
 ---
 
 Together with two friends I'm hosting the podcast: [Techmob Show](https://techmob.show). As a developer I'm lazy, and I love to automate stuff. This post is about the general motivation behind all of this, and the kick off for all small series. Most of the following steps are worth an article while some others aren't.
-The posts will be linked here after they are published.
+The posts will be linked here after they are published. Some of the posts might be quite small, as I prefer small focused posts if I have a problem I decided to still split them up.
 
 1. How to automate your podcast and everything around it (this post)
 2. Detect changes in an RSS feed - on the basis of Anchor.fm
