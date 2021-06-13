@@ -21,6 +21,18 @@
         <!-- eslint-disable-next-line vue/no-v-html-->
         <div v-html="post.tldr" />
       </base-callout>
+      <details class="toc">
+        <summary>Table of Content</summary>
+        <ul>
+          <li
+            v-for="entry in post.toc"
+            :key="entry.id"
+            :data-depth="entry.depth"
+          >
+            <a :href="getAnchor(entry.id)">{{ entry.text }}</a>
+          </li>
+        </ul>
+      </details>
       <nuxt-content class="content e-content" :document="post" />
     </section>
     <section>
@@ -51,6 +63,11 @@ export default {
   computed: {
     fullPath() {
       return `${this.globals.baseURL}${this.post.path}`
+    },
+  },
+  methods: {
+    getAnchor(id) {
+      return `#${id}`
     },
   },
 }
@@ -98,6 +115,46 @@ export default {
   .tags
     @media screen and (max-width: $breakpoint-mobile)
       margin: 0 0 1rem 0
+  .toc
+    color: $color-primary
+    background: $color-secondary
+    transition: $animation
+    border-radius: $border-radius
+    padding: 1rem
+    margin: 0 0 2rem 0
+    &[open]
+      summary
+        margin: 0 0 1rem 0
+    summary
+      font-weight: bold
+      &:hover
+        cursor: pointer
+    ul
+      transition: $animation
+      margin: 0 0 0 0.5rem
+      li
+        margin: 0 0 0.25rem 0
+        $depth-space: 1rem
+        &[data-depth="2"]
+          margin-left: 0 * $depth-space
+        &[data-depth="3"]
+          margin-left: 1 * $depth-space
+        &[data-depth="4"]
+          margin-left: 2 * $depth-space
+        &[data-depth="5"]
+          margin-left: 3 * $depth-space
+        &[data-depth="6"]
+          margin-left: 4 * $depth-space
+        a
+          color: $color-primary
+          border-bottom: 2px solid transparent
+          transition: $animation
+          text-decoration: none
+          line-height: 1
+          &:hover
+            border-color: rgba($color-primary, .3)
+          &:before
+            content: '» '
   .author
     width: 100%
     text-align: center
