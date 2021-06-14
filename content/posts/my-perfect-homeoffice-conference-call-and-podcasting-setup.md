@@ -1,7 +1,7 @@
 ---
 title: My perfect Home-Office Conference Call & Podcasting Setup
 description: Overview for my perfect Homeoffice Conference Call & Podcasting Setup.
-image: /posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/setup_overview.png
+image: /posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/setup_overview.jpg
 alt: Desk with camera, ring light, display, microphone with an arm, stream deck and MacBook.
 publishedAt: 2021-04-18
 tags: 
