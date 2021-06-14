@@ -136,7 +136,7 @@ export default {
     margin: 0 0 2rem 0
     &[open]
       summary
-        margin: 0 0 1rem 0
+        margin: 0 0 0.5rem 0
         .icon
           transform: rotate(90deg)
     summary
