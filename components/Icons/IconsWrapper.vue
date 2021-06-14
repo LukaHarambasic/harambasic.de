@@ -1,5 +1,5 @@
 <template>
-  <div class="icon" :class="{ inverted: 'inverted' }">
+  <div class="icon" :class="{ inverted, hover }">
     <slot />
   </div>
 </template>
@@ -9,6 +9,10 @@ export default {
   name: 'IconsWrapper',
   props: {
     inverted: {
+      type: Boolean,
+      default: false,
+    },
+    hover: {
       type: Boolean,
       default: false,
     },
@@ -48,4 +52,14 @@ export default {
       fill: $color-secondary
       @media (prefers-color-scheme: dark)
         fill: $color-primary
+  &.hover
+    transition: $animation
+    &:hover
+      background: $color-secondary
+      @media (prefers-color-scheme: dark)
+        background: $color-primary
+      svg
+        fill: $color-primary
+        @media (prefers-color-scheme: dark)
+          fill: $color-secondary
 </style>

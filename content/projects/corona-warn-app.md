@@ -18,7 +18,7 @@ links:
         title: App Store
         url: https://apps.apple.com/de/app/corona-warn-app/id1512595757
 responsibilities: 
-    - Teamlead
+    - Team Lead
     - Scrum Master
     - Android Developer
 ---

@@ -16,7 +16,11 @@
       >
         <div class="status" :data-status="project.status"></div>
         <div class="meta">
-          <img :src="fullImagePath(project.img)" :alt="project.alt" />
+          <nuxt-picture
+            :src="fullImagePath(project.img)"
+            :alt="project.alt"
+            sizes="xs:200px md:500px"
+          />
         </div>
         <div class="content">
           <h2 class="title" v-text="project.title" />
