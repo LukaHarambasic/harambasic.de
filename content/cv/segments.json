@@ -83,20 +83,20 @@
     "title": "Volunteering experience",
     "entries": [
       {
-        "title": "Tech4Schools",
-        "position": "Consultant",
-        "location": "Mannheim, Germany",
-        "from": "01/2021",
-        "to": "05/2021",
-        "description": "Conducting trainings for teachers to empower them in the use of digital tools"
-      },
-      {
         "title": "Active Ambassadors",
         "position": "Founder",
         "location": "Mannheim, Germany",
         "from": "01/2021",
         "to": "today",
         "description": "Raising awareness for NGOs"
+      },
+      {
+        "title": "Tech4Schools",
+        "position": "Consultant",
+        "location": "Mannheim, Germany",
+        "from": "01/2021",
+        "to": "05/2021",
+        "description": "Conducting trainings for teachers to empower them in the use of digital tools"
       },
       {
         "title": "S-HUB",
