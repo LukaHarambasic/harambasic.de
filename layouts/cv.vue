@@ -1,7 +1,12 @@
 <template>
   <div class="grid">
     <cookie />
-    <icons-wrapper :inverted="true" class="back" @click.native="back()">
+    <icons-wrapper
+      :inverted="true"
+      :hover="true"
+      class="back"
+      @click.native="back()"
+    >
       <icons-back />
     </icons-wrapper>
     <main role="main">

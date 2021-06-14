@@ -22,7 +22,12 @@
         <div v-html="post.tldr" />
       </base-callout>
       <details class="toc">
-        <summary>Table of Content</summary>
+        <summary>
+          <strong>Table of Content</strong>
+          <icons-wrapper class="icon" inverted="inverted">
+            <icons-arrow />
+          </icons-wrapper>
+        </summary>
         <ul>
           <li
             v-for="entry in post.toc"
@@ -127,15 +132,32 @@ export default {
     background: $color-secondary
     transition: $animation
     border-radius: $border-radius
-    padding: 1rem
+    padding: 1rem 2rem
     margin: 0 0 2rem 0
     &[open]
       summary
         margin: 0 0 1rem 0
+        .icon
+          transform: rotate(90deg)
     summary
-      font-weight: bold
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+      justify-content: space-between
+      align-content: flex-start
+      align-items: flex-start
+      &::marker
+        display: none
+        content: ''
       &:hover
         cursor: pointer
+        .icon
+          transform: rotate(90deg)
+      strong
+        font-weight: bold
+      .icon
+        width: 1rem
+        height: 1rem
     ul
       transition: $animation
       margin: 0 0 0 0.5rem
@@ -154,10 +176,10 @@ export default {
           margin-left: 4 * $depth-space
         a
           color: $color-primary
-          border-bottom: 2px solid transparent
           transition: $animation
           text-decoration: none
           line-height: 1
+          border-bottom: 2px solid transparent
           &:hover
             border-color: rgba($color-primary, .3)
           &:before
