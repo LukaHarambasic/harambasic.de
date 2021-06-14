@@ -144,8 +144,8 @@ export default {
       flex-direction: row
       flex-wrap: nowrap
       justify-content: space-between
-      align-content: flex-start
-      align-items: flex-start
+      align-content: center
+      align-items: center
       &::marker
         display: none
         content: ''
@@ -156,8 +156,8 @@ export default {
       strong
         font-weight: bold
       .icon
-        width: 1rem
-        height: 1rem
+        width: 1.5rem
+        height: 1.5rem
     ul
       transition: $animation
       margin: 0 0 0 0.5rem
