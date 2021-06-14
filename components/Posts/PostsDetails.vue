@@ -31,9 +31,9 @@
         you can subscribe to the <a :href="globals.blogFeedURL">RSS feed</a>.
       </base-callout>
       <div class="author">
-        <a :href="globals.baseURL" rel="author" class="p-author h-card"
-          >by {{ globals.author }}</a
-        >
+        <a :href="authorURL" rel="author" class="p-author h-card">
+          by {{ author }}
+        </a>
       </div>
     </section>
   </article>
@@ -51,6 +51,12 @@ export default {
   computed: {
     fullPath() {
       return `${this.globals.baseURL}${this.post.path}`
+    },
+    author() {
+      return this.post.author || this.globals.author
+    },
+    authorURL() {
+      return this.post.authorURL || this.globals.baseURL
     },
   },
 }
