@@ -94,6 +94,7 @@ export default {
     margin: 0 0 2rem 0
     width: 100%
     display: block
+    background: $color-secondary
     source, img
       border-radius: $border-radius
       width: 100%
