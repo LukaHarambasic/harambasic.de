@@ -93,7 +93,7 @@ export default {
   .image
     margin: 0 0 2rem 0
     width: 100%
-    display: block
+    display: flex
     background: $color-secondary
     source, img
       border-radius: $border-radius
