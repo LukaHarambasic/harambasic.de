@@ -100,7 +100,8 @@ export default {
     width: 100%
     display: flex
     background: $color-secondary
-    source, img
+    border-radius: $border-radius
+    img
       border-radius: $border-radius
       width: 100%
       min-height: 16rem
