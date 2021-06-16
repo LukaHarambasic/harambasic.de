@@ -1,6 +1,9 @@
 <template>
-  <section class="center-center">
-    <nuxt-content class="markdown" :document="page" />
+  <section class="center">
+    <div class="profile-content">
+      <nuxt-picture class="profile" src="/profile.jpg"></nuxt-picture>
+      <nuxt-content class="markdown" :document="page" />
+    </div>
   </section>
 </template>
 
