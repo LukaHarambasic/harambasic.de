@@ -1,7 +1,11 @@
 <template>
   <section class="center">
     <div class="profile-content">
-      <nuxt-picture class="profile" src="/profile.jpg"></nuxt-picture>
+      <nuxt-picture
+        class="profile"
+        src="/profile.jpg"
+        alt="That's me: Luka Harambasic"
+      ></nuxt-picture>
       <nuxt-content class="markdown" :document="page" />
     </div>
   </section>
