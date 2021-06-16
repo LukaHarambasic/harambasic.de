@@ -38,7 +38,7 @@ I have a passion for automating boring manual processes. I just need to upload a
 
 ## Conclusion - would I do it again?
 
-It was a lot of fun and I spend some time with a friend and learned a lot about Docker. Tried different setups with GitHub Actions: in one version the code was built and run inside the action and the other took a docker image which was published to Docker Hub via another action. Besides, that I learned how to setup a monorepo with TypeScript and lerna. Since Instagram doesn't give us access to there API I tried three different browser automation tools for node and found my new go to browser automation framework. More about the details in the corresponding articles.
+It was a lot of fun and I spend some time with a friend and learned a lot about Docker. Tried different setups with GitHub Actions: in one version the code was built and run inside the action and the other took a docker image which was published to Docker Hub via another action. Besides, that I learned how to setup a monorepo with TypeScript and lerna. Since Instagram doesn't give us access to their API I tried three different browser automation tools for node and found my new go to browser automation framework. More about the details in the corresponding articles.
 
 Doing all of this manually would have been way faster. Without any doubt. I think overall I spend 20+ hours on this. I somehow can't believe it myself, but I might have refactored all of this three to four times, tried several deployment methods, tried different frameworks, set up a monorepo, had to use docker. As I'm not an expert in one of this fields I'm quite happy! 
 
