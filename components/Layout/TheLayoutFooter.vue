@@ -1,12 +1,12 @@
 <template>
   <footer role="contentinfo">
     <ul class="social">
+      <li>
+        <a rel="me" :href="globals.linkedinURL">Linkedin</a>
+      </li>
       <li><a rel="me" :href="globals.githubURL">GitHub</a></li>
       <li>
         <a rel="me" :href="globals.twitterURL">Twitter</a>
-      </li>
-      <li>
-        <a rel="me" :href="globals.linkedinURL">Linkedin</a>
       </li>
     </ul>
     <base-logo class="logo" />
