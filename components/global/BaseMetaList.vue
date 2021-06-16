@@ -1,6 +1,5 @@
 <template>
   <ul class="meta-list">
-    <li><strong v-text="preText" /></li>
     <li v-for="item in items" :key="item" v-text="item" />
   </ul>
 </template>
@@ -9,10 +8,6 @@
 export default {
   name: 'BaseMetaList',
   props: {
-    preText: {
-      type: String,
-      default: '',
-    },
     items: {
       type: Array,
       required: true,
@@ -23,8 +18,7 @@ export default {
 
 <style lang="sass" scoped>
 .meta-list
-  opacity: .8
-  font-size: 1rem
+  font-size: .9rem
   line-height: 1.4
   margin: 0
   display: flex
@@ -34,15 +28,12 @@ export default {
   align-content: flex-start
   align-items: flex-start
   li
-    margin: 0 .2rem 0 0
+    margin: 0 .2rem .2rem 0
     list-style: none
-    &:after
-      content: ', '
-    &:last-of-type,
-    &:first-of-type
-      &:after
-        content: ''
-  strong
-    text-transform: uppercase
-    font-weight: bold
+    background: $color-secondary
+    color: $color-primary
+    padding: .2rem .4rem
+    border-radius: $border-radius
+    &:last-of-type
+      margin: 0 .2rem 0 0
 </style>

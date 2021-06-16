@@ -10,7 +10,7 @@
       <header>
         <h1 class="title p-name" v-text="post.title" />
         <div class="row-space-between">
-          <base-meta-list class="tags" :items="post.tags" pre-text="Tags:" />
+          <base-meta-list class="tags" :items="post.tags" />
           <time class="date dt-published" :datetime="post.publishedAt">
             <a :href="fullPath" class="u-url">{{ post.publishedAt | date }}</a>
           </time>
