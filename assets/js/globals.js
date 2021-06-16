@@ -2,7 +2,8 @@ export default {
   baseURL: 'https://harambasic.de',
   title: 'Luka Harambasic',
   author: 'Luka Harambasic',
-  desc: 'Get to know me, my projects and some of my ideas.',
+  desc:
+    'This is my personal website, heavily focusing on tech stuff. From time to time I even write about it. Furthermore, I recommend taking a look at my projects.',
   img: '/luka_harambasic_preview.png',
   imgAlt: 'Luka Harambasic - personal website',
   type: 'website',
