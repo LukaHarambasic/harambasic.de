@@ -21,10 +21,13 @@
             :alt="project.alt"
             sizes="xs:200px md:500px"
           />
-          <base-meta-list :items="project.responsibilities" />
         </div>
         <div class="content">
           <h2 class="title" v-text="project.title" />
+          <base-meta-list
+            :items="project.responsibilities"
+            pre-text="Responsibilities:"
+          />
           <nuxt-content class="description stable-color" :document="project" />
           <ul class="links">
             <li v-for="link in project.links" :key="link.title">
@@ -176,12 +179,13 @@ export default {
   margin: 0 0 4rem 0
   background: $color-secondary
   border-radius: $border-radius
+  padding: 2rem
   display: flex
   flex-direction: row
   flex-wrap: nowrap
   justify-content: space-between
   align-content: stretch
-  align-items: stretch
+  align-items: flex-start
   transition: $animation
   &:last-of-type
     margin: 0
@@ -198,24 +202,17 @@ export default {
     height: 2rem
     width: 2rem
   .meta
-    color: $color-primary
-    flex-direction: column
-    flex-wrap: nowrap
-    justify-content: space-between
-    align-content: stretch
-    align-items: flex-start
     width: 30%
     background: $color-light
-    border-radius: $border-radius 0 0 $border-radius
+    border-radius: $border-radius
     padding: 1rem
+    box-shadow: $box-shadow
     @media screen and (max-width: $breakpoint-mobile)
       width: 100%
     img
-      display: flex
       border-radius: $border-radius
   .content
-    width: calc(70%)
-    padding: 2rem
+    width: calc(70% - 2rem)
     color: $color-primary
     @media screen and (max-width: $breakpoint-mobile)
       width: 100%
@@ -223,10 +220,11 @@ export default {
   .title
     font-size: 1.75rem
     line-height: 1.1
-    margin: 0 0 2rem 0
+    margin: 0 0 .5rem 0
   .description
-    margin: 0 0 2rem 0
+    margin: 2rem 0 0 0
   .links
+    margin: 2rem 0 0 0
     display: flex
     flex-direction: row
     flex-wrap: wrap
