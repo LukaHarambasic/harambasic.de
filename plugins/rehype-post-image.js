@@ -5,9 +5,7 @@ module.exports = function rehypePostImage() {
     visit(tree, 'element', visitor)
     function visitor(node) {
       if (node.tagName === 'img') {
-        console.log(node)
         node.tagName = 'post-image'
-        // console.log('rehype:', 'img -> content-img', node.properties.src)
       }
     }
   }
