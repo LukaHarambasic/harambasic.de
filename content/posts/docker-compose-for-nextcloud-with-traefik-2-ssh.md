@@ -99,7 +99,7 @@ After you fired up your Nextcloud you should check if everything is working as e
 * Settings > Administration > Overview
 * [Security check](https://scan.nextcloud.com/)
 
-<nuxt-picture preset="post" src="/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/security_setup_warnings.png" alt="Nextcloud administration overview"></nuxt-picture>
+![Nextcloud administration overview](/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/security_setup_warnings.png)
 
 ## Usage of calDav and cardDav
 
@@ -109,7 +109,7 @@ It's quite easy if you use the `docker-compose.yml` above. You need your domain,
 * User: user
 * Password: app password
 
-<nuxt-picture preset="post" src="/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/iphone_caldav.png" alt="iPhone settings calDav example"></nuxt-picture>
+![iPhone settings calDav example](/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/iphone_caldav.png)
 
 ## All the links I found and read
 

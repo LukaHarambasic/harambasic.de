@@ -54,7 +54,7 @@ It's redundant as the GitHub Actions run in parallel to the build task, and the 
 
 ### Implementation
 
-<nuxt-picture preset="post" src="/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_failed.png" alt="GitHub Action - Pull request with a failed test job which lead to a failing build"></nuxt-picture>
+![GitHub Action - Pull request with a failed test job which lead to a failing build](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_failed.png)
 
 Just add the following file to your root directory in `.github/workflows/`. The name attributes are visible in the PR (see image). You only have to change the last line per job if you want to run something else, e.g. [Cypress](https://www.cypress.io/). So it's quite easy to adapt it to every other project even if my examples are based on [Vue.js](https://vuejs.org/) and [Nuxt.js](https://nuxtjs.org/):
 
