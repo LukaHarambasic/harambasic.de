@@ -40,6 +40,16 @@ There are many other ways how you can achieve this, but if you have an account y
 
 ![GIF: Add a new custom search engine to Google Chrome](/posts/custom-search-engines-in-your-browser/add.gif)
 
-you can use every website which reflect search results in the url, e.g. it's not working on https://vuejs.org/v2/guide/
+1. Right click in the URL bar (not sure how to name the thing where you put the URL :))
+2. Click on `Manage search engines...`
+3. Click on `Add`
+    1. Set a `Search engine` title, e.g. `GitHub`
+    2. Set a `Keyword` to trigger your search engine, e.g. `gh`
+    3. Set a `URL with %s in place of query` and replace the search term by `%s`
+4. That's it!
 
-This should also work on Firefox.
+You can use every website which reflect search results or identifiers in the URL. There are examples where you can't use this as the search is only an overlay and won't manipulate the URL, e.g. [https://vuejs.org/v2/guide/](https://vuejs.org/v2/guide/).
+
+![Firefox search engine shortcuts](/posts/custom-search-engines-in-your-browser/firefox.png)
+
+You can use the same concept on Firefox, it's just called **Search Shortcuts**.
