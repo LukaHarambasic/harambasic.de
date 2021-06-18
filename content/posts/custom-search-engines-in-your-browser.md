@@ -30,7 +30,7 @@ There are many other ways how you can achieve this, but if you have an account y
     - [Jira]()*
     - [GitHub]()
 
-<small>*I use these multiple times a week</small
+<small>*I use these multiple times a week</small>
 
 ## How to add custom search engines
 
