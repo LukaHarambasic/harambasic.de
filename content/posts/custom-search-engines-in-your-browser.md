@@ -1,12 +1,15 @@
 ---
 title: Custom search engines in your browser
-description: TBD
-image: TBD
-alt: TBD
+description: I show you why custom search engines in your browser are a nice tool and how I use them.
+image: /posts/custom-search-engines-in-your-browser/header.png
+alt: Show the usage of a custom search engine with dict.cc on top of my website.
 publishedAt: 2999-12-12
 tags:
-- TBD
-tldr: TBD
+- Google Chrome
+- Firefox
+- Search engine
+- Trick
+tldr: Search engines can speed up your everyday tasks.
 tweet: TBD
 ---
 
@@ -29,6 +32,7 @@ There are many other ways how you can achieve this, but if you have an account y
     - [Android Developers](https://developer.android.com/)
   - Misc
     - [GitHub](https://github.com/)
+    - [Youtube](https://www.youtube.com/)
 - Find
   - Tickets/Issues
     - [Jira](https://www.atlassian.com/de/software/jira)*
@@ -40,7 +44,7 @@ There are many other ways how you can achieve this, but if you have an account y
 
 ![GIF: Add a new custom search engine to Google Chrome](/posts/custom-search-engines-in-your-browser/add.gif)
 
-1. Right click in the URL bar (not sure how to name the thing where you put the URL :))
+1. Right click in the URL bar (not sure how to name the thing where you put the URL)
 2. Click on `Manage search engines...`
 3. Click on `Add`
     1. Set a `Search engine` title, e.g. `GitHub`
