@@ -97,6 +97,7 @@ export default {
     flex-direction: column
   .image
     margin: 0 0 2rem 0
+    padding: 1rem
     width: 100%
     display: flex
     background: $color-secondary

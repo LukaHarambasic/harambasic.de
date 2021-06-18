@@ -23,24 +23,31 @@ There are many other ways how you can achieve this, but if you have an account y
 
 ![GIF: Use custom search engine in Google Chrome](/posts/custom-search-engines-in-your-browser/usage.gif)
 
-- Search
-  - Translation services
-    - [dict.cc](https://www.dict.cc/)*
-    - [DeepL](https://www.deepl.com/)*
-  - Documentations
-    - [MDN Web Docs](https://developer.mozilla.org/en-US/)
-    - [Android Developers](https://developer.android.com/)
-  - Misc
-    - [GitHub](https://github.com/)
-    - [Youtube](https://www.youtube.com/)
-- Find
-  - Tickets/Issues
-    - [Jira](https://www.atlassian.com/de/software/jira)*
-    - [GitHub](https://github.com/)
+### Search
+
+A selection of websites where you search. I use some of them almost daily and others are here to show you what's possible.
+
+- Translation services
+  - [dict.cc](https://www.dict.cc/)*
+  - [DeepL](https://www.deepl.com/)*
+- Documentations
+  - [MDN Web Docs](https://developer.mozilla.org/en-US/)
+  - [Android Developers](https://developer.android.com/)
+- Misc
+  - [GitHub](https://github.com/)
+  - [Youtube](https://www.youtube.com/)
+  
+### Find
+
+If you have a unique identifier you can find it. I don't even want to know how much time the Jira shortcut has saved me in the last year.
+
+- Tickets/Issues
+  - [Jira](https://www.atlassian.com/de/software/jira)*
+  - [GitHub](https://github.com/)
 
 <small>*I use these multiple times a week</small>
 
-## How to add custom search engines
+## How to add a custom search engines
 
 ![GIF: Add a new custom search engine to Google Chrome](/posts/custom-search-engines-in-your-browser/add.gif)
 
