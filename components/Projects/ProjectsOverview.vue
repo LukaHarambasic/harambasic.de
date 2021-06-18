@@ -202,13 +202,15 @@ export default {
     height: 2rem
     width: 2rem
   .meta
+    display: flex
     width: 30%
     background: $color-light
     border-radius: $border-radius
     padding: 1rem
-    box-shadow: $box-shadow
     @media screen and (max-width: $breakpoint-mobile)
       width: 100%
+    picture
+      display: flex
     img
       border-radius: $border-radius
   .content
