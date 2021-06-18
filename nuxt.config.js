@@ -121,6 +121,9 @@ export default {
    */
   content: {
     liveEdit: false,
+    markdown: {
+      rehypePlugins: ['~/plugins/rehype-post-image.js'],
+    },
   },
   /*
    * Build configuration

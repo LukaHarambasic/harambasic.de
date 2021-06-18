@@ -19,6 +19,7 @@
     "marked": "^1.2.7",
     "nuxt": "^2.14.12",
     "reading-time": "^1.2.1",
+    "unist-util-visit": "^2.0.3",
     "vue-gtag": "^1.10.0",
     "vue-resume-component": "^0.2.8"
   },
