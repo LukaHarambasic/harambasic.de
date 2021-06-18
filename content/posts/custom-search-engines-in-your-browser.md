@@ -18,6 +18,8 @@ There are many other ways how you can achieve this, but if you have an account y
 
 ## Examples
 
+![](/posts/custom-search-engines-in-your-browser/usage.gif)
+
 - Search
   - Translation services
     - [dict.cc](https://www.dict.cc/)*

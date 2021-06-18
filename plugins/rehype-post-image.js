@@ -5,7 +5,10 @@ module.exports = function rehypePostImage() {
     visit(tree, 'element', visitor)
     function visitor(node) {
       if (node.tagName === 'img') {
-        node.tagName = 'post-image'
+        // Gifs have to be rendered as img not post-image
+        if (!node.properties.src.endsWith('gif')) {
+          node.tagName = 'post-image'
+        }
       }
     }
   }
