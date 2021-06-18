@@ -18,7 +18,7 @@ There are many other ways how you can achieve this, but if you have an account y
 
 ## Examples
 
-![](/posts/custom-search-engines-in-your-browser/usage.gif)
+![GIF: Use custom search engine in Google Chrome](/posts/custom-search-engines-in-your-browser/usage.gif)
 
 - Search
   - Translation services
@@ -38,8 +38,8 @@ There are many other ways how you can achieve this, but if you have an account y
 
 ## How to add custom search engines
 
-GIF
+![GIF: Add a new custom search engine to Google Chrome](/posts/custom-search-engines-in-your-browser/add.gif)
 
 you can use every website which reflect search results in the url, e.g. it's not working on https://vuejs.org/v2/guide/
 
-This should also work on FireFox.
+This should also work on Firefox.
