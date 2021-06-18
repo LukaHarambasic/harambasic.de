@@ -3,9 +3,9 @@ description: Hardware I use regularly and recommend.
 image: /lists/hardware/main.png
 hideLogos: true
 entries:
-  - title: Apple MacBook Pro 15" (Mid 2014)
-    description: "Specs: 2,2 GHz Quad-Core Intel Core i7 (Processor), 16 GB (Memory), Intel Iris Pro 1536 MB (Graphics), 250 GB (Storage)"
-    url: https://support.apple.com/kb/SP704?locale=en_US&viewlocale=en_US
+  - title: Apple MacBook Air
+    description: "Specs: M1 (Processor), 16 GB (Memory), 256 GB (Storage)"
+    url: https://www.apple.com/de/macbook-air/
   - title: Rode NT-USB Mini
     description: Nice quality (as far as I can tell) and can be used without an arm.
     url: https://en.rode.com/microphones/nt-usb_mini
