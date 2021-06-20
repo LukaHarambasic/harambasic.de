@@ -22,12 +22,7 @@
         <div v-html="post.tldr" />
       </base-callout>
       <details class="toc">
-        <summary>
-          <strong>Table of Content</strong>
-          <icons-wrapper class="icon" inverted="inverted">
-            <icons-arrow />
-          </icons-wrapper>
-        </summary>
+        <summary><strong>Table of Content</strong></summary>
         <ul>
           <li
             v-for="entry in post.toc"
@@ -99,7 +94,7 @@ export default {
     margin: 0 0 2rem 0
     padding: 1rem
     width: 100%
-    display: flex
+    display: block
     background: $color-secondary
     border-radius: $border-radius
     img
@@ -134,34 +129,35 @@ export default {
     background: $color-secondary
     transition: $animation
     border-radius: $border-radius
-    padding: 1rem 2rem
     margin: 0 0 2rem 0
     &[open]
       summary
-        margin: 0 0 0.5rem 0
-        .icon
-          transform: rotate(90deg)
+        color: $color-light
+        background: $color-primary
+        border-radius: $border-radius $border-radius 0 0
+        @media (prefers-color-scheme: dark)
+          color: $color-primary
+          background: $color-light
     summary
-      display: flex
-      flex-direction: row
-      flex-wrap: nowrap
-      justify-content: space-between
-      align-content: center
-      align-items: center
-      &::marker
-        display: none
-        content: ''
+      transition: $animation
+      padding: 1rem 2rem
+      border-radius: $border-radius
       &:hover
         cursor: pointer
-        .icon
-          transform: rotate(90deg)
+        color: $color-light
+        background: $color-primary
+        @media (prefers-color-scheme: dark)
+          color: $color-primary
+          background: $color-light
+        strong
+          border-color: rgba($color-light, .3)
+        @media (prefers-color-scheme: dark)
+          border-color: rgba($color-primary, .3)
       strong
+        border-bottom: 2px solid transparent
         font-weight: bold
-      .icon
-        width: 1.5rem
-        height: 1.5rem
     ul
-      transition: $animation
+      padding: 1rem 2rem
       margin: 0 0 0 0.5rem
       li
         margin: 0 0 0.25rem 0

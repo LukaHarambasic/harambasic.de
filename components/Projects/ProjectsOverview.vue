@@ -210,7 +210,7 @@ export default {
     @media screen and (max-width: $breakpoint-mobile)
       width: 100%
     picture
-      display: flex
+      display: block
     img
       border-radius: $border-radius
   .content
