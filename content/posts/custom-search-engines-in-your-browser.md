@@ -10,7 +10,7 @@ tags:
 - Search engine
 - Trick
 tldr: In less than a minute you can set up custom search engines in your browser to speed up your day-to-day tasks.
-tweet: TBD
+tweet: https://twitter.com/luka_harambasic/status/1406703914045542405
 ---
 
 A friend - [Sebastian Furkert](https://www.linkedin.com/in/sebastian-furkert/) - showed me this little trick during our studies. With this, you can build your own search engine. Okay, that might sound a little over the top, but basically, that's what you're doing. If you often search on the same websites this can save you a lot of time.
