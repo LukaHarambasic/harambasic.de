@@ -1,8 +1,6 @@
 <template>
   <header role="banner">
-    <h1>
-      <nuxt-link to="/">{{ globals.title }}</nuxt-link>
-    </h1>
+    <nuxt-link class="title" to="/">{{ globals.title }}</nuxt-link>
     <nav role="navigation">
       <ul>
         <li><nuxt-link to="/">Home</nuxt-link></li>
@@ -33,22 +31,21 @@ header
   @media screen and (max-width: $breakpoint-mobile)
     flex-direction: column
     justify-content: center
-h1
+.title
   font-size: 1.75rem
+  color: $color-primary
+  text-decoration: none
+  border-bottom: 2px solid transparent
+  transition: $animation
+  line-height: 1
+  &:hover
+    border-color: $color-primary
+  @media (prefers-color-scheme: dark)
+    color: $color-light
+    &:hover
+      border-color: $color-light
   @media screen and (max-width: $breakpoint-mobile)
     margin: 0 0 2rem 0
-  a
-    color: $color-primary
-    text-decoration: none
-    border-bottom: 2px solid transparent
-    transition: $animation
-    line-height: 1
-    &:hover
-      border-color: $color-primary
-    @media (prefers-color-scheme: dark)
-      color: $color-light
-      &:hover
-        border-color: $color-light
 nav
   ul
     display: flex

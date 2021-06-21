@@ -79,8 +79,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
-// scoped leads to problems with nuxt-picture
+<style lang="sass" scoped>
 .post
   display: flex
   flex-direction: column
@@ -97,14 +96,15 @@ export default {
     display: block
     background: $color-secondary
     border-radius: $border-radius
-    img
-      border-radius: $border-radius
-      width: 100%
-      min-height: 16rem
-      @media screen and (max-width: $breakpoint-desktop)
-        min-height: 12rem
-      @media screen and (max-width: $breakpoint-mobile)
-        min-height: 8rem
+    &::v-deep
+      img
+        border-radius: $border-radius
+        width: 100%
+        min-height: 16rem
+        @media screen and (max-width: $breakpoint-desktop)
+          min-height: 12rem
+        @media screen and (max-width: $breakpoint-mobile)
+          min-height: 8rem
   .title
     font-size: 1.75rem
     line-height: 1.5
