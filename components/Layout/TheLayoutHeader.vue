@@ -34,17 +34,13 @@ header
 .title
   font-size: 1.75rem
   font-weight: bold
-  color: $color-primary
+  color: var(--c-font)
   text-decoration: none
   border-bottom: 2px solid transparent
   transition: $animation
   line-height: 1
   &:hover
-    border-color: $color-primary
-  @media (prefers-color-scheme: dark)
-    color: $color-light
-    &:hover
-      border-color: $color-light
+    border-color: var(--c-font)
   @media screen and (max-width: $breakpoint-mobile)
     margin: 0 0 2rem 0
 nav
@@ -60,22 +56,14 @@ nav
       &:first-of-type
         margin: 0
       a
-        color: $color-primary
+        color: var(--c-font)
         text-decoration: none
         border-bottom: 2px solid transparent
         transition: $animation
         &.nuxt-link-exact-active
-          border-color: $color-primary
+          border-color: var(--c-font)
           &:hover
-            border-color: rgba($color-primary, .3)
+            border-color: var(--c-font-hover)
         &:hover
-          border-color: $color-primary
-        @media (prefers-color-scheme: dark)
-          color: $color-light
-          &.nuxt-link-exact-active
-            border-color: $color-light
-            &:hover
-              border-color: rgba($color-light, .3)
-          &:hover
-            border-color: $color-light
+          border-color: var(--c-font)
 </style>

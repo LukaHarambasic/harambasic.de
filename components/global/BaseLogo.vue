@@ -80,11 +80,7 @@ export default {
 
 <style lang="sass" scoped>
 .background
-  fill: $color-primary
-  @media (prefers-color-scheme: dark)
-    fill: $color-light
+  fill: var(--c-secondary)
 .initials
-  fill: $color-light
-  @media (prefers-color-scheme: dark)
-    fill: $color-primary
+  fill: var(--c-primary)
 </style>

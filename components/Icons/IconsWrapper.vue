@@ -28,7 +28,7 @@ export default {
   justify-content: center
   align-content: center
   align-items: center
-  background: $color-secondary
+  background: var(--c-primary)
   border-radius: 50%
   font-size: 1.5rem
   line-height: 1.5rem
@@ -36,30 +36,15 @@ export default {
   transition: $animation
   &:hover
     cursor: pointer
-  @media (prefers-color-scheme: dark)
-    background: $color-primary
   svg
-    fill: $color-primary
+    fill: var(--c-secondary)
     width: 2rem
     height: 2rem
-    @media (prefers-color-scheme: dark)
-      fill: $color-secondary
   &.inverted
-    background: $color-primary
-    @media (prefers-color-scheme: dark)
-      background: $color-secondary
+    background: var(--c-primary)
     svg
-      fill: $color-secondary
-      @media (prefers-color-scheme: dark)
-        fill: $color-primary
+      fill: var(--c-secondary)
   &.hover
     transition: $animation
-    &:hover
-      background: $color-secondary
-      @media (prefers-color-scheme: dark)
-        background: $color-primary
-      svg
-        fill: $color-primary
-        @media (prefers-color-scheme: dark)
-          fill: $color-secondary
+    transform: scale(1.05)
 </style>

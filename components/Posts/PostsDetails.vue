@@ -94,7 +94,7 @@ export default {
     padding: 1rem
     width: 100%
     display: block
-    background: $color-secondary
+    background: var(--c-primary)
     border-radius: $border-radius
     &::v-deep
       img
@@ -110,49 +110,37 @@ export default {
     line-height: 1.5
     margin: 0 0 1rem 0
   .date
-    background: $color-secondary
+    background: var(--c-primary)
     padding: .25rem .5rem
     border-radius: $border-radius
     font-size: .9rem
     a
-      color: $color-primary
+      color: var(--c-font)
       text-decoration: none
       transition: $animation
       border-bottom: 2px solid transparent
       &:hover
-        border-color: $color-primary
+        border-color: var(--c-font)
   .tags
     @media screen and (max-width: $breakpoint-mobile)
       margin: 0 0 1rem 0
   .toc
-    color: $color-primary
-    background: $color-secondary
-    transition: $animation
+    color: var(--c-font)
+    background: var(--c-primary)
     border-radius: $border-radius
     margin: 0 0 2rem 0
     &[open]
+      background: var(--c-primary-light)
       summary
-        color: $color-light
-        background: $color-primary
+        background: var(--c-primary)
         border-radius: $border-radius $border-radius 0 0
-        @media (prefers-color-scheme: dark)
-          color: $color-primary
-          background: $color-light
     summary
-      transition: $animation
       padding: 1rem 2rem
       border-radius: $border-radius
       &:hover
         cursor: pointer
-        color: $color-light
-        background: $color-primary
-        @media (prefers-color-scheme: dark)
-          color: $color-primary
-          background: $color-light
         strong
-          border-color: rgba($color-light, .3)
-        @media (prefers-color-scheme: dark)
-          border-color: rgba($color-primary, .3)
+          border-color: var(--c-font)
       strong
         border-bottom: 2px solid transparent
         font-weight: bold
@@ -173,28 +161,24 @@ export default {
         &[data-depth="6"]
           margin-left: 4 * $depth-space
         a
-          color: $color-primary
+          color: var(--c-font)
           transition: $animation
           text-decoration: none
           line-height: 1
           border-bottom: 2px solid transparent
           &:hover
-            border-color: rgba($color-primary, .3)
+            border-color: var(--c-font)
           &:before
             content: '» '
   .author
     width: 100%
     text-align: center
     a
-      color: $color-primary
+      color: var(--c-font)
       font-size: .9rem
       text-decoration: none
       transition: $animation
       border-bottom: 2px solid transparent
       &:hover
-        border-color: $color-primary
-      @media (prefers-color-scheme: dark)
-        color: $color-light
-        &:hover
-          border-color: $color-light
+        border-color: var(--c-font)
 </style>

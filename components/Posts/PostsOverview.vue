@@ -62,32 +62,20 @@ li
     align-content: flex-start
     align-items: flex-start
     text-decoration: none
-    color: $color-primary
+    color: var(--c-font)
     transition: $animation
     border-radius: $border-radius
     padding: 2rem
-    @media (prefers-color-scheme: dark)
-      color: $color-light
-      &:hover
-        color: $color-primary
+    &:hover
+      background: var(--c-primary)
+      .icon
+        background: var(--c-surface)
+        svg
+          fill: var(--c-secondary)
     @media screen and (max-width: $breakpoint-mobile)
       flex-direction: column
       justify-content: flex-start
       align-items: flex-start
-    &:hover
-      background: $color-secondary
-      .icon
-        background: $color-light
-        svg
-          fill: $color-primary
-      .date
-        a
-          color: $color-primary
-      @media (prefers-color-scheme: dark)
-        .icon
-          background: $color-primary
-          svg
-            fill: $color-secondary
     .icon
       display: flex
       flex-direction: row
@@ -95,7 +83,7 @@ li
       justify-content: center
       align-content: center
       align-items: center
-      background: $color-secondary
+      background: var(--c-primary)
       border-radius: 50%
       font-size: 1.5rem
       line-height: 1.5rem
@@ -105,7 +93,7 @@ li
       @media screen and (max-width: $breakpoint-mobile)
         display: none
       svg
-        fill: $color-primary
+        fill: var(--c-font)
         width: 2rem
         height: 2rem
     .title
@@ -115,12 +103,10 @@ li
       @media screen and (max-width: $breakpoint-mobile)
         margin: .5rem 0 0 0
       a
-        color: $color-primary
+        color: var(--c-font)
         text-decoration: none
         transition: $animation
         border-bottom: 2px solid transparent
         &:hover
-          border-color: $color-primary
-        @media (prefers-color-scheme: dark)
-          color: $color-light
+          border-color: var(--c-font)
 </style>
