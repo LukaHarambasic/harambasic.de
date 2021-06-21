@@ -33,6 +33,7 @@ header
     justify-content: center
 .title
   font-size: 1.75rem
+  font-weight: bold
   color: $color-primary
   text-decoration: none
   border-bottom: 2px solid transparent
