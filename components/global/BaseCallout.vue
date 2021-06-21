@@ -48,7 +48,7 @@ export default {
         margin: 0 1rem 0 0
         font-weight: bold
         color: var(--c-font)
-        background: var(--c-surface)
+        background: var(--c-primary-light)
         border-radius: $border-radius
         padding: .25rem .5rem
         @media screen and (max-width: $breakpoint-mobile)
