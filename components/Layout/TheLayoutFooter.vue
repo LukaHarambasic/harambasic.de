@@ -57,18 +57,14 @@ footer
       &:first-of-type
         margin: 0
       a
-        color: $color-primary
+        color: var(--c-font)
         text-decoration: none
         border-bottom: 2px solid transparent
         transition: $animation
         @media screen and (max-width: $breakpoint-mobile)
           font-size: 1rem
         &:hover
-          border-color: $color-primary
-        @media (prefers-color-scheme: dark)
-          color: $color-light
-          &:hover
-            border-color: $color-light
+          border-color: var(--c-font)
   .logo
     width: 3rem
     height: 3rem

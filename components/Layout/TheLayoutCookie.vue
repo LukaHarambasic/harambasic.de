@@ -70,35 +70,27 @@ export default {
   bottom: 2rem
   max-width: 50%
   padding: 2rem
-  background: $color-primary
-  color: $color-light
+  background: var(--c-primary)
+  color: var(--c-font)
   border-radius: $border-radius
   transition: $animation
-  @media (prefers-color-scheme: dark)
-    background: $color-light
-    color: $color-primary
   @media screen and (max-width: $breakpoint-desktop)
     max-width: none
     left: 2rem
 .buttons
   margin: .5rem 0 0 0
   .button
-    color: $color-light
+    color: var(--c-font)
     border: none
     background: none
     font-size: 1.2rem
-    border-bottom: 2px solid rgba($color-light, 1)
+    border-bottom: 2px solid var(--c-font)
     transition: $animation
     text-decoration: none
     line-height: 1
     margin: 0 1rem 0 0
-    @media (prefers-color-scheme: dark)
-      color: $color-primary
-      border-color: rgba($color-primary, 1)
     &:hover
       cursor: pointer
       text-decoration: none
-      border-color: rgba($color-light, .3)
-      @media (prefers-color-scheme: dark)
-        border-color: rgba($color-primary, .3)
+      border-color: var(--c-font-hover)
 </style>

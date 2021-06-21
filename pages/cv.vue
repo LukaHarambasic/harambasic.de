@@ -52,9 +52,4 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-.cv
-  @media (prefers-color-scheme: dark)
-    border-radius: $border-radius
-    border: 1px solid $color-dark
-</style>
+<style lang="sass" scoped></style>

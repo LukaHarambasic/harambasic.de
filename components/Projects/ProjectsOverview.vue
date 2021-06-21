@@ -135,9 +135,9 @@ export default {
   &[data-status='1'], &[data-status='2']
     display: block
   &[data-status='1'] // active
-    background: $color-success
+    background: var(--c-success)
   &[data-status='2'] // inactive
-    background: $color-warning
+    background: var(--c-warning)
 .filters
   display: flex
   flex-direction: row
@@ -145,7 +145,7 @@ export default {
   justify-content: flex-end
   margin: 0 0 2rem 0
   button
-    color: $color-primary
+    color: var(--c-font)
     background: none
     border: none
     display: flex
@@ -157,12 +157,10 @@ export default {
     padding: 0.35rem 0.5rem
     transition: $animation
     border-radius: $border-radius
-    @media (prefers-color-scheme: dark)
-      color: $color-light
     &:hover
       cursor: pointer
-      color: $color-primary
-      background: $color-secondary
+      color: var(--c-font)
+      background: var(--c-primary)
     .status
       height: 1rem
       width: 1rem
@@ -177,7 +175,7 @@ export default {
 .project
   position: relative
   margin: 0 0 4rem 0
-  background: $color-secondary
+  background: var(--c-primary)
   border-radius: $border-radius
   padding: 2rem
   display: flex
@@ -204,7 +202,7 @@ export default {
   .meta
     display: flex
     width: 30%
-    background: $color-light
+    background: var(--c-surface)
     border-radius: $border-radius
     padding: 1rem
     @media screen and (max-width: $breakpoint-mobile)
@@ -215,7 +213,7 @@ export default {
       border-radius: $border-radius
   .content
     width: calc(70% - 2rem)
-    color: $color-primary
+    color: var(--c-font)
     @media screen and (max-width: $breakpoint-mobile)
       width: 100%
       margin: 2rem 0 0 0
@@ -236,12 +234,12 @@ export default {
     li
       margin: 0 1rem 0 0
       a
-        color: $color-primary
-        border-bottom: 2px solid rgba($color-primary, 1)
+        color: var(--c-font)
+        border-bottom: 2px solid var(--c-font)
         transition: $animation
         text-decoration: none
         line-height: 1
         &:hover
           text-decoration: none
-          border-color: rgba($color-primary, .3)
+          border-color: var(--c-font-hover)
 </style>

@@ -51,10 +51,8 @@ export default {
   grid-template-areas: ". main ."
   padding: 4rem 0
   margin: 0 auto
-  background: $color-grey
+  background: var(--c-primary)
   min-height: 100vh
-  @media (prefers-color-scheme: dark)
-    background: $color-primary
   @media screen and (max-width: $breakpoint-mobile)
     grid-template-columns: 1fr
     grid-template-areas: "main"

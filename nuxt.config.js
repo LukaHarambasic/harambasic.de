@@ -41,8 +41,8 @@ export default {
         property: 'og:site_name',
         content: globals.title || '',
       },
-      { hid: 'og:image:width', property: 'og:image:width', content: '740' },
-      { hid: 'og:image:height', property: 'og:image:height', content: '300' },
+      { hid: 'og:image:width', property: 'og:image:width', content: '1200' },
+      { hid: 'og:image:height', property: 'og:image:height', content: '630' },
       { hid: 'og:image', property: 'og:image', content: globals.img || '' },
       {
         hid: 'twitter:site',
@@ -73,7 +73,11 @@ export default {
   /*
    * Global CSS
    */
-  css: ['@/assets/style/main.sass', '@/assets/style/fontfaces.css'],
+  css: [
+    '@/assets/style/variables.css',
+    '@/assets/style/main.sass',
+    '@/assets/style/fontfaces.css',
+  ],
   /*
    * Load Variables
    */

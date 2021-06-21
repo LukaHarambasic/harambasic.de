@@ -68,18 +68,14 @@ li
     justify-content: flex-start
     align-content: flex-start
     text-decoration: none
-    color: $color-primary
+    color: var(--c-font)
     transition: $animation
     border-radius: $border-radius
     padding: 2rem
-    @media (prefers-color-scheme: dark)
-      color: $color-light
-      &:hover
-        color: $color-primary
+    &:hover
+      background: var(--c-primary)
     @media screen and (max-width: $breakpoint-mobile)
       flex-direction: column
-    &:hover
-      background: $color-secondary
     .logo
       flex: 0 0 auto
       height: 5rem
@@ -93,9 +89,8 @@ li
       img
         width: 5rem
         height: 5rem
-        background: $color-light
+        background: var(--c-primary-light)
         border-radius: $border-radius
-        box-shadow: $box-shadow
         padding: 1rem
     .header
       line-height: 1
