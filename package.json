@@ -9,7 +9,7 @@
     "generate": "npm run lint && nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
-    "generateSocialMediaPreview": "cd scripts/generate-social-media-preview && node index.js && exit 0",
+    "generateSocialMediaPreview": "cd scripts/generate-social-media-preview && node index.js",
     "prepare": "husky install"
   },
   "husky": {

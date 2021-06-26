@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const { chromium } = require('playwright')
+const { $content } = require('@nuxt/content')
 
 const SOCIAL_PATH = `../../static/social`
 
@@ -8,8 +9,13 @@ const generateSocialMediaPreview = async (title, slug) => {
   console.log('Generate social media preview for: ', title)
   const browser = await chromium.launch()
   const page = await browser.newPage()
-  if (!doesImageAlreadyExist(slug)) {
-    await generateImage(page, title, slug)
+  const content = await $content({ deep: true }).only(['path']).fetch()
+  const posts = content.filter((path) => path.includes('/posts/'))
+  for (const post of posts) {
+    console.log(post)
+    if (!doesImageAlreadyExist(slug)) {
+      await generateImage(page, title, slug)
+    }
   }
   await browser.close()
   return true
