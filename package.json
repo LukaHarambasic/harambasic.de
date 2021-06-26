@@ -12,6 +12,11 @@
     "generateSocialMediaPreview": "cd scripts/generate-social-media-preview && node index.js && exit 0",
     "prepare": "husky install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run generateSocialMediaPreview && git add ."
+    }
+  },
   "dependencies": {
     "@nuxt/content": "^1.11.1",
     "@nuxtjs/feed": "^2.0.0",
