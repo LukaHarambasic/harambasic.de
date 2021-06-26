@@ -5,7 +5,7 @@ const { chromium } = require('playwright')
 const SOCIAL_PATH = `${process.cwd()}/static/social`
 const POSTS_PATH = `${process.cwd()}/content/posts`
 
-export const generateSocialMediaPreview = async () => {
+const generateSocialMediaPreview = async () => {
   const browser = await chromium.launch()
   const page = await browser.newPage()
   const posts = readdirSync(POSTS_PATH)
@@ -13,24 +13,27 @@ export const generateSocialMediaPreview = async () => {
     const FILE_PATH = `${POSTS_PATH}/${file}`
     const slug = file.replace('.md', '')
     const content = readFileSync(FILE_PATH, 'utf8')
-    const title = getTitle(content)
-    if (!doesImageAlreadyExist(slug)) {
+    const title = _getTitle(content)
+    if (!_doesImageAlreadyExist(slug)) {
       console.log('Generate social media preview for:', title)
-      await generateImage(page, title, slug)
+      await _generateImage(page, title, slug)
     } else {
       console.log('Social media preview already exists:', title)
     }
   }
   await browser.close()
-  return true
 }
 
-const doesImageAlreadyExist = (slug) => {
+/*
+ * Helper functions
+ */
+
+const _doesImageAlreadyExist = (slug) => {
   const files = readdirSync(SOCIAL_PATH)
   return files.find((file) => file.startsWith(slug))
 }
 
-const generateImage = async (page, title, slug) => {
+const _generateImage = async (page, title, slug) => {
   const URL = `file:///${path.join(__dirname, '/template.html')}`
   const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`
   await page.goto(URL)
@@ -43,7 +46,7 @@ const generateImage = async (page, title, slug) => {
   })
 }
 
-const getTitle = (str) => {
+const _getTitle = (str) => {
   const start = 'title: '
   const end = '\ndescription: '
   return str.substring(
@@ -51,3 +54,15 @@ const getTitle = (str) => {
     str.lastIndexOf(end)
   )
 }
+
+/*
+ * Execute
+ */
+
+;(async () => {
+  try {
+    await generateSocialMediaPreview()
+  } catch (error) {
+    console.log('Error:', error)
+  }
+})()
