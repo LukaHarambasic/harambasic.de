@@ -3,14 +3,13 @@ const fs = require('fs')
 const { chromium } = require('playwright')
 
 const SOCIAL_PATH = `../../static/social`
+const POSTS_PATH = `../../content/posts`
 
 const generateSocialMediaPreview = async (title, slug) => {
   console.log('Generate social media preview for: ', title)
-  const { $content } = require('@nuxt/content')
   const browser = await chromium.launch()
   const page = await browser.newPage()
-  const content = await $content({ deep: true }).only(['path']).fetch()
-  const posts = content.filter((path) => path.includes('/posts/'))
+  const posts = fs.readdirSync(POSTS_PATH)
   for (const post of posts) {
     console.log(post)
     if (!doesImageAlreadyExist(slug)) {
