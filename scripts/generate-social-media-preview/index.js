@@ -16,6 +16,9 @@ const SOCIAL_PATH = `${ROOT_PATH}/static/social`
 const POSTS_PATH = `${ROOT_PATH}/content/posts`
 
 const generateSocialMediaPreview = async () => {
+  console.log('GENERATE SOCIAL MEDIA PREVIEWS')
+  console.log('🆕 newly generated, 🛑 already exists')
+  console.log('-------------------------------------')
   const browser = await chromium.launch()
   const page = await browser.newPage()
   const posts = readdirSync(POSTS_PATH)
@@ -25,10 +28,10 @@ const generateSocialMediaPreview = async () => {
     const content = readFileSync(FILE_PATH, 'utf8')
     const title = _getTitle(content)
     if (!_doesImageAlreadyExist(slug)) {
-      console.log('Generate social media preview for:', title)
+      console.log('🆕', title)
       await _generateImage(page, title, slug)
     } else {
-      console.log('Social media preview already exists:', title)
+      console.log('🛑', title)
     }
   }
   await browser.close()
