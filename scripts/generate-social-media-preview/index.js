@@ -33,6 +33,6 @@ const generateImage = async (page, title, slug) => {
   })
 }
 
-generateSocialMediaPreview('Lorem Ipsum', 'lorem_ipsum').then((r) =>
+generateSocialMediaPreview('Lorem Ipsum 2', 'lorem_ipsum_2').then((r) =>
   console.log(r)
 )
