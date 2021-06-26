@@ -6,6 +6,7 @@ const SOCIAL_PATH = `${process.cwd()}/static/social`
 const POSTS_PATH = `${process.cwd()}/content/posts`
 
 const generateSocialMediaPreview = async () => {
+  console.log('SOMETHING')
   const browser = await chromium.launch()
   const page = await browser.newPage()
   const posts = readdirSync(POSTS_PATH)
