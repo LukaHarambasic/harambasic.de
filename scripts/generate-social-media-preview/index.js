@@ -1,12 +1,12 @@
 const path = require('path')
 const fs = require('fs')
 const { chromium } = require('playwright')
-const { $content } = require('@nuxt/content')
 
 const SOCIAL_PATH = `../../static/social`
 
 const generateSocialMediaPreview = async (title, slug) => {
   console.log('Generate social media preview for: ', title)
+  const { $content } = require('@nuxt/content')
   const browser = await chromium.launch()
   const page = await browser.newPage()
   const content = await $content({ deep: true }).only(['path']).fetch()
