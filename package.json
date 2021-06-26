@@ -11,6 +11,7 @@
     "lint": "npm run lint:js",
     "generateSocialMediaPreview": "node ./scripts/generate-social-media-preview/index.js && git add ."
   },
+  "precommit.silent": false,
   "pre-commit": [
     "generateSocialMediaPreview"
   ],
