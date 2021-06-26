@@ -9,12 +9,13 @@
     "generate": "npm run lint && nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
+    "sleep": "ping -n 6 127.0.0.1 > nul",
     "generateSocialMediaPreview": "cd scripts/generate-social-media-preview && node index.js",
     "prepare": "husky install"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run generateSocialMediaPreview && git add ."
+      "pre-commit": "npm run generateSocialMediaPreview && sleep && git add ."
     }
   },
   "dependencies": {
