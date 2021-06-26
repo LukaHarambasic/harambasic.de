@@ -2,10 +2,10 @@ const path = require('path')
 const { readdirSync, readFileSync } = require('fs')
 const { chromium } = require('playwright')
 
-const SOCIAL_PATH = `../../static/social`
-const POSTS_PATH = `../../content/posts`
+const SOCIAL_PATH = `${process.cwd()}/static/social`
+const POSTS_PATH = `${process.cwd()}/content/posts`
 
-const generateSocialMediaPreview = async () => {
+export const generateSocialMediaPreview = async () => {
   const browser = await chromium.launch()
   const page = await browser.newPage()
   const posts = readdirSync(POSTS_PATH)
@@ -26,7 +26,7 @@ const generateSocialMediaPreview = async () => {
 }
 
 const doesImageAlreadyExist = (slug) => {
-  const files = fs.readdirSync(SOCIAL_PATH)
+  const files = readdirSync(SOCIAL_PATH)
   return files.find((file) => file.startsWith(slug))
 }
 
@@ -51,7 +51,3 @@ const getTitle = (str) => {
     str.lastIndexOf(end)
   )
 }
-
-generateSocialMediaPreview().then((r) =>
-  console.log('Generate social media preview has finished:', r)
-)

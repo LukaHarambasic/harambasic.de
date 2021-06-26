@@ -1,6 +1,7 @@
 import marked from 'marked'
 import readingTime from 'reading-time'
 
+import { generateSocialMediaPreview } from './scripts/generate-social-media-preview'
 import globals from './assets/js/globals'
 import getRoutes from './assets/js/getRoutes'
 import getSiteMeta from './assets/js/getMeta'
@@ -214,6 +215,9 @@ export default {
         document.readingTime = readingTime(document.text)
         document.html = marked(document.text)
       }
+    },
+    'generate:before': async () => {
+      await generateSocialMediaPreview()
     },
   },
 }

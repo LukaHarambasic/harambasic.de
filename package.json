@@ -8,14 +8,7 @@
     "start": "nuxt start",
     "generate": "npm run lint && nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "npm run lint:js",
-    "generateSocialMediaPreview": "cd scripts/generate-social-media-preview && node index.js",
-    "prepare": "husky install"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run generateSocialMediaPreview && git add ."
-    }
+    "lint": "npm run lint:js"
   },
   "dependencies": {
     "@nuxt/content": "^1.11.1",
