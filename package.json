@@ -9,7 +9,7 @@
     "generate": "npm run lint && nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
-    "generateSocialMediaPreview": "node ./scripts/generate-social-media-preview/index.js"
+    "generateSocialMediaPreview": "node ./scripts/generate-social-media-preview/index.js && git add ."
   },
   "pre-commit": [
     "generateSocialMediaPreview"
