@@ -19,7 +19,7 @@ const generateSocialMediaPreview = async () => {
       console.log('Generate social media preview for:', title)
       await generateImage(page, title, slug)
     } else {
-      console.log('Image does already exist:', title)
+      console.log('Social media preview already exists:', title)
     }
   }
   await browser.close()
