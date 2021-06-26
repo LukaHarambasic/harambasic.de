@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /*
  * https://medium.com/@Sergeon/using-javascript-in-your-git-hooks-f0ce09477334
  * https://dev.to/krzysztofkaczy9/do-you-really-need-husky-247b
@@ -18,7 +16,6 @@ const SOCIAL_PATH = `${ROOT_PATH}/static/social`
 const POSTS_PATH = `${ROOT_PATH}/content/posts`
 
 const generateSocialMediaPreview = async () => {
-  console.log('SOMETHING')
   const browser = await chromium.launch()
   const page = await browser.newPage()
   const posts = readdirSync(POSTS_PATH)
