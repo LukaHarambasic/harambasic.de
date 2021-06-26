@@ -1,14 +1,38 @@
 const path = require('path')
+const fs = require('fs')
 const { chromium } = require('playwright')
 
-const generateSocialMediaPreview = async () => {
-  const browser = await chromium.launch({ headless: false, slowMo: 50 })
+const SOCIAL_PATH = `../../static/social`
+
+const generateSocialMediaPreview = async (title, slug) => {
+  console.log('Generate social media preview for: ', title)
+  const browser = await chromium.launch()
   const page = await browser.newPage()
-  const URL = `file:///${path.join(__dirname, '/template.html')}`
-  await page.goto(URL)
-  const cardHandle = await page.$('.card')
-  await cardHandle.screenshot({ type: 'png', path: 'screenshot.png' })
+  if (!doesImageAlreadyExist(slug)) {
+    await generateImage(page, title, slug)
+  }
   await browser.close()
+  return true
 }
 
-generateSocialMediaPreview().then((r) => console.log('done'))
+const doesImageAlreadyExist = (slug) => {
+  const files = fs.readdirSync(SOCIAL_PATH)
+  return files.find((file) => file.startsWith(slug))
+}
+
+const generateImage = async (page, title, slug) => {
+  const URL = `file:///${path.join(__dirname, '/template.html')}`
+  const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`
+  await page.goto(URL)
+  // strange syntax, check https://playwright.dev/docs/api/class-page#page-eval-on-selector for more infos
+  await page.$eval('.title', (el, title) => (el.textContent = title), title)
+  const cardHandle = await page.$('.card')
+  await cardHandle.screenshot({
+    type: 'png',
+    path: SCREENSHOT_PATH,
+  })
+}
+
+generateSocialMediaPreview('Lorem Ipsum', 'lorem_ipsum').then((r) =>
+  console.log(r)
+)

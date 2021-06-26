@@ -8,8 +8,12 @@
     "start": "nuxt start",
     "generate": "npm run lint && nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "npm run lint:js"
+    "lint": "npm run lint:js",
+    "generateSocialMediaPreview": "cd scripts/generate-social-media-preview && node index.js"
   },
+  "pre-commit": [
+    "generateSocialMediaPreview"
+  ],
   "dependencies": {
     "@nuxt/content": "^1.11.1",
     "@nuxtjs/feed": "^2.0.0",
@@ -34,6 +38,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-prettier": "^3.3.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^2.2.1",
     "sass": "^1.32.12",
     "sass-loader": "^9.0.3"
