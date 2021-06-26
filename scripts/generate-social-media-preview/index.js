@@ -11,8 +11,7 @@ const path = require('path')
 const { readdirSync, readFileSync } = require('fs')
 const { chromium } = require('playwright')
 
-// ${process.cwd()}
-const ROOT_PATH = process.cwd() // '../..'
+const ROOT_PATH = process.cwd()
 const SOCIAL_PATH = `${ROOT_PATH}/static/social`
 const POSTS_PATH = `${ROOT_PATH}/content/posts`
 
