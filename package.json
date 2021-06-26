@@ -15,7 +15,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run generateSocialMediaPreview && sleep && git add ."
+      "pre-commit": "npm run generateSocialMediaPreview && npm run sleep && git add ."
     }
   },
   "dependencies": {
