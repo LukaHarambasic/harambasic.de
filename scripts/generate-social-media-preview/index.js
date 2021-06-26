@@ -16,8 +16,10 @@ const generateSocialMediaPreview = async () => {
     const content = await readFile(FILE_PATH, 'utf8')
     const title = getTitle(content)
     if (!doesImageAlreadyExist(slug)) {
-      console.log('Generate social media preview for: ', title)
+      console.log('Generate social media preview for:', title)
       await generateImage(page, title, slug)
+    } else {
+      console.log('Image does already exist:', title)
     }
   }
   await browser.close()
@@ -51,4 +53,6 @@ const getTitle = (str) => {
   )
 }
 
-generateSocialMediaPreview().then((r) => console.log('Done: ', r))
+generateSocialMediaPreview().then((r) =>
+  console.log('Generate social media preview has finished:', r)
+)
