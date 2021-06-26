@@ -175,7 +175,7 @@ export default {
 .project
   position: relative
   margin: 0 0 4rem 0
-  background: var(--c-primary)
+  background: var(--c-primary-light)
   border-radius: $border-radius
   padding: 2rem
   display: flex
