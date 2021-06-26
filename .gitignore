@@ -88,3 +88,4 @@ sw.*
 
 # Vim swap files
 *.swp
+/scripts/generate-social-media-preview/screenshot.png

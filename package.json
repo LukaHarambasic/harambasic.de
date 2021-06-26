@@ -18,6 +18,7 @@
     "date-fns": "^2.16.1",
     "marked": "^1.2.7",
     "nuxt": "^2.14.12",
+    "playwright": "^1.12.2",
     "reading-time": "^1.2.1",
     "unist-util-visit": "^2.0.3",
     "vue-gtag": "^1.10.0",
