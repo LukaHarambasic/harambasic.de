@@ -4,6 +4,7 @@
  * https://dev.to/krzysztofkaczy9/do-you-really-need-husky-247b
  * https://faun.pub/why-using-pre-push-git-hooks-with-husky-is-not-always-a-good-idea-6233b8afcf83
  * https://medium.com/@satya164/improving-nodejs-workflow-with-git-hooks-40996830619f
+ * https://stackoverflow.com/questions/48301280/how-to-manually-run-a-git-pre-commit-hook-without-attempting-a-commit
  */
 
 const path = require('path')
@@ -11,12 +12,12 @@ const { readdirSync, readFileSync } = require('fs')
 const { chromium } = require('playwright')
 
 // ${process.cwd()}
-const ROOT_PATH = '../..'
+const ROOT_PATH = process.cwd() // '../..'
 const SOCIAL_PATH = `${ROOT_PATH}/static/social`
 const POSTS_PATH = `${ROOT_PATH}/content/posts`
 
 const generateSocialMediaPreview = async () => {
-  console.log('GENERATE SOCIAL MEDIA PREVIEWS')
+  console.log('>> GENERATE SOCIAL MEDIA PREVIEWS <<')
   console.log('🆕 newly generated, 🛑 already exists')
   console.log('-------------------------------------')
   const browser = await chromium.launch()
