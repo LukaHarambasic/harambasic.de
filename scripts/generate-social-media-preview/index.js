@@ -13,10 +13,10 @@ const generateSocialMediaPreview = async () => {
   for (const file of posts) {
     const FILE_PATH = `${POSTS_PATH}/${file}`
     const slug = file.replace('.md', '')
-    console.log('Generate social media preview for: ', slug)
     const content = await readFile(FILE_PATH, 'utf8')
     const title = getTitle(content)
     if (!doesImageAlreadyExist(slug)) {
+      console.log('Generate social media preview for: ', title)
       await generateImage(page, title, slug)
     }
   }
