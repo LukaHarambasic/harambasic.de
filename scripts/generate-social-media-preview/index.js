@@ -1,6 +1,5 @@
 const path = require('path')
-const fs = require('fs')
-const { readdir, readFile } = fs.promises
+const { readdirSync, readFileSync } = require('fs')
 const { chromium } = require('playwright')
 
 const SOCIAL_PATH = `../../static/social`
@@ -9,11 +8,11 @@ const POSTS_PATH = `../../content/posts`
 const generateSocialMediaPreview = async () => {
   const browser = await chromium.launch()
   const page = await browser.newPage()
-  const posts = await readdir(POSTS_PATH)
+  const posts = readdirSync(POSTS_PATH)
   for (const file of posts) {
     const FILE_PATH = `${POSTS_PATH}/${file}`
     const slug = file.replace('.md', '')
-    const content = await readFile(FILE_PATH, 'utf8')
+    const content = readFileSync(FILE_PATH, 'utf8')
     const title = getTitle(content)
     if (!doesImageAlreadyExist(slug)) {
       console.log('Generate social media preview for:', title)
