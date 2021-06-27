@@ -1,5 +1,5 @@
 ---
-title: Build your custom search engine in your browser
+title: Build a custom search engine in your browser
 description: I show you why custom search engines in your browser are a nice tool and how I use them.
 publishedAt: 2021-06-20
 tags:
