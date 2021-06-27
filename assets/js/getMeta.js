@@ -11,7 +11,7 @@ const parameterOrGlobal = (parameter, global) =>
 
 export default (meta) => {
   if (!meta) return []
-  if (meta.title.length > 60) {
+  if (meta.title && meta.title.length > 60) {
     throw new Error(
       `getMeta - title shouldn't be longer than 60 chars for seo, has ${meta.title.length}: ${meta.title}`
     )
