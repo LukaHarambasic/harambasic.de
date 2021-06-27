@@ -1,13 +1,16 @@
 import global from './globals'
 
 // string constructors
-const title = (title) => `${title} - Luka Harambasic`
+const title = (title) =>
+  title === '' || typeof title === 'undefined'
+    ? global.title
+    : `${title} - ${global.title}`
 
 const url = (url) => `${global.baseURL}${url}`
 
 // helper
-const parameterOrGlobal = (parameter, global) =>
-  parameter === '' || typeof parameter === 'undefined' ? global : parameter
+const parameterOrGlobal = (parameter, fallback) =>
+  parameter === '' || typeof parameter === 'undefined' ? fallback : parameter
 
 export default (meta) => {
   if (!meta) return []
