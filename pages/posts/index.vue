@@ -20,7 +20,7 @@ export default {
         title: `Blog - ${this.globals.title}`,
         description: 'Here you find all my blog posts.',
         url: `/posts`,
-        img: `/luka_harambasic_blog.png`,
+        img: `/social/blog.png`,
         imgAlt: `Blog - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)

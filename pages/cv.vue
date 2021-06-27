@@ -37,7 +37,7 @@ export default {
         title: `CV - ${this.globals.title}`,
         description: 'My personal CV as a website.',
         url: `/cv`,
-        img: `/luka_harambasic_cv.png`,
+        img: `/social/cv.png`,
         imgAlt: `CV - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)

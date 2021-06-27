@@ -59,8 +59,26 @@
 </template>
 
 <script>
+import getSiteMeta from 'assets/js/getMeta'
+
 export default {
   name: 'Imprint',
+  computed: {
+    meta() {
+      const metaData = {
+        title: `Imprint - ${this.globals.title}`,
+        img: `/social/imprint.png`,
+        imgAlt: `Imprint - ${this.globals.title}`,
+      }
+      return getSiteMeta(metaData)
+    },
+  },
+  head() {
+    return {
+      title: this.meta.title,
+      meta: [...this.meta],
+    }
+  },
 }
 </script>
 

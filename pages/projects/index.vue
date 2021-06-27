@@ -20,7 +20,7 @@ export default {
         title: `Projects - ${this.globals.title}`,
         description: 'An overview about some selected projects I did.',
         url: `/projects`,
-        img: `/luka_harambasic_projects.png`,
+        img: `/social/projects.png`,
         imgAlt: `Projects - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)

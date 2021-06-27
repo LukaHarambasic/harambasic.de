@@ -19,9 +19,9 @@ export default {
       const metaData = {
         title: `Lists - ${this.globals.title}`,
         description:
-          'Lists with content I recommend, e.g. development & digital tools.',
+          'Lists with content I personally recommend, e.g. development & digital tools.',
         url: `/lists`,
-        img: `/luka_harambasic_lists.png`,
+        img: `/social/lists.png`,
         imgAlt: `Lists - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)
