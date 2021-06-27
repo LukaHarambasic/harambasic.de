@@ -18,7 +18,7 @@ export default {
     meta() {
       const metaData = {
         title: `Blog`,
-        description: 'Here you find all my blog posts.',
+        description: 'Want to see something new? Checkout some blog posts.',
         url: `/posts`,
         img: `/social/blog.png`,
         imgAlt: `Blog - ${this.globals.title}`,
