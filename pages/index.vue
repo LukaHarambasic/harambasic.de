@@ -12,27 +12,10 @@
 </template>
 
 <script>
-import getSiteMeta from 'assets/js/getMeta'
-
 export default {
   async asyncData({ $content }) {
     return {
       page: await $content('home').fetch(),
-    }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        img: `/social/luka_harambasic.png`,
-        imgAlt: `Home`,
-      }
-      return getSiteMeta(metaData)
-    },
-  },
-  head() {
-    return {
-      title: this.meta.title,
-      meta: [...this.meta],
     }
   },
 }
