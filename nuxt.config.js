@@ -42,9 +42,15 @@ export default {
         property: 'og:site_name',
         content: globals.title || '',
       },
+      ,
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: globals.desc || '',
+      },
+      { hid: 'og:image', property: 'og:image', content: globals.img || '' },
       { hid: 'og:image:width', property: 'og:image:width', content: '1200' },
       { hid: 'og:image:height', property: 'og:image:height', content: '630' },
-      { hid: 'og:image', property: 'og:image', content: globals.img || '' },
       {
         hid: 'twitter:site',
         name: 'twitter:site',
