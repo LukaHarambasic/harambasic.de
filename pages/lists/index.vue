@@ -17,7 +17,7 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        title: `Lists - ${this.globals.title}`,
+        title: `Lists`,
         description:
           'Lists with content I personally recommend, e.g. development & digital tools.',
         url: `/lists`,

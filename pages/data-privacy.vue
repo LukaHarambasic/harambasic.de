@@ -57,9 +57,9 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        title: `Imprint - ${this.globals.title}`,
+        title: `Data Privacy`,
         img: `/social/data_privacy.png`,
-        imgAlt: `Imprint - ${this.globals.title}`,
+        imgAlt: `Data Privacy - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)
     },

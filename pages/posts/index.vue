@@ -17,7 +17,7 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        title: `Blog - ${this.globals.title}`,
+        title: `Blog`,
         description: 'Here you find all my blog posts.',
         url: `/posts`,
         img: `/social/blog.png`,

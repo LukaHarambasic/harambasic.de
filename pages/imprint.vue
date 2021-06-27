@@ -66,7 +66,7 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        title: `Imprint - ${this.globals.title}`,
+        title: `Imprint`,
         img: `/social/imprint.png`,
         imgAlt: `Imprint - ${this.globals.title}`,
       }

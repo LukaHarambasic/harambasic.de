@@ -28,7 +28,7 @@ export default {
   },
   head() {
     return {
-      title: `${this.post.title} - ${this.globals.title}`,
+      title: `${this.post.title}`,
       meta: [
         ...this.meta,
         {

@@ -34,7 +34,7 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        title: `CV - ${this.globals.title}`,
+        title: `CV`,
         description: 'My personal CV as a website.',
         url: `/cv`,
         img: `/social/cv.png`,

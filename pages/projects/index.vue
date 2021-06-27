@@ -17,7 +17,7 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        title: `Projects - ${this.globals.title}`,
+        title: `Projects`,
         description: 'An overview about some selected projects I did.',
         url: `/projects`,
         img: `/social/projects.png`,

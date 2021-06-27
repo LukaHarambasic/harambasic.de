@@ -24,7 +24,7 @@ export default {
     meta() {
       const metaData = {
         img: `/social/luka_harambasic.png`,
-        imgAlt: `Home - ${this.globals.title}`,
+        imgAlt: `Home`,
       }
       return getSiteMeta(metaData)
     },
