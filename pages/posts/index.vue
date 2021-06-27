@@ -17,7 +17,7 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        title: `Blog`,
+        title: 'Blog',
         description: 'Want to see something new? Checkout some blog posts.',
         url: `/posts`,
         img: `/social/blog.png`,
