@@ -1,12 +1,6 @@
 <template>
   <article class="post h-entry">
     <section>
-      <nuxt-picture
-        class="image"
-        :src="post.image"
-        :alt="post.alt"
-        sizes="xs:200px md:500px lg:1024"
-      />
       <header>
         <h1 class="title p-name" v-text="post.title" />
         <div class="row-space-between">
@@ -89,22 +83,6 @@ export default {
   align-items: stretch
   @media screen and (max-width: $breakpoint-desktop)
     flex-direction: column
-  .image
-    margin: 0 0 2rem 0
-    padding: 1rem
-    width: 100%
-    display: block
-    background: var(--c-primary)
-    border-radius: $border-radius
-    &::v-deep
-      img
-        border-radius: $border-radius
-        width: 100%
-        min-height: 16rem
-        @media screen and (max-width: $breakpoint-desktop)
-          min-height: 12rem
-        @media screen and (max-width: $breakpoint-mobile)
-          min-height: 8rem
   .title
     font-size: 1.75rem
     line-height: 1.5

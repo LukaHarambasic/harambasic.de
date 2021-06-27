@@ -1,8 +1,6 @@
 ---
 title: Build your custom search engine in your browser
 description: I show you why custom search engines in your browser are a nice tool and how I use them.
-image: /posts/custom-search-engines-in-your-browser/header.png
-alt: Show the usage of a custom search engine with dict.cc on top of my website.
 publishedAt: 2021-06-20
 tags:
 - Google Chrome

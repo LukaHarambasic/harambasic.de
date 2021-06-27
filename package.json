@@ -8,7 +8,9 @@
     "start": "nuxt start",
     "generate": "npm run lint && nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "npm run lint:js"
+    "lint": "npm run lint:js",
+    "generateSocialMediaPreview": "node scripts/generate-social-media-preview/index.js",
+    "gsmp": "npm run generateSocialMediaPreview"
   },
   "dependencies": {
     "@nuxt/content": "^1.11.1",
@@ -18,6 +20,7 @@
     "date-fns": "^2.16.1",
     "marked": "^1.2.7",
     "nuxt": "^2.14.12",
+    "playwright": "^1.12.2",
     "reading-time": "^1.2.1",
     "unist-util-visit": "^2.0.3",
     "vue-gtag": "^1.10.0",
