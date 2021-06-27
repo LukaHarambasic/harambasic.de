@@ -8,45 +8,18 @@
  */
 
 const path = require('path')
-const { readdirSync, readFileSync } = require('fs')
-const { chromium } = require('playwright')
+const { readdirSync } = require('fs')
 
 const ROOT_PATH = process.cwd()
 const SOCIAL_PATH = `${ROOT_PATH}/static/social`
 const POSTS_PATH = `${ROOT_PATH}/content/posts`
 
-const generateSocialMediaPreview = async () => {
-  console.log('>> GENERATE SOCIAL MEDIA PREVIEWS <<')
-  console.log('🆕 newly generated, 🛑 already exists')
-  console.log('-------------------------------------')
-  const browser = await chromium.launch()
-  const page = await browser.newPage()
-  const posts = readdirSync(POSTS_PATH)
-  for (const file of posts) {
-    const FILE_PATH = `${POSTS_PATH}/${file}`
-    const slug = file.replace('.md', '')
-    const content = readFileSync(FILE_PATH, 'utf8')
-    const title = _getTitle(content)
-    if (!_doesImageAlreadyExist(slug)) {
-      console.log('🆕', title)
-      await _generateImage(page, title, slug)
-    } else {
-      console.log('🛑', title)
-    }
-  }
-  await browser.close()
-}
-
-/*
- * Helper functions
- */
-
-const _doesImageAlreadyExist = (slug) => {
+const doesImageAlreadyExist = (slug) => {
   const files = readdirSync(SOCIAL_PATH)
   return files.find((file) => file.startsWith(slug))
 }
 
-const _generateImage = async (page, title, slug) => {
+const generateImage = async (page, title, slug) => {
   const URL = `file:///${path.join(__dirname, '/template.html')}`
   const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`
   await page.goto(URL)
@@ -59,7 +32,7 @@ const _generateImage = async (page, title, slug) => {
   })
 }
 
-const _getTitle = (str) => {
+const getTitle = (str) => {
   const start = 'title: '
   const end = '\ndescription: '
   return str.substring(
@@ -68,14 +41,10 @@ const _getTitle = (str) => {
   )
 }
 
-/*
- * Execute
- */
-
-;(async () => {
-  try {
-    await generateSocialMediaPreview()
-  } catch (error) {
-    console.log('Error:', error)
-  }
-})()
+module.exports = {
+  SOCIAL_PATH,
+  POSTS_PATH,
+  doesImageAlreadyExist,
+  generateImage,
+  getTitle,
+}
