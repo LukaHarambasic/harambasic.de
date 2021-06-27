@@ -42,7 +42,6 @@ export default {
         property: 'og:site_name',
         content: globals.title || '',
       },
-      ,
       {
         hid: 'og:description',
         property: 'og:description',
