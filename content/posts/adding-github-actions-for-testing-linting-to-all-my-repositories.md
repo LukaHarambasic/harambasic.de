@@ -1,8 +1,6 @@
 ---
 title: Add GitHub Actions for testing & linting to your repository
 description: GitHub Actions are easy to configure and should be used in all npm/yarn based projects. 
-image: /posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_passed.png
-alt: Passing GitHub Action Workflows with a successful build on a PR
 publishedAt: 2020-12-21
 tags: 
     - GitHub Actions
@@ -16,6 +14,8 @@ tweet: https://twitter.com/luka_harambasic/status/1341140170628853765
 ## Why should you add this GitHub Actions to your repositories?
 
 GitHub Actions are there to automate workflows directly in GitHub without the need of setting up a full-blown CI/CD pipeline. You can just use them by adding a file to your root directory. Also, the [pricing](https://github.com/pricing) is very accommodating. I think I won't run into the limits with my private projects especially as there aren't limitations for public repositories.
+
+![Passing GitHub Action Workflow with a successful build on a PR](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_passed.png)
 
 During the time I worked on the [german Corona-Warn-App](https://www.coronawarn.app/en/) I noticed how powerful a CI/CD pipeline is. Therefore, it was clear to me that I want such a safety net for myself. If I'm rushing something or think it's just a quick fix I would love to see this in the PR and not in production. With these two small checks executed for every PR I'll spot errors more easily. It also opens up the possibilities for collaborations, as everybody has to fulfill the same checks.
 
