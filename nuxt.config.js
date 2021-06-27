@@ -1,6 +1,7 @@
 import marked from 'marked'
 import readingTime from 'reading-time'
 
+import getFeed from './assets/js/getFeed'
 import globals from './assets/js/globals'
 import getRoutes from './assets/js/getRoutes'
 import getSiteMeta from './assets/js/getMeta'
@@ -150,38 +151,7 @@ export default {
    * Inspired by https://github.com/garethredfern/nuxt-basic-blog
    */
   feed() {
-    const baseUrlPosts = `${globals.baseURL}/posts`
-    const baseLinkFeedPosts = '/posts'
-    const feedFormats = {
-      rss: { type: 'rss2', file: 'rss.xml' },
-      json: { type: 'json1', file: 'feed.json' },
-    }
-    const { $content } = require('@nuxt/content')
-    const createFeed = async function (feed) {
-      feed.options = {
-        title: globals.title || '',
-        description: globals.desc || '',
-        link: baseUrlPosts,
-      }
-      const posts = await $content('posts').fetch()
-      posts.forEach((post) => {
-        const url = `${baseUrlPosts}/${post.slug}`
-        feed.addItem({
-          title: posts.title,
-          id: url,
-          link: url,
-          date: new Date(post.publishedAt),
-          description: post.description,
-          content: post.html,
-          author: globals.twitterHandle,
-        })
-      })
-    }
-    return Object.values(feedFormats).map(({ file, type }) => ({
-      path: `${baseLinkFeedPosts}/${file}`,
-      type,
-      create: createFeed,
-    }))
+    return getFeed()
   },
   /*
    * f
@@ -210,7 +180,7 @@ export default {
    */
   hooks: {
     'content:file:beforeInsert': (document) => {
-      if (document.extension === '.md') {
+      if (document.exteension === '.md') {
         document.readingTime = readingTime(document.text)
         document.html = marked(document.text)
       }
