@@ -11,8 +11,7 @@
     "lint": "npm run lint:js",
     "socialMedia:posts": "node scripts/generate-social-media-preview/generateForPosts.js",
     "socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
-    "prepare": "husky install",
-    "test": "exit 1"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nuxt/content": "^1.11.1",
