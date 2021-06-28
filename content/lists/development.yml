@@ -1,6 +1,5 @@
 title: Development
 description: Everything I love to work with (focused on web development).
-image: /lists/development/main.png
 entries:
   - title: vue-resume-component
     description: My first npm package which is also powering the CV at this page.

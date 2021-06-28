@@ -20,7 +20,7 @@ export default {
         title: this.list.title,
         description: this.list.description,
         url: `/lists/${this.$route.params.slug}`, // compare with canonical (line 39)
-        img: this.list.image,
+        img: `/social/${this.$route.params.slug}.png`,
         imgAlt: this.list.title,
       }
       return getSiteMeta(metaData)
