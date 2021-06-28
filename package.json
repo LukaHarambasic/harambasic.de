@@ -10,7 +10,8 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
     "socialMedia:posts": "node scripts/generate-social-media-preview/generateForPosts.js",
-    "socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js"
+    "socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nuxt/content": "^1.11.1",
@@ -38,6 +39,7 @@
     "eslint-plugin-prettier": "^3.3.0",
     "prettier": "^2.2.1",
     "sass": "^1.32.12",
-    "sass-loader": "^9.0.3"
+    "sass-loader": "^9.0.3",
+    "husky": "^6.0.0"
   }
 }
