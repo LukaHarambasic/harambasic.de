@@ -5,7 +5,7 @@ echo
 if [ -e .commit ]
     then
     rm .commit
-    #npm run socialMedia:posts
+    npm run socialMedia:posts
     git add .
     git commit --amend -C HEAD --no-verify
 fi
