@@ -19,7 +19,7 @@
     "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "date-fns": "^2.16.1",
-    "marked": "^1.2.7",
+    "marked": "^2.0.0",
     "nuxt": "^2.14.12",
     "playwright": "^1.12.2",
     "reading-time": "^1.2.1",
