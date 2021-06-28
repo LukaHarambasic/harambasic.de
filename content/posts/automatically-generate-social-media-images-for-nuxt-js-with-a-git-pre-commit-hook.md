@@ -10,7 +10,7 @@ tweet: TBD
 
 ## What and why?
 
-![Generated social media preview with the script in this post, it  shows the title of the post](/social/generate-social-media-images-for-nuxt-with-pre-commit-hook.png)
+![Generated social media preview with the script in this post, it  shows the title of the post](/social/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook.png)
 
 - generate social media preview images for all pages
 - found an article by [David Parks](https://davidparks.dev/blog/social-share-images-in-nuxt-content/) which is based on an article from [Jason Lengstrof](https://www.learnwithjason.dev/blog/auto-generate-social-image) but they use Cloudinary
