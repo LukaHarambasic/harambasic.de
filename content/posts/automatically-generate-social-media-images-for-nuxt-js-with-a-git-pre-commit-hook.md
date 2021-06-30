@@ -21,7 +21,9 @@ With this requirements I thought about the article by [Flavio Copes](https://fla
 The final solution is based on [Playwright](https://playwright.dev/) which allows me to write and style a `template.html`, inject the title and take a screenshot. That's what I feel comfortable with and that's fun for me.
 
 
-## How
+## How to generate the images
+
+Nuxt.js has an strongly opinionated directory structure which I like, but somehow it felt wrong to put this script which runs only locally in assets. For that I created a scripts directory (who knows what will be automated next) where all my node scripts will live which aren't part of the website build.
 
 - lives in a new folder called scripts as it is not part of the acutal website build
 - get the files which needs generation, so I would call the dynamic content. For me that are my posts and lists.
