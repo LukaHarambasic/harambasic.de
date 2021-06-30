@@ -8,14 +8,18 @@ tldr: TBD
 tweet: TBD
 ---
 
-## What and why?
+## Intro
+
+For this website I want to generate images for social media automatically everytime I publish something new. 
 
 ![Generated social media preview with the script in this post, it  shows the title of the post](/social/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook.png)
 
-- generate social media preview images for all pages
-- found an article by [David Parks](https://davidparks.dev/blog/social-share-images-in-nuxt-content/) which is based on an article from [Jason Lengstrof](https://www.learnwithjason.dev/blog/auto-generate-social-image) but they use Cloudinary
-- I want to generate this images locally and without third party dependencies, for another project I used this article by [Flavio Copes](https://flaviocopes.com/canvas-node-generate-image/) to generate images via node cnavas, but somehow this wasnt working on my machine and also it feels very hacky, multiline text support has to be implemented by yourself
-- A friend recommended to me to use a browser automation tool so that I can easily design everything I need with HTML and CSS and in the end take just a screenshot
+There is an Nuxt.js specific article using Cloudinary by [David Parks](https://davidparks.dev/blog/social-share-images-in-nuxt-content/) which is based on an article by [Jason Lengstrof](https://www.learnwithjason.dev/blog/auto-generate-social-image). I somehow like the idea, but for this website I want as much control as possible and as few as possible external dependencies, especially on other servers. However, I have to admit Davids way of including these images in the components is nice, but only possible due to Cloudinary.
+
+With this requirements I thought about the article by [Flavio Copes](https://flaviocopes.com/canvas-node-generate-image/) which I used to generate Instagram posts for [Techmob Show](https://techmob.show). You can even get the package on npm - [@techmobshow/generate-podcast-cover](https://www.npmjs.com/package/@techmobshow/generate-podcast-cover). This uses [node-canvas](https://www.npmjs.com/package/canvas) which is okay, but I wouldn't use it again after a friend - [Timon Lukas]() - came up with the idea to use a browser automation tool. The problem about node-canvas is about the dependencies, checkout what [you have to install](https://github.com/Automattic/node-canvas#compiling) and somehow I had a conflict between a local and global version and I wasn't able to fix it. Also, I have to do the styling programmatically, and I even need to handle multi line text, it ins't working out of the box.
+
+The final solution is based on [Playwright](https://playwright.dev/) which allows me to write and style a `template.html`, inject the title and take a screenshot. That's what I feel comfortable with and that's fun for me.
+
 
 ## How
 
