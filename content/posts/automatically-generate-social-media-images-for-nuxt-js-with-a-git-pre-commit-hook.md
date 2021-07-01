@@ -23,12 +23,148 @@ The final solution is based on [Playwright](https://playwright.dev/) which allow
 
 ## How to generate the images
 
-Nuxt.js has an strongly opinionated directory structure which I like, but somehow it felt wrong to put this script which runs only locally in assets. For that I created a scripts directory (who knows what will be automated next) where all my node scripts will live which aren't part of the website build.
+Nuxt.js has a strongly opinionated directory structure which I like, but somehow it felt wrong to put this script which runs only locally in assets. For that I created a scripts directory (who knows what will be automated next) where all my node scripts will live which aren't part of the website build. This is important as these scripts aren't handled by Nuxt.js which uses webpack with babel. They are executed thorough Node.js which means you can't use `import X from 'x'`, but it also allows you to use `fs`, which means you can interact with the file system.
 
-- lives in a new folder called scripts as it is not part of the acutal website build
-- get the files which needs generation, so I would call the dynamic content. For me that are my posts and lists.
-- get required meta data -> don't have access to nuxt content -> manually getting the title and slug
-- manipulate a html file as template, manipulate it with your dynamic date. I only use a title and take a screenshot
+But let us come to the interesting part, for the sake of simplicity I'll put everything in one file and explain the automatic generation in detail. On my website I have three files to get this working:
+1. [util.js](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/util.js) - shared logic
+2. [generateAutomatic.js](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/generateAutomatic.js) - automatic image generation for new posts and lists
+3. [generateManual.js](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/generateManual.js) - manual image generation by passing a title via the command line
+
+```javascript
+const { readdirSync, readFileSync } = require('fs')
+const { chromium } = require('playwright')
+const path = require('path')
+
+const ROOT_PATH = process.cwd()
+const SOCIAL_PATH = `${ROOT_PATH}/static/social`
+const POSTS_PATH = `${ROOT_PATH}/content/posts`
+const LISTS_PATH = `${ROOT_PATH}/content/lists`
+
+/*
+ * Opens an HTML template, sets the title, takes a screenshot and saves it locally as png
+ * @param {Page} page
+ * @param {string} title
+ * @param {string} slug
+ */
+const generateImage = async (page, title, slug) => {
+  const URL = `file:///${path.join(__dirname, '/template.html')}`
+  const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`
+  await page.goto(URL)
+  // strange syntax, check https://playwright.dev/docs/api/class-page#page-eval-on-selector for more infos
+  await page.$eval('.title', (el, title) => (el.textContent = title), title)
+  const cardHandle = await page.$('.card')
+  await cardHandle.screenshot({
+    type: 'png',
+    path: SCREENSHOT_PATH,
+  })
+}
+
+/*
+ * Returns if there is an image for the given slug
+ * @param {string} slug
+ * @returns {boolean}
+ */
+const doesImageAlreadyExist = (slug) => {
+  const files = readdirSync(SOCIAL_PATH)
+  return files.find((file) => file.startsWith(slug))
+}
+
+/*
+ * Posts and lists contain a title followed by a description in YAML
+ * @nuxt/content isn't accessible so this has to be parsed manually
+ * Returns the extracted title
+ * @param {string} str
+ * @returns {string}
+ */
+const getTitle = (str) => {
+  const start = 'title: '
+  const end = '\ndescription: '
+  return str.substring(str.indexOf(start) + start.length, str.indexOf(end))
+}
+
+/*
+ * Returns meta data to a given file
+ * @params {string} name
+ * @params {string} basePath
+ * @returns {{name|string,path|string,slug|string}} // not sure how to do this object syntax without defining a type
+ */
+const fileToMeta = (name, basePath) => {
+  return {
+    name,
+    path: `${basePath}/${name}`,
+    slug: name.split('.')[0],
+  }
+}
+
+/*
+ * Instantiate a new browser with playwright, get all potential files (lists, posts)
+ * and check if there is already a social media preview image in SOCIAL_PATH
+ * if not execute generateImage(), nothing will be returned
+ */
+const generateSocialMediaPreview = async () => {
+  console.log('>> GENERATE SOCIAL MEDIA PREVIEWS <<')
+  console.log('🆕 newly generated, 🛑 already exists')
+  console.log('-------------------------------------')
+  const browser = await chromium.launch()
+  const page = await browser.newPage()
+  const posts = readdirSync(POSTS_PATH).map((name) =>
+    fileToMeta(name, POSTS_PATH)
+  )
+  const lists = readdirSync(LISTS_PATH).map((name) =>
+    fileToMeta(name, LISTS_PATH)
+  )
+  const files = [...posts, ...lists]
+  for (const file of files) {
+    const content = readFileSync(file.path, 'utf8')
+    const title = getTitle(content)
+    if (!doesImageAlreadyExist(file.slug)) {
+      console.log('🆕', title)
+      await generateImage(page, title, file.slug)
+    } else {
+      console.log('🛑', title)
+    }
+  }
+  await browser.close()
+}
+
+/*
+ * Entry point for generateSocialMediaPreview() when this file is executed
+ */
+;(async () => {
+  try {
+    await generateSocialMediaPreview()
+  } catch (error) {
+    console.log('Error:', error)
+  }
+})()
+```
+
+I would say this code is quite self explaining, but as I have spent some time with it, I might miss something. Feel free to get in touch on [Twitter](https://twitter.com/luka_harambasic) if you have any questions. But I still need you to show the corresponding [HTML template](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/template.html).
+
+```html
+<!DOCTYPE>
+<html lang="en">
+    <head>
+        <title>Hello</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+        <style>
+            * {box-sizing: border-box;}
+            body {font-family: Open Sans, Helvetica Neue, Arial, sans-serif; color: #121218;}
+            .card {width: 1200px; height: 630px; background: url("./template.svg") no-repeat; padding: 5rem;}
+            .title {font-size: 5rem; font-weight: bold;}
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="title">Will be replaced! Wuhu! Party :)</div>
+        </div>
+    </body>
+</html>
+```
+
+It's super simple, directly using Google Fonts with a [svg graphic as background](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/template.svg). Thereby only the font has to be styled.
 
 ## Automation
 
