@@ -236,3 +236,10 @@ Finally, execute your new command with the according title. And yes somehow the 
 ```bash
 npm run socialMedia:manual -- --title="Your prefered title"
 ```
+
+## Conclusion
+
+- webstorm does strange things
+- husky is nice as it also commits
+- i love playwright
+- maybe I'll try it with an github action
