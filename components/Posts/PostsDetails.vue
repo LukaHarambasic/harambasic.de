@@ -15,18 +15,7 @@
         <!-- eslint-disable-next-line vue/no-v-html-->
         <div v-html="post.tldr" />
       </base-callout>
-      <details class="toc">
-        <summary><strong>Table of Content</strong></summary>
-        <ul>
-          <li
-            v-for="entry in post.toc"
-            :key="entry.id"
-            :data-depth="entry.depth"
-          >
-            <a :href="getAnchor(entry.id)">{{ entry.text }}</a>
-          </li>
-        </ul>
-      </details>
+      <posts-table-of-content :toc="post.tocNested" />
       <nuxt-content class="content e-content" :document="post" />
     </section>
     <section>
@@ -65,11 +54,6 @@ export default {
       return this.post.authorURL || this.globals.baseURL
     },
   },
-  methods: {
-    getAnchor(id) {
-      return `#${id}`
-    },
-  },
 }
 </script>
 
@@ -102,52 +86,6 @@ export default {
   .tags
     @media screen and (max-width: $breakpoint-mobile)
       margin: 0 0 1rem 0
-  .toc
-    color: var(--c-font)
-    background: var(--c-primary)
-    border-radius: $border-radius
-    margin: 0 0 2rem 0
-    &[open]
-      background: var(--c-primary-light)
-      summary
-        background: var(--c-primary)
-        border-radius: $border-radius $border-radius 0 0
-    summary
-      padding: 1rem 2rem
-      border-radius: $border-radius
-      &:hover
-        cursor: pointer
-        strong
-          border-color: var(--c-font)
-      strong
-        border-bottom: 2px solid transparent
-        font-weight: bold
-    ul
-      padding: 1rem 2rem
-      margin: 0 0 0 0.5rem
-      li
-        margin: 0 0 0.25rem 0
-        $depth-space: 1rem
-        &[data-depth="2"]
-          margin-left: 0 * $depth-space
-        &[data-depth="3"]
-          margin-left: 1 * $depth-space
-        &[data-depth="4"]
-          margin-left: 2 * $depth-space
-        &[data-depth="5"]
-          margin-left: 3 * $depth-space
-        &[data-depth="6"]
-          margin-left: 4 * $depth-space
-        a
-          color: var(--c-font)
-          transition: $animation
-          text-decoration: none
-          line-height: 1
-          border-bottom: 2px solid transparent
-          &:hover
-            border-color: var(--c-font)
-          &:before
-            content: '» '
   .author
     width: 100%
     text-align: center
