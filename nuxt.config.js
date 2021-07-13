@@ -1,6 +1,7 @@
 import marked from 'marked'
 import readingTime from 'reading-time'
 
+import getNestedToc from './assets/js/getNestedToc'
 import getFeed from './assets/js/getFeed'
 import globals from './assets/js/globals'
 import getRoutes from './assets/js/getRoutes'
@@ -185,9 +186,10 @@ export default {
    */
   hooks: {
     'content:file:beforeInsert': (document) => {
-      if (document.exteension === '.md') {
+      if (document.dir.includes('posts')) {
         document.readingTime = readingTime(document.text)
         document.html = marked(document.text)
+        document.tocNested = getNestedToc(document.toc)
       }
     },
   },
