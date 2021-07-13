@@ -7,7 +7,6 @@ export default (list) => {
   const entryDepth = list.reduce((acc, item) => {
     return item.depth < acc ? item.depth : acc
   }, Number.POSITIVE_INFINITY)
-  console.log('entryDepth', entryDepth)
   return listCopy.reduce((result, entry) => {
     if (latestEntry && !latestEntry.children) {
       latestEntry.children = []
