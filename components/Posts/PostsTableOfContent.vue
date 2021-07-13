@@ -1,13 +1,13 @@
 <template>
   <details class="toc">
     <summary><strong>Table of Content</strong></summary>
-    <ul class="nodes">
+    <ol class="nodes">
       <posts-table-of-content-node
         v-for="node in toc"
         :key="node.id"
         :nodes="node"
       />
-    </ul>
+    </ol>
   </details>
 </template>
 

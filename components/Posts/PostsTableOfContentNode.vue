@@ -1,13 +1,13 @@
 <template>
   <li>
     <a :href="getAnchor(nodes.id)">{{ nodes.text }}</a>
-    <ul v-if="nodes.children.length !== 0">
+    <ol v-if="nodes.children.length !== 0">
       <posts-table-of-content-node
         v-for="node in nodes.children"
         :key="node.id"
         :nodes="node"
       />
-    </ul>
+    </ol>
   </li>
 </template>
 
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-ul
+ol
   margin: 0 0 0 1rem
   li
     margin: 0 0 0.25rem 0

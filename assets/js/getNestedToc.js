@@ -4,11 +4,15 @@ export default (list) => {
   let latestParent = null
   const listCopy = JSON.parse(JSON.stringify(list))
   if (listCopy.length <= 1) return listCopy
+  const entryDepth = list.reduce((acc, item) => {
+    return item.depth < acc ? item.depth : acc
+  }, Number.POSITIVE_INFINITY)
+  console.log('entryDepth', entryDepth)
   return listCopy.reduce((result, entry) => {
     if (latestEntry && !latestEntry.children) {
       latestEntry.children = []
     }
-    if (entry.depth === 2) {
+    if (entry.depth === entryDepth) {
       entry.children = []
       result.push(entry)
       latestParent = null
