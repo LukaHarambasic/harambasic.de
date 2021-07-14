@@ -1,7 +1,7 @@
 import marked from 'marked'
 import readingTime from 'reading-time'
 
-import getCategoriesMeta from './assets/js/getCategoriesMeta'
+import getCategoryMeta from './assets/js/getCategoryMeta'
 import getFeed from './assets/js/getFeed'
 import globals from './assets/js/globals'
 import getRoutes from './assets/js/getRoutes'
@@ -189,7 +189,7 @@ export default {
       if (document.dir.includes('post')) {
         document.readingTime = readingTime(document.text)
         document.html = marked(document.text)
-        document.categories = getCategoriesMeta(document.categories)
+        document.categories = getCategoryMeta(document.categories)
         document.url = `${globals.baseURL}${document.path}`
         document.author = document.author || globals.author
         document.authorUrl = document.authorURL || globals.baseURL

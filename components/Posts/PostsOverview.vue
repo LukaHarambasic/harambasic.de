@@ -40,7 +40,7 @@
 
 <script>
 import IconsArrow from '@/components/Icons/IconsArrow'
-import getCategories from 'assets/js/getUniqueCategories'
+import getCategories from 'assets/js/getCategoriesUnique'
 
 export default {
   name: 'PostsOverview',

@@ -23,7 +23,7 @@
 
 <script>
 import getSiteMeta from '@/assets/js/getMeta'
-import getCategories from 'assets/js/getUniqueCategories'
+import getCategories from 'assets/js/getCategoriesUnique'
 
 export default {
   name: 'Categories',
