@@ -14,7 +14,6 @@
         </nuxt-link>
       </li>
     </ul>
-    <!-- TODO add lists feed if wanted-->
     <base-footnote>
       Check out
       <a :href="globals.twitterURL">my Twitter account</a>

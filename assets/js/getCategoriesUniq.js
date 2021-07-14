@@ -5,11 +5,15 @@ const uniqify = (array, key) =>
     return isObjectAlreadyIn ? acc : acc.push(curr) && acc
   }, [])
 
-export default (posts) => {
+const getCategoriesUniq = (posts) => {
   const notUniqCategories = posts.map((post) => post.categories).flat()
   return uniqify(notUniqCategories, 'slug').sort((a, b) => {
     if (a.slug > b.slug) return 1
     if (b.slug > a.slug) return -1
     return 0
   })
+}
+
+module.exports = {
+  getCategoriesUniq,
 }

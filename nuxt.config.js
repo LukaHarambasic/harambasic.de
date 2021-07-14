@@ -1,7 +1,7 @@
 import marked from 'marked'
 import readingTime from 'reading-time'
 
-import getCategoryMeta from './assets/js/getCategoryMeta'
+import { getCategoryMeta } from './assets/js/getCategoryMeta'
 import getFeed from './assets/js/getFeed'
 import globals from './assets/js/globals'
 import getRoutes from './assets/js/getRoutes'

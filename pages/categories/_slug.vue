@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import getSiteMeta from '@/assets/js/getMeta'
+
 const getFilteredPosts = (rawPosts, slug) => {
   return rawPosts.filter((post) =>
     post.categories.find((category) => category.slug === slug)
@@ -50,39 +52,19 @@ export default {
       title: getTitle(posts, params.slug),
     }
   },
-  // TODO
-  // computed: {
-  //   meta() {
-  //     const metaData = {
-  //       type: 'article',
-  //       title: this.post.title,
-  //       description: this.post.description,
-  //       url: `/posts/${this.$route.params.slug}`,
-  //       img: `/social/${this.$route.params.slug}.png`,
-  //       imgAlt: this.post.title,
-  //     }
-  //     return getSiteMeta(metaData)
-  //   },
-  // },
-  // head() {
-  //   return {
-  //     title: `${this.post.title}`,
-  //     meta: [
-  //       ...this.meta,
-  //       {
-  //         property: 'article:published_time',
-  //         content: this.post.publishedAt,
-  //       },
-  //       {
-  //         property: 'article:modified_time',
-  //         content: this.post.updatedAt,
-  //       },
-  //       { name: 'twitter:label1', content: 'Written by' },
-  //       { name: 'twitter:data1', content: this.globals.author || '' },
-  //       { name: 'twitter:label2', content: 'Filed under' },
-  //     ],
-  //   }
-  // },
+  computed: {
+    // TODO
+    meta() {
+      const metaData = {
+        title: 'Categories',
+        description: 'TBD',
+        url: `/categories`,
+        img: `/social/categories.png`,
+        imgAlt: `Categories - ${this.globals.title}`,
+      }
+      return getSiteMeta(metaData)
+    },
+  },
 }
 </script>
 

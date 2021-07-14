@@ -12,8 +12,6 @@ const { readdirSync } = require('fs')
 
 const ROOT_PATH = process.cwd()
 const SOCIAL_PATH = `${ROOT_PATH}/static/social`
-const POSTS_PATH = `${ROOT_PATH}/content/posts`
-const LISTS_PATH = `${ROOT_PATH}/content/lists`
 
 const doesImageAlreadyExist = (slug) => {
   const files = readdirSync(SOCIAL_PATH)
@@ -33,12 +31,6 @@ const generateImage = async (page, title, slug) => {
   })
 }
 
-const getTitle = (str) => {
-  const start = 'title: '
-  const end = '\ndescription: '
-  return str.substring(str.indexOf(start) + start.length, str.indexOf(end))
-}
-
 const fileToMeta = (name, basePath) => {
   return {
     name,
@@ -48,11 +40,9 @@ const fileToMeta = (name, basePath) => {
 }
 
 module.exports = {
+  ROOT_PATH,
   SOCIAL_PATH,
-  POSTS_PATH,
-  LISTS_PATH,
   doesImageAlreadyExist,
   generateImage,
-  getTitle,
   fileToMeta,
 }

@@ -1,4 +1,4 @@
-import getSlug from '../../assets/js/getSlug'
+import { getSlug } from '../../assets/js/getSlug'
 
 const { readFileSync, writeFileSync, mkdirSync } = require('fs')
 const readline = require('readline')

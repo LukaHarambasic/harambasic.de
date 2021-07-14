@@ -16,7 +16,7 @@ import segments from '@/content/cv/segments.json'
 import skills from '@/content/cv/skills.json'
 import information from '@/content/cv/information.json'
 import settings from '@/content/cv/settings.json'
-import getSiteMeta from 'assets/js/getMeta'
+import getSiteMeta from '@/assets/js/getMeta'
 export default {
   name: 'Cv',
   layout: 'cv',

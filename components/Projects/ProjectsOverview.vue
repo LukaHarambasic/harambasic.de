@@ -154,7 +154,6 @@ export default {
     flex-wrap: nowrap
     justify-content: flex-start
     font-size: 1rem
-    // TODO align with date
     padding: 0.05rem 0.1rem
     margin: 0 0.5rem
     transition: $animation

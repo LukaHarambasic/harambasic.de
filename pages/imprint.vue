@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import getSiteMeta from 'assets/js/getMeta'
+import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
   name: 'Imprint',

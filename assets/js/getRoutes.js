@@ -1,4 +1,4 @@
-import getCategories from './getCategoriesUnique'
+import { getCategoriesUniq } from './getCategoriesUniq'
 
 export default async () => {
   const { $content } = require('@nuxt/content')
@@ -6,7 +6,7 @@ export default async () => {
     .only(['path', 'categories'])
     .fetch()
   const posts = files.filter((post) => post.path.includes('posts'))
-  const categories = getCategories(posts)
+  const categories = getCategoriesUniq(posts)
   // test for e.g. /cv/settings - as they were previously generated
   const regex = new RegExp('\\/cv\\/.+')
   return [...files, ...categories]

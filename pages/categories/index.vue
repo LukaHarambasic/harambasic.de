@@ -23,7 +23,7 @@
 
 <script>
 import getSiteMeta from '@/assets/js/getMeta'
-import getCategories from 'assets/js/getCategoriesUnique'
+import { getCategoriesUniq } from 'assets/js/getCategoriesUniq'
 
 export default {
   name: 'Categories',
@@ -31,10 +31,11 @@ export default {
     const posts = await $content('posts').sortBy('publishedAt', 'desc').fetch()
     return {
       posts,
-      categories: getCategories(posts),
+      categories: getCategoriesUniq(posts),
     }
   },
   computed: {
+    // TODO
     meta() {
       const metaData = {
         title: 'Categories',

@@ -40,7 +40,7 @@
 
 <script>
 import IconsArrow from '@/components/Icons/IconsArrow'
-import getCategories from 'assets/js/getCategoriesUnique'
+import { getCategoriesUniq } from 'assets/js/getCategoriesUniq'
 
 export default {
   name: 'PostsOverview',
@@ -53,7 +53,7 @@ export default {
   },
   data() {
     return {
-      categories: getCategories(this.posts),
+      categories: getCategoriesUniq(this.posts),
       selectedCategorySlug: '',
     }
   },
