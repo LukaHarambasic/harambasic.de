@@ -1,12 +1,11 @@
 <template>
   <section>
-    <h2>Lists</h2>
+    <h2>Categories</h2>
     <ul>
-      <li v-for="list in lists" :key="list.slug" class="h-feed">
-        <nuxt-link :to="list.path">
+      <li v-for="category in categories" :key="category.slug" class="h-feed">
+        <nuxt-link :to="category.path">
           <div>
-            <h2 class="title p-name" v-text="list.title" />
-            <p v-text="list.description" />
+            <h2 class="title p-name" v-text="category.title" />
           </div>
           <div class="icon">
             <icons-arrow />
@@ -14,9 +13,8 @@
         </nuxt-link>
       </li>
     </ul>
-    <!-- TODO add lists feed if wanted-->
     <base-footnote>
-      Check out
+      Check out the <a :href="globals.blogFeedURL">RSS feed</a> or
       <a :href="globals.twitterURL">my Twitter account</a>
       to keep up to date.
     </base-footnote>
@@ -24,16 +22,35 @@
 </template>
 
 <script>
-import IconsArrow from '@/components/Icons/IconsArrow'
+import getSiteMeta from '@/assets/js/getMeta'
+import getCategories from '@/assets/js/getCategories'
 
 export default {
-  name: 'ListsOverview',
-  components: { IconsArrow },
-  props: {
-    lists: {
-      type: Array,
-      required: true,
+  name: 'Categories',
+  async asyncData({ $content }) {
+    const posts = await $content('posts').sortBy('publishedAt', 'desc').fetch()
+    return {
+      posts,
+      categories: getCategories(posts),
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Categories',
+        description: 'TBD',
+        url: `/categories`,
+        img: `/social/categories.png`,
+        imgAlt: `Categories - ${this.globals.title}`,
+      }
+      return getSiteMeta(metaData)
     },
+  },
+  head() {
+    return {
+      title: this.meta.title,
+      meta: [...this.meta],
+    }
   },
 }
 </script>

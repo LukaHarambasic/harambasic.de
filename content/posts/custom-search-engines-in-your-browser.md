@@ -2,11 +2,10 @@
 title: Build a custom search engine in your browser
 description: I show you why custom search engines in your browser are a nice tool and how I use them.
 publishedAt: 2021-06-20
-tags:
-- Google Chrome
-- Firefox
-- Search engine
-- Trick
+categories:
+    - Quick Tip
+    - Development
+    - GitHub Actions
 tldr: In less than a minute you can set up custom search engines in your browser to speed up your day-to-day tasks.
 tweet: https://twitter.com/luka_harambasic/status/1406703914045542405
 ---

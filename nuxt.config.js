@@ -185,9 +185,20 @@ export default {
    */
   hooks: {
     'content:file:beforeInsert': (document) => {
-      if (document.exteension === '.md') {
+      if (document.dir.includes('post')) {
         document.readingTime = readingTime(document.text)
         document.html = marked(document.text)
+        document.categories = document.categories.map((category) => {
+          const slug = category.replaceAll(' ', '-').toLowerCase()
+          return {
+            title: category,
+            slug,
+            path: `/categories/${slug}`,
+          }
+        })
+        document.url = `${globals.baseURL}${document.path}`
+        document.author = document.author || globals.author
+        document.authorUrl = document.authorURL || globals.baseURL
       }
     },
   },

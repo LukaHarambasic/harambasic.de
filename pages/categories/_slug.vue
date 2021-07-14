@@ -1,20 +1,8 @@
 <template>
   <section>
-    <h2>Blog</h2>
-    <div class="categories">
-      <select v-model="selectedCategorySlug">
-        <option value="">All</option>
-        <option
-          v-for="category in categories"
-          :key="category.slug"
-          :value="category.slug"
-        >
-          {{ category.title }}
-        </option>
-      </select>
-    </div>
+    <h2>{{ title }}</h2>
     <ul>
-      <li v-for="post in filteredPosts" :key="post.slug" class="h-feed">
+      <li v-for="post in posts" :key="post.slug" class="h-feed">
         <nuxt-link :to="post.path">
           <div class="meta">
             <h2 class="title p-name" v-text="post.title" />
@@ -39,59 +27,66 @@
 </template>
 
 <script>
-import IconsArrow from '@/components/Icons/IconsArrow'
-import getCategories from '@/assets/js/getCategories'
-
+const getFilteredPosts = (rawPosts, slug) => {
+  return rawPosts.filter((post) =>
+    post.categories.find((category) => category.slug === slug)
+  )
+}
+const getTitle = (posts, slug) => {
+  // Only the slug is available but the title is needed
+  const categoryIndex = posts[0].categories.findIndex(
+    (category) => category.slug === slug
+  )
+  return posts[0].categories[categoryIndex].title
+}
 export default {
-  name: 'PostsOverview',
-  components: { IconsArrow },
-  props: {
-    posts: {
-      type: Array,
-      required: true,
-    },
-  },
-  data() {
+  async asyncData({ $content, params }) {
+    const rawPosts = await $content('posts')
+      .sortBy('publishedAt', 'desc')
+      .fetch()
+    const posts = getFilteredPosts(rawPosts, params.slug)
     return {
-      categories: getCategories(this.posts),
-      selectedCategorySlug: '',
+      posts,
+      title: getTitle(posts, params.slug),
     }
   },
-  computed: {
-    filteredPosts() {
-      if (this.selectedCategorySlug === '') return this.posts
-      return this.posts.filter((post) =>
-        post.categories.find(
-          (category) => category.slug === this.selectedCategorySlug
-        )
-      )
-    },
-  },
+  // TODO
+  // computed: {
+  //   meta() {
+  //     const metaData = {
+  //       type: 'article',
+  //       title: this.post.title,
+  //       description: this.post.description,
+  //       url: `/posts/${this.$route.params.slug}`,
+  //       img: `/social/${this.$route.params.slug}.png`,
+  //       imgAlt: this.post.title,
+  //     }
+  //     return getSiteMeta(metaData)
+  //   },
+  // },
+  // head() {
+  //   return {
+  //     title: `${this.post.title}`,
+  //     meta: [
+  //       ...this.meta,
+  //       {
+  //         property: 'article:published_time',
+  //         content: this.post.publishedAt,
+  //       },
+  //       {
+  //         property: 'article:modified_time',
+  //         content: this.post.updatedAt,
+  //       },
+  //       { name: 'twitter:label1', content: 'Written by' },
+  //       { name: 'twitter:data1', content: this.globals.author || '' },
+  //       { name: 'twitter:label2', content: 'Filed under' },
+  //     ],
+  //   }
+  // },
 }
 </script>
 
 <style lang="sass" scoped>
-.categories
-  display: flex
-  flex-direction: row
-  flex-wrap: nowrap
-  justify-content: flex-end
-  align-content: flex-start
-  align-items: flex-start
-  margin: 0 0 .5rem 0
-  select
-    color: var(--c-font)
-    border: none
-    border-bottom: 2px solid var(--c-font)
-    background: none
-    font-size: 1rem
-    padding: 0.05rem 0.1rem
-    margin: 0 0.5rem
-    transition: $animation
-    border-radius: $border-radius
-    &:hover
-      cursor: pointer
-      border-color: var(--c-font-hover)
 ul
   display: flex
   flex-direction: column
