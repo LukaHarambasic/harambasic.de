@@ -1,9 +1,8 @@
+import getSlug from './getSlug'
+
 export default (categories) => {
-  console.log('---------')
   return categories.map((category) => {
-    console.log(category)
-    const slug = category.replaceAll(' ', '-').toLowerCase()
-    console.log(slug)
+    const slug = getSlug(category)
     return {
       title: category,
       slug,
