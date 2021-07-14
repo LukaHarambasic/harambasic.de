@@ -39,17 +39,9 @@ export default {
           property: 'article:modified_time',
           content: this.post.updatedAt,
         },
-        {
-          property: 'article:tag',
-          content: this.post.tags ? this.post.tags.join(', ') : '',
-        },
         { name: 'twitter:label1', content: 'Written by' },
         { name: 'twitter:data1', content: this.globals.author || '' },
         { name: 'twitter:label2', content: 'Filed under' },
-        {
-          name: 'twitter:data2',
-          content: this.post.tags ? this.post.tags.join(', ') : '',
-        },
       ],
     }
   },

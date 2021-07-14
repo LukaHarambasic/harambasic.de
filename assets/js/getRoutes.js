@@ -3,6 +3,7 @@ export default async () => {
   const files = await $content({ deep: true }).only(['path']).fetch()
   // test for e.g. /cv/settings - as they were previously generated
   const regex = new RegExp('\\/cv\\/.+')
+  // TODO categories need to be generated
   return files
     .map((file) => {
       if (file.path === '/index') return '/'

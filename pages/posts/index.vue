@@ -15,6 +15,13 @@ export default {
     }
   },
   computed: {
+    categories() {
+      const categories = this.posts
+        .map((item) => item.categories)
+        .flat()
+        .sort()
+      return new Set(categories)
+    },
     meta() {
       const metaData = {
         title: 'Blog',

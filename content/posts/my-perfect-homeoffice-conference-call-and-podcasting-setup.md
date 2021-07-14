@@ -2,12 +2,9 @@
 title: My perfect Home-Office Conference Call & Podcasting Setup
 description: Overview for my perfect Homeoffice Conference Call & Podcasting Setup.
 publishedAt: 2021-04-18
-tags: 
-    - Home-Office 
-    - Camera
-    - Microphone
-    - Streamdeck
-    - Ring Light
+categories:
+    - New Work
+    - Hardware
 tldr: You don't have to spend a fortune, but it's a lot of fun to put a little money in your hand.
 tweet: https://twitter.com/luka_harambasic/status/1383820044082106371
 ---
