@@ -1,10 +1,15 @@
+import getCategories from './getCategoriesUnique'
+
 export default async () => {
   const { $content } = require('@nuxt/content')
-  const files = await $content({ deep: true }).only(['path']).fetch()
+  const files = await $content({ deep: true })
+    .only(['path', 'categories'])
+    .fetch()
+  const posts = files.filter((post) => post.path.includes('posts'))
+  const categories = getCategories(posts)
   // test for e.g. /cv/settings - as they were previously generated
   const regex = new RegExp('\\/cv\\/.+')
-  // TODO categories need to be generated wup
-  return files
+  return [...files, ...categories]
     .map((file) => {
       if (file.path === '/index') return '/'
       return file.path
