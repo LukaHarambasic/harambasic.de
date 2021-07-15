@@ -10,6 +10,7 @@ const getFilteredPosts = (rawPosts, slug) => {
     post.categories.find((category) => category.slug === slug)
   )
 }
+
 const getTitle = (posts, slug) => {
   // Only the slug is available but the title is needed
   const categoryIndex = posts[0].categories.findIndex(
@@ -17,6 +18,7 @@ const getTitle = (posts, slug) => {
   )
   return posts[0].categories[categoryIndex].title
 }
+
 export default {
   async asyncData({ $content, params }) {
     const rawPosts = await $content('posts')
