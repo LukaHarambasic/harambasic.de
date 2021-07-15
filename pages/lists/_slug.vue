@@ -16,7 +16,6 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        type: 'article',
         title: this.list.title,
         description: this.list.description,
         url: `/lists/${this.$route.params.slug}`, // compare with canonical (line 39)

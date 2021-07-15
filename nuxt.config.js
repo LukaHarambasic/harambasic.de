@@ -2,6 +2,7 @@ import marked from 'marked'
 import readingTime from 'reading-time'
 
 import getNestedToc from './assets/js/getNestedToc'
+import { getCategoryMeta } from './assets/js/getCategoryMeta'
 import getFeed from './assets/js/getFeed'
 import globals from './assets/js/globals'
 import getRoutes from './assets/js/getRoutes'
@@ -190,6 +191,10 @@ export default {
         document.readingTime = readingTime(document.text)
         document.html = marked(document.text)
         document.tocNested = getNestedToc(document.toc)
+        document.categories = getCategoryMeta(document.categories)
+        document.url = `${globals.baseURL}${document.path}`
+        document.author = document.author || globals.author
+        document.authorUrl = document.authorURL || globals.baseURL
       }
     },
   },

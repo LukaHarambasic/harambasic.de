@@ -1,12 +1,25 @@
 <template>
   <section>
+    <h2>Blog</h2>
+    <div class="categories">
+      <select v-model="selectedCategorySlug">
+        <option value="">All</option>
+        <option
+          v-for="category in categories"
+          :key="category.slug"
+          :value="category.slug"
+        >
+          {{ category.title }}
+        </option>
+      </select>
+    </div>
     <ul>
-      <li v-for="post in posts" :key="post.slug" class="h-feed">
+      <li v-for="post in filteredPosts" :key="post.slug" class="h-feed">
         <nuxt-link :to="post.path">
           <div class="meta">
             <h2 class="title p-name" v-text="post.title" />
             <time class="date dt-published" :datetime="post.publishedAt">
-              <a :href="fullPath(post.path)" class="u-url">
+              <a :href="post.url" class="u-url">
                 {{ post.publishedAt | date }}
               </a>
             </time>
@@ -27,6 +40,7 @@
 
 <script>
 import IconsArrow from '@/components/Icons/IconsArrow'
+import { getCategoriesUniq } from 'assets/js/getCategoriesUniq'
 
 export default {
   name: 'PostsOverview',
@@ -37,15 +51,47 @@ export default {
       required: true,
     },
   },
-  methods: {
-    fullPath(path) {
-      return `${this.globals.baseURL}${path}`
+  data() {
+    return {
+      categories: getCategoriesUniq(this.posts),
+      selectedCategorySlug: '',
+    }
+  },
+  computed: {
+    filteredPosts() {
+      if (this.selectedCategorySlug === '') return this.posts
+      return this.posts.filter((post) =>
+        post.categories.find(
+          (category) => category.slug === this.selectedCategorySlug
+        )
+      )
     },
   },
 }
 </script>
 
 <style lang="sass" scoped>
+.categories
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: flex-end
+  align-content: flex-start
+  align-items: flex-start
+  margin: 0 0 .5rem 0
+  select
+    color: var(--c-font)
+    border: none
+    border-bottom: 2px solid var(--c-font)
+    background: none
+    font-size: 1rem
+    padding: 0.05rem 0.1rem
+    margin: 0 0.5rem
+    transition: $animation
+    border-radius: $border-radius
+    &:hover
+      cursor: pointer
+      border-color: var(--c-font-hover)
 ul
   display: flex
   flex-direction: column

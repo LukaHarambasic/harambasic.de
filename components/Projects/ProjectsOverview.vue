@@ -1,5 +1,6 @@
 <template>
   <section>
+    <h2>Projects</h2>
     <ul class="filters">
       <li v-for="filter in filters" :key="filter.id">
         <button @click="onFilter(filter.id)">
@@ -153,14 +154,15 @@ export default {
     flex-wrap: nowrap
     justify-content: flex-start
     font-size: 1rem
-    // TODO align with date
-    padding: 0.35rem 0.5rem
+    padding: 0.05rem 0.1rem
+    margin: 0 0.5rem
     transition: $animation
     border-radius: $border-radius
+    border-bottom: 2px solid var(--c-font)
     &:hover
       cursor: pointer
       color: var(--c-font)
-      background: var(--c-primary)
+      border-color: var(--c-font-hover)
     .status
       height: 1rem
       width: 1rem
@@ -239,6 +241,7 @@ export default {
         transition: $animation
         text-decoration: none
         line-height: 1
+        font-size: 1rem
         &:hover
           text-decoration: none
           border-color: var(--c-font-hover)
