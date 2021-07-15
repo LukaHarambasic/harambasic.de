@@ -53,17 +53,22 @@ export default {
     }
   },
   computed: {
-    // TODO
     meta() {
       const metaData = {
         title: 'Categories',
-        description: 'TBD',
-        url: `/categories`,
-        img: `/social/categories.png`,
-        imgAlt: `Categories - ${this.globals.title}`,
+        description: `A list of all posts in the category ${this.title}. Haven fun! :)`,
+        url: `/categories/${this.$route.params.slug}`,
+        img: `/social/${this.$route.params.slug}.png`,
+        imgAlt: `Category: ${this.title} - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)
     },
+  },
+  head() {
+    return {
+      title: this.meta.title,
+      meta: [...this.meta],
+    }
   },
 }
 </script>

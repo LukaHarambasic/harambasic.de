@@ -35,11 +35,10 @@ export default {
     }
   },
   computed: {
-    // TODO
     meta() {
       const metaData = {
         title: 'Categories',
-        description: 'TBD',
+        description: `An overview about all the categories I use in page. You won't find this anywhere else in the world wide web.`,
         url: `/categories`,
         img: `/social/categories.png`,
         imgAlt: `Categories - ${this.globals.title}`,
