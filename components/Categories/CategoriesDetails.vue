@@ -1,12 +1,16 @@
 <template>
   <section>
-    <h2>Lists</h2>
+    <h2>{{ title }}</h2>
     <ul>
-      <li v-for="list in lists" :key="list.slug" class="h-feed">
-        <nuxt-link :to="list.path">
-          <div>
-            <h2 class="title p-name" v-text="list.title" />
-            <p v-text="list.description" />
+      <li v-for="post in posts" :key="post.slug" class="h-feed">
+        <nuxt-link :to="post.path">
+          <div class="meta">
+            <h2 class="title p-name" v-text="post.title" />
+            <time class="date dt-published" :datetime="post.publishedAt">
+              <a :href="post.url" class="u-url">
+                {{ post.publishedAt | date }}
+              </a>
+            </time>
           </div>
           <div class="icon">
             <icons-arrow />
@@ -15,7 +19,7 @@
       </li>
     </ul>
     <base-footnote>
-      Check out
+      Check out the <a :href="globals.blogFeedURL">RSS feed</a> or
       <a :href="globals.twitterURL">my Twitter account</a>
       to keep up to date.
     </base-footnote>
@@ -23,13 +27,14 @@
 </template>
 
 <script>
-import IconsArrow from '@/components/Icons/IconsArrow'
-
 export default {
-  name: 'ListsOverview',
-  components: { IconsArrow },
+  name: 'CategoriesDetails',
   props: {
-    lists: {
+    title: {
+      type: String,
+      required: true,
+    },
+    posts: {
       type: Array,
       required: true,
     },
@@ -80,14 +85,25 @@ li
       font-size: 1.5rem
       line-height: 1.5rem
       padding: .5rem
-      margin:  0 0 0 2rem
+      margin:  0 0 0 1rem
       transition: $animation
       @media screen and (max-width: $breakpoint-mobile)
         display: none
       svg
-        fill: var(--c-secondary)
+        fill: var(--c-font)
         width: 2rem
         height: 2rem
     .title
       font-size: 1.5rem
+    .date
+      font-size: 1rem
+      @media screen and (max-width: $breakpoint-mobile)
+        margin: .5rem 0 0 0
+      a
+        color: var(--c-font)
+        text-decoration: none
+        transition: $animation
+        border-bottom: 2px solid transparent
+        &:hover
+          border-color: var(--c-font)
 </style>
