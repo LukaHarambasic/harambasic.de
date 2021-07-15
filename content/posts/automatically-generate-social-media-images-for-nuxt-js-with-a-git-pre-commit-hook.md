@@ -1,10 +1,11 @@
 ---
 title: Automatically generate social media images for Nuxt.js with a git pre-commit hook
-description: TBD
-publishedAt: 2999-12-30
+description: Generate social media images for a nuxt/content project in a git pre-commit hook, this logic can be adapted to any other CMS.
+publishedAt: 2021-07-16
 categories:
-    - TBD
-tldr: TBD
+    - Nuxt.js
+    - Git
+tldr: 'Playwright and husky are a perfect combination. Jump to <a href="https://harambasic.de/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook#how-to-generate-the-images">this section</a> if you are only interested in the implementation without the bla bla.'
 tweet: TBD
 ---
 
