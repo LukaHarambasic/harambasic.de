@@ -191,7 +191,7 @@ export default {
         document.readingTime = readingTime(document.text)
         document.html = marked(document.text)
         document.tocNested = getNestedToc(document.toc)
-        document.categories = getCategoryMeta(document.categories)
+        document.categories = getCategoryMeta(document.categories || [])
         document.url = `${globals.baseURL}${document.path}`
         document.author = document.author || globals.author
         document.authorUrl = document.authorURL || globals.baseURL
