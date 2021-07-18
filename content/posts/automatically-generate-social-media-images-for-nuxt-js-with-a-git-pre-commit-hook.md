@@ -6,7 +6,7 @@ categories:
     - Nuxt.js
     - Git
 tldr: 'Playwright and husky are a perfect combination. Jump to <a href="https://harambasic.de/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook#how-to-generate-the-images">this section</a> if you are only interested in the implementation without the bla bla.'
-tweet: TBD
+tweet: https://twitter.com/luka_harambasic/status/1416875811320307721
 ---
 
 ## Intro
