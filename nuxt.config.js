@@ -1,6 +1,7 @@
 import marked from 'marked'
 import readingTime from 'reading-time'
 
+import getNestedToc from './assets/js/getNestedToc'
 import { getCategoryMeta } from './assets/js/getCategoryMeta'
 import getFeed from './assets/js/getFeed'
 import globals from './assets/js/globals'
@@ -186,10 +187,11 @@ export default {
    */
   hooks: {
     'content:file:beforeInsert': (document) => {
-      if (document.dir.includes('post')) {
+      if (document.dir.includes('posts')) {
         document.readingTime = readingTime(document.text)
         document.html = marked(document.text)
-        document.categories = getCategoryMeta(document.categories)
+        document.tocNested = getNestedToc(document.toc)
+        document.categories = getCategoryMeta(document.categories || [])
         document.url = `${globals.baseURL}${document.path}`
         document.author = document.author || globals.author
         document.authorUrl = document.authorURL || globals.baseURL
