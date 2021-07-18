@@ -15,7 +15,7 @@ For this website, I want to generate images for social media automatically every
 
 ![Generated social media preview with the script in this post, it  shows the title of the post](/social/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook.png)
 
-There is a Nuxt.js specific article using Cloudinary by [David Parks](https://davidparks.dev/blog/social-share-images-in-nuxt-content/) which is based on an article by [Jason Lengstrof](https://www.learnwithjason.dev/blog/auto-generate-social-image). I somehow like the idea, but for this website, I want as much control as possible and as few as possible external dependencies, especially on other servers. However, I have to admit David's way of including these images in the components is nice, but only possible due to Cloudinary.
+There is a Nuxt.js specific article using Cloudinary by [David Parks](https://davidparks.dev/blog/social-share-images-in-nuxt-content/) which is based on an article by [Jason Lengstrof](https://www.learnwithjason.dev/blog/auto-generate-social-image). I somehow like the idea, but for this website, I want as much control as possible and as few as possible external dependencies, especially on other servers.
 
 With these requirements, I thought about the article by [Flavio Copes](https://flaviocopes.com/canvas-node-generate-image/)  which I used to generate Instagram posts for [Techmob Show](https://techmob.show). You can even get the package on npm - [@techmobshow/generate-podcast-cover](https://www.npmjs.com/package/@techmobshow/generate-podcast-cover). This uses [node-canvas](https://www.npmjs.com/package/canvas) which is okay, but I wouldn't use it again after a friend - [Timon Lukas](https://github.com/TimonLukas) - came up with the idea to use a browser automation tool. The problem with node-canvas are the dependencies, check out what [you have to install](https://github.com/Automattic/node-canvas#compiling). I had a conflict between a local and global version and I wasn't able to fix it. Also, I have to do the styling programmatically, and I even need to handle multi-line text, as it isn't working out of the box.
 
@@ -168,11 +168,11 @@ It's super simple, directly using Google Fonts with a [svg graphic as background
 
 ## Automation
 
-As I'm forgetful I need to automate the generation as titles of posts normally won't change this is a one-time job. Therefore I won't want to generate this during the build step on Netlify. This step can happen manually, after a change, before I commit or push something. That's why I thought about a git pre-commit hook. Alternative a GitHub Action could be used which executes the same script and then commits the newly generated files. I stuck to the pre-commit hook for now, but with that, the odyssey began...
+As I'm forgetful I need to automate the generation. As titles of posts normally won't change this is a one-time job per post. Therefore, I won't want to generate this during the build step on Netlify. This step can happen locally, after a change, before I commit or push something. That's why I thought about a git pre-commit hook. Alternative a GitHub Action could be used which executes the same script and then commits the newly generated files. I stuck to the pre-commit hook for now, but with that, the odyssey began...
 
-I looked in the native git pre-commit hook and I was able to execute the file, but somehow the image generation wasn't triggered. I had the same problem with [pre-commit](https://github.com/observing/pre-commit) and [husky](https://typicode.github.io/husky/#/). Nothing worked. So I wrote my first [Stackoverflow question](https://stackoverflow.com/questions/68153276/git-pre-commit-hook-isnt-executed/68169136#68169136) in a while and asked some friends, what they use and if they have an idea. The same friend who had the idea to use browser automation tools to generate the images also helped me here and found two tickets that Webstorm isn't working with git hooks ([this](https://youtrack.jetbrains.com/issue/IDEA-264817) and [this](https://youtrack.jetbrains.com/issue/IDEA-244581)). That explained why my script was never executed, for now, I have to commit via command line and not via the Webstorm UI, but hey that is possible. During my research everybody recommended husky, so I tried it again and stuck to it. As the script was now executed the next problem occurred: newly generated files aren't committed. But Stackoverflow has even an [answer](https://stackoverflow.com/a/12802592/5438990) for this. You need a pre-commit and a post-commit hook, read more about this in the linked question. I only need to define a new script in my `package.json`.
+I looked in the native git pre-commit hook and I was able to execute the file, but somehow the image generation wasn't triggered. I had the same problem with [pre-commit](https://github.com/observing/pre-commit) and [husky](https://typicode.github.io/husky/#/). Nothing worked. So I wrote my first [Stackoverflow question](https://stackoverflow.com/questions/68153276/git-pre-commit-hook-isnt-executed/68169136#68169136) in a while and asked some friends, what they use and if they have an idea. The same friend who had the idea to use browser automation tools to generate the images also helped me here and found two tickets that Webstorm isn't working with git hooks ([this](https://youtrack.jetbrains.com/issue/IDEA-264817) and [this](https://youtrack.jetbrains.com/issue/IDEA-244581)). That explained why my script was never executed*. For now, I have to commit via command line and not via the Webstorm UI, but hey that is possible. During my research everybody recommended husky, so I tried it again and stuck to it. As the script was now executed the next problem occurred: newly generated files aren't committed. But Stackoverflow has already an [answer](https://stackoverflow.com/a/12802592/5438990) for this. You need a pre-commit and a post-commit hook, read more about this in the linked question. 
 
-This will be executed in my `post-commit` hook, if you are too lazy to read the linked answer on Stackoverflow don't forget to also define a `pre-commit` hook.
+I only need to define a new script in my `package.json`. This will be executed in my `post-commit` hook and don't forget to also define a `pre-commit` hook.
 
 ```json[package.json]
 {
@@ -213,7 +213,7 @@ exit
 
 ## Manual
 
-For some pages, which are unique like home and imprint I also need images, but automating these would be a little bit overkill. The corresponding pages don't even have the required meta data, they could, but currently, they don't have. For that, I wanted a way to generate social media previews manually by passing in a title. 
+For some pages, which are unique like home or imprint I also need images, but automating these would be a little bit overkill. The corresponding pages don't even have the required meta data, they could, but currently, they don't have. For that, I wanted a way to generate social media previews manually by passing in a title. 
 
 ```json[package.json]
 {
@@ -240,6 +240,6 @@ npm run socialMedia:manual -- --title="Your preferred title"
 
 ## Conclusion
 
-Webstorm does some strange things. I'm a big fan of the JetBrain IDEs but didn't consider that they would change the default behavior of git.* But in the end, it works quite well and I learned a lot and I'll husky also for some other projects. Playwright showed against why I fall in love and why I'll use it for every browser automation project I have. Finally, I also got an idea for another approach: GitHub Actions. But that's something for another post.
+Webstorm does some strange things. I'm a big fan of the JetBrain IDEs but didn't consider that they would change the default behavior of git.* But in the end, it works quite well, I learned a lot and I'll consider husky also for some other projects. Playwright showed again why I fall in love with it and why I'll use it for every browser automation project I have. Finally, I also got an idea for another approach: GitHub Actions. But that's something for another post.
 
 <small>*currently it's working with commits via the UI</small>
