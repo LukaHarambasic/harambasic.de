@@ -1,7 +1,7 @@
 ---
 title: Automatically generate social media images for Nuxt.js with a git pre-commit hook
 description: Generate social media images for a nuxt/content project in a git pre-commit hook, this logic can be adapted to any other CMS.
-publishedAt: 2021-07-16
+publishedAt: 2021-07-18
 categories:
     - Nuxt.js
     - Git
