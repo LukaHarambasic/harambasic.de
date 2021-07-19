@@ -5,10 +5,6 @@ entries:
     description: I bought this password manager before they started the subscription model. Therefore, I can use it without any monthly fees.
     logo: /lists/digital_tools/enpass.svg
     url: https://www.enpass.io/
-  - title: Dropbox
-    description: Planned backup for all my other cloud solutions.
-    logo: /lists/digital_tools/dropbox.svg
-    url: https://dropbox.com
   - title: Figma
     description: Awesome vector tool, you can work live at files and share them easily.
     logo: /lists/digital_tools/figma.svg
@@ -17,6 +13,10 @@ entries:
     description: I like it as it just works and has all the features I need built-in.
     logo: /lists/digital_tools/webstorm.svg
     url: https://www.jetbrains.com/webstorm/
+  - title: Obsidian
+    description: My go-to knowledge app, you could also call it a note app. I only note down content with a long-term value (for now).
+    logo: /lists/digital_tools/obsidian.svg
+    url: https://obsidian.md/
   - title: Clipy
     extra: Open Source
     description: A clipboard manager for macOS. No more, no less.
@@ -41,10 +41,6 @@ entries:
     description: As I'm not a big fan of TextEdit (macOS) I use VS Code as my primarily editor.
     logo: /lists/digital_tools/vscode.svg
     url: https://code.visualstudio.com/
-  - title: Pixelmator Classic
-    description: Whenever I have to work on pixel based images I use Pixelmator which I bought some years ago, definitely enough for my skill level.
-    logo: /lists/digital_tools/pixelmator.png
-    url: https://www.pixelmator.com/mac/
   - title: Notion
     description: "My personal knowledge base where I store everything: Recipes, Links, Ideas, etc."
     logo: /lists/digital_tools/notion.svg
@@ -56,8 +52,4 @@ entries:
   - title: Google Workspace
     description: In my case it is used privately, but it is also very easy to set up for small to large organizations.
     logo: /lists/digital_tools/google.svg
-    url: https://workspace.google.com/
-  - title: Toggl Track
-    description: It's interesting to know where I spend my time, I primarily use it for side projects.
-    logo: /lists/digital_tools/toggl.jpg
-    url: https://toggl.com/track/
+    url: https://workspace.google.com
