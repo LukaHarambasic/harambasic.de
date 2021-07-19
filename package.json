@@ -9,6 +9,7 @@
     "generate": "npm run lint && nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
+    "test": "jest",
     "socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
     "socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
     "newPost": "node scripts/generate-post/index.js",
@@ -34,14 +35,19 @@
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/google-analytics": "^2.4.0",
+    "@vue/test-utils": "^1.2.1",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.0.6",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-prettier": "^3.3.0",
     "husky": "^6.0.0",
+    "jest": "^27.0.6",
     "prettier": "^2.2.1",
     "sass": "^1.32.12",
-    "sass-loader": "^9.0.3"
+    "sass-loader": "^9.0.3",
+    "vue-jest": "^3.0.7"
   }
 }
