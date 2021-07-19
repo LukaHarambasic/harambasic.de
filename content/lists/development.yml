@@ -13,10 +13,10 @@ entries:
     description: It makes using Vue even simpler and I use it to build static sites.
     logo: /lists/development/nuxt.svg
     url: https://nuxtjs.org/
-  - title: Selenium
-    description: A web scraper which I use in Python to automate the boring stuff, e.g. resetting 150 accounts.
-    logo: /lists/development/selenium.svg
-    url: https://www.selenium.dev/
+  - title: Playwright
+    description: A Node.js browser automation framework I use it to automate websites which won't give me API access or to generate images.
+    logo: /lists/development/playwright.svg
+    url: https://playwright.dev/
   - title: nuxt/content
     description: File based CMS for Nuxt, apropos this website is powered by nuxt/content.
     logo: /lists/development/nuxtcontent.svg
