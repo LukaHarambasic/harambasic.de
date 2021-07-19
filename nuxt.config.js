@@ -79,6 +79,13 @@ export default {
     ],
   },
   /*
+   * https://iamweswilson.com/blog/nuxt-netlify-404
+   * For 404 errors on Netlify.
+   */
+  generate: {
+    fallback: true,
+  },
+  /*
    * Global CSS
    */
   css: [
