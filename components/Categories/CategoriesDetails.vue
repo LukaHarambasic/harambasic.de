@@ -1,7 +1,14 @@
 <template>
   <section>
-    <h2>{{ title }}</h2>
-    <ul>
+    <h2>{{ title || 'No valid category' }}</h2>
+    <div v-if="isNoValidCategory" class="nuxt-content">
+      <p>
+        This isn't a valid category. Checkout the
+        <nuxt-link to="/categories">categories page</nuxt-link> to see all valid
+        categories.
+      </p>
+    </div>
+    <ul v-else>
       <li v-for="post in posts" :key="post.slug" class="h-feed">
         <nuxt-link :to="post.path">
           <div class="meta">
@@ -39,10 +46,17 @@ export default {
       required: true,
     },
   },
+  computed: {
+    isNoValidCategory() {
+      return this.posts.length === 0
+    },
+  },
 }
 </script>
 
 <style lang="sass" scoped>
+.nuxt-content
+  text-align: center
 ul
   display: flex
   flex-direction: column

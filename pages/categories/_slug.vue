@@ -25,9 +25,10 @@ export default {
       .sortBy('publishedAt', 'desc')
       .fetch()
     const posts = getFilteredPosts(rawPosts, params.slug)
+    const title = posts.length > 0 ? getTitle(posts, params.slug) : ''
     return {
       posts,
-      title: getTitle(posts, params.slug),
+      title,
     }
   },
   computed: {
