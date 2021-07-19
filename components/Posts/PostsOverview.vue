@@ -88,7 +88,7 @@ export default {
     padding: 0.05rem 0.1rem
     margin: 0 0.5rem
     transition: $animation
-    border-radius: $border-radius
+    border-radius: 0
     &:hover
       cursor: pointer
       border-color: var(--c-font-hover)
