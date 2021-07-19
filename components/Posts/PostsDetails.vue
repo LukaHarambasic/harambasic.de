@@ -23,7 +23,10 @@
         <!-- eslint-disable-next-line vue/no-v-html-->
         <div v-html="post.tldr" />
       </base-callout>
-      <posts-table-of-content :toc="post.tocNested" />
+      <posts-table-of-content
+        v-if="Array.isArray(post.tocNested)"
+        :toc="post.tocNested"
+      />
       <nuxt-content class="content e-content" :document="post" />
     </section>
     <section>
