@@ -71,11 +71,11 @@ We moved from [Google Sheets](https://www.google.com/sheets/about/) to [AirTable
 
 Our list of Active Ambassadors is somehow a mixture between a CRM and an order system, if a user fills out the form a new entry will be added with all necessary information. The ambassador will also get a confirmation via [Mailchimp](https://mailchimp.com/). The new order is also communicated via Slack, this automation is done via [IFTTT](https://ifttt.com/home).  That message in Slack triggers Leonard to start the printing and shipping process. Afterward, the status of the order is reflected manually in the sheet.
 
-!Airtable - Shipping[](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_shipping.png)
+![Airtable - Shipping](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_shipping.png)
 
 The organization's CRM is inspired by a standard [sales funnel](https://en.wikipedia.org/wiki/Purchase_funnel). In reality, it's just a [Kanban board](https://en.wikipedia.org/wiki/Kanban_board) with four different states: First contact, Negotiation, Won and Lost. This helps us to keep track of organizations we already have contacted and creates transparency within the team.
 
-!Airtable - Organisations CRM[](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_organisations.png)
+![Airtable - Organisations CRM](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_organisations.png)
 
 I think there isn't much to say about our finance sheets, nothing fancy, pretty simple, and straight forward. This data is reflected on our [transparency page](https://active-ambassadors.org/transparency).
 
