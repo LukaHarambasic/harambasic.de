@@ -13,19 +13,6 @@ export default {
       post: await $content('posts', params.slug).fetch(),
     }
   },
-  computed: {
-    meta() {
-      const metaData = {
-        type: 'article',
-        title: this.post.title,
-        description: this.post.description,
-        url: `/posts/${this.$route.params.slug}`,
-        img: `/social/${this.$route.params.slug}.png`,
-        imgAlt: this.post.title,
-      }
-      return getSiteMeta(metaData)
-    },
-  },
   head() {
     return {
       title: `${this.post.title}`,
@@ -44,6 +31,19 @@ export default {
         { name: 'twitter:label2', content: 'Filed under' },
       ],
     }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        type: 'article',
+        title: this.post.title,
+        description: this.post.description,
+        url: `/posts/${this.$route.params.slug}`,
+        img: `/social/${this.$route.params.slug}.png`,
+        imgAlt: this.post.title,
+      }
+      return getSiteMeta(metaData)
+    },
   },
 }
 </script>

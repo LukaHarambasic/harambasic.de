@@ -1,4 +1,4 @@
-import visit from 'unist-util-visit'
+import { visit } from 'unist-util-visit'
 
 module.exports = function rehypePostImage() {
   return function transformer(tree, file) {
