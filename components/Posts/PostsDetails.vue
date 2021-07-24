@@ -72,6 +72,8 @@ export default {
     line-height: 1.5
     margin: 0 0 1rem 0
   .categories
+    @media screen and (max-width: $breakpoint-mobile)
+      margin: 0 0 1rem 0
     .links
       display: flex
       flex-direction: row
