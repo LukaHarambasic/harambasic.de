@@ -23,6 +23,14 @@ import IconsBack from '@/components/Icons/IconsBack'
 
 export default {
   components: { IconsBack, IconsWrapper, Cookie },
+  head() {
+    const { path } = this.$route
+    const pathWithSlash = path.endsWith('/') ? path : `${path}/`
+    const canonical = `${global.baseURL}${pathWithSlash}`
+    return {
+      link: [{ rel: 'canonical', href: canonical }],
+    }
+  },
   methods: {
     back() {
       if (window.history.length <= 2) {
@@ -31,14 +39,6 @@ export default {
         this.$router.go(-1)
       }
     },
-  },
-  head() {
-    const { path } = this.$route
-    const pathWithSlash = path.endsWith('/') ? path : `${path}/`
-    const canonical = `${global.baseURL}${pathWithSlash}`
-    return {
-      link: [{ rel: 'canonical', href: canonical }],
-    }
   },
 }
 </script>

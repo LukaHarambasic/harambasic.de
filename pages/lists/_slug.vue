@@ -13,6 +13,12 @@ export default {
       list: await $content('lists', params.slug).fetch(),
     }
   },
+  head() {
+    return {
+      title: `${this.list.title}`,
+      meta: [...this.meta],
+    }
+  },
   computed: {
     meta() {
       const metaData = {
@@ -24,12 +30,6 @@ export default {
       }
       return getSiteMeta(metaData)
     },
-  },
-  head() {
-    return {
-      title: `${this.list.title}`,
-      meta: [...this.meta],
-    }
   },
 }
 </script>

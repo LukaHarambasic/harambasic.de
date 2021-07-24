@@ -14,6 +14,12 @@ export default {
       posts: await $content('posts').sortBy('publishedAt', 'desc').fetch(),
     }
   },
+  head() {
+    return {
+      title: this.meta.title,
+      meta: [...this.meta],
+    }
+  },
   computed: {
     meta() {
       const metaData = {
@@ -25,12 +31,6 @@ export default {
       }
       return getSiteMeta(metaData)
     },
-  },
-  head() {
-    return {
-      title: this.meta.title,
-      meta: [...this.meta],
-    }
   },
 }
 </script>

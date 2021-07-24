@@ -8,6 +8,8 @@ export default async () => {
   const posts = files.filter((post) => post.path.includes('posts'))
   const categories = getCategoriesUniq(posts)
   // test for e.g. /cv/settings - as they were previously generated
+  // TODO, needs a little refactoring: https://eslint.org/docs/rules/prefer-regex-literals
+  // eslint-disable-next-line prefer-regex-literals
   const regex = new RegExp('\\/cv\\/.+')
   return [...files, ...categories]
     .map((file) => {

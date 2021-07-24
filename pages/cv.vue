@@ -19,16 +19,22 @@ import settings from '@/content/cv/settings.json'
 import getSiteMeta from '@/assets/js/getMeta'
 export default {
   name: 'Cv',
-  layout: 'cv',
   components: {
     resume,
   },
+  layout: 'cv',
   data() {
     return {
       segments,
       skills,
       information,
       settings,
+    }
+  },
+  head() {
+    return {
+      title: this.meta.title,
+      meta: [...this.meta],
     }
   },
   computed: {
@@ -42,12 +48,6 @@ export default {
       }
       return getSiteMeta(metaData)
     },
-  },
-  head() {
-    return {
-      title: this.meta.title,
-      meta: [...this.meta],
-    }
   },
 }
 </script>
