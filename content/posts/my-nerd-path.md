@@ -3,12 +3,14 @@ title: My nerd path
 description: TBD
 publishedAt: 2999-12-09
 categories:
-    - TBD
+    - Personal
 tldr: TBD
 tweet: TBD
 ---
 
 Inspired by alphalist podcast, nominate 3 others
+
+During school: IT advanced course -> gave HTML & CSS lessons
 
 1. Knuddels & Penenrgame -> Family Mitglied -> "Homepage" (BB Code) -> Customization with style attributes
 2. Homepage-Baukasten -> Customization of free templates -> own free template-> had the hope that Marco would join me -> community still at it-talent
@@ -17,7 +19,7 @@ Inspired by alphalist podcast, nominate 3 others
 5. Studied -> learned ui5 and then vue/nuxt, headless cms, netlify/vercel
 6. Technology consultant
 
-List of "Nerd Ways" -> https://harambasic.de/lists/nerd-ways
+List of "Nerd Paths" -> https://harambasic.de/lists/nerd-paths
 
 ## Preamble
 
@@ -27,13 +29,15 @@ Inspire others, find it inspiring, idea form alphalist CTO
 
 // TODO: Add that I was something like 11
 
-There was and still is a plattform called _Knuddels_, now days I would describe it RTC with some extensions like minigames. If you where an active user you got promoted as a _Family Member_, with this new rank you got new features, and the one I remember most and somehow has kicked of my Nerd Way was the so called "homepage". If you visited my profile you could learn more about me on my homepage, I think it wasn't public facing only members where able to access it. My one was very boring, others had nice borders around each content box. I got curious and found some templates I could copy over, that weren't even HTML they were written in (BBCode)[https://en.wikipedia.org/wiki/BBCode]. I'm not sure when I have seen it the last time, maybe in a forum around that time? But just having something nice looking wasn't enough I wanted to make it my own. After a while I recognized how powerful the `style` attribute is, and I changed everything. The next community I joined was _Pennergame_, it was also browser based like _Knuddels_ but it was a game. You where in the role of a homeless collecting bottles to gain money to buy weapons and fight against other. Can't imagine what would happen if this game would have relaunched today and fourteen year old children would play it. In this game you had a clan with an information page which could be styled, again with BBCodes, but to make it even better you used images. I think it was the first time I used GIMP. As I write this I also understand why I am so addicted to the web. It accompanies me since my youth and everybody from my friends was able to access it (ok most of them :D).
+There was and still is a plattform called _Knuddels_, now days I would describe it as a predecessor of Slack extensions like minigames. If you where an active user you got promoted as a _Family Member_, with this new rank you got new features, and the one I remember most and somehow has kicked of my Nerd Way was the so called "homepage". If you visited my profile you could learn more about me on my homepage, I think it wasn't public facing only members where able to access it. My one was very boring, others had nice borders around each content box. I got curious and found some templates I could copy over, that weren't even HTML they were written in [BBCode](https://en.wikipedia.org/wiki/BBCode). I'm not sure when I have seen it the last time, maybe in a forum around that time? But just having something nice looking wasn't enough I wanted to make it my own. After a while I recognized how powerful the `style` attribute is, and I changed everything. Afterwards I started another browser game where you had a clan with an information page which was styleable, again with BBCodes. This was the first time I used [GIMP](https://www.gimp.org/) and that was also the first time I became aware of what Open Source is.
+
+As I write this I also understand why I am so addicted to the web. It accompanies me since my youth.
 
 ## 2. The website builder
 
 ![Website with an drop shadow and border radius as image](/posts/my-nerd-path/shadow_rounded_corner.png)
 
-The next step was to publish my own website, to be honest I can't even remember the content. Nevertheless, I won't forget that it was at [Homepage Baukasten](https://www.homepage-baukasten.de/) (Homepage Builder) which also gave you a quite nice domain: `.de.tl`. And, as before I sticked to this place because there was a very active community, but this time with "experts" around programming. I still remember how I stand in awe of everybody who was able to build a website from scratch in this website builder. It felt like magic. I still have this feeling today for stuff I don't understand. After customizing some designs from the community I created my own ones. Around this time there weren't flex boxes or drop shadows or border radius broadly available. You had to create an image and then split it in three parts putting it together like this. Someone even stole (copy paste of my HTML & CSS) this kind of layout which I now days would see as compliment.
+The next step was to publish my own website, to be honest I can't even remember the content. Nevertheless, I won't forget that it was at [Homepage Baukasten](https://www.homepage-baukasten.de/) (Homepage Builder) which also gave you a quite nice domain: `.de.tl`. And, as before I sticked to this place because there was a very active community, but this time with "experts" around programming. I still remember how I stand in awe of everybody who was able to build a website from scratch in this website builder. It felt like magic. I still have this feeling today for stuff I don't understand. After customizing some designs from the community I created my own ones. Around this time there weren't flex boxes or drop shadows or border radius broadly available. You had to create an image and then split it in three parts putting it together like this. Once even my layout was stolen (copy paste of my HTML & CSS).
 
 ```html
 <div id="container">
@@ -60,7 +64,7 @@ I also used `id` for everything instead of `class`. Every website had this gloss
 
 ## 3. Hosting my own websites
 
-The next logical step was to build an entire website from scratch. For that I needed some hosting and every body around me used [bplaced.net](https://bplaced.net) as they had and still have a free tier. But, with this I still didn't know how to handle a webspace. I still remember when a strange, I got to know over the Homepage-Baukasten forum, showed me via Skype & TeamView how to use my webspace. He showed my [FileZilla](https://filezilla-project.org/), which is stil the only standalone FTP client I ever used. I wanted to speed about my process and for that I installed a plugin in [Notepad++](https://notepad-plus-plus.org/downloads/) to directly edit files on the server, I didn't know that you shouldn't change something directly in production without testing, but it was convenient. Maybe PHP was my first programming language I learned, as I hated it to update my Header and Footer on all pages, I wanted one central solution.
+The next logical step was to build an entire website from scratch. For that I needed some hosting and every body around me used [bplaced.net](https://bplaced.net) as they had and still have a free tier. But, with this I still didn't know how to handle a webspace. I still remember when a strange, I got to know over the Homepage-Baukasten forum, showed me via Skype & TeamView how to use my webspace. He showed my [FileZilla](https://filezilla-project.org/), which is stil the only standalone FTP client I ever used. I wanted to speed up my process and for that I installed a plugin in [Notepad++](https://notepad-plus-plus.org/downloads/) to directly edit files on the server, I didn't know that you shouldn't change something directly in production without testing, but it was convenient. Maybe PHP was my first programming language I learned, as I hated it to update my Header and Footer on all pages, I wanted one central solution.
 
 ```php
 <?php include ("./header.php"); ?>
