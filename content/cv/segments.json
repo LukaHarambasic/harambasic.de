@@ -3,6 +3,13 @@
     "title": "Education",
     "entries": [
       {
+        "title": "Technical University of Denmark (DTU)",
+        "location": "Copenhagen, Denmark",
+        "from": "10/2021",
+        "to": "09/2023",
+        "description": "Master of Science in Technology Entrepreneurship"
+      },
+      {
         "title": "Corporative State University Baden-Württemberg (DHBW)",
         "location": "Mannheim, Germany",
         "from": "09/2016",
@@ -34,7 +41,7 @@
         "position":  "Associate Technology Consultant",
         "location": "Walldorf, Germany",
         "from": "10/2019",
-        "to": "today",
+        "to": "20/2021",
         "description": "Developing mobile solutions focusing on user experience in the EMEA region, e.g. SAP Asset Manager and Corona-Warn-App"
       },
       {
