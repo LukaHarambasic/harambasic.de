@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <div id="inline-pdf-cv" />
-  </div>
+  <div id="inline-pdf-cv" />
 </template>
 
 <script>
