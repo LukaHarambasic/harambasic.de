@@ -40,7 +40,7 @@ export default {
       document.addEventListener('adobe_dc_view_sdk.ready', () => {
         // eslint-disable-next-line no-undef
         const adobeDCView = new AdobeDC.View({
-          clientId: '8f3b7a04dc41427db4d6dfb54428b8d6', // TODO process.env.ADOBE_PDF_VIEWER_CLIENT_ID,
+          clientId: process.env.ADOBE_PDF_VIEWER_CLIENT_ID,
           divId: 'inline-pdf-cv',
         })
         adobeDCView.previewFile(
@@ -50,7 +50,7 @@ export default {
           },
           {
             embedMode: 'IN_LINE',
-            showDownloadPDF: false,
+            showDownloadPDF: true,
             showPrintPDF: false,
           }
         )
@@ -64,4 +64,6 @@ export default {
 #inline-pdf-cv
   width: $size-desktop
   max-width: 100%
+  @media screen and (max-width: $breakpoint-desktop)
+    width: 100%
 </style>
