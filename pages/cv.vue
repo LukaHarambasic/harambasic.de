@@ -37,6 +37,10 @@ export default {
   },
   methods: {
     addPdfListener() {
+      console.log(window.location.origin)
+      console.log(window.location.origin.includes('.netlify.app'))
+      console.log(process.env.ADOBE_PDF_VIEWER_CLIENT_ID_TESTING)
+      console.log(process.env.ADOBE_PDF_VIEWER_CLIENT_ID)
       const clientId = window.location.origin.includes('.netlify.app')
         ? process.env.ADOBE_PDF_VIEWER_CLIENT_ID_TESTING
         : process.env.ADOBE_PDF_VIEWER_CLIENT_ID
