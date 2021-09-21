@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import Cookie from '@/components/Layout/TheLayoutCookie'
 import global from 'assets/js/globals'
+import Cookie from '@/components/Layout/TheLayoutCookie'
 import IconsWrapper from '@/components/Icons/IconsWrapper'
 import IconsBack from '@/components/Icons/IconsBack'
 
