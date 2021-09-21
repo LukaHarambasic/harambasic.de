@@ -8,9 +8,7 @@
         <li><nuxt-link to="/lists">Lists</nuxt-link></li>
         <li><nuxt-link to="/posts">Blog</nuxt-link></li>
         <li>
-          <nuxt-link to="https://harambasic.de/Luka_Harambasic.pdf"
-            >CV</nuxt-link
-          >
+          <a href="https://harambasic.de/Luka_Harambasic.pdf">CV</a>
         </li>
       </ul>
     </nav>
