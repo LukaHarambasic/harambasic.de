@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     addPdfListener() {
+      console.log('The following logs will be removed')
       console.log(window.location.origin)
       console.log(window.location.origin.includes('.netlify.app'))
       console.log(process.env.NUXT_ENV_ADOBE_PDF_VIEWER_CLIENT_ID_TESTING)
