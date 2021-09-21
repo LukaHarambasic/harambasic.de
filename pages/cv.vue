@@ -59,12 +59,12 @@ export default {
       this.addPdfListener()
     })
     setTimeout(() => {
-      // if the pdf is still loading after 10000 I assume it isn't working
+      // if the pdf is still loading after 20000 I assume it isn't working
       this.isWorking = !this.isLoading
       if (!this.isWorking) {
         console.log("PDF can't be loaded, offer manual download")
       }
-    }, 10000)
+    }, 20000)
   },
   methods: {
     addPdfListener() {
