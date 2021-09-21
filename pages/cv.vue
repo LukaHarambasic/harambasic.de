@@ -37,10 +37,13 @@ export default {
   },
   methods: {
     addPdfListener() {
+      const clientId = window.location.origin.includes('.netlify.app')
+        ? process.env.ADOBE_PDF_VIEWER_CLIENT_ID_TESTING
+        : process.env.ADOBE_PDF_VIEWER_CLIENT_ID
       document.addEventListener('adobe_dc_view_sdk.ready', () => {
         // eslint-disable-next-line no-undef
         const adobeDCView = new AdobeDC.View({
-          clientId: process.env.ADOBE_PDF_VIEWER_CLIENT_ID,
+          clientId,
           divId: 'inline-pdf-cv',
         })
         adobeDCView.previewFile(
