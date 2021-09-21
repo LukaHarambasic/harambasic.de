@@ -6,7 +6,7 @@
 export default {
   name: 'Cv',
   mounted() {
-    window.location.replace('https://harambasic.de/cv.pdf')
+    window.location.replace('https://harambasic.de/Luka_Harambasic.pdf')
   },
 }
 </script>
