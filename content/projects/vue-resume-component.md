@@ -21,4 +21,4 @@ responsibilities:
     - Development
 ---
 
-Why bother with Word or a graphics program when creating your CV? Hence, I designed and developed a tool with Vue 3 which takes a JSON and generates a CV from it. It is easy to maintain as new entries can be added to JSON and the CV will be updated automatically. I use it on this [website](/cv).
+Why bother with Word or a graphics program when creating your CV? Hence, I designed and developed a tool with Vue 3 which takes a JSON and generates a CV from it. It is easy to maintain as new entries can be added to JSON and the CV will be updated automatically.

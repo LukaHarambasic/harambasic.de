@@ -8,7 +8,9 @@
         <li><nuxt-link to="/lists">Lists</nuxt-link></li>
         <li><nuxt-link to="/posts">Blog</nuxt-link></li>
         <li>
-          <a href="https://harambasic.de/Luka_Harambasic.pdf">CV</a>
+          <a href="https://harambasic.de/Luka_Harambasic.pdf">
+            CV<i class="ri-external-link-fill"></i>
+          </a>
         </li>
       </ul>
     </nav>
@@ -68,4 +70,6 @@ nav
             border-color: var(--c-font-hover)
         &:hover
           border-color: var(--c-font)
+        .ri-external-link-fill
+          margin: .25rem 0 0 .25rem
 </style>
