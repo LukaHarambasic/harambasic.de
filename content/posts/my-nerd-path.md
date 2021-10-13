@@ -84,11 +84,23 @@ My first big project with something comparable with a customer was for my sports
 
 ![Screenshot of handball.tv-edigheim.de showing the start page](/posts/my-nerd-path/tv_edigheim.png)
 
-## 5. "Learn programming"
+## 5. Learn programming
 
-// TODO:  Studied -> learned ui5 and then vue/nuxt, headless cms, netlify/vercel, serverless, little bit docker
+I started a corporate study program: working three months at my partner company and than studying three months at my university and that for three years. At my company I learned a JavaScript framework called SAP UI5 which is not my favourite one. It is still based on MVC (I personally don't like for a pure frontend framework) and it uses XML as markup language and also the syntax feels kind of unintuitive. 
+
+Though, I learned most of my skills in my spare time on projects with friends. Fortunately one of them showed my Vue.js. My new love, still today! I just feels right to write everything in the original intended language: HTML is HTML with some very intuitive syntax for templating, CSS is CSS or SASS/SCSS when you prefer it and JavaScript is JavaScript. I just makes sense if you are used to the fundamentals of these three languages. 
+
+During that time I also got to know many other awesome technologies and services: NodeJs, Python, Nuxt, Headless CMS, Netlify, Vercel, Serverless, Docker and Firebase. I did had any lecture in one of these topics, I learned all of these on my own. If you want to give this practice a name I would go for "problem based learner". If I want to achieve something and don't know how I'll learn the skill. Which somehow nice but also sad as my journeys end most of them time at the surface of a new technology.
+
+I still wouldn't call me an expert, but I'm able to build a full stack web application on my own. I always say it's enough for a prototype or a [MVP](TBD). But after that phase experts should take over. Nevertheless, it looked at this moment that I could become a full time developer, as I fulfilled all the requirements: I started a lot of side projects I never finished.
+
+Besides, all of these technologies I also started to follow my passion for UX/UI design. I went into design departments and in all the projects I did I was also responsible for the logo, colors, typographies and the first mockups. You can check out _schmackofatz._ on the [projects page](/projects) if you want to see my skills at this point. It was my first complete UI design and even if I would do it quite different today I'm still proud of the outcome. I also implemented the UI for this idea in Vue.js.
 
 ## 6. Technology Consultant
+
+## 7. To be continued
+
+ex developer
 
 
 
