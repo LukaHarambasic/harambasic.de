@@ -86,22 +86,38 @@ My first big project with something comparable with a customer was for my sports
 
 ## 5. Learn programming
 
-I started a corporate study program: working three months at my partner company and than studying three months at my university and that for three years. At my company I learned a JavaScript framework called SAP UI5 which is not my favourite one. It is still based on MVC (I personally don't like for a pure frontend framework) and it uses XML as markup language and also the syntax feels kind of unintuitive. 
+I started a corporate study program for a bachelor in _Business Informatics focusing on Sales & Consulting_. Working three months at my partner company and then studying three months at my university and that for three years. At my company I learned a JavaScript framework called SAP UI5 which is not my favourite one. It is still based on MVC (I personally don't like for a pure frontend framework), and it uses XML as markup language and also the syntax feels kind of unintuitive. I also got to work in one of the most amazing teams I have been, from junior to senior developer, over Designers through to [User Assistent](). Everybody in one time, which functioned as one team. Haven't seen it before, and I learned a lot, also this atmosphere is for what I strive today if I'm in a team. Everybody is respected, people tend to do stuff together in they free time, but it's also fine if you don't want to and people can don't take professional critic private.
 
 Though, I learned most of my skills in my spare time on projects with friends. Fortunately one of them showed my Vue.js. My new love, still today! I just feels right to write everything in the original intended language: HTML is HTML with some very intuitive syntax for templating, CSS is CSS or SASS/SCSS when you prefer it and JavaScript is JavaScript. I just makes sense if you are used to the fundamentals of these three languages. 
 
-During that time I also got to know many other awesome technologies and services: NodeJs, Python, Nuxt, Headless CMS, Netlify, Vercel, Serverless, Docker and Firebase. I did had any lecture in one of these topics, I learned all of these on my own. If you want to give this practice a name I would go for "problem based learner". If I want to achieve something and don't know how I'll learn the skill. Which somehow nice but also sad as my journeys end most of them time at the surface of a new technology.
+// TODO add links to technologies
 
-I still wouldn't call me an expert, but I'm able to build a full stack web application on my own. I always say it's enough for a prototype or a [MVP](TBD). But after that phase experts should take over. Nevertheless, it looked at this moment that I could become a full time developer, as I fulfilled all the requirements: I started a lot of side projects I never finished.
+During that time I also got to know many other awesome technologies and services: NodeJs, Python, Nuxt, Headless CMS, Netlify, Vercel, Serverless, Docker and Firebase. I didn't have any lecture in one of these topics, I learned all of these on my own. If you want to give this practice a name I would go for "problem based learner". If I want to achieve something and don't know how I'll learn the skill. Which somehow nice but also sad as my journeys end most of them time at the surface of a new technology.
+
+I still wouldn't call me an expert, but I'm able to build a full stack web application on my own. I always say it's enough for a prototype or a [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product). After that phase experts should take over. Nevertheless, it looked at this moment that I could become a full time developer, as I fulfilled all the requirements: I started a lot of side projects I never finished.
 
 Besides, all of these technologies I also started to follow my passion for UX/UI design. I went into design departments and in all the projects I did I was also responsible for the logo, colors, typographies and the first mockups. You can check out _schmackofatz._ on the [projects page](/projects) if you want to see my skills at this point. It was my first complete UI design and even if I would do it quite different today I'm still proud of the outcome. I also implemented the UI for this idea in Vue.js.
 
+On top of that I could live out my love for tools. Digital tools. I changed the whole infrastructure of the oldest finance student club in germany. For a newly founded club I was responsible to set everything up and then two years later fix all the bad decisions I took. On my own I tried a lot of tools: todo lists, note-taking apps, PDF annotations, data storage, calendar, email. I'm sure I've annoyed most people around me not just once with a great new tool. Thank you for still being friends with me. By the way an airtable with all the tools I found and used is currently in the making (will be published soon).
+
+At this point could thank some many people for this time, and the development I did, but I really need to highlight two people: Frank & Henry! You know why <3
+
 ## 6. Technology Consultant
 
-## 7. To be continued
+Shortly before my contract ended I found an awesome department where I became a _Technology Consultant for Mobile UX (EMEA)_. In the beginning I worked with the [SAP Mobile Development Kit](https://developers.sap.com/topics/mobile-development-kit.html) focusing on the [SAP Asset Manager](https://www.sap.com/denmark/products/asset-manager.html) for iPads. Shortly after I had familiarized myself with the subject Covid-19 started, and the german government commissioned an app. The [Corona-Warn-App](/projects). I started in this team as an Android developer before I became the team lead. In this way I found out that I really like to take the responsibility, take decisions, organise and prioritise. With this new tasks I also slowly left the development behind me.
 
-ex developer
+This section is quite short as I heavily focused on my work which I really enjoyed. I also think I didn't get enough inspiration to start something new during Covid-19. Okay, I might have forgotten two projects I started:
+
+* Active Ambassadors: A NGO to raise awareness for other NGOs.
+* Tech Mob Show: A technology entertainment podcast with two friends.
+
+## 7. The End
+
+I first wanted to call this section __To be continued__ and always add new chapters in my nerd path. But I think it won't be continued. I don't wont to make my living as a developer. I love technology! I'll develop in my free time, I'll learn new technologies, automate stuff I could do way quicker manually, be the number on contact for the surrounding people to ask technical questions. For me it's also some kind of relaxation my I can develop after a stressful day. 
+
+However, a new path has shown up. I moved to Copenhagen to start my master in _Technology Entrepreneurship_. I wanted to risk something, go out of my comfort zone, try something new, get to know inspiring people from all over the world and just calm down a bit after my time at the Corona-Warn-App. However, I also want to realize myself. I want to found something with impact. It might sound cheesy, but I want to change something in the world, tackle the big challenges and leave a better world. 
+
+Right now I'm already one, and a half moths in this program, and I love it. It's just an inspiring environment where everything seems to be possible. I already got my first megalomaniac idea. More on that later if I'm able to realise it.
 
 
-
-Wood picture: https://unsplash.com/photos/q2Fyzn-KJOQ
+<small>Wood picture: https://unsplash.com/photos/q2Fyzn-KJOQ</small>
