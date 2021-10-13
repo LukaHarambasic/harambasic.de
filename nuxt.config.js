@@ -7,6 +7,7 @@ import getFeed from './assets/js/getFeed'
 import globals from './assets/js/globals'
 import getRoutes from './assets/js/getRoutes'
 import getSiteMeta from './assets/js/getMeta'
+require('dotenv').config()
 
 const meta = getSiteMeta()
 
@@ -128,6 +129,7 @@ export default {
    * Nuxt.js modules
    */
   modules: [
+    '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
     '@nuxt/image',

@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import getSiteMeta from '@/assets/js/getMeta'
 import { getCategoriesUniq } from 'assets/js/getCategoriesUniq'
+import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
   name: 'Categories',

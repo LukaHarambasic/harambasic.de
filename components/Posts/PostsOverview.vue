@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import IconsArrow from '@/components/Icons/IconsArrow'
 import { getCategoriesUniq } from 'assets/js/getCategoriesUniq'
+import IconsArrow from '@/components/Icons/IconsArrow'
 
 export default {
   name: 'PostsOverview',

@@ -3,11 +3,18 @@
     "title": "Education",
     "entries": [
       {
+        "title": "Technical University of Denmark (DTU)",
+        "location": "Copenhagen, Denmark",
+        "from": "10/2021",
+        "to": "09/2023",
+        "description": "Master of Science in Technology Entrepreneurship"
+      },
+      {
         "title": "Corporative State University Baden-Württemberg (DHBW)",
         "location": "Mannheim, Germany",
         "from": "09/2016",
         "to": "09/2019",
-        "description": "Business Informatics (focusing on Sales and Consulting) with SAP"
+        "description": "Bachelor of Science in Business Informatics (focusing on Sales and Consulting) with SAP"
       },
       {
         "title": "Wirtschaftsgymnasium BBS W1",
@@ -27,14 +34,14 @@
     ]
   },
   {
-    "title": "Professionell experience",
+    "title": "Professional experience",
     "entries": [
       {
         "title": "SAP SE",
-        "position":  "Associate Technology Consultant",
+        "position":  "Technology Consultant",
         "location": "Walldorf, Germany",
         "from": "10/2019",
-        "to": "today",
+        "to": "10/2021",
         "description": "Developing mobile solutions focusing on user experience in the EMEA region, e.g. SAP Asset Manager and Corona-Warn-App"
       },
       {
@@ -86,8 +93,8 @@
         "title": "Active Ambassadors",
         "position": "Founder",
         "location": "Mannheim, Germany",
-        "from": "01/2021",
-        "to": "today",
+        "from": "01/2020",
+        "to": "08/2021",
         "description": "Raising awareness for NGOs"
       },
       {

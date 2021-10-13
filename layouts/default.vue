@@ -10,10 +10,12 @@
 </template>
 
 <script>
-import Cookie from '@/components/Layout/TheLayoutCookie'
 import global from 'assets/js/globals'
+import Cookie from '@/components/Layout/TheLayoutCookie'
 import TheHeader from '@/components/Layout/TheLayoutHeader'
 import TheFooter from '@/components/Layout/TheLayoutFooter'
+
+import 'remixicon/fonts/remixicon.css'
 
 export default {
   components: { Cookie, TheFooter, TheHeader },
