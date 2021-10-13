@@ -3,7 +3,7 @@ title: Active Ambassadors
 img: active-ambassadors.png
 alt: The logo from Active Ambassadors.
 prio: 90
-status: 1
+status: 2
 links:
     -
         title: Website
