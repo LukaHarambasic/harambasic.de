@@ -2,8 +2,8 @@
 title: vue-resume-component
 img: vue-resume-component.svg
 alt: Logo of vue-resume-component
-prio: 90
-status: 1
+prio: 60
+status: 2
 links:
     -
         title: Preview
