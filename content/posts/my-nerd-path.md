@@ -8,22 +8,11 @@ tldr: TBD
 tweet: TBD
 ---
 
-Inspired by alphalist podcast, nominate 3 others
-
-During school: IT advanced course -> gave HTML & CSS lessons
-
-1. Knuddels & Penenrgame -> Family Mitglied -> "Homepage" (BB Code) -> Customization with style attributes
-2. Homepage-Baukasten -> Customization of free templates -> own free template-> had the hope that Marco would join me -> community still at it-talent
-3. Hosting of first website on bespace/bpspace -> call with someone I met on the internet showed me how to use a ftp client -> php to not write footer and header for every page
-4. Wordpress & jquery -> blog about marketing (still not sure if this knowledge is worth it) -> netcup; Jimdo website for my handball team; Simple websites for my parents, wordpress for my sport club with acf -> did the design
-5. Studied -> learned ui5 and then vue/nuxt, headless cms, netlify/vercel
-6. Technology consultant
-
-List of "Nerd Paths" -> https://harambasic.de/lists/nerd-paths
+// TODO: ask others if they want to join - List of "Nerd Paths" -> https://harambasic.de/lists/nerd-paths2
 
 ## Preamble
 
-Inspire others, find it inspiring, idea form alphalist CTO
+Inspire others, find it inspiring, idea form alphalist CTO, nominate 3 others?
 
 ## 1. Get to know the internet
 
@@ -64,6 +53,8 @@ I also used `id` for everything instead of `class`. Every website had this gloss
 
 ## 3. Hosting my own websites
 
+// TODO somewhere around this time During school: IT advanced course -> gave HTML & CSS lessons
+
 The next logical step was to build an entire website from scratch. For that I needed some hosting and every body around me used [bplaced.net](https://bplaced.net) as they had and still have a free tier. But, with this I still didn't know how to handle a webspace. I still remember when a strange, I got to know over the Homepage-Baukasten forum, showed me via Skype & TeamView how to use my webspace. He showed my [FileZilla](https://filezilla-project.org/), which is stil the only standalone FTP client I ever used. I wanted to speed up my process and for that I installed a plugin in [Notepad++](https://notepad-plus-plus.org/downloads/) to directly edit files on the server, I didn't know that you shouldn't change something directly in production without testing, but it was convenient. Maybe PHP was my first programming language I learned, as I hated it to update my Header and Footer on all pages, I wanted one central solution.
 
 ```php
@@ -80,7 +71,7 @@ Other solutions like the german homepage builder [Jimdo](https://www.jimdo.com/)
 
 ![An old version of IVO-BAU.de - showing the title and a picture of the office](/posts/my-nerd-path/ivo_bau.png)
 
-My first big project with something comparable with a customer was for my sports club. It's a multi Wordpress website with a custom theme. TO be honest I'm still quite happy how it looks. Ofcourse it could use some optimization, but overall it's still not completely broken by someone writing everything in red and with Comic Sans. During this I felt in love with this concept of CPTs (Custom Post Types), I added some: teams, department management, events. Then enhanced all of it with ACF (Advanced Custom Fields), e.g. to link to the current table for each team. I learned a lot and would do it now days completely different. Again, it continued that I was responsible for the design, all assets and development.
+My first big project with something comparable with a customer was for my sports club. It's a multi Wordpress website with a custom theme. To be honest I'm still quite happy how it looks. Ofcourse it could use some optimization, but overall it's still not completely broken by someone writing everything in red and with Comic Sans. During this I felt in love with this concept of CPTs (Custom Post Types), I added some: teams, department management, events. Then enhanced all of it with ACF (Advanced Custom Fields), e.g. to link to the current table for each team. I learned a lot and would do it now days completely different. Again, it continued that I was responsible for the design, all assets and development.
 
 ![Screenshot of handball.tv-edigheim.de showing the start page](/posts/my-nerd-path/tv_edigheim.png)
 
@@ -118,6 +109,5 @@ I first wanted to call this section __To be continued__ and always add new chapt
 However, a new path has shown up. I moved to Copenhagen to start my master in _Technology Entrepreneurship_. I wanted to risk something, go out of my comfort zone, try something new, get to know inspiring people from all over the world and just calm down a bit after my time at the Corona-Warn-App. However, I also want to realize myself. I want to found something with impact. It might sound cheesy, but I want to change something in the world, tackle the big challenges and leave a better world. 
 
 Right now I'm already one, and a half moths in this program, and I love it. It's just an inspiring environment where everything seems to be possible. I already got my first megalomaniac idea. More on that later if I'm able to realise it.
-
 
 <small>Wood picture: https://unsplash.com/photos/q2Fyzn-KJOQ</small>
