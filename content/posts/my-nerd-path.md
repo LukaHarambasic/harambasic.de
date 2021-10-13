@@ -100,7 +100,7 @@ Besides, all of these technologies I also started to follow my passion for UX/UI
 
 On top of that I could live out my love for tools. Digital tools. I changed the whole infrastructure of the oldest finance student club in germany. For a newly founded club I was responsible to set everything up and then two years later fix all the bad decisions I took. On my own I tried a lot of tools: todo lists, note-taking apps, PDF annotations, data storage, calendar, email. I'm sure I've annoyed most people around me not just once with a great new tool. Thank you for still being friends with me. By the way an airtable with all the tools I found and used is currently in the making (will be published soon).
 
-At this point could thank some many people for this time, and the development I did, but I really need to highlight two people: Frank & Henry! You know why <3
+In the context of this story I really need to say thanks to two people: __Frank__ & __Henry__! You know why ❤️
 
 ## 6. Technology Consultant
 
