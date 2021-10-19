@@ -1,10 +1,10 @@
 :root {
-  --c-primary: #e2ebf0;
-  --c-primary-light: #EEF3F6;
-  --c-secondary: #2e2e3e;
-  --c-surface: #ffffff;
-  --c-font: #121218;
-  --c-font-hover: rgba(46, 46, 62, .3);
+  --c-primary: #344BDE;
+  --c-primary-light: #8593EB;
+  --c-surface: #F2F2F3;
+  --c-light: #FFFFFF;
+  --c-font: #020725;
+  --c-font-on-primary: #FFFFFF;
 
   --c-success: #1DE9B6;
   --c-warning: #FFD740;
@@ -18,12 +18,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-primary: #2e2e3e;
-    --c-primary-light: #434351;
-    --c-secondary: #e2ebf0;
-    --c-surface: #121218;
-    --c-font: #ffffff;
-    --c-font-hover: rgba(255, 255, 255, .3);
+    --c-primary: #344BDE;
+    --c-primary-light: #8593EB;
+    --c-surface: #020725;
+    --c-light: #000000;
+    --c-font: #FFFFFF;
+    --c-font-on-primary: #FFFFFF;
   }
 }
 

@@ -42,7 +42,7 @@ header
   transition: $animation
   line-height: 1
   &:hover
-    border-color: var(--c-font)
+    border-color: var(--c-primary)
   @media screen and (max-width: $breakpoint-mobile)
     margin: 0 0 2rem 0
 nav
@@ -63,11 +63,11 @@ nav
         border-bottom: 2px solid transparent
         transition: $animation
         &.nuxt-link-exact-active
-          border-color: var(--c-font)
+          border-color: var(--c-primary)
           &:hover
-            border-color: var(--c-font-hover)
+            border-color: transparent
         &:hover
-          border-color: var(--c-font)
+          border-color:  var(--c-primary)
         .ri-external-link-fill
           margin: .25rem 0 0 .25rem
 </style>

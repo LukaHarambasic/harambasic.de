@@ -25,12 +25,12 @@ export default {
 
 <style lang="sass" scoped>
 .toc
-  color: var(--c-font)
+  color: var(--c-font-on-primary)
   background: var(--c-primary)
   border-radius: $border-radius
   margin: 0 0 2rem 0
   &[open]
-    background: var(--c-primary-light)
+    background: var(--c-light)
     summary
       background: var(--c-primary)
       border-radius: $border-radius $border-radius 0 0
@@ -40,7 +40,7 @@ export default {
     &:hover
       cursor: pointer
       strong
-        border-color: var(--c-font)
+        border-color: var(--c-font-on-primary)
     strong
       border-bottom: 2px solid transparent
       font-weight: bold

@@ -91,7 +91,7 @@ export default {
     border-radius: 0
     &:hover
       cursor: pointer
-      border-color: var(--c-font-hover)
+      border-color: transparent
 ul
   display: flex
   flex-direction: column
@@ -113,11 +113,17 @@ li
     border-radius: $border-radius
     padding: 2rem
     &:hover
+      color: var(--c-font-on-primary)
       background: var(--c-primary)
       .icon
-        background: var(--c-surface)
+        background: var(--c-font-on-primary)
         svg
-          fill: var(--c-secondary)
+          fill: var(--c-primary)
+      .date
+        a
+          color: var(--c-font-on-primary)
+          &:hover
+            border-color: var(--c-font-on-primary)
     @media screen and (max-width: $breakpoint-mobile)
       flex-direction: column
       justify-content: flex-start
@@ -139,7 +145,7 @@ li
       @media screen and (max-width: $breakpoint-mobile)
         display: none
       svg
-        fill: var(--c-font)
+        fill: var(--c-font-on-primary)
         width: 2rem
         height: 2rem
     .title

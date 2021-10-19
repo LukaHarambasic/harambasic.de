@@ -71,7 +71,7 @@ export default {
   max-width: 50%
   padding: 2rem
   background: var(--c-primary)
-  color: var(--c-font)
+  color: var(--c-font-on-primary)
   border-radius: $border-radius
   transition: $animation
   @media screen and (max-width: $breakpoint-desktop)
@@ -80,11 +80,11 @@ export default {
 .buttons
   margin: .5rem 0 0 0
   .button
-    color: var(--c-font)
+    color: var(--c-light)
     border: none
     background: none
     font-size: 1.2rem
-    border-bottom: 2px solid var(--c-font)
+    border-bottom: 2px solid var(--c-light)
     transition: $animation
     text-decoration: none
     line-height: 1
@@ -92,5 +92,5 @@ export default {
     &:hover
       cursor: pointer
       text-decoration: none
-      border-color: var(--c-font-hover)
+      border-color: transparent
 </style>

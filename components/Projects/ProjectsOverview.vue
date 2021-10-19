@@ -38,6 +38,9 @@
         </div>
       </li>
     </ul>
+    <div v-if="filteredProjects.length === 0" class="nothing-found">
+      Sorry, there isn't a project with the selected filter :(
+    </div>
     <base-footnote>
       If you want to learn more about the projects, please do not hesitate to
       send me an
@@ -66,10 +69,10 @@ const FILTERS = {
     id: 1,
     value: 'active',
   },
-  INACTIVE: {
-    id: 2,
-    value: 'inactive',
-  },
+  // INACTIVE: {
+  //   id: 2,
+  //   value: 'inactive',
+  // },
 }
 
 const sortTitleAZ = (a, b) => {
@@ -85,7 +88,7 @@ const sortTitleZA = (a, b) => {
 }
 
 const filterActive = (a) => a.status === FILTERS.ACTIVE.id
-const filterInactive = (a) => a.status === FILTERS.INACTIVE.id
+// const filterInactive = (a) => a.status === FILTERS.INACTIVE.id
 
 export default {
   name: 'ProjectsList',
@@ -107,8 +110,8 @@ export default {
       switch (this.selectedFilter) {
         case FILTERS.ACTIVE.id:
           return projects.filter(filterActive)
-        case FILTERS.INACTIVE.id:
-          return projects.filter(filterInactive)
+        // case FILTERS.INACTIVE.id:
+        //   return projects.filter(filterInactive)
         case FILTERS.AZ.id:
           return projects.sort(sortTitleAZ)
         case FILTERS.ZA.id:
@@ -138,7 +141,7 @@ export default {
   &[data-status='1'] // active
     background: var(--c-success)
   &[data-status='2'] // inactive
-    background: var(--c-warning)
+    background: transparent // var(--c-warning)
 .filters
   display: flex
   flex-direction: row
@@ -157,11 +160,11 @@ export default {
     padding: 0.05rem 0.1rem
     margin: 0 0.5rem
     transition: $animation
-    border-bottom: 2px solid var(--c-font)
+    border-bottom: 2px solid var(--c-primary)
     &:hover
       cursor: pointer
       color: var(--c-font)
-      border-color: var(--c-font-hover)
+      border-color: transparent
     .status
       height: 1rem
       width: 1rem
@@ -176,7 +179,7 @@ export default {
 .project
   position: relative
   margin: 0 0 4rem 0
-  background: var(--c-primary-light)
+  background: var(--c-light)
   border-radius: $border-radius
   padding: 2rem
   display: flex
@@ -236,12 +239,14 @@ export default {
       margin: 0 1rem 0 0
       a
         color: var(--c-font)
-        border-bottom: 2px solid var(--c-font)
+        border-bottom: 2px solid var(--c-primary)
         transition: $animation
         text-decoration: none
         line-height: 1
         font-size: 1rem
         &:hover
           text-decoration: none
-          border-color: var(--c-font-hover)
+          border-color: transparent
+.nothing-found
+  text-align: center
 </style>

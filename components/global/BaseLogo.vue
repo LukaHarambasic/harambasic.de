@@ -80,7 +80,7 @@ export default {
 
 <style lang="sass" scoped>
 .background
-  fill: var(--c-secondary)
-.initials
   fill: var(--c-primary)
+.initials
+  fill: var(--c-surface)
 </style>

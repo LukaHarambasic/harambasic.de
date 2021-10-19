@@ -13,10 +13,10 @@ entries:
     description: I like it as it just works and has all the features I need built-in.
     logo: /lists/digital_tools/webstorm.svg
     url: https://www.jetbrains.com/webstorm/
-  - title: Obsidian
-    description: My go-to knowledge app, you could also call it a note app. I only note down content with a long-term value (for now).
-    logo: /lists/digital_tools/obsidian.svg
-    url: https://obsidian.md/
+  - title: WorkFlowy
+    description: My go-to knowledge app, you could also call it a note app. Basically it is an endless list.
+    logo: /lists/digital_tools/workflowy.jpeg
+    url: https://workflowy.com/
   - title: Clipy
     extra: Open Source
     description: A clipboard manager for macOS. No more, no less.
