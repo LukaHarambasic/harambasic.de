@@ -24,8 +24,7 @@ export default {
   padding: 2rem
   margin: 2rem 0
   border-radius: $border-radius
-  color: var(--c-font)
-  background: var(--c-primary)
+  background: var(--c-light)
   @media screen and (max-width: $breakpoint-mobile)
     flex-direction: column
     justify-content: flex-start
@@ -33,13 +32,13 @@ export default {
     width: 100%
     a
       color: var(--c-font)
-      border-bottom: 2px solid var(--c-font)
+      border-bottom: 2px solid var(--c-primary)
       transition: $animation
       text-decoration: none
       line-height: 1
       &:hover
         text-decoration: none
-        border-color: var(--c-font-hover)
+        border-color: transparent
   > *
     overflow-wrap: break-word
     // separated over two lines for readability
@@ -47,8 +46,8 @@ export default {
       &:first-child // select the slot if it exists as I can't assign a class to a slot
         margin: 0 1rem 0 0
         font-weight: bold
-        color: var(--c-font)
-        background: var(--c-primary-light)
+        color: var(--c-font-on-primary)
+        background: var(--c-primary)
         border-radius: $border-radius
         padding: .25rem .5rem
         @media screen and (max-width: $breakpoint-mobile)

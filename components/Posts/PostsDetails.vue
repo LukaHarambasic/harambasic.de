@@ -85,26 +85,26 @@ export default {
         margin: 0 1rem 0 0
         a
           color: var(--c-font)
-          border-bottom: 2px solid var(--c-font)
+          border-bottom: 2px solid var(--c-primary)
           transition: $animation
           text-decoration: none
           line-height: 1
           font-size: 1rem
           &:hover
             text-decoration: none
-            border-color: var(--c-font-hover)
+            border-color: transparent
   .date
     background: var(--c-primary)
     padding: .25rem .5rem
     border-radius: $border-radius
     font-size: .9rem
     a
-      color: var(--c-font)
+      color: var(--c-font-on-primary)
       text-decoration: none
       transition: $animation
       border-bottom: 2px solid transparent
       &:hover
-        border-color: var(--c-font)
+        border-color: var(--c-font-on-primary)
   .author
     width: 100%
     text-align: center
