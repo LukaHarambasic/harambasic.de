@@ -38,7 +38,7 @@ export default {
       line-height: 1
       &:hover
         text-decoration: none
-        border-bottom-color: transparent
+        border-color: transparent
   > *
     overflow-wrap: break-word
     // separated over two lines for readability

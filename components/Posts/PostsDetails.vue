@@ -92,7 +92,7 @@ export default {
           font-size: 1rem
           &:hover
             text-decoration: none
-            border-color:  transparent
+            border-color: transparent
   .date
     background: var(--c-primary)
     padding: .25rem .5rem
