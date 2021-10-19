@@ -157,11 +157,11 @@ export default {
     padding: 0.05rem 0.1rem
     margin: 0 0.5rem
     transition: $animation
-    border-bottom: 2px solid var(--c-font)
+    border-bottom: 2px solid var(--c-primary)
     &:hover
       cursor: pointer
       color: var(--c-font)
-      border-color: var(--c-font-hover)
+      border-color: transparent
     .status
       height: 1rem
       width: 1rem
@@ -176,7 +176,7 @@ export default {
 .project
   position: relative
   margin: 0 0 4rem 0
-  background: var(--c-primary-light)
+  background: var(--c-light)
   border-radius: $border-radius
   padding: 2rem
   display: flex
@@ -236,12 +236,12 @@ export default {
       margin: 0 1rem 0 0
       a
         color: var(--c-font)
-        border-bottom: 2px solid var(--c-font)
+        border-bottom: 2px solid var(--c-primary)
         transition: $animation
         text-decoration: none
         line-height: 1
         font-size: 1rem
         &:hover
           text-decoration: none
-          border-color: var(--c-font-hover)
+          border-color: transparent
 </style>

@@ -37,13 +37,13 @@ export default {
   &:hover
     cursor: pointer
   svg
-    fill: var(--c-secondary)
+    fill: var(--c-font-on-primary)
     width: 2rem
     height: 2rem
   &.inverted
     background: var(--c-primary)
     svg
-      fill: var(--c-secondary)
+      fill: var(--c-font-on-primary)
   &.hover
     transition: $animation
     transform: scale(1.05)

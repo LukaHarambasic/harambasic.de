@@ -58,6 +58,7 @@ header
     line-height: 1.5
     margin: 0 0 1rem 0
 li
+  margin: 0 0 2rem 0
   @media screen and (max-width: $breakpoint-mobile)
     width: calc(100% + (2 * 1rem))
     margin: 0 0 0 -1rem
@@ -72,7 +73,9 @@ li
     transition: $animation
     border-radius: $border-radius
     padding: 2rem
+    background: var(--c-light)
     &:hover
+      color: var(--c-font-on-primary)
       background: var(--c-primary)
     @media screen and (max-width: $breakpoint-mobile)
       flex-direction: column
@@ -89,7 +92,7 @@ li
       img
         width: 5rem
         height: 5rem
-        background: var(--c-primary-light)
+        background: var(--c-surface)
         border-radius: $border-radius
         padding: 1rem
     .header
