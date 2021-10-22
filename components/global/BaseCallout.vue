@@ -40,7 +40,7 @@ export default {
         text-decoration: none
         border-color: transparent
         background: var(--c-primary)
-        color: var(--c-light)
+        color: var(--c-font-on-primary)
   > *
     overflow-wrap: break-word
     // separated over two lines for readability

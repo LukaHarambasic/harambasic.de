@@ -163,7 +163,7 @@ export default {
     border-bottom: 2px solid var(--c-primary)
     &:hover
       cursor: pointer
-      color: var(--c-light)
+      color: var(--c-font-on-primary)
       border-color: transparent
       background: var(--c-primary)
     .status
@@ -249,7 +249,7 @@ export default {
           text-decoration: none
           border-color: transparent
           background: var(--c-primary)
-          color: var(--c-light)
+          color: var(--c-font-on-primary)
 .nothing-found
   text-align: center
 </style>

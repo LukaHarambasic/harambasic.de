@@ -65,7 +65,7 @@ footer
           font-size: 1rem
         &:hover
           background: var(--c-primary)
-          color: var(--c-light)
+          color: var(--c-font-on-primary)
   .logo
     width: 3rem
     height: 3rem

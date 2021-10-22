@@ -43,7 +43,7 @@ header
   line-height: 1
   &:hover
     background: var(--c-primary)
-    color: var(--c-light)
+    color: var(--c-font-on-primary)
   @media screen and (max-width: $breakpoint-mobile)
     margin: 0 0 2rem 0
 nav
