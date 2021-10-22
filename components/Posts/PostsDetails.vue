@@ -93,6 +93,8 @@ export default {
           &:hover
             text-decoration: none
             border-color: transparent
+            background: var(--c-primary)
+            color: var(--c-light)
   .date
     background: var(--c-primary)
     padding: .25rem .5rem
