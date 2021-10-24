@@ -1,10 +1,10 @@
 ---
 title: My nerd path 
-description: TBD
+description: This post shows how I acquired my technical knowledge and illustrates where my interests lie and how they have developed over almost 15 years.
 publishedAt: 2999-12-09
 categories:
     - Personal
-tldr: TBD
+tldr: The web showed me how to program and after almost 15 years this seems to be over.
 tweet: TBD
 ---
 
