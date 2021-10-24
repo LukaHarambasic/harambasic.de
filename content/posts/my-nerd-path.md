@@ -20,7 +20,7 @@ The story will start when I was something like 11 when I had no clue about compu
 
 When I was 11 there was and still is a platform called _Knuddels_, now days I would describe it as a predecessor of [Slack](https://slack.com/) with mini-games. If you were an active user you got promoted as a _Family Member_. You got new features, and the one I remember most and somehow has kicked off my Nerd Path was the so-called "homepage". On my "homepage" you could learn more about my interests and hobbies. My one was visually very boring, others had nice borders around each content box and animated pictures. I got curious and found some templates I could copy over, that wasn't even HTML they were written in [BBCode](https://en.wikipedia.org/wiki/BBCode). I'm not sure when I have seen it the last time, maybe in a forum around that time? Just having something nice looking wasn't enough I wanted to make it my own. After a while, I recognized how powerful the `style` attribute is, and I changed everything. Afterward I started another browser game where you had a clan with an information page that was styleable, again with BBCodes. This was the first time I used [GIMP](https://www.gimp.org/) and that was the first time I became aware of what Open Source is.
 
-Actually, it was simple websites that started it all. As I write this, I also understand why I'm so addicted to the Web. It's been with me since I was young, and it's always been accessible to me.
+Actually, it was simple websites that started it all. As I write this, I also understand why I'm so addicted to the Web. It's been with me since I was young, and it's always been accessible to me. Thanks to my parents. ❤️
 
 ## 2. The website builder
 
@@ -92,7 +92,7 @@ On top of that, I could live out my love for tools. Digital tools. I changed the
 
 On my own, I tried a lot of tools in different areas: to-do lists, note-taking, PDF annotation, data storage, calendar, email. I'm sure I've annoyed most people around me, not just once with a great new tool. Thank you for still being friends with me. By the way, an [Airtable](https://airtable.com/) with all the tools I found and used is currently in the making (and will be published soon).
 
-In the context of this chapter, I really need to say thanks to two people: __Frank__ & __Henry__! You know why ❤️
+In the context of this chapter, I really need to say thanks to two people: __Frank__ & __Henry__! You know why. ❤️
 
 ## 6. Technology Consultant
 
