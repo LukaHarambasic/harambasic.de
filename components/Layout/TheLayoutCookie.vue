@@ -80,11 +80,11 @@ export default {
 .buttons
   margin: .5rem 0 0 0
   .button
-    color: var(--c-light)
+    color: var(--c-font-on-primary)
     border: none
     background: none
     font-size: 1.2rem
-    border-bottom: 2px solid var(--c-light)
+    border-bottom: 2px solid var(--c-font-on-primary)
     transition: $animation
     text-decoration: none
     line-height: 1
@@ -93,4 +93,6 @@ export default {
       cursor: pointer
       text-decoration: none
       border-color: transparent
+      background: var(--c-font-on-primary)
+      color: var(--c-primary)
 </style>

@@ -1,6 +1,5 @@
 :root {
   --c-primary: #344BDE;
-  --c-primary-light: #8593EB;
   --c-surface: #F2F2F3;
   --c-light: #FFFFFF;
   --c-font: #020725;
@@ -19,7 +18,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --c-primary: #344BDE;
-    --c-primary-light: #8593EB;
     --c-surface: #020725;
     --c-light: #000000;
     --c-font: #FFFFFF;

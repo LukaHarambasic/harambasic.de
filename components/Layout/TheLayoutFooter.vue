@@ -64,7 +64,8 @@ footer
         @media screen and (max-width: $breakpoint-mobile)
           font-size: 1rem
         &:hover
-          border-color: var(--c-primary)
+          background: var(--c-primary)
+          color: var(--c-font-on-primary)
   .logo
     width: 3rem
     height: 3rem

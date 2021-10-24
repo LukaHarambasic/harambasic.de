@@ -42,7 +42,8 @@ header
   transition: $animation
   line-height: 1
   &:hover
-    border-color: var(--c-primary)
+    background: var(--c-primary)
+    color: var(--c-font-on-primary)
   @media screen and (max-width: $breakpoint-mobile)
     margin: 0 0 2rem 0
 nav

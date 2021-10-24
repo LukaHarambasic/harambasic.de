@@ -163,8 +163,9 @@ export default {
     border-bottom: 2px solid var(--c-primary)
     &:hover
       cursor: pointer
-      color: var(--c-font)
+      color: var(--c-font-on-primary)
       border-color: transparent
+      background: var(--c-primary)
     .status
       height: 1rem
       width: 1rem
@@ -247,6 +248,8 @@ export default {
         &:hover
           text-decoration: none
           border-color: transparent
+          background: var(--c-primary)
+          color: var(--c-font-on-primary)
 .nothing-found
   text-align: center
 </style>
