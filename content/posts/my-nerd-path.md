@@ -10,23 +10,25 @@ tweet: TBD
 
 ## Preamble
 
-This post is a story about my life, a big part of my life. It shows how I acquired my technical knowledge and illustrates where my interests lie and how they have developed over almost 15 years. I want to document this for myself, but also to look back on it someday and remember. To show that there is not one strict path that everyone has to follow. To inspire others to start and follow their passion.
+This post is a story about my life, a big part of my life. It shows how I acquired my technical knowledge and illustrates where my interests lie and how they have developed over almost 15 years. This story should serve as an inspiration to enable others to follow their passion. Because not every person doing something with technology has to follow a strict path - there are multiple ways to reach the goal. Furthermore, I also want this post to be able to look back on someday and remember how everything evolved since I was a young boy.
 
-Inspiration from others got me motivated to start this post. [Tobias Schlottke](https://twitter.com/tobsch?lang=en) hosting the [alphalist.CTO](https://alphalist.com/podcast) got me thinking. He always starts an episode with the question: "What's your nerd path?". 
+[Tobias Schlottke](https://twitter.com/tobsch?lang=en) hosting the [alphalist.CTO](https://alphalist.com/podcast) inspired me to write this post. As he always starts an episode with the question: "What's your nerd path?". With that he got me thinking how I became who I am in the technology world.
 
-The story will start when I was something like 11 when I had no clue about computers. Evolve over a self-motivated learning phase in which I learned a lot about web technologies and ends with my last job as a technology consultant. Which also marks the end of this chapter in my life.
+The story will start when I was around 11 and  I had no clue about computers. Continuing with a self-motivated learning phase in which I became competent in web technologies and ends with my last job as a technology consultant. Which also marks the end of this chapter in my life.
 
 ## 1. Get to know the internet
 
-When I was 11 there was and still is a platform called _Knuddels_, now days I would describe it as a predecessor of [Slack](https://slack.com/) with mini-games. If you were an active user you got promoted as a _Family Member_. You got new features, and the one I remember most and somehow has kicked off my Nerd Path was the so-called "homepage". On my "homepage" you could learn more about my interests and hobbies. My one was visually very boring, others had nice borders around each content box and animated pictures. I got curious and found some templates I could copy over, that wasn't even HTML they were written in [BBCode](https://en.wikipedia.org/wiki/BBCode). I'm not sure when I have seen it the last time, maybe in a forum around that time? Just having something nice looking wasn't enough I wanted to make it my own. After a while, I recognized how powerful the `style` attribute is, and I changed everything. Afterward I started another browser game where you had a clan with an information page that was styleable, again with BBCodes. This was the first time I used [GIMP](https://www.gimp.org/) and that was the first time I became aware of what Open Source is.
+When I was 11 there was a platform called _Knuddels_, now days I would describe it as a predecessor of [Slack](https://slack.com/) with mini-games. If you were an active user you got promoted as a _Family Member_. You’d get new features, of which I remember the homepage the most fondly because it  somehow kicked off my Nerd. On my "homepage" you were able to learn more about my interests and hobbies. My initial “homepage” was visually very boring, I just had some colorful text without nice graphics. By contrast other users had nice borders around each box and animated pictures. So I got curious and found some templates I could copy over, that weren't even HTML, they were written in [BBCode](https://en.wikipedia.org/wiki/BBCode). I'm not sure when I have seen it the last time, maybe in a forum around that time? Just having something nice looking wasn't enough though, I wanted to make it my own. After a while, I recognized how powerful the `style` attribute is and that I can change the look of my whole homepage. And that's what I did.
 
-Actually, it was simple websites that started it all. As I write this, I also understand why I'm so addicted to the Web. It's been with me since I was young, and it's always been accessible to me. Thanks to my parents. ❤️
+Afterward, I started browser game where you had a clan with an information page that was styleable, again with BBCodes. This was the first time I used [GIMP](https://www.gimp.org/) and that was the first time I became aware of what Open Source is.
+
+In the end simple websites started my journey and as I write this, I also understand why I'm so addicted to the web. It's been with me since I was a young boy dipping my towns in the vast ocean that is the internet, and it's always been accessible to me. Thanks to my parents. ❤️
 
 ## 2. The website builder
 
 ![Website with an drop shadow and border radius as image](/posts/my-nerd-path/shadow_rounded_corner.png)
 
-The next step was to publish my first website, to be honest, I can't even remember the content. Nevertheless, I won't forget that it was at [Homepage Baukasten](https://www.homepage-baukasten.de/) (Homepage Builder) which gave you a quite nice domain: `.de.tl`. And, as before I stuck to this place because there was a very active community, but this time with "experts" around programming. I remember how I stand in awe of everybody who was able to build a website from scratch in this website builder. It felt like magic. I still have this feeling today for stuff I don't understand. After customizing some designs from the community I created my own ones. Around this time there weren't flex boxes or drop shadows or border-radius broadly available. You had to create an image and then split it in three parts putting it together like this. I used `id` for everything instead of `class`.
+The next step was to publish my first website, to be honest, I can't even remember the content. Nevertheless, I won't forget that it was at [Homepage Baukasten](https://www.homepage-baukasten.de/) (Homepage Builder) which gave you a quite nice domain: `.de.tl`. And, as before, I stuck to this place because there was a very active community, but this time with "experts" in programming. I remember how I stood in awe of everybody who was able to build a website from scratch on this platform. It felt like magic. I still have this feeling today for stuff I don't understand. After customizing some designs from the community I created my own layouts. If you wanted to create a nice background for your content as you see it above you had to create an image and then split it in three parts putting it together. It wasn't as convenient as it is nowadays.
 
 ```html
 <div id="container">
@@ -45,15 +47,15 @@ The next step was to publish my first website, to be honest, I can't even rememb
 #bottom { background: url("/container-bottom.png") no-repeat; }
 ```
 
-At this time every website had this glossy well-known Web 2.0 button. I used masks in GIMP the first time to achieve this. It was quite some fun to rebuild this in Figma, which is the third generation of graphic tools I use. 
+Another recognizable feature of websites at this time was this glossy, well-known Web 2.0 button. I used masks in GIMP the first time to achieve this. It was quite some fun to rebuild this in Figma, which is the third generation of graphic tools I use to create websites.
 
 ![Glossy Web 2.0 button with the text: Click Me](/posts/my-nerd-path/glossy_button.svg)
 
 ## 3. Hosting my own websites
 
-The next logical step was to build an entire website from scratch. For that, I needed some hosting, and everybody around me used [bplaced.net](https://bplaced.net) as they had a decent free tier. But, with this, I still didn't know how to handle a web space. I remember when a strange, I got to know over the Homepage-Baukasten forum, showed me via Skype & TeamView how to use my web space. He showed me [FileZilla](https://filezilla-project.org/). Quickly I got annoyed by manually uploading my changes. For that I wanted to speed up my process hence I installed a plugin in [Notepad++](https://notepad-plus-plus.org/downloads/) to directly edit files on the server. I didn't know that you shouldn't change something directly in production without testing, but it was convenient.
+The next logical step was to build an entire website from scratch. For that, I needed some hosting, and everybody around me used [bplaced.net](https://bplaced.net) as they had a decent free tier. But, with this, I still didn't know how to handle a webspace. I remember when a strange person, I got to know over the Homepage-Baukasten forum, showed me how to use my webspace via Skype & TeamView. He also showed me [FileZilla](https://filezilla-project.org/) to upload my files. Quickly, I got annoyed by this manual step. Naturally, I wanted to speed up my process so I installed a plugin in [Notepad++](https://notepad-plus-plus.org/downloads/) to directly edit files on the server. I didn't know that you shouldn't change something directly in production without testing, but it was convenient.
 
-At this time I started to look more into PHP, as I was lazy! I just didn't wanted to update my header and footer for every page when I change something, e.g. add a new link to the menu. ["Don't repeat yourself" (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) wasn't something I was aware of, but it was already part fo my philosophy.
+At this time I started to look more into [PHP](https://www.php.net/), as I was lazy! I just didn't wanted to update my header and footer for every page when I change something, e.g. add a new link to the menu. ["Don't repeat yourself" (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) wasn't something I was aware of, but it was already part fo my philosophy.
 
 ```php
 <?php include ("./header.php"); ?>
@@ -61,7 +63,7 @@ At this time I started to look more into PHP, as I was lazy! I just didn't wante
 <?php include ("./footer.php"); ?>
 ```
 
-As I already knew so much about HTML & CSS I was very disappointed by my IT teacher where we had to learn layouts with tables. Although every good web developer used `float: left`. He was so kind to let me to plan and conduct some lectures in my advanced IT course at school. I even wrote a small PHP script which made it easy to share all my codings with the others as I wasn't aware about other solutions. Sadly we had to use table layouts for the final exam, but it was a lot of fun.
+As I already knew so much about HTML & CSS I was very disappointed by my IT teacher where we had to learn layouts with tables. Although every good web developer used `float: left`. He was so kind enough to let me plan and conduct some lectures in my advanced IT course at school. I even wrote a small PHP script which made it easy to share all my codings with the others as I wasn't aware of other solutions. Sadly we had to use table layouts for the final exam.
 
 
 ## 4. Getting more advanced
