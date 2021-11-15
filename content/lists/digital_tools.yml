@@ -41,10 +41,6 @@ entries:
     description: As I'm not a big fan of TextEdit (macOS) I use VS Code as my primarily editor.
     logo: /lists/digital_tools/vscode.svg
     url: https://code.visualstudio.com/
-  - title: Notion
-    description: "My personal knowledge base where I store everything: Recipes, Links, Ideas, etc."
-    logo: /lists/digital_tools/notion.svg
-    url: https://notion.so
   - title: Slack
     description: If there is a new side project with multiple people I tend to directly create a workspace to streamline the communication.
     logo: /lists/digital_tools/slack.svg
