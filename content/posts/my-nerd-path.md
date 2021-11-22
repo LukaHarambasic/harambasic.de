@@ -1,10 +1,10 @@
 ---
-title: My nerd path 
+title: My nerd path - 10+ years of (personal) development
 description: This post shows how I acquired my technical knowledge and illustrates where my interests lie and how they have developed over almost 15 years.
 publishedAt: 2999-12-09
 categories:
     - Personal
-tldr: The web showed me how to program and after almost 15 years this seems to be over.
+tldr: The web showed me how to code and after almost 15 years this seems to be over.
 tweet: TBD
 ---
 
@@ -14,9 +14,9 @@ This post is a story about my life, a big part of my life. It shows how I acquir
 
 [Tobias Schlottke](https://twitter.com/tobsch?lang=en) hosting the [alphalist.CTO](https://alphalist.com/podcast) inspired me to write this post. As he always starts an episode with the question: "What's your nerd path?". With that he got me thinking how I became who I am in the technology world.
 
-The story will start when I was around 11 and  I had no clue about computers. Continuing with a self-motivated learning phase in which I became competent in web technologies and ends with my last job as a technology consultant. Which also marks the end of this chapter in my life.
+The story will start when I was around 11 and I had no clue about computers. Continuing with a self-motivated learning phase in which I became competent in web technologies and ends with my last job as a technology consultant. Which also marks the end of this chapter in my life.
 
-## 1. Get to know the internet
+## 1. Getting to know the internet
 
 When I was 11 there was a platform called _Knuddels_, now days I would describe it as a predecessor of [Slack](https://slack.com/) with mini-games. If you were an active user you got promoted as a _Family Member_. You’d get new features, of which I remember the homepage the most fondly because it  somehow kicked off my Nerd. On my "homepage" you were able to learn more about my interests and hobbies. My initial “homepage” was visually very boring, I just had some colorful text without nice graphics. By contrast other users had nice borders around each box and animated pictures. So I got curious and found some templates I could copy over, that weren't even HTML, they were written in [BBCode](https://en.wikipedia.org/wiki/BBCode). I'm not sure when I have seen it the last time, maybe in a forum around that time? Just having something nice looking wasn't enough though, I wanted to make it my own. After a while, I recognized how powerful the `style` attribute is and that I can change the look of my whole homepage. And that's what I did.
 
@@ -24,7 +24,7 @@ Afterward, I started browser game where you had a clan with an information page 
 
 In the end simple websites started my journey and as I write this, I also understand why I'm so addicted to the web. It's been with me since I was a young boy dipping my towns in the vast ocean that is the internet, and it's always been accessible to me. Thanks to my parents. ❤️
 
-## 2. The website builder
+## 2. Using the website builder
 
 ![Website with an drop shadow and border radius as image](/posts/my-nerd-path/shadow_rounded_corner.png)
 
@@ -63,13 +63,13 @@ At this time I started to look more into [PHP](https://www.php.net/), as I was l
 <?php include ("./footer.php"); ?>
 ```
 
-As I already knew so much about HTML & CSS I was very disappointed by my IT teacher where we had to learn layouts with tables. Although every good web developer used `float: left`. He was so kind enough to let me plan and conduct some lectures in my advanced IT course at school. I even wrote a small PHP script which made it easy to share all my codings with the others as I wasn't aware of other solutions. Sadly we had to use table layouts for the final exam.
+As I already knew so much about HTML & CSS, I was very disappointed by my IT teacher who asked us to learn layouts with tables. Although every good web developer used `float: left`. He was so kind enough to let me plan and conduct some lectures in my advanced IT course at school. I even wrote a small PHP script which made it easy to share all my codings with the others as I wasn't aware of other solutions. Sadly we had to use table layouts for the final exam.
 
 ## 4. Getting more advanced
 
 During this time I started using [WordPress](https://wordpress.com/) and looked into a mystical new world: JavaScript. If I remember correctly my first blog with WordPress was a relaunch of bagarts.de where I could write about online marketing. During this time, I thought marketing might be my passion. How wrong I was... And how could I think that someone would care about the two cents from a 16-year-old boy without any concrete knowledge in this area? At this point, I got to know [Netcup.net](https://www.netcup.de/), the only web hoster I had since then. For other organizations, I tried other hosters and I don't buy many domains at Netcup, but the hosting is still perfect, and the support is awesome.
 
-Other solutions like the german homepage builder [Jimdo](https://www.jimdo.com/) were on my radar aswell. I created a simple website for my Handball team and my parents' construction company. After only 1 year I moved to a self-implementation (see it on [archive.org](https://web.archive.org/web/20150920234612/http://ivo-bau.de/)). I used [Koala](http://koala-app.com/) (a GUI tool) for [Sass](https://sass-lang.com/). That was it, no framework or anything like that included, just PHP, HTML & CSS (ok and a third party lightbox).
+Other solutions like the German homepage builder [Jimdo](https://www.jimdo.com/) were on my radar aswell. I created a simple website for my Handball team and my parents' construction company. After only 1 year, I moved to a self-implementation (see it on [archive.org](https://web.archive.org/web/20150920234612/http://ivo-bau.de/)). I used [Koala](http://koala-app.com/) (a GUI tool) for [Sass](https://sass-lang.com/). That was it, no framework or anything like that included, just PHP, HTML & CSS (ok and a third party lightbox).
 
 ![An old version of IVO-BAU.de - showing the title and a picture of the office](/posts/my-nerd-path/ivo_bau.png)
 
@@ -80,17 +80,17 @@ My first big project, with something you could call a customer, was for my sport
 ## 5. Learn programming
 
 //TODO TO TECH??
-In 2016 I started a corporate study program for a bachelor in _Business Informatics focusing on Sales & Consulting_. Working in a three months cycle at [SAP](https://www.sap.com/) (my partner company) and then studying three months at [DHBW](https://www.dhbw.de/english/home) (my university) for three years. At my company, I learned a JavaScript framework called [SAP UI5](https://sapui5.hana.ondemand.com/) which is not my favorite one. It is based on [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (I personally don't like for a pure front-end framework), and it uses [XML](https://en.wikipedia.org/wiki/XML) as a markup language, and the syntax feels kind of unintuitive.
+In 2016 I started a corporate study program for a bachelor in _Business Informatics focusing on Sales & Consulting_. Working in a three months cycle at [SAP](https://www.sap.com/) (my partner company) and then studying three months at [DHBW](https://www.dhbw.de/english/home) (my university) for three years. At my company, I learned a JavaScript framework called [SAP UI5](https://sapui5.hana.ondemand.com/) which is not my favorite one.
 
 I had the opportunity to work in one of the most amaizing teams I have ever been in. Everyone was awesome from senior developer, designers, and to [user assistance](https://en.wikipedia.org/wiki/User_assistance). This team dynamic was extraordinarily unique, and I learned a lot. This atmosphere, where everyone is respected, constructive criticism appreciated, problem-solving and free time is done together, continues to be what I strive towards in my choice of teams. 
 
 Eventhough work tought me a lot, I still learned most of my skills in my spare time on projects with friends. Fortunately one of them showed me [Vue.js](https://vuejs.org/). My new love, still today! It just feels right to write everything in the original intended language: HTML. HTML with a very intuitive syntax for templating, CSS is CSS or [SASS/SCSS](https://sass-lang.com/guide) when you prefer it and JavaScript is JavaScript. It just makes sense if you are used to the fundamentals of these three languages.
 
-During this time I got to know many other awesome technologies and services: [NodeJs](https://nodejs.org/en/), [Python](https://www.python.org/), [Nuxt](https://nuxtjs.org/), [Headless CMS](https://jamstack.org/headless-cms/), [Netlify](https://www.netlify.com/), [Vercel](https://vercel.com/), [Serverless](https://en.wikipedia.org/wiki/Serverless_computing), [Docker](https://www.docker.com/), and [Firebase](https://firebase.google.com/). I didn't have any lecture on any of these topics - I learned all of these on my own. If you want to give my approach a name I would go for "problem-based-learner". If I want to achieve something and don't know how to do it, I'll learn the skill. Which is somehow nice but sad as my journeys end most of the time end at the surface of new technology. It also makes it hard to dive deeper into new technologies as I'm bored by the first chapter of Udemy courses and than it's hard to keep the motivation up.
+During this time I got to know many other awesome technologies and services: [NodeJs](https://nodejs.org/en/), [Python](https://www.python.org/), [Nuxt](https://nuxtjs.org/), [Headless CMS](https://jamstack.org/headless-cms/), [Netlify](https://www.netlify.com/), [Vercel](https://vercel.com/), [Serverless](https://en.wikipedia.org/wiki/Serverless_computing), [Docker](https://www.docker.com/), and [Firebase](https://firebase.google.com/). I didn't have any lecture on any of these topics - I learned all of these on my own. If you wanted to give my approach a name I would go for "problem-based-learner". If I want to achieve something and don't know how to do it, I'll learn the skill. Which is somehow nice but sad as my journeys end most of the time end at the surface of new technology. It also makes it hard to dive deeper into new technologies as I'm bored by the first chapter of Udemy courses and than it's hard to keep the motivation up.
 
-I still wouldn't call myself an expert, but I'm able to build a full-stack web application on my own. I always say it's enough for a prototype or an [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product). After that phase experts should take over. Nevertheless, at this time it looked that I could become a full-time developer, as I fulfilled all the requirements: I started a lot of side projects which I never finished.
+I still wouldn't call myself an expert, but I'm able to build a full-stack web application on my own. I always say it's enough for a prototype or an [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product). After that phase experts should take over. Nevertheless, at this time it looked that I could become a full-time developer, as I fulfilled all the requirements: I started a lot of side projects that I never finished.
 
-Besides, all of these technologies I started to follow my passion for UX/UI design. I went into design departments and in all the projects I did I was responsible for the logo, colors, typographies, and mockups. You can check out my first UI design _schmackofatz._ on the [projects page](/projects) if you want to see my skills during this time in my life. It was my first complete UI design and even though I would do it quite differently today I'm still proud of the outcome. Later I had to implement the UI for this idea in Vue.js.
+Besides, all of these technologies I started to follow my passion for UX/UI design. I went into design departments and in all the projects I did, I was responsible for the logo, colors, typographies, and mockups. You can check out my first UI design _schmackofatz._ on the [projects page](/projects) if you want to see my skills during this time in my life. It was my first complete UI design and even though I would do it quite differently today I'm still proud of the outcome. Later I had to implement the UI for this idea in Vue.js.
 
 On top of that, I could live out my love for tools. Digital tools. I changed the whole infrastructure of the oldest finance student club in Germany. For a newly founded club, I was responsible to set everything up and then two years later fixing all the bad decisions I took. My favourite failure is the e-mail naming convention. We wanted to look like a startup and decided to only use firstnames for the e-mail addresses, e.g. luka@q-summit.com. Though I didn't think that there could be another Luka joining this club. 
 
@@ -98,20 +98,20 @@ On my own, I tried a lot of tools in different areas: to-do lists, note-taking, 
 
 In the context of this chapter, I really need to say thanks to two people: __Frank__ & __Henry__! You know why. ❤️
 
-## 6. Technology Consultant
+## 6. Becoming a Technology Consultant
 
-Shortly before my contract ended I found an awesome department where I became a _Technology Consultant for Mobile UX (EMEA)_. In the beginning, I worked with the [SAP Mobile Development Kit](https://developers.sap.com/topics/mobile-development-kit.html) focusing on the [SAP Asset Manager](https://www.sap.com/denmark/products/asset-manager.html) for iPads. Shortly after that, I had familiarized myself with the subject Covid-19 started, and the German government commissioned an app. The [Corona-Warn-App](/projects). I started as an Android developer before I became the team lead. In this way, I found out that I like to take responsibility, make decisions, organize and prioritize. With these new tasks I slowly left the development behind me.
+Shortly before my vocational contract with SAP ended, I found an awesome department where I became a _Technology Consultant for Mobile UX (EMEA)_. In the beginning, I worked with the [SAP Mobile Development Kit](https://developers.sap.com/topics/mobile-development-kit.html) focusing on the [SAP Asset Manager](https://www.sap.com/denmark/products/asset-manager.html) for iPads. Shortly after that, I had familiarized myself with the subject Covid-19 started, and the German government commissioned an app: The [Corona-Warn-App](/projects). I started as an Android developer before I became the team lead. In this way, I found out that I like to take on responsibility, make decisions, organize, and prioritize. With these new tasks I slowly left the development behind me.
 
 This section is quite short as I was heavily focused on my work during this two years. Hence, I "only" started two projects with some friends:
 
 * [Active Ambassadors](https://www.active-ambassadors.org/): A NGO to raise awareness for other NGOs.
 * [Tech Mob Show](https://techmob.show/): A technology entertainment podcast with two friends.
 
-## 7. The End
+## 7. Ending my nerd path
 
-I first wanted to call this chapter __"To be continued"__ and add new chapters to my nerd path. But I think it won't be continued. I don't want to make my living as a developer. I love technology! I'll develop in my free time, I'll learn new technologies, automate stuff I could do way quicker manually, be the number on contact for my family, friends, and colleagues to ask technical questions. For me, it's some kind of relaxation if I can develop after a stressful day. 
+I first wanted to call this chapter __"To be continued"__ and add new chapters to my nerd path. But I think it won't be continued. I don't want to make my living as a developer. I love technology! I'll develop in my free time, I'll learn new technologies, automate stuff I could do way quicker manually, be the number one contact for my family, friends, and colleagues to ask technical questions. For me, it's some kind of relaxation if I can develop after a stressful day. 
 
-However, I have taken a new path. I moved to Copenhagen to start my master's in _[Technology Entrepreneurship](https://www.dtu.dk/english/education/msc/programmes/technology-entrepreneurship)_ [@DTU](https://www.dtu.dk/english). I wanted to risk something, go out of my comfort zone, try something new, get to know inspiring people from all over the world, and just calm down a bit after my time at the Corona-Warn-App. However, I want to find my true passion. I want to find something with impact. It might sound cheesy, but I want to change something in the world, tackle the big challenges, and leave a better world. 
+However, I have taken a new path. I moved to Copenhagen to start my master's in _[Technology Entrepreneurship](https://www.dtu.dk/english/education/msc/programmes/technology-entrepreneurship)_ [@DTU](https://www.dtu.dk/english). I wanted to risk something, go out of my comfort zone, try something new, get to know inspiring people from all over the world, and just calm down a bit after my time at the Corona-Warn-App. However, I want to work on more projects that are meaningful form me. I want to find something with impact. It might sound cheesy, but I want to change something in the world, tackle the big challenges, and leave a better world. 
 
 Right now I'm already one, and a half months into this program, and I love it. It's just an inspiring environment where everything seems to be possible. I already got my first megalomaniac idea. More on that later when I make that dream come true.
 
