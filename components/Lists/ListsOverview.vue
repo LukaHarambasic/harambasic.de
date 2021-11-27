@@ -56,7 +56,7 @@ li
     text-decoration: none
     color: var(--c-font)
     transition: $animation
-    border-radius: $border-radius
+    border-radius: var(--border-radius)
     padding: 2rem
     &:hover
       color: var(--c-light)

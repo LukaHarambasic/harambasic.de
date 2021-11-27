@@ -20,6 +20,15 @@
       <h3>Graphics and Image Sources</h3>
       <ul>
         <li>{{ globals.author }}</li>
+        <li>
+          <a href="https://elements.envato.com/de/user/kerismaker/graphics"
+            >@kerismaker</a
+          >
+          fround on <a href="https://www.reshot.com/">reshot</a>
+        </li>
+        <li>
+          <a href="https://fonts.google.com/icons">Google Material Icons</a>
+        </li>
       </ul>
       <h3>Disclaimer</h3>
       <h4>Accountability for content</h4>

@@ -71,7 +71,7 @@ li
     text-decoration: none
     color: var(--c-font)
     transition: $animation
-    border-radius: $border-radius
+    border-radius: var(--border-radius)
     padding: 2rem
     background: var(--c-light)
     &:hover
@@ -93,7 +93,7 @@ li
         width: 5rem
         height: 5rem
         background: var(--c-surface)
-        border-radius: $border-radius
+        border-radius: var(--border-radius)
         padding: 1rem
     .header
       line-height: 1

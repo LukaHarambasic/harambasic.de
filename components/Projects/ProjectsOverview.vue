@@ -181,7 +181,7 @@ export default {
   position: relative
   margin: 0 0 4rem 0
   background: var(--c-light)
-  border-radius: $border-radius
+  border-radius: var(--border-radius)
   padding: 2rem
   display: flex
   flex-direction: row
@@ -208,14 +208,14 @@ export default {
     display: flex
     width: 30%
     background: var(--c-surface)
-    border-radius: $border-radius
+    border-radius: var(--border-radius)
     padding: 1rem
     @media screen and (max-width: $breakpoint-mobile)
       width: 100%
     picture
       display: block
     img
-      border-radius: $border-radius
+      border-radius: var(--border-radius)
   .content
     width: calc(70% - 2rem)
     color: var(--c-font)
