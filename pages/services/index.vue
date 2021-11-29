@@ -235,12 +235,9 @@ section
         color: var(--c-font-on-primary)
         padding: .25rem .5rem
         font-weight: normal
-        border: 2rem
+        border-radius: var(--border-radius-small)
     .description
       text-align: left
-      //border-bottom: 1px solid var(--c-surface)
-      //padding: 0 0 2rem 0
-      //margin: 0 0 2rem 0
 .tools
   ul
     display: flex
@@ -250,7 +247,7 @@ section
     align-content: flex-start
     align-items: flex-start
     gap: 2rem
-    margin: 0 0 2rem 0
+    margin: 0 0 1rem 0
     li
       a
         filter: grayscale(100%)
