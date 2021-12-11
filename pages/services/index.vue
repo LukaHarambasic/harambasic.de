@@ -9,40 +9,14 @@
       </p>
     </section>
     <section class="services">
-      <div class="service">
-        <icons-agile class="icon" />
-        <h3 class="header">
-          <span class="title">Agile Project</span>
-          <br />
-          <span class="subtitle">Consulting</span>
-        </h3>
-        <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-      <div class="service">
-        <icons-tool class="icon" />
-        <h3 class="header">
-          <span class="title">New Work</span>
-          <br />
-          <span class="subtitle">Consulting</span>
-        </h3>
-        <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
+      <services-box
+        v-for="(service, index) in services"
+        :key="index"
+        :title="service.title"
+        :subtitle="service.subtitle"
+        :icon="service.icon"
+        :description="service.description"
+      />
     </section>
     <section class="tools">
       <ul>
@@ -71,6 +45,47 @@ export default {
   name: 'Services',
   data() {
     return {
+      services: [
+        {
+          title: 'Agile Project',
+          subtitle: 'Management',
+          icon: 'Agile',
+          description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
+            ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n' +
+            ' minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n' +
+            ' aliquip ex ea commodo consequat. Duis aute irure dolor in\n' +
+            ' reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n' +
+            ' pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n' +
+            ' culpa qui officia deserunt mollit anim id est laborum.',
+        },
+        {
+          title: 'New Work',
+          subtitle: 'Consulting',
+          icon: 'Tool',
+          description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
+            ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n' +
+            ' minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n' +
+            ' aliquip ex ea commodo consequat. Duis aute irure dolor in\n' +
+            ' reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n' +
+            ' pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n' +
+            ' culpa qui officia deserunt mollit anim id est laborum.',
+        },
+        {
+          title: 'Technical',
+          subtitle: 'Partner',
+          icon: 'Tool',
+          description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
+            ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n' +
+            ' minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n' +
+            ' aliquip ex ea commodo consequat. Duis aute irure dolor in\n' +
+            ' reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n' +
+            ' pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n' +
+            ' culpa qui officia deserunt mollit anim id est laborum.',
+        },
+      ],
       logos: [
         {
           path: '/services/airtable.svg',
@@ -209,35 +224,6 @@ section
   align-items: stretch
   @media screen and (max-width: $breakpoint-desktop)
     flex-direction: column
-  .service
-    text-align: center
-    background: var(--c-light)
-    padding: 4rem
-    border-radius: var(--border-radius)
-    &:first-of-type
-      margin: 0 4rem 0 0
-      @media screen and (max-width: $breakpoint-desktop)
-        margin: 0 0 4rem 0
-    .icon
-      margin: 0 0 1rem 0
-      &::v-deep
-        width: 8rem
-        height: 8rem
-    .header
-      margin: 0 0 2rem
-      .title
-        font-size: 1.5rem
-        line-height: 1.4
-      .subtitle
-        display: inline
-        font-size: 1rem
-        background: var(--c-primary)
-        color: var(--c-font-on-primary)
-        padding: .25rem .5rem
-        font-weight: normal
-        border-radius: var(--border-radius-small)
-    .description
-      text-align: left
 .tools
   ul
     display: flex
