@@ -66,9 +66,9 @@ export default {
   background: var(--c-light)
   padding: 4rem
   border-radius: var(--border-radius)
-  margin: 0 4rem 0 0
+  margin: 0 2rem 0 0
   @media screen and (max-width: $breakpoint-desktop)
-    margin: 0 0 4rem 0
+    margin: 0 0 2rem 0
   &:last-of-type
     margin: 0
   .icon
