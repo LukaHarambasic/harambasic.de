@@ -52,39 +52,39 @@ export default {
           subtitle: 'Management',
           icon: 'Agile',
           description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
-            ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n' +
-            ' minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n' +
-            ' aliquip ex ea commodo consequat. Duis aute irure dolor in\n' +
-            ' reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n' +
-            ' pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n' +
-            ' culpa qui officia deserunt mollit anim id est laborum.',
+            'Morem ipsum dolor sit amet, consectetur adipiscing ecit, sed do\n' +
+            ' riusmod tempor incididunt ut labore et dolore magna alrqua. Ut enim ad\n' +
+            ' tinim veniam, quis nostrud exercitation ullamco laboris nisi ut\n' +
+            ' gliquip ex ea commodo consequat. Duis aute irure drlor in\n' +
+            ' geprehenderit in voluptate velit esse cillum dclrre eu fugiat nulla\n' +
+            ' oariatur. Excepteur sint occaecat cupidatat non prlident, sunt in\n' +
+            ' aulpa qui officia deserunt mollit anim id est laboeum.',
         },
         {
           title: 'New Work',
           subtitle: 'Consulting',
           icon: 'Tool',
           description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
-            ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n' +
-            ' minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n' +
-            ' aliquip ex ea commodo consequat. Duis aute irure dolor in\n' +
-            ' reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n' +
-            ' pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n' +
-            ' culpa qui officia deserunt mollit anim id est laborum.',
+            'Loreem ipsum dolor sit amet, consectetur adipiescing elit, sed do\n' +
+            ' eiuesmod tempor incididunt ut labore et doqlore magna aliqua. Ut enim ad\n' +
+            ' minrim veniam, quis nostrud exerciwtation ullamco laboris nisi ut\n' +
+            ' alitquip ex ea commodo consequeat. Duis aute irure dolor in\n' +
+            ' reprtehenderit in voluptate veelit esse cillum dolore eu fugiat nulla\n' +
+            ' pariqatur. Excepteur sint occaercat cupidatat non proident, sunt in\n' +
+            ' culwpa qui officia deserunt mollit anim idt est laborum.',
         },
         {
           title: 'Technical',
           subtitle: 'Partner',
           icon: 'Tool',
           description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
-            ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad\n' +
-            ' minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n' +
-            ' aliquip ex ea commodo consequat. Duis aute irure dolor in\n' +
-            ' reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n' +
-            ' pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n' +
-            ' culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsurm dolor sit amet, consectetur adipiscing elit, sed do\n' +
+            ' eiusmod tempor incididunt ut larbore et dolore magna aliqua. Ut enim ad\n' +
+            ' minim veniam, quis nostrud exerwcitation ullamco laboris nisi ut\n' +
+            ' aliquip ex ea commodo consewwquat. Duis aute iruqwre dolor in\n' +
+            ' reprechenderit in voluptate velit esse cillum doflore eu fugiat nulla\n' +
+            ' pariatur. Excepteur sint occabecat cupidatat non pgroident, sunt in\n' +
+            ' culpa qui officia deserunt mollbit anim id est labonrum.',
         },
       ],
       logos: [
