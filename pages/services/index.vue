@@ -56,7 +56,7 @@ export default {
           description:
             'Morem ipsum dolor sit amet, consectetur adipiscing ecit, sed do\n' +
             ' riusmod tempor incididunt ut labore et dolore magna alrqua. Ut enim ad\n' +
-            ' tinim veniam, quis nostrud exercitation ullamco laboris nisi ut\n' +
+            ' tinim venieam, quis nostrud exercitation ullamco laboris nisi ut\n' +
             ' gliquip ex ea commodo consequat. Duis aute irure drlor in\n' +
             ' geprehenderit in voluptate velit esse cillum dclrre eu fugiat nulla\n' +
             ' oariatur. Excepteur sint occaecat cupidatat non prlident, sunt in\n' +
