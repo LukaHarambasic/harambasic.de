@@ -42,6 +42,7 @@
               <div class="information">
                 <img
                   class="picture"
+                  alt="Frank"
                   src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
                 />
                 <div class="name-position">
@@ -56,14 +57,13 @@
           <div class="testimonial">
             <div class="inner">
               <p class="description">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
+                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
+                Gold.
               </p>
               <div class="information">
                 <img
                   class="picture"
+                  alt="Frank"
                   src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
                 />
                 <div class="name-position">
@@ -78,14 +78,13 @@
           <div class="testimonial">
             <div class="inner">
               <p class="description">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
+                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
+                Gold.
               </p>
               <div class="information">
                 <img
                   class="picture"
+                  alt="Frank"
                   src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
                 />
                 <div class="name-position">
@@ -100,14 +99,34 @@
           <div class="testimonial">
             <div class="inner">
               <p class="description">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
+                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
+                Gold.
               </p>
               <div class="information">
                 <img
                   class="picture"
+                  alt="Frank"
+                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
+                />
+                <div class="name-position">
+                  <div class="name">Frank</div>
+                  <div class="position">SAP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </slide>
+        <slide>
+          <div class="testimonial">
+            <div class="inner">
+              <p class="description">
+                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
+                Gold.
+              </p>
+              <div class="information">
+                <img
+                  class="picture"
+                  alt="Frank"
                   src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
                 />
                 <div class="name-position">
