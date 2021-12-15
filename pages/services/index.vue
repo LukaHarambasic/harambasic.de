@@ -21,6 +21,105 @@
     <section class="cta">
       <a href="/services/book" class="button">Book an appointment!</a>
     </section>
+    <section class="testimonials">
+      <carousel
+        :navigation-enabled="true"
+        :autoplay="true"
+        :autoplay-hover-pause="true"
+        :per-page="1"
+        :navigation-click-target-size="24"
+        pagination-active-color="#344BDE"
+        pagination-color="#a4a8c2"
+        :pagination-size="12"
+      >
+        <slide>
+          <div class="testimonial">
+            <div class="inner">
+              <p class="description">
+                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
+                Gold.
+              </p>
+              <div class="information">
+                <img
+                  class="picture"
+                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
+                />
+                <div class="name-position">
+                  <div class="name">Frank</div>
+                  <div class="position">SAP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </slide>
+        <slide>
+          <div class="testimonial">
+            <div class="inner">
+              <p class="description">
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+              </p>
+              <div class="information">
+                <img
+                  class="picture"
+                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
+                />
+                <div class="name-position">
+                  <div class="name">Frank</div>
+                  <div class="position">SAP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </slide>
+        <slide>
+          <div class="testimonial">
+            <div class="inner">
+              <p class="description">
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+              </p>
+              <div class="information">
+                <img
+                  class="picture"
+                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
+                />
+                <div class="name-position">
+                  <div class="name">Frank</div>
+                  <div class="position">SAP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </slide>
+        <slide>
+          <div class="testimonial">
+            <div class="inner">
+              <p class="description">
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+              </p>
+              <div class="information">
+                <img
+                  class="picture"
+                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
+                />
+                <div class="name-position">
+                  <div class="name">Frank</div>
+                  <div class="position">SAP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </slide>
+      </carousel>
+    </section>
     <section class="tools">
       <ul>
         <li v-for="logo in logos" :key="logo.path">
@@ -33,18 +132,22 @@
           </a>
         </li>
       </ul>
-
       <p class="disclaimer">I'm not affiliated with any of the companies.</p>
     </section>
   </div>
 </template>
 
 <script>
+import { Carousel, Slide } from 'vue-carousel'
 import getSiteMeta from '@/assets/js/getMeta'
 import { logos } from '@/content/services/logos'
 
 export default {
   name: 'Services',
+  components: {
+    Carousel,
+    Slide,
+  },
   data() {
     return {
       logos,
@@ -125,6 +228,42 @@ section
   align-items: stretch
   @media screen and (max-width: $breakpoint-desktop)
     flex-direction: column
+.testimonials
+  .testimonial
+    padding: 0 2rem
+    .inner
+      background: var(--c-light)
+      padding: 4rem
+      border-radius: var(--border-radius)
+      display: flex
+      flex-direction: column
+      flex-wrap: nowrap
+      justify-content: flex-start
+      align-content: flex-start
+      align-items: center
+      .description
+        margin: 0 0 2rem 0
+        font-style: italic
+      .information
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        justify-content: flex-start
+        align-content: flex-start
+        align-items: flex-start
+        .picture
+          width: 3rem
+          height: 3rem
+          border-radius: var(--border-radius-small)
+        .name-position
+          margin: 0 0 0 1rem
+          .name
+            font-weight: bold
+            font-size: 1.2rem
+            line-height: 1
+          .position
+            font-size: 0.9rem
+
 .tools
   ul
     display: flex
