@@ -18,6 +18,9 @@
         :description="service.description"
       />
     </section>
+    <section class="cta">
+      <a href="/services/book" class="button">Book an appointment!</a>
+    </section>
     <section class="tools">
       <ul>
         <li v-for="logo in logos" :key="logo.path">
@@ -30,10 +33,8 @@
           </a>
         </li>
       </ul>
+
       <p class="disclaimer">I'm not affiliated with any of the companies.</p>
-    </section>
-    <section class="cta">
-      <a href="/services/book" class="button">Book an appointment!</a>
     </section>
   </div>
 </template>
