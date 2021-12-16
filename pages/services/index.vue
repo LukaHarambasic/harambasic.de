@@ -1,11 +1,14 @@
 <template>
   <div class="wrapper">
-    <section>
-      <h2>Services</h2>
+    <h2>Services</h2>
+    <section class="markdown nuxt-content">
       <p>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        I'm a german freelancer based in Copenhagen (Denmark). My main subjects
+        are Agile Project Management, New Work Consulting, and Technical
+        Partnership. If you are interested in my services, please send me an
+        email (<a href="mailto:hi@harambasic.de">hi@harambasic.de</a>) or
+        directly
+        <a href="/services/book" class="button">schedule an appointment</a>.
       </p>
     </section>
     <section class="services">
@@ -13,131 +16,15 @@
         v-for="(service, index) in services"
         :key="index"
         :title="service.title"
-        :subtitle="service.subtitle"
         :icon="service.icon"
         :description="service.description"
       />
     </section>
+    <!--    <section class="testimonials">-->
+    <!--      <services-testimonials />-->
+    <!--    </section>-->
     <section class="cta">
-      <a href="/services/book" class="button">Book an appointment!</a>
-    </section>
-    <section class="testimonials">
-      <carousel
-        :navigation-enabled="true"
-        :autoplay="true"
-        :autoplay-hover-pause="true"
-        :per-page="1"
-        :navigation-click-target-size="24"
-        pagination-active-color="#344BDE"
-        pagination-color="#a4a8c2"
-        :pagination-size="12"
-      >
-        <slide>
-          <div class="testimonial">
-            <div class="inner">
-              <p class="description">
-                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
-                Gold.
-              </p>
-              <div class="information">
-                <img
-                  class="picture"
-                  alt="Frank"
-                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
-                />
-                <div class="name-position">
-                  <div class="name">Frank</div>
-                  <div class="position">SAP</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </slide>
-        <slide>
-          <div class="testimonial">
-            <div class="inner">
-              <p class="description">
-                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
-                Gold.
-              </p>
-              <div class="information">
-                <img
-                  class="picture"
-                  alt="Frank"
-                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
-                />
-                <div class="name-position">
-                  <div class="name">Frank</div>
-                  <div class="position">SAP</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </slide>
-        <slide>
-          <div class="testimonial">
-            <div class="inner">
-              <p class="description">
-                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
-                Gold.
-              </p>
-              <div class="information">
-                <img
-                  class="picture"
-                  alt="Frank"
-                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
-                />
-                <div class="name-position">
-                  <div class="name">Frank</div>
-                  <div class="position">SAP</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </slide>
-        <slide>
-          <div class="testimonial">
-            <div class="inner">
-              <p class="description">
-                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
-                Gold.
-              </p>
-              <div class="information">
-                <img
-                  class="picture"
-                  alt="Frank"
-                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
-                />
-                <div class="name-position">
-                  <div class="name">Frank</div>
-                  <div class="position">SAP</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </slide>
-        <slide>
-          <div class="testimonial">
-            <div class="inner">
-              <p class="description">
-                Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
-                Gold.
-              </p>
-              <div class="information">
-                <img
-                  class="picture"
-                  alt="Frank"
-                  src="https://profile-images.xing.com/images/b5b899c66479f853ee74de743e51aa27-4/frank-hufnagel.256x256.jpg"
-                />
-                <div class="name-position">
-                  <div class="name">Frank</div>
-                  <div class="position">SAP</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </slide>
-      </carousel>
+      <a href="/services/book" class="button">Schedule an appointment</a>
     </section>
     <section class="tools">
       <ul>
@@ -157,58 +44,36 @@
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue-carousel'
+import ServicesTestimonials from '@/components/Services/ServicesTestimonials'
 import getSiteMeta from '@/assets/js/getMeta'
 import { logos } from '@/content/services/logos'
 
 export default {
   name: 'Services',
-  components: {
-    Carousel,
-    Slide,
+  component: {
+    ServicesTestimonials,
   },
   data() {
     return {
       logos,
       services: [
         {
-          title: 'Agile Project',
-          subtitle: 'Management',
+          title: 'Agile Project<br />Management',
           icon: 'Agile',
           description:
-            'Morem ipsum dolor sit amet, consectetur adipiscing ecit, sed do\n' +
-            ' riusmod tempor incididunt ut labore et dolore magna alrqua. Ut enim ad\n' +
-            ' tinim venieam, quis nostrud exercitation ullamco laboris nisi ut\n' +
-            ' gliquip ex ea commodo consequat. Duis aute irure drlor in\n' +
-            ' geprehenderit in voluptate velit esse cillum dclrre eu fugiat nulla\n' +
-            ' oariatur. Excepteur sint occaecat cupidatat non prlident, sunt in\n' +
-            ' aulpa qui officia deserunt mollit anim id est laboeum.',
+            'Software teams need team leads with technical and deep methodically knowledge, like Scrum and Kanban. Therefore, I can take on the role of a Scrum Master and Product Owner to build bridges between business, IT, and external stakeholders.',
         },
         {
-          title: 'New Work',
-          subtitle: 'Consulting',
+          title: 'New Work<br />Consulting',
           icon: 'Tool',
           description:
-            'Loreem ipsum dolor sit amet, consectetur adipiescing elit, sed do\n' +
-            ' eiuesmod tempor incididunt ut labore et doqlore magna aliqua. Ut enim ad\n' +
-            ' minrim veniam, quis nostrud exerciwtation ullamco laboris nisi ut\n' +
-            ' alitquip ex ea commodo consequeat. Duis aute irure dolor in\n' +
-            ' reprtehenderit in voluptate veelit esse cillum dolore eu fugiat nulla\n' +
-            ' pariqatur. Excepteur sint occaercat cupidatat non proident, sunt in\n' +
-            ' culwpa qui officia deserunt mollit anim idt est laborum.',
+            'Digital Transformations are happening everywhere, which changes how organizations function, teams communicate, and individuals work. These restructurings lead to process optimization and automation. I uncover the potential with Design thinking Workshops.',
         },
         {
-          title: 'Technical',
-          subtitle: 'Partner',
-          icon: 'Tool',
+          title: 'Technical<br />Partnership',
+          icon: 'Tech',
           description:
-            'Lorem ipsurm dolor sit amet, consectetur adipiscing elit, sed do\n' +
-            ' eiusmod tempor incididunt ut larbore et dolore magna aliqua. Ut enim ad\n' +
-            ' minim veniam, quis nostrud exerwcitation ullamco laboris nisi ut\n' +
-            ' aliquip ex ea commodo consewwquat. Duis aute iruqwre dolor in\n' +
-            ' reprechenderit in voluptate velit esse cillum doflore eu fugiat nulla\n' +
-            ' pariatur. Excepteur sint occabecat cupidatat non pgroident, sunt in\n' +
-            ' culpa qui officia deserunt mollbit anim id est labonrum.',
+            'New concepts sometimes need help to realize them. If the industry knowledge exists but lacks the technical expertise, external support is required. To answer questions about the architecture, technologies, platforms, and whom to hire.',
         },
       ],
     }
@@ -246,44 +111,13 @@ section
   align-content: stretch
   align-items: stretch
   @media screen and (max-width: $breakpoint-desktop)
+    width: 100%
+    left: unset
     flex-direction: column
-.testimonials
-  .testimonial
-    padding: 0 2rem
-    .inner
-      background: var(--c-light)
-      padding: 4rem
-      border-radius: var(--border-radius)
-      display: flex
-      flex-direction: column
-      flex-wrap: nowrap
-      justify-content: flex-start
-      align-content: flex-start
-      align-items: center
-      .description
-        margin: 0 0 2rem 0
-        font-style: italic
-      .information
-        display: flex
-        flex-direction: row
-        flex-wrap: nowrap
-        justify-content: flex-start
-        align-content: flex-start
-        align-items: flex-start
-        .picture
-          width: 3rem
-          height: 3rem
-          border-radius: var(--border-radius-small)
-        .name-position
-          margin: 0 0 0 1rem
-          .name
-            font-weight: bold
-            font-size: 1.2rem
-            line-height: 1
-          .position
-            font-size: 0.9rem
-
 .tools
+  background: var(--c-light-stable)
+  padding: 3rem
+  border-radius: var(--border-radius)
   ul
     display: flex
     flex-direction: row
@@ -293,6 +127,7 @@ section
     align-items: flex-start
     gap: 2rem
     margin: 0 0 1rem 0
+    color: var(--c-font-stable)
     li
       a
         filter: grayscale(100%)
@@ -317,4 +152,7 @@ section
     &:hover
       color: var(--c-primary)
       background: var(--c-font-on-primary)
+    @media screen and (max-width: $breakpoint-mobile)
+      font-size: 1rem
+      padding: 1rem 1.5rem
 </style>

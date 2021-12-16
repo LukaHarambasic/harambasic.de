@@ -107,10 +107,7 @@ export default {
   plugins: [
     '@/plugins/mixins.js',
     '@/plugins/filters.js',
-    {
-      src: '@/plugins/googleAnalytics.js',
-      mode: 'client',
-    },
+    '@/plugins/googleAnalytics.client.js',
   ],
   /*
    * Auto import components

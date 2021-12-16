@@ -1,12 +1,12 @@
 <template>
   <section>
-    <h2>Book an appointment</h2>
+    <h2>Schedule an appointment</h2>
     <iframe
       src="https://app.simplymeet.me/luha?view=compact"
       style="width: 100%; height: 800px"
       frameborder="0"
       scrolling="yes"
-      title="Book a meeting"
+      title="Schedule an appointment"
     ></iframe>
   </section>
 </template>

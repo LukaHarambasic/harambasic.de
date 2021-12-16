@@ -55,6 +55,11 @@ nav
     justify-content: flex-start
     align-content: flex-start
     align-items: flex-start
+    @media screen and (max-width: $breakpoint-mobile)
+      flex-wrap: wrap
+      justify-content: center
+      align-content: center
+      align-items: center
     li
       margin: 0 0 0 1rem
       &:first-of-type
