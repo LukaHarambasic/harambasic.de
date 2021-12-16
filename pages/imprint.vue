@@ -21,10 +21,7 @@
       <ul>
         <li>{{ globals.author }}</li>
         <li>
-          <a href="https://elements.envato.com/de/user/kerismaker/graphics"
-            >@kerismaker</a
-          >
-          fround on <a href="https://www.reshot.com/">reshot</a>
+          <a href="https://phosphoricons.com/">Phosphor Icons</a>
         </li>
         <li>
           <a href="https://fonts.google.com/icons">Google Material Icons</a>
