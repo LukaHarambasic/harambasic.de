@@ -61,7 +61,6 @@ export default {
     }
   },
   head() {
-    console.log(this.meta.title)
     return {
       title: this.meta.title,
       meta: [...this.meta],

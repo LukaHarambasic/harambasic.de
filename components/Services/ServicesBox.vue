@@ -11,6 +11,7 @@
 <script>
 import IconsAgile from '@/components/Icons/IconsAgile.vue'
 import IconsTool from '@/components/Icons/IconsTool.vue'
+import IconsTech from '@/components/Icons/IconsTech.vue'
 export default {
   name: 'ServicesBox',
   components: {
@@ -43,7 +44,7 @@ export default {
         case 'Tool':
           return IconsTool
         case 'Tech':
-          return IconsAgile
+          return IconsTech
         default:
           return IconsAgile
       }
