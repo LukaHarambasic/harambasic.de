@@ -25,6 +25,40 @@
         </div>
       </div>
     </slide>
+    <slide>
+      <div class="testimonial">
+        <div class="inner">
+          <p class="description">
+            Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
+            Gold.
+          </p>
+          <div class="information">
+            <img class="picture" alt="Luka Harambasic" src="/profile.jpg" />
+            <div class="name-position">
+              <div class="name">Luka Harambasic</div>
+              <div class="position">DTU</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </slide>
+    <slide>
+      <div class="testimonial">
+        <div class="inner">
+          <p class="description">
+            Luka is einfach ein dufter Kerl und alles was er anfässt wird zu
+            Gold.
+          </p>
+          <div class="information">
+            <img class="picture" alt="Luka Harambasic" src="/profile.jpg" />
+            <div class="name-position">
+              <div class="name">Luka Harambasic</div>
+              <div class="position">DTU</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </slide>
   </carousel>
 </template>
 

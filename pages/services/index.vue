@@ -20,9 +20,9 @@
         :description="service.description"
       />
     </section>
-    <!--    <section class="testimonials">-->
-    <!--      <services-testimonials />-->
-    <!--    </section>-->
+    <section class="testimonials">
+      <services-testimonials />
+    </section>
     <section class="cta">
       <a href="/services/book" class="button">Schedule an appointment</a>
     </section>
