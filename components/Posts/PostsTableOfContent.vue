@@ -27,16 +27,16 @@ export default {
 .toc
   color: var(--c-font-on-primary)
   background: var(--c-primary)
-  border-radius: $border-radius
+  border-radius: var(--border-radius)
   margin: 0 0 2rem 0
   &[open]
     background: var(--c-light)
     summary
       background: var(--c-primary)
-      border-radius: $border-radius $border-radius 0 0
+      border-radius: var(--border-radius) var(--border-radius) 0 0
   summary
     padding: 1rem 2rem
-    border-radius: $border-radius
+    border-radius: var(--border-radius)
     &:hover
       cursor: pointer
       strong

@@ -72,7 +72,7 @@ export default {
   padding: 2rem
   background: var(--c-primary)
   color: var(--c-font-on-primary)
-  border-radius: $border-radius
+  border-radius: var(--border-radius)
   transition: $animation
   @media screen and (max-width: $breakpoint-desktop)
     max-width: none

@@ -4,6 +4,7 @@
     <nav role="navigation">
       <ul>
         <li><nuxt-link to="/">Home</nuxt-link></li>
+        <li><nuxt-link to="/services">Services</nuxt-link></li>
         <li><nuxt-link to="/projects">Projects</nuxt-link></li>
         <li><nuxt-link to="/lists">Lists</nuxt-link></li>
         <li><nuxt-link to="/posts">Blog</nuxt-link></li>
@@ -54,6 +55,11 @@ nav
     justify-content: flex-start
     align-content: flex-start
     align-items: flex-start
+    @media screen and (max-width: $breakpoint-mobile)
+      flex-wrap: wrap
+      justify-content: center
+      align-content: center
+      align-items: center
     li
       margin: 0 0 0 1rem
       &:first-of-type

@@ -23,7 +23,7 @@ export default {
   align-items: flex-start
   padding: 2rem
   margin: 2rem 0
-  border-radius: $border-radius
+  border-radius: var(--border-radius)
   background: var(--c-light)
   @media screen and (max-width: $breakpoint-mobile)
     flex-direction: column
@@ -50,7 +50,7 @@ export default {
         font-weight: bold
         color: var(--c-font-on-primary)
         background: var(--c-primary)
-        border-radius: $border-radius
+        border-radius: var(--border-radius)
         padding: .25rem .5rem
         @media screen and (max-width: $breakpoint-mobile)
           margin: 0 0 1rem 0

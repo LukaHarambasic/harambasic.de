@@ -82,5 +82,5 @@ export default {
 .background
   fill: var(--c-primary)
 .initials
-  fill: var(--c-surface)
+  fill: var(--c-font-on-primary)
 </style>

@@ -64,7 +64,7 @@ export default {
     margin: 0 0 2rem 0
   &::v-deep
     img
-      border-radius: $border-radius
+      border-radius: var(--border-radius)
 h2
   margin: 0 0 .5rem 0
   line-height: 0.8
