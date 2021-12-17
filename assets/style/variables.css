@@ -2,7 +2,10 @@
   --c-primary: #344BDE;
   --c-surface: #F2F2F3;
   --c-light: #FFFFFF;
+  --c-light-stable: #FFFFFF;
+  --c-font-stable: #020725;
   --c-font: #020725;
+  --c-font-light: #a4a8c2;
   --c-font-on-primary: #FFFFFF;
 
   --c-success: #1DE9B6;
@@ -21,7 +24,6 @@
     --c-surface: #020725;
     --c-light: #000000;
     --c-font: #FFFFFF;
-    --c-font-on-primary: #FFFFFF;
   }
 }
 

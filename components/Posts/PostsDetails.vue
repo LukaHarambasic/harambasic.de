@@ -98,7 +98,7 @@ export default {
   .date
     background: var(--c-primary)
     padding: .25rem .5rem
-    border-radius: $border-radius
+    border-radius: var(--border-radius)
     font-size: .9rem
     a
       color: var(--c-font-on-primary)

@@ -20,6 +20,12 @@
       <h3>Graphics and Image Sources</h3>
       <ul>
         <li>{{ globals.author }}</li>
+        <li>
+          <a href="https://phosphoricons.com/">Phosphor Icons</a>
+        </li>
+        <li>
+          <a href="https://fonts.google.com/icons">Google Material Icons</a>
+        </li>
       </ul>
       <h3>Disclaimer</h3>
       <h4>Accountability for content</h4>
