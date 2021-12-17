@@ -5,8 +5,8 @@
       <p>
         I'm a German freelancer based in Copenhagen (Denmark). My main subjects
         are Agile Project Management, New Work Consulting, and Technical
-        Partnership. Thus I'm enabling people to bring their best and enjoy
-        working with this. If you are interested in my services, please send me
+        Partnership. I believe in these topics because I like to empower others
+        to do their best. If you are interested in my services, please send me
         an email (<a href="mailto:hi@harambasic.de">hi@harambasic.de</a>) or
         directly
         <a href="/services/book" class="button">schedule an appointment</a>.
