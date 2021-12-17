@@ -3,7 +3,7 @@
     <h2>Services</h2>
     <section class="markdown nuxt-content">
       <p>
-        I'm a german freelancer based in Copenhagen (Denmark). My main subjects
+        I'm a German freelancer based in Copenhagen (Denmark). My main subjects
         are Agile Project Management, New Work Consulting, and Technical
         Partnership. If you are interested in my services, please send me an
         email (<a href="mailto:hi@harambasic.de">hi@harambasic.de</a>) or
