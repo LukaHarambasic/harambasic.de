@@ -1,10 +1,10 @@
 ---
 title: My nerd path - 10+ years of (personal) development
 description: This post shows how I acquired my technical knowledge and illustrates where my interests lie and how they have developed over almost 15 years.
-publishedAt: 2999-12-09
+publishedAt: 2021-12-18
 categories:
     - Personal
-tldr: The web showed me how to code and after almost 15 years this seems to be over.
+tldr: The web showed me how to code and after almost 15 years this time is over. I'm still in the tech world, but focusing on entrepreneurship and freelancing.
 tweet: TBD
 ---
 
@@ -109,14 +109,16 @@ This section is quite short as I was heavily focused on my work during this two 
 
 ## 7. Ending my nerd path
 
-I first wanted to call this chapter __"To be continued"__ and add new chapters to my nerd path. But I think it won't be continued. I don't want to make my living as a developer. I love technology! I'll develop in my free time, I'll learn new technologies, automate stuff I could do way quicker manually, be the number one contact for my family, friends, and colleagues to ask technical questions. For me, it's some kind of relaxation if I can develop after a stressful day. 
+I first wanted to call this chapter __"To be continued"__ and add new chapters to my nerd path. But I think it won't be continued. I don't want to make my living as a developer. I love technology! I'll develop in my free time, I'll learn new technologies, automate stuff I could do way quicker manually, be the number one contact for my family, friends, and colleagues to ask technical questions. For me, it's some kind of relaxation if I can develop after a stressful day.
 
 However, I have taken a new path. I moved to Copenhagen to start my master's in _[Technology Entrepreneurship](https://www.dtu.dk/english/education/msc/programmes/technology-entrepreneurship)_ [@DTU](https://www.dtu.dk/english). I wanted to risk something, go out of my comfort zone, try something new, get to know inspiring people from all over the world, and just calm down a bit after my time at the Corona-Warn-App. However, I want to work on more projects that are meaningful form me. I want to find something with impact. It might sound cheesy, but I want to change something in the world, tackle the big challenges, and leave a better world. 
 
-Right now I'm already one, and a half months into this program, and I love it. It's just an inspiring environment where everything seems to be possible. I already got my first megalomaniac idea. More on that later when I make that dream come true.
+Right now I'm already three, and a half months into this program, and I love it. It's just an inspiring environment where everything seems to be possible. I already got my first megalomaniac idea. More on that later when I make that dream come true.
+
+Along the way, I also started working as a freelancer. More about that [here](/services).
 
 <small>Wood picture: https://unsplash.com/photos/q2Fyzn-KJOQ</small>
 
 <base-thanks>
-    Niklas & Leo
+    Thank's to Niklas and Leo for proofreading.
 </base-thanks>
