@@ -3,7 +3,7 @@ export const services = [
     title: 'Agile Project<br />Management',
     icon: 'Agile',
     description:
-      'Software teams need team leads with technical and deep methodically knowledge, ' +
+      'Software teams need team leads with technical and deep methodical knowledge, ' +
       'like Scrum and Kanban. Therefore, I can take on the role of a Scrum Master and ' +
       'Product Owner to build bridges between business, IT, and external stakeholders.',
   },
