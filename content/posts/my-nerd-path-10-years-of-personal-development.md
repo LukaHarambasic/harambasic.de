@@ -3,7 +3,7 @@ title: My nerd path - 10+ years of (personal) development
 description: This post shows how I acquired my technical knowledge and illustrates where my interests lie and how they have developed over almost 15 years.
 publishedAt: 2021-12-18
 categories:
-    - Personal
+- Personal
 tldr: The web showed me how to code and after almost 15 years this time is over. I'm still in the tech world, but focusing on entrepreneurship and freelancing.
 tweet: TBD
 ---
