@@ -1,7 +1,6 @@
-import { getSlug } from '../../assets/js/getSlug'
-
 const { readFileSync, writeFileSync, mkdirSync } = require('fs')
 const readline = require('readline')
+const { getSlug } = require('../../assets/js/getSlug')
 
 const rl = readline.createInterface({
   input: process.stdin,
