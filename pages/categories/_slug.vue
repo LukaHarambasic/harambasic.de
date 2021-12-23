@@ -32,15 +32,16 @@ export default {
     }
   },
   head() {
+    const { content } = this.meta.find((item) => item.hid === 'og:title')
     return {
-      title: this.meta.title,
+      title: content,
       meta: [...this.meta],
     }
   },
   computed: {
     meta() {
       const metaData = {
-        title: 'Categories',
+        title: this.title,
         description: `A list of all posts in the category ${this.title}. Haven fun! :)`,
         url: `/categories/${this.$route.params.slug}`,
         img: `/social/${this.$route.params.slug}.png`,

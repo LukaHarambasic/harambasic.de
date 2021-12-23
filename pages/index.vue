@@ -21,8 +21,9 @@ export default {
     }
   },
   head() {
+    const { content } = this.meta.find((item) => item.hid === 'og:title')
     return {
-      title: this.meta.title,
+      title: content,
       meta: [...this.meta],
     }
   },

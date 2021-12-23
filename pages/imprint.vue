@@ -73,8 +73,9 @@ import getSiteMeta from '@/assets/js/getMeta'
 export default {
   name: 'Imprint',
   head() {
+    const { content } = this.meta.find((item) => item.hid === 'og:title')
     return {
-      title: this.meta.title,
+      title: content,
       meta: [...this.meta],
     }
   },
