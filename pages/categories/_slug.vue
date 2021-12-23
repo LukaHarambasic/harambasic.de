@@ -33,8 +33,11 @@ export default {
   },
   head() {
     const { title, meta } = generatePageData(
+      this.$route.fullPath,
       this.title,
-      `A list of all posts in the category ${this.title}. Haven fun! :)`
+      `A list of all posts in the category ${this.title}. Haven fun! :)`,
+      '',
+      this.$route.params.slug
     )
     return {
       title,

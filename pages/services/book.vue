@@ -18,6 +18,7 @@ export default {
   name: 'Book',
   head() {
     const { title, meta } = generatePageData(
+      this.$route.fullPath,
       `Book a Meeting`,
       'Book a meeting with my to talk about opportunities.'
     )

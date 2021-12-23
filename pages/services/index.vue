@@ -65,6 +65,7 @@ export default {
   },
   head() {
     const { title, meta } = generatePageData(
+      this.$route.fullPath,
       `Services`,
       'Hire me for your next project in one of the following areas: Agile Project Management, New Work Consulting, Technical Partnership.'
     )

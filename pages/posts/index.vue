@@ -16,6 +16,7 @@ export default {
   },
   head() {
     const { title, meta } = generatePageData(
+      this.$route.fullPath,
       `Blog`,
       'Get insights into what I do and what inspires me.'
     )

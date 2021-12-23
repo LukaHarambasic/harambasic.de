@@ -15,9 +15,11 @@ export default {
   },
   head() {
     const { title, meta } = generatePageData(
+      this.$route.fullPath,
       this.post.title,
       this.post.description,
-      'article'
+      'article',
+      this.$route.params.slug
     )
     return {
       title,

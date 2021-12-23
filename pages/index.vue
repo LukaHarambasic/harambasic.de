@@ -21,7 +21,7 @@ export default {
     }
   },
   head() {
-    const { title, meta } = generatePageData()
+    const { title, meta } = generatePageData(this.$route.fullPath)
     return {
       title,
       meta: [...meta],

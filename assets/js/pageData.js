@@ -1,7 +1,11 @@
 import { getSlug } from './getSlug'
 import global from './globals'
 
-export const generatePageData = (title, description, type) => {
+export const generatePageData = (path, title, description, type, slug) => {
+  if (!path || !path.startsWith('/'))
+    throw new Error(
+      'path needs to be defined and a valid path, access it via "this.$route.fullPath"'
+    )
   if (title && title.length > 60) {
     console.warn(
       `getMeta - title shouldn't be longer than 60 chars for seo, has ${title.length}: ${title}`
@@ -11,9 +15,10 @@ export const generatePageData = (title, description, type) => {
     title === '' || typeof title === 'undefined'
       ? global.title
       : `${title} - ${global.title}`
-  const url = title ? `${global.baseURL}/${getSlug(title)}` : global.baseURL
+  const url = path ? `${global.baseURL}${path}` : global.baseURL
+  const finalSlug = !slug && title ? getSlug(title) : slug
   const socialImageUrl = title
-    ? `${global.baseURL}/${global.socialFolder}/${getSlug(title)}.png`
+    ? `${global.baseURL}/${global.socialFolder}/${finalSlug}.png`
     : `${global.baseURL}/${global.socialFolder}/${global.img}`
   return {
     title: completeTitle,

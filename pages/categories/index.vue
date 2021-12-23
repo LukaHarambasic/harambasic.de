@@ -16,6 +16,7 @@ export default {
   },
   head() {
     const { title, meta } = generatePageData(
+      this.$route.fullPath,
       `Categories`,
       `An overview about all the categories I use in page. You won't find this anywhere else in the world wide web.`
     )

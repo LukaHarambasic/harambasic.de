@@ -16,6 +16,7 @@ export default {
   },
   head() {
     const { title, meta } = generatePageData(
+      this.$route.fullPath,
       `Projects`,
       'An overview about some selected projects I did.'
     )

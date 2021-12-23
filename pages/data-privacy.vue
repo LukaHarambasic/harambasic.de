@@ -57,7 +57,10 @@ import { generatePageData } from '@/assets/js/pageData'
 export default {
   name: 'DataPrivacy',
   head() {
-    const { title, meta } = generatePageData(`Data Privacy`)
+    const { title, meta } = generatePageData(
+      this.$route.fullPath,
+      `Data Privacy`
+    )
     return {
       title,
       meta: [...meta],

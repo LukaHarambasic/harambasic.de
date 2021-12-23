@@ -16,6 +16,7 @@ export default {
   },
   head() {
     const { title, meta } = generatePageData(
+      this.$route.fullPath,
       `Lists`,
       'Lists with content I personally recommend, e.g. development & digital tools.'
     )

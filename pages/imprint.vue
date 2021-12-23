@@ -73,7 +73,7 @@ import { generatePageData } from '@/assets/js/pageData'
 export default {
   name: 'Imprint',
   head() {
-    const { title, meta } = generatePageData(`Imprint`)
+    const { title, meta } = generatePageData(this.$route.fullPath, `Imprint`)
     return {
       title,
       meta: [...meta],

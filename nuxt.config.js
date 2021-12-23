@@ -9,8 +9,7 @@ import getRoutes from './assets/js/getRoutes'
 import { generatePageData } from './assets/js/pageData'
 require('dotenv').config()
 
-const pageData = generatePageData()
-console.log(pageData)
+const pageData = generatePageData('/')
 
 export default {
   /*
