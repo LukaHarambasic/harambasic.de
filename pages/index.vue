@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import getSiteMeta from '@/assets/js/getMeta'
+import getSiteMeta from 'assets/js/pageData'
 
 export default {
   async asyncData({ $content }) {

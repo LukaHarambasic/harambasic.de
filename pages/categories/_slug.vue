@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import getSiteMeta from '@/assets/js/getMeta'
+import getSiteMeta from 'assets/js/pageData'
 
 const getFilteredPosts = (rawPosts, slug) => {
   return rawPosts.filter((post) =>

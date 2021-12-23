@@ -3,8 +3,8 @@
 </template>
 
 <script>
+import getSiteMeta from 'assets/js/pageData'
 import PostsOverview from '@/components/Posts/PostsOverview'
-import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
   name: 'Index',

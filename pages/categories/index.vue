@@ -4,7 +4,7 @@
 
 <script>
 import { getCategoriesUniq } from 'assets/js/getCategoriesUniq'
-import getSiteMeta from '@/assets/js/getMeta'
+import getSiteMeta from 'assets/js/pageData'
 
 export default {
   name: 'Categories',

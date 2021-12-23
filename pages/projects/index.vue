@@ -3,8 +3,8 @@
 </template>
 
 <script>
+import getSiteMeta from 'assets/js/pageData'
 import ProjectsOverview from '@/components/Projects/ProjectsOverview'
-import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
   name: 'Index',
