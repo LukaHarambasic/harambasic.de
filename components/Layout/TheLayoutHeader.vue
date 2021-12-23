@@ -42,16 +42,18 @@ header
   border-bottom: 2px solid transparent
   transition: $animation
   line-height: 1
+  margin: 0 2rem 0 0
   &:hover
     background: var(--c-primary)
     color: var(--c-font-on-primary)
   @media screen and (max-width: $breakpoint-mobile)
+    text-align: center
     margin: 0 0 2rem 0
 nav
   ul
     display: flex
     flex-direction: row
-    flex-wrap: nowrap
+    flex-wrap: wrap
     justify-content: flex-start
     align-content: flex-start
     align-items: flex-start
@@ -61,8 +63,8 @@ nav
       align-content: center
       align-items: center
     li
-      margin: 0 0 0 1rem
-      &:first-of-type
+      margin: 0 1rem 0 0
+      &:last-of-type
         margin: 0
       a
         color: var(--c-font)

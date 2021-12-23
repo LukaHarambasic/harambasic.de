@@ -69,7 +69,7 @@ export default {
   border-radius: var(--border-radius)
   &:last-of-type
     margin: 0
-  @media screen and (max-width: $breakpoint-desktop)
+  @media screen and (max-width: $breakpoint-desktop-breakout)
     margin: 0 0 5rem 0
     width: 100%
   @media screen and (max-width: $breakpoint-mobile)

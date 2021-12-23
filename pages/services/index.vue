@@ -99,7 +99,7 @@ section
   justify-content: space-between
   align-content: stretch
   align-items: stretch
-  @media screen and (max-width: $breakpoint-desktop)
+  @media screen and (max-width: $breakpoint-desktop-breakout)
     width: 100%
     left: unset
     flex-direction: column
@@ -117,7 +117,14 @@ section
     gap: 2rem
     margin: 0 0 1rem 0
     color: var(--c-font-stable)
+    @media screen and (max-width: $breakpoint-mobile)
+      gap: 0 // safari mobile isn't able to handle gap...
+      flex-direction: column
+      justify-content: flex-start
+      align-items: center
     li
+      @media screen and (max-width: $breakpoint-mobile)
+        margin: 0 0 2rem 0 // safari mobile isn't able to handle gap...
       a
         filter: grayscale(100%)
         transition: var(--transition)
