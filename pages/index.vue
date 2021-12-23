@@ -29,7 +29,7 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        img: `/social/luka_harambasic.png`,
+        img: `/social/luka-harambasic.png`,
         imgAlt: `Home - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)

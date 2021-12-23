@@ -66,7 +66,7 @@ export default {
     meta() {
       const metaData = {
         title: `Data Privacy`,
-        img: `/social/data_privacy.png`,
+        img: `/social/data-privacy.png`,
         imgAlt: `Data Privacy - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)

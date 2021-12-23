@@ -1,9 +1,10 @@
 const { chromium } = require('playwright')
+const { getSlug } = require('../../assets/js/getSlug')
 const { generateImage } = require('./util.js')
 
 // npm run socialMedia:manual -- --title="TEST"
 const manualImageGeneration = async (title) => {
-  const slug = title.toLowerCase().replace(' ', '_')
+  const slug = getSlug(title)
   const browser = await chromium.launch()
   const page = await browser.newPage()
   await generateImage(page, title, slug)

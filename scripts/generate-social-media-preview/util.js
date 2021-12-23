@@ -36,6 +36,7 @@ const fileToMeta = (name, basePath) => {
     name,
     path: `${basePath}/${name}`,
     slug: name.split('.')[0],
+    type: name.split('.')[1],
   }
 }
 

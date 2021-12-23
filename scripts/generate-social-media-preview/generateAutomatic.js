@@ -1,5 +1,6 @@
 const { readdirSync, readFileSync } = require('fs')
 const fm = require('front-matter')
+const yaml = require('js-yaml')
 const { chromium } = require('playwright')
 const { getCategoriesUniq } = require('../../assets/js/getCategoriesUniq')
 const { getCategoryMeta } = require('../../assets/js/getCategoryMeta.js')
@@ -28,8 +29,8 @@ const generateSocialMediaPreview = async () => {
   const files = [...posts, ...lists]
   for (const file of files) {
     const data = readFileSync(file.path, 'utf8')
-    const content = fm(data)
-    const title = content.attributes.title
+    const content = file.type === 'md' ? fm(data) : yaml.load(data)
+    const title = file.type === 'md' ? content.attributes.title : content.title
     if (!doesImageAlreadyExist(file.slug)) {
       console.log('🆕 Post/List:', title)
       await generateImage(page, title, file.slug)

@@ -26,7 +26,7 @@ export default {
     meta() {
       const metaData = {
         title: `Book a meeting`,
-        img: `/social/book.png`,
+        img: `/social/book-a-meeting.png`,
         imgAlt: `Book a meeting - ${this.globals.title}`,
       }
       return getSiteMeta(metaData)
