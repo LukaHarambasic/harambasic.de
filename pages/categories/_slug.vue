@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import getSiteMeta from 'assets/js/pageData'
+import { generatePageData } from '@/assets/js/pageData'
 
 const getFilteredPosts = (rawPosts, slug) => {
   return rawPosts.filter((post) =>
@@ -32,23 +32,14 @@ export default {
     }
   },
   head() {
-    const { content } = this.meta.find((item) => item.hid === 'og:title')
+    const { title, meta } = generatePageData(
+      this.title,
+      `A list of all posts in the category ${this.title}. Haven fun! :)`
+    )
     return {
-      title: content,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        title: this.title,
-        description: `A list of all posts in the category ${this.title}. Haven fun! :)`,
-        url: `/categories/${this.$route.params.slug}`,
-        img: `/social/${this.$route.params.slug}.png`,
-        imgAlt: `Category: ${this.title} - ${this.globals.title}`,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>

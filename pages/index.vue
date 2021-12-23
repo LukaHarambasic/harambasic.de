@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import getSiteMeta from 'assets/js/pageData'
+import { generatePageData } from 'assets/js/pageData'
 
 export default {
   async asyncData({ $content }) {
@@ -21,20 +21,11 @@ export default {
     }
   },
   head() {
-    const { content } = this.meta.find((item) => item.hid === 'og:title')
+    const { title, meta } = generatePageData()
     return {
-      title: content,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        img: `/social/luka-harambasic.png`,
-        imgAlt: `Home - ${this.globals.title}`,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>

@@ -4,7 +4,7 @@
 
 <script>
 import { getCategoriesUniq } from 'assets/js/getCategoriesUniq'
-import getSiteMeta from 'assets/js/pageData'
+import { generatePageData } from '@/assets/js/pageData'
 
 export default {
   name: 'Categories',
@@ -15,23 +15,14 @@ export default {
     }
   },
   head() {
-    const { content } = this.meta.find((item) => item.hid === 'og:title')
+    const { title, meta } = generatePageData(
+      `Categories`,
+      `An overview about all the categories I use in page. You won't find this anywhere else in the world wide web.`
+    )
     return {
-      title: content,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        title: 'Categories',
-        description: `An overview about all the categories I use in page. You won't find this anywhere else in the world wide web.`,
-        url: `/categories`,
-        img: `/social/categories.png`,
-        imgAlt: `Categories - ${this.globals.title}`,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>

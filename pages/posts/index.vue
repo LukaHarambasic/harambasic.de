@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import getSiteMeta from 'assets/js/pageData'
+import { generatePageData } from '@/assets/js/pageData'
 import PostsOverview from '@/components/Posts/PostsOverview'
 
 export default {
@@ -15,23 +15,14 @@ export default {
     }
   },
   head() {
-    const { content } = this.meta.find((item) => item.hid === 'og:title')
+    const { title, meta } = generatePageData(
+      `Blog`,
+      'Get insights into what I do and what inspires me.'
+    )
     return {
-      title: content,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        title: 'Blog',
-        description: 'Want to see something new? Checkout some blog posts.',
-        url: `/posts`,
-        img: `/social/blog.png`,
-        imgAlt: `Blog - ${this.globals.title}`,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>

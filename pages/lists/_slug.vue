@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import getSiteMeta from 'assets/js/pageData'
+import { generatePageData } from '@/assets/js/pageData'
 import ListsDetails from '@/components/Lists/ListsDetails'
 
 export default {
@@ -14,22 +14,14 @@ export default {
     }
   },
   head() {
+    const { title, meta } = generatePageData(
+      this.list.title,
+      this.list.description
+    )
     return {
-      title: `${this.list.title}`,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        title: this.list.title,
-        description: this.list.description,
-        url: `/lists/${this.$route.params.slug}`, // compare with canonical (line 39)
-        img: `/social/${this.$route.params.slug}.png`,
-        imgAlt: this.list.title,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>

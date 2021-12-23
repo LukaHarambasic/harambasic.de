@@ -64,18 +64,14 @@ export default {
     }
   },
   head() {
+    const { title, meta } = generatePageData(
+      `Services`,
+      'Hire me for your next project in one of the following areas: Agile Project Management, New Work Consulting, Technical Partnership.'
+    )
     return {
-      title: this.pageData.title,
-      meta: [...this.pageData.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    pageData() {
-      return generatePageData(
-        `Services`,
-        'Hire me for your next project in one of the following areas: Agile Project Management, New Work Consulting, Technical Partnership.'
-      )
-    },
   },
 }
 </script>
