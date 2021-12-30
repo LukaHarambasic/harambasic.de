@@ -7,8 +7,9 @@
         are Agile Project Management, New Work Consulting, and Technical
         Partnership. I believe in these topics because I like to empower others
         to do their best. If you are interested in my services, please send me
-        an email (<a href="mailto:hi@harambasic.de">hi@harambasic.de</a>) or
-        directly
+        an email (<a href="mailto:business@harambasic.de"
+          >business@harambasic.de</a
+        >) or directly
         <a href="/services/book" class="button">schedule an appointment</a>.
       </p>
     </section>

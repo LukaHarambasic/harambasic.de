@@ -13,7 +13,7 @@ tweet: https://twitter.com/luka_harambasic/status/1336460406307610625
 
 I want to inspire you how you can set up a professional working environment for your next idea with almost no money. To give you a concrete example: I'll talk over our set up at [Active Ambassadors](https://active-ambassadors.org). All my knowledge, which I have acquired over the last years, has flown into this.
 
-This post targets someone who has no idea what he/she is doing but also should inspire people with similar setups. Let me know if you have ideas how I can improve this setup even more ([E-Mail](mailto:hi@harambasic.de), [Twitter](https://twitter.com/luka_harambasic)). 🙂
+This post targets someone who has no idea what he/she is doing but also should inspire people with similar setups. Let me know if you have ideas how I can improve this setup even more ([E-Mail](mailto:business@harambasic.de), [Twitter](https://twitter.com/luka_harambasic)). 🙂
 
 Before we start you should have this points in mind while reading this post:
 

@@ -4,7 +4,7 @@
 
 This is my [personal website](https://harambasic.de) where I share my [projects](https://harambasic.de/projects) and publish some [posts](https://harambasic.de/posts) ([RSS feed](https://harambasic.de/posts/rss.xml)). 
 
-[Website](https://harambasic.de) - [Twitter](https://twitter.com/luka_harambasic) - [LinekdIn](https://www.linkedin.com/in/harambasic/) - [Email](mailto:hi@harambasic.de)
+[Website](https://harambasic.de) - [Twitter](https://twitter.com/luka_harambasic) - [LinekdIn](https://www.linkedin.com/in/harambasic/) - [Email](mailto:business@harambasic.de)
 
 ## Stack
 

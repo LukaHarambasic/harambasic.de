@@ -11,5 +11,5 @@ export default {
   githubURL: 'https://github.com/LukaHarambasic',
   linkedinURL: 'https://www.linkedin.com/in/harambasic/',
   blogFeedURL: 'https://harambasic.de/posts/rss.xml',
-  email: 'hi@harambasic.de',
+  email: 'business@harambasic.de',
 }
