@@ -1,7 +1,6 @@
 /*
  * https://medium.com/@Sergeon/using-javascript-in-your-git-hooks-f0ce09477334
  * https://dev.to/krzysztofkaczy9/do-you-really-need-husky-247b
- * https://dev.to/krzysztofkaczy9/do-you-really-need-husky-247b
  * https://faun.pub/why-using-pre-push-git-hooks-with-husky-is-not-always-a-good-idea-6233b8afcf83
  * https://medium.com/@satya164/improving-nodejs-workflow-with-git-hooks-40996830619f
  * https://stackoverflow.com/questions/48301280/how-to-manually-run-a-git-pre-commit-hook-without-attempting-a-commit
