@@ -16,7 +16,7 @@ export default {
   name: 'PostsTableOfContentNode',
   props: {
     nodes: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },
