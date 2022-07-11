@@ -2,7 +2,6 @@
 const { getSlug } = require('./getSlug.js')
 
 const getCategoryMeta = (categories) => {
-  console.log(categories)
   return categories.map((category) => {
     const slug = getSlug(category)
     return {
