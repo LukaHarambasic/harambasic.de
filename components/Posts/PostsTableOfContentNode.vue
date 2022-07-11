@@ -1,7 +1,7 @@
 <template>
   <li>
     <a :href="getAnchor(nodes.id)">{{ nodes.text }}</a>
-    <ol v-if="nodes.children.length !== 0">
+    <ol v-if="nodes.children && nodes.children.length !== 0">
       <posts-table-of-content-node
         v-for="node in nodes.children"
         :key="node.id"
