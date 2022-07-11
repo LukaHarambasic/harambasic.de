@@ -2,7 +2,7 @@
 title: PDF CV/Resume from Figma template with Auto Layout
 description: TBD
 publishedAt: 2999-12-09
-tags:
+categories:
     - Figma
     - CV
     - Resume

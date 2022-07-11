@@ -2,7 +2,7 @@
 title: <<TITLE>>
 description: TBD
 publishedAt: 2999-12-09
-tags:
+categories:
     - TBD
 tldr: TBD
 tweet: TBD
