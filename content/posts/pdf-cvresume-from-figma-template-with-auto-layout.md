@@ -1,7 +1,7 @@
 ---
 title: PDF CV/Resume from Figma template with Auto Layout
 description: A simple one-page CV/Resume template that heavily relies on Auto Layout makes it super easy to adjust.
-publishedAt: 2999-12-09
+publishedAt: 2022-07-12
 categories:
     - Figma
     - CV
