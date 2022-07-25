@@ -7,9 +7,9 @@
         <li><nuxt-link to="/projects">Projects</nuxt-link></li>
         <li><nuxt-link to="/lists">Lists</nuxt-link></li>
         <li><nuxt-link to="/posts">Blog</nuxt-link></li>
-        <li>
-          <a href="https://harambasic.de/Luka_Harambasic.pdf">CV</a>
-        </li>
+        <!--        <li>-->
+        <!--          <a href="https://harambasic.de/Luka_Harambasic.pdf">CV</a>-->
+        <!--        </li>-->
       </ul>
     </nav>
   </header>
