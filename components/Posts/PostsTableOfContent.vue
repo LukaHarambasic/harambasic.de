@@ -1,5 +1,5 @@
 <template>
-  <details class="toc">
+  <details v-if="hasToc" class="toc">
     <summary><strong>Table of Content</strong></summary>
     <ol class="nodes">
       <posts-table-of-content-node
@@ -18,6 +18,11 @@ export default {
     toc: {
       type: Array,
       required: true,
+    },
+  },
+  computed: {
+    hasToc() {
+      return this.toc.length > 0
     },
   },
 }
