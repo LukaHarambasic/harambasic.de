@@ -1,4 +1,4 @@
-import marked from 'marked'
+import { marked } from 'marked'
 import readingTime from 'reading-time'
 
 import getNestedToc from './assets/js/getNestedToc'
@@ -195,7 +195,7 @@ export default {
     'content:file:beforeInsert': (document) => {
       if (document.dir.includes('posts')) {
         document.readingTime = readingTime(document.text)
-        document.html = marked(document.text)
+        document.html = marked.parse(document.text)
         document.tocNested = getNestedToc(document.toc)
         document.categories = getCategoryMeta(document.categories || [])
         document.url = `${globals.baseURL}${document.path}`
