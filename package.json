@@ -10,6 +10,7 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
     "test": "jest",
+    "analyze": "nuxt build --analyze",
     "socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
     "socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
     "newPost": "node scripts/generate-post/index.js",
