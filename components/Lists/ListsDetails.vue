@@ -60,8 +60,8 @@ header
 li
   margin: 0 0 2rem 0
   @media screen and (max-width: $breakpoint-mobile)
-    width: calc(100% + (2 * 1rem))
-    margin: 0 0 0 -1rem
+    width: 100%
+    margin: 0 0 1rem 0
   > a
     display: flex
     flex-wrap: nowrap
