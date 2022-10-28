@@ -1,5 +1,10 @@
 <template>
-  <nuxt-picture preset="post" :src="src" :alt="alt"></nuxt-picture>
+  <nuxt-picture
+    preset="post"
+    :src="src"
+    :alt="alt"
+    loading="lazy"
+  ></nuxt-picture>
 </template>
 
 <script>
