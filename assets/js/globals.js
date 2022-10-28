@@ -1,10 +1,10 @@
 export default {
   baseURL: 'https://harambasic.de',
+  socialFolder: 'social',
   title: 'Luka Harambasic',
   author: 'Luka Harambasic',
   desc: "I'm a German freelancer and entrepreneur based in Copenhagen (Denmark). If you are interested in hiring me, check out my services. Also feel free to take a look at some of my previous projects.",
-  img: '/social/luka-harambasic.png',
-  imgAlt: 'Luka Harambasic - Website',
+  img: 'luka-harambasic.png',
   type: 'website',
   twitterHandle: '@luka_harambasic',
   twitterURL: 'https://twitter.com/luka_harambasic',

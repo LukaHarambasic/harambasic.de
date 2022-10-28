@@ -6,10 +6,10 @@ import { getCategoryMeta } from './assets/js/getCategoryMeta'
 import getFeed from './assets/js/getFeed'
 import globals from './assets/js/globals'
 import getRoutes from './assets/js/getRoutes'
-import getSiteMeta from './assets/js/getMeta'
+import { generatePageData } from './assets/js/pageData'
 require('dotenv').config()
 
-const meta = getSiteMeta()
+const pageData = generatePageData('/')
 
 export default {
   /*
@@ -27,7 +27,7 @@ export default {
       lang: 'en',
     },
     meta: [
-      ...meta,
+      ...pageData.meta,
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {

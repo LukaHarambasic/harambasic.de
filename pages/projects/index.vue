@@ -3,8 +3,8 @@
 </template>
 
 <script>
+import { generatePageData } from '@/assets/js/pageData'
 import ProjectsOverview from '@/components/Projects/ProjectsOverview'
-import getSiteMeta from '@/assets/js/getMeta'
 
 export default {
   name: 'Index',
@@ -15,23 +15,15 @@ export default {
     }
   },
   head() {
-    const { content } = this.meta.find((item) => item.hid === 'og:title')
+    const { title, meta } = generatePageData(
+      this.$route.fullPath,
+      `Projects`,
+      'An overview about some selected projects I did.'
+    )
     return {
-      title: content,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        title: `Projects`,
-        description: 'An overview about some selected projects I did.',
-        url: `/projects`,
-        img: `/social/projects.png`,
-        imgAlt: `Projects - ${this.globals.title}`,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>

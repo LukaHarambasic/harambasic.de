@@ -52,26 +52,19 @@
 </template>
 
 <script>
-import getSiteMeta from '@/assets/js/getMeta'
+import { generatePageData } from '@/assets/js/pageData'
 
 export default {
   name: 'DataPrivacy',
   head() {
-    const { content } = this.meta.find((item) => item.hid === 'og:title')
+    const { title, meta } = generatePageData(
+      this.$route.fullPath,
+      `Data Privacy`
+    )
     return {
-      title: content,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        title: `Data Privacy`,
-        img: `/social/data-privacy.png`,
-        imgAlt: `Data Privacy - ${this.globals.title}`,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>

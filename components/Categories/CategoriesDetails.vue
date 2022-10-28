@@ -84,6 +84,11 @@ li
         background: var(--c-font-on-primary)
         svg
           fill: var(--c-primary)
+      .date
+        a
+          color: var(--c-font-on-primary)
+          &:hover
+            border-color: var(--c-font-on-primary)
     @media screen and (max-width: $breakpoint-mobile)
       flex-direction: column
       justify-content: flex-start

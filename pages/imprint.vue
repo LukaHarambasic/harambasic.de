@@ -68,26 +68,16 @@
 </template>
 
 <script>
-import getSiteMeta from '@/assets/js/getMeta'
+import { generatePageData } from '@/assets/js/pageData'
 
 export default {
   name: 'Imprint',
   head() {
-    const { content } = this.meta.find((item) => item.hid === 'og:title')
+    const { title, meta } = generatePageData(this.$route.fullPath, `Imprint`)
     return {
-      title: content,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        title: `Imprint`,
-        img: `/social/imprint.png`,
-        imgAlt: `Imprint - ${this.globals.title}`,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>

@@ -12,26 +12,20 @@
 </template>
 
 <script>
-import getSiteMeta from '@/assets/js/getMeta'
+import { generatePageData } from '@/assets/js/pageData'
 
 export default {
   name: 'Book',
   head() {
-    const { content } = this.meta.find((item) => item.hid === 'og:title')
+    const { title, meta } = generatePageData(
+      this.$route.fullPath,
+      `Book a Meeting`,
+      'Book a meeting with my to talk about opportunities.'
+    )
     return {
-      title: content,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        title: `Book a meeting`,
-        img: `/social/book-a-meeting.png`,
-        imgAlt: `Book a meeting - ${this.globals.title}`,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>

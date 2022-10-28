@@ -46,9 +46,9 @@
 </template>
 
 <script>
+import { generatePageData } from '@/assets/js/pageData'
 import ServicesTestimonials from '@/components/Services/ServicesTestimonials'
 import ServicesBox from '@/components/Services/ServicesBox'
-import getSiteMeta from '@/assets/js/getMeta'
 import { logos } from '@/content/services/logos'
 import { services } from '@/content/services/services'
 
@@ -65,24 +65,15 @@ export default {
     }
   },
   head() {
-    const { content } = this.meta.find((item) => item.hid === 'og:title')
+    const { title, meta } = generatePageData(
+      this.$route.fullPath,
+      `Services`,
+      'Hire me for your next project in one of the following areas: Agile Project Management, New Work Consulting, Technical Partnership.'
+    )
     return {
-      title: content,
-      meta: [...this.meta],
+      title,
+      meta: [...meta],
     }
-  },
-  computed: {
-    meta() {
-      const metaData = {
-        title: `Services`,
-        description:
-          'Hire me for your next project in one of the following areas: Agile Project Management, New Work Consulting, Technical Partnership.',
-        url: `/services`,
-        img: `/social/services.png`,
-        imgAlt: `Services - ${this.globals.title}`,
-      }
-      return getSiteMeta(metaData)
-    },
   },
 }
 </script>
