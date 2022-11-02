@@ -1,13 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 36 36">
-  <path fill="#000" d="M22.25 4h-8.5a1 1 0 0 0-.96.73l-5.54 19.4a.5.5 0 0 0 .62.62l5.05-1.44a2 2 0 0 0 1.38-1.4l3.22-11.66a.5.5 0 0 1 .96 0l3.22 11.67a2 2 0 0 0 1.38 1.39l5.05 1.44a.5.5 0 0 0 .62-.62l-5.54-19.4a1 1 0 0 0-.96-.73Z"/>
-  <path fill="url(#gradient)" d="M18 28a7.63 7.63 0 0 1-5-2c-1.4 2.1-.35 4.35.6 5.55.14.17.41.07.47-.15.44-1.8 2.93-1.22 2.93.6 0 2.28.87 3.4 1.72 3.81.34.16.59-.2.49-.56-.31-1.05-.29-2.46 1.29-3.25 3-1.5 3.17-4.83 2.5-6-.67.67-2.6 2-5 2Z"/>
-  <defs>
-    <linearGradient id="gradient" x1="16" x2="16" y1="32" y2="24" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#000"/>
-      <stop offset="1" stop-color="#000" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-	<style>
-    @media (prefers-color-scheme:dark){:root{filter:invert(100%)}}
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      #background {
+          fill: #344BDE;
+      }
+      #initials {
+          fill: #F2F2F3;
+      }
+      @media (prefers-color-scheme: dark) {
+          #background {
+              fill: #F2F2F3;
+          }
+          #initials {
+              fill: #344BDE;
+          }
+      }
   </style>
+  <path id="background" fill-rule="evenodd" clip-rule="evenodd" d="M400 800C620.914 800 800 620.914 800 400C800 179.086 620.914 0 400 0C179.086 0 0 179.086 0 400C0 620.914 179.086 800 400 800Z" fill="#344BDE"/>
+  <path id="initials" fill-rule="evenodd" clip-rule="evenodd" d="M250 203C250 201.343 251.343 200 253 200H297C298.657 200 300 201.343 300 203V380V397V400H447C448.657 400 450 401.343 450 403V447C450 448.657 448.657 450 447 450H253C251.343 450 250 448.657 250 447V417V403V397V380V203ZM500 203C500 201.343 501.343 200 503 200H547C548.657 200 550 201.343 550 203V597C550 598.657 548.657 600 547 600H503C501.343 600 500 598.657 500 597V203ZM253 500C251.343 500 250 501.343 250 503V597C250 598.657 251.343 600 253 600H297C298.657 600 300 598.657 300 597V503C300 501.343 298.657 500 297 500H253Z" fill="#F2F2F3"/>
 </svg>

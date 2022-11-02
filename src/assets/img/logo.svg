@@ -1,0 +1,20 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        #background {
+            fill: #344BDE;
+        }
+        #initials {
+            fill: #F2F2F3;
+        }
+        @media (prefers-color-scheme: dark) {
+            #background {
+                fill: #F2F2F3;
+            }
+            #initials {
+                fill: #344BDE;
+            }
+        }
+    </style>
+    <path id="background" fill-rule="evenodd" clip-rule="evenodd" d="M400 800C620.914 800 800 620.914 800 400C800 179.086 620.914 0 400 0C179.086 0 0 179.086 0 400C0 620.914 179.086 800 400 800Z" fill="#344BDE"/>
+    <path id="initials" fill-rule="evenodd" clip-rule="evenodd" d="M250 203C250 201.343 251.343 200 253 200H297C298.657 200 300 201.343 300 203V380V397V400H447C448.657 400 450 401.343 450 403V447C450 448.657 448.657 450 447 450H253C251.343 450 250 448.657 250 447V417V403V397V380V203ZM500 203C500 201.343 501.343 200 503 200H547C548.657 200 550 201.343 550 203V597C550 598.657 548.657 600 547 600H503C501.343 600 500 598.657 500 597V203ZM253 500C251.343 500 250 501.343 250 503V597C250 598.657 251.343 600 253 600H297C298.657 600 300 598.657 300 597V503C300 501.343 298.657 500 297 500H253Z" fill="#F2F2F3"/>
+</svg>

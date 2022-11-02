@@ -1,0 +1,25 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+
+const { Content, frontmatter } = Astro.props.post;
+const { title } = frontmatter;
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob('../../content/posts/*.md');
+  return posts.map(p => ({
+    params: { slug: p.file.split('/').pop().split('.').shift() },
+    props: { post: p },
+  }));
+}
+---
+
+<DefaultLayout>
+    <section>
+        <header>
+            <h1>{title}</h1>
+        </header>
+        <article class="content">
+            <Content />
+        </article>
+    </section>
+</DefaultLayout>

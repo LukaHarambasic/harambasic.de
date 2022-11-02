@@ -11,8 +11,15 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/image": "^0.11.0",
+    "@astrojs/vue": "^1.2.1",
     "astro": "^1.6.0",
-    "vue": "^3.2.37",
-    "@astrojs/vue": "^1.2.1"
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
+    "postcss-nested": "^6.0.0",
+    "postcss-sorting": "^7.0.1"
   }
 }

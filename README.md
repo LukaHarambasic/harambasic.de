@@ -1,10 +1,36 @@
-# Astro + Vue Example
+# Harambasic.de
 
-```
-npm create astro@latest -- --template framework-vue
-```
+## Goals
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/framework-vue)
+- [ ] Completly accessible
+- [ ] Blazing fast - 100 Lighthouse score
+- [ ] Build on web standards
+- [ ] Use same URL structure as before
+- [ ] Framework agnostic - no hard dependencies
+- [ ] Tests: Unit & one E2E per main page
+ 
+## Pages
 
-This example showcases Astro working with [Vue](https://v3.vuejs.org/).
-
+- Index
+    - Picture + Intro
+    - 1 project
+    - 3 posts
+    - 1 list
+- Projects
+    - Galery / Slider
+    - Linkable
+- Lists
+    - Overview: show every item
+    - Filter per category
+    - Sort
+    - Categories
+        - Development
+        - Digital tools
+        - Hardware
+        - Snippets
+        - Bookmarks
+- Blog
+    - Featured post
+    - Filter per tag
+    - Sort
+- Guestbook

@@ -1,0 +1,36 @@
+---
+// TODO the posts loop should be a vue component
+// pages are only connecting the data layer using functions in util to pass them on to the components handling the ui
+// okay and maybe they do the routing, but no logic, no styling
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+
+const title = 'Blog';
+const description = 'Latest articles.';
+const permalink = 'PERMALINK';  // TODO `${Astro.site.href}blog`;
+
+let allPosts = await Astro.glob('../../content/posts/*.md');
+allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+---
+
+<DefaultLayout title={title} description={description} permalink={permalink} current="blog">
+  <div class="container">
+    <h1>Blog</h1>
+    {allPosts.map((post, index) => {
+      const href = `/blog/${post.file.split('/').pop().split('.').shift()}`;
+      return (
+        <div>
+          { index !== 0 && <hr /> }
+          <div class="post-item">
+            <h2>
+              <a href={href}>{post.frontmatter.title}</a>
+            </h2>
+            <p>{post.frontmatter.description}</p>
+            <div class="post-item-footer">
+              <span class="post-item-date">— {post.frontmatter.publishDate}</span>
+            </div>
+          </div>
+        </div>
+      )
+    })}
+  </div>
+</DefaultLayout>
