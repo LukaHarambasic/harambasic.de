@@ -6,7 +6,7 @@ categories:
     - New Work
     - Tools
 tldr: The only thing you should definitely pay for is the domain, the free levels of other services are more than enough to get you started. Use what you feel comfortable with. This post reflects only my personal preferences and can easily be transferred to other tools in the same area.
-tweet: https://twitter.com/luka_harambasic/status/1336460406307610625
+discussion: https://twitter.com/luka_harambasic/status/1336460406307610625
 ---
 
 ## What's this post about?

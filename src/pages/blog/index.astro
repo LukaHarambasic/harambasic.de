@@ -13,29 +13,10 @@ const permalink = 'PERMALINK';  // TODO `${Astro.site.href}blog`;
 
 const posts: Post[] = await Astro.glob('../../content/posts/*.md');
 const sortedPosts: Post[] = await sortPosts(posts, SortProperty.Date, SortDirection.Desc)
-
-sortedPosts.forEach(post => console.log(post.frontmatter.title))
 ---
 
 <DefaultLayout title={title} description={description} permalink={permalink} current="blog">
   <div class="container">
     <h1>Blog</h1>
-    <!-- {allPosts.map((post, index) => {
-      const href = `/blog/${post.file.split('/').pop().split('.').shift()}`;
-      return (
-        <div>
-          { index !== 0 && <hr /> }
-          <div class="post-item">
-            <h2>
-              <a href={href}>{post.frontmatter.title}</a>
-            </h2>
-            <p>{post.frontmatter.description}</p>
-            <div class="post-item-footer">
-              <span class="post-item-date">— {post.frontmatter.publishDate}</span>
-            </div>
-          </div>
-        </div>
-      )
-    })} -->
   </div>
 </DefaultLayout>

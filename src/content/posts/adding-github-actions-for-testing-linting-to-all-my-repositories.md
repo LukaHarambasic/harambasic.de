@@ -6,7 +6,7 @@ categories:
     - Development
     - GitHub Actions
 tldr: 'GitHub Actions are easy to configure and should be used in all npm/yarn based projects. Checkout the <a href="https://gist.github.com/LukaHarambasic/0ef1c88782b6e8b138d5d0319f5a3a85">Gist</a> if you are only interested in the code.'
-tweet: https://twitter.com/luka_harambasic/status/1341140170628853765
+discussion: https://twitter.com/luka_harambasic/status/1341140170628853765
 ---
 
 ## Why should you add this GitHub Actions to your repositories?

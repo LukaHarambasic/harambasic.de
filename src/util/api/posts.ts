@@ -6,6 +6,7 @@
 
 import { SortDirection, SortProperty } from "../../types/enums";
 
+
 export async function sortPosts(posts: Post[], property: SortProperty, direction: SortDirection): Promise<Post[]> {
     // TODO I really really dont like it
     // the sorters are kind of stupid and hard to read
