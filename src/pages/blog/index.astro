@@ -3,19 +3,24 @@
 // pages are only connecting the data layer using functions in util to pass them on to the components handling the ui
 // okay and maybe they do the routing, but no logic, no styling
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import { sortPosts } from '../../util/api/posts';
+import { SortProperty, SortDirection } from '../../types/enums';
 
+// should be one object that gets passed over
 const title = 'Blog';
 const description = 'Latest articles.';
 const permalink = 'PERMALINK';  // TODO `${Astro.site.href}blog`;
 
-let allPosts = await Astro.glob('../../content/posts/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+const posts: Post[] = await Astro.glob('../../content/posts/*.md');
+const sortedPosts: Post[] = await sortPosts(posts, SortProperty.Date, SortDirection.Desc)
+
+sortedPosts.forEach(post => console.log(post.frontmatter.title))
 ---
 
 <DefaultLayout title={title} description={description} permalink={permalink} current="blog">
   <div class="container">
     <h1>Blog</h1>
-    {allPosts.map((post, index) => {
+    <!-- {allPosts.map((post, index) => {
       const href = `/blog/${post.file.split('/').pop().split('.').shift()}`;
       return (
         <div>
@@ -31,6 +36,6 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
           </div>
         </div>
       )
-    })}
+    })} -->
   </div>
 </DefaultLayout>

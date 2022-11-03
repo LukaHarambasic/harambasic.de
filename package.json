@@ -17,8 +17,12 @@
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@typescript-eslint/parser": "^5.42.0",
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
+    "eslint": "^8.26.0",
+    "eslint-plugin-astro": "^0.21.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
     "postcss-nested": "^6.0.0",
     "postcss-sorting": "^7.0.1"
   }
