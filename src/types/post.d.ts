@@ -9,6 +9,7 @@ export interface PostMeta {
     discussion: string;
 }
 
+// TODO I should include a step flatten Post and add and manipulate all required attributes
 export interface Post extends MarkdownInstance<Record<string, any>> {
     frontmatter: PostMeta
 }
