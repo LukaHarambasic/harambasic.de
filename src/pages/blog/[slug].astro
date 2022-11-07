@@ -13,16 +13,60 @@ export async function getStaticPaths() {
 }
 
 const { Content, frontmatter } = Astro.props.post;
-const { title, description, permalink, socialImg, socialImgAlt } = frontmatter;
+const { title, publishDate, categories, description, permalink, socialImg, socialImgAlt } = frontmatter;
 ---
 
 <DefaultLayout title={title} description={description} permalink={permalink} socialImg={socialImg} socialImgAlt={socialImgAlt}>
-  <section>
-    <header>
-        <h1>{title}</h1>
-    </header>
-    <article class="content">
-        <Content />
-    </article>
-  </section>
+  <article class="post h-entry">
+    <section>
+      <header>
+        <h1 class="title p-name">{title}</h1>
+        <div class="row-space-between">
+          <div class="categories">
+            <ul class="links">
+              {categories.map((category: string) => {
+                // TODO category should have a slug and display attribute
+                return (
+                  <li>
+                    <a href={category} class="link">
+                      {category}
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+          <time class="date dt-published" datetime={publishDate}>
+            <a href={permalink} class="u-url">{publishDate}</a>
+          </time>
+        </div>
+      </header>
+      <!-- TODO callout -->
+      <!-- <base-callout class="tldr p-summary">
+        <strong slot="prefix">TL;DR</strong>
+        <div v-html="post.tldr" />
+      </base-callout> -->
+      <!-- TODO TOC -->
+      <!-- <posts-table-of-content
+        v-if="Array.isArray(post.tocNested)"
+        :toc="post.tocNested"
+      /> -->
+      <Content class="content e-content"/>
+    </section>
+    <section>
+      <p class="follow">
+        <!-- TODO this p tak was a base-callout & links -->
+        If you have any thoughts or questions feel free to share them in
+        <a href="post.tweet">this thread</a> or send me an
+        <a href="globals.mailto">email</a>. And if you want to stay up to date
+        you can subscribe to the <a href="globals.blogFeedURL">RSS feed</a>.
+      </p>
+      <div class="author">
+        <!-- TODO author -->
+        <a href="post.authorUrl" rel="author" class="p-author h-card">
+          by {"AUTHOR"}
+        </a>
+      </div>
+    </section>
+  </article>
 </DefaultLayout>
