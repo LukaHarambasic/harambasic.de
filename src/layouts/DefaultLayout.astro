@@ -1,52 +1,30 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import logoSvg from '../assets/img/logo.svg';
+import '../styles/reset.css'
+import '../styles/variables.css'
+import '../styles/global.css'
+import LayoutHead from '../components/Layout/LayoutHead.astro';
+import LayoutHeader from '../components/Layout/LayoutHeader.astro';
+import LayoutFooter from '../components/Layout/LayoutFooter.astro';
 
-export interface Props {
+interface Props {
   title: string;
   description: string;
   permalink: string;
-  current?: string;
+  socialImg: string;
+  socialImgAlt: string;
 }
 
-const { title, description, permalink, current } = Astro.props;
+const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 ---
 <html lang="en">
 	<head>
-    <BaseHead title={title} description={description} permalink={permalink} />
+    <LayoutHead title={title} description={description} permalink={permalink} socialImg={socialImg} socialImgAlt={socialImgAlt}/>
 	</head>
   <body>
-    <header>
-      <div class="logo">
-        <img src={logoSvg} alt="image description" width="100" height="100" />
-        <strong>Luka Harambasic</strong>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Project</a></li>
-          <li><a href="#">Lists</a></li>
-          <li><a href="/blog">Blog</a></li>
-        </ul>
-      </nav>
-    </header>
+    <LayoutHeader />
     <main>
       <slot />
     </main>
-    <footer>
-      <ul>
-        <li><a href="#">LinkedIn</a></li>
-        <li><a href="#">GitHub</a></li>
-        <li><a href="#">Mastodon</a></li>
-      </ul>
-      <div class="logo">
-        <img src={logoSvg} alt="image description" width="50" height="50" />
-      </div>
-      <ul>
-        <li><a href="#">Imprint</a></li>
-        <li><a href="#">Data Privacy</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </footer>
+    <LayoutFooter />
   </body>
 </html>

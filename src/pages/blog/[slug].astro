@@ -1,25 +1,28 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-
-const { Content, frontmatter } = Astro.props.post;
-const { title } = frontmatter;
+import type { Post } from '../../types/post';
+import { getPath, getSlug } from '../../util/helper';
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob('../../content/posts/*.md');
-  return posts.map(p => ({
-    params: { slug: p.file.split('/').pop().split('.').shift() },
-    props: { post: p },
-  }));
+    const posts: Post[] = await Astro.glob('../../content/posts/*.md');
+    if(posts === undefined) return []
+    return posts.map((post: Post) => ({
+        params: { slug: getSlug(post) },
+        props: { post },
+    }));
 }
+
+const { Content, frontmatter } = Astro.props.post;
+const { title, description, permalink, socialImg, socialImgAlt } = frontmatter;
 ---
 
-<DefaultLayout>
-    <section>
-        <header>
-            <h1>{title}</h1>
-        </header>
-        <article class="content">
-            <Content />
-        </article>
-    </section>
+<DefaultLayout title={title} description={description} permalink={permalink} socialImg={socialImg} socialImgAlt={socialImgAlt}>
+  <section>
+    <header>
+        <h1>{title}</h1>
+    </header>
+    <article class="content">
+        <Content />
+    </article>
+  </section>
 </DefaultLayout>

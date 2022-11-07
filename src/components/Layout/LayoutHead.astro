@@ -1,9 +1,5 @@
 ---
-import '../styles/reset.css'
-import '../styles/variables.css'
-import '../styles/global.css'
-
-export interface Props {
+interface Props {
   title: string;
   description: string;
   permalink: string;
@@ -13,14 +9,12 @@ export interface Props {
 
 const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 ---
-
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <meta name="theme-color" content="#e2ebf0" />
 <meta name="HandheldFriendly" content="True" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -46,4 +40,3 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={socialImg} />
 <meta property="twitter:image:alt" content={socialImgAlt} />
-

@@ -1,11 +1,9 @@
 // https://github.com/Charca/astro-blog-template/blob/main/src/pages/blog/index.astro
 // Get by id
-// Get X 
 // Filter by X
-// Sort by X
 
 import { SortDirection, SortProperty } from "../../types/enums";
-
+import type { Post } from '../../types/post';
 
 export async function sortPosts(posts: Post[], property: SortProperty, direction: SortDirection): Promise<Post[]> {
     // TODO I really really dont like it

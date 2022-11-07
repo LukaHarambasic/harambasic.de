@@ -3,20 +3,21 @@
 // pages are only connecting the data layer using functions in util to pass them on to the components handling the ui
 // okay and maybe they do the routing, but no logic, no styling
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import { sortPosts } from '../../util/api/posts';
-import { SortProperty, SortDirection } from '../../types/enums';
+import PostsList from '../../components/Posts/PostsList.astro';
+import type { Post } from '../../types/post';
 
-// should be one object that gets passed over
 const title = 'Blog';
-const description = 'Latest articles.';
-const permalink = 'PERMALINK';  // TODO `${Astro.site.href}blog`;
+const description = 'TBD';
+const permalink = 'TBD';
+const socialImg = 'TBD';
+const socialImgAlt = 'TBD';
 
 const posts: Post[] = await Astro.glob('../../content/posts/*.md');
-const sortedPosts: Post[] = await sortPosts(posts, SortProperty.Date, SortDirection.Desc)
 ---
 
-<DefaultLayout title={title} description={description} permalink={permalink} current="blog">
+<DefaultLayout title={title} description={description} permalink={permalink} socialImg={socialImg} socialImgAlt={socialImgAlt}>
   <div class="container">
     <h1>Blog</h1>
+    <PostsList posts={posts} />
   </div>
 </DefaultLayout>

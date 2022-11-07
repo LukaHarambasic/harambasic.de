@@ -1,5 +1,5 @@
 {
-  "name": "@example/framework-vue",
+  "name": "Luka Harambasic",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -12,9 +12,7 @@
   },
   "dependencies": {
     "@astrojs/image": "^0.11.0",
-    "@astrojs/vue": "^1.2.1",
-    "astro": "^1.6.0",
-    "vue": "^3.2.37"
+    "astro": "^1.6.0"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.42.0",
