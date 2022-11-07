@@ -1,3 +1,4 @@
+---
 title: Digital Tools
 description: Tools I use day per day or used in the past.
 entries:
@@ -49,3 +50,4 @@ entries:
     description: In my case it is used privately, but it is also very easy to set up for small to large organizations.
     logo: /lists/digital_tools/google.svg
     url: https://workspace.google.com
+---

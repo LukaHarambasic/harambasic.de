@@ -1,3 +1,4 @@
+---
 title: Hardware
 description: Hardware I use regularly and recommend.
 hideLogos: true
@@ -20,3 +21,4 @@ entries:
   - title: ASUS ZenScreen MB16AC
     description: Mobile display, powered over USB-C which gives me a dual display set up almost everywhere.
     url: https://www.asus.com/de/displays-desktops/monitors/zenscreen/zenscreen-mb16ac/
+---
