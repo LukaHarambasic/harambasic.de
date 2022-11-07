@@ -14,6 +14,7 @@ const lists = await Astro.glob('../../content/lists/*.md');
 <DefaultLayout title={title} description={description} permalink={permalink} socialImg={socialImg} socialImgAlt={socialImgAlt}>
   <div class="container">
     <h1>Lists</h1>
+    <!-- TODO extract to ListsList.astro -->
     <ul>
         {lists.map((list) => {
             const { title, description } = list.frontmatter;

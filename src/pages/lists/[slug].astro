@@ -1,0 +1,61 @@
+---
+import BaseCallout from '../../components/Base/BaseCallout.astro';
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import { getPath, getSlug } from '../../util/helper';
+
+export async function getStaticPaths() {
+    const lists = await Astro.glob('../../content/lists/*.md');
+    return lists.map((list) => ({
+        params: { slug: getSlug(list) },
+        props: { list },
+    }));
+}
+
+const { frontmatter } = Astro.props.list;
+const { title, description, hideLogos, entries } = frontmatter;
+
+const permalink = 'TBD';
+const socialImg = 'TBD';
+const socialImgAlt = 'TBD';
+---
+
+<DefaultLayout title={title} description={description} permalink={permalink} socialImg={socialImg} socialImgAlt={socialImgAlt}>
+    <article class="post h-entry">
+        <header>
+          <h1>{title}</h1>
+          <p>{description}</p>
+        </header>
+        <section>
+          <ul>
+            {entries.map((entry: any) => {
+                return (
+                    <li>
+                        <a href={entry.url}>
+                            {
+                                hideLogos &&
+                                <div class="logo">
+                                    <img src={entry.logo} alt={entry.title} />
+                                </div>
+                            }
+                            <div class="content">
+                                <div class="header">
+                                    <strong class="title">{entry.title}</strong>
+                                    {
+                                        entry.extra &&
+                                        <strong class="extra">({entry.extra})</strong>
+                                    }
+                                </div>
+                                <p class="description">{entry.description}</p>
+                            </div>
+                        </a>
+                    </li>
+                )
+            })}
+          </ul>
+        </section>
+        <!-- // TODO fix
+        // <base-footnote v-if="list.footnote">
+        //   {{ list.footnote }}
+        // </base-footnote> -->
+      </article>
+</DefaultLayout>

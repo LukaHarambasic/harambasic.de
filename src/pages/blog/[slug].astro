@@ -6,7 +6,6 @@ import { getPath, getSlug } from '../../util/helper';
 
 export async function getStaticPaths() {
     const posts: Post[] = await Astro.glob('../../content/posts/*.md');
-    if(posts === undefined) return []
     return posts.map((post: Post) => ({
         params: { slug: getSlug(post) },
         props: { post },
