@@ -8,6 +8,7 @@
 - [ ] Use same URL structure as before
 - [ ] Framework agnostic - no hard dependencies
 - [ ] Tests: Unit & one E2E per main page
+- [ ] Integration: Store data from the web (e.g. Toots, Twitter, GitHub, Spotify) in files in the repo
  
 ## Pages
 
@@ -34,3 +35,4 @@
     - Filter per tag
     - Sort
 - Guestbook
+- Feed like on Polywork aka Changelog
