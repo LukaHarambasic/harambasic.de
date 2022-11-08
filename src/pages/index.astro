@@ -1,10 +1,16 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro';
 import { Image } from '@astrojs/image/components';
-import profileImage from '../assets/img/profile.jpeg'
+import profileImage from '../assets/img/profile.jpeg';
+
+const title = 'Posts';
+const description = 'TBD';
+const permalink = 'TBD';
+const socialImg = 'TBD';
+const socialImgAlt = 'TBD';
 ---
 
-<DefaultLayout>
+<DefaultLayout title={title} description={description} permalink={permalink} socialImg={socialImg} socialImgAlt={socialImgAlt}>
 	<section class="about">
 		<Image src={profileImage} width={400} aspectRatio="1:1" alt="Picture of Luka Harambasic" />
 		<div class="content">

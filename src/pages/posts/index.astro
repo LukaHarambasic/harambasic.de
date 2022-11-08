@@ -6,7 +6,7 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import PostsList from '../../components/Posts/PostsList.astro';
 import type { Post } from '../../types/post';
 
-const title = 'Blog';
+const title = 'Posts';
 const description = 'TBD';
 const permalink = 'TBD';
 const socialImg = 'TBD';
@@ -17,7 +17,7 @@ const posts: Post[] = await Astro.glob('../../content/posts/*.md');
 
 <DefaultLayout title={title} description={description} permalink={permalink} socialImg={socialImg} socialImgAlt={socialImgAlt}>
   <div class="container">
-    <h1>Blog</h1>
+    <h1>Posts</h1>
     <PostsList posts={posts} />
   </div>
 </DefaultLayout>

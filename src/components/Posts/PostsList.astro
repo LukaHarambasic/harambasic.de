@@ -14,7 +14,7 @@ const sortedPosts: Post[] = await sortPosts(posts, SortProperty.Date, SortDirect
 ---
 
 <section>
-    <h2>Blog</h2>
+    <h2>Posts</h2>
     <!-- <div class="categories">
         <select v-model="selectedCategorySlug">
         <option value="">All</option>
@@ -33,10 +33,10 @@ const sortedPosts: Post[] = await sortPosts(posts, SortProperty.Date, SortDirect
             return (
                 <li class="post h-feed">
                     <h2>
-                        <a href={getPath('blog', post)}>{title}</a>
+                        <a href={getPath('posts', post)}>{title}</a>
                     </h2>
                     <time class="date dt-published" datetime={publishDate.toString()}>
-                        <a href={getPath('blog', post)} class="u-url">
+                        <a href={getPath('posts', post)} class="u-url">
                         {publishDate}
                         </a>
                     </time>

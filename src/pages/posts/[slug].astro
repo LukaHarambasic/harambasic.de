@@ -2,12 +2,13 @@
 import BaseCallout from '../../components/Base/BaseCallout.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import type { Post } from '../../types/post';
-import { getPath, getSlug } from '../../util/helper';
+import { getCategoryByDisplay } from '../../util/api/categories';
+import { getPath, getFileName } from '../../util/helper';
 
 export async function getStaticPaths() {
     const posts: Post[] = await Astro.glob('../../content/posts/*.md');
     return posts.map((post: Post) => ({
-        params: { slug: getSlug(post) },
+        params: { slug: getFileName(post) },
         props: { post },
     }));
 }
@@ -24,12 +25,12 @@ const { title, publishDate, tldr, authorUrl, categories, description, permalink,
         <div class="row-space-between">
           <div class="categories">
             <ul class="links">
-              {categories.map((category: string) => {
-                // TODO category should have a slug and display attribute
+              {categories.map((categoryDisplay: string) => {
+                const category = getCategoryByDisplay(categoryDisplay)
                 return (
                   <li>
-                    <a href={category} class="link">
-                      {category}
+                    <a href={category.fullPath} class="link">
+                      {category.display}
                     </a>
                   </li>
                 )
@@ -41,17 +42,11 @@ const { title, publishDate, tldr, authorUrl, categories, description, permalink,
           </time>
         </div>
       </header>
-      <!-- TODO callout -->
       <BaseCallout class="tldr p-summary">
         <strong slot="prefix">TL;DR</strong>
         {tldr}
       </BaseCallout>
-      <!-- TODO TOC -->
-      <!-- <posts-table-of-content
-        v-if="Array.isArray(post.tocNested)"
-        :toc="post.tocNested"
-      /> -->
-      <Content class="content e-content"/>
+      <Content class="rich-text e-content"/>
     </section>
     <section>
       <BaseCallout class="follow">
@@ -62,7 +57,7 @@ const { title, publishDate, tldr, authorUrl, categories, description, permalink,
         you can subscribe to the <a href="globals.blogFeedURL">RSS feed</a>.
       </BaseCallout>
       <div class="author">
-        <a href={authorUrl} rel="author" class="p-author h-card">
+        <a href="https://harambasic.de" rel="author" class="p-author h-card">
           by Luka Harambasic
         </a>
       </div>

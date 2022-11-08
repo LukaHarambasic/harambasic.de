@@ -2,7 +2,7 @@
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import { getPath } from '../../util/helper';
 
-const title = 'Blog';
+const title = 'Lists';
 const description = 'TBD';
 const permalink = 'TBD';
 const socialImg = 'TBD';
@@ -19,14 +19,13 @@ const lists = await Astro.glob('../../content/lists/*.md');
         {lists.map((list) => {
             const { title, description } = list.frontmatter;
             return (
-            <li class="h-feed">
-                <a href={getPath('lists', list)}>
-                    <h2 class="title p-name">{title}</h2>
-                    <p>{description}</p>
-                </a>
-            </li>
+              <li class="h-feed">
+                  <a href={getPath('lists', list)}>
+                      <h2 class="title p-name">{title}</h2>
+                      <p>{description}</p>
+                  </a>
+              </li>
             )
-
         })}
     </ul>
   </div>

@@ -1,0 +1,62 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import type { Post } from '../../types/post';
+import { getCategories, getPostsByCategory } from '../../util/api/categories';
+
+export async function getStaticPaths() {
+    const allPosts: Post[] = await Astro.glob('../../content/posts/*.md');
+    const categories = getCategories(allPosts);
+    return categories.map((category) => {
+    const posts = getPostsByCategory(allPosts, category);
+        return {
+            params: { slug: category.slug },
+            props: { category, posts },
+        }
+    });
+}
+
+const { category, posts } = Astro.props;
+
+const title = category.display;
+const description = 'TBD';
+const permalink = 'TBD';
+const socialImg = 'TBD';
+const socialImgAlt = 'TBD';
+---
+
+<DefaultLayout title={title} description={description} permalink={permalink} socialImg={socialImg} socialImgAlt={socialImgAlt}>
+    <article class="post h-entry">
+        <header>
+          <h1>{title}</h1>
+          <p>{description}</p>
+        </header>
+        <section>
+          <!-- <ul>
+            {entries.map((entry: any) => {
+                return (
+                    <li>
+                        <a href={entry.url}>
+                            {
+                                hideLogos &&
+                                <div class="logo">
+                                    <img src={entry.logo} alt={entry.title} />
+                                </div>
+                            }
+                            <div class="content">
+                                <div class="header">
+                                    <strong class="title">{entry.title}</strong>
+                                    {
+                                        entry.extra &&
+                                        <strong class="extra">({entry.extra})</strong>
+                                    }
+                                </div>
+                                <p class="description">{entry.description}</p>
+                            </div>
+                        </a>
+                    </li>
+                )
+            })} 
+          </ul>-->
+        </section>
+      </article>
+</DefaultLayout>

@@ -1,18 +1,18 @@
 ---
 import BaseCallout from '../../components/Base/BaseCallout.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import { getPath, getSlug } from '../../util/helper';
+import { getPath, getFileName } from '../../util/helper';
 
 export async function getStaticPaths() {
     const lists = await Astro.glob('../../content/lists/*.md');
     return lists.map((list) => ({
-        params: { slug: getSlug(list) },
+        params: { slug: getFileName(list) },
         props: { list },
     }));
 }
 
 const { frontmatter } = Astro.props.list;
-const { title, description, hideLogos, entries } = frontmatter;
+const { title, description, hideLogos, entries, footnote } = frontmatter;
 
 const permalink = 'TBD';
 const socialImg = 'TBD';
@@ -53,9 +53,5 @@ const socialImgAlt = 'TBD';
             })}
           </ul>
         </section>
-        <!-- // TODO fix
-        // <base-footnote v-if="list.footnote">
-        //   {{ list.footnote }}
-        // </base-footnote> -->
       </article>
 </DefaultLayout>
