@@ -22,8 +22,26 @@ const posts: Post[] = await Astro.glob('../../content/posts/*.md');
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<div class="container">
+	<section>
 		<h1>Posts</h1>
+		<!-- <div class="categories">
+			<select v-model="selectedCategorySlug">
+			<option value="">All</option>
+			<option
+				v-for="category in categories"
+				:key="category.slug"
+				:value="category.slug"
+			>
+				{{ category.title }}
+			</option>
+			</select> 
+		</div> -->
 		<PostsList posts={posts} />
-	</div>
+		<!-- TODO adapt urls -->
+		<p>
+			Check out the <a href="globals.blogFeedURL">RSS feed</a> or
+			<a href="globals.twitterURL">my Twitter account</a>
+			to keep up to date.
+		</p>
+	</section>
 </DefaultLayout>

@@ -1,4 +1,5 @@
 ---
+import PostsList from '../../components/Posts/PostsList.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import type { Post } from '../../types/post';
 import { getCategories, getPostsByCategory } from '../../util/api/categories';
@@ -37,32 +38,7 @@ const socialImgAlt = 'TBD';
 			<p>{description}</p>
 		</header>
 		<section>
-			<!-- <ul>
-            {entries.map((entry: any) => {
-                return (
-                    <li>
-                        <a href={entry.url}>
-                            {
-                                hideLogos &&
-                                <div class="logo">
-                                    <img src={entry.logo} alt={entry.title} />
-                                </div>
-                            }
-                            <div class="content">
-                                <div class="header">
-                                    <strong class="title">{entry.title}</strong>
-                                    {
-                                        entry.extra &&
-                                        <strong class="extra">({entry.extra})</strong>
-                                    }
-                                </div>
-                                <p class="description">{entry.description}</p>
-                            </div>
-                        </a>
-                    </li>
-                )
-            })} 
-          </ul>-->
+			<PostsList posts={posts} />
 		</section>
 	</article>
 </DefaultLayout>

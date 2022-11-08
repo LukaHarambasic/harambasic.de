@@ -10,7 +10,6 @@ export function getPath(parentPath: string, page: any) {
 // implementation inspired by https://futurestud.io/tutorials/node-js-string-replace-all-appearances
 //TODO figure out is getSlug or this function should be used - getSlug seems more specific and might not even generate a real slug
 export function getSlug(str: string) {
-	console.log('str', str);
 	if (str === '') return '';
 	return (
 		str
