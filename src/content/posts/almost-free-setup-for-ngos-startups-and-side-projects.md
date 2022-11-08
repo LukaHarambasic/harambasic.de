@@ -3,8 +3,8 @@ title: Almost free setup for NGOs, startups & side projects
 description: "I want to inspire you how you can set up a professional working environment for your next idea with almost no money. To give you a concrete example: I'll talk over our set up at Active Ambassadors. All my knowledge, which I have acquired over the last years, has flown into this."
 publishDate: 2020-12-09
 categories:
-    - New Work
-    - Tools
+  - New Work
+  - Tools
 tldr: The only thing you should definitely pay for is the domain, the free levels of other services are more than enough to get you started. Use what you feel comfortable with. This post reflects only my personal preferences and can easily be transferred to other tools in the same area.
 discussion: https://twitter.com/luka_harambasic/status/1336460406307610625
 ---
@@ -62,14 +62,14 @@ In other workspaces I also used **t-teams** and **h-help** but for us this isn't
 We moved from [Google Sheets](https://www.google.com/sheets/about/) to [AirTable](https://airtable.com/) because they offer an API which can be consumed by our website to display expenses and incomes. We have two major categories with five sheets:
 
 - **CRM** ([definition](https://en.wikipedia.org/wiki/Customer_relationship_management))
-    - Active Ambassadors
-    - Organisations
+  - Active Ambassadors
+  - Organisations
 - **Finance**
-    - Expenses
-    - Income
-    - Cost per DIY kit
+  - Expenses
+  - Income
+  - Cost per DIY kit
 
-Our list of Active Ambassadors is somehow a mixture between a CRM and an order system, if a user fills out the form a new entry will be added with all necessary information. The ambassador will also get a confirmation via [Mailchimp](https://mailchimp.com/). The new order is also communicated via Slack, this automation is done via [IFTTT](https://ifttt.com/home).  That message in Slack triggers Leonard to start the printing and shipping process. Afterward, the status of the order is reflected manually in the sheet.
+Our list of Active Ambassadors is somehow a mixture between a CRM and an order system, if a user fills out the form a new entry will be added with all necessary information. The ambassador will also get a confirmation via [Mailchimp](https://mailchimp.com/). The new order is also communicated via Slack, this automation is done via [IFTTT](https://ifttt.com/home). That message in Slack triggers Leonard to start the printing and shipping process. Afterward, the status of the order is reflected manually in the sheet.
 
 ![Airtable - Shipping](/posts/almost-free-setup-for-ngos-startups-and-side-projects/airtable_shipping.png)
 

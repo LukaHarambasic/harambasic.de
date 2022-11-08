@@ -7,7 +7,7 @@ entries:
     logo: /lists/development/vueresumecomponent.svg
     url: https://www.npmjs.com/package/vue-resume-component
   - title: Vue.js
-    description: "My favorite JS framework, as it lets you use what the web was made with: HTML and CSS! And Single File Components are just awesome."
+    description: 'My favorite JS framework, as it lets you use what the web was made with: HTML and CSS! And Single File Components are just awesome.'
     logo: /lists/development/vue.svg
     url: https://vuejs.org/
   - title: Nuxt.js
@@ -35,7 +35,7 @@ entries:
     logo: /lists/development/githubactions.svg
     url: https://github.com/features/actions
   - title: google-webfonts-helper
-    description: "Tool to help you host Google fonts without the CDN. Why should you care? GDPR, Performance, Control."
+    description: 'Tool to help you host Google fonts without the CDN. Why should you care? GDPR, Performance, Control.'
     logo:
     url: https://google-webfonts-helper.herokuapp.com/fonts
 ---

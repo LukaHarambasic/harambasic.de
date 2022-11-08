@@ -6,16 +6,16 @@ import { sortPosts } from '../../util/api/posts';
 import { getPath } from '../../util/helper';
 
 interface Props {
-  posts: Post[];
+	posts: Post[];
 }
 const { posts } = Astro.props;
 
-const sortedPosts: Post[] = await sortPosts(posts, SortProperty.Date, SortDirection.Desc)
+const sortedPosts: Post[] = await sortPosts(posts, SortProperty.Date, SortDirection.Desc);
 ---
 
 <section>
-    <h2>Posts</h2>
-    <!-- <div class="categories">
+	<h2>Posts</h2>
+	<!-- <div class="categories">
         <select v-model="selectedCategorySlug">
         <option value="">All</option>
         <option
@@ -27,32 +27,33 @@ const sortedPosts: Post[] = await sortPosts(posts, SortProperty.Date, SortDirect
         </option>
         </select> 
     </div> -->
-    <ul>
-        {sortedPosts.map((post: Post) => {
-            const { title, publishDate, description } = post.frontmatter;
-            return (
-                <li class="post h-feed">
-                    <h2>
-                        <a href={getPath('posts', post)}>{title}</a>
-                    </h2>
-                    <time class="date dt-published" datetime={publishDate.toString()}>
-                        <a href={getPath('posts', post)} class="u-url">
-                        {publishDate}
-                        </a>
-                    </time>
-                    <p>{description}</p>
-                    <div class="post-item-footer">
-                        <span class="post-item-date">— {publishDate}</span>
-                    </div>
-                </li>
-            )
-
-        })}
-    </ul>
-    <!-- TODO adapt urls -->
-    <p>
-        Check out the <a href="globals.blogFeedURL">RSS feed</a> or
-        <a href="globals.twitterURL">my Twitter account</a>
-        to keep up to date.
-    </p>
+	<ul>
+		{
+			sortedPosts.map((post: Post) => {
+				const { title, publishDate, description } = post.frontmatter;
+				return (
+					<li class="post h-feed">
+						<h2>
+							<a href={getPath('posts', post)}>{title}</a>
+						</h2>
+						<time class="date dt-published" datetime={publishDate.toString()}>
+							<a href={getPath('posts', post)} class="u-url">
+								{publishDate}
+							</a>
+						</time>
+						<p>{description}</p>
+						<div class="post-item-footer">
+							<span class="post-item-date">— {publishDate}</span>
+						</div>
+					</li>
+				);
+			})
+		}
+	</ul>
+	<!-- TODO adapt urls -->
+	<p>
+		Check out the <a href="globals.blogFeedURL">RSS feed</a> or
+		<a href="globals.twitterURL">my Twitter account</a>
+		to keep up to date.
+	</p>
 </section>

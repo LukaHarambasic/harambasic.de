@@ -1,5 +1,5 @@
 export interface Category {
-    display: string;
-    slug: string;
-    fullPath: string;
+	display: string;
+	slug: string;
+	fullPath: string;
 }

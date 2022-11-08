@@ -4,7 +4,7 @@ description: Hardware I use regularly and recommend.
 hideLogos: true
 entries:
   - title: Apple MacBook Air
-    description: "Specs: M1 (Processor), 16 GB (Memory), 256 GB (Storage)"
+    description: 'Specs: M1 (Processor), 16 GB (Memory), 256 GB (Storage)'
     url: https://www.apple.com/de/macbook-air/
   - title: Rode NT-USB Mini
     description: Nice quality (as far as I can tell) and can be used without an arm.
@@ -15,7 +15,7 @@ entries:
   - title: Elgato Ring Light
     description: Quite expansive, but the warmness (Kelvin) and brightness can be adjusted seamlessly (Mobile & Desktop).
     url: https://www.elgato.com/en/ring-light
-  - title:  Elgato Streamdeck
+  - title: Elgato Streamdeck
     description: Programmable keyboard with displays which shows different keys depending on the context.
     url: https://www.elgato.com/en/stream-deck
   - title: ASUS ZenScreen MB16AC

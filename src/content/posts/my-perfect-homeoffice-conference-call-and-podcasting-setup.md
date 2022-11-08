@@ -3,13 +3,13 @@ title: My perfect Home-Office Conference Call & Podcasting Setup
 description: Overview for my perfect Homeoffice Conference Call & Podcasting Setup.
 publishDate: 2021-04-18
 categories:
-    - New Work
-    - Hardware
+  - New Work
+  - Hardware
 tldr: You don't have to spend a fortune, but it's a lot of fun to put a little money in your hand.
 tweet: https://twitter.com/luka_harambasic/status/1383820044082106371
 ---
 
-A friend had the idea for our podcast [Techmob Show](https://techmob.show) (german). I got one requirement before we would start the first recording: get a new microphone. During this time a colleague also stepped up his camera game which got me thinking. And so one thing led to another... 
+A friend had the idea for our podcast [Techmob Show](https://techmob.show) (german). I got one requirement before we would start the first recording: get a new microphone. During this time a colleague also stepped up his camera game which got me thinking. And so one thing led to another...
 
 ![Desk with camera, ring light, display, microphone with an arm, stream deck and MacBook.](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/setup_overview.jpg)
 
@@ -23,7 +23,7 @@ My setup has to work with my private MacBook 15" (Mid 2014) and my business MacB
 
 > [Elgato Streamdeck](https://www.elgato.com/en/stream-deck) (150 €)
 
-Before I even bought the microphone I wanted to play with an [Elgato Streamdeck](https://www.elgato.com/en/stream-deck) to speed up some repetitive tasks. Alternatives to this would be an external number pad or the [FreeDeck](https://github.com/FreeYourStream/freedeck-ino) ([Video](https://www.youtube.com/watch?v=-3Zw8hbpVq4)). 
+Before I even bought the microphone I wanted to play with an [Elgato Streamdeck](https://www.elgato.com/en/stream-deck) to speed up some repetitive tasks. Alternatives to this would be an external number pad or the [FreeDeck](https://github.com/FreeYourStream/freedeck-ino) ([Video](https://www.youtube.com/watch?v=-3Zw8hbpVq4)).
 A friend of mine already used a Streamdeck, mainly for ABAP programming. He mentioned that it's only a gadget, though a nice one.
 After two months of use I have to admit he was right, but I use, it multiple times daily. Some of my most used actions:
 
@@ -57,7 +57,7 @@ My first idea was to use my smartphone, as it can record in 4K, and I always hav
 
 During this time the previously mentioned colleague bought a used camera where you can apply different lenses. I have to admit his image quality is awesome, with a natural Bokeh effect. To achieve this, he had to hack his camera which runs Android 2 and that was something I didn't want to do.
 
-With this, I had two options left: 1) a new SLR camera which can be easily used as a webcam 2) a top webcam. Option one starts at 500 € without a lens and option two ends at around 250 €. Having in mind that I use it mainly for video calls the decision was easy, but then I had to decide on a webcam. Three have been shortlisted: [Logitech Streamcam](https://www.logitech.com/de-de/products/webcams/streamcam.960-001281.html) (160 €), [Brio Ultra-HD Pro Business-Webcam](https://www.logitech.com/en-gb/products/webcams/brio-4k-hdr-webcam.960-001106.html) (240  €), [Razer Kiyo](https://www.razer.com/gb-en/streaming-cameras/razer-kiyo/RZ19-02320100-R3U1) (110 €).
+With this, I had two options left: 1) a new SLR camera which can be easily used as a webcam 2) a top webcam. Option one starts at 500 € without a lens and option two ends at around 250 €. Having in mind that I use it mainly for video calls the decision was easy, but then I had to decide on a webcam. Three have been shortlisted: [Logitech Streamcam](https://www.logitech.com/de-de/products/webcams/streamcam.960-001281.html) (160 €), [Brio Ultra-HD Pro Business-Webcam](https://www.logitech.com/en-gb/products/webcams/brio-4k-hdr-webcam.960-001106.html) (240 €), [Razer Kiyo](https://www.razer.com/gb-en/streaming-cameras/razer-kiyo/RZ19-02320100-R3U1) (110 €).
 
 I watched some comparison videos to get an understanding of the differences and to find the image I like the most and is worth the money. The winner is the Logitech Streamcam: USB-C cable (unfortunately firmly attached), mid-range price (got it for 120 €), 1/4" mounting thread.
 
@@ -65,23 +65,24 @@ Most 25 € Full-HD webcams would almost look the same on a small square in your
 
 ## Sampels
 
-* Audio
-  * [Apple Airpod Pro](https://drive.google.com/file/d/1jPfFNk7pl9RGhFwLPKQDO-qPcwzv1duZ/view?usp=sharing)
-  * [Apple Macbook Pro 16"](https://drive.google.com/file/d/1F_qAQfunPNawBvkAo05kAmx9L-KjkRF6/view?usp=sharing)
-  * [Rode NT USB Mini](https://drive.google.com/file/d/1huQ1thtXkuRGjaaytHFkYUU_l8ebZZaR/view?usp=sharing)
-* Elgato Ringlight
-  * [Room Light](https://youtu.be/sezazYiPF1U)
-  * [Warm Light](https://youtu.be/RmJOWQRzV0g)
-  * [Cold Light](https://youtu.be/-EFDw52akpk)
-  * [Default Light](https://youtu.be/FjO4sqxct2o)
-* [Overall Setup](https://youtu.be/v9BVyhclOtk)
+- Audio
+  - [Apple Airpod Pro](https://drive.google.com/file/d/1jPfFNk7pl9RGhFwLPKQDO-qPcwzv1duZ/view?usp=sharing)
+  - [Apple Macbook Pro 16"](https://drive.google.com/file/d/1F_qAQfunPNawBvkAo05kAmx9L-KjkRF6/view?usp=sharing)
+  - [Rode NT USB Mini](https://drive.google.com/file/d/1huQ1thtXkuRGjaaytHFkYUU_l8ebZZaR/view?usp=sharing)
+- Elgato Ringlight
+  - [Room Light](https://youtu.be/sezazYiPF1U)
+  - [Warm Light](https://youtu.be/RmJOWQRzV0g)
+  - [Cold Light](https://youtu.be/-EFDw52akpk)
+  - [Default Light](https://youtu.be/FjO4sqxct2o)
+- [Overall Setup](https://youtu.be/v9BVyhclOtk)
 
 ## Conclusion
 
 I had a lot of fun dealing with the topic so it was totally worth it. For now, I have the perfect setup for my requirements. All of this could be a lot cheaper, but this would require more tinkering and is probably not as convenient as this setup. Having a setup like this is for me mainly about fun. I'm still not a streamer or content creator who needs this. No matter how much you want to spend there are two small points you can always follow:
+
 - _Always use a headset_: It can be quite annoying if your counterparts hear themselves in your microphone. Think about a long conference call...
 - _Turn on your camera_: Not only in these remote times it is nice to see your counterpart. Be the counterpart you would also like to have.
-If you want to get a more expensive inspiration I recommend the video "[Next Level Video Calls | Best Homeoffice Setup Money Can Buy](https://www.youtube.com/watch?v=rnZ-FHfrpAM)" from Christoph Magnussen.
+  If you want to get a more expensive inspiration I recommend the video "[Next Level Video Calls | Best Homeoffice Setup Money Can Buy](https://www.youtube.com/watch?v=rnZ-FHfrpAM)" from Christoph Magnussen.
 
 <base-callout>I only linked to the manufactures, most of the time it's more expensive than other retailers. So please check the prices :)</base-callout>
 

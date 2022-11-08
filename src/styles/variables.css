@@ -1,17 +1,17 @@
 :root {
-    --c-primary: #344bde;
-    --c-surface: #f2f2f3;
-    --c-light: #fff;
-    --c-light-stable: #fff;
-    --c-font-stable: #020725;
-    --c-font: #020725;
-    --c-font-light: #a4a8c2;
-    --c-font-on-primary: #fff;
-    --c-success: #1de9b6;
-    --c-warning: #ffd740;
-    --c-danger: #e53934;
-    --c-shadow: rgba(46,46,62,0.05);
-    --transition: all .15s ease-in-out;
-    --border-radius: .5rem;
-    --border-radius-small: 4px;
+	--c-primary: #344bde;
+	--c-surface: #f2f2f3;
+	--c-light: #fff;
+	--c-light-stable: #fff;
+	--c-font-stable: #020725;
+	--c-font: #020725;
+	--c-font-light: #a4a8c2;
+	--c-font-on-primary: #fff;
+	--c-success: #1de9b6;
+	--c-warning: #ffd740;
+	--c-danger: #e53934;
+	--c-shadow: rgba(46, 46, 62, 0.05);
+	--transition: all 0.15s ease-in-out;
+	--border-radius: 0.5rem;
+	--border-radius-small: 4px;
 }

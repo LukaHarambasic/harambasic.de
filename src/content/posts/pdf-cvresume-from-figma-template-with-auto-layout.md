@@ -3,11 +3,11 @@ title: PDF CV/Resume from Figma template with Auto Layout
 description: A simple one-page CV/Resume template that heavily relies on Auto Layout makes it super easy to adjust.
 publishDate: 2022-07-12
 categories:
-    - Figma
-    - CV
-    - Resume
-    - Template
-    - PDF
+  - Figma
+  - CV
+  - Resume
+  - Template
+  - PDF
 tldr: A simple one-page CV/Resume template that heavily relies on Auto Layout makes it super easy to adjust. <a href="https://www.figma.com/community/file/1128439910915950322">Get it here</a>.
 tweet: TBD
 ---
@@ -30,7 +30,7 @@ As my history of CVs is known to friends, and my current CV is public, I was ask
 
 I thought about writing a comprehensive tutorial. But I think it's straightforward, and I also added some notes to the template so everybody can benefit from it. Therefore, please let me know if there are some "bugs" or if you don't understand something ([@luka_harambasic](https://twitter.com/luka_harambasic)).
 
-__Sources__
+**Sources**
 
 - Portrait picture: [Random Face Generator (This Person Does Not Exist)](https://this-person-does-not-exist.com/)
 - Name: [Behind the name](https://www.behindthename.com/random/)

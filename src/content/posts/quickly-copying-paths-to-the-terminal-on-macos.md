@@ -3,9 +3,9 @@ title: Quickly copying paths to the terminal on macOS
 description: Quickly copying paths to the terminal on macOS
 publishDate: 2022-08-08
 categories:
-    - Quick Tip
-    - macOS
-    - Terminal
+  - Quick Tip
+  - macOS
+  - Terminal
 tldr: Select a file in Finder, press <strong>CMD + C</strong>, paste it to the Terminal with <strong>CMD + V</strong>. That's it.
 tweet: TBD
 ---

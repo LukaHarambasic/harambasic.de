@@ -35,16 +35,22 @@ The next step was to publish my first website. To be honest, I can't even rememb
   <div id="top"></div>
   <div id="middle">
     <h1>About Us</h1>
-    <p> Lorem Ipsum...</p>
+    <p>Lorem Ipsum...</p>
   </div>
   <div id="bottom"></div>
 </div>
 ```
 
 ```css
-#top { background: url("/container-top.png") no-repeat; }
-#middle { background: url("/container-middle.png") repeat-y; }
-#bottom { background: url("/container-bottom.png") no-repeat; }
+#top {
+  background: url('/container-top.png') no-repeat;
+}
+#middle {
+  background: url('/container-middle.png') repeat-y;
+}
+#bottom {
+  background: url('/container-bottom.png') no-repeat;
+}
 ```
 
 Another recognizable feature of websites at this time was this glossy, well-known Web 2.0 button. I used masks in GIMP the first time to achieve this. It was quite some fun to rebuild this in Figma, the third generation of graphic tools I use to create websites.
@@ -97,7 +103,7 @@ On top of that, I could live out my love for tools. Digital tools. I changed the
 
 On my own, I tried a lot of tools in different areas: to-do lists, note-taking, PDF annotation, data storage, calendar, email. I'm sure I've annoyed most people around me, not just once with a great new tool, not just once. Thank you for still being friends with me. By the way, an [Airtable](https://airtable.com/) with all the tools I found and used is currently in the making (and will be published soon).
 
-In the context of this chapter, I really need to say thanks to two people: __Frank__ & __Henry__! You know why. ❤️
+In the context of this chapter, I really need to say thanks to two people: **Frank** & **Henry**! You know why. ❤️
 
 ## 6. Becoming a Technology Consultant
 
@@ -105,12 +111,12 @@ Shortly before my vocational contract with SAP ended, I found an excellent depar
 
 This section is relatively short as I was heavily focused on my work during these two years. Hence, I "only" started two projects with some friends:
 
-* [Active Ambassadors](https://www.active-ambassadors.org/): A NGO to raise awareness for other NGOs.
-* [Tech Mob Show](https://techmob.show/): A technology entertainment podcast with two friends.
+- [Active Ambassadors](https://www.active-ambassadors.org/): A NGO to raise awareness for other NGOs.
+- [Tech Mob Show](https://techmob.show/): A technology entertainment podcast with two friends.
 
 ## 7. Ending my nerd path
 
-I first wanted to call this chapter __"To be continued"__ and add new chapters to my nerd path. But I think it won't be continued. I don't want to make my living as a developer. I love technology! I'll develop in my free time, learn new technologies, automate stuff I could do way quicker manually, be the number one contact for my family, friends, and colleagues to ask technical questions. For me, it's some kind of relaxation if I can develop after a stressful day.
+I first wanted to call this chapter **"To be continued"** and add new chapters to my nerd path. But I think it won't be continued. I don't want to make my living as a developer. I love technology! I'll develop in my free time, learn new technologies, automate stuff I could do way quicker manually, be the number one contact for my family, friends, and colleagues to ask technical questions. For me, it's some kind of relaxation if I can develop after a stressful day.
 
 However, I have taken a new path. I moved to Copenhagen to start my master's in _[Technology Entrepreneurship](https://www.dtu.dk/english/education/msc/programmes/technology-entrepreneurship)_ [@DTU](https://www.dtu.dk/english). I wanted to risk something, go out of my comfort zone, try something new, get to know inspiring people from all over the world, and just calm down a bit after my time at the Corona-Warn-App. However, I want to work on more meaningful projects from me. I want to find something with impact. It might sound cheesy, but I want to change something in the world, tackle the significant challenges, and leave a better world.
 

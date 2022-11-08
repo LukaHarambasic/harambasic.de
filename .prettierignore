@@ -1,0 +1,11 @@
+# Deep Directories
+**/dist
+**/node_modules
+
+# Directories
+.github
+.changeset
+
+# Files
+README.md
+package-lock.json
