@@ -1,5 +1,5 @@
 import type { Category } from '../../types/category';
-import { Post } from '../../types/post';
+import type { Post } from '../../types/post';
 import { getSlug } from '../helper';
 
 // TODO test

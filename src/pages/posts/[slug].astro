@@ -2,7 +2,7 @@
 import BaseCallout from '../../components/Base/BaseCallout.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import type { Post } from '../../types/post';
-// import { getCategoryByDisplay } from '../../util/api/categories';
+import { getCategoryByDisplay } from '../../util/api/categories';
 import { getFileName } from '../../util/helper';
 
 export async function getStaticPaths() {
@@ -34,11 +34,7 @@ const { title, publishDate, tldr, categories, description, permalink, socialImg,
 						<ul class="links">
 							{
 								categories.map((categoryDisplay: string) => {
-									// const category = getCategoryByDisplay(categoryDisplay);
-									const category = {
-										fullPath: 'fullpath',
-										display: 'display',
-									};
+									const category = getCategoryByDisplay(categoryDisplay);
 									return (
 										<li>
 											<a href={category.fullPath} class="link">
