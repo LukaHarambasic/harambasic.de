@@ -1,0 +1,33 @@
+---
+import type { Category } from '../../types/category';
+import { getCategoryByDisplay } from '../../util/api/categories';
+
+interface Props {
+	categories: string[] | Category[];
+}
+const rawCategories = Astro.props.categories;
+
+// TODO not working - but if posts get the proper Category type directly this sint a problem and i dont need the stuff below
+let categories: Category[];
+if (rawCategories as Category[]) {
+	categories = rawCategories.map((category) => category as Category);
+} else {
+	categories = rawCategories.map((category) => getCategoryByDisplay(category.toString()));
+}
+---
+
+<div class="categories">
+	<ul>
+		{
+			categories.map(({ fullPath, display }) => {
+				return (
+					<li>
+						<a href={fullPath} class="link">
+							{display}
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</div>

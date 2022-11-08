@@ -1,5 +1,6 @@
 ---
 import BaseCallout from '../../components/Base/BaseCallout.astro';
+import PostsCategories from '../../components/Posts/PostsCategories.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import type { Post } from '../../types/post';
 import { getCategoryByDisplay } from '../../util/api/categories';
@@ -30,22 +31,7 @@ const { title, publishDate, tldr, categories, description, permalink, socialImg,
 			<header>
 				<h1 class="title p-name">{title}</h1>
 				<div class="row-space-between">
-					<div class="categories">
-						<ul class="links">
-							{
-								categories.map((categoryDisplay: string) => {
-									const category = getCategoryByDisplay(categoryDisplay);
-									return (
-										<li>
-											<a href={category.fullPath} class="link">
-												{category.display}
-											</a>
-										</li>
-									);
-								})
-							}
-						</ul>
-					</div>
+					<PostsCategories categories={categories} />
 					<time class="date dt-published" datetime={publishDate}>
 						<a href={permalink} class="u-url">{publishDate}</a>
 					</time>

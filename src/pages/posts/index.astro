@@ -4,7 +4,9 @@
 // okay and maybe they do the routing, but no logic, no styling
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import PostsList from '../../components/Posts/PostsList.astro';
+import PostsCategories from '../../components/Posts/PostsCategories.astro';
 import type { Post } from '../../types/post';
+import { getCategories } from '../../util/api/categories';
 
 const title = 'Posts';
 const description = 'TBD';
@@ -13,6 +15,7 @@ const socialImg = 'TBD';
 const socialImgAlt = 'TBD';
 
 const posts: Post[] = await Astro.glob('../../content/posts/*.md');
+const categories = await getCategories(posts);
 ---
 
 <DefaultLayout
@@ -24,18 +27,8 @@ const posts: Post[] = await Astro.glob('../../content/posts/*.md');
 >
 	<section>
 		<h1>Posts</h1>
-		<!-- <div class="categories">
-			<select v-model="selectedCategorySlug">
-			<option value="">All</option>
-			<option
-				v-for="category in categories"
-				:key="category.slug"
-				:value="category.slug"
-			>
-				{{ category.title }}
-			</option>
-			</select> 
-		</div> -->
+		<!-- TODO make it dynamic again at one point -->
+		<PostsCategories categories={categories} />
 		<PostsList posts={posts} />
 		<!-- TODO adapt urls -->
 		<p>
