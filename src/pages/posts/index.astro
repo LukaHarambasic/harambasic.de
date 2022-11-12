@@ -5,8 +5,8 @@
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import PostsList from '../../components/Posts/PostsList.astro';
 import PostsCategories from '../../components/Posts/PostsCategories.astro';
-import type { Post } from '../../types/post';
 import { getCategories } from '../../util/api/categories';
+import { rawToPosts } from '../../util/api/posts';
 
 const title = 'Posts';
 const description = 'TBD';
@@ -14,7 +14,8 @@ const permalink = 'TBD';
 const socialImg = 'TBD';
 const socialImgAlt = 'TBD';
 
-const posts: Post[] = await Astro.glob('../../content/posts/*.md');
+const rawPosts = await Astro.glob('../../content/posts/*.md');
+const posts = rawToPosts(rawPosts);
 const categories = await getCategories(posts);
 ---
 

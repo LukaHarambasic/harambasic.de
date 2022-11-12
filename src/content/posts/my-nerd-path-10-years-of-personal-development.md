@@ -5,7 +5,7 @@ publishDate: 2021-12-22
 categories:
   - Personal
 tldr: The web showed me how to code and after almost 15 years this time is over. I'm still in the tech world, but focusing on entrepreneurship and freelancing.
-tweet: https://twitter.com/luka_harambasic/status/1473711448249581578
+discussion: https://twitter.com/luka_harambasic/status/1473711448249581578
 ---
 
 ## Preamble

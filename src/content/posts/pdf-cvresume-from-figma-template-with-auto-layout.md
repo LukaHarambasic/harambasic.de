@@ -9,7 +9,7 @@ categories:
   - Template
   - PDF
 tldr: A simple one-page CV/Resume template that heavily relies on Auto Layout makes it super easy to adjust. <a href="https://www.figma.com/community/file/1128439910915950322">Get it here</a>.
-tweet: TBD
+discussion: TBD
 ---
 
 ## Motivation

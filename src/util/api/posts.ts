@@ -1,9 +1,26 @@
-// https://github.com/Charca/astro-blog-template/blob/main/src/pages/blog/index.astro
-// Get by id
-// Filter by X
-
+import type { MarkdownInstance } from 'astro';
 import { SortDirection, SortProperty } from '../../types/enums';
 import type { Post } from '../../types/post';
+import { rawToCategories } from './categories';
+
+// TODO test
+export function rawToPosts(rawPosts: MarkdownInstance<Record<string, any>>[]): Post[] {
+	return rawPosts.map((rawProject) => {
+		const { title, description, publishDate, tldr, discussion } =
+			rawProject.frontmatter as Post;
+		const rawCategories = rawProject.frontmatter.categories
+		return {
+			title,
+			description,
+			publishDate,
+			categories: rawToCategories(rawCategories),
+			tldr,
+			discussion,
+			Content: rawProject.Content,
+			file: rawProject.file,
+		};
+	});
+}
 
 // TODO test
 export async function sortPosts(
@@ -19,25 +36,25 @@ export async function sortPosts(
 			if (direction === SortDirection.Asc) {
 				return posts.sort(
 					(a: Post, b: Post) =>
-						new Date(b.frontmatter.publishDate).valueOf() -
-						new Date(a.frontmatter.publishDate).valueOf()
+						new Date(b.publishDate).valueOf() -
+						new Date(a.publishDate).valueOf()
 				);
 			} else if (direction === SortDirection.Desc) {
 				return posts.sort(
 					(a: Post, b: Post) =>
-						new Date(a.frontmatter.publishDate).valueOf() -
-						new Date(b.frontmatter.publishDate).valueOf()
+						new Date(a.publishDate).valueOf() -
+						new Date(b.publishDate).valueOf()
 				);
 			}
 			break;
 		case SortProperty.Title:
 			if (direction === SortDirection.Asc) {
 				return posts.sort((a: Post, b: Post) =>
-					b.frontmatter.title.localeCompare(a.frontmatter.title)
+					b.title.localeCompare(a.title)
 				);
 			} else if (direction === SortDirection.Desc) {
 				return posts.sort((a: Post, b: Post) =>
-					a.frontmatter.title.localeCompare(b.frontmatter.title)
+					a.title.localeCompare(b.title)
 				);
 			}
 			break;

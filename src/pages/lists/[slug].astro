@@ -1,18 +1,19 @@
 ---
-import BaseCallout from '../../components/Base/BaseCallout.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import { getPath, getFileName } from '../../util/helper';
+import { rawToLists } from '../../util/api/lists';
+import { getFileName } from '../../util/helper';
 
 export async function getStaticPaths() {
-	const lists = await Astro.glob('../../content/lists/*.md');
+	const rawLists = await Astro.glob('../../content/lists/*.md');
+	const lists = rawToLists(rawLists);
 	return lists.map((list) => ({
 		params: { slug: getFileName(list) },
 		props: { list },
 	}));
 }
 
-const { frontmatter } = Astro.props.list;
-const { title, description, hideLogos, entries, footnote } = frontmatter;
+const { list } = Astro.props;
+const { title, description, hideLogos, entries } = list;
 
 const permalink = 'TBD';
 const socialImg = 'TBD';

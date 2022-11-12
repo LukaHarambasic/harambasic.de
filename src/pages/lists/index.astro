@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import { rawToLists } from '../../util/api/lists';
 import { getPath } from '../../util/helper';
 
 const title = 'Lists';
@@ -8,7 +9,8 @@ const permalink = 'TBD';
 const socialImg = 'TBD';
 const socialImgAlt = 'TBD';
 
-const lists = await Astro.glob('../../content/lists/*.md');
+const rawLists = await Astro.glob('../../content/lists/*.md');
+const lists = rawToLists(rawLists);
 ---
 
 <DefaultLayout
@@ -24,7 +26,7 @@ const lists = await Astro.glob('../../content/lists/*.md');
 		<ul>
 			{
 				lists.map((list) => {
-					const { title, description } = list.frontmatter;
+					const { title, description } = list;
 					return (
 						<li class="h-feed">
 							<a href={getPath('lists', list)}>

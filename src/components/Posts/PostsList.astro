@@ -16,7 +16,7 @@ const sortedPosts: Post[] = await sortPosts(posts, SortProperty.Date, SortDirect
 <ul>
 	{
 		sortedPosts.map((post: Post) => {
-			const { title, publishDate, description } = post.frontmatter;
+			const { title, publishDate, description } = post;
 			return (
 				<li class="post h-feed">
 					<h2>

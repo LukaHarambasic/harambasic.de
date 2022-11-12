@@ -4,17 +4,26 @@ import { getSlug } from '../helper';
 
 // TODO test
 export function getCategories(posts: Post[]): Category[] {
-	const rawCategories = posts.map((post) => post.frontmatter.categories).flat();
+	const rawCategories = posts.map((post) => post.categories).flat();
 	const uniqueCategories = rawCategories.filter(
 		(category, index, self) => self.indexOf(category) === index
 	);
-	const categories: Category[] = uniqueCategories.map((category) => getCategoryByDisplay(category));
-	return categories;
+	return uniqueCategories;
 }
 
 // TODO test
 export function getPostsByCategory(posts: Post[], category: Category): Post[] {
-	return posts.filter((post) => post.frontmatter.categories.includes(category.display));
+	return posts.filter((post) => {
+		return post.categories.some(postCategory => {
+			return postCategory.slug === category.slug
+		})
+	})
+}
+
+// TODO test
+export function rawToCategories(rawCategories: string[]) {
+	if (rawCategories.length === 0) return []
+	return rawCategories.map((category) => getCategoryByDisplay(category));
 }
 
 // TODO test

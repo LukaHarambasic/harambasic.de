@@ -2,12 +2,28 @@
 import DefaultLayout from '../layouts/DefaultLayout.astro';
 import { Image } from '@astrojs/image/components';
 import profileImage from '../assets/img/profile.jpeg';
+import { rawToPosts } from '../util/api/posts';
+import { getRandomItems } from '../util/helper';
+import { rawToProjects } from '../util/api/projects';
+import { rawToLists } from '../util/api/lists';
 
-const title = 'Posts';
+const title = 'Home';
 const description = 'TBD';
 const permalink = 'TBD';
 const socialImg = 'TBD';
 const socialImgAlt = 'TBD';
+
+const rawPosts = await Astro.glob('../content/posts/*.md');
+const posts = rawToPosts(rawPosts);
+const randomPosts = getRandomItems(posts, 3);
+
+const rawProjects = await Astro.glob('../content/projects/*.md');
+const projects = rawToProjects(rawProjects);
+const randomProject = getRandomItems(projects, 1)[0];
+
+const rawLists = await Astro.glob('../content/lists/*.md');
+const lists = rawToLists(rawLists);
+const randomLists = getRandomItems(lists, 2);
 ---
 
 <DefaultLayout
@@ -24,24 +40,49 @@ const socialImgAlt = 'TBD';
 			<p>
 				I'm a German based in Copenhagen (Denmark). Currently, I am studying MSc Technology
 				Entrepreneurship @ DTU. Previously, I worked as Mobile UX Technology Consultant @ SAP (<a
-					data-v-5bfd21b4=""
 					href="https://www.linkedin.com/in/harambasic/"
 					rel="nofollow noopener noreferrer"
 					target="_blank">LinkedIn</a
-				>). Also feel free to take a look at some of my previous <a
-					data-v-5bfd21b4=""
-					href="/projects"
-					class="">projects</a
-				>. If you want to <a data-v-5bfd21b4="" href="mailto:business@harambasic.de" rel="me"
-					>chat</a
-				>, just start a conversation about handball, woodworking, or cooking.
+				>). Also feel free to take a look at some of my previous <a href="/projects">projects</a>.
+				If you want to <a href="mailto:business@harambasic.de" rel="me">chat</a>, just start a
+				conversation about handball, woodworking, or cooking.
 			</p>
 		</div>
 	</section>
 	<section class="featured">
-		<div class="project">[project]</div>
-		<div class="posts">[post] [post] [post]</div>
-		<div class="lists">[list] [list]</div>
+		<h2>Weekly recommendations</h2>
+		<div class="project">
+			<h3>Project</h3>
+			<strong>{randomProject.title}</strong>
+		</div>
+		<div class="posts">
+			<h3>Posts</h3>
+			<ul>
+				{
+					randomPosts.map((post) => {
+						return (
+							<li>
+								<strong>{post.title}</strong>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</div>
+		<div class="lists">
+			<h3>Lists</h3>
+			<ul>
+				{
+					randomLists.map((list) => {
+						return (
+							<li>
+								<strong>{list.title}</strong>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</div>
 	</section>
-	<section class="mastodon">[toot] [toot] [toot]</section>
+	<!-- <section class="mastodon">[toot] [toot] [toot]</section> -->
 </DefaultLayout>

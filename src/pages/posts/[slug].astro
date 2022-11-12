@@ -3,20 +3,29 @@ import BaseCallout from '../../components/Base/BaseCallout.astro';
 import PostsCategories from '../../components/Posts/PostsCategories.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import type { Post } from '../../types/post';
-import { getCategoryByDisplay } from '../../util/api/categories';
+import { rawToPosts } from '../../util/api/posts';
 import { getFileName } from '../../util/helper';
 
 export async function getStaticPaths() {
-	const posts: Post[] = await Astro.glob('../../content/posts/*.md');
+	const rawPosts = await Astro.glob('../../content/posts/*.md');
+	const posts = rawToPosts(rawPosts);
 	return posts.map((post: Post) => ({
 		params: { slug: getFileName(post) },
 		props: { post },
 	}));
 }
 
-const { Content, frontmatter } = Astro.props.post;
-const { title, publishDate, tldr, categories, description, permalink, socialImg, socialImgAlt } =
-	frontmatter;
+const {
+	title,
+	publishDate,
+	tldr,
+	categories,
+	description,
+	permalink,
+	socialImg,
+	socialImgAlt,
+	Content,
+} = Astro.props.post;
 ---
 
 <DefaultLayout
