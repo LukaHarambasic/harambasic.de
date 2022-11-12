@@ -3,14 +3,14 @@ title: Active Ambassadors
 img: active-ambassadors.png
 alt: The logo from Active Ambassadors.
 prio: 90
-status: 2
+status: INACTIVE
 links:
-  - title: Website
-    url: https://active-ambassadors.org/
-  - title: Instagram
-    url: https://www.instagram.com/active_ambassadors/
-  - title: LinkedIn
-    url: https://www.linkedin.com/company/active-ambassadors
+  - display: Website
+    href: https://active-ambassadors.org/
+  - display: Instagram
+    href: https://www.instagram.com/active_ambassadors/
+  - display: LinkedIn
+    href: https://www.linkedin.com/company/active-ambassadors
 responsibilities:
   - Co-Founder
   - Design

@@ -3,16 +3,16 @@ title: Corona-Warn-App
 img: corona-warn-app.jpg
 alt: A screenshot of the Corona-Warn-App homescreen.
 prio: 1000
-status: 2
+status: INACTIVE
 links:
-  - title: Website
-    url: https://www.coronawarn.app/en/
-  - title: GitHub
-    url: https://github.com/corona-warn-app/cwa-app-android
-  - title: Play Store
-    url: https://play.google.com/store/apps/details?id=de.rki.coronawarnapp
-  - title: App Store
-    url: https://apps.apple.com/de/app/corona-warn-app/id1512595757
+  - display: Website
+    href: https://www.coronawarn.app/en/
+  - display: GitHub
+    href: https://github.com/corona-warn-app/cwa-app-android
+  - display: Play Store
+    href: https://play.google.com/store/apps/details?id=de.rki.coronawarnapp
+  - display: App Store
+    href: https://apps.apple.com/de/app/corona-warn-app/id1512595757
 responsibilities:
   - Team Lead
   - Scrum Master

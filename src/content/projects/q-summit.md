@@ -3,12 +3,12 @@ title: Q-Summit
 img: q-summit.png
 alt: The team behind Q-Summit 2019
 prio: 80
-status: 2
+status: INACTIVE
 links:
-  - title: Website
-    url: https://q-summit.com/
-  - title: Instagram
-    url: https://www.instagram.com/qsummit/
+  - display: Website
+    href: https://q-summit.com/
+  - display: Instagram
+    href: https://www.instagram.com/qsummit/
 responsibilities:
   - Head of IT
   - Digital Transformation

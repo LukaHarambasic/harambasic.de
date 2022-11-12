@@ -3,10 +3,10 @@ title: Arbeitskreis Börse
 img: arbeitskreis-boerse.jpg
 alt: Picture with my co-head in front of the Mannheim castle.
 prio: 70
-status: 2
+status: INACTIVE
 links:
-  - title: Website
-    url: https://www.akboerse.de/
+  - display: Website
+    href: https://www.akboerse.de/
 responsibilities:
   - Co-Head of IT
   - Digital Transformation
