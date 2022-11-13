@@ -1,7 +1,7 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro';
-import { Image } from '@astrojs/image/components';
-import profileImage from '../assets/img/profile.jpeg';
+import { Picture } from '@astrojs/image/components';
+import profileImage from '../assets/image/profile.jpeg';
 import { rawToPosts } from '../util/api/posts';
 import { getRandomItems } from '../util/helper';
 import { rawToProjects } from '../util/api/projects';
@@ -34,7 +34,13 @@ const randomLists = getRandomItems(lists, 2);
 	socialImgAlt={socialImgAlt}
 >
 	<section class="about">
-		<Image src={profileImage} width={400} aspectRatio="1:1" alt="Picture of Luka Harambasic" />
+		<Picture
+			src={profileImage}
+			widths={[200, 400]}
+			sizes="(max-width: 400px) 100vw, 400px"
+			aspectRatio="1:1"
+			alt="Picture of Luka Harambasic"
+		/>
 		<div class="content">
 			<h2>Hi, I'm Luka!</h2>
 			<p>

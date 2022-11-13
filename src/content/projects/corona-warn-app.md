@@ -1,6 +1,6 @@
 ---
 title: Corona-Warn-App
-img: corona-warn-app.jpg
+img: ./src/assets/images/projects/corona-warn-app.jpg
 alt: A screenshot of the Corona-Warn-App homescreen.
 prio: 1000
 status: INACTIVE

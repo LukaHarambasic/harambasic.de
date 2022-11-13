@@ -13,8 +13,8 @@
     "format": "prettier -w . --cache --plugin-search-dir=."
   },
   "dependencies": {
-    "@astrojs/image": "^0.11.0",
-    "astro": "^1.6.0",
+    "@astrojs/image": "^0.11.4",
+    "astro": "^1.6.7",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",
     "rehype-toc": "^3.0.2"

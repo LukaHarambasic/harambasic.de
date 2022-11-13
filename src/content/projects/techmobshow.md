@@ -1,6 +1,6 @@
 ---
 title: Techmob Show
-img: techmobshow.svg
+img: ./src/assets/images/projects/techmobshow.svg
 alt: The Techmob Show logo
 prio: 80
 status: INACTIVE

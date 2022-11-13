@@ -1,6 +1,6 @@
 ---
 title: Active Ambassadors
-img: active-ambassadors.png
+img: ./src/assets/images/projects/active-ambassadors.png
 alt: The logo from Active Ambassadors.
 prio: 90
 status: INACTIVE

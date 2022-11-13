@@ -19,3 +19,9 @@ export function rawToProjects(rawProjects: MarkdownInstance<Record<string, any>>
         };
     });
 }
+
+
+// TODO test
+export function getFullImagePath(img: string) {
+    return `../../assets/images/projects/${img}`
+}

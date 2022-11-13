@@ -1,6 +1,6 @@
 ---
 title: Q-Summit
-img: q-summit.png
+img: ./src/assets/images/projects/q-summit.png
 alt: The team behind Q-Summit 2019
 prio: 80
 status: INACTIVE
