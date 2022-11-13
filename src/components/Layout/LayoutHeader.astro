@@ -16,3 +16,48 @@ import logoSvg from '../../assets/images/logo.svg';
 		</ul>
 	</nav>
 </header>
+
+<style>
+	header {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-content: stretch;
+		align-items: flex-start;
+	}
+	.logo {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-content: center;
+		align-items: center;
+		gap: 1rem;
+		img {
+			size: 2rem;
+		}
+		strong {
+			font-size: 1rem;
+			font-weight: bold;
+		}
+	}
+	nav {
+		ul {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-content: stretch;
+			align-items: flex-start;
+			gap: var(--m);
+			li {
+				a {
+					color: var(--c-font);
+					font-weight: bold;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+</style>

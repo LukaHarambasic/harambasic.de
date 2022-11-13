@@ -20,7 +20,7 @@
 - Projects
     - Galery / Slider
     - Linkable
-- Lists
+- Resources
     - Overview: show every item
     - Filter per category
     - Sort
@@ -30,6 +30,10 @@
         - Hardware
         - Snippets
         - Bookmarks
+- Consumption
+    - Podcasts
+    - Youtube
+    - Spotify
 - Blog
     - Featured post
     - Filter per tag

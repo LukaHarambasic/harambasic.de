@@ -15,13 +15,9 @@ export function rawToProjects(rawProjects: MarkdownInstance<Record<string, any>>
             links,
             responsibilities,
             Content: rawProject.Content,
+            rawContent: rawProject.rawContent(),
+            compiledContent: rawProject.compiledContent(),
             file: rawProject.file,
         };
     });
-}
-
-
-// TODO test
-export function getFullImagePath(img: string) {
-    return `../../assets/images/projects/${img}`
 }

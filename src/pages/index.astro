@@ -19,7 +19,7 @@ const randomPosts = getRandomItems(posts, 3);
 
 const rawProjects = await Astro.glob('../content/projects/*.md');
 const projects = rawToProjects(rawProjects);
-const randomProject = getRandomItems(projects, 1)[0];
+const randomProjects = getRandomItems(projects, 1);
 
 const rawLists = await Astro.glob('../content/lists/*.md');
 const lists = rawToLists(rawLists);
@@ -33,62 +33,232 @@ const randomLists = getRandomItems(lists, 2);
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<section class="about">
-		<Picture
-			src={profileImage}
-			widths={[200, 400]}
-			sizes="(max-width: 400px) 100vw, 400px"
-			aspectRatio="1:1"
-			alt="Picture of Luka Harambasic"
-		/>
-		<div class="content">
-			<h2>Hi, I'm Luka!</h2>
-			<p>
-				I'm a German based in Copenhagen (Denmark). Currently, I am studying MSc Technology
-				Entrepreneurship @ DTU. Previously, I worked as Mobile UX Technology Consultant @ SAP (<a
-					href="https://www.linkedin.com/in/harambasic/"
-					rel="nofollow noopener noreferrer"
-					target="_blank">LinkedIn</a
-				>). Also feel free to take a look at some of my previous <a href="/projects">projects</a>.
-				If you want to <a href="mailto:business@harambasic.de" rel="me">chat</a>, just start a
-				conversation about handball, woodworking, or cooking.
-			</p>
-		</div>
-	</section>
-	<section class="featured">
-		<h2>Weekly recommendations</h2>
-		<div class="project">
-			<h3>Project</h3>
-			<strong>{randomProject.title}</strong>
-		</div>
-		<div class="posts">
-			<h3>Posts</h3>
-			<ul>
-				{
-					randomPosts.map((post) => {
-						return (
-							<li>
-								<strong>{post.title}</strong>
-							</li>
-						);
-					})
-				}
-			</ul>
-		</div>
-		<div class="lists">
-			<h3>Lists</h3>
-			<ul>
-				{
-					randomLists.map((list) => {
-						return (
-							<li>
-								<strong>{list.title}</strong>
-							</li>
-						);
-					})
-				}
-			</ul>
-		</div>
-	</section>
+	<main>
+		<section class="hi">
+			<h3>Heyho</h3>
+			<div class="inner">
+				<Picture
+					src={profileImage}
+					widths={[200, 400]}
+					sizes="(max-width: 400px) 100vw, 400px"
+					aspectRatio="1:1"
+					alt="Picture of Luka Harambasic"
+					class="profile"
+				/>
+				<div class="content rich-text">
+					<h2>Heyho, I'm Luka!</h2>
+					<p>
+						Simpler version, interstes and what I do, for more infos send to about page with a text
+						and link to CV. Row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast
+						yardarm. <u>Pinnace</u> holystone mizzenmast <a>lorem ipsum</a> quarter crow's nest nipperkin
+						grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard.
+					</p>
+					<p>
+						Grog black jack gangway rutters. Row scuttle parrel <a>lorem ipsum</a>provost Sail ho
+						shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's
+						nest nipperkin grog yardarm hempen <u>halter furl</u>. Swab barque interloper chantey
+						doubloon starboard grog black jack gangway rutters.
+					</p>
+				</div>
+			</div>
+		</section>
+		<section class="featured">
+			<h2>Weekly recommendations</h2>
+			<div class="project group">
+				<h3>Project</h3>
+				<ul>
+					{
+						randomProjects.map(({ title, compiledContent, slug }) => {
+							return (
+								<li>
+									<a href={slug && ''}>
+										<div class="icon">x</div>
+										<strong>{title}</strong>
+										<p>
+											Row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.
+											Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen
+											halter furl. Swab barque interloper chantey doubloon starboard grog black jack
+											gangway rutters.
+										</p>
+									</a>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</div>
+			<div class="posts group">
+				<h3>Posts</h3>
+				<ul>
+					{
+						randomPosts.map(({ title, description, slug }) => {
+							return (
+								<li>
+									<a href={slug && ''}>
+										<div class="icon">x</div>
+										<strong>{title}</strong>
+										<p>{description}</p>
+									</a>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</div>
+			<div class="lists group">
+				<h3>Lists</h3>
+				<ul>
+					{
+						randomLists.map(({ title, description, slug }) => {
+							return (
+								<li>
+									<a href={slug && ''}>
+										<div class="icon">x</div>
+										<strong>{title}</strong>
+										<p>{description}</p>
+									</a>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</div>
+		</section>
+	</main>
 	<!-- <section class="mastodon">[toot] [toot] [toot]</section> -->
 </DefaultLayout>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-content: stretch;
+		align-items: flex-start;
+		gap: var(--xl);
+	}
+	.hi {
+		position: relative;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-content: stretch;
+		align-items: stretch;
+		gap: var(--l);
+		background: var(--c-surface);
+		padding: var(--l);
+		border-radius: var(--border-radius);
+		> h3 {
+			position: absolute;
+			width: 200px;
+			left: -232px;
+			text-align: right;
+			font-weight: bold;
+			font-size: 1rem;
+			margin: 0.5rem 0 0 0;
+		}
+		.inner {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-content: stretch;
+			align-items: stretch;
+			gap: var(--l);
+			.profile {
+				size: 18rem;
+				border-radius: var(--border-radius);
+			}
+			.content {
+				h2 {
+					margin: 0 0 0.5rem 0;
+					font-height: 1.25;
+					font-weight: bold;
+				}
+				p {
+					font-weight: normal;
+					line-height: 1.5;
+				}
+			}
+		}
+	}
+	.featured {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-content: stretch;
+		align-items: stretch;
+		gap: var(--l);
+		.group {
+			position: relative;
+			> h3 {
+				position: absolute;
+				width: 200px;
+				left: -232px;
+				text-align: right;
+				font-weight: bold;
+				font-size: 1rem;
+				margin: 0.5rem 0 0 0;
+			}
+			> ul {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-content: stretch;
+				align-items: stretch;
+				gap: var(--l);
+				> li {
+					flex: 1 1 auto;
+					&:first-child:nth-last-child(1),
+					&:first-child:nth-last-child(1) ~ li {
+						width: 100%;
+					}
+					&:first-child:nth-last-child(2),
+					&:first-child:nth-last-child(2) ~ li {
+						width: calc(100% / 2);
+					}
+					&:first-child:nth-last-child(3),
+					&:first-child:nth-last-child(3) ~ li {
+						width: calc(100% / 3);
+					}
+					> a {
+						position: relative;
+						display: block;
+						height: 100%;
+						background: var(--c-surface);
+						padding: var(--l);
+						border-radius: var(--border-radius);
+						color: var(--c-font);
+						text-decoration: none;
+						transition: var(--transition);
+						&:hover {
+							transform: scale(1.05);
+							cursor: pointer;
+						}
+						.icon {
+							position: absolute;
+							top: var(--l);
+							right: var(--l);
+						}
+						strong {
+							font-weight: bold;
+							display: block;
+							margin: 0 0 var(--s) 0;
+							line-height: 1.2;
+						}
+						p,
+						.description {
+							line-height: 1.5;
+						}
+					}
+				}
+			}
+		}
+	}
+</style>

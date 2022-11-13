@@ -9,7 +9,7 @@ import logoSvg from '../../assets/images/logo.svg';
 		<li><a rel="me" href="https://mstdn.social/@luha">Mastodon</a></li>
 	</ul>
 	<div class="logo">
-		<img src={logoSvg} alt="Logo with the initials LH" width="50" height="50" />
+		<img src={logoSvg} alt="Logo with the initials LH" width="32" height="32" />
 	</div>
 	<ul>
 		<li><a href="#">Imprint</a></li>
@@ -17,3 +17,32 @@ import logoSvg from '../../assets/images/logo.svg';
 		<li><a href="#">Contact</a></li>
 	</ul>
 </footer>
+
+<style>
+	footer {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-content: stretch;
+		align-items: flex-start;
+	}
+	ul {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-content: stretch;
+		align-items: flex-start;
+		gap: var(--m);
+		li {
+			a {
+				color: var(--c-font);
+				text-decoration: none;
+			}
+		}
+	}
+	.logo {
+		size: var(--l);
+	}
+</style>
