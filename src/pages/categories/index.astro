@@ -2,7 +2,7 @@
 import BaseFootnote from '../../components/Base/BaseFootnote.astro';
 import type { Post } from '../../types/post';
 import type { Category } from '../../types/category';
-import { getCategories } from '../../util/api/categories';
+import { getCategories } from '../../util/data/categories';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 
 const posts: Post[] = await Astro.glob('../../content/posts/*.md');

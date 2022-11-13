@@ -3,7 +3,7 @@ import BaseCallout from '../../components/Base/BaseCallout.astro';
 import PostsCategories from '../../components/Posts/PostsCategories.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import type { Post } from '../../types/post';
-import { rawToPosts } from '../../util/api/posts';
+import { rawToPosts } from '../../util/data/posts';
 import { getFileName } from '../../util/helper';
 
 export async function getStaticPaths() {
