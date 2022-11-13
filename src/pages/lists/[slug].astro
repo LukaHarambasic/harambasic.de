@@ -1,4 +1,5 @@
 ---
+import { Picture } from '@astrojs/image/components';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import { rawToLists } from '../../util/data/lists';
 import { getFileName } from '../../util/helper';
@@ -39,11 +40,15 @@ const socialImgAlt = 'TBD';
 						return (
 							<li>
 								<a href={entry.url}>
-									{hideLogos && (
-										<div class="logo">
-											<img src={entry.logo} alt={entry.title} />
-										</div>
-									)}
+									<div class="logo">
+										<Picture
+											src={entry.logo}
+											widths={[300]}
+											sizes="(max-width: 300) 100vw, 300"
+											alt={entry.title}
+											aspectRatio={1 / 1}
+										/>
+									</div>
 									<div class="content">
 										<div class="header">
 											<strong class="title">{entry.title}</strong>

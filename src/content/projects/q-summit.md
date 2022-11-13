@@ -2,7 +2,7 @@
 title: Q-Summit
 img: ./src/assets/images/projects/q-summit.png
 alt: The team behind Q-Summit 2019
-prio: 80
+prio: 70
 status: INACTIVE
 links:
   - display: Website

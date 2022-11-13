@@ -23,11 +23,11 @@ export function rawToPosts(rawPosts: MarkdownInstance<Record<string, any>>[]): P
 }
 
 // TODO test
-export async function sortPosts(
+export function sortPosts(
 	posts: Post[],
 	property: SortProperty,
 	direction: SortDirection
-): Promise<Post[]> {
+) {
 	// TODO I really really dont like it
 	// the sorters are kind of stupid and hard to read
 	// default return and everyhting went wrong return are similiar - should there even be a default return?

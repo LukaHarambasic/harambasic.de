@@ -4,35 +4,35 @@ description: Everything I love to work with (focused on web development).
 entries:
   - title: vue-resume-component
     description: My first npm package which is also powering the CV at this page.
-    logo: /lists/development/vueresumecomponent.svg
+    logo: ./src/assets/images/lists/development/vueresumecomponent.svg
     url: https://www.npmjs.com/package/vue-resume-component
   - title: Vue.js
     description: 'My favorite JS framework, as it lets you use what the web was made with: HTML and CSS! And Single File Components are just awesome.'
-    logo: /lists/development/vue.svg
+    logo: ./src/assets/images/lists/development/vue.svg
     url: https://vuejs.org/
   - title: Nuxt.js
     description: It makes using Vue even simpler and I use it to build static sites.
-    logo: /lists/development/nuxt.svg
+    logo: ./src/assets/images/lists/development/nuxt.svg
     url: https://nuxtjs.org/
   - title: Playwright
     description: A Node.js browser automation framework I use it to automate websites which won't give me API access or to generate images.
-    logo: /lists/development/playwright.svg
+    logo: ./src/assets/images/lists/development/playwright.svg
     url: https://playwright.dev/
   - title: nuxt/content
     description: File based CMS for Nuxt, apropos this website is powered by nuxt/content.
-    logo: /lists/development/nuxtcontent.svg
+    logo: ./src/assets/images/lists/development/nuxtcontent.svg
     url: https://content.nuxtjs.org/
   - title: Netlify
     description: Connect Netlify to your repository to get a build when you push to main and also get previews in PRs.
-    logo: /lists/development/netlify.svg
+    logo: ./src/assets/images/lists/development/netlify.svg
     url: https://www.netlify.com/
   - title: Vercel
     description: Same as Netlify, but I prefer Vercel for projects with serverless functions.
-    logo: /lists/development/vercel.svg
+    logo: ./src/assets/images/lists/development/vercel.svg
     url: https://vercel.com/
   - title: GitHub Actions
     description: As all my projects are on GitHub I'm just happy about such an simple solution for automation.
-    logo: /lists/development/githubactions.svg
+    logo: ./src/assets/images/lists/development/githubactions.svg
     url: https://github.com/features/actions
   - title: google-webfonts-helper
     description: 'Tool to help you host Google fonts without the CDN. Why should you care? GDPR, Performance, Control.'
