@@ -28,40 +28,42 @@ const socialImgAlt = 'TBD';
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<article class="post h-entry">
-		<header>
-			<h1>{title}</h1>
-			<p>{description}</p>
-		</header>
-		<section>
-			<ul>
-				{
-					entries.map((entry: any) => {
-						return (
-							<li>
-								<a href={entry.url}>
-									<div class="logo">
-										<Picture
-											src={entry.logo}
-											widths={[300]}
-											sizes="(max-width: 300) 100vw, 300"
-											alt={entry.title}
-											aspectRatio={1 / 1}
-										/>
-									</div>
-									<div class="content">
-										<div class="header">
-											<strong class="title">{entry.title}</strong>
-											{entry.extra && <strong class="extra">({entry.extra})</strong>}
+	<main>
+		<article class="post h-entry">
+			<header>
+				<h1>{title}</h1>
+				<p>{description}</p>
+			</header>
+			<section>
+				<ul>
+					{
+						entries.map((entry: any) => {
+							return (
+								<li>
+									<a href={entry.url}>
+										<div class="logo">
+											<Picture
+												src={entry.logo}
+												widths={[300]}
+												sizes="(max-width: 300) 100vw, 300"
+												alt={entry.title}
+												aspectRatio={1 / 1}
+											/>
 										</div>
-										<p class="description">{entry.description}</p>
-									</div>
-								</a>
-							</li>
-						);
-					})
-				}
-			</ul>
-		</section>
-	</article>
+										<div class="content">
+											<div class="header">
+												<strong class="title">{entry.title}</strong>
+												{entry.extra && <strong class="extra">({entry.extra})</strong>}
+											</div>
+											<p class="description">{entry.description}</p>
+										</div>
+									</a>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</section>
+		</article>
+	</main>
 </DefaultLayout>

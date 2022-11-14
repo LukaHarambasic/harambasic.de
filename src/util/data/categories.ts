@@ -3,6 +3,7 @@ import type { Post } from '../../types/post';
 import { getSlug } from '../helper';
 
 // TODO test
+// TODO result isnt unqiue
 export function getCategories(posts: Post[]): Category[] {
 	const rawCategories = posts.map((post) => post.categories).flat();
 	const uniqueCategories = rawCategories.filter(

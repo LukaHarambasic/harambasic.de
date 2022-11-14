@@ -146,7 +146,7 @@ const randomLists = getRandomItems(lists, 2);
 				</div>
 				<div class="segmented-buttons">
 					<a href="mailto:luka@harambasic.de" class="button">Write</a>
-					<BaseToClipboardButton props="button" client:idle toClipboard="luka@harambasic.de"
+					<BaseToClipboardButton client:idle toClipboard="luka@harambasic.de"
 						>Copy</BaseToClipboardButton
 					>
 				</div>
@@ -176,23 +176,6 @@ const randomLists = getRandomItems(lists, 2);
 </DefaultLayout>
 
 <style>
-	main {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		align-content: stretch;
-		align-items: center;
-		gap: var(--xxl);
-	}
-	section {
-		h2 {
-			font-weight: 900;
-			font-size: 1rem;
-			font-family: 'Source Sans Pro', sans-serif;
-			letter-spacing: 0.2px;
-		}
-	}
 	.heyho {
 		position: relative;
 		width: 48rem;
@@ -323,7 +306,11 @@ const randomLists = getRandomItems(lists, 2);
 							align-items: stretch;
 							gap: var(--xs);
 							> img {
+								flex: 1 0 auto;
+								height: 12rem;
 								width: 12rem;
+								aspect-ratio: 1 / 1;
+								background: green;
 							}
 							> .content {
 								padding: var(--l);
@@ -355,7 +342,7 @@ const randomLists = getRandomItems(lists, 2);
 		}
 	}
 	.contact {
-		width: 32rem;
+		width: 36rem;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
@@ -363,8 +350,6 @@ const randomLists = getRandomItems(lists, 2);
 		align-content: stretch;
 		align-items: stretch;
 		.group {
-			width: 36rem;
-			margin: 0 0 0 -2rem;
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;

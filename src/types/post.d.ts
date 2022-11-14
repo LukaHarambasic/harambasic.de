@@ -5,6 +5,7 @@ export interface Post {
 	title: string;
 	description: string;
 	publishDate: Date;
+	publishDateFormatted: string;
 	categories: Category[];
 	tldr: string;
 	discussion: string;

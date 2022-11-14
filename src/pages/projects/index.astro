@@ -22,47 +22,49 @@ const projects = rawToProjects(rawProjects);
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<section>
-		<h2>Selected projects</h2>
-		<p>Technopreneur, Sparkle?, veggie2.0, gk?, monta?</p>
-		<ul class="projects">
-			{
-				projects.map(({ img, alt, title, responsibilities, Content, links }) => {
-					return (
-						<li class="project">
-							<div class="meta">
-								<Picture
-									src={img}
-									widths={[200, 500]}
-									sizes="(max-width: 500px) 100vw, 500px"
-									alt={alt}
-									aspectRatio={1 / 1}
-								/>
-							</div>
-							<div class="content">
-								<h2 class="title">{title}</h2>
-								<BaseMetaList items={responsibilities} preText="Responsibilities:" />
-								<Content class="rich-text e-content" />
-								<ul class="links">
-									{links.map((link) => {
-										return (
-											<li>
-												<a class="link" href={link.href}>
-													{link.display}
-												</a>
-											</li>
-										);
-									})}
-								</ul>
-							</div>
-						</li>
-					);
-				})
-			}
-		</ul>
-		<BaseFootnote>
-			If you want to learn more about the projects, please do not hesitate to send me an
-			<a href="globals.mailto">email</a>.
-		</BaseFootnote>
-	</section>
+	<main>
+		<section>
+			<h2>Selected projects</h2>
+			<p>Technopreneur, Sparkle?, veggie2.0, gk?, monta?</p>
+			<ul class="projects">
+				{
+					projects.map(({ img, alt, title, responsibilities, Content, links }) => {
+						return (
+							<li class="project">
+								<div class="meta">
+									<Picture
+										src={img}
+										widths={[200, 500]}
+										sizes="(max-width: 500px) 100vw, 500px"
+										alt={alt}
+										aspectRatio={1 / 1}
+									/>
+								</div>
+								<div class="content">
+									<h2 class="title">{title}</h2>
+									<BaseMetaList items={responsibilities} preText="Responsibilities:" />
+									<Content class="rich-text e-content" />
+									<ul class="links">
+										{links.map((link) => {
+											return (
+												<li>
+													<a class="link" href={link.href}>
+														{link.display}
+													</a>
+												</li>
+											);
+										})}
+									</ul>
+								</div>
+							</li>
+						);
+					})
+				}
+			</ul>
+			<BaseFootnote>
+				If you want to learn more about the projects, please do not hesitate to send me an
+				<a href="globals.mailto">email</a>.
+			</BaseFootnote>
+		</section>
+	</main>
 </DefaultLayout>

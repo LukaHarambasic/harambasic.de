@@ -32,13 +32,15 @@ const socialImgAlt = 'TBD';
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<article class="post h-entry">
-		<header>
-			<h1>{title}</h1>
-			<p>{description}</p>
-		</header>
-		<section>
-			<PostsList posts={posts} />
-		</section>
-	</article>
+	<main>
+		<article class="post h-entry">
+			<header>
+				<h1>{title}</h1>
+				<p>{description}</p>
+			</header>
+			<section>
+				<PostsList posts={posts} />
+			</section>
+		</article>
+	</main>
 </DefaultLayout>

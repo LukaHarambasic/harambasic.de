@@ -3,10 +3,10 @@
 // pages are only connecting the data layer using functions in util to pass them on to the components handling the ui
 // okay and maybe they do the routing, but no logic, no styling
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import PostsList from '../../components/Posts/PostsList.astro';
-import PostsCategories from '../../components/Posts/PostsCategories.astro';
+import PostsList from '../../components/Posts/PostsList.svelte';
 import { getCategories } from '../../util/data/categories';
 import { rawToPosts } from '../../util/data/posts';
+import BaseFootnote from '../../components/Base/BaseFootnote.astro';
 
 const title = 'Posts';
 const description = 'TBD';
@@ -16,7 +16,7 @@ const socialImgAlt = 'TBD';
 
 const rawPosts = await Astro.glob('../../content/posts/*.md');
 const posts = rawToPosts(rawPosts);
-const categories = await getCategories(posts);
+const categories = getCategories(posts);
 ---
 
 <DefaultLayout
@@ -26,16 +26,13 @@ const categories = await getCategories(posts);
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<section>
-		<h1>Posts</h1>
-		<!-- TODO make it dynamic again at one point -->
-		<PostsCategories categories={categories} />
-		<PostsList posts={posts} />
-		<!-- TODO adapt urls -->
-		<p>
+	<main>
+		<PostsList client:load posts={posts} categories={categories} />
+		<BaseFootnote>
+			<!-- TODO adapt urls -->
 			Check out the <a href="globals.blogFeedURL">RSS feed</a> or
 			<a href="globals.twitterURL">my Twitter account</a>
 			to keep up to date.
-		</p>
-	</section>
+		</BaseFootnote>
+	</main>
 </DefaultLayout>

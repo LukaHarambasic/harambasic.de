@@ -65,3 +65,11 @@ export function sortPosts(
 	}
 	return [];
 }
+
+// TODO test
+export function filterPostsByCategory(posts: Post[], categorySlug: string): Post[] {
+	if (categorySlug === "all") return posts
+	return posts.filter(post => {
+		return post.categories.some(category => category.slug === categorySlug)
+	})
+}

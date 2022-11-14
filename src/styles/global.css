@@ -1,2 +1,79 @@
 body {
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+    gap: var(--xl);
+}
+
+.select-button {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--border-radius-small);
+    background: var(--c-surface);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: center;
+    gap: var(--s);
+    select {
+        flex: 1 0 auto;
+        border: none;
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+        font-size: 1rem;
+        font-family: 'Source Sans Pro', sans-serif;
+        letter-spacing: 0.2px;
+        background: var(--c-surface);
+        padding: var(--xs) 0 var(--xs) var(--s);
+    }
+    svg {
+        size: 1rem;
+        margin: 0 var(--s) 0 0
+    }
+}
+
+.segmented-buttons {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--border-radius-small);
+    background: var(--c-surface);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: flex-start;
+    overflow: hidden;
+    &:last-child {
+        border-right: none;
+    }
+    .button {
+        border: none;
+        background: transparent;
+        font-weight: 500;
+        font-size: 1rem;
+        font-family: 'Source Sans Pro', sans-serif;
+        letter-spacing: 0.2px;
+        line-height: 1.2;
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
+        padding: var(--xs) var(--s);
+        margin: 0;
+        transition: var(--transition);
+        text-decoration: none;
+        color: var(--c-font);
+        &:hover {
+            background: rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+    }
+}
+
+
