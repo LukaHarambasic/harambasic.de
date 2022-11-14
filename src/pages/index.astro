@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro';
-import { Picture, Image } from '@astrojs/image/components';
+import { Picture } from '@astrojs/image/components';
 import profileImage from '../assets/images/profile.jpeg';
 import { rawToPosts } from '../util/data/posts';
 import { getRandomItems } from '../util/helper';
@@ -37,10 +37,6 @@ const randomLists = getRandomItems(lists, 2);
 >
 	<main>
 		<section class="heyho">
-			<!-- <h3 class="section-label">
-				<span>Heyho</span>
-				<Icon pack="ph" name="hand-waving-duotone" />
-			</h3> -->
 			<div class="inner">
 				<Picture
 					src={profileImage}
@@ -143,15 +139,14 @@ const randomLists = getRandomItems(lists, 2);
 			</div>
 		</section>
 		<section class="contact">
-			<h2>Contact</h2>
 			<div class="group">
 				<div class="meta">
 					<strong>E-Mail</strong>
 					<small>luka@harambasic.de</small>
 				</div>
-				<div class="buttons">
+				<div class="segmented-buttons">
 					<a href="mailto:luka@harambasic.de" class="button">Write</a>
-					<BaseToClipboardButton client:idle toClipboard="luka@harambasic.de"
+					<BaseToClipboardButton props="button" client:idle toClipboard="luka@harambasic.de"
 						>Copy</BaseToClipboardButton
 					>
 				</div>
@@ -161,7 +156,7 @@ const randomLists = getRandomItems(lists, 2);
 					<strong>Social</strong>
 					<small>Follow me!</small>
 				</div>
-				<div class="buttons">
+				<div class="segmented-buttons">
 					<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
 					<a href="https://mstdn.social/@luha" class="button">Mastodon</a>
 				</div>
@@ -171,7 +166,7 @@ const randomLists = getRandomItems(lists, 2);
 					<strong>Book a time</strong>
 					<small>Wanna chat?</small>
 				</div>
-				<div class="buttons">
+				<div class="segmented-buttons">
 					<a href="https://cal.com/luhara/p" class="button">Book</a>
 				</div>
 			</div>
@@ -196,30 +191,6 @@ const randomLists = getRandomItems(lists, 2);
 			font-size: 1rem;
 			font-family: 'Source Sans Pro', sans-serif;
 			letter-spacing: 0.2px;
-		}
-	}
-	.section-label {
-		position: absolute;
-		top: 1.8rem;
-		left: -11rem;
-		width: 10rem;
-		height: 1.5rem;
-		text-align: right;
-		font-weight: 600;
-		font-size: 1rem;
-		font-family: 'Source Sans Pro', sans-serif;
-		letter-spacing: 0.2px;
-		display: flex;
-		flex-wrap: nowrap;
-		justify-content: flex-end;
-		align-content: center;
-		align-items: center;
-		gap: 0.25rem;
-		span {
-			line-height: 1;
-		}
-		svg {
-			size: 1.5rem;
 		}
 	}
 	.heyho {
@@ -270,6 +241,30 @@ const randomLists = getRandomItems(lists, 2);
 		gap: var(--l);
 		.group {
 			position: relative;
+			h3 {
+				position: absolute;
+				top: 1.8rem;
+				left: -11rem;
+				width: 10rem;
+				height: 1.5rem;
+				text-align: right;
+				font-weight: 600;
+				font-size: 1rem;
+				font-family: 'Source Sans Pro', sans-serif;
+				letter-spacing: 0.2px;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: flex-end;
+				align-content: center;
+				align-items: center;
+				gap: 0.25rem;
+				span {
+					line-height: 1;
+				}
+				svg {
+					size: 1.5rem;
+				}
+			}
 			> ul {
 				display: flex;
 				flex-direction: row;
@@ -395,40 +390,6 @@ const randomLists = getRandomItems(lists, 2);
 				}
 				small {
 					font-size: 0.8rem;
-				}
-			}
-			.buttons {
-				border: 1px solid rgba(0, 0, 0, 0.05);
-				border-radius: var(--border-radius-small);
-				background: var(--c-surface);
-				display: flex;
-				flex-direction: row;
-				flex-wrap: nowrap;
-				justify-content: space-between;
-				align-content: stretch;
-				align-items: flex-start;
-				overflow: hidden;
-				&:last-child {
-					border-right: none;
-				}
-				.button {
-					border: none;
-					background: transparent;
-					font-weight: 500;
-					font-size: 1rem;
-					font-family: 'Source Sans Pro', sans-serif;
-					letter-spacing: 0.2px;
-					line-height: 1.2;
-					border-right: 1px solid rgba(0, 0, 0, 0.05);
-					padding: var(--xs) var(--s);
-					margin: 0;
-					transition: var(--transition);
-					text-decoration: none;
-					color: var(--c-font);
-					&:hover {
-						background: rgba(0, 0, 0, 0.05);
-						cursor: pointer;
-					}
 				}
 			}
 		}
