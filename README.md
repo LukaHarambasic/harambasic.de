@@ -17,6 +17,7 @@
     - 1 project
     - 3 posts
     - 1 list
+    - Contact
 - Projects
     - Galery / Slider
     - Linkable

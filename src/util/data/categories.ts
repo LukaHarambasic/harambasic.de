@@ -21,7 +21,7 @@ export function getPostsByCategory(posts: Post[], category: Category): Post[] {
 }
 
 // TODO test
-export function rawToCategories(rawCategories: string[]) {
+export function rawToCategories(rawCategories: string[]): Category[] {
 	if (rawCategories.length === 0) return []
 	return rawCategories.map((category) => getCategoryByDisplay(category));
 }

@@ -66,7 +66,7 @@ const randomLists = getRandomItems(lists, 2);
 			</div>
 		</section>
 		<section class="featured">
-			<h2>Weekly recommendations</h2>
+			<!-- <h2>Weekly recommendations</h2> -->
 			<div class="project group">
 				<h3 class="section-label">
 					<span>Project</span>
@@ -141,6 +141,38 @@ const randomLists = getRandomItems(lists, 2);
 				</ul>
 			</div>
 		</section>
+		<section class="contact">
+			<h2>Contact</h2>
+			<div class="group">
+				<div class="meta">
+					<strong>E-Mail</strong>
+					<small>luka@harambasic.de</small>
+				</div>
+				<div class="buttons">
+					<a href="mailto:luka@harambasic.de" class="button">Write</a>
+					<button class="button">Copy</button>
+				</div>
+			</div>
+			<div class="group">
+				<div class="meta">
+					<strong>Social</strong>
+					<small>Follow me!</small>
+				</div>
+				<div class="buttons">
+					<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
+					<a href="https://mstdn.social/@luha" class="button">Mastodon</a>
+				</div>
+			</div>
+			<div class="group">
+				<div class="meta">
+					<strong>Book a time</strong>
+					<small>Wanna chat?</small>
+				</div>
+				<div class="buttons">
+					<a href="https://cal.com/luhara/p" class="button">Book</a>
+				</div>
+			</div>
+		</section>
 	</main>
 	<!-- <section class="mastodon">[toot] [toot] [toot]</section> -->
 </DefaultLayout>
@@ -153,7 +185,15 @@ const randomLists = getRandomItems(lists, 2);
 		justify-content: flex-start;
 		align-content: stretch;
 		align-items: center;
-		gap: var(--xl);
+		gap: var(--xxl);
+	}
+	section {
+		h2 {
+			font-weight: 900;
+			font-size: 1rem;
+			font-family: 'Source Sans Pro', sans-serif;
+			letter-spacing: 0.2px;
+		}
 	}
 	.section-label {
 		position: absolute;
@@ -181,7 +221,7 @@ const randomLists = getRandomItems(lists, 2);
 	}
 	.hi {
 		position: relative;
-		width: 80%;
+		width: 48rem;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
@@ -223,13 +263,6 @@ const randomLists = getRandomItems(lists, 2);
 		align-content: stretch;
 		align-items: stretch;
 		gap: var(--l);
-		h2 {
-			text-align: center;
-			font-weight: 900;
-			font-size: 1rem;
-			font-family: 'Source Sans Pro', sans-serif;
-			letter-spacing: 0.2px;
-		}
 		.group {
 			position: relative;
 			> ul {
@@ -316,6 +349,80 @@ const randomLists = getRandomItems(lists, 2);
 						.description {
 							line-height: 1.5;
 						}
+					}
+				}
+			}
+		}
+	}
+	.contact {
+		width: 32rem;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-content: stretch;
+		align-items: stretch;
+		.group {
+			width: 36rem;
+			margin: 0 0 0 -2rem;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-content: stretch;
+			align-items: flex-start;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			padding: var(--l);
+			.meta {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-content: stretch;
+				align-items: stretch;
+				strong {
+					margin: 0 0 var(--xs) 0;
+					font-weight: 900;
+					font-size: 1rem;
+					font-family: 'Source Sans Pro', sans-serif;
+					letter-spacing: 0.2px;
+					line-height: 1.2;
+				}
+				small {
+					font-size: 0.8rem;
+				}
+			}
+			.buttons {
+				border: 1px solid rgba(0, 0, 0, 0.05);
+				border-radius: var(--border-radius-small);
+				background: var(--c-surface);
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: space-between;
+				align-content: stretch;
+				align-items: flex-start;
+				overflow: hidden;
+				&:last-child {
+					border-right: none;
+				}
+				.button {
+					border: none;
+					background: transparent;
+					font-weight: 500;
+					font-size: 1rem;
+					font-family: 'Source Sans Pro', sans-serif;
+					letter-spacing: 0.2px;
+					line-height: 1.2;
+					border-right: 1px solid rgba(0, 0, 0, 0.05);
+					padding: var(--xs) var(--s);
+					margin: 0;
+					transition: var(--transition);
+					text-decoration: none;
+					color: var(--c-font);
+					&:hover {
+						background: rgba(0, 0, 0, 0.05);
+						cursor: pointer;
 					}
 				}
 			}
