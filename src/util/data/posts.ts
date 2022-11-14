@@ -1,6 +1,7 @@
 import type { MarkdownInstance } from 'astro';
 import { SortDirection, SortProperty } from '../../types/enums';
 import type { Post } from '../../types/post';
+import { formatDate } from '../helper';
 import { rawToCategories } from './categories';
 
 // TODO test
@@ -13,6 +14,7 @@ export function rawToPosts(rawPosts: MarkdownInstance<Record<string, any>>[]): P
 			title,
 			description,
 			publishDate,
+			publishDateFormatted: formatDate(publishDate),
 			categories: rawToCategories(rawCategories),
 			tldr,
 			discussion,

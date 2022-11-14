@@ -1,11 +1,12 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro';
-import { Picture } from '@astrojs/image/components';
+import { Picture, Image } from '@astrojs/image/components';
 import profileImage from '../assets/images/profile.jpeg';
 import { rawToPosts } from '../util/data/posts';
 import { getRandomItems } from '../util/helper';
 import { rawToProjects } from '../util/data/projects';
 import { rawToLists } from '../util/data/lists';
+import { Icon } from 'astro-icon';
 
 const title = 'Home';
 const description = 'TBD';
@@ -35,7 +36,10 @@ const randomLists = getRandomItems(lists, 2);
 >
 	<main>
 		<section class="hi">
-			<h3>Heyho</h3>
+			<!-- <h3 class="section-label">
+				<span>Heyho</span>
+				<Icon pack="ph" name="hand-waving-duotone" />
+			</h3> -->
 			<div class="inner">
 				<Picture
 					src={profileImage}
@@ -49,15 +53,14 @@ const randomLists = getRandomItems(lists, 2);
 					<h2>Heyho, I'm Luka!</h2>
 					<p>
 						Simpler version, interstes and what I do, for more infos send to about page with a text
-						and link to CV. Row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast
-						yardarm. <u>Pinnace</u> holystone mizzenmast <a>lorem ipsum</a> quarter crow's nest nipperkin
-						grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard.
+						and link to CV.<u>Pinnace</u> holystone mizzenmast <a>lorem ipsum</a> quarter crow's nest
+						nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard.
 					</p>
 					<p>
-						Grog black jack gangway rutters. Row scuttle parrel <a>lorem ipsum</a>provost Sail ho
-						shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's
-						nest nipperkin grog yardarm hempen <u>halter furl</u>. Swab barque interloper chantey
-						doubloon starboard grog black jack gangway rutters.
+						Row scuttle parrel <a>lorem ipsum</a>provost Sail ho shrouds spirits boom mizzenmast
+						yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen <u
+							>halter furl</u
+						>.
 					</p>
 				</div>
 			</div>
@@ -65,21 +68,27 @@ const randomLists = getRandomItems(lists, 2);
 		<section class="featured">
 			<h2>Weekly recommendations</h2>
 			<div class="project group">
-				<h3>Project</h3>
+				<h3 class="section-label">
+					<span>Project</span>
+					<Icon pack="ph" name="projector-screen-chart-duotone" />
+				</h3>
 				<ul>
 					{
-						randomProjects.map(({ title, compiledContent, slug }) => {
+						randomProjects.map(({ title, slug, img }) => {
 							return (
 								<li>
-									<a href={slug && ''}>
-										<div class="icon">x</div>
-										<strong>{title}</strong>
-										<p>
-											Row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.
-											Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen
-											halter furl. Swab barque interloper chantey doubloon starboard grog black jack
-											gangway rutters.
-										</p>
+									<a class="card image " href={slug && ''}>
+										<Icon pack="ph" name="arrow-circle-right-bold" />
+										<img src={img} alt="TODO" width="8rem" />
+										<div class="content">
+											<strong>{title}</strong>
+											<p>
+												Row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.
+												Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm
+												hempen halter furl. Swab barque interloper chantey doubloon starboard grog
+												black jack gangway rutters.
+											</p>
+										</div>
 									</a>
 								</li>
 							);
@@ -88,16 +97,21 @@ const randomLists = getRandomItems(lists, 2);
 				</ul>
 			</div>
 			<div class="posts group">
-				<h3>Posts</h3>
+				<h3 class="section-label">
+					<span>Posts</span>
+					<Icon pack="ph" name="files-duotone" />
+				</h3>
 				<ul>
 					{
-						randomPosts.map(({ title, description, slug }) => {
+						randomPosts.map(({ title, publishDate, slug, publishDateFormatted }) => {
 							return (
 								<li>
-									<a href={slug && ''}>
-										<div class="icon">x</div>
+									<a class="card text" href={slug && ''}>
+										<Icon pack="ph" name="arrow-circle-right-bold" />
+										<time class="date dt-published" datetime={publishDate}>
+											{publishDateFormatted}
+										</time>
 										<strong>{title}</strong>
-										<p>{description}</p>
 									</a>
 								</li>
 							);
@@ -106,14 +120,17 @@ const randomLists = getRandomItems(lists, 2);
 				</ul>
 			</div>
 			<div class="lists group">
-				<h3>Lists</h3>
+				<h3 class="section-label">
+					<span>Lists</span>
+					<Icon pack="ph" name="clipboard-text-duotone" />
+				</h3>
 				<ul>
 					{
 						randomLists.map(({ title, description, slug }) => {
 							return (
 								<li>
-									<a href={slug && ''}>
-										<div class="icon">x</div>
+									<a class="card text" href={slug && ''}>
+										<Icon pack="ph" name="arrow-circle-right-bold" />
 										<strong>{title}</strong>
 										<p>{description}</p>
 									</a>
@@ -135,12 +152,36 @@ const randomLists = getRandomItems(lists, 2);
 		flex-wrap: nowrap;
 		justify-content: flex-start;
 		align-content: stretch;
-		align-items: flex-start;
+		align-items: center;
 		gap: var(--xl);
+	}
+	.section-label {
+		position: absolute;
+		top: 1.8rem;
+		left: -11rem;
+		width: 10rem;
+		height: 1.5rem;
+		text-align: right;
+		font-weight: 600;
+		font-size: 1rem;
+		font-family: 'Source Sans Pro', sans-serif;
+		letter-spacing: 0.2px;
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-end;
+		align-content: center;
+		align-items: center;
+		gap: 0.25rem;
+		span {
+			line-height: 1;
+		}
+		svg {
+			size: 1.5rem;
+		}
 	}
 	.hi {
 		position: relative;
-		width: 100%;
+		width: 80%;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
@@ -148,18 +189,6 @@ const randomLists = getRandomItems(lists, 2);
 		align-content: stretch;
 		align-items: stretch;
 		gap: var(--l);
-		background: var(--c-surface);
-		padding: var(--l);
-		border-radius: var(--border-radius);
-		> h3 {
-			position: absolute;
-			width: 200px;
-			left: -232px;
-			text-align: right;
-			font-weight: bold;
-			font-size: 1rem;
-			margin: 0.5rem 0 0 0;
-		}
 		.inner {
 			display: flex;
 			flex-direction: row;
@@ -194,17 +223,15 @@ const randomLists = getRandomItems(lists, 2);
 		align-content: stretch;
 		align-items: stretch;
 		gap: var(--l);
+		h2 {
+			text-align: center;
+			font-weight: 900;
+			font-size: 1rem;
+			font-family: 'Source Sans Pro', sans-serif;
+			letter-spacing: 0.2px;
+		}
 		.group {
 			position: relative;
-			> h3 {
-				position: absolute;
-				width: 200px;
-				left: -232px;
-				text-align: right;
-				font-weight: bold;
-				font-size: 1rem;
-				margin: 0.5rem 0 0 0;
-			}
 			> ul {
 				display: flex;
 				flex-direction: row;
@@ -227,30 +254,63 @@ const randomLists = getRandomItems(lists, 2);
 					&:first-child:nth-last-child(3) ~ li {
 						width: calc(100% / 3);
 					}
-					> a {
+					.card {
 						position: relative;
 						display: block;
 						height: 100%;
 						background: var(--c-surface);
-						padding: var(--l);
 						border-radius: var(--border-radius);
 						color: var(--c-font);
 						text-decoration: none;
 						transition: var(--transition);
+						overflow: hidden;
 						&:hover {
 							transform: scale(1.05);
 							cursor: pointer;
+							svg {
+								right: var(--m);
+							}
 						}
-						.icon {
+						svg {
 							position: absolute;
-							top: var(--l);
-							right: var(--l);
+							right: -2rem;
+							top: var(--m);
+							size: 1.5rem;
+							transition: var(--transition);
 						}
+						&.text {
+							padding: var(--l);
+						}
+						&.image {
+							display: flex;
+							flex-direction: row;
+							flex-wrap: nowrap;
+							justify-content: flex-start;
+							align-content: stretch;
+							align-items: stretch;
+							gap: var(--xs);
+							> img {
+								width: 12rem;
+							}
+							> .content {
+								padding: var(--l);
+							}
+						}
+					}
+					> a {
 						strong {
-							font-weight: bold;
 							display: block;
-							margin: 0 0 var(--s) 0;
+							margin: 0 0 var(--xs) 0;
+							font-weight: 900;
+							font-size: 1rem;
+							font-family: 'Source Sans Pro', sans-serif;
+							letter-spacing: 0.2px;
 							line-height: 1.2;
+						}
+						time {
+							display: inline-block;
+							font-size: 0.8rem;
+							margin: 0 0 var(--xs) 0;
 						}
 						p,
 						.description {

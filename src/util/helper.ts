@@ -1,3 +1,5 @@
+import { format } from 'date-fns'
+
 // TODO test
 export function getFileName(page: any) {
   return page.file.split('/').pop().split('.').shift();
@@ -26,9 +28,13 @@ export function getSlug(str: string) {
   );
 }
 
-// TODO test - ok no diea hwo to test this in a good way
+// TODO test - ok no idea how to test this in a good way
 export function getRandomItems(items: any[], amount: number) {
   return items.sort(() => 0.5 - Math.random())
     .slice(0, amount);
 }
 
+// TODO test
+export function formatDate(date: Date) {
+  return format(new Date(date), 'MM/dd/yyyy')
+}

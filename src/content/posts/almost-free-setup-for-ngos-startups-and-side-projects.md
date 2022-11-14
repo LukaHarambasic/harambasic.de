@@ -1,6 +1,6 @@
 ---
 title: Almost free setup for NGOs, startups & side projects
-description: "I want to inspire you how you can set up a professional working environment for your next idea with almost no money. To give you a concrete example: I'll talk over our set up at Active Ambassadors. All my knowledge, which I have acquired over the last years, has flown into this."
+description: "I want to inspire you how you can set up a professional working environment for your next idea with almost no money."
 publishDate: 2020-12-09
 categories:
   - New Work
