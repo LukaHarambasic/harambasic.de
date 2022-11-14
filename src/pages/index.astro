@@ -7,6 +7,7 @@ import { getRandomItems } from '../util/helper';
 import { rawToProjects } from '../util/data/projects';
 import { rawToLists } from '../util/data/lists';
 import { Icon } from 'astro-icon';
+import BaseToClipboardButton from '../components/Base/BaseToClipboardButton.svelte';
 
 const title = 'Home';
 const description = 'TBD';
@@ -150,7 +151,9 @@ const randomLists = getRandomItems(lists, 2);
 				</div>
 				<div class="buttons">
 					<a href="mailto:luka@harambasic.de" class="button">Write</a>
-					<button class="button">Copy</button>
+					<BaseToClipboardButton client:idle toClipboard="luka@harambasic.de"
+						>Copy</BaseToClipboardButton
+					>
 				</div>
 			</div>
 			<div class="group">

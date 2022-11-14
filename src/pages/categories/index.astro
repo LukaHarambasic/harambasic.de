@@ -4,8 +4,10 @@ import type { Post } from '../../types/post';
 import type { Category } from '../../types/category';
 import { getCategories } from '../../util/data/categories';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import { rawToPosts } from '../../util/data/posts';
 
-const posts: Post[] = await Astro.glob('../../content/posts/*.md');
+const rawPosts = await Astro.glob('../../content/posts/*.md');
+const posts = rawToPosts(rawPosts);
 const categories = await getCategories(posts);
 
 const title = 'Categories';
