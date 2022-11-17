@@ -4,7 +4,9 @@
 	--c-light: #fff;
 	--c-light-stable: #fff;
 	--c-font-stable: #020725;
-	--c-font: #020725;
+	--c-font: rgba(2,7,37, 1);
+	--c-font-80: rgba(2,7,37, 0.8);
+	--c-font-60: rgba(2,7,37, 0.6);
 	--c-font-light: #a4a8c2;
 	--c-font-on-primary: #fff;
 	
