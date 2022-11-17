@@ -33,6 +33,14 @@ export function sortPosts(
 	// TODO I really really dont like it
 	// the sorters are kind of stupid and hard to read
 	// default return and everyhting went wrong return are similiar - should there even be a default return?
+	if (property === SortProperty.Display) {
+		console.error("Posts can't be filtered by Display")
+		return posts
+	}
+	if (property === SortProperty.Count) {
+		console.error("Posts can't be filtered by Count")
+		return posts
+	}
 	switch (property) {
 		case SortProperty.Date:
 			if (direction === SortDirection.Asc) {
@@ -68,6 +76,7 @@ export function sortPosts(
 
 // TODO test
 export function filterPostsByCategory(posts: Post[], categorySlug: string): Post[] {
+	console.log(categorySlug)
 	if (categorySlug === "all") return posts
 	return posts.filter(post => {
 		return post.categories.some(category => category.slug === categorySlug)

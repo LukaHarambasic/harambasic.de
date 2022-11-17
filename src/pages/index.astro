@@ -177,21 +177,21 @@ const randomLists = getRandomItems(lists, 2);
 
 <style>
 	.heyho {
-		position: relative;
-		width: 48rem;
 		display: flex;
+		position: relative;
 		flex-direction: column;
 		flex-wrap: nowrap;
-		justify-content: flex-start;
 		align-content: stretch;
+		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--l);
+		width: 48rem;
 		.inner {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
-			justify-content: flex-start;
 			align-content: stretch;
+			justify-content: flex-start;
 			align-items: flex-end;
 			gap: var(--l);
 			.profile {
@@ -214,33 +214,33 @@ const randomLists = getRandomItems(lists, 2);
 		}
 	}
 	.featured {
-		width: 100%;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
-		justify-content: flex-start;
 		align-content: stretch;
+		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--l);
+		width: 100%;
 		.group {
 			position: relative;
 			h3 {
+				display: flex;
 				position: absolute;
 				top: 1.8rem;
 				left: -11rem;
+				flex-wrap: nowrap;
+				align-content: center;
+				justify-content: flex-end;
+				align-items: center;
+				gap: 0.25rem;
 				width: 10rem;
 				height: 1.5rem;
-				text-align: right;
 				font-weight: 600;
 				font-size: 1rem;
 				font-family: 'Source Sans Pro', sans-serif;
 				letter-spacing: 0.2px;
-				display: flex;
-				flex-wrap: nowrap;
-				justify-content: flex-end;
-				align-content: center;
-				align-items: center;
-				gap: 0.25rem;
+				text-align: right;
 				span {
 					line-height: 1;
 				}
@@ -252,8 +252,8 @@ const randomLists = getRandomItems(lists, 2);
 				display: flex;
 				flex-direction: row;
 				flex-wrap: nowrap;
-				justify-content: flex-start;
 				align-content: stretch;
+				justify-content: flex-start;
 				align-items: stretch;
 				gap: var(--l);
 				> li {
@@ -271,28 +271,31 @@ const randomLists = getRandomItems(lists, 2);
 						width: calc(100% / 3);
 					}
 					.card {
-						position: relative;
 						display: block;
-						height: 100%;
-						background: var(--c-surface);
+						position: relative;
+						transition: var(--transition);
 						border-radius: var(--border-radius);
+						background: var(--c-surface);
+						height: 100%;
 						color: var(--c-font);
 						text-decoration: none;
-						transition: var(--transition);
-						overflow: hidden;
 						&:hover {
 							transform: scale(1.05);
 							cursor: pointer;
 							svg {
-								right: var(--m);
+								opacity: 1;
 							}
 						}
 						svg {
+							size: 2rem;
 							position: absolute;
-							right: -2rem;
 							top: var(--m);
-							size: 1.5rem;
+							right: -1rem;
+							opacity: 0;
 							transition: var(--transition);
+							border: 4px solid var(--c-light);
+							border-radius: 100%;
+							background: var(--c-light);
 						}
 						&.text {
 							padding: var(--l);
@@ -301,16 +304,16 @@ const randomLists = getRandomItems(lists, 2);
 							display: flex;
 							flex-direction: row;
 							flex-wrap: nowrap;
-							justify-content: flex-start;
 							align-content: stretch;
+							justify-content: flex-start;
 							align-items: stretch;
 							gap: var(--xs);
 							> img {
 								flex: 1 0 auto;
-								height: 12rem;
-								width: 12rem;
-								aspect-ratio: 1 / 1;
 								background: green;
+								aspect-ratio: 1 / 1;
+								width: 12rem;
+								height: 12rem;
 							}
 							> .content {
 								padding: var(--l);
@@ -323,14 +326,14 @@ const randomLists = getRandomItems(lists, 2);
 							margin: 0 0 var(--xs) 0;
 							font-weight: 900;
 							font-size: 1rem;
+							line-height: 1.2;
 							font-family: 'Source Sans Pro', sans-serif;
 							letter-spacing: 0.2px;
-							line-height: 1.2;
 						}
 						time {
 							display: inline-block;
-							font-size: 0.8rem;
 							margin: 0 0 var(--xs) 0;
+							font-size: 0.8rem;
 						}
 						p,
 						.description {
@@ -342,19 +345,19 @@ const randomLists = getRandomItems(lists, 2);
 		}
 	}
 	.contact {
-		width: 36rem;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
-		justify-content: flex-start;
 		align-content: stretch;
+		justify-content: flex-start;
 		align-items: stretch;
+		width: 36rem;
 		.group {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
-			justify-content: space-between;
 			align-content: stretch;
+			justify-content: space-between;
 			align-items: flex-start;
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 			padding: var(--l);
@@ -362,16 +365,16 @@ const randomLists = getRandomItems(lists, 2);
 				display: flex;
 				flex-direction: column;
 				flex-wrap: nowrap;
-				justify-content: flex-start;
 				align-content: stretch;
+				justify-content: flex-start;
 				align-items: stretch;
 				strong {
 					margin: 0 0 var(--xs) 0;
 					font-weight: 900;
 					font-size: 1rem;
+					line-height: 1.2;
 					font-family: 'Source Sans Pro', sans-serif;
 					letter-spacing: 0.2px;
-					line-height: 1.2;
 				}
 				small {
 					font-size: 0.8rem;

@@ -1,6 +1,8 @@
 export enum SortProperty {
 	Date = 'DATE',
 	Title = 'TITLE',
+	Count = 'COUNT',
+	Display = 'Display',
 }
 
 export enum SortDirection {

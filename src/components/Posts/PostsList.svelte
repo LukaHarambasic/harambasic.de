@@ -4,27 +4,25 @@
 	import type { Post } from '../../types/post';
 	import { filterPostsByCategory, sortPosts } from '../../util/data/posts';
 	import { getPath } from '../../util/helper';
-	import PostsCategories from '../../components/Posts/PostsCategories.astro';
 
 	export let categories: Category[];
-	let selectedCategory: string;
+	let selectedCategory: string = 'all';
 
 	export let posts: Post[];
 	let sortedPosts: Post[] = sortPosts(posts, SortProperty.Date, SortDirection.Desc);
 	$: filteredPosts = filterPostsByCategory(sortedPosts, selectedCategory);
+
+	function onSelectCategory(category: string) {
+		selectedCategory = category;
+		// const url = new URL(window.location.toString());
+		// url.searchParams.set('category', category);
+		// window.location = { href: url.toString() };
+	}
 </script>
 
 <section>
-	<div class="filter">
-		<div class="select-button">
-			<select bind:value={selectedCategory}>
-				<option value="all">All</option>
-				{#each categories as category}
-					<option value={category.slug}>
-						{category.display}
-					</option>
-				{/each}
-			</select>
+	<aside class="filter">
+		<h2>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="16"
@@ -39,9 +37,19 @@
 					stroke-linejoin="round"
 					stroke-width="24"
 				/></svg
-			>
-		</div>
-	</div>
+			> Categories
+		</h2>
+		<ol>
+			<li><button on:click={() => onSelectCategory('all')}> All ({posts.length})</button></li>
+			{#each categories as category}
+				<li>
+					<button on:click={() => onSelectCategory(category.slug)}>
+						{category.display} ({category.postCount})
+					</button>
+				</li>
+			{/each}
+		</ol>
+	</aside>
 	<div class="posts">
 		<ul>
 			{#each filteredPosts as post}
@@ -103,15 +111,53 @@
 <style lang="postcss">
 	section {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		flex-wrap: nowrap;
 		align-content: stretch;
 		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--xl);
-		width: 36rem;
+		width: 48rem;
+		font-weight: 600;
+		font-size: 1rem;
+		font-family: 'Source Sans Pro', sans-serif;
+		letter-spacing: 0.2px;
+	}
+	.filter {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-content: stretch;
+		justify-content: flex-start;
+		align-items: stretch;
+		gap: var(--m);
+		width: 12rem;
+		ol {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-content: stretch;
+			justify-content: flex-start;
+			align-items: stretch;
+			gap: var(--s);
+			li {
+				button {
+					margin: 0;
+					border: none;
+					background: none;
+					padding: 0;
+					color: var(--c-font-80);
+					font-size: 0.9rem;
+					&:hover {
+						cursor: pointer;
+						text-decoration: underline;
+					}
+				}
+			}
+		}
 	}
 	.posts {
+		width: 100%;
 		> ul {
 			display: flex;
 			flex-direction: column;
@@ -174,6 +220,7 @@
 						li {
 							a {
 								color: var(--c-font-60);
+								font-weight: 400;
 								font-size: 0.9rem;
 							}
 						}
