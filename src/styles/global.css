@@ -8,7 +8,7 @@ main {
     justify-content: flex-start;
     align-content: stretch;
     align-items: center;
-    gap: var(--xl);
+    gap: var(--xxl);
 }
 
 .select-button {
