@@ -21,7 +21,7 @@
 </script>
 
 <section>
-	<aside class="filter">
+	<aside class="categories">
 		<h2>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -109,6 +109,10 @@
 </section>
 
 <style lang="postcss">
+	h1 {
+		width: 100%;
+		text-align: center;
+	}
 	section {
 		display: flex;
 		flex-direction: row;
@@ -123,7 +127,7 @@
 		font-family: 'Source Sans Pro', sans-serif;
 		letter-spacing: 0.2px;
 	}
-	.filter {
+	.categories {
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
