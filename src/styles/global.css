@@ -1,4 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+    color: var(--c-font);
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
 }
 
 .select-button {

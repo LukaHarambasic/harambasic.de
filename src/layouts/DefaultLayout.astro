@@ -5,6 +5,7 @@ import '../styles/global.css';
 import LayoutHead from '../components/Layout/LayoutHead.astro';
 import LayoutHeader from '../components/Layout/LayoutHeader.astro';
 import LayoutFooter from '../components/Layout/LayoutFooter.astro';
+import LayoutSkipToContent from '../components/Layout/LayoutSkipToContent.astro';
 
 interface Props {
 	title: string;
@@ -28,9 +29,10 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 		/>
 	</head>
 	<body>
+		<LayoutSkipToContent />
 		<div class="container">
 			<LayoutHeader />
-			<main>
+			<main id="main">
 				<section>
 					<h1>{title}</h1>
 				</section>
@@ -39,10 +41,6 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 			<LayoutFooter />
 		</div>
 		<style is:global>
-			body {
-				color: var(--c-font);
-				font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-			}
 			.container {
 				display: grid;
 				grid-template-rows: auto 1fr auto;
@@ -65,6 +63,7 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 					justify-content: flex-start;
 					align-items: center;
 					gap: var(--xl);
+					scroll-margin: 4rem;
 					h1 {
 						font-weight: 900;
 						font-size: 1rem;

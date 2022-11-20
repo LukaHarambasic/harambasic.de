@@ -35,143 +35,141 @@ const randomLists = getRandomItems(lists, 2);
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<main>
-		<section class="heyho">
-			<div class="inner">
-				<Picture
-					src={profileImage}
-					widths={[200, 400]}
-					sizes="(max-width: 400px) 100vw, 400px"
-					aspectRatio="1:1"
-					alt="Picture of Luka Harambasic"
-					class="profile"
-				/>
-				<div class="content rich-text">
-					<h2>Heyho, I'm Luka!</h2>
-					<p>
-						Simpler version, interstes and what I do, for more infos send to about page with a text
-						and link to CV.<u>Pinnace</u> holystone mizzenmast <a>lorem ipsum</a> quarter crow's nest
-						nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard.
-					</p>
-					<p>
-						Row scuttle parrel <a>lorem ipsum</a>provost Sail ho shrouds spirits boom mizzenmast
-						yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen <u
-							>halter furl</u
-						>.
-					</p>
-				</div>
+	<section class="heyho">
+		<div class="inner">
+			<Picture
+				src={profileImage}
+				widths={[200, 400]}
+				sizes="(max-width: 400px) 100vw, 400px"
+				aspectRatio="1:1"
+				alt="Picture of Luka Harambasic"
+				class="profile"
+			/>
+			<div class="content rich-text">
+				<h2>Heyho, I'm Luka!</h2>
+				<p>
+					Simpler version, interstes and what I do, for more infos send to about page with a text
+					and link to CV. <em>Pinnace</em> holystone mizzenmast <a>lorem ipsum</a> quarter crow's nest
+					nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard.
+				</p>
+				<p>
+					Row scuttle parrel <a>lorem ipsum</a>provost Sail ho shrouds spirits boom mizzenmast
+					yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen <u
+						>halter furl</u
+					>.
+				</p>
 			</div>
-		</section>
-		<section class="featured">
-			<!-- <h2>Weekly recommendations</h2> -->
-			<div class="project group">
-				<h3 class="section-label">
-					<span>Project</span>
-					<Icon pack="ph" name="projector-screen-chart-duotone" />
-				</h3>
-				<ul>
-					{
-						randomProjects.map(({ title, slug, img }) => {
-							return (
-								<li>
-									<a class="card image " href={slug && ''}>
-										<Icon pack="ph" name="arrow-circle-right-bold" />
-										<img src={img} alt="TODO" width="8rem" />
-										<div class="content">
-											<strong>{title}</strong>
-											<p>
-												Row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.
-												Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm
-												hempen halter furl. Swab barque interloper chantey doubloon starboard grog
-												black jack gangway rutters.
-											</p>
-										</div>
-									</a>
-								</li>
-							);
-						})
-					}
-				</ul>
-			</div>
-			<div class="posts group">
-				<h3 class="section-label">
-					<span>Posts</span>
-					<Icon pack="ph" name="files-duotone" />
-				</h3>
-				<ul>
-					{
-						randomPosts.map(({ title, publishDate, slug, publishDateFormatted }) => {
-							return (
-								<li>
-									<a class="card text" href={slug && ''}>
-										<Icon pack="ph" name="arrow-circle-right-bold" />
-										<time class="date dt-published" datetime={publishDate}>
-											{publishDateFormatted}
-										</time>
+		</div>
+	</section>
+	<section class="featured">
+		<!-- <h2>Weekly recommendations</h2> -->
+		<div class="project group">
+			<h3 class="section-label">
+				<span>Project</span>
+				<Icon pack="ph" name="projector-screen-chart-duotone" />
+			</h3>
+			<ul>
+				{
+					randomProjects.map(({ title, slug, img }) => {
+						return (
+							<li>
+								<a class="card image " href={slug && ''}>
+									<Icon pack="ph" name="arrow-circle-right-bold" />
+									<img src={img} alt="TODO" width="8rem" />
+									<div class="content">
 										<strong>{title}</strong>
-									</a>
-								</li>
-							);
-						})
-					}
-				</ul>
+										<p>
+											Row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.
+											Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen
+											halter furl. Swab barque interloper chantey doubloon starboard grog black jack
+											gangway rutters.
+										</p>
+									</div>
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</div>
+		<div class="posts group">
+			<h3 class="section-label">
+				<span>Posts</span>
+				<Icon pack="ph" name="files-duotone" />
+			</h3>
+			<ul>
+				{
+					randomPosts.map(({ title, publishDate, slug, publishDateFormatted }) => {
+						return (
+							<li>
+								<a class="card text" href={slug && ''}>
+									<Icon pack="ph" name="arrow-circle-right-bold" />
+									<time class="date dt-published" datetime={publishDate}>
+										{publishDateFormatted}
+									</time>
+									<strong>{title}</strong>
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</div>
+		<div class="lists group">
+			<h3 class="section-label">
+				<span>Lists</span>
+				<Icon pack="ph" name="clipboard-text-duotone" />
+			</h3>
+			<ul>
+				{
+					randomLists.map(({ title, description, slug }) => {
+						return (
+							<li>
+								<a class="card text" href={slug && ''}>
+									<Icon pack="ph" name="arrow-circle-right-bold" />
+									<strong>{title}</strong>
+									<p>{description}</p>
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</div>
+	</section>
+	<section class="contact">
+		<div class="group">
+			<div class="meta">
+				<strong>E-Mail</strong>
+				<small>luka@harambasic.de</small>
 			</div>
-			<div class="lists group">
-				<h3 class="section-label">
-					<span>Lists</span>
-					<Icon pack="ph" name="clipboard-text-duotone" />
-				</h3>
-				<ul>
-					{
-						randomLists.map(({ title, description, slug }) => {
-							return (
-								<li>
-									<a class="card text" href={slug && ''}>
-										<Icon pack="ph" name="arrow-circle-right-bold" />
-										<strong>{title}</strong>
-										<p>{description}</p>
-									</a>
-								</li>
-							);
-						})
-					}
-				</ul>
+			<div class="segmented-buttons">
+				<a href="mailto:luka@harambasic.de" class="button">Write</a>
+				<BaseToClipboardButton client:idle toClipboard="luka@harambasic.de"
+					>Copy</BaseToClipboardButton
+				>
 			</div>
-		</section>
-		<section class="contact">
-			<div class="group">
-				<div class="meta">
-					<strong>E-Mail</strong>
-					<small>luka@harambasic.de</small>
-				</div>
-				<div class="segmented-buttons">
-					<a href="mailto:luka@harambasic.de" class="button">Write</a>
-					<BaseToClipboardButton client:idle toClipboard="luka@harambasic.de"
-						>Copy</BaseToClipboardButton
-					>
-				</div>
+		</div>
+		<div class="group">
+			<div class="meta">
+				<strong>Social</strong>
+				<small>Follow me!</small>
 			</div>
-			<div class="group">
-				<div class="meta">
-					<strong>Social</strong>
-					<small>Follow me!</small>
-				</div>
-				<div class="segmented-buttons">
-					<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
-					<a href="https://mstdn.social/@luha" class="button">Mastodon</a>
-				</div>
+			<div class="segmented-buttons">
+				<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
+				<a href="https://mstdn.social/@luha" class="button">Mastodon</a>
 			</div>
-			<div class="group">
-				<div class="meta">
-					<strong>Book a time</strong>
-					<small>Wanna chat?</small>
-				</div>
-				<div class="segmented-buttons">
-					<a href="https://cal.com/luhara/p" class="button">Book</a>
-				</div>
+		</div>
+		<div class="group">
+			<div class="meta">
+				<strong>Book a time</strong>
+				<small>Wanna chat?</small>
 			</div>
-		</section>
-	</main>
+			<div class="segmented-buttons">
+				<a href="https://cal.com/luhara/p" class="button">Book</a>
+			</div>
+		</div>
+	</section>
 	<!-- <section class="mastodon">[toot] [toot] [toot]</section> -->
 </HomeLayout>
 
