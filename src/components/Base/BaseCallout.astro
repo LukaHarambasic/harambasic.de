@@ -1,9 +1,39 @@
 ---
+interface Props {
+	prefix: string;
+}
+const { prefix } = Astro.props;
 ---
 
-<div class="callout">
-	<slot name="prefix" />
+<div class="callout rich-text">
+	{prefix && <strong>{prefix}</strong>}
 	<div class="content">
 		<slot />
 	</div>
 </div>
+
+<style>
+	.callout {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-content: stretch;
+		justify-content: flex-start;
+		align-items: flex-start;
+		gap: var(--m);
+		border-radius: var(--border-radius);
+		background: var(--c-surface);
+		padding: var(--l);
+		strong {
+			display: inline;
+			border-radius: var(--border-radius-small);
+			background: var(--c-grey-sclae-10);
+			padding: var(--s) var(--m);
+			font-weight: 900;
+			font-size: 1rem;
+			line-height: 1.2;
+			font-family: 'Source Sans Pro', sans-serif;
+			letter-spacing: 0.2px;
+		}
+	}
+</style>

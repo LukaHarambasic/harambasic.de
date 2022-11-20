@@ -5,7 +5,7 @@ import logoSvg from '../../assets/images/logo.svg';
 <header>
 	<div class="logo">
 		<!-- <img src={logoSvg} alt="Logo with the initials LH" width="50" height="50" /> -->
-		<strong>Luka Harambasic</strong>
+		<a href="/">Luka Harambasic</a>
 	</div>
 	<nav>
 		<ul>
@@ -22,26 +22,32 @@ import logoSvg from '../../assets/images/logo.svg';
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		justify-content: space-between;
 		align-content: stretch;
+		justify-content: space-between;
 		align-items: flex-start;
 	}
 	.logo {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		justify-content: flex-start;
 		align-content: center;
+		justify-content: flex-start;
 		align-items: center;
 		gap: 1rem;
 		img {
 			size: 2rem;
 		}
-		strong {
+		a {
+			color: var(--c-font);
 			font-weight: 900;
 			font-size: 1rem;
 			font-family: 'Source Sans Pro', sans-serif;
 			letter-spacing: 0.2px;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+				text-decoration-thickness: 0.15rem;
+			}
 		}
 	}
 	nav {
@@ -49,8 +55,8 @@ import logoSvg from '../../assets/images/logo.svg';
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
-			justify-content: flex-start;
 			align-content: stretch;
+			justify-content: flex-start;
 			align-items: flex-start;
 			gap: var(--m);
 			li {
@@ -61,6 +67,10 @@ import logoSvg from '../../assets/images/logo.svg';
 					font-family: 'Source Sans Pro', sans-serif;
 					letter-spacing: 0.2px;
 					text-decoration: none;
+					&:hover {
+						text-decoration: underline;
+						text-decoration-thickness: 0.15rem;
+					}
 				}
 			}
 		}

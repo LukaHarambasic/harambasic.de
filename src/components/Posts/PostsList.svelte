@@ -10,7 +10,7 @@
 	let selectedCategory: string = 'all';
 
 	export let posts: Post[];
-	let sortedPosts: Post[] = sortPosts(posts, SortProperty.Date, SortDirection.Desc);
+	let sortedPosts: Post[] = sortPosts(posts, SortProperty.Date, SortDirection.Asc);
 	$: filteredPosts = filterPostsByCategory(sortedPosts, selectedCategory);
 
 	onMount(() => {
@@ -160,6 +160,7 @@
 					&:hover {
 						cursor: pointer;
 						text-decoration: underline;
+						text-decoration-thickness: 0.15rem;
 					}
 				}
 			}

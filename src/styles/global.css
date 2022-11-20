@@ -5,6 +5,8 @@ html {
 body {
     color: var(--c-font);
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-size: 125%;
+    -webkit-font-smoothing: antialiased;
 }
 
 .select-button {
@@ -72,4 +74,67 @@ body {
     }
 }
 
+:any-link {
+    text-decoration-thickness: 0.15rem;
+}
 
+
+.rich-text{
+  line-height: 1.75;
+  h2 {
+    width: 30ch;
+    font-weight: 900;
+    font-size: 1.414rem;
+    line-height: 1.2;
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: 0.2px;
+    margin: 4rem 0 1rem 0;
+  }
+  h3 {
+    width: 30ch;
+    font-weight: 900;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: 0.2px;
+    margin: 2rem 0 1rem 0;
+  }
+  p, ul, ol, img, blockquote {
+    margin: 0 0 2rem 0;
+  }
+  a {
+    color: var(--c-font);
+    text-decoration: underline;
+    text-decoration-thickness: 0.15rem;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  > ul, > ol {
+    margin: 2rem 0 2rem 2rem;
+    width: 50ch;
+    ul, ol {
+      margin: 0 0 0 2rem;
+    }
+    li {
+      margin: 0.5rem 0 0 0;
+    }
+  }
+  ul {
+    list-style: disc;
+  }
+  ol {
+    list-style: decimal;
+  }
+  blockquote {
+    border-radius: var(--border-radius);
+    background: var(--c-surface);
+    padding: var(--l);
+    p{
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  }
+
+}

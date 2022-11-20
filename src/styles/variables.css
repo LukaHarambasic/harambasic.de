@@ -1,6 +1,7 @@
 :root {
 	--c-primary: #344bde;
 	--c-surface: #F7F7F7;
+	--c-grey-sclae-10: rgba(2,7,37, 0.1);
 	--c-light: #fff;
 	--c-light-stable: #fff;
 	--c-font-stable: #020725;
