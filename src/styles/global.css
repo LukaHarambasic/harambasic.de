@@ -1,16 +1,6 @@
 body {
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: center;
-    gap: var(--xxl);
-}
-
 .select-button {
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: var(--border-radius-small);

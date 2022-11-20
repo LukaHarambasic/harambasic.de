@@ -26,13 +26,11 @@ const categories = getCategories(posts);
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<main>
-		<PostsList client:load posts={posts} categories={categories} />
-		<BaseFootnote>
-			<!-- TODO adapt urls -->
-			Check out the <a href="globals.blogFeedURL">RSS feed</a> or
-			<a href="globals.twitterURL">my Twitter account</a>
-			to keep up to date.
-		</BaseFootnote>
-	</main>
+	<PostsList client:load posts={posts} categories={categories} />
+	<BaseFootnote>
+		<!-- TODO adapt urls -->
+		Check out the <a href="globals.blogFeedURL">RSS feed</a> or
+		<a href="globals.twitterURL">my Twitter account</a>
+		to keep up to date.
+	</BaseFootnote>
 </DefaultLayout>

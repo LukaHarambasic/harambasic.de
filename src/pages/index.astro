@@ -1,5 +1,5 @@
 ---
-import DefaultLayout from '../layouts/DefaultLayout.astro';
+import HomeLayout from '../layouts/HomeLayout.astro';
 import { Picture } from '@astrojs/image/components';
 import profileImage from '../assets/images/profile.jpeg';
 import { rawToPosts } from '../util/data/posts';
@@ -28,7 +28,7 @@ const lists = rawToLists(rawLists);
 const randomLists = getRandomItems(lists, 2);
 ---
 
-<DefaultLayout
+<HomeLayout
 	title={title}
 	description={description}
 	permalink={permalink}
@@ -173,7 +173,7 @@ const randomLists = getRandomItems(lists, 2);
 		</section>
 	</main>
 	<!-- <section class="mastodon">[toot] [toot] [toot]</section> -->
-</DefaultLayout>
+</HomeLayout>
 
 <style>
 	.heyho {

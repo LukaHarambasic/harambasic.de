@@ -30,12 +30,7 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 	<body>
 		<div class="container">
 			<LayoutHeader />
-			<main>
-				<section>
-					<h1>{title}</h1>
-				</section>
-				<slot />
-			</main>
+			<slot />
 			<LayoutFooter />
 		</div>
 		<style is:global>
@@ -48,7 +43,7 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 				grid-template-rows: auto 1fr auto;
 				grid-template-columns: 1fr 64rem 1fr;
 				grid-template-areas: '. header .' '. main .' '. footer .';
-				row-gap: var(--xl);
+				row-gap: var(--xxl);
 				padding: var(--xl) 0;
 				width: 100%;
 				height: auto;
@@ -64,14 +59,7 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 					align-content: stretch;
 					justify-content: flex-start;
 					align-items: center;
-					gap: var(--xl);
-					h1 {
-						font-weight: 900;
-						font-size: 1rem;
-						line-height: 1.2;
-						font-family: 'Source Sans Pro', sans-serif;
-						letter-spacing: 0.2px;
-					}
+					gap: var(--xxl);
 				}
 				> footer {
 					grid-area: footer;
