@@ -76,7 +76,6 @@ export function sortPosts(
 
 // TODO test
 export function filterPostsByCategory(posts: Post[], categorySlug: string): Post[] {
-	console.log(categorySlug)
 	if (categorySlug === "all") return posts
 	return posts.filter(post => {
 		return post.categories.some(category => category.slug === categorySlug)

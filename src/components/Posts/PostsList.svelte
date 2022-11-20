@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { Category } from '../../types/category';
 	import { SortDirection, SortProperty } from '../../types/enums';
 	import type { Post } from '../../types/post';
@@ -12,11 +13,15 @@
 	let sortedPosts: Post[] = sortPosts(posts, SortProperty.Date, SortDirection.Desc);
 	$: filteredPosts = filterPostsByCategory(sortedPosts, selectedCategory);
 
-	function onSelectCategory(category: string) {
-		selectedCategory = category;
-		// const url = new URL(window.location.toString());
-		// url.searchParams.set('category', category);
-		// window.location = { href: url.toString() };
+	onMount(() => {
+		selectedCategory = new URLSearchParams(window.location.search).get('category') || 'all';
+	});
+
+	function onSelectCategory(categorySlug: string) {
+		selectedCategory = categorySlug;
+		const url = new URL(window.location.toString());
+		url.searchParams.set('category', selectedCategory);
+		window.history.pushState({}, '', url.href);
 	}
 </script>
 
@@ -226,6 +231,9 @@
 								color: var(--c-font-60);
 								font-weight: 400;
 								font-size: 0.9rem;
+								&:hover {
+									text-decoration: none;
+								}
 							}
 						}
 					}
