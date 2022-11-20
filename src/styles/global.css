@@ -110,6 +110,9 @@ body {
       text-decoration: none;
     }
   }
+  strong {
+    font-weight: 600;
+  }
   > ul, > ol {
     margin: 2rem 0 2rem 2rem;
     width: 50ch;

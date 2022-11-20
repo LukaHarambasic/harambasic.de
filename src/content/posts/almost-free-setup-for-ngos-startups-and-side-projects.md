@@ -38,7 +38,7 @@ As I'm a big fan of structured content I split our tools into four categories: (
 
 ### Communication
 
-<base-meta-list-tools tools="Slack, Google Meet"></base-meta-list-tools>
+> Tools: Slack, Google Meet
 
 Our main communication tool is [Slack](https://slack.com/intl/en-de/), since we are a rather young team and grew up with messaging solutions no one had a problem to adapt it. I'm personally also a big fan of separating communications, e.g. I don't want to have discussions about Active Ambassadors mixed up with my private chats in WhatsApp.
 
@@ -57,7 +57,7 @@ In other workspaces I also used **t-teams** and **h-help** but for us this isn't
 
 ### Operations
 
-<base-meta-list-tools tools="Airtable, IFTTT"></base-meta-list-tools>
+> Tools: Airtable, IFTTT
 
 We moved from [Google Sheets](https://www.google.com/sheets/about/) to [AirTable](https://airtable.com/) because they offer an API which can be consumed by our website to display expenses and incomes. We have two major categories with five sheets:
 
@@ -85,13 +85,13 @@ If [Notions](https://www.notion.so/) provides us with the same functionalities t
 
 ### Marketing
 
-<base-meta-list-tools tools="Mailchimp, Later, UNUM"></base-meta-list-tools>
+> Tools: Mailchimp, Later, UNUM
 
 In the beginning, we had a newsletter with [Mailchimp](https://mailchimp.com/), but now all our communication efforts go into [Instagram](https://www.instagram.com/active_ambassadors/). To schedule and plan our posts Julia is using [Later](https://later.com/) and [UNUM](https://www.unum.la/) and that's not something I'm familiar with, so if you want I could ask Julia for a guest contribution.
 
 ### Knowledge/Tasks
 
-<base-meta-list-tools tools="Notion, Google Drive"></base-meta-list-tools>
+> Tools: Notion, Google Drive
 
 Over the last few years, [Notion](https://www.notion.so/) has satisfied the desire of productivity junkies who want to create tools for their own needs by not writing a single line of code. It slowly spilled over into the business world, at least it looked like that to me. You can do almost everything: use it as a wiki, build a custom CRM, track your tasks, or use it as a notebook.
 
@@ -103,11 +103,9 @@ We decided to use it for our tasks with a simple Kanban board as well for some k
 
 ### Website
 
-<base-meta-list-tools tools="Nuxt.js, Netlify, Prismic, GitHub, Netcup, Figma"></base-meta-list-tools>
+> Tools: Nuxt.js, Netlify, Prismic, GitHub, Netcup, Figma
 
-<base-callout>
-The next paragraphs will be very technical, if you aren't interested in this I still would recommend getting your hands on a domain, even if you aren't hosting a website. It's just ten times more professional if you send an email from luka@active-ambassadors.org instead of dungeonmaster99@gmail.com.
-</base-callout>
+>  The next paragraphs will be very technical, if you aren't interested in this I still would recommend getting your hands on a domain, even if you aren't hosting a website. It's just ten times more professional if you send an email from luka@active-ambassadors.org instead of dungeonmaster99@gmail.com.
 
 I built the website with [Nuxt.js,](https://nuxtjs.org/) a framework on top of [Vue.js](https://vuejs.org/). So this is only something for you if you know how to do web development or if you know someone who is able to do it. The website is publicly accessible via [GitHub](https://github.com/) the [version control system](https://en.wikipedia.org/wiki/Version_control) of my choice. This is linked to [Netlify](https://www.netlify.com/) where each change is directly deployed without any manual download or build process involved. During the automatic build process, the required data from [Prismic](https://prismic.io/) our headless CMS, and AirTable are requested. Also a change to the content in Prismic would trigger a new build. I would like to have something similar for AirTable as all the numbers on our transparency page are consumed from our sheets. Because this isn't possible I trigger a new build every 24 hours via IFTTT as we don't rely on instant updates.
 
@@ -128,7 +126,3 @@ The other question I'm not completely sure about is if all these tools are neces
 1. The free tier of many tools is completely sufficient.
 2. Get a fucking domain it doesn't have to cost 17.55 € a year - there are even cheaper ones, but please get a domain and use it for your emails. I'll help you for free if you need support!
 3. Don't implicitly trust lists of tools, decide for yourself what you and your team needs.
-
-<base-thanks>
-    Please let me now if you want a deep dive on one of this tools or if I should explain my decision process.
-</base-thanks>

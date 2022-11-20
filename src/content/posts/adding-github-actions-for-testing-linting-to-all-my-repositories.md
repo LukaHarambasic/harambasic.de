@@ -79,9 +79,7 @@ jobs:
       - run: npm run test
 ```
 
-<base-callout>
-    My initial commit with these actions was rejected from GitHub as my personal access token in Webstorm didn't have the permissions to push workflows. So you may need to create a new token for your GitHub client.
-</base-callout>
+> My initial commit with these actions was rejected from GitHub as my personal access token in Webstorm didn't have the permissions to push workflows. So you may need to create a new token for your GitHub client.
 
 ## Conclusion
 

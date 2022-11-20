@@ -84,6 +84,6 @@ I had a lot of fun dealing with the topic so it was totally worth it. For now, I
 - _Turn on your camera_: Not only in these remote times it is nice to see your counterpart. Be the counterpart you would also like to have.
   If you want to get a more expensive inspiration I recommend the video "[Next Level Video Calls | Best Homeoffice Setup Money Can Buy](https://www.youtube.com/watch?v=rnZ-FHfrpAM)" from Christoph Magnussen.
 
-<base-callout>I only linked to the manufactures, most of the time it's more expensive than other retailers. So please check the prices :)</base-callout>
+> I only linked to the manufactures, most of the time it's more expensive than other retailers. So please check the prices :)
 
-<base-thanks>Thanks to all my colleagues and friends who had to endure me during the trial and error phase.</base-thanks>
+Thanks to all my colleagues and friends who had to endure me during the trial and error phase.
