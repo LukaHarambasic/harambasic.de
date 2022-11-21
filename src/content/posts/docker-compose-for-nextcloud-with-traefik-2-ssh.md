@@ -9,7 +9,7 @@ tldr: 'Here is the <a href="#complete-docker-composeyml">docker-compose.yml</a> 
 discussion: https://twitter.com/luka_harambasic/status/1349487071614930944
 ---
 
-**This is not a tutorial!**
+## Intro
 
 I set up [Traefik 2](https://traefik.io/) on a [VServer at Netcup](https://www.netcup.eu/vserver/vps.php#v-server-details) mainly to use [Nextcloud](https://nextcloud.com/). Since I am neither Docker nor Traefik or NextCloud expert it took some time to set up everything as most of the `docker-compose.yml` files I found weren't working. So here is my short story about setting up NextCloud.
 

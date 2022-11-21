@@ -249,8 +249,10 @@
 								color: var(--c-font-60);
 								font-weight: 400;
 								font-size: 0.9rem;
+								text-decoration: none;
 								&:hover {
-									text-decoration: none;
+									text-decoration: underline;
+									text-decoration-thickness: 0.15rem;
 								}
 							}
 						}

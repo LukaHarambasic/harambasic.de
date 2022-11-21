@@ -10,6 +10,8 @@ tldr: In less than a minute you can set up custom search engines in your browser
 discussion: https://twitter.com/luka_harambasic/status/1406703914045542405
 ---
 
+## Intro
+
 A friend - [Sebastian Furkert](https://www.linkedin.com/in/sebastian-furkert/) - showed me this little trick during our studies. With this, you can build your own search engine. Okay, that might sound a little over the top, but basically, that's what you're doing. If you often search on the same websites this can save you a lot of time.
 
 From my point of view, there are two use cases: search and find. I would define searching that you are open for the outcome and don't know what to expect. You want to find something if you are looking for something specific, something expected, something with an identifier.

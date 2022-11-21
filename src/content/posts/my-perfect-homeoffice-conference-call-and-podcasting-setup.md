@@ -9,6 +9,8 @@ tldr: You don't have to spend a fortune, but it's a lot of fun to put a little m
 discussion: https://twitter.com/luka_harambasic/status/1383820044082106371
 ---
 
+## Intro
+
 A friend had the idea for our podcast [Techmob Show](https://techmob.show) (german). I got one requirement before we would start the first recording: get a new microphone. During this time a colleague also stepped up his camera game which got me thinking. And so one thing led to another...
 
 ![Desk with camera, ring light, display, microphone with an arm, stream deck and MacBook.](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/setup_overview.jpg)

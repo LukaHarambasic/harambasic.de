@@ -2,6 +2,7 @@
 import BaseCallout from '../../components/Base/BaseCallout.astro';
 import PostsCategories from '../../components/Posts/PostsCategories.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import type { Category } from '../../types/category';
 import type { Post } from '../../types/post';
 import { rawToPosts } from '../../util/data/posts';
 import { getFileName } from '../../util/helper';
@@ -37,17 +38,46 @@ const {
 	socialImgAlt={socialImgAlt}
 >
 	<article class="post h-entry">
-		<aside>
+		<!-- TODO the 4 section could be split up in dedicated files -->
+		<div class="meta">
 			<time class="date dt-published" datetime={publishDate}>
 				<a href={permalink} class="u-url">{publishDateFormatted}</a>
 			</time>
-			<PostsCategories categories={categories} />
-		</aside>
-		<section class="post rich-text e-content">
+			<div class="categories">
+				<ul>
+					{
+						categories.map((category: Category) => {
+							return (
+								<li>
+									<a href={category.fullPath} class="link">
+										{category.display}
+									</a>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</div>
+		</div>
+		<div class="toc">
+			<div class="content">
+				<strong>Table of Contents</strong>
+				<ol>
+					<li>Entry</li>
+					<li>Entry</li>
+					<li>Entry</li>
+					<li>Entry</li>
+					<li>Entry</li>
+				</ol>
+			</div>
+		</div>
+		<div class="tldr">
 			<BaseCallout prefix="TL;DR">
 				<div set:html={tldr} />
 			</BaseCallout>
-			<div class="content">
+		</div>
+		<section class="post">
+			<div class="content rich-text e-content">
 				<Content />
 			</div>
 		</section>
@@ -69,19 +99,73 @@ const {
 <style>
 	article {
 		display: grid;
-		grid-template-rows: auto auto;
+		grid-template-rows: auto 1fr auto;
 		grid-template-columns: 70ch 1fr;
-		grid-template-areas: 'post aside' 'footer footer';
-		column-gap: var(--xl);
-		row-gap: var(--xl);
-		aside {
-			grid-area: aside;
+		grid-template-areas: 'tldr meta' 'post toc' 'footer footer';
+		column-gap: var(--l);
+		row-gap: var(--l);
+		.meta {
+			display: flex;
+			grid-area: meta;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-content: stretch;
+			justify-content: flex-start;
+			align-items: stretch;
+			gap: var(--m);
+			border-radius: var(--border-radius);
+			background: var(--c-surface);
+			padding: var(--l);
+			.date {
+				a {
+					color: var(--c-font-60);
+					font-weight: 400;
+					font-size: 0.9rem;
+				}
+			}
+			.categories {
+				ul {
+					display: flex;
+					position: relative;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-content: stretch;
+					justify-content: flex-start;
+					align-items: flex-start;
+					gap: var(--xs);
+					li {
+						a {
+							color: var(--c-font-60);
+							font-weight: 400;
+							font-size: 0.9rem;
+							&:hover {
+								text-decoration: none;
+							}
+						}
+					}
+				}
+			}
+		}
+		.toc {
+			grid-area: toc;
+			.content {
+				position: sticky;
+				top: var(--l);
+				border-radius: var(--border-radius);
+				background: var(--c-surface);
+				padding: var(--l);
+				strong {
+					display: block;
+					margin: 0 0 1rem 0;
+					font-weight: 900;
+					font-size: 1.25rem;
+					font-family: 'Source Sans Pro', sans-serif;
+					letter-spacing: 0.2px;
+				}
+			}
 		}
 		.post {
 			grid-area: post;
-			.content {
-				margin: var(--l) 0 0 0;
-			}
 		}
 		footer {
 			grid-area: footer;

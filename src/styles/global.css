@@ -89,6 +89,9 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
     letter-spacing: 0.2px;
     margin: 4rem 0 1rem 0;
+    &:first-of-type {
+      margin: 0 0 1rem 0;
+    }
   }
   h3 {
     width: 30ch;
@@ -113,7 +116,7 @@ body {
       text-decoration: none;
     }
   }
-  strong {
+  strong, em {
     font-weight: 600;
   }
   > ul, > ol {
