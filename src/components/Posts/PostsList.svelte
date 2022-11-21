@@ -248,7 +248,7 @@
 						gap: var(--xs);
 						li {
 							a {
-								color: var(--c-font-60);
+								color: var(--c-font-80);
 								font-weight: 400;
 								font-size: var(--font-s);
 								text-decoration: none;

@@ -16,7 +16,7 @@ This post is a story about my life, a big part of mine. It shows how I acquired 
 
 The story started when I was around 11, and I had no clue about computers. Continuing with a self-motivated learning phase, I became competent in web technologies and ended my last job as a technology consultant. Which also marks the end of this chapter in my life.
 
-## 1. Getting to know the internet
+## Getting to know the internet
 
 When I was 11, there was a platform called Knuddels; nowadays, I would describe it as a predecessor of [Slack](https://slack.com/) with mini-games. If you were an active user, you got promoted as a Family Member. You'd get new features, of which I remember the homepage the most fondly because it somehow kicked off my Nerd. On my "homepage," you could learn more about my interests and hobbies. My initial "homepage" was visually very dull. I just had some colorful text without nice graphics. By contrast, other users had nice borders around each box and animated pictures. So I got curious and found some templates I could copy over that weren't even HTML, they were written in [BBCode](https://en.wikipedia.org/wiki/BBCode). I'm not sure when I have seen it the last time, maybe in a forum around that time? Just having something nice looking wasn't enough though, I wanted to make it my own. After a while, I recognized how powerful the style attribute is and could change the look of my whole homepage. And that's what I did.
 
@@ -24,7 +24,7 @@ Afterward, I started a browser game with a clan with a styleable information pag
 
 In the end, simple websites started my journey, and as I write this, I also understand why I'm so addicted to the web. It's been with me since I was a young boy dipping my towns in the vast ocean that is the internet, and it's always been accessible to me. Thanks to my parents ❤️.
 
-## 2. Using the website builder
+## Using the website builder
 
 ![Website with an drop shadow and border radius as image](/posts/my-nerd-path/shadow_rounded_corner.png)
 
@@ -57,7 +57,7 @@ Another recognizable feature of websites at this time was this glossy, well-know
 
 ![Glossy Web 2.0 button with the text: Click Me](/posts/my-nerd-path/glossy_button.svg)
 
-## 3. Hosting my own websites
+## Hosting my own websites
 
 The next logical step was to build an entire website from scratch. For that, I needed some hosting, and everybody around me used [bplaced.net](https://bplaced.net).net as they had a decent free tier. But, with this, I still didn't know how to handle a web space. I remember when a strange person I got to know over the Homepage-Baukasten forum showed me how to use my webspace via Skype & TeamViewer. He also showed me [FileZilla](https://filezilla-project.org/) to upload my files. Quickly, I got annoyed by this manual step. Naturally, I wanted to speed up my process, so I installed a plugin in [Notepad++](https://notepad-plus-plus.org/downloads/) to directly edit files on the server. I didn't know that you shouldn't change something directly in production without testing, but it was convenient.
 
@@ -73,7 +73,7 @@ I started to look more into [PHP](https://www.php.net/) at this time, as I was l
 
 As I already knew so much about HTML & CSS, I was very disappointed by my IT teacher, who asked us to learn layouts with tables. Although every good web developer used `float: left`. He was so kind enough to let me plan and conduct some lectures in my advanced IT course at school. I even wrote a small PHP script, making it easy to share all my codings with the others as I wasn't aware of other solutions. Sadly we had to use table layouts for the final exam.
 
-## 4. Getting more advanced
+## Getting more advanced
 
 During this time, I started using [WordPress](https://wordpress.com/) and looked into a mystical new world: JavaScript. If I remember correctly, my first blog with WordPress was a relaunch of bagarts.de where I could write about online marketing. During this time, I thought marketing might be my passion. How wrong I was... And how could I believe that someone would care about the two cents from a 16-year-old boy without any substantial knowledge in this area? At this point, I got to know [Netcup.net](https://www.netcup.de/), the only web hoster I have had since then. I tried other hosters for other organizations, and I don't buy many domains at Netcup, but the hosting is still perfect, and the support is incredible.
 
@@ -85,7 +85,7 @@ My first customer was my sports club. I developed a multi-WordPress website with
 
 ![Screenshot of handball.tv-edigheim.de showing the start page](/posts/my-nerd-path/tv_edigheim.png)
 
-## 5. Learn programming
+## Learn programming
 
 In 2016 I started a corporate study program for a bachelor in _Business Informatics focusing on Sales & Consulting_. I worked in a three-month cycle at [SAP](https://www.sap.com/) (my partner company) and then studied for three months at [DHBW](https://www.dhbw.de/english/home) (my university) for three years. At my company, I learned a JavaScript framework called [SAP UI5](https://sapui5.hana.ondemand.com/), which is not my favorite one.
 
@@ -105,7 +105,7 @@ On my own, I tried a lot of tools in different areas: to-do lists, note-taking, 
 
 In the context of this chapter, I really need to say thanks to two people: **Frank** & **Henry**! You know why. ❤️
 
-## 6. Becoming a Technology Consultant
+## Becoming a Technology Consultant
 
 Shortly before my vocational contract with SAP ended, I found an excellent department where I became a _Technology Consultant for Mobile UX (EMEA)_. In the beginning, I worked with the [SAP Mobile Development Kit](https://developers.sap.com/topics/mobile-development-kit.html) focusing on the [SAP Asset Manager](https://www.sap.com/denmark/products/asset-manager.html) for iPads. Shortly after that, I had familiarized myself with the subject Covid-19 started, and the German government commissioned an app: The [Corona-Warn-App](/projects). I started as an Android developer before I became the team lead. In this way, I found out that I like to take on responsibility, make decisions, organize, and prioritize. With these new tasks, I slowly left the development behind me.
 
@@ -114,7 +114,7 @@ This section is relatively short as I was heavily focused on my work during thes
 - [Active Ambassadors](https://www.active-ambassadors.org/): A NGO to raise awareness for other NGOs.
 - [Tech Mob Show](https://techmob.show/): A technology entertainment podcast with two friends.
 
-## 7. Ending my nerd path
+## Ending my nerd path
 
 I first wanted to call this chapter **"To be continued"** and add new chapters to my nerd path. But I think it won't be continued. I don't want to make my living as a developer. I love technology! I'll develop in my free time, learn new technologies, automate stuff I could do way quicker manually, be the number one contact for my family, friends, and colleagues to ask technical questions. For me, it's some kind of relaxation if I can develop after a stressful day.
 

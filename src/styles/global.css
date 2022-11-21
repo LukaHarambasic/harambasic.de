@@ -7,10 +7,11 @@ body {
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
     font-size: 125%;
     -webkit-font-smoothing: antialiased;
+    background: var(--c-light);
 }
 
 .select-button {
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--c-surface-intense);
     border-radius: var(--border-radius-small);
     background: var(--c-surface);
     display: flex;
@@ -40,7 +41,7 @@ body {
 }
 
 .segmented-buttons {
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--c-surface-intense);
     border-radius: var(--border-radius-small);
     background: var(--c-surface);
     display: flex;
@@ -50,9 +51,6 @@ body {
     align-content: stretch;
     align-items: flex-start;
     overflow: hidden;
-    &:last-child {
-        border-right: none;
-    }
     .button {
         border: none;
         background: transparent;
@@ -61,14 +59,14 @@ body {
         font-family: var(--font-family);
         letter-spacing: var(--font-letter-spacing-headline);
         line-height: 1.2;
-        border-right: 1px solid rgba(0, 0, 0, 0.05);
+        border-right: 1px solid var(--c-surface-intense);
         padding: var(--xs) var(--s);
         margin: 0;
         transition: var(--transition);
         text-decoration: none;
         color: var(--c-font);
         &:hover {
-            background: rgba(0, 0, 0, 0.05);
+            background: var(--c-surface-intense);
             cursor: pointer;
         }
     }

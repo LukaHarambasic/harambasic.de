@@ -1,16 +1,9 @@
 :root {
-	--c-primary: #344bde;
 	--c-surface: #F7F7F7;
-	--c-grey-scale-10: rgba(2,7,37, 0.1);
+	--c-grey-scale-10: rgba(1,3,15, 0.1);
 	--c-light: #fff;
-	--c-light-stable: #fff;
-	--c-font-stable: #020725;
-	--c-font: rgba(2,7,37, 1);
-	--c-font-80: rgba(2,7,37, 0.8);
-	--c-font-60: rgba(2,7,37, 0.6);
-	--c-font-light: #a4a8c2;
-	--c-font-on-primary: #fff;
-	--c-shadow: rgba(46, 46, 62, 0.05);
+	--c-font: rgba(1,3,15, 1);
+	--c-font-80: rgba(1,3,15, 0.8);
 
 	/* 1.200 Minor Third - https://type-scale.com/ */
 	--font-family: 'Source Sans Pro', sans-serif;
@@ -36,3 +29,15 @@
 	--layout-l: 48rem;
 	--layout-m: 36rem;
 }
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--c-surface: rgba(255,255,255, 0.03);
+		--c-surface-intense: rgba(255,255,255, .1);
+		--c-grey-scale-10: rgba(1,3,15, 0.1);
+		--c-light: rgba(1,3,15, 1);
+		--c-font: #ffffff;
+		--c-font-80: rgba(255,255,255, 0.8);
+		--c-font-60: rgba(255,255,255, 0.6);
+	}
+  }
