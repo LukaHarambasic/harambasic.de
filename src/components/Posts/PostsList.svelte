@@ -34,7 +34,7 @@
 				height="16"
 				fill="#000000"
 				viewBox="0 0 256 256"
-				><rect width="256" height="256" fill="none" /><path
+				><rect width="32" height="32" fill="none" /><path
 					d="M42.1,48H213.9a8,8,0,0,1,5.9,13.4l-65.7,72.3a7.8,7.8,0,0,0-2.1,5.4v56.6a7.9,7.9,0,0,1-3.6,6.7l-32,21.3a8,8,0,0,1-12.4-6.6v-78a7.8,7.8,0,0,0-2.1-5.4L36.2,61.4A8,8,0,0,1,42.1,48Z"
 					fill="none"
 					stroke="#000000"
@@ -45,10 +45,20 @@
 			> Categories
 		</h2>
 		<ol>
-			<li><button on:click={() => onSelectCategory('all')}> All ({posts.length})</button></li>
+			<li>
+				<button
+					class:selected={selectedCategory === 'all'}
+					on:click={() => onSelectCategory('all')}
+				>
+					All ({posts.length})</button
+				>
+			</li>
 			{#each categories as category}
 				<li>
-					<button on:click={() => onSelectCategory(category.slug)}>
+					<button
+						class:selected={selectedCategory === category.slug}
+						on:click={() => onSelectCategory(category.slug)}
+					>
 						{category.display} ({category.postCount})
 					</button>
 				</li>
@@ -77,8 +87,8 @@
 						<time class="date dt-published" datetime={post.publishDate.toString()}>
 							{post.publishDateFormatted}
 						</time>
-						<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 256 256"
-							><rect width="256" height="256" fill="none" /><circle
+						<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 32 32"
+							><rect width="32" height="32" fill="none" /><circle
 								cx="128"
 								cy="128"
 								r="96"
@@ -161,6 +171,13 @@
 						cursor: pointer;
 						text-decoration: underline;
 						text-decoration-thickness: 0.15rem;
+					}
+					&.selected {
+						text-decoration: underline;
+						text-decoration-thickness: 0.15rem;
+						&:hover {
+							text-decoration: none;
+						}
 					}
 				}
 			}

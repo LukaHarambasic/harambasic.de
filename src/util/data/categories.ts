@@ -84,7 +84,7 @@ export function getCategoryByDisplay(display: string): Category {
 	return {
 		display,
 		slug,
-		fullPath: `/categories/${slug}`,
+		fullPath: `/posts/?category=${slug}`,
 		postCount: 0,
 	};
 }
