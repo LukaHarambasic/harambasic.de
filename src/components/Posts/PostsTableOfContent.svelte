@@ -17,12 +17,12 @@
 
 <style lang="postcss" global>
 	.toc {
-		font-size: 1rem;
+		font-size: var(--font-m);
 		strong {
 			font-weight: 900;
-			font-size: 1.25rem;
+			font-size: var(--font-l);
 			line-height: 1.2;
-			font-family: 'Source Sans Pro', sans-serif;
+			font-family: var(--font-family);
 			letter-spacing: 0.2px;
 		}
 		ol {

@@ -138,8 +138,8 @@
 		gap: var(--xl);
 		width: 48rem;
 		font-weight: 600;
-		font-size: 1rem;
-		font-family: 'Source Sans Pro', sans-serif;
+		font-size: var(--font-m);
+		font-family: var(--font-family);
 		letter-spacing: 0.2px;
 	}
 	.categories {
@@ -166,7 +166,7 @@
 					background: none;
 					padding: 0;
 					color: var(--c-font-80);
-					font-size: 0.9rem;
+					font-size: var(--font-s);
 					&:hover {
 						cursor: pointer;
 						text-decoration: underline;
@@ -230,9 +230,9 @@
 					.title {
 						display: inline-block;
 						font-weight: 900;
-						font-size: 1rem;
+						font-size: var(--font-m);
 						line-height: 1.2;
-						font-family: 'Source Sans Pro', sans-serif;
+						font-family: var(--font-family);
 						letter-spacing: 0.2px;
 					}
 					.categories {
@@ -248,7 +248,7 @@
 							a {
 								color: var(--c-font-60);
 								font-weight: 400;
-								font-size: 0.9rem;
+								font-size: var(--font-s);
 								text-decoration: none;
 								&:hover {
 									text-decoration: underline;
@@ -260,7 +260,7 @@
 					.date {
 						display: inline-block;
 						margin: 0 0 var(--xs) 0;
-						font-size: 1rem;
+						font-size: var(--font-m);
 					}
 					svg {
 						size: 2rem;

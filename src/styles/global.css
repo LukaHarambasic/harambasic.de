@@ -23,12 +23,12 @@ body {
     select {
         flex: 1 0 auto;
         border: none;
-        font-size: 1rem;
+        font-size: var(--font-m);
         margin: 0;
         padding: 0;
         font-weight: 600;
-        font-size: 1rem;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-size: var(--font-m);
+        font-family: var(--font-family);
         letter-spacing: 0.2px;
         background: var(--c-surface);
         padding: var(--xs) 0 var(--xs) var(--s);
@@ -57,8 +57,8 @@ body {
         border: none;
         background: transparent;
         font-weight: 500;
-        font-size: 1rem;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-size: var(--font-m);
+        font-family: var(--font-family);
         letter-spacing: 0.2px;
         line-height: 1.2;
         border-right: 1px solid rgba(0, 0, 0, 0.05);
@@ -89,9 +89,9 @@ body {
   h2 {
     width: 30ch;
     font-weight: 900;
-    font-size: 1.414rem;
+    font-size: var(--font-xl);
     line-height: 1.2;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: var(--font-family);
     letter-spacing: 0.2px;
     margin: 4rem 0 1rem 0;
     &:first-of-type {
@@ -101,9 +101,9 @@ body {
   h3 {
     width: 30ch;
     font-weight: 900;
-    font-size: 1.1rem;
+    font-size: var(--font-l);
     line-height: 1.2;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: var(--font-family);
     letter-spacing: 0.2px;
     margin: 2rem 0 1rem 0;
   }

@@ -116,7 +116,7 @@ const {
 				a {
 					color: var(--c-font-60);
 					font-weight: 400;
-					font-size: 0.9rem;
+					font-size: var(--font-s);
 				}
 			}
 			.categories {
@@ -133,7 +133,7 @@ const {
 						a {
 							color: var(--c-font-60);
 							font-weight: 400;
-							font-size: 0.9rem;
+							font-size: var(--font-s);
 							&:hover {
 								text-decoration: none;
 							}
@@ -155,10 +155,13 @@ const {
 					margin: 0 0 1rem 0;
 					font-weight: 900;
 					font-size: 1.25rem;
-					font-family: 'Source Sans Pro', sans-serif;
+					font-family: var(--font-family);
 					letter-spacing: 0.2px;
 				}
 			}
+		}
+		.tldr {
+			grid-area: tldr;
 		}
 		.post {
 			grid-area: post;
@@ -172,9 +175,9 @@ const {
 				text-align: center;
 				a {
 					font-weight: 900;
-					font-size: 0.9rem;
+					font-size: var(--font-s);
 					line-height: 1.2;
-					font-family: 'Source Sans Pro', sans-serif;
+					font-family: var(--font-family);
 					letter-spacing: 0.2px;
 					text-decoration: none;
 					&:hover {
