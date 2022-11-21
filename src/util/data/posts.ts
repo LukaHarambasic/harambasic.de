@@ -114,7 +114,7 @@ function getNestedToc(list: MarkdownHeading[]): TocNode[] {
 		} else if (entry.depth === latestEntryDepth) {
 			latestParentChildren.push(entry)
 		} else {
-			console.error('Unexpected Toc behaviour')
+			console.error('Unexpected Toc behaviour', entry)
 		}
 		latestEntry = entry
 		return result
