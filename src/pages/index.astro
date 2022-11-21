@@ -8,6 +8,7 @@ import { rawToProjects } from '../util/data/projects';
 import { rawToLists } from '../util/data/lists';
 import { Icon } from 'astro-icon';
 import BaseToClipboardButton from '../components/Base/BaseToClipboardButton.svelte';
+import type { Post } from '../types/post';
 
 const title = 'Home';
 const description = 'TBD';
@@ -52,12 +53,6 @@ const randomLists = getRandomItems(lists, 2);
 					and link to CV. <em>Pinnace</em> holystone mizzenmast <a>lorem ipsum</a> quarter crow's nest
 					nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard.
 				</p>
-				<p>
-					Row scuttle parrel <a>lorem ipsum</a>provost Sail ho shrouds spirits boom mizzenmast
-					yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen <u
-						>halter furl</u
-					>.
-				</p>
 			</div>
 		</div>
 	</section>
@@ -73,7 +68,7 @@ const randomLists = getRandomItems(lists, 2);
 					randomProjects.map(({ title, slug, img }) => {
 						return (
 							<li>
-								<a class="card image " href={slug && ''}>
+								<a class="card image" href="/projects">
 									<Icon pack="ph" name="arrow-circle-right-bold" />
 									<img src={img} alt="TODO" width="8rem" />
 									<div class="content">
@@ -99,15 +94,15 @@ const randomLists = getRandomItems(lists, 2);
 			</h3>
 			<ul>
 				{
-					randomPosts.map(({ title, publishDate, slug, publishDateFormatted }) => {
+					randomPosts.map((post: Post) => {
 						return (
 							<li>
-								<a class="card text" href={slug && ''}>
+								<a class="card text" href={post.path}>
 									<Icon pack="ph" name="arrow-circle-right-bold" />
-									<time class="date dt-published" datetime={publishDate}>
-										{publishDateFormatted}
+									<time class="date dt-published" datetime={post.publishDate.toString()}>
+										{post.publishDateFormatted}
 									</time>
-									<strong>{title}</strong>
+									<strong>{post.title}</strong>
 								</a>
 							</li>
 						);

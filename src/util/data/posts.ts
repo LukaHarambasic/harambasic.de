@@ -1,7 +1,7 @@
 import type { MarkdownInstance } from 'astro';
 import { SortDirection, SortProperty } from '../../types/enums';
 import type { Post } from '../../types/post';
-import { formatDate } from '../helper';
+import { formatDate, throwLhError } from '../helper';
 import { rawToCategories } from './categories';
 
 // TODO test
@@ -10,6 +10,8 @@ export function rawToPosts(rawPosts: MarkdownInstance<Record<string, any>>[]): P
 		const { title, description, publishDate, tldr, discussion } =
 			rawProject.frontmatter as Post;
 		const rawCategories = rawProject.frontmatter.categories
+		const fileName = rawProject?.file?.split('/')?.pop()?.split('.')?.shift();
+		const path = `/posts/${fileName}`
 		return {
 			title,
 			description,
@@ -20,6 +22,8 @@ export function rawToPosts(rawPosts: MarkdownInstance<Record<string, any>>[]): P
 			discussion,
 			Content: rawProject.Content,
 			file: rawProject.file,
+			path,
+			permalink: `https://harambasic.de${path}`
 		};
 	});
 }

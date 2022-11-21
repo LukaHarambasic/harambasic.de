@@ -101,6 +101,9 @@ body {
   }
   p, ul, ol, img, blockquote {
     margin: 0 0 2rem 0;
+    &:last-of-type {
+      margin: 0;
+    }
   }
   a {
     color: var(--c-font);

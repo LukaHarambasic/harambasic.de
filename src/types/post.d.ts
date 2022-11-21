@@ -11,4 +11,5 @@ export interface Post {
 	discussion: string;
 	Content: AstroComponentFactory;
 	file: string;
+	path: string;
 }

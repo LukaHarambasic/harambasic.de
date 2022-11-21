@@ -18,6 +18,7 @@ export async function getStaticPaths() {
 const {
 	title,
 	publishDate,
+	publishDateFormatted,
 	tldr,
 	categories,
 	description,
@@ -38,15 +39,17 @@ const {
 	<article class="post h-entry">
 		<aside>
 			<time class="date dt-published" datetime={publishDate}>
-				<a href={permalink} class="u-url">{publishDate}</a>
+				<a href={permalink} class="u-url">{publishDateFormatted}</a>
 			</time>
 			<PostsCategories categories={categories} />
 		</aside>
 		<section class="post rich-text e-content">
-			<BaseCallout class="tldr p-summary" prefix="TL;DR">
+			<BaseCallout prefix="TL;DR">
 				<div set:html={tldr} />
 			</BaseCallout>
-			<Content />
+			<div class="content">
+				<Content />
+			</div>
 		</section>
 		<footer class="rich-text">
 			<div class="follow">
@@ -76,6 +79,9 @@ const {
 		}
 		.post {
 			grid-area: post;
+			.content {
+				margin: var(--l) 0 0 0;
+			}
 		}
 		footer {
 			grid-area: footer;

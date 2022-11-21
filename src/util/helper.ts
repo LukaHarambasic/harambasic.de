@@ -38,3 +38,8 @@ export function getRandomItems(items: any[], amount: number) {
 export function formatDate(date: Date) {
   return format(new Date(date), 'MM/dd/yyyy')
 }
+
+// TODO test
+export function throwLhError(message: string) {
+  throw new Error(`LH - ${message}`);
+}
