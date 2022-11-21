@@ -11,7 +11,7 @@ body {
 }
 
 .select-button {
-    border: 1px solid var(--c-surface-intense);
+    border: 1px solid var(--c-surface-accent);
     border-radius: var(--border-radius-small);
     background: var(--c-surface);
     display: flex;
@@ -41,7 +41,7 @@ body {
 }
 
 .segmented-buttons {
-    border: 1px solid var(--c-surface-intense);
+    border: 1px solid var(--c-surface-accent);
     border-radius: var(--border-radius-small);
     background: var(--c-surface);
     display: flex;
@@ -59,14 +59,14 @@ body {
         font-family: var(--font-family);
         letter-spacing: var(--font-letter-spacing-headline);
         line-height: 1.2;
-        border-right: 1px solid var(--c-surface-intense);
+        border-right: 1px solid var(--c-surface-accent);
         padding: var(--xs) var(--s);
         margin: 0;
         transition: var(--transition);
         text-decoration: none;
         color: var(--c-font);
         &:hover {
-            background: var(--c-surface-intense);
+            background: var(--c-surface-accent);
             cursor: pointer;
         }
     }
