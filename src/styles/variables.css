@@ -18,6 +18,8 @@
 	--font-m: 1rem;
 	--font-l: 1.2rem;
 	--font-xl: 1.44rem;
+	--font-letter-spacing-headline: 0.2px;
+	--underline-thickness: 0.15rem;
 
 	--transition: all 0.15s ease-in-out;
 	--border-radius: 1rem;
@@ -29,4 +31,8 @@
 	--l: 2rem;
 	--xl: 6rem;
 	--xxl: 16rem;
+
+	--layout-xl: 64rem;
+	--layout-l: 48rem;
+	--layout-m: 36rem;
 }

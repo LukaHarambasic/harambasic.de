@@ -44,7 +44,7 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 			.container {
 				display: grid;
 				grid-template-rows: auto 1fr auto;
-				grid-template-columns: 1fr 64rem 1fr;
+				grid-template-columns: 1fr var(--layout-xl) 1fr;
 				grid-template-areas: '. header .' '. main .' '. footer .';
 				row-gap: var(--xl);
 				padding: var(--xl) 0;
@@ -66,10 +66,10 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 					h1 {
 						width: 30ch;
 						font-weight: 900;
-						font-size: 1.414rem;
+						font-size: var(--font-xl);
 						line-height: 1.2;
 						font-family: var(--font-family);
-						letter-spacing: 0.2px;
+						letter-spacing: var(--font-letter-spacing-headline);
 						text-align: center;
 					}
 				}

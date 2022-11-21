@@ -29,12 +29,12 @@ body {
         font-weight: 600;
         font-size: var(--font-m);
         font-family: var(--font-family);
-        letter-spacing: 0.2px;
+        letter-spacing: var(--font-letter-spacing-headline);
         background: var(--c-surface);
         padding: var(--xs) 0 var(--xs) var(--s);
     }
     svg {
-        size: 1rem;
+        size: var(--m);
         margin: 0 var(--s) 0 0
     }
 }
@@ -59,7 +59,7 @@ body {
         font-weight: 500;
         font-size: var(--font-m);
         font-family: var(--font-family);
-        letter-spacing: 0.2px;
+        letter-spacing: var(--font-letter-spacing-headline);
         line-height: 1.2;
         border-right: 1px solid rgba(0, 0, 0, 0.05);
         padding: var(--xs) var(--s);
@@ -75,12 +75,12 @@ body {
 }
 
 :any-link {
-    text-decoration-thickness: 0.15rem;
+    text-decoration-thickness: var(--underline-thickness);
 }
 
 * {
 
-  scroll-margin: 4rem;
+  scroll-margin: var(--xl);
 }
 
 
@@ -92,10 +92,10 @@ body {
     font-size: var(--font-xl);
     line-height: 1.2;
     font-family: var(--font-family);
-    letter-spacing: 0.2px;
-    margin: 4rem 0 1rem 0;
+    letter-spacing: var(--font-letter-spacing-headline);
+    margin: var(--xl) 0 var(--m) 0;
     &:first-of-type {
-      margin: 0 0 1rem 0;
+      margin: 0 0 var(--m) 0;
     }
   }
   h3 {
@@ -104,19 +104,20 @@ body {
     font-size: var(--font-l);
     line-height: 1.2;
     font-family: var(--font-family);
-    letter-spacing: 0.2px;
-    margin: 2rem 0 1rem 0;
+    letter-spacing: var(--font-letter-spacing-headline);
+    margin: var(--l) 0 var(--m) 0;
   }
-  p, ul, ol, img, blockquote {
-    margin: 0 0 2rem 0;
-    &:last-of-type {
-      margin: 0;
+  /* If not done specific it overrides other margins */
+  >p, >ul, >ol, >blockquote {
+    margin-bottom:var(--l);
+    &:last-child {
+      margin-bottom: 0;
     }
   }
   a {
     color: var(--c-font);
     text-decoration: underline;
-    text-decoration-thickness: 0.15rem;
+    text-decoration-thickness: var(--underline-thickness);
     &:hover {
       text-decoration: none;
     }
@@ -125,13 +126,13 @@ body {
     font-weight: 600;
   }
   > ul, > ol {
-    margin: 2rem 0 2rem 2rem;
+    margin: var(--l) 0 var(--l) var(--l);
     width: 50ch;
     ul, ol {
-      margin: 0 0 0 2rem;
+      margin: 0 0 0 var(--l);
     }
     li {
-      margin: 0.5rem 0 0 0;
+      margin: var(--xs) 0 0 0;
     }
   }
   ul {

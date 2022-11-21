@@ -7,7 +7,7 @@
 </script>
 
 <div class="toc">
-	<strong>Table of Content</strong>
+	<strong>Table of Contents</strong>
 	<ol class="nodes">
 		{#each nodes as node}
 			<PostsTableOfContentNode {node} />
@@ -23,7 +23,7 @@
 			font-size: var(--font-l);
 			line-height: 1.2;
 			font-family: var(--font-family);
-			letter-spacing: 0.2px;
+			letter-spacing: var(--font-letter-spacing-headline);
 		}
 		ol {
 			margin: 0 0 0 var(--l);
@@ -35,7 +35,7 @@
 					text-decoration: none;
 					&:hover {
 						text-decoration: underline;
-						text-decoration-thickness: 0.15rem;
+						text-decoration-thickness: var(--underline-thickness);
 					}
 				}
 			}

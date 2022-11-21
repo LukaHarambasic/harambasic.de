@@ -41,7 +41,7 @@ const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
 			.container {
 				display: grid;
 				grid-template-rows: auto 1fr auto;
-				grid-template-columns: 1fr 64rem 1fr;
+				grid-template-columns: 1fr var(--layout-xl) 1fr;
 				grid-template-areas: '. header .' '. main .' '. footer .';
 				row-gap: var(--xxl);
 				padding: var(--xl) 0;

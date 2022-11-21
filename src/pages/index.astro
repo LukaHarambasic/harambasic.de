@@ -178,7 +178,7 @@ const randomLists = getRandomItems(lists, 2);
 		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--l);
-		width: 48rem;
+		width: var(--layout-l);
 		.inner {
 			display: flex;
 			flex-direction: row;
@@ -197,7 +197,7 @@ const randomLists = getRandomItems(lists, 2);
 					font-weight: 900;
 					font-size: var(--font-l);
 					font-family: var(--font-family);
-					letter-spacing: 0.2px;
+					letter-spacing: var(--font-letter-spacing-headline);
 				}
 				p {
 					font-weight: normal;
@@ -232,7 +232,7 @@ const randomLists = getRandomItems(lists, 2);
 				font-weight: 600;
 				font-size: var(--font-m);
 				font-family: var(--font-family);
-				letter-spacing: 0.2px;
+				letter-spacing: var(--font-letter-spacing-headline);
 				text-align: right;
 				span {
 					line-height: 1;
@@ -280,10 +280,10 @@ const randomLists = getRandomItems(lists, 2);
 							}
 						}
 						svg {
-							size: 2rem;
+							size: var(--l);
 							position: absolute;
 							top: var(--m);
-							right: -1rem;
+							right: calc((-1) * var(--m));
 							opacity: 0;
 							transition: var(--transition);
 							border: 4px solid var(--c-light);
@@ -321,7 +321,7 @@ const randomLists = getRandomItems(lists, 2);
 							font-size: var(--font-m);
 							line-height: 1.2;
 							font-family: var(--font-family);
-							letter-spacing: 0.2px;
+							letter-spacing: var(--font-letter-spacing-headline);
 						}
 						time {
 							display: inline-block;
@@ -344,7 +344,7 @@ const randomLists = getRandomItems(lists, 2);
 		align-content: stretch;
 		justify-content: flex-start;
 		align-items: stretch;
-		width: 36rem;
+		width: var(--layout-m);
 		.group {
 			display: flex;
 			flex-direction: row;
@@ -367,7 +367,7 @@ const randomLists = getRandomItems(lists, 2);
 					font-size: var(--font-m);
 					line-height: 1.2;
 					font-family: var(--font-family);
-					letter-spacing: 0.2px;
+					letter-spacing: var(--font-letter-spacing-headline);
 				}
 				small {
 					font-size: var(--font-s);
