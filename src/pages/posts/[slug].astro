@@ -1,6 +1,6 @@
 ---
 import BaseCallout from '../../components/Base/BaseCallout.astro';
-import PostsCategories from '../../components/Posts/PostsCategories.astro';
+import PostsTableOfContent from '../../components/Posts/PostsTableOfContent.svelte';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import type { Category } from '../../types/category';
 import type { Post } from '../../types/post';
@@ -27,6 +27,7 @@ const {
 	socialImg,
 	socialImgAlt,
 	Content,
+	toc,
 } = Astro.props.post;
 ---
 
@@ -58,17 +59,12 @@ const {
 					}
 				</ul>
 			</div>
+			<div class="read-time">3min</div>
+			<div class="discussion">Discuss on Mastodon</div>
 		</div>
 		<div class="toc">
 			<div class="content">
-				<strong>Table of Contents</strong>
-				<ol>
-					<li>Entry</li>
-					<li>Entry</li>
-					<li>Entry</li>
-					<li>Entry</li>
-					<li>Entry</li>
-				</ol>
+				<PostsTableOfContent nodes={toc} />
 			</div>
 		</div>
 		<div class="tldr">

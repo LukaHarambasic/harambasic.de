@@ -72,3 +72,5 @@
 * accessing .glob outside of .astro files
 * error messages are sometimes of > vite see issue
 * not easy to set up eslint and prettier, need to check how it is done in the astro repo even if it is part of the docu why not an add command like for other libaries
+* vs code auto complete always does the wrong stuff
+* recursive component in astro doesnt seem to work, siwtched to svelte

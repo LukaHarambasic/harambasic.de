@@ -1,5 +1,13 @@
+import { MarkdownHeading } from 'astro';
 import { AstroComponentFactory } from 'astro/dist/runtime/server/render';
 import type { Category } from './category';
+
+export interface TocNode {
+	depth: number;
+	slug: string;
+	text: string;
+	children: TocNode[] | null;
+}
 
 export interface Post {
 	title: string;
@@ -12,4 +20,6 @@ export interface Post {
 	Content: AstroComponentFactory;
 	file: string;
 	path: string;
+	permalink: string;
+	toc: TocNode[];
 }

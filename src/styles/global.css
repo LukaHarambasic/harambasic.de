@@ -78,6 +78,11 @@ body {
     text-decoration-thickness: 0.15rem;
 }
 
+* {
+
+  scroll-margin: 4rem;
+}
+
 
 .rich-text{
   line-height: 1.75;

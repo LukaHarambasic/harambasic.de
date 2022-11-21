@@ -1,16 +1,15 @@
-import type { MarkdownInstance } from 'astro';
+import type { MarkdownHeading, MarkdownInstance } from 'astro';
 import { SortDirection, SortProperty } from '../../types/enums';
-import type { Post } from '../../types/post';
-import { formatDate, throwLhError } from '../helper';
+import type { Post, TocNode } from '../../types/post';
+import { formatDate } from '../helper';
 import { rawToCategories } from './categories';
 
 // TODO test
 export function rawToPosts(rawPosts: MarkdownInstance<Record<string, any>>[]): Post[] {
-	return rawPosts.map((rawProject) => {
-		const { title, description, publishDate, tldr, discussion } =
-			rawProject.frontmatter as Post;
-		const rawCategories = rawProject.frontmatter.categories
-		const fileName = rawProject?.file?.split('/')?.pop()?.split('.')?.shift();
+	return rawPosts.map((rawPost): Post => {
+		const { title, description, publishDate, tldr, discussion } = rawPost.frontmatter as Post;
+		const rawCategories = rawPost.frontmatter.categories
+		const fileName = rawPost?.file?.split('/')?.pop()?.split('.')?.shift();
 		const path = `/posts/${fileName}`
 		return {
 			title,
@@ -20,10 +19,11 @@ export function rawToPosts(rawPosts: MarkdownInstance<Record<string, any>>[]): P
 			categories: rawToCategories(rawCategories),
 			tldr,
 			discussion,
-			Content: rawProject.Content,
-			file: rawProject.file,
+			Content: rawPost.Content,
+			file: rawPost.file,
 			path,
-			permalink: `https://harambasic.de${path}`
+			permalink: `https://harambasic.de${path}`,
+			toc: getNestedToc(rawPost.getHeadings()),
 		};
 	});
 }
@@ -84,4 +84,39 @@ export function filterPostsByCategory(posts: Post[], categorySlug: string): Post
 	return posts.filter(post => {
 		return post.categories.some(category => category.slug === categorySlug)
 	})
+}
+
+// TODO test
+// TODO can this be rewritten in a nicer way?
+// provided by https://codepen.io/Frnak/pen/mdmEjyG?editors=0011
+function getNestedToc(list: MarkdownHeading[]): TocNode[] {
+	let latestEntry: TocNode | null
+	let latestParent: TocNode | null
+	const listCopy = JSON.parse(JSON.stringify(list))
+	if (listCopy.length <= 1) return listCopy
+	const entryDepth = list.reduce((acc, item) => {
+		return item.depth < acc ? item.depth : acc
+	}, Number.POSITIVE_INFINITY)
+	return listCopy.reduce((result, entry) => {
+		if (latestEntry && !latestEntry.children) {
+			latestEntry.children = []
+		}
+		let latestEntryDepth = latestEntry?.depth || 0
+		let latestEntryChildren = latestEntry?.children || []
+		let latestParentChildren = latestParent?.children || []
+		if (entry.depth === entryDepth) {
+			entry.children = []
+			result.push(entry)
+			latestParent = null
+		} else if (entry.depth === latestEntryDepth + 1) {
+			latestEntryChildren.push(entry)
+			latestParent = latestEntry
+		} else if (entry.depth === latestEntryDepth) {
+			latestParentChildren.push(entry)
+		} else {
+			console.error('Unexpected Toc behaviour')
+		}
+		latestEntry = entry
+		return result
+	}, [])
 }
