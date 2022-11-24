@@ -2,16 +2,20 @@
 	import { onMount } from 'svelte';
 	import { SortDirection, SortProperty } from '../../types/enums';
 	import type { List, ListEntry } from '../../types/list';
-	import { filterPostsByCategory, sortPosts } from '../../util/data/posts';
-	import { getPath } from '../../util/helper';
-	import { filterEntriesByList, getAllEntries } from '../../util/data/lists';
+	import {
+		filterEntriesByList,
+		getAllEntries,
+		sortEntries,
+		sortLists,
+	} from '../../util/data/lists';
 
 	let selectedList: string = 'all';
 
 	export let lists: List[];
-	let sortedLists: List[] = lists; // sortLists(lists, SortProperty.Date, SortDirection.Asc);
+	let sortedLists: List[] = sortLists(lists, SortProperty.Title, SortDirection.Desc);
 	let entries: ListEntry[] = getAllEntries(sortedLists);
-	$: filteredListEntries = filterEntriesByList(entries, selectedList); // filterPostsByCategory(sortedLists, selectedList);
+	let sortedEntries: ListEntry[] = sortEntries(entries, SortProperty.Title, SortDirection.Desc);
+	$: filteredListEntries = filterEntriesByList(sortedEntries, selectedList); // filterPostsByCategory(sortedLists, selectedList);
 
 	onMount(() => {
 		selectedList = new URLSearchParams(window.location.search).get('list') || 'all';
