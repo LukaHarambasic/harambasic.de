@@ -7,6 +7,7 @@ export interface ListEntry {
 
 export interface List {
   title: string;
+  slug: string;
   description: string;
   entries: ListEntry[];
   file: string;

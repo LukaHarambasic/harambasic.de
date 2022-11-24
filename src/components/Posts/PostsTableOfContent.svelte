@@ -3,7 +3,6 @@
 	import PostsTableOfContentNode from './PostsTableOfContentNode.svelte';
 
 	export let nodes: TocNode[];
-	console.log(nodes);
 </script>
 
 <div class="toc">

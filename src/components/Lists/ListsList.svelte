@@ -1,114 +1,131 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { Category } from '../../types/category';
 	import { SortDirection, SortProperty } from '../../types/enums';
-	import type { Post } from '../../types/post';
+	import type { List, ListEntry } from '../../types/list';
 	import { filterPostsByCategory, sortPosts } from '../../util/data/posts';
 	import { getPath } from '../../util/helper';
 
-	export let categories: Category[];
-	let selectedCategory: string = 'all';
+	let selectedList: string = 'all';
 
-	export let posts: Post[];
-	let sortedPosts: Post[] = sortPosts(posts, SortProperty.Date, SortDirection.Asc);
-	$: filteredPosts = filterPostsByCategory(sortedPosts, selectedCategory);
+	export let lists: List[];
+	let sortedLists: List[] = lists; // sortLists(lists, SortProperty.Date, SortDirection.Asc);
+	$: filteredListEntries = sortedLists[0].entries as ListEntry[]; // filterPostsByCategory(sortedLists, selectedList);
 
 	onMount(() => {
-		selectedCategory = new URLSearchParams(window.location.search).get('category') || 'all';
+		selectedList = new URLSearchParams(window.location.search).get('list') || 'all';
 	});
 
-	function onSelectCategory(categorySlug: string) {
-		selectedCategory = categorySlug;
+	function onSelectList(listSLug: string) {
+		selectedList = listSLug;
 		const url = new URL(window.location.toString());
-		url.searchParams.set('category', selectedCategory);
+		url.searchParams.set('list', selectedList);
 		window.history.pushState({}, '', url.href);
 	}
 </script>
 
 <section>
-	<aside class="categories">
+	<aside class="lists">
 		<h2>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
+				width="192"
+				height="192"
 				fill="#000000"
 				viewBox="0 0 256 256"
-				><rect width="32" height="32" fill="none" /><path
-					d="M42.1,48H213.9a8,8,0,0,1,5.9,13.4l-65.7,72.3a7.8,7.8,0,0,0-2.1,5.4v56.6a7.9,7.9,0,0,1-3.6,6.7l-32,21.3a8,8,0,0,1-12.4-6.6v-78a7.8,7.8,0,0,0-2.1-5.4L36.2,61.4A8,8,0,0,1,42.1,48Z"
+				><rect width="256" height="256" fill="none" /><line
+					x1="96"
+					y1="156"
+					x2="160"
+					y2="156"
+					fill="none"
+					stroke="#000000"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="24"
+				/><line
+					x1="96"
+					y1="116"
+					x2="160"
+					y2="116"
+					fill="none"
+					stroke="#000000"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="24"
+				/><path
+					d="M160,40h40a8,8,0,0,1,8,8V216a8,8,0,0,1-8,8H56a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H96"
+					fill="none"
+					stroke="#000000"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="24"
+				/><path
+					d="M88,72V64a40,40,0,0,1,80,0v8Z"
 					fill="none"
 					stroke="#000000"
 					stroke-linecap="round"
 					stroke-linejoin="round"
 					stroke-width="24"
 				/></svg
-			> Categories
+			> Lists
 		</h2>
 		<ol>
 			<li>
-				<button
-					class:selected={selectedCategory === 'all'}
-					on:click={() => onSelectCategory('all')}
-				>
-					All ({posts.length})</button
+				<button class:selected={selectedList === 'all'} on:click={() => onSelectList('all')}>
+					All ({lists.length})</button
 				>
 			</li>
-			{#each categories as category}
+			{#each sortedLists as list}
 				<li>
 					<button
-						class:selected={selectedCategory === category.slug}
-						on:click={() => onSelectCategory(category.slug)}
+						class:selected={selectedList === list.slug}
+						on:click={() => onSelectList(list.slug)}
 					>
-						{category.display} ({category.postCount})
+						{list.title} ({list.entries.length})
 					</button>
 				</li>
 			{/each}
 		</ol>
 	</aside>
-	<div class="posts">
+	<div class="entries">
 		<ul>
-			{#each filteredPosts as post}
+			{#each filteredListEntries as entry}
 				<li class="h-feed">
-					<a href={getPath('posts', post)}>
-						<div class="column">
-							<strong class="title">
-								{post.title}
-							</strong>
-							<ul class="categories">
-								{#each post.categories as category}
-									<li>
-										<a href={category.fullPath} class="link">
-											{category.display}
-										</a>
-									</li>
-								{/each}
-							</ul>
+					<a href={entry.url}>
+						<div class="logo">
+							<img src={entry.logo} alt={entry.title} width="64px" />
 						</div>
-						<time class="date dt-published" datetime={post.publishDate.toString()}>
-							{post.publishDateFormatted}
-						</time>
-						<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 32 32"
-							><rect width="32" height="32" fill="none" /><circle
-								cx="128"
-								cy="128"
-								r="96"
-								fill="none"
-								stroke="#000000"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="24"
-							/><polyline
-								points="134.1 161.9 168 128 134.1 94.1"
+						<div class="content">
+							<strong class="title">
+								{entry.title}
+							</strong>
+							<p>{entry.description}</p>
+						</div>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="192"
+							height="192"
+							fill="#000000"
+							viewBox="0 0 256 256"
+							><rect width="256" height="256" fill="none" /><polyline
+								points="216 100 216 40 156 40"
 								fill="none"
 								stroke="#000000"
 								stroke-linecap="round"
 								stroke-linejoin="round"
 								stroke-width="24"
 							/><line
-								x1="88"
-								y1="128"
-								x2="168"
-								y2="128"
+								x1="144"
+								y1="112"
+								x2="216"
+								y2="40"
+								fill="none"
+								stroke="#000000"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="24"
+							/><path
+								d="M184,144v64a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8h64"
 								fill="none"
 								stroke="#000000"
 								stroke-linecap="round"
@@ -124,10 +141,6 @@
 </section>
 
 <style lang="postcss">
-	h1 {
-		width: 100%;
-		text-align: center;
-	}
 	section {
 		display: flex;
 		flex-direction: row;
@@ -136,14 +149,13 @@
 		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--xl);
-		/* TODO align  */
-		width: var(--layout-l);
+		/* width: var(--layout-l); */
 		font-weight: 600;
 		font-size: var(--font-m);
 		font-family: var(--font-family);
 		letter-spacing: var(--font-letter-spacing-headline);
 	}
-	.categories {
+	.lists {
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
@@ -153,6 +165,10 @@
 		gap: var(--m);
 		/* TODO align */
 		width: 12rem;
+		svg {
+			fill: white;
+			size: 2rem;
+		}
 		ol {
 			display: flex;
 			flex-direction: column;
@@ -185,7 +201,7 @@
 			}
 		}
 	}
-	.posts {
+	.entries {
 		width: 100%;
 		> ul {
 			display: flex;
@@ -203,14 +219,13 @@
 					position: relative;
 					flex-direction: row;
 					flex-wrap: nowrap;
-					align-content: stretch;
-					justify-content: space-between;
-					align-items: flex-start;
-					gap: var(--l);
+					align-content: flex-start;
+					justify-content: flex-start;
+					align-items: stretch;
 					transition: var(--transition);
 					border-radius: var(--border-radius);
 					background: var(--c-surface);
-					padding: var(--l);
+					overflow: hidden;
 					color: var(--c-font);
 					text-decoration: none;
 					&:hover {
@@ -220,7 +235,21 @@
 							opacity: 1;
 						}
 					}
-					.column {
+					.logo {
+						flex-base: 16rem;
+						display: flex;
+						flex-shrink: 1;
+						flex-direction: column;
+						flex-wrap: nowrap;
+						align-content: center;
+						justify-content: center;
+						background: var(--c-font-accent-super-light);
+						padding: var(--l);
+						img {
+							height: 4rem;
+						}
+					}
+					.content {
 						display: flex;
 						flex-direction: column;
 						flex-wrap: nowrap;
@@ -228,43 +257,17 @@
 						justify-content: flex-start;
 						align-items: stretch;
 						gap: var(--xs);
-					}
-					.title {
-						display: inline-block;
-						font-weight: 900;
-						font-size: var(--font-m);
-						line-height: 1.2;
-						font-family: var(--font-family);
-						letter-spacing: var(--font-letter-spacing-headline);
-					}
-					.categories {
-						display: flex;
-						position: relative;
-						flex-direction: row;
-						flex-wrap: nowrap;
-						align-content: stretch;
-						justify-content: flex-start;
-						align-items: flex-start;
-						gap: var(--xs);
-						li {
-							a {
-								color: var(--c-font-accent-dark);
-								font-weight: 400;
-								font-size: var(--font-s);
-								text-decoration: none;
-								&:hover {
-									text-decoration: underline;
-									text-decoration-thickness: var(--underline-thickness);
-								}
-							}
+						padding: var(--l);
+						.title {
+							display: inline-block;
+							font-weight: 900;
+							font-size: var(--font-m);
+							line-height: 1.2;
+							font-family: var(--font-family);
+							letter-spacing: var(--font-letter-spacing-headline);
 						}
 					}
-					.date {
-						display: inline-block;
-						margin: 0 0 var(--xs) 0;
-						font-size: var(--font-m);
-					}
-					svg {
+					> svg {
 						size: var(--l);
 						position: absolute;
 						top: var(--m);
