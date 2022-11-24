@@ -124,10 +124,6 @@
 </section>
 
 <style lang="postcss">
-	h1 {
-		width: 100%;
-		text-align: center;
-	}
 	section {
 		display: flex;
 		flex-direction: row;
@@ -136,49 +132,47 @@
 		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--xl);
-		/* TODO align  */
-		width: var(--layout-l);
 		font-weight: 600;
 		font-size: var(--font-m);
 		font-family: var(--font-family);
 		letter-spacing: var(--font-letter-spacing-headline);
-	}
-	.categories {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: nowrap;
-		align-content: stretch;
-		justify-content: flex-start;
-		align-items: stretch;
-		gap: var(--m);
-		/* TODO align */
-		width: 12rem;
-		ol {
+		> .categories {
 			display: flex;
 			flex-direction: column;
 			flex-wrap: nowrap;
 			align-content: stretch;
 			justify-content: flex-start;
 			align-items: stretch;
-			gap: var(--s);
-			li {
-				button {
-					margin: 0;
-					border: none;
-					background: none;
-					padding: 0;
-					color: var(--c-font-accent-dark);
-					font-size: var(--font-s);
-					&:hover {
-						cursor: pointer;
-						text-decoration: underline;
-						text-decoration-thickness: var(--underline-thickness);
-					}
-					&.selected {
-						text-decoration: underline;
-						text-decoration-thickness: var(--underline-thickness);
+			gap: var(--m);
+			/* TODO align */
+			width: 12rem;
+			ol {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+				align-content: stretch;
+				justify-content: flex-start;
+				align-items: stretch;
+				gap: var(--s);
+				li {
+					button {
+						margin: 0;
+						border: none;
+						background: none;
+						padding: 0;
+						color: var(--c-font-accent-dark);
+						font-size: var(--font-s);
 						&:hover {
-							text-decoration: none;
+							cursor: pointer;
+							text-decoration: underline;
+							text-decoration-thickness: var(--underline-thickness);
+						}
+						&.selected {
+							text-decoration: underline;
+							text-decoration-thickness: var(--underline-thickness);
+							&:hover {
+								text-decoration: none;
+							}
 						}
 					}
 				}
@@ -195,9 +189,7 @@
 			justify-content: flex-start;
 			align-items: stretch;
 			gap: var(--l);
-			width: 100%;
 			> li {
-				width: 100%;
 				> a {
 					display: flex;
 					position: relative;
@@ -238,8 +230,9 @@
 						letter-spacing: var(--font-letter-spacing-headline);
 					}
 					.categories {
+						flex-base: 100%;
 						display: flex;
-						position: relative;
+						flex-grow: 1;
 						flex-direction: row;
 						flex-wrap: nowrap;
 						align-content: stretch;
