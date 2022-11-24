@@ -3,6 +3,7 @@ export interface ListEntry {
   description: string;
   logo: string;
   url: string;
+  parentSlug: string;
 }
 
 export interface List {
