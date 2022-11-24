@@ -4,12 +4,13 @@
 	import type { List, ListEntry } from '../../types/list';
 	import { filterPostsByCategory, sortPosts } from '../../util/data/posts';
 	import { getPath } from '../../util/helper';
+	import { getAllEntries } from '../../util/data/lists';
 
 	let selectedList: string = 'all';
 
 	export let lists: List[];
 	let sortedLists: List[] = lists; // sortLists(lists, SortProperty.Date, SortDirection.Asc);
-	$: filteredListEntries = sortedLists[0].entries as ListEntry[]; // filterPostsByCategory(sortedLists, selectedList);
+	$: filteredListEntries = getAllEntries(sortedLists); // filterPostsByCategory(sortedLists, selectedList);
 
 	onMount(() => {
 		selectedList = new URLSearchParams(window.location.search).get('list') || 'all';
