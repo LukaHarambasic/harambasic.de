@@ -1,6 +1,6 @@
 ---
 title: Almost free setup for NGOs, startups & side projects
-description: "I want to inspire you how you can set up a professional working environment for your next idea with almost no money."
+description: 'I want to inspire you how you can set up a professional working environment for your next idea with almost no money.'
 publishDate: 2020-12-09
 categories:
   - New Work
@@ -105,7 +105,7 @@ We decided to use it for our tasks with a simple Kanban board as well for some k
 
 > Tools: Nuxt.js, Netlify, Prismic, GitHub, Netcup, Figma
 
->  The next paragraphs will be very technical, if you aren't interested in this I still would recommend getting your hands on a domain, even if you aren't hosting a website. It's just ten times more professional if you send an email from luka@active-ambassadors.org instead of dungeonmaster99@gmail.com.
+> The next paragraphs will be very technical, if you aren't interested in this I still would recommend getting your hands on a domain, even if you aren't hosting a website. It's just ten times more professional if you send an email from luka@active-ambassadors.org instead of dungeonmaster99@gmail.com.
 
 I built the website with [Nuxt.js,](https://nuxtjs.org/) a framework on top of [Vue.js](https://vuejs.org/). So this is only something for you if you know how to do web development or if you know someone who is able to do it. The website is publicly accessible via [GitHub](https://github.com/) the [version control system](https://en.wikipedia.org/wiki/Version_control) of my choice. This is linked to [Netlify](https://www.netlify.com/) where each change is directly deployed without any manual download or build process involved. During the automatic build process, the required data from [Prismic](https://prismic.io/) our headless CMS, and AirTable are requested. Also a change to the content in Prismic would trigger a new build. I would like to have something similar for AirTable as all the numbers on our transparency page are consumed from our sheets. Because this isn't possible I trigger a new build every 24 hours via IFTTT as we don't rely on instant updates.
 

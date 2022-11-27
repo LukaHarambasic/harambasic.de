@@ -3,16 +3,10 @@
   "compilerOptions": {
     // Needed for TypeScript intellisense in the template inside Vue files
     "jsx": "preserve",
-    "types": [
-      "astro/client"
-    ],
+    "types": ["astro/client"],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "src/types/svg.d.ts"
-  ]
+  "include": ["src/types/svg.d.ts"]
 }
