@@ -1,4 +1,3 @@
-import { MarkdownHeading } from 'astro';
 import { AstroComponentFactory } from 'astro/dist/runtime/server/render';
 import type { Category } from './category';
 

@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 	const rawPosts = await Astro.glob('../../content/posts/*.md');
 	const posts = rawToPosts(rawPosts);
 	return posts.map((post: Post) => ({
-		params: { slug: getFileName(post) },
+		params: { slug: getFileName(post.file) },
 		props: { post },
 	}));
 }

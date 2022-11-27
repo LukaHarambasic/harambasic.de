@@ -69,7 +69,7 @@
 		<ul>
 			{#each filteredPosts as post}
 				<li class="h-feed">
-					<a href={getPath('posts', post)}>
+					<a href={getPath('posts', post.file)}>
 						<div class="column">
 							<strong class="title">
 								{post.title}
