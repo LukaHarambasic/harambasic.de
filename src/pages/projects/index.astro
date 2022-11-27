@@ -1,18 +1,18 @@
 ---
-import { Picture } from '@astrojs/image/components';
-import BaseFootnote from '@/components/Base/BaseFootnote.astro';
-import BaseMetaList from '@/components/Base/BaseMetaList.astro';
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { rawToProjects } from '@/util/data/projects';
+import { Picture } from '@astrojs/image/components'
+import BaseFootnote from '@/components/Base/BaseFootnote.astro'
+import BaseMetaList from '@/components/Base/BaseMetaList.astro'
+import DefaultLayout from '@/layouts/DefaultLayout.astro'
+import { rawToProjects } from '@/util/data/projects'
 
-const title = 'Projects';
-const description = 'TBD';
-const permalink = 'TBD';
-const socialImg = 'TBD';
-const socialImgAlt = 'TBD';
+const title = 'Projects'
+const description = 'TBD'
+const permalink = 'TBD'
+const socialImg = 'TBD'
+const socialImgAlt = 'TBD'
 
-const rawProjects = await Astro.glob('../../content/projects/*.md');
-const projects = rawToProjects(rawProjects);
+const rawProjects = await Astro.glob('../../content/projects/*.md')
+const projects = rawToProjects(rawProjects)
 ---
 
 <DefaultLayout
@@ -52,12 +52,12 @@ const projects = rawToProjects(rawProjects);
 														{link.display}
 													</a>
 												</li>
-											);
+											)
 										})}
 									</ul>
 								</div>
 							</li>
-						);
+						)
 					})
 				}
 			</ul>

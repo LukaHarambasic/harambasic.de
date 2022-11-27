@@ -1,12 +1,12 @@
 // Heads up: This file should be renamed to `.cjs`, however if we did that, changesets wouldn't be able to load it
 module.exports = {
   printWidth: 100,
-  semi: true,
+  semi: false,
   singleQuote: true,
   tabWidth: 2,
   trailingComma: 'es5',
   useTabs: true,
-  plugins: ['./node_modules/prettier-plugin-astro'],
+  plugins: ['./node_modules/prettier-plugin-astro', './node_modules/prettier-plugin-svelte'],
   overrides: [
     {
       files: ['.*', '*.json', '*.md', '*.toml', '*.yml'],
@@ -20,5 +20,11 @@ module.exports = {
         parser: 'astro',
       },
     },
+    {
+      files: ['**/*.svelte'],
+      options: {
+        parser: 'svelte',
+      },
+    },
   ],
-};
+}

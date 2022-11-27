@@ -9,3 +9,6 @@
 # Files
 README.md
 package-lock.json
+
+# Test coverage
+coverage/

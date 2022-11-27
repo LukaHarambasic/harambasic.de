@@ -1,16 +1,16 @@
 ---
-import ListsList from '@/components/Lists/ListsList.svelte';
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { rawToLists } from '@/util/data/lists';
+import ListsList from '@/components/Lists/ListsList.svelte'
+import DefaultLayout from '@/layouts/DefaultLayout.astro'
+import { rawToLists } from '@/util/data/lists'
 
-const title = 'Lists';
-const description = 'TBD';
-const permalink = 'TBD';
-const socialImg = 'TBD';
-const socialImgAlt = 'TBD';
+const title = 'Lists'
+const description = 'TBD'
+const permalink = 'TBD'
+const socialImg = 'TBD'
+const socialImgAlt = 'TBD'
 
-const rawLists = await Astro.glob('../../content/lists/*.md');
-const lists = rawToLists(rawLists);
+const rawLists = await Astro.glob('../../content/lists/*.md')
+const lists = rawToLists(rawLists)
 ---
 
 <DefaultLayout

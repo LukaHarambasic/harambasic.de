@@ -1,21 +1,21 @@
 ---
-import '@/styles/reset.css';
-import '@/styles/variables.css';
-import '@/styles/global.css';
-import LayoutHead from '@/components/Layout/LayoutHead.astro';
-import LayoutHeader from '@/components/Layout/LayoutHeader.astro';
-import LayoutFooter from '@/components/Layout/LayoutFooter.astro';
-import LayoutSkipToContent from '@/components/Layout/LayoutSkipToContent.astro';
+import '@/styles/reset.css'
+import '@/styles/variables.css'
+import '@/styles/global.css'
+import LayoutHead from '@/components/Layout/LayoutHead.astro'
+import LayoutHeader from '@/components/Layout/LayoutHeader.astro'
+import LayoutFooter from '@/components/Layout/LayoutFooter.astro'
+import LayoutSkipToContent from '@/components/Layout/LayoutSkipToContent.astro'
 
 interface Props {
-	title: string;
-	description: string;
-	permalink: string;
-	socialImg: string;
-	socialImgAlt: string;
+	title: string
+	description: string
+	permalink: string
+	socialImg: string
+	socialImgAlt: string
 }
 
-const { title, description, permalink, socialImg, socialImgAlt } = Astro.props;
+const { title, description, permalink, socialImg, socialImgAlt } = Astro.props
 ---
 
 <html lang="en">

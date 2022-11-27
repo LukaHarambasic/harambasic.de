@@ -1,27 +1,27 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import type { Category } from '@/types/category';
-	import { SortDirection, SortProperty } from '@/types/enums';
-	import type { Post } from '@/types/post';
-	import { filterPostsByCategory, sortPosts } from '@/util/data/posts';
-	import { getPath } from '@/util/helper';
+	import { onMount } from 'svelte'
+	import type { Category } from '@/types/category'
+	import { SortDirection, SortProperty } from '@/types/enums'
+	import type { Post } from '@/types/post'
+	import { filterPostsByCategory, sortPosts } from '@/util/data/posts'
+	import { getPath } from '@/util/helper'
 
-	export let categories: Category[];
-	let selectedCategory: string = 'all';
+	export let categories: Category[]
+	let selectedCategory: string = 'all'
 
-	export let posts: Post[];
-	let sortedPosts: Post[] = sortPosts(posts, SortProperty.Date, SortDirection.Asc);
-	$: filteredPosts = filterPostsByCategory(sortedPosts, selectedCategory);
+	export let posts: Post[]
+	let sortedPosts: Post[] = sortPosts(posts, SortProperty.Date, SortDirection.Asc)
+	$: filteredPosts = filterPostsByCategory(sortedPosts, selectedCategory)
 
 	onMount(() => {
-		selectedCategory = new URLSearchParams(window.location.search).get('category') || 'all';
-	});
+		selectedCategory = new URLSearchParams(window.location.search).get('category') || 'all'
+	})
 
 	function onSelectCategory(categorySlug: string) {
-		selectedCategory = categorySlug;
-		const url = new URL(window.location.toString());
-		url.searchParams.set('category', selectedCategory);
-		window.history.pushState({}, '', url.href);
+		selectedCategory = categorySlug
+		const url = new URL(window.location.toString())
+		url.searchParams.set('category', selectedCategory)
+		window.history.pushState({}, '', url.href)
 	}
 </script>
 
