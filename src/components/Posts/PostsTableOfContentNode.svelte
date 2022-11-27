@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { TocNode } from '../../types/post';
+	import type { TocNode } from '@/types/post';
 
 	export let node: TocNode;
 	const anchor = `#${node.slug}`;

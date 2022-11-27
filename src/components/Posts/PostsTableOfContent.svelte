@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { TocNode } from '../../types/post';
+	import type { TocNode } from '@/types/post';
 	import PostsTableOfContentNode from './PostsTableOfContentNode.svelte';
 
 	export let nodes: TocNode[];

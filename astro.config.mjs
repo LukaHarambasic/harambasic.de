@@ -10,6 +10,13 @@ import svelte from "@astrojs/svelte";
 export default defineConfig({
   // Enable Vue to support Vue components.
   integrations: [, image(), svelte()],
+  vite: {
+    resolve: {
+      alias: {
+        "@": "/src",
+      },
+    },
+  },
   markdown: {
     rehypePlugins: [
       'rehype-slug',

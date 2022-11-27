@@ -2,11 +2,11 @@
 // TODO the posts loop should be a vue component
 // pages are only connecting the data layer using functions in util to pass them on to the components handling the ui
 // okay and maybe they do the routing, but no logic, no styling
-import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import PostsList from '../../components/Posts/PostsList.svelte';
-import { getCategories } from '../../util/data/categories';
-import { rawToPosts } from '../../util/data/posts';
-import BaseFootnote from '../../components/Base/BaseFootnote.astro';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import PostsList from '@/components/Posts/PostsList.svelte';
+import { getCategories } from '@/util/data/categories';
+import { rawToPosts } from '@/util/data/posts';
+import BaseFootnote from '@/components/Base/BaseFootnote.astro';
 
 const title = 'Posts';
 const description = 'TBD';
