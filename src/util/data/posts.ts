@@ -1,4 +1,5 @@
 import type { MarkdownHeading, MarkdownInstance } from 'astro'
+
 import { SortDirection, SortProperty } from '../../types/enums'
 import type { Post, TocNode } from '../../types/post'
 import { formatDate } from '../helper'

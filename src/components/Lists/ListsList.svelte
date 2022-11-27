@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import { SortDirection, SortProperty } from '@/types/enums'
 	import type { List, ListEntry } from '@/types/list'
 	import { filterEntriesByList, getAllEntries, sortEntries, sortLists } from '@/util/data/lists'
+	import { onMount } from 'svelte'
 
 	let selectedList: string = 'all'
 

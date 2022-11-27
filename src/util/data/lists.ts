@@ -1,4 +1,5 @@
 import { MarkdownInstance } from 'astro'
+
 import { SortDirection, SortProperty } from '../../types/enums'
 import type { List, ListEntry } from '../../types/list'
 import { getSlug } from '../helper'
