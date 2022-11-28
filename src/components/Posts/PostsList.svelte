@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import type { Category } from '@/types/category'
-	import { SortDirection, SortProperty } from '@/types/enums'
-	import type { Post } from '@/types/post'
-	import { filterPostsByCategory, sortPosts } from '@/util/data/posts'
-	import { getPath } from '@/util/helper'
+	import type { Category } from '../../types/category'
+	import { SortDirection, SortProperty } from '../../types/enums'
+	import type { Post } from '../../types/post'
+	import { filterPostsByCategory, sortPosts } from '../../util/data/posts'
+	import { getPath } from '../../util/helper'
 
 	export let categories: Category[]
 	let selectedCategory: string = 'all'
