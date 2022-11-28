@@ -6,9 +6,6 @@ module.exports = {
   tabWidth: 2,
   trailingComma: 'es5',
   useTabs: true,
-  importOrder: ['^components/(.*)$', '^[./]'],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true,
   plugins: ['./node_modules/prettier-plugin-astro', './node_modules/prettier-plugin-svelte'],
   overrides: [
     {

@@ -1,11 +1,11 @@
 ---
-import type { Category } from '@/types/category';
-import { rawToCategories } from '@/util/data/categories';
+import type { Category } from '../../types/category'
+import { rawToCategories } from '../../util/data/categories'
 
 interface Props {
-	categories: Category[];
+	categories: Category[]
 }
-const categories = Astro.props.categories;
+const categories = Astro.props.categories
 ---
 
 <div class="categories">
@@ -18,7 +18,7 @@ const categories = Astro.props.categories;
 							{display}
 						</a>
 					</li>
-				);
+				)
 			})
 		}
 	</ul>

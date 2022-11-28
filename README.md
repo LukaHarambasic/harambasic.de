@@ -75,4 +75,4 @@
 * vs code auto complete always does the wrong stuff
 * recursive component in astro doesnt seem to work, siwtched to svelte
 * server sometimes breaks when doing a global search and replace
-* cant reuse some packages like astro-image in .svelte
+* cant reuse some packages like astro-image in .svelte or astro-icon
