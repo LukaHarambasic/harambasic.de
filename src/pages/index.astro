@@ -1,5 +1,4 @@
 ---
-import profileImage from '../assets/images/profile.jpeg'
 import BaseToClipboardButton from '../components/Base/BaseToClipboardButton.svelte'
 import HomeLayout from '../layouts/HomeLayout.astro'
 import type { Post } from '../types/post'
@@ -7,7 +6,6 @@ import { rawToLists } from '../util/data/lists'
 import { rawToPosts } from '../util/data/posts'
 import { rawToProjects } from '../util/data/projects'
 import { getRandomItems } from '../util/helper'
-import { Picture } from '@astrojs/image/components'
 import { Icon } from 'astro-icon'
 
 const title = 'Home'
@@ -38,14 +36,7 @@ const randomLists = getRandomItems(lists, 2)
 >
 	<section class="heyho">
 		<div class="inner">
-			<Picture
-				src={profileImage}
-				widths={[200, 400]}
-				sizes="(max-width: 400px) 100vw, 400px"
-				aspectRatio="1:1"
-				alt="Picture of Luka Harambasic"
-				class="profile"
-			/>
+			<img src="../images/profile.jpeg" alt="Picture of Luka Harambasic" class="profile" />
 			<div class="content rich-text">
 				<h2>Heyho, I'm Luka!</h2>
 				<p>
