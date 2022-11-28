@@ -1,9 +1,9 @@
-import { expect, test } from 'vitest'
+import { expect, test } from 'vitest';
 
-import type { Post } from '../../types/post'
-import { formatDate, getFileName, getPath, getRandomItems, getSlug } from '../../util/helper'
+import type { Post } from '../../types/post';
+import { formatDate, getFileName, getPath, getRandomItems, getSlug } from '../../util/helper';
 
-type PostTest = Omit<Post, 'Content'>
+type PostTest = Omit<Post, 'Content'>;
 const post: PostTest = {
 	title: 'Quickly copying paths to the terminal on macOS',
 	description: 'Quickly copying paths to the terminal on macOS',
@@ -38,15 +38,15 @@ const post: PostTest = {
 		{ depth: 2, slug: 'intro', text: 'Intro', children: [] },
 		{ depth: 2, slug: 'how-to', text: 'How-To', children: [] },
 	],
-}
+};
 
 test('getFileName - extract slug for page', () => {
-	expect(getFileName(post.file)).toBe('quickly-copying-paths-to-the-terminal-on-macos')
-})
+	expect(getFileName(post.file)).toBe('quickly-copying-paths-to-the-terminal-on-macos');
+});
 
 test('getPath - generate relative path', () => {
-	expect(getPath('posts', post.file)).toBe('/posts/quickly-copying-paths-to-the-terminal-on-macos')
-})
+	expect(getPath('posts', post.file)).toBe('/posts/quickly-copying-paths-to-the-terminal-on-macos');
+});
 
 test('getSlug - generate slugs', () => {
 	const data = [
@@ -78,17 +78,17 @@ test('getSlug - generate slugs', () => {
 			title: ' starts and ends with space ',
 			slug: 'starts-and-ends-with-space',
 		},
-	]
+	];
 	data.forEach((item) => {
-		expect(getSlug(item.title)).toBe(item.slug)
-	})
-})
+		expect(getSlug(item.title)).toBe(item.slug);
+	});
+});
 
 test('getRandomItems - just for the coverage', () => {
-	getRandomItems([], 0)
-	expect(true).toBe(true)
-})
+	getRandomItems([], 0);
+	expect(true).toBe(true);
+});
 
 test('formatDate - markdown date to formatted date', () => {
-	expect(formatDate(new Date('1996-02-18'))).toBe('02/18/1996')
-})
+	expect(formatDate(new Date('1996-02-18'))).toBe('02/18/1996');
+});

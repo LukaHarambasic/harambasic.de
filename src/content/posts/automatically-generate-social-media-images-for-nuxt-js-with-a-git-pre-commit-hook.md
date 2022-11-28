@@ -32,14 +32,14 @@ Let us come to the interesting part, for the sake of simplicity I'll put everyth
 3. [generateManual.js](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/generateManual.js) - manual image generation by passing a title via the command line
 
 ```javascript
-const { readdirSync, readFileSync } = require('fs')
-const { chromium } = require('playwright')
-const path = require('path')
+const { readdirSync, readFileSync } = require('fs');
+const { chromium } = require('playwright');
+const path = require('path');
 
-const ROOT_PATH = process.cwd()
-const SOCIAL_PATH = `${ROOT_PATH}/static/social`
-const POSTS_PATH = `${ROOT_PATH}/content/posts`
-const LISTS_PATH = `${ROOT_PATH}/content/lists`
+const ROOT_PATH = process.cwd();
+const SOCIAL_PATH = `${ROOT_PATH}/static/social`;
+const POSTS_PATH = `${ROOT_PATH}/content/posts`;
+const LISTS_PATH = `${ROOT_PATH}/content/lists`;
 
 /*
  * Opens an HTML template, sets the title, takes a screenshot and saves it locally as png
@@ -48,17 +48,17 @@ const LISTS_PATH = `${ROOT_PATH}/content/lists`
  * @param {string} slug
  */
 const generateImage = async (page, title, slug) => {
-  const URL = `file:///${path.join(__dirname, '/template.html')}`
-  const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`
-  await page.goto(URL)
+  const URL = `file:///${path.join(__dirname, '/template.html')}`;
+  const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`;
+  await page.goto(URL);
   // strange syntax, check https://playwright.dev/docs/api/class-page#page-eval-on-selector for more infos
-  await page.$eval('.title', (el, title) => (el.textContent = title), title)
-  const cardHandle = await page.$('.card')
+  await page.$eval('.title', (el, title) => (el.textContent = title), title);
+  const cardHandle = await page.$('.card');
   await cardHandle.screenshot({
     type: 'png',
     path: SCREENSHOT_PATH,
-  })
-}
+  });
+};
 
 /*
  * Returns if there is an image for the given slug
@@ -66,9 +66,9 @@ const generateImage = async (page, title, slug) => {
  * @returns {boolean}
  */
 const doesImageAlreadyExist = (slug) => {
-  const files = readdirSync(SOCIAL_PATH)
-  return files.find((file) => file.startsWith(slug))
-}
+  const files = readdirSync(SOCIAL_PATH);
+  return files.find((file) => file.startsWith(slug));
+};
 
 /*
  * Posts and lists contain a title followed by a description in YAML
@@ -78,10 +78,10 @@ const doesImageAlreadyExist = (slug) => {
  * @returns {string}
  */
 const getTitle = (str) => {
-  const start = 'title: '
-  const end = '\ndescription: '
-  return str.substring(str.indexOf(start) + start.length, str.indexOf(end))
-}
+  const start = 'title: ';
+  const end = '\ndescription: ';
+  return str.substring(str.indexOf(start) + start.length, str.indexOf(end));
+};
 
 /*
  * Returns meta data to a given file
@@ -94,8 +94,8 @@ const fileToMeta = (name, basePath) => {
     name,
     path: `${basePath}/${name}`,
     slug: name.split('.')[0],
-  }
-}
+  };
+};
 
 /*
  * Instantiate a new browser with playwright, get all potential files (lists, posts)
@@ -103,37 +103,37 @@ const fileToMeta = (name, basePath) => {
  * if not execute generateImage(), nothing will be returned
  */
 const generateSocialMediaPreview = async () => {
-  console.log('>> GENERATE SOCIAL MEDIA PREVIEWS <<')
-  console.log('🆕 newly generated, 🛑 already exists')
-  console.log('-------------------------------------')
-  const browser = await chromium.launch()
-  const page = await browser.newPage()
-  const posts = readdirSync(POSTS_PATH).map((name) => fileToMeta(name, POSTS_PATH))
-  const lists = readdirSync(LISTS_PATH).map((name) => fileToMeta(name, LISTS_PATH))
-  const files = [...posts, ...lists]
+  console.log('>> GENERATE SOCIAL MEDIA PREVIEWS <<');
+  console.log('🆕 newly generated, 🛑 already exists');
+  console.log('-------------------------------------');
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  const posts = readdirSync(POSTS_PATH).map((name) => fileToMeta(name, POSTS_PATH));
+  const lists = readdirSync(LISTS_PATH).map((name) => fileToMeta(name, LISTS_PATH));
+  const files = [...posts, ...lists];
   for (const file of files) {
-    const content = readFileSync(file.path, 'utf8')
-    const title = getTitle(content)
+    const content = readFileSync(file.path, 'utf8');
+    const title = getTitle(content);
     if (!doesImageAlreadyExist(file.slug)) {
-      console.log('🆕', title)
-      await generateImage(page, title, file.slug)
+      console.log('🆕', title);
+      await generateImage(page, title, file.slug);
     } else {
-      console.log('🛑', title)
+      console.log('🛑', title);
     }
   }
-  await browser.close()
-}
+  await browser.close();
+};
 
 /*
  * Entry point for generateSocialMediaPreview() when this file is executed
  */
-;(async () => {
+(async () => {
   try {
-    await generateSocialMediaPreview()
+    await generateSocialMediaPreview();
   } catch (error) {
-    console.log('Error:', error)
+    console.log('Error:', error);
   }
-})()
+})();
 ```
 
 I would say this code is quite self-explaining, but as I have spent some time with it, I might miss something. Feel free to get in touch on [Twitter](https://twitter.com/luka_harambasic) if you have any questions. However, I might not forget the appropriate [HTML template](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/template.html).
@@ -226,7 +226,7 @@ For some pages, which are unique like home or imprint I also need images, but au
 You only need to add a script to your `package.json` and then parse the arguments to retrieve the title.
 
 ```javascript
-const title = process.argv[2].replace('--title=', '')
+const title = process.argv[2].replace('--title=', '');
 ```
 
 Finally, execute your new command with the according title. And yes somehow the `--` is needed, I just accepted it and didn't ask why.

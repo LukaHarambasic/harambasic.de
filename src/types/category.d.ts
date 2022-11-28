@@ -1,6 +1,6 @@
 export interface Category {
-	display: string
-	slug: string
-	fullPath: string
-	postCount: number
+	display: string;
+	slug: string;
+	fullPath: string;
+	postCount: number;
 }

@@ -1,32 +1,32 @@
 ---
-import profileImage from '@/assets/images/profile.jpeg'
-import BaseToClipboardButton from '@/components/Base/BaseToClipboardButton.svelte'
-import HomeLayout from '@/layouts/HomeLayout.astro'
-import type { Post } from '@/types/post'
-import { rawToLists } from '@/util/data/lists'
-import { rawToPosts } from '@/util/data/posts'
-import { rawToProjects } from '@/util/data/projects'
-import { getRandomItems } from '@/util/helper'
-import { Picture } from '@astrojs/image/components'
-import { Icon } from 'astro-icon'
+import profileImage from '@/assets/images/profile.jpeg';
+import BaseToClipboardButton from '@/components/Base/BaseToClipboardButton.svelte';
+import HomeLayout from '@/layouts/HomeLayout.astro';
+import type { Post } from '@/types/post';
+import { rawToLists } from '@/util/data/lists';
+import { rawToPosts } from '@/util/data/posts';
+import { rawToProjects } from '@/util/data/projects';
+import { getRandomItems } from '@/util/helper';
+import { Picture } from '@astrojs/image/components';
+import { Icon } from 'astro-icon';
 
-const title = 'Home'
-const description = 'TBD'
-const permalink = 'TBD'
-const socialImg = 'TBD'
-const socialImgAlt = 'TBD'
+const title = 'Home';
+const description = 'TBD';
+const permalink = 'TBD';
+const socialImg = 'TBD';
+const socialImgAlt = 'TBD';
 
-const rawPosts = await Astro.glob('../content/posts/*.md')
-const posts = rawToPosts(rawPosts)
-const randomPosts = getRandomItems(posts, 3)
+const rawPosts = await Astro.glob('../content/posts/*.md');
+const posts = rawToPosts(rawPosts);
+const randomPosts = getRandomItems(posts, 3);
 
-const rawProjects = await Astro.glob('../content/projects/*.md')
-const projects = rawToProjects(rawProjects)
-const randomProjects = getRandomItems(projects, 1)
+const rawProjects = await Astro.glob('../content/projects/*.md');
+const projects = rawToProjects(rawProjects);
+const randomProjects = getRandomItems(projects, 1);
 
-const rawLists = await Astro.glob('../content/lists/*.md')
-const lists = rawToLists(rawLists)
-const randomLists = getRandomItems(lists, 2)
+const rawLists = await Astro.glob('../content/lists/*.md');
+const lists = rawToLists(rawLists);
+const randomLists = getRandomItems(lists, 2);
 ---
 
 <HomeLayout
@@ -82,7 +82,7 @@ const randomLists = getRandomItems(lists, 2)
 									</div>
 								</a>
 							</li>
-						)
+						);
 					})
 				}
 			</ul>
@@ -105,7 +105,7 @@ const randomLists = getRandomItems(lists, 2)
 									<strong>{post.title}</strong>
 								</a>
 							</li>
-						)
+						);
 					})
 				}
 			</ul>
@@ -126,7 +126,7 @@ const randomLists = getRandomItems(lists, 2)
 									<p>{description}</p>
 								</a>
 							</li>
-						)
+						);
 					})
 				}
 			</ul>

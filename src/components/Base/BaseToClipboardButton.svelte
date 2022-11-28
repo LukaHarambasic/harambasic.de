@@ -1,8 +1,8 @@
 <script lang="ts">
 	// TODO prettier for svelte
-	export let toClipboard: string
+	export let toClipboard: string;
 	function copyToClipboard() {
-		navigator.clipboard.writeText(toClipboard)
+		navigator.clipboard.writeText(toClipboard);
 	}
 </script>
 
