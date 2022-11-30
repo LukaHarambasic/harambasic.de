@@ -1,26 +1,31 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
-	import { SortDirection, SortProperty } from '../../types/enums'
-	import type { List, ListEntry } from '../../types/list'
-	import { filterEntriesByList, getAllEntries, sortEntries, sortLists } from '../../util/data/lists'
+	import { onMount } from 'svelte';
+	import { SortDirection, SortProperty } from '../../types/enums';
+	import type { List, ListEntry } from '../../types/list';
+	import {
+		filterEntriesByList,
+		getAllEntries,
+		sortEntries,
+		sortLists,
+	} from '../../util/data/lists';
 
-	let selectedList: string = 'all'
+	let selectedList: string = 'all';
 
-	export let lists: List[]
-	let sortedLists: List[] = sortLists(lists, SortProperty.Title, SortDirection.Desc)
-	let entries: ListEntry[] = getAllEntries(sortedLists)
-	let sortedEntries: ListEntry[] = sortEntries(entries, SortProperty.Title, SortDirection.Desc)
-	$: filteredListEntries = filterEntriesByList(sortedEntries, selectedList) // filterPostsByCategory(sortedLists, selectedList);
+	export let lists: List[];
+	let sortedLists: List[] = sortLists(lists, SortProperty.Title, SortDirection.Desc);
+	let entries: ListEntry[] = getAllEntries(sortedLists);
+	let sortedEntries: ListEntry[] = sortEntries(entries, SortProperty.Title, SortDirection.Desc);
+	$: filteredListEntries = filterEntriesByList(sortedEntries, selectedList); // filterPostsByCategory(sortedLists, selectedList);
 
 	onMount(() => {
-		selectedList = new URLSearchParams(window.location.search).get('list') || 'all'
-	})
+		selectedList = new URLSearchParams(window.location.search).get('list') || 'all';
+	});
 
-	function onSelectList(listSLug: string) {
-		selectedList = listSLug
-		const url = new URL(window.location.toString())
-		url.searchParams.set('list', selectedList)
-		window.history.pushState({}, '', url.href)
+	function onSelectList(listSlug: string) {
+		selectedList = listSlug;
+		const url = new URL(window.location.toString());
+		url.searchParams.set('list', selectedList);
+		window.history.pushState({}, '', url.href);
 	}
 </script>
 

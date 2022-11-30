@@ -9,6 +9,7 @@ export interface TocNode {
 	children: TocNode[] | null;
 }
 
+// TODO should have slug - is than file even needed?
 export interface Post {
 	title: string;
 	description: string;

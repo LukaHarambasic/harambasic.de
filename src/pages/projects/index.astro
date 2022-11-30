@@ -1,17 +1,17 @@
 ---
-import BaseFootnote from '../../components/Base/BaseFootnote.astro'
-import BaseMetaList from '../../components/Base/BaseMetaList.astro'
-import DefaultLayout from '../../layouts/DefaultLayout.astro'
-import { rawToProjects } from '../../util/data/projects'
+import BaseFootnote from '../../components/Base/BaseFootnote.astro';
+import ProjectsList from '../../components/Projects/ProjectsList.svelte';
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import { rawToProjects } from '../../util/data/projects';
 
-const title = 'Projects'
-const description = 'TBD'
-const permalink = 'TBD'
-const socialImg = 'TBD'
-const socialImgAlt = 'TBD'
+const title = 'Projects';
+const description = 'TBD';
+const permalink = 'TBD';
+const socialImg = 'TBD';
+const socialImgAlt = 'TBD';
 
-const rawProjects = await Astro.glob('../../content/projects/*.md')
-const projects = rawToProjects(rawProjects)
+const rawProjects = await Astro.glob('../../content/projects/*.md');
+const projects = rawToProjects(rawProjects);
 ---
 
 <DefaultLayout
@@ -21,43 +21,17 @@ const projects = rawToProjects(rawProjects)
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<main>
-		<section>
-			<h2>Selected projects</h2>
-			<p>Technopreneur, Sparkle?, veggie2.0, gk?, monta?</p>
-			<ul class="projects">
-				{
-					projects.map(({ img, alt, title, responsibilities, Content, links }) => {
-						return (
-							<li class="project">
-								<div class="meta">
-									<img src={img} alt={alt} />
-								</div>
-								<div class="content">
-									<h2 class="title">{title}</h2>
-									<BaseMetaList items={responsibilities} preText="Responsibilities:" />
-									<Content class="rich-text e-content" />
-									<ul class="links">
-										{links.map((link) => {
-											return (
-												<li>
-													<a class="link" href={link.href}>
-														{link.display}
-													</a>
-												</li>
-											)
-										})}
-									</ul>
-								</div>
-							</li>
-						)
-					})
-				}
-			</ul>
-			<BaseFootnote>
-				If you want to learn more about the projects, please do not hesitate to send me an
-				<a href="globals.mailto">email</a>.
-			</BaseFootnote>
-		</section>
-	</main>
+	<section>
+		<h2>Selected projects</h2>
+		<p>Technopreneur, Sparkle?, veggie2.0, gk?, monta?</p>
+	</section>
+	<section>
+		<ProjectsList client:load projects={projects} />
+	</section>
+	<section>
+		<BaseFootnote>
+			If you want to learn more about the projects, please do not hesitate to send me an
+			<a href="globals.mailto">email</a>.
+		</BaseFootnote>
+	</section>
 </DefaultLayout>

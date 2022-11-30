@@ -17,4 +17,5 @@ export interface Project {
 	responsibilities: string[];
 	Content: AstroComponentFactory;
 	file: string;
+	slug: string;
 }

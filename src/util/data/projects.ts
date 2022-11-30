@@ -1,5 +1,5 @@
 import type { MarkdownInstance } from 'astro';
-
+import { getSlug } from '../helper';
 import type { Project } from '../../types/project';
 
 // TODO test
@@ -19,6 +19,7 @@ export function rawToProjects(rawProjects: MarkdownInstance<Record<string, any>>
 			rawContent: rawProject.rawContent(),
 			compiledContent: rawProject.compiledContent(),
 			file: rawProject.file,
+			slug: getSlug(title)
 		};
 	});
 }
