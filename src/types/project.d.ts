@@ -1,11 +1,14 @@
 import { AstroComponentFactory } from 'astro/dist/runtime/server/render';
 
 import { ProjectStatus } from './enums';
+import { Filterable } from './generic';
 
 export interface Link {
 	display: string;
 	href: string;
 }
+
+export type Responsibility = Filterable;
 
 export interface Project {
 	title: string;
@@ -14,7 +17,7 @@ export interface Project {
 	prio: number;
 	status: ProjectStatus;
 	links: Link[];
-	responsibilities: string[];
+	responsibilities: Responsibility[];
 	Content: AstroComponentFactory;
 	file: string;
 	slug: string;
