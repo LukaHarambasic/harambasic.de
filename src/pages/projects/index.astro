@@ -2,7 +2,7 @@
 import BaseFootnote from '../../components/Base/BaseFootnote.astro';
 import ProjectsList from '../../components/Projects/ProjectsList.svelte';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import { rawToProjects } from '../../util/data/projects';
+import { rawToProjects, rawToResponsibilities } from '../../util/data/projects';
 
 const title = 'Projects';
 const description = 'TBD';
@@ -12,6 +12,7 @@ const socialImgAlt = 'TBD';
 
 const rawProjects = await Astro.glob('../../content/projects/*.md');
 const projects = rawToProjects(rawProjects);
+const categories = rawToResponsibilities(projects);
 ---
 
 <DefaultLayout
@@ -25,9 +26,7 @@ const projects = rawToProjects(rawProjects);
 		<h2>Selected projects</h2>
 		<p>Technopreneur, Sparkle?, veggie2.0, gk?, monta?</p>
 	</section>
-	<section>
-		<ProjectsList client:load projects={projects} />
-	</section>
+	<ProjectsList client:load projects={projects} />
 	<section>
 		<BaseFootnote>
 			If you want to learn more about the projects, please do not hesitate to send me an
