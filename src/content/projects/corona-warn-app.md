@@ -1,7 +1,9 @@
 ---
 title: Corona-Warn-App
-img: ./src/assets/images/projects/corona-warn-app.jpg
-alt: A screenshot of the Corona-Warn-App homescreen.
+image: ./src/assets/images/projects/corona-warn-app.jpg
+description: TODO Lorem Ipsum
+published: 2020-12-21
+updated: 2020-12-21
 prio: 1000
 status: INACTIVE
 links:
@@ -13,7 +15,7 @@ links:
     href: https://play.google.com/store/apps/details?id=de.rki.coronawarnapp
   - display: App Store
     href: https://apps.apple.com/de/app/corona-warn-app/id1512595757
-responsibilities:
+tags:
   - Team Lead
   - Scrum Master
   - Android Developer

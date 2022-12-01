@@ -1,8 +1,10 @@
 ---
 title: My perfect Home-Office Conference Call & Podcasting Setup
 description: Overview for my perfect Homeoffice Conference Call & Podcasting Setup.
-publishDate: 2021-04-18
-categories:
+image: TODO
+published: 2021-04-18
+updated: 2021-07-18
+tags:
   - New Work
   - Hardware
 tldr: You don't have to spend a fortune, but it's a lot of fun to put a little money in your hand.

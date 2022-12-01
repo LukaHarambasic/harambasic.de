@@ -1,13 +1,15 @@
 ---
 title: Arbeitskreis Börse
-img: ./src/assets/images/projects/arbeitskreis-boerse.jpg
-alt: Picture with my co-head in front of the Mannheim castle.
+image: ./src/assets/images/projects/arbeitskreis-boerse.jpg
+description: TODO Lorem Ipsum
+published: 2020-12-21
+updated: 2020-12-21
 prio: 70
 status: INACTIVE
 links:
   - display: Website
     href: https://www.akboerse.de/
-responsibilities:
+tags:
   - Co-Head of IT
   - Digital Transformation
   - Website

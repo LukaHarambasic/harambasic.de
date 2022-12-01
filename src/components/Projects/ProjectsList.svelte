@@ -1,73 +1,55 @@
 <script lang="ts">
+	import type { Project, ProjectCollection } from '../../models/Project';
 	import { onMount } from 'svelte';
-	import { SortDirection, SortProperty } from '../../types/enums';
-	import type { Project, Responsibility } from '../../types/project';
 
-	let selectedProject: string = 'all';
+	export let collection: ProjectCollection;
 
-	export let projects: Project[];
-	let sortedProjects: Project[] = projects; // sortProjects(projects, SortProperty.Title, SortDirection.Desc);
+	let selectedTagSlug: string = 'all';
+	const tags = collection.tags;
+	const entries: Project[] = collection.entries as Project[];
+	$: filteredEntries = collection.getFilteredEntriesByTagSlug(selectedTagSlug);
 
-	let responsibilities: Responsibility[] = [];
-
+	// FIXME doesn't seem to get exectued
 	onMount(() => {
-		selectedProject = new URLSearchParams(window.location.search).get('project') || 'all';
+		selectedTagSlug = new URLSearchParams(window.location.search).get('tag') || 'all';
 	});
 
-	function onSelectProject(projectSlug: string) {
-		selectedProject = projectSlug;
+	function onSelectTag(tagSlug: string) {
+		selectedTagSlug = tagSlug;
 		const url = new URL(window.location.toString());
-		url.searchParams.set('project', selectedProject);
+		url.searchParams.set('tag', selectedTagSlug);
 		window.history.pushState({}, '', url.href);
 	}
 </script>
 
 <section>
-	<aside class="responsibilities">
-		<h2>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				fill="#000000"
-				viewBox="0 0 256 256"
-				><rect width="32" height="32" fill="none" /><path
-					d="M42.1,48H213.9a8,8,0,0,1,5.9,13.4l-65.7,72.3a7.8,7.8,0,0,0-2.1,5.4v56.6a7.9,7.9,0,0,1-3.6,6.7l-32,21.3a8,8,0,0,1-12.4-6.6v-78a7.8,7.8,0,0,0-2.1-5.4L36.2,61.4A8,8,0,0,1,42.1,48Z"
-					fill="none"
-					stroke="#000000"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="24"
-				/></svg
-			> Responsibilities
-		</h2>
+	<aside class="tags">
+		<h2>Tags</h2>
 		<ol>
 			<li>
-				<button class:selected={selectedProject === 'all'} on:click={() => onSelectProject('all')}>
-					All ({projects.length})</button
+				<button class:selected={selectedTagSlug === 'all'} on:click={() => onSelectTag('all')}>
+					All ({entries.length})</button
 				>
 			</li>
-			{#each responsibilities as responsibility}
+			{#each tags as tag}
 				<li>
 					<button
-						class:selected={onSelectProject === responsibility.slug}
-						on:click={() => onSelectProject(responsibility.slug)}
+						class:selected={selectedTagSlug === tag.slug}
+						on:click={() => onSelectTag(tag.slug)}
 					>
-						{responsibility.display} ({responsibility.projectCount})
+						{tag.title} ({tag.count})
 					</button>
 				</li>
 			{/each}
 		</ol>
 	</aside>
-	<div class="projects">
+	<div class="entries">
 		<ul>
-			{#each sortedProjects as project}
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<!-- TODO: should this be a link, a button or add a keydown event -->
-				<li class="h-feed" on:click={() => onSelectProject(project.slug)}>
-					<img src={project.img} alt="TODO" width="8rem" />
+			{#each filteredEntries as entry}
+				<li class="h-feed">
+					<img src={entry.image} alt="TODO" width="8rem" />
 					<div class="content">
-						<strong>{project.title}</strong>
+						<strong>{entry.title}</strong>
 					</div>
 				</li>
 			{/each}
@@ -84,51 +66,55 @@
 		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--xl);
-		> .responsibilities {
+	}
+	.tags {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-content: stretch;
+		justify-content: flex-start;
+		align-items: stretch;
+		gap: var(--m);
+		width: var(--layout-sidebar);
+		svg {
+			fill: white;
+			size: 2rem;
+		}
+		ol {
 			display: flex;
 			flex-direction: column;
 			flex-wrap: nowrap;
-			align-content: stretch;
+			align-content: flex-start;
 			justify-content: flex-start;
-			align-items: stretch;
-			gap: var(--m);
-			/* TODO align */
-			width: 12rem;
-			ol {
-				display: flex;
-				flex-direction: column;
-				flex-wrap: nowrap;
-				align-content: stretch;
-				justify-content: flex-start;
-				align-items: stretch;
-				gap: var(--s);
-				li {
-					button {
-						margin: 0;
-						border: none;
-						background: none;
-						padding: 0;
-						color: var(--c-font-accent-dark);
-						font-size: var(--font-s);
+			align-items: flex-start;
+			gap: var(--s);
+			li {
+				button {
+					margin: 0;
+					border: none;
+					background: none;
+					padding: 0;
+					color: var(--c-font-accent-dark);
+					font-size: var(--font-s);
+					text-align: left;
+					&:hover {
+						cursor: pointer;
+						text-decoration: underline;
+						text-decoration-thickness: var(--underline-thickness);
+					}
+					&.selected {
+						text-decoration: underline;
+						text-decoration-thickness: var(--underline-thickness);
 						&:hover {
-							cursor: pointer;
-							text-decoration: underline;
-							text-decoration-thickness: var(--underline-thickness);
-						}
-						&.selected {
-							text-decoration: underline;
-							text-decoration-thickness: var(--underline-thickness);
-							&:hover {
-								text-decoration: none;
-							}
+							text-decoration: none;
 						}
 					}
 				}
 			}
 		}
 	}
-
-	.projects {
+	.entries {
+		width: 100%;
 		ul {
 			display: grid;
 			grid-template-columns: 1fr 1fr;

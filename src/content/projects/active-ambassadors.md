@@ -1,7 +1,9 @@
 ---
 title: Active Ambassadors
-img: ./src/assets/images/projects/active-ambassadors.png
-alt: The logo from Active Ambassadors.
+image: ./src/assets/images/projects/active-ambassadors.png
+description: TODO Lorem Ipsum
+published: 2020-12-21
+updated: 2020-12-21
 prio: 90
 status: INACTIVE
 links:
@@ -11,7 +13,7 @@ links:
     href: https://www.instagram.com/active_ambassadors/
   - display: LinkedIn
     href: https://www.linkedin.com/company/active-ambassadors
-responsibilities:
+tags:
   - Co-Founder
   - Design
   - Website

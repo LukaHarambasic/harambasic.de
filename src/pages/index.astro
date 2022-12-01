@@ -1,10 +1,6 @@
 ---
 import BaseToClipboardButton from '../components/Base/BaseToClipboardButton.svelte';
 import HomeLayout from '../layouts/HomeLayout.astro';
-import type { Post } from '../types/post';
-import { rawToLists } from '../util/data/lists';
-import { rawToPosts } from '../util/data/posts';
-import { rawToProjects } from '../util/data/projects';
 import { getRandomItems } from '../util/helper';
 import { Icon } from 'astro-icon';
 
@@ -14,20 +10,20 @@ const permalink = 'TBD';
 const socialImg = 'TBD';
 const socialImgAlt = 'TBD';
 
-const rawPosts = await Astro.glob('../content/posts/*.md');
-const posts = rawToPosts(rawPosts);
-const randomPosts = getRandomItems(posts, 3);
+// const rawPosts = await Astro.glob('../content/posts/*.md');
+// const posts = []; // rawToPosts(rawPosts);
+// const randomPosts: Post[] = []; // getRandomItems(posts, 3);
 
-const rawProjects = await Astro.glob('../content/projects/*.md');
-const projects = rawToProjects(rawProjects);
-const randomProjects = getRandomItems(projects, 1);
+// const rawProjects = await Astro.glob('../content/projects/*.md');
+// const projects = []; // rawToProjects(rawProjects);
+// const randomProjects: any[] = []; // getRandomItems(projects, 1);
 
-const rawLists = await Astro.glob('../content/lists/*.md');
-const lists = rawToLists(rawLists);
-const randomLists = getRandomItems(lists, 2);
+// const rawLists = await Astro.glob('../content/lists/*.md');
+// const lists = rawToLists(rawLists);
+// const randomLists = getRandomItems(lists, 2);
 ---
 
-<HomeLayout
+<!-- <HomeLayout
 	title={title}
 	description={description}
 	permalink={permalink}
@@ -48,117 +44,114 @@ const randomLists = getRandomItems(lists, 2);
 		</div>
 	</section>
 	<section class="featured">
-		<!-- <h2>Weekly recommendations</h2> -->
-		<div class="project group">
-			<h3 class="section-label">
-				<span>Project</span>
-				<Icon pack="ph" name="projector-screen-chart-duotone" />
-			</h3>
-			<ul>
-				{
-					randomProjects.map(({ title, slug, img }) => {
-						return (
-							<li>
-								<a class="card image" href="/projects">
-									<Icon pack="ph" name="arrow-circle-right-bold" />
-									<img src={img} alt="TODO" width="8rem" />
-									<div class="content">
-										<strong>{title}</strong>
-										<p>
-											Row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.
-											Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen
-											halter furl. Swab barque interloper chantey doubloon starboard grog black jack
-											gangway rutters.
-										</p>
-									</div>
-								</a>
-							</li>
-						);
-					})
-				}
-			</ul>
-		</div>
-		<div class="posts group">
-			<h3 class="section-label">
-				<span>Posts</span>
-				<Icon pack="ph" name="files-duotone" />
-			</h3>
-			<ul>
-				{
-					randomPosts.map((post: Post) => {
-						return (
-							<li>
-								<a class="card text" href={post.path}>
-									<Icon pack="ph" name="arrow-circle-right-bold" />
-									<time class="date dt-published" datetime={post.publishDate.toString()}>
-										{post.publishDateFormatted}
-									</time>
-									<strong>{post.title}</strong>
-								</a>
-							</li>
-						);
-					})
-				}
-			</ul>
-		</div>
-		<div class="lists group">
-			<h3 class="section-label">
-				<span>Lists</span>
-				<Icon pack="ph" name="clipboard-text-duotone" />
-			</h3>
-			<ul>
-				{
-					randomLists.map(({ title, description, slug }) => {
-						return (
-							<li>
-								<a class="card text" href={slug && ''}>
-									<Icon pack="ph" name="arrow-circle-right-bold" />
-									<strong>{title}</strong>
-									<p>{description}</p>
-								</a>
-							</li>
-						);
-					})
-				}
-			</ul>
-		</div>
-	</section>
-	<section class="contact">
-		<div class="group">
-			<div class="meta">
-				<strong>E-Mail</strong>
-				<small>luka..harambasic.de</small>
-			</div>
-			<div class="segmented-buttons">
-				<a href="mailto:luka..harambasic.de" class="button">Write</a>
-				<BaseToClipboardButton client:idle toClipboard="luka..harambasic.de"
-					>Copy</BaseToClipboardButton
-				>
-			</div>
-		</div>
-		<div class="group">
-			<div class="meta">
-				<strong>Social</strong>
-				<small>Follow me!</small>
-			</div>
-			<div class="segmented-buttons">
-				<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
-				<a href="https://mstdn.social/..luha" class="button">Mastodon</a>
-			</div>
-		</div>
-		<div class="group">
-			<div class="meta">
-				<strong>Book a time</strong>
-				<small>Wanna chat?</small>
-			</div>
-			<div class="segmented-buttons">
-				<a href="https://cal.com/luhara/p" class="button">Book</a>
-			</div>
-		</div>
-	</section>
-	<!-- <section class="mastodon">[toot] [toot] [toot]</section> -->
-</HomeLayout>
+<div class="project group">
+	<h3 class="section-label">
+		<span>Project</span>
+		<Icon pack="ph" name="projector-screen-chart-duotone" />
+	</h3>
+	<ul>
+		{
+			randomProjects.map(({ title, slug, img }) => {
+				return (
+					<li>
+						<a class="card image" href="/projects">
+							<Icon pack="ph" name="arrow-circle-right-bold" />
+							<img src={img} alt="TODO" width="8rem" />
+							<div class="content">
+								<strong>{title}</strong>
+								<p>
+									Row scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.
+									Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen
+									halter furl. Swab barque interloper chantey doubloon starboard grog black jack
+									gangway rutters.
+								</p>
+							</div>
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</div>
+<div class="posts group">
+	<h3 class="section-label">
+		<span>Posts</span>
+		<Icon pack="ph" name="files-duotone" />
+	</h3>
+	<ul>
+		{
+			randomPosts.map((post: Post) => {
+				return (
+					<li>
+						<a class="card text" href={post.path}>
+							<Icon pack="ph" name="arrow-circle-right-bold" />
+							<time class="date dt-published" datetime={post.publishDate.toString()}>
+								{post.publishDateFormatted}
+							</time>
+							<strong>{post.title}</strong>
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</div>
+<div class="lists group">
+	<h3 class="section-label">
+		<span>Lists</span>
+		<Icon pack="ph" name="clipboard-text-duotone" />
+	</h3>
+	<ul>
+		{
+			randomLists.map(({ title, description, slug }) => {
+				return (
+					<li>
+						<a class="card text" href={slug && ''}>
+							<Icon pack="ph" name="arrow-circle-right-bold" />
+							<strong>{title}</strong>
+							<p>{description}</p>
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</div>
 
+<section class="contact">
+	<div class="group">
+		<div class="meta">
+			<strong>E-Mail</strong>
+			<small>luka..harambasic.de</small>
+		</div>
+		<div class="segmented-buttons">
+			<a href="mailto:luka..harambasic.de" class="button">Write</a>
+			<BaseToClipboardButton client:idle toClipboard="luka..harambasic.de"
+				>Copy</BaseToClipboardButton
+			>
+		</div>
+	</div>
+	<div class="group">
+		<div class="meta">
+			<strong>Social</strong>
+			<small>Follow me!</small>
+		</div>
+		<div class="segmented-buttons">
+			<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
+			<a href="https://mstdn.social/..luha" class="button">Mastodon</a>
+		</div>
+	</div>
+	<div class="group">
+		<div class="meta">
+			<strong>Book a time</strong>
+			<small>Wanna chat?</small>
+		</div>
+		<div class="segmented-buttons">
+			<a href="https://cal.com/luhara/p" class="button">Book</a>
+		</div>
+	</div>
+</section>
+-->
 <style>
 	.heyho {
 		display: flex;

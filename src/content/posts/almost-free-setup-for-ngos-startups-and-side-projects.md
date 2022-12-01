@@ -1,8 +1,10 @@
 ---
 title: Almost free setup for NGOs, startups & side projects
 description: 'I want to inspire you how you can set up a professional working environment for your next idea with almost no money.'
-publishDate: 2020-12-09
-categories:
+image: TODO
+published: 2020-12-09
+updated: 2020-12-09
+tags:
   - New Work
   - Tools
 tldr: The only thing you should definitely pay for is the domain, the free levels of other services are more than enough to get you started. Use what you feel comfortable with. This post reflects only my personal preferences and can easily be transferred to other tools in the same area.

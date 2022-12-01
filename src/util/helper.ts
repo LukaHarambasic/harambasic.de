@@ -13,7 +13,7 @@ export function getPath(parentPath: string, file: string) {
 // TODO figure out is getSlug or this function should be used - getSlug seems more specific and might not even generate a real slug
 // TODO replace with magic regex
 export function getSlug(str: string) {
-	if (str === '') return '';
+	if (!str) return '';
 	const slug = str
 		.trim()
 		.toLowerCase()
@@ -31,4 +31,16 @@ export function getRandomItems(items: any[], amount: number) {
 
 export function formatDate(date: Date) {
 	return format(new Date(date), 'MM/dd/yyyy');
+}
+
+export function sortAlphabetical(a: string, b: string): number {
+	return b.localeCompare(a)
+}
+
+export function sortDate(a: Date, b: Date): number {
+	return new Date(b).valueOf() - new Date(a).valueOf()
+}
+
+export function sortNumber(a: number, b: number): number {
+	return b - a;
 }

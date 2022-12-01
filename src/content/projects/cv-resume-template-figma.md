@@ -1,7 +1,9 @@
 ---
 title: CV/Resume template Figma
-img: ./src/assets/images/projects/q-summit.png
-alt: Picture of CV
+image: ./src/assets/images/projects/q-summit.png
+description: TODO Lorem Ipsum
+published: 2020-12-21
+updated: 2020-12-21
 prio: 80
 status: ACTIVE
 links:
@@ -9,7 +11,7 @@ links:
     href: TBD
   - display: My CV
     href: TBD
-responsibilities:
+tags:
   - Design
 ---
 

@@ -1,36 +1,29 @@
 <script lang="ts">
+	import type { Bookmark, BookmarkCollection } from '../../models/Bookmark';
 	import { onMount } from 'svelte';
-	import { SortDirection, SortProperty } from '../../types/enums';
-	import type { List, ListEntry } from '../../types/list';
-	import {
-		filterEntriesByList,
-		getAllEntries,
-		sortEntries,
-		sortLists,
-	} from '../../util/data/lists';
 
-	let selectedList: string = 'all';
+	export let collection: BookmarkCollection;
 
-	export let lists: List[];
-	let sortedLists: List[] = sortLists(lists, SortProperty.Title, SortDirection.Desc);
-	let entries: ListEntry[] = getAllEntries(sortedLists);
-	let sortedEntries: ListEntry[] = sortEntries(entries, SortProperty.Title, SortDirection.Desc);
-	$: filteredListEntries = filterEntriesByList(sortedEntries, selectedList); // filterPostsByCategory(sortedLists, selectedList);
+	let selectedTagSlug: string = 'all';
+	const tags = collection.tags;
+	const entries: Bookmark[] = collection.entries as Bookmark[];
+	$: filteredEntries = collection.getFilteredEntriesByTagSlug(selectedTagSlug);
 
+	// FIXME doesn't seem to get exectued
 	onMount(() => {
-		selectedList = new URLSearchParams(window.location.search).get('list') || 'all';
+		selectedTagSlug = new URLSearchParams(window.location.search).get('tag') || 'all';
 	});
 
-	function onSelectList(listSlug: string) {
-		selectedList = listSlug;
+	function onSelectTag(tagSlug: string) {
+		selectedTagSlug = tagSlug;
 		const url = new URL(window.location.toString());
-		url.searchParams.set('list', selectedList);
+		url.searchParams.set('tag', selectedTagSlug);
 		window.history.pushState({}, '', url.href);
 	}
 </script>
 
 <section>
-	<aside class="lists">
+	<aside class="tags">
 		<h2>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -73,21 +66,21 @@
 					stroke-linejoin="round"
 					stroke-width="24"
 				/></svg
-			> Lists
+			> Tags
 		</h2>
 		<ol>
 			<li>
-				<button class:selected={selectedList === 'all'} on:click={() => onSelectList('all')}>
+				<button class:selected={selectedTagSlug === 'all'} on:click={() => onSelectTag('all')}>
 					All ({entries.length})</button
 				>
 			</li>
-			{#each lists as list}
+			{#each tags as tag}
 				<li>
 					<button
-						class:selected={selectedList === list.slug}
-						on:click={() => onSelectList(list.slug)}
+						class:selected={selectedTagSlug === tag.slug}
+						on:click={() => onSelectTag(tag.slug)}
 					>
-						{list.title} ({list.entries.length})
+						{tag.title} ({tag.count})
 					</button>
 				</li>
 			{/each}
@@ -95,11 +88,11 @@
 	</aside>
 	<div class="entries">
 		<ul>
-			{#each filteredListEntries as entry}
+			{#each filteredEntries as entry}
 				<li class="h-feed">
 					<a href={entry.url}>
 						<div class="logo">
-							<img src={entry.logo} alt={entry.title} width="64px" />
+							<img src={entry.image} alt={entry.title} width="64px" />
 						</div>
 						<div class="content">
 							<strong class="title">
@@ -155,13 +148,8 @@
 		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--xl);
-		/* width: var(--layout-l); */
-		font-weight: 600;
-		font-size: var(--font-m);
-		font-family: var(--font-family);
-		letter-spacing: var(--font-letter-spacing-headline);
 	}
-	.lists {
+	.tags {
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
@@ -169,8 +157,7 @@
 		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--m);
-		/* TODO align */
-		width: 12rem;
+		width: var(--layout-sidebar);
 		svg {
 			fill: white;
 			size: 2rem;

@@ -1,7 +1,9 @@
 ---
 title: Q-Summit
-img: ./src/assets/images/projects/q-summit.png
-alt: The team behind Q-Summit 2019
+image: ./src/assets/images/projects/q-summit.png
+description: TODO Lorem Ipsum
+published: 2020-12-21
+updated: 2020-12-21
 prio: 70
 status: INACTIVE
 links:
@@ -9,7 +11,7 @@ links:
     href: https://q-summit.com/
   - display: Instagram
     href: https://www.instagram.com/qsummit/
-responsibilities:
+tags:
   - Head of IT
   - Digital Transformation
   - Process Automation

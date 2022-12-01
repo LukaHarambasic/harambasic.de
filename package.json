@@ -19,6 +19,7 @@
     "@astrojs/svelte": "^1.0.2",
     "astro": "^1.6.7",
     "astro-icon": "^0.8.0",
+    "axios": "^1.2.0",
     "date-fns": "^2.29.3",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",

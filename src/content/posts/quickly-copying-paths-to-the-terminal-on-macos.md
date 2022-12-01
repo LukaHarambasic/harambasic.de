@@ -1,8 +1,10 @@
 ---
 title: Quickly copying paths to the terminal on macOS
 description: Quickly copying paths to the terminal on macOS
-publishDate: 2022-08-08
-categories:
+image: TODO
+published: 2022-08-08
+updated: 2021-07-18
+tags:
   - Quick Tip
   - macOS
   - Terminal

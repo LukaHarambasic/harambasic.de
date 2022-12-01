@@ -1,7 +1,9 @@
 ---
 title: Techmob Show
-img: ./src/assets/images/projects/techmobshow.svg
-alt: The Techmob Show logo
+image: ./src/assets/images/projects/techmobshow.svg
+description: TODO Lorem Ipsum
+published: 2020-12-21
+updated: 2020-12-21
 prio: 80
 status: INACTIVE
 links:
@@ -11,7 +13,7 @@ links:
     href: https://www.instagram.com/techmobshow/
   - display: GitHub
     href: https://github.com/Techmob-Show
-responsibilities:
+tags:
   - Co-Founder
   - Host
   - Design

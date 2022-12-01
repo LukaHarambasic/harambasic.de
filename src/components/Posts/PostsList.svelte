@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { SortDirection, SortProperty } from '../../types/enums';
 	import type { Post, Category } from '../../types/post';
-	import { filterPostsByCategory, sortPosts } from '../../util/data/posts';
 	import { getPath } from '../../util/helper';
+	import { onMount } from 'svelte';
 
 	export let categories: Category[];
 	let selectedCategory: string = 'all';
@@ -139,8 +137,7 @@
 			justify-content: flex-start;
 			align-items: stretch;
 			gap: var(--m);
-			/* TODO align */
-			width: 12rem;
+			width: var(--layout-sidebar);
 			ol {
 				display: flex;
 				flex-direction: column;
