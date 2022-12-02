@@ -41,3 +41,9 @@ export enum BookmarkSortProperty {
     Published = 'PUBLISHED',
     Updated = 'UPDATED',
 }
+
+export enum PostSortProperty {
+    Title = 'TITLE',
+    Published = 'PUBLISHED',
+    Updated = 'UPDATED',
+}

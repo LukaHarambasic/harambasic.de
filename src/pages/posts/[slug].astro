@@ -2,14 +2,13 @@
 import BaseCallout from '../../components/Base/BaseCallout.astro';
 import PostsTableOfContent from '../../components/Posts/PostsTableOfContent.svelte';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import { getFileName } from '../../util/helper';
 import type { Post, Category } from '../../types/post';
 
 export async function getStaticPaths() {
 	const rawPosts = await Astro.glob('../../content/posts/*.md');
 	const posts = rawToPosts(rawPosts);
 	return posts.map((post: Post) => ({
-		params: { slug: getFileName(post.file) },
+		params: { slug: post.slug },
 		props: { post },
 	}));
 }

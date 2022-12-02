@@ -1,72 +1,45 @@
 <script lang="ts">
-	import type { Post, Category } from '../../types/post';
-	import { getPath } from '../../util/helper';
+	import { init, entries, tags, filterTag } from '../../store/postStore';
+	import { getTagBySlug } from '../../util/entries';
 	import { onMount } from 'svelte';
 
-	export let categories: Category[];
-	let selectedCategory: string = 'all';
-
-	export let posts: Post[];
-	let sortedPosts: Post[] = sortPosts(posts, SortProperty.Date, SortDirection.Asc);
-	$: filteredPosts = filterPostsByCategory(sortedPosts, selectedCategory);
+	export let raw: any;
 
 	onMount(() => {
-		selectedCategory = new URLSearchParams(window.location.search).get('category') || 'all';
+		init(raw);
+		const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
+		filterTag.set(getTagBySlug(tags.get(), slug));
 	});
 
-	function onSelectCategory(categorySlug: string) {
-		selectedCategory = categorySlug;
+	function onSelectTag(slug: string) {
+		filterTag.set(getTagBySlug(tags.get(), slug));
 		const url = new URL(window.location.toString());
-		url.searchParams.set('category', selectedCategory);
+		url.searchParams.set('tag', filterTag.get().slug);
 		window.history.pushState({}, '', url.href);
 	}
 </script>
 
 <section>
-	<aside class="categories">
-		<h2>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				fill="#000000"
-				viewBox="0 0 256 256"
-				><rect width="32" height="32" fill="none" /><path
-					d="M42.1,48H213.9a8,8,0,0,1,5.9,13.4l-65.7,72.3a7.8,7.8,0,0,0-2.1,5.4v56.6a7.9,7.9,0,0,1-3.6,6.7l-32,21.3a8,8,0,0,1-12.4-6.6v-78a7.8,7.8,0,0,0-2.1-5.4L36.2,61.4A8,8,0,0,1,42.1,48Z"
-					fill="none"
-					stroke="#000000"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="24"
-				/></svg
-			> Categories
-		</h2>
-		<ol>
-			<li>
-				<button
-					class:selected={selectedCategory === 'all'}
-					on:click={() => onSelectCategory('all')}
-				>
-					All ({posts.length})</button
-				>
-			</li>
-			{#each categories as category}
+	<aside class="tags">
+		<h2>Tags</h2>
+		<ul>
+			{#each $tags as tag}
 				<li>
 					<button
-						class:selected={selectedCategory === category.slug}
-						on:click={() => onSelectCategory(category.slug)}
+						class:selected={$filterTag.slug === tag.slug}
+						on:click={() => onSelectTag(tag.slug)}
 					>
-						{category.display} ({category.count})
+						{tag.title} ({tag.count})
 					</button>
 				</li>
 			{/each}
-		</ol>
+		</ul>
 	</aside>
-	<div class="posts">
+	<!-- <div class="posts">
 		<ul>
 			{#each filteredPosts as post}
 				<li class="h-feed">
-					<a href={getPath('posts', post.file)}>
+					<a href={post.relativePath}>
 						<div class="column">
 							<strong class="title">
 								{post.title}
@@ -117,7 +90,7 @@
 				</li>
 			{/each}
 		</ul>
-	</div>
+	</div> -->
 </section>
 
 <style lang="postcss">
@@ -129,7 +102,7 @@
 		justify-content: flex-start;
 		align-items: stretch;
 		gap: var(--xl);
-		> .categories {
+		> .tags {
 			display: flex;
 			flex-direction: column;
 			flex-wrap: nowrap;

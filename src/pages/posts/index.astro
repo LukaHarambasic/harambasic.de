@@ -2,9 +2,10 @@
 // TODO the posts loop should be a vue component
 // pages are only connecting the data layer using functions in util to pass them on to the components handling the ui
 // okay and maybe they do the routing, but no logic, no styling
-import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import PostsList from '../../components/Posts/PostsList.svelte';
 import BaseFootnote from '../../components/Base/BaseFootnote.astro';
+import PostsList from '../../components/Posts/PostsList.svelte';
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import type { MarkdownInstance } from 'astro';
 
 const title = 'Posts';
 const description = 'TBD';
@@ -13,8 +14,6 @@ const socialImg = 'TBD';
 const socialImgAlt = 'TBD';
 
 const rawPosts = await Astro.glob('../../content/posts/*.md');
-const posts = rawToPosts(rawPosts);
-const categories = getCategories(posts);
 ---
 
 <DefaultLayout
@@ -24,7 +23,7 @@ const categories = getCategories(posts);
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<PostsList client:load posts={posts} categories={categories} />
+	<PostsList client:load raw={rawPosts} />
 	<BaseFootnote>
 		<!-- TODO adapt urls -->
 		Check out the <a href="globals.blogFeedURL">RSS feed</a> or

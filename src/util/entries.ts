@@ -1,8 +1,9 @@
 import type { Bookmark } from "../types/bookmark";
 import type { EntryDate } from "../types/entry";
-import { EntryType } from "../types/enums";
+import type { Post } from "../types/post";
 import type { Project } from "../types/project";
 import type { Tag } from "../types/tag";
+import { EntryType } from "../types/enums";
 import { formatDate, getSlug } from "./helper";
 
 export function getTag(title: string, type: EntryType): Tag {
@@ -15,14 +16,15 @@ export function getTag(title: string, type: EntryType): Tag {
     }
 }
 
-export function getDate(raw: Date): EntryDate {
+export function getDate(rawString: string): EntryDate {
+    const raw = new Date(rawString)
     return {
         raw,
         display: formatDate(raw)
     }
 }
 
-export function getUniqueTags(entries: Project[] | Bookmark[]): Tag[] {
+export function getUniqueTags(entries: Project[] | Bookmark[] | Post[]): Tag[] {
     const duplicateTags = entries.map(entry => entry.tags).flat()
     return duplicateTags.reduce((unique: Tag[], item: Tag): Tag[] => {
         const tagIndex = unique.findIndex((u) => item.slug === u.slug)

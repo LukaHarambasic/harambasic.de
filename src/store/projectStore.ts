@@ -121,13 +121,12 @@ function getProject(e: any): Project {
     const type = EntryType.Project
     const slug = getSlug(f.title)
     const relativePath = `/${(type).toLowerCase()}s/${slug}`
-    const rawTags = ['All', ...f.tags]
     return {
         type,
         title: f.title,
         description: f.description,
         image: f.image,
-        tags: rawTags.map(tag => getTag(tag, type)),
+        tags: f.tags.map(tag => getTag(tag, type)),
         published: getDate(f.published),
         updated: getDate(f.updated),
         Content: e.Content,

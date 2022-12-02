@@ -1,16 +1,7 @@
 import { format } from 'date-fns';
 
-export function getFileName(file: string) {
-	return file.split('/')?.pop()?.split('.')?.shift();
-}
-
-export function getPath(parentPath: string, file: string) {
-	return `/${parentPath}/${getFileName(file)}`;
-}
-
 // solution inspired by https://www.designcise.com/web/tutorial/how-to-fix-replaceall-is-not-a-function-javascript-error
 // implementation inspired by https://futurestud.io/tutorials/node-js-string-replace-all-appearances
-// TODO figure out is getSlug or this function should be used - getSlug seems more specific and might not even generate a real slug
 // TODO replace with magic regex
 export function getSlug(str: string) {
 	if (!str) return '';
