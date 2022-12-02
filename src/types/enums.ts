@@ -1,5 +1,5 @@
 export enum EntryType {
-    List = 'LIST',
+    Bookmark = 'BOOKMARK',
     Post = 'POST',
     Project = 'PROJECT',
 }
@@ -22,8 +22,22 @@ export enum ProjectSortProperty {
 }
 
 // Don't like the Null here, but there doesn't seem to be another way to have a nullable enum
+// TODO replace usage of null with empty to not confuse it with null
 export enum ProjectStatus {
     Null = 'NULL',
+    Empty = 'EMPTY',
     Active = 'ACTIVE',
     Inactive = 'INACTIVE',
+}
+
+export enum BookmarkStatus {
+    Empty = 'EMPTY',
+    Active = 'ACTIVE',
+    Inactive = 'INACTIVE',
+}
+
+export enum BookmarkSortProperty {
+    Title = 'TITLE',
+    Published = 'PUBLISHED',
+    Updated = 'UPDATED',
 }

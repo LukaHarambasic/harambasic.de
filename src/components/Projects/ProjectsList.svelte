@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { storeProjects, entries, tags, filterTag } from '../../store/projectStore';
+	import { init, entries, tags, filterTag } from '../../store/projectStore';
 	import { getTagBySlug } from '../../util/entries';
 	import { onMount } from 'svelte';
 
 	export let raw: any;
 
 	onMount(() => {
-		storeProjects(raw);
+		init(raw);
 		const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
 		filterTag.set(getTagBySlug(tags.get(), slug));
 	});
@@ -20,9 +20,10 @@
 </script>
 
 <section>
+	<!-- TODO extract -->
 	<aside class="tags">
 		<h2>Tags</h2>
-		<ol>
+		<ul>
 			{#each $tags as tag}
 				<li>
 					<button
@@ -33,7 +34,7 @@
 					</button>
 				</li>
 			{/each}
-		</ol>
+		</ul>
 	</aside>
 	<div class="entries">
 		<ul>
@@ -72,7 +73,7 @@
 			fill: white;
 			size: 2rem;
 		}
-		ol {
+		ul {
 			display: flex;
 			flex-direction: column;
 			flex-wrap: nowrap;

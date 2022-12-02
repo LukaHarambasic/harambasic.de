@@ -1,7 +1,6 @@
 ---
 import BookmarksList from '../../components/Bookmarks/BookmarksList.svelte';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import { Bookmark, BookmarkCollection } from '../../models/Bookmark';
 import { requestBookmarks } from '../../util/airtable';
 
 const title = 'Bookmarks';
@@ -11,21 +10,6 @@ const socialImg = 'TBD';
 const socialImgAlt = 'TBD';
 
 const rawBookmarks = await requestBookmarks();
-const bookmarks = rawBookmarks.map((bookmark: any) => {
-	const f = bookmark.fields;
-	return new Bookmark(
-		f.Title,
-		f.Description,
-		f.Image,
-		[f.Tag],
-		f.Published,
-		f.Updated,
-		f.URL,
-		f.Status,
-		f.OpenSource
-	);
-});
-const collection = new BookmarkCollection(bookmarks);
 ---
 
 <DefaultLayout
@@ -35,5 +19,5 @@ const collection = new BookmarkCollection(bookmarks);
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<BookmarksList client:visible collection={collection} />
+	<BookmarksList client:load raw={rawBookmarks} />
 </DefaultLayout>

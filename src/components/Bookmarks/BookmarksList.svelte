@@ -1,96 +1,45 @@
 <script lang="ts">
-	import type { Bookmark, BookmarkCollection } from '../../models/Bookmark';
-	import type { Tag } from '../../models/Tag';
-	import { deepCopy } from '../../util/helper';
+	import { init, entries, tags, filterTag } from '../../store/bookmarkStore';
+	import { getTagBySlug } from '../../util/entries';
 	import { onMount } from 'svelte';
 
-	export let collection: BookmarkCollection;
-
-	let selectedTagSlug: string = 'all';
-	const tags: Tag[] = deepCopy(collection.tags);
-	const entries: Bookmark[] = deepCopy(collection.entries) as Bookmark[];
-	$: filteredEntries = deepCopy(collection.getFilteredEntriesByTagSlug(selectedTagSlug));
+	export let raw: any;
 
 	onMount(() => {
-		selectedTagSlug = new URLSearchParams(window.location.search).get('tag') || 'all';
+		init(raw);
+		// TODO helper
+		const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
+		filterTag.set(getTagBySlug(tags.get(), slug));
 	});
 
-	function onSelectTag(tagSlug: string) {
-		console.log('onSelectTag');
-		selectedTagSlug = tagSlug;
+	// TODO helper
+	function onSelectTag(slug: string) {
+		filterTag.set(getTagBySlug(tags.get(), slug));
 		const url = new URL(window.location.toString());
-		url.searchParams.set('tag', selectedTagSlug);
+		url.searchParams.set('tag', filterTag.get().slug);
 		window.history.pushState({}, '', url.href);
 	}
 </script>
 
 <section>
 	<aside class="tags">
-		<h2>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="192"
-				height="192"
-				fill="#000000"
-				viewBox="0 0 256 256"
-				><rect width="256" height="256" fill="none" /><line
-					x1="96"
-					y1="156"
-					x2="160"
-					y2="156"
-					fill="none"
-					stroke="#000000"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="24"
-				/><line
-					x1="96"
-					y1="116"
-					x2="160"
-					y2="116"
-					fill="none"
-					stroke="#000000"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="24"
-				/><path
-					d="M160,40h40a8,8,0,0,1,8,8V216a8,8,0,0,1-8,8H56a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H96"
-					fill="none"
-					stroke="#000000"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="24"
-				/><path
-					d="M88,72V64a40,40,0,0,1,80,0v8Z"
-					fill="none"
-					stroke="#000000"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="24"
-				/></svg
-			> Tags
-		</h2>
-		<ol>
-			<li>
-				<button class:selected={selectedTagSlug === 'all'} on:click={() => onSelectTag('all')}>
-					All ({entries.length})</button
-				>
-			</li>
-			{#each tags as tag}
+		<h2>Tags</h2>
+		<ul>
+			{#each $tags as tag}
 				<li>
 					<button
-						class:selected={selectedTagSlug === tag.slug}
+						class:selected={$filterTag.slug === tag.slug}
 						on:click={() => onSelectTag(tag.slug)}
 					>
 						{tag.title} ({tag.count})
 					</button>
 				</li>
 			{/each}
-		</ol>
+		</ul>
 	</aside>
 	<div class="entries">
 		<ul>
-			{#each filteredEntries as entry}
+			{#each $entries as entry}
 				<li class="h-feed">
 					<a href={entry.url}>
 						<div class="logo">
@@ -164,7 +113,7 @@
 			fill: white;
 			size: 2rem;
 		}
-		ol {
+		ul {
 			display: flex;
 			flex-direction: column;
 			flex-wrap: nowrap;
