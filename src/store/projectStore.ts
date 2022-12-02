@@ -1,107 +1,9 @@
 import { atom } from 'nanostores'
-import { formatDate, getSlug, sortAlphabetical, sortDate, sortNumber } from '../util/helper';
-
-enum ProjectSortProperty {
-    Title = 'TITLE',
-    Published = 'PUBLISHED',
-    Updated = 'UPDATED',
-    Priority = 'PRIORITY',
-}
-
-enum TagSortProperty {
-    Title = 'TITLE',
-    Count = 'COUNT',
-}
-
-enum SortDirection {
-    Desc = 'DESC',
-    Asc = 'ASC',
-}
-
-// Don't like the Null here, but there doesn't seem to be another way to have a nullable enum
-enum ProjectStatus {
-    Null = 'NULL',
-    Active = 'ACTIVE',
-    Inactive = 'INACTIVE',
-}
-
-interface Link {
-    title: string;
-    url: string;
-}
-
-interface Tag {
-    title: string;
-    slug: string;
-    fullPath: string;
-    count: number;
-}
-
-interface EntryDate {
-    raw: Date;
-    display: string;
-}
-enum EntryType {
-    List = 'LIST',
-    Post = 'POST',
-    Project = 'PROJECT',
-}
-
-interface Entry {
-    type: EntryType;
-    title: string;
-    description: string;
-    image: string;
-    tags: Tag[];
-    published: EntryDate;
-    updated: EntryDate;
-    slug: string;
-    relativePath: string;
-    fullPath: string;
-}
-
-interface Project extends Entry {
-    links: Link[];
-    prio: number;
-    status: ProjectStatus | null;
-    Content: any
-}
-
-function getTag(title: string, type: EntryType): Tag {
-    const slug = getSlug(title);
-    return {
-        title: title,
-        slug: slug,
-        fullPath: `/${type.toLowerCase()}s/?tag=${slug}`,
-        count: 0,
-    }
-}
-
-function getDate(raw: Date): EntryDate {
-    return {
-        raw,
-        display: formatDate(raw)
-    }
-}
-
-function getUniqueTags(entries: Project[]): Tag[] {
-    const duplicateTags = entries.map(entry => entry.tags).flat()
-    return duplicateTags.reduce((unique: Tag[], item: Tag): Tag[] => {
-        const tagIndex = unique.findIndex((u) => item.slug === u.slug)
-        const isItemInUnique = tagIndex >= 0;
-        if (isItemInUnique) {
-            unique[tagIndex].count++;
-        } else {
-            unique.push({
-                ...item,
-                count: 1,
-            });
-        }
-        return unique;
-    }, [])
-}
-
-// Everything above should be in a different file
+import { EntryType, ProjectSortProperty, ProjectStatus, SortDirection } from '../types/enums';
+import type { Project } from '../types/project';
+import type { Tag } from '../types/tag';
+import { getDate, getTag, getUniqueTags } from '../util/entries';
+import { getSlug, sortAlphabetical, sortDate, sortNumber } from '../util/helper';
 
 const initialTag: Tag = getTag('all', EntryType.Project)
 
@@ -117,14 +19,6 @@ export let sortDirection = atom<SortDirection>(SortDirection.Desc)
 export function storeProjects(raw: any) {
     const enrichedEntries = raw.map(getProject)
     inputEntries.set(enrichedEntries)
-}
-
-export function getTagBySlug(slug: string): Tag {
-    const foundTag = inputTags.get().find(tag => tag.slug === slug)
-    if (foundTag === undefined) {
-        throw new Error(`Tag couldn't be found by slug: ${slug}`);
-    }
-    return foundTag
 }
 
 inputEntries.listen((value: readonly Project[]) => {

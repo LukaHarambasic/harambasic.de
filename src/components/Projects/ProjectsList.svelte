@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { storeProjects, entries, tags, getTagBySlug, filterTag } from '../../store/projectStore';
+	import { storeProjects, entries, tags, filterTag } from '../../store/projectStore';
+	import { getTagBySlug } from '../../util/entries';
 	import { onMount } from 'svelte';
 
 	export let raw: any;
@@ -7,11 +8,11 @@
 	onMount(() => {
 		storeProjects(raw);
 		const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
-		filterTag.set(getTagBySlug(slug));
+		filterTag.set(getTagBySlug(tags.get(), slug));
 	});
 
 	function onSelectTag(slug: string) {
-		filterTag.set(getTagBySlug(slug));
+		filterTag.set(getTagBySlug(tags.get(), slug));
 		const url = new URL(window.location.toString());
 		url.searchParams.set('tag', filterTag.get().slug);
 		window.history.pushState({}, '', url.href);
