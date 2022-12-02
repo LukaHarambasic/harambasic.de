@@ -1,23 +1,19 @@
 <script lang="ts">
-	import type { Project, ProjectCollection } from '../../models/Project';
+	import { storeProjects, entries, tags, getTagBySlug, filterTag } from '../../store/projectStore';
 	import { onMount } from 'svelte';
 
-	export let collection: ProjectCollection;
+	export let raw: any;
 
-	let selectedTagSlug: string = 'all';
-	const tags = collection.tags;
-	const entries: Project[] = collection.entries as Project[];
-	$: filteredEntries = collection.getFilteredEntriesByTagSlug(selectedTagSlug);
-
-	// FIXME doesn't seem to get exectued
 	onMount(() => {
-		selectedTagSlug = new URLSearchParams(window.location.search).get('tag') || 'all';
+		storeProjects(raw);
+		const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
+		filterTag.set(getTagBySlug(slug));
 	});
 
-	function onSelectTag(tagSlug: string) {
-		selectedTagSlug = tagSlug;
+	function onSelectTag(slug: string) {
+		filterTag.set(getTagBySlug(slug));
 		const url = new URL(window.location.toString());
-		url.searchParams.set('tag', selectedTagSlug);
+		url.searchParams.set('tag', filterTag.get().slug);
 		window.history.pushState({}, '', url.href);
 	}
 </script>
@@ -26,15 +22,10 @@
 	<aside class="tags">
 		<h2>Tags</h2>
 		<ol>
-			<li>
-				<button class:selected={selectedTagSlug === 'all'} on:click={() => onSelectTag('all')}>
-					All ({entries.length})</button
-				>
-			</li>
-			{#each tags as tag}
+			{#each $tags as tag}
 				<li>
 					<button
-						class:selected={selectedTagSlug === tag.slug}
+						class:selected={$filterTag.slug === tag.slug}
 						on:click={() => onSelectTag(tag.slug)}
 					>
 						{tag.title} ({tag.count})
@@ -45,7 +36,7 @@
 	</aside>
 	<div class="entries">
 		<ul>
-			{#each filteredEntries as entry}
+			{#each $entries as entry}
 				<li class="h-feed">
 					<img src={entry.image} alt="TODO" width="8rem" />
 					<div class="content">

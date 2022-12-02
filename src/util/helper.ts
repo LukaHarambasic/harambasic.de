@@ -44,3 +44,7 @@ export function sortDate(a: Date, b: Date): number {
 export function sortNumber(a: number, b: number): number {
 	return b - a;
 }
+
+export function deepCopy(obj: any): any {
+	return JSON.parse(JSON.stringify(obj))
+}

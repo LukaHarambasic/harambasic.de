@@ -35,5 +35,5 @@ const collection = new BookmarkCollection(bookmarks);
 	socialImg={socialImg}
 	socialImgAlt={socialImgAlt}
 >
-	<BookmarksList client:load collection={collection} />
+	<BookmarksList client:visible collection={collection} />
 </DefaultLayout>

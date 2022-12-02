@@ -21,6 +21,7 @@
     "astro-icon": "^0.8.0",
     "axios": "^1.2.0",
     "date-fns": "^2.29.3",
+    "nanostores": "^0.7.1",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",
     "rehype-toc": "^3.0.2",

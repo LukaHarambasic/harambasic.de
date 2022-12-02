@@ -76,3 +76,4 @@
 * recursive component in astro doesnt seem to work, siwtched to svelte
 * server sometimes breaks when doing a global search and replace
 * cant reuse some packages like astro-image in .svelte or astro-icon
+* class doesn't seem to be supported for island with svelte > https://stackoverflow.com/questions/73007451/sveltes-reactivity-not-working-on-class-variables 

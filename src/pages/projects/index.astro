@@ -2,7 +2,6 @@
 import BaseFootnote from '../../components/Base/BaseFootnote.astro';
 import ProjectsList from '../../components/Projects/ProjectsList.svelte';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import { Project, ProjectCollection } from '../../models/project';
 
 const title = 'Projects';
 const description = 'TBD';
@@ -11,22 +10,6 @@ const socialImg = 'TBD';
 const socialImgAlt = 'TBD';
 
 const rawProjects = await Astro.glob('../../content/projects/*.md');
-const projects = rawProjects.map((p) => {
-	const f = p.frontmatter;
-	return new Project(
-		f.title,
-		f.description,
-		f.image,
-		f.tags,
-		f.published,
-		f.updated,
-		p.Content,
-		f.links,
-		f.prio,
-		f.status
-	);
-});
-const collection = new ProjectCollection(projects);
 ---
 
 <DefaultLayout
@@ -40,7 +23,7 @@ const collection = new ProjectCollection(projects);
 		<h2>Selected projects</h2>
 		<p>Technopreneur, Sparkle?, veggie2.0, gk?, monta?</p>
 	</section>
-	<ProjectsList client:load collection={collection} />
+	<ProjectsList client:load raw={rawProjects} />
 	<section>
 		<BaseFootnote>
 			If you want to learn more about the projects, please do not hesitate to send me an

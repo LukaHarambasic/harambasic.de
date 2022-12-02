@@ -1,20 +1,22 @@
 <script lang="ts">
 	import type { Bookmark, BookmarkCollection } from '../../models/Bookmark';
+	import type { Tag } from '../../models/Tag';
+	import { deepCopy } from '../../util/helper';
 	import { onMount } from 'svelte';
 
 	export let collection: BookmarkCollection;
 
 	let selectedTagSlug: string = 'all';
-	const tags = collection.tags;
-	const entries: Bookmark[] = collection.entries as Bookmark[];
-	$: filteredEntries = collection.getFilteredEntriesByTagSlug(selectedTagSlug);
+	const tags: Tag[] = deepCopy(collection.tags);
+	const entries: Bookmark[] = deepCopy(collection.entries) as Bookmark[];
+	$: filteredEntries = deepCopy(collection.getFilteredEntriesByTagSlug(selectedTagSlug));
 
-	// FIXME doesn't seem to get exectued
 	onMount(() => {
 		selectedTagSlug = new URLSearchParams(window.location.search).get('tag') || 'all';
 	});
 
 	function onSelectTag(tagSlug: string) {
+		console.log('onSelectTag');
 		selectedTagSlug = tagSlug;
 		const url = new URL(window.location.toString());
 		url.searchParams.set('tag', selectedTagSlug);
