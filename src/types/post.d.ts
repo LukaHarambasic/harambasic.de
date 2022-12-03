@@ -1,5 +1,5 @@
 // import { AstroComponentFactory } from "astro/dist/runtime/server";
-import type { Entry } from "./entry";
+import type { Entry } from './entry';
 
 export interface TocNode {
     depth: number;
@@ -9,8 +9,8 @@ export interface TocNode {
 }
 
 export interface Post extends Entry {
-    toc: TocNode[]
-    tldr: string
-    discussion: string
-    Content: any //AstroComponentFactory
+    toc: TocNode[];
+    tldr: string;
+    discussion: string;
+    Content: any; //AstroComponentFactory
 }

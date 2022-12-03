@@ -25,11 +25,11 @@ export function formatDate(date: Date) {
 }
 
 export function sortAlphabetical(a: string, b: string): number {
-	return b.localeCompare(a)
+	return b.localeCompare(a);
 }
 
 export function sortDate(a: Date, b: Date): number {
-	return new Date(b).valueOf() - new Date(a).valueOf()
+	return new Date(b).valueOf() - new Date(a).valueOf();
 }
 
 export function sortNumber(a: number, b: number): number {
@@ -37,5 +37,5 @@ export function sortNumber(a: number, b: number): number {
 }
 
 export function deepCopy(obj: any): any {
-	return JSON.parse(JSON.stringify(obj))
+	return JSON.parse(JSON.stringify(obj));
 }

@@ -2,11 +2,7 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "jsx": "preserve",
-    "types": [
-      "astro/client"
-    ],
+    "types": ["astro/client"]
   },
-  "include": [
-    "src/types/svg.d.ts"
-  ]
+  "include": ["src/types/svg.d.ts"]
 }

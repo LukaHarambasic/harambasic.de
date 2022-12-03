@@ -78,7 +78,9 @@
 * cant reuse some packages like astro-image in .svelte or astro-icon
 * class doesn't seem to be supported for island with svelte > https://stackoverflow.com/questions/73007451/sveltes-reactivity-not-working-on-class-variables 
 * importing type and enum from a type file isn't wokring
-
+* vite svelte error messages are just horrible - something crashed somewhere but im not able to figure out what
+    * `proxy.js?v=da58802d:15 [HMR][Svelte] Unrecoverable HMR error in <PostsList>: next update will trigger a full reload`
+* im pissed it just doesn't work as expected - I'll go back to vue3 as im now also way more interactive
 
 vs code
 * temrinal isnt loading
