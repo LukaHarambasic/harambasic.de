@@ -1,89 +1,42 @@
-# Harambasic.de
+# Nuxt 3 Minimal Starter
 
-## Goals
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-- [ ] Completly accessible
-- [ ] Blazing fast - 100 Lighthouse score
-- [ ] Build on web standards
-- [ ] Use same URL structure as before
-- [ ] Framework agnostic - no hard dependencies
-- [ ] Tests: Unit & one E2E per main page
-- [ ] Integration: Store data from the web (e.g. Toots, Twitter, GitHub, Spotify) in files in the repo
- 
-## Pages
+## Setup
 
-- Index
-    - Picture + Intro
-    - 1 project
-    - 3 posts
-    - 1 list
-    - Contact
-- Projects
-    - Galery / Slider
-    - Linkable
-- Resources
-    - Overview: show every item
-    - Filter per category
-    - Sort
-    - Categories
-        - Development
-        - Digital tools
-        - Hardware
-        - Snippets
-        - Bookmarks
-- Consumption
-    - Podcasts
-    - Youtube
-    - Spotify
-- Blog
-    - Featured post
-    - Filter per tag
-    - Sort
-- Guestbook
-- Feed like on Polywork aka Changelog
+Make sure to install the dependencies:
 
+```bash
+# yarn
+yarn install
 
-## Good & not so good
+# npm
+npm install
 
-## Good
+# pnpm
+pnpm install --shamefully-hoist
+```
 
-* structure or the freedom to decide
-* typescript integration, postcss integration > I think this might be vite under the hood
-* complete control over dom, e.g. LayoutHead.astro
-* easy to adjust meta data > DefaultLayout.astro
-* astro-icon is a blast
-* astro iamge exists and does an okay job
+## Development Server
 
-## In between
+Start the development server on http://localhost:3000
 
-* JSX, still not a big fan, but it does it job
+```bash
+npm run dev
+```
 
-### Not so good
+## Production
 
-* astro image
-    * whole path needs to be efined in frontmatter, cant assemble it on the go
-    * picture cant handle svg, which could expected - but it just breaks without an error
-    * not sure where to store files public vs assets/images
-* interactivity
-    * I want simple filtering, but this won't work with an .astro file without alpine.js
-    * But for that simple task I don't want to include vue or similiar
-* alpine.js integration
-    * would be nice, but i dont like that is than globally available which is for me a little bit against the concept of astro
-* accessing .glob outside of .astro files
-* error messages are sometimes of > vite see issue
-* not easy to set up eslint and prettier, need to check how it is done in the astro repo even if it is part of the docu why not an add command like for other libaries
-* vs code auto complete always does the wrong stuff
-* recursive component in astro doesnt seem to work, siwtched to svelte
-* server sometimes breaks when doing a global search and replace
-* cant reuse some packages like astro-image in .svelte or astro-icon
-* class doesn't seem to be supported for island with svelte > https://stackoverflow.com/questions/73007451/sveltes-reactivity-not-working-on-class-variables 
-* importing type and enum from a type file isn't wokring
-* vite svelte error messages are just horrible - something crashed somewhere but im not able to figure out what
-    * `proxy.js?v=da58802d:15 [HMR][Svelte] Unrecoverable HMR error in <PostsList>: next update will trigger a full reload`
-* im pissed it just doesn't work as expected - I'll go back to vue3 as im now also way more interactive
+Build the application for production:
 
-vs code
-* temrinal isnt loading
-* "overrides" open files
-* shows erros warnings also after they are fixed
-* doesnt show possible imports also after change
+```bash
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+npm run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

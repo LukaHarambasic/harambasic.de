@@ -1,1 +1,11 @@
-**/*.d.ts
+node_modules
+dist
+.nuxt
+coverage
+*.log*
+.DS_Store
+.code
+*.iml
+package-lock.json
+templates/*
+sw.js
