@@ -1,0 +1,44 @@
+:root {
+	--c-surface: rgba(247, 247, 247, 1);
+	--c-surface-accent: rgba(1, 3, 15, 0.1);
+	--c-light: rgba(255, 255, 255, 1);
+	--c-font: rgba(1, 3, 15, 1);
+	--c-font-accent-dark: rgba(1, 3, 15, 0.8);
+	--c-font-accent-super-light: rgba(1, 3, 15, 0.2);
+
+	/* 1.200 Minor Third - https://type-scale.com/ */
+	--font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+	--font-s: 0.833rem;
+	--font-m: 1rem;
+	--font-l: 1.2rem;
+	--font-xl: 1.44rem;
+	--font-letter-spacing-headline: 0.2px;
+	--underline-thickness: 0.15rem;
+
+	--transition: all 0.15s ease-in-out;
+	--border-radius: 1rem;
+	--border-radius-small: 0.5rem;
+
+	--xs: 0.5rem;
+	--s: 0.75rem;
+	--m: 1rem;
+	--l: 2rem;
+	--xl: 6rem;
+	--xxl: 16rem;
+
+	--layout-xl: 64rem;
+	--layout-l: 48rem;
+	--layout-m: 36rem;
+	--layout-sidebar: 14rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--c-surface: rgba(255, 255, 255, 0.03);
+		--c-surface-accent: rgba(255, 255, 255, 0.1);
+		--c-light: rgba(1, 3, 15, 1);
+		--c-font: rgba(255, 255, 255, 1);
+		--c-font-accent-dark: rgba(255, 255, 255, 0.8);
+		--c-font-accent-super-light: rgba(255, 255, 255, 0.04);
+	}
+}
