@@ -50,16 +50,16 @@ const LISTS_PATH = `${ROOT_PATH}/content/lists`;
  * @param {string} slug
  */
 const generateImage = async (page, title, slug) => {
-  const URL = `file:///${path.join(__dirname, '/template.html')}`;
-  const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`;
-  await page.goto(URL);
-  // strange syntax, check https://playwright.dev/docs/api/class-page#page-eval-on-selector for more infos
-  await page.$eval('.title', (el, title) => (el.textContent = title), title);
-  const cardHandle = await page.$('.card');
-  await cardHandle.screenshot({
-    type: 'png',
-    path: SCREENSHOT_PATH,
-  });
+	const URL = `file:///${path.join(__dirname, '/template.html')}`;
+	const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`;
+	await page.goto(URL);
+	// strange syntax, check https://playwright.dev/docs/api/class-page#page-eval-on-selector for more infos
+	await page.$eval('.title', (el, title) => (el.textContent = title), title);
+	const cardHandle = await page.$('.card');
+	await cardHandle.screenshot({
+		type: 'png',
+		path: SCREENSHOT_PATH
+	});
 };
 
 /*
@@ -68,8 +68,8 @@ const generateImage = async (page, title, slug) => {
  * @returns {boolean}
  */
 const doesImageAlreadyExist = (slug) => {
-  const files = readdirSync(SOCIAL_PATH);
-  return files.find((file) => file.startsWith(slug));
+	const files = readdirSync(SOCIAL_PATH);
+	return files.find((file) => file.startsWith(slug));
 };
 
 /*
@@ -80,9 +80,9 @@ const doesImageAlreadyExist = (slug) => {
  * @returns {string}
  */
 const getTitle = (str) => {
-  const start = 'title: ';
-  const end = '\ndescription: ';
-  return str.substring(str.indexOf(start) + start.length, str.indexOf(end));
+	const start = 'title: ';
+	const end = '\ndescription: ';
+	return str.substring(str.indexOf(start) + start.length, str.indexOf(end));
 };
 
 /*
@@ -92,11 +92,11 @@ const getTitle = (str) => {
  * @returns {{name|string,path|string,slug|string}} // not sure how to do this object syntax without defining a type
  */
 const fileToMeta = (name, basePath) => {
-  return {
-    name,
-    path: `${basePath}/${name}`,
-    slug: name.split('.')[0],
-  };
+	return {
+		name,
+		path: `${basePath}/${name}`,
+		slug: name.split('.')[0]
+	};
 };
 
 /*
@@ -105,36 +105,36 @@ const fileToMeta = (name, basePath) => {
  * if not execute generateImage(), nothing will be returned
  */
 const generateSocialMediaPreview = async () => {
-  console.log('>> GENERATE SOCIAL MEDIA PREVIEWS <<');
-  console.log('🆕 newly generated, 🛑 already exists');
-  console.log('-------------------------------------');
-  const browser = await chromium.launch();
-  const page = await browser.newPage();
-  const posts = readdirSync(POSTS_PATH).map((name) => fileToMeta(name, POSTS_PATH));
-  const lists = readdirSync(LISTS_PATH).map((name) => fileToMeta(name, LISTS_PATH));
-  const files = [...posts, ...lists];
-  for (const file of files) {
-    const content = readFileSync(file.path, 'utf8');
-    const title = getTitle(content);
-    if (!doesImageAlreadyExist(file.slug)) {
-      console.log('🆕', title);
-      await generateImage(page, title, file.slug);
-    } else {
-      console.log('🛑', title);
-    }
-  }
-  await browser.close();
+	console.log('>> GENERATE SOCIAL MEDIA PREVIEWS <<');
+	console.log('🆕 newly generated, 🛑 already exists');
+	console.log('-------------------------------------');
+	const browser = await chromium.launch();
+	const page = await browser.newPage();
+	const posts = readdirSync(POSTS_PATH).map((name) => fileToMeta(name, POSTS_PATH));
+	const lists = readdirSync(LISTS_PATH).map((name) => fileToMeta(name, LISTS_PATH));
+	const files = [...posts, ...lists];
+	for (const file of files) {
+		const content = readFileSync(file.path, 'utf8');
+		const title = getTitle(content);
+		if (!doesImageAlreadyExist(file.slug)) {
+			console.log('🆕', title);
+			await generateImage(page, title, file.slug);
+		} else {
+			console.log('🛑', title);
+		}
+	}
+	await browser.close();
 };
 
 /*
  * Entry point for generateSocialMediaPreview() when this file is executed
  */
 (async () => {
-  try {
-    await generateSocialMediaPreview();
-  } catch (error) {
-    console.log('Error:', error);
-  }
+	try {
+		await generateSocialMediaPreview();
+	} catch (error) {
+		console.log('Error:', error);
+	}
 })();
 ```
 

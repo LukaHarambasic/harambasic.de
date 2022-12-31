@@ -8,10 +8,10 @@ export async function load() {
 	const TABLE = 'Main';
 	const requestUrl = `https://api.airtable.com/v0/${BASE_ID}/${TABLE}`;
 	const config = {
-		headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
+		headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }
 	};
 	const {
-		data: { records },
+		data: { records }
 	} = await Axios.get(requestUrl, config);
 	return records;
 }

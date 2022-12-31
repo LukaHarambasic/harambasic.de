@@ -1,8 +1,8 @@
-import { EntryType, PostSortProperty, SortDirection } from "$lib/types/enums";
-import type { Post } from "$lib/types/post";
-import type { Tag } from "$lib/types/tag";
-import { getTag, getUniqueTags } from "$lib/util/entries";
-import { getPost, getSortedPosts, getFilteredPosts } from "./helper";
+import { EntryType, PostSortProperty, SortDirection } from '$lib/types/enums';
+import type { Post } from '$lib/types/post';
+import type { Tag } from '$lib/types/tag';
+import { getTag, getUniqueTags } from '$lib/util/entries';
+import { getPost, getSortedPosts, getFilteredPosts } from './helper';
 
 const initialTag: Tag = getTag('all', EntryType.Post);
 

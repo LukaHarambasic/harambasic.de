@@ -1,5 +1,5 @@
 <script lang="ts">
-export let prefix: string;
+	export let prefix: string;
 </script>
 
 <div class="callout">

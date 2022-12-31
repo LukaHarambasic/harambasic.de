@@ -1,8 +1,8 @@
-import { EntryType, ProjectStatus, ProjectSortProperty, SortDirection } from "$lib/types/enums";
-import type { Tag } from "$lib/types/tag";
-import type { Project } from "$lib/types/project";
-import { getTag, getUniqueTags } from "$lib/util/entries";
-import { getProject } from "./helper";
+import { EntryType, ProjectStatus, ProjectSortProperty, SortDirection } from '$lib/types/enums';
+import type { Tag } from '$lib/types/tag';
+import type { Project } from '$lib/types/project';
+import { getTag, getUniqueTags } from '$lib/util/entries';
+import { getProject } from './helper';
 
 const initialTag: Tag = getTag('all', EntryType.Project);
 

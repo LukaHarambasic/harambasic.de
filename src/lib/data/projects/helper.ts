@@ -1,9 +1,9 @@
-import { ProjectSortProperty, SortDirection, ProjectStatus, EntryType } from "$lib/types/enums";
-import type { Tag } from "$lib/types/tag";
-import type { Project } from "$lib/types/project";
-import { getTag } from "$lib/util/entries";
-import { sortAlphabetical, sortDate, sortNumber, getSlug } from "$lib/util/helper";
-import { getDate } from "date-fns";
+import { ProjectSortProperty, SortDirection, ProjectStatus, EntryType } from '$lib/types/enums';
+import type { Tag } from '$lib/types/tag';
+import type { Project } from '$lib/types/project';
+import { getTag } from '$lib/util/entries';
+import { sortAlphabetical, sortDate, sortNumber, getSlug } from '$lib/util/helper';
+import { getDate } from 'date-fns';
 
 export function getSortedProjects(
 	unsorted: Project[],
@@ -97,6 +97,6 @@ export function getProject(e: any): Project {
 		status: f.status,
 		slug,
 		relativePath,
-		fullPath: `https://harambasic.de${relativePath}`,
+		fullPath: `https://harambasic.de${relativePath}`
 	};
 }

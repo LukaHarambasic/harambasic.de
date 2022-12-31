@@ -24,8 +24,8 @@ export async function getMarkdown(raw: string) {
     return await unified()
         .use(remarkParse)
         .use(remarkRehype)
+        .use(remarkFrontmatter)
         .use(rehypeSanitize)
         .use(rehypeStringify)
-        .use(remarkFrontmatter, ['yaml', 'toml'])
         .process(raw)
 }

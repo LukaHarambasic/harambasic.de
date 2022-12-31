@@ -4,6 +4,6 @@ module.exports = {
 		require('postcss-sorting'),
 		require('autoprefixer'),
 		require('cssnano'),
-		require('postcss-size'),
-	],
+		require('postcss-size')
+	]
 };

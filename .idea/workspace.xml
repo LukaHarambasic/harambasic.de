@@ -2,44 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fef9125-346e-4bc0-bd21-fd6b2219eafa" name="Changes" comment="clean start">
-      <change afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.eslintrc.cjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.npmrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/playwright.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/images/github.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/images/svelte-logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/images/svelte-welcome.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/images/svelte-welcome.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/+page.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/Counter.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/Header.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/about/+page.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/about/+page.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/sverdle/+page.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/sverdle/+page.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/sverdle/game.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/sverdle/game.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/sverdle/how-to-play/+page.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/sverdle/how-to-play/+page.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/sverdle/reduced-motion.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/sverdle/words.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/svelte.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vite.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/data/teststore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/util/markdown.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/util/markdown.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/test/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/lib/util/helper.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/posts/my-nerd-path-10-years-of-personal-development.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/posts/my-nerd-path-10-years-of-personal-development.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/Base/BaseCallout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/Base/BaseCallout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/Layout/LayoutHead.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/Layout/LayoutHead.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/data/bookmarks/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/data/bookmarks/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/data/bookmarks/helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/data/bookmarks/helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/data/bookmarks/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/data/bookmarks/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/data/posts/helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/data/posts/helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/data/posts/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/data/posts/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/data/projects/helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/data/projects/helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/data/projects/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/data/projects/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/types/enums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/types/enums.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/types/post.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/types/post.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/util/entries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/util/entries.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Z2/+page.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Z2/+page.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Z2/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Z2/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Z2/game.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Z2/game.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/posts/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/posts/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/posts/Post.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/posts/Post.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/util/helper.test.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +73,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
     <property name="vuejs.nuxt.types-notification-shown" value="true" />
   </component>
@@ -97,6 +91,8 @@
       <workItem from="1670181479182" duration="631000" />
       <workItem from="1670190693026" duration="37000" />
       <workItem from="1671035761096" duration="6320000" />
+      <workItem from="1672150057739" duration="4000" />
+      <workItem from="1672259013507" duration="58000" />
     </task>
     <task id="LOCAL-00001" summary="nuxt 3 starter">
       <created>1671372786063</created>

@@ -1,10 +1,10 @@
-import type { Bookmark } from "$lib/types/bookmark";
-import type { EntryDate } from "$lib/types/entry";
-import type { EntryType } from "$lib/types/enums";
-import type { Post } from "$lib/types/post";
-import type { Tag } from "$lib/types/tag";
-import type { Project } from "@playwright/test";
-import { getSlug, formatDate } from "./helper";
+import type { Bookmark } from '$lib/types/bookmark';
+import type { EntryDate } from '$lib/types/entry';
+import type { EntryType } from '$lib/types/enums';
+import type { Post } from '$lib/types/post';
+import type { Tag } from '$lib/types/tag';
+import type { Project } from '@playwright/test';
+import { getSlug, formatDate } from './helper';
 
 export function getTag(display: string, type: EntryType): Tag {
 	const slug = getSlug(display);
@@ -12,7 +12,7 @@ export function getTag(display: string, type: EntryType): Tag {
 		display,
 		slug: slug,
 		fullPath: `/${type.toLowerCase()}s/?tag=${slug}`,
-		count: 0,
+		count: 0
 	};
 }
 
@@ -20,7 +20,7 @@ export function getDate(rawString: string): EntryDate {
 	const raw = new Date(rawString);
 	return {
 		raw,
-		display: formatDate(raw),
+		display: formatDate(raw)
 	};
 }
 
@@ -34,7 +34,7 @@ export function getUniqueTags(entries: Project[] | Bookmark[] | Post[]): Tag[] {
 		} else {
 			unique.push({
 				...item,
-				count: 1,
+				count: 1
 			});
 		}
 		return unique;

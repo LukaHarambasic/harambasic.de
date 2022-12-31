@@ -1,9 +1,9 @@
-import { getDate } from "date-fns";
-import { PostSortProperty, SortDirection, EntryType } from "$lib/types/enums";
-import type { Post, TocNode } from "$lib/types/post";
-import type { Tag } from "$lib/types/tag";
-import { getTag } from "$lib/util/entries";
-import { sortAlphabetical, sortDate, getSlug } from "$lib/util/helper";
+import { getDate } from 'date-fns';
+import { PostSortProperty, SortDirection, EntryType } from '$lib/types/enums';
+import type { Post, TocNode } from '$lib/types/post';
+import type { Tag } from '$lib/types/tag';
+import { getTag } from '$lib/util/entries';
+import { sortAlphabetical, sortDate, getSlug } from '$lib/util/helper';
 
 export function getSortedPosts(
 	unsorted: Post[],
@@ -68,7 +68,7 @@ export function getPost(e: any): Post {
 		Content: e.Content,
 		slug,
 		relativePath,
-		fullPath: `https://harambasic.de${relativePath}`,
+		fullPath: `https://harambasic.de${relativePath}`
 	};
 }
 

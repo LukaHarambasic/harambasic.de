@@ -5,15 +5,14 @@
 	import type { Project } from '$lib/types/project';
 	import type { Bookmark } from '$lib/types/bookmark';
 	import type { Post } from '$lib/types/post';
-	
+
 	// const rawPosts = await Astro.glob('../content/posts/*.md');
 	// const posts = []; // rawToPosts(rawPosts);
 	// const randomPosts: Post[] = []; // getRandomItems(posts, 3);
 
-	const randomProjects: Project[] = []
-	const randomBookmarks: Bookmark[] = []
-	const randomPosts: Post[] = []
-	
+	const randomProjects: Project[] = [];
+	const randomBookmarks: Bookmark[] = [];
+	const randomPosts: Post[] = [];
 </script>
 
 <section class="heyho">
@@ -22,70 +21,70 @@
 		<div class="content rich-text">
 			<h2>Heyho, I'm Luka!</h2>
 			<p>
-				Simpler version, interstes and what I do, for more infos send to about page with a text
-				and link to CV. <em>Pinnace</em> holystone mizzenmast <a>lorem ipsum</a> quarter crow's nest
-				nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard.
+				Simpler version, interstes and what I do, for more infos send to about page with a text and
+				link to CV. <em>Pinnace</em> holystone mizzenmast <a>lorem ipsum</a> quarter crow's nest nipperkin
+				grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard.
 			</p>
 		</div>
 	</div>
 </section>
 <section class="featured">
-<div class="project group">
-	<h3 class="section-label">
-		<span>Project</span>
-		<Icon icon="ph:projector-screen-chart-duotone" />
-	</h3>
-	<ul>
-		{#each randomProjects as project}
-            <li>
-                <a class="card image" href="/projects">
-                    <Icon icon="ph:arrow-circle-right-bold" />
-                    <img src={project.image} alt={project.title} width="8rem" />
-                    <div class="content">
-                        <strong>{project.title}</strong>
-                        <p>{project.description}</p>
-                    </div>
-                </a>
-            </li>
-        {/each}
-	</ul>
-</div>
-<div class="posts group">
-	<h3 class="section-label">
-		<span>Posts</span>
-		<Icon icon="ph:files-duotone" />
-	</h3>
-	<ul>
-		{#each randomPosts as post}
-            <li>
-                <a class="card text" href={post.relativePath}>
-                    <Icon icon="ph:arrow-circle-right-bold" />
-                    <time class="date dt-published" datetime={post.published.raw.toString()}>
-                        {post.published.display}
-                    </time>
-                    <strong>{post.title}</strong>
-                </a>
-            </li>
-        {/each}
-	</ul>
-</div>
-<div class="lists group">
-	<h3 class="section-label">
-		<span>Bookmarks</span>
-		<Icon icon="ph:clipboard-text-duotone" />
-	</h3>
-	<ul>
-		{#each randomBookmarks as bookmark}
-            <li>
-                <a class="card text" href={bookmark.slug && ''}>
-                    <Icon icon="ph:arrow-circle-right-bold" />
-                    <strong>{bookmark.title}</strong>
-                    <p>{bookmark.description}</p>
-                </a>
-            </li>
-        {/each}
-	</ul>
-</div>
+	<div class="project group">
+		<h3 class="section-label">
+			<span>Project</span>
+			<Icon icon="ph:projector-screen-chart-duotone" />
+		</h3>
+		<ul>
+			{#each randomProjects as project}
+				<li>
+					<a class="card image" href="/projects">
+						<Icon icon="ph:arrow-circle-right-bold" />
+						<img src={project.image} alt={project.title} width="8rem" />
+						<div class="content">
+							<strong>{project.title}</strong>
+							<p>{project.description}</p>
+						</div>
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</div>
+	<div class="posts group">
+		<h3 class="section-label">
+			<span>Posts</span>
+			<Icon icon="ph:files-duotone" />
+		</h3>
+		<ul>
+			{#each randomPosts as post}
+				<li>
+					<a class="card text" href={post.relativePath}>
+						<Icon icon="ph:arrow-circle-right-bold" />
+						<time class="date dt-published" datetime={post.published.raw.toString()}>
+							{post.published.display}
+						</time>
+						<strong>{post.title}</strong>
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</div>
+	<div class="lists group">
+		<h3 class="section-label">
+			<span>Bookmarks</span>
+			<Icon icon="ph:clipboard-text-duotone" />
+		</h3>
+		<ul>
+			{#each randomBookmarks as bookmark}
+				<li>
+					<a class="card text" href={bookmark.slug && ''}>
+						<Icon icon="ph:arrow-circle-right-bold" />
+						<strong>{bookmark.title}</strong>
+						<p>{bookmark.description}</p>
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</div>
 </section>
 <section class="contact">
 	<div class="group">
@@ -95,9 +94,7 @@
 		</div>
 		<div class="segmented-buttons">
 			<a href="mailto:luka@harambasic.de" class="button">Write</a>
-			<BaseToClipboardButton toClipboard="luka@harambasic.de"
-				>Copy</BaseToClipboardButton
-			>
+			<BaseToClipboardButton toClipboard="luka@harambasic.de">Copy</BaseToClipboardButton>
 		</div>
 	</div>
 	<div class="group">
