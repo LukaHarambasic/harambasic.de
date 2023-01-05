@@ -4,6 +4,8 @@
 	export let permalink: string;
 	export let socialImg: string;
 	export let socialImgAlt: string;
+
+	const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic';
 </script>
 
 <svelte:head>
@@ -22,14 +24,14 @@
 	<meta name="HandheldFriendly" content="True" />
 	<link rel="icon" href="/favicon.svg" />
 	<!-- Primary Meta Tags -->
-	<title>{title}</title>
-	<meta name="title" content={title} />
+	<title>{fullTitle}</title>
+	<meta name="title" content={fullTitle} />
 	<meta name="description" content={description} />
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Luka Harambasic" />
 	<meta property="og:url" content={permalink} />
-	<meta property="og:title" content={title} />
+	<meta property="og:title" content={fullTitle} />
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content={socialImg} />
 	<meta property="og:image:alt" content={socialImgAlt} />
@@ -39,7 +41,7 @@
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:site" content="@luka_harambasic" />
 	<meta property="twitter:url" content={permalink} />
-	<meta property="twitter:title" content={title} />
+	<meta property="twitter:title" content={fullTitle} />
 	<meta property="twitter:description" content={description} />
 	<meta property="twitter:image" content={socialImg} />
 	<meta property="twitter:image:alt" content={socialImgAlt} />

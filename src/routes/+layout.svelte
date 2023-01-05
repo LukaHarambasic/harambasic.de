@@ -5,16 +5,22 @@
 	import '$lib/styles/global.css';
 	import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte';
 	import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte';
+	import LayoutHead from '$lib/components/Layout/LayoutHead.svelte';
 	import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte';
+
+	const { title, description, permalink, socialImg, socialImgAlt } = $page.data;
 </script>
 
+<LayoutHead {title} {description} {permalink} {socialImg} {socialImgAlt} />
 <LayoutSkipToContent />
 <div class="container">
 	<LayoutHeader />
 	<main id="main">
-		<section>
-			<h1>{$page.data.title}</h1>
-		</section>
+		{#if title}
+			<section>
+				<h1>{title}</h1>
+			</section>
+		{/if}
 		<slot />
 	</main>
 	<LayoutFooter />
