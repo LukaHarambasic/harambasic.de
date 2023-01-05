@@ -1,8 +1,7 @@
-import { getDate } from 'date-fns';
 import { PostSortProperty, SortDirection, EntryType } from '$lib/types/enums';
 import type { Post, TocNode } from '$lib/types/post';
 import type { Tag } from '$lib/types/tag';
-import { getTag } from '$lib/util/entries';
+import { getTag, getDate } from '$lib/util/entries';
 import { sortAlphabetical, sortDate, getSlug } from '$lib/util/helper';
 
 export function getSortedPosts(
@@ -49,26 +48,27 @@ export function getFilteredPosts(unfiltered: Post[], filteringTag: Tag): Post[] 
 	});
 }
 
-export function getPost(e: any): Post {
-	const f = e.frontmatter;
+export function getPost(entry: any): Post {
+	const meta = entry.meta;
 	const type = EntryType.Post;
-	const slug = getSlug(f.title);
+	const slug = getSlug(meta.title);
 	const relativePath = `/${type.toLowerCase()}s/${slug}`;
+	// TODO add toc: getNestedToc(entry.getHeadings()),
 	return {
 		type,
-		title: f.title,
-		description: f.description,
-		image: f.image || '',
-		tags: f.tags.map((tag: string) => getTag(tag, type)),
-		published: getDate(f.published),
-		updated: getDate(f.updated),
-		toc: getNestedToc(e.getHeadings()),
-		tldr: f.tldr,
-		discussion: f.discussion,
-		Content: e.Content,
+		title: meta.title,
+		description: meta.description,
+		image: meta.image || '',
+		tags: meta.tags.map((tag: string) => getTag(tag, type)),
+		published: getDate(meta.published),
+		updated: getDate(meta.updated),
+		tldr: meta.tldr,
+		discussion: meta.discussion,
+		toc: [],
 		slug,
 		relativePath,
-		fullPath: `https://harambasic.de${relativePath}`
+		fullPath: `https://harambasic.de${relativePath}`,
+		html: entry.html
 	};
 }
 
@@ -88,9 +88,9 @@ export function getNestedToc(markdownHeading: any): TocNode[] {
 		if (latestEntry && !latestEntry.children) {
 			latestEntry.children = [];
 		}
-		let latestEntryDepth = latestEntry?.depth || 0;
-		let latestEntryChildren = latestEntry?.children || [];
-		let latestParentChildren = latestParent?.children || [];
+		const latestEntryDepth = latestEntry?.depth || 0;
+		const latestEntryChildren = latestEntry?.children || [];
+		const latestParentChildren = latestParent?.children || [];
 		if (entry.depth === entryDepth) {
 			entry.children = [];
 			result.push(entry);

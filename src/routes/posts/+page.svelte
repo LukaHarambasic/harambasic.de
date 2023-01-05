@@ -2,11 +2,13 @@
 	import List from './List.svelte';
 	import BaseFootnote from '$lib/components/Base/BaseFootnote.svelte';
 	import type { Post } from '$lib/types/post';
+	import type { PageData } from './$types';
 
-	const rawPosts: Post[] = [];
+	export let data: PageData;
+	const posts: Post[] = data.posts;
 </script>
 
-<List raw={rawPosts} />
+<List initPosts={posts} />
 <BaseFootnote>
 	<!-- TODO adapt urls -->
 	Check out the <a href="globals.blogFeedURL">RSS feed</a> or

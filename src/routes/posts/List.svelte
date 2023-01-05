@@ -1,26 +1,28 @@
 <script lang="ts">
-	import { init, entries, tags, filterTag } from '../../store/postStore';
 	import { getTagBySlug } from '../../lib/util/entries';
 	import { onMount } from 'svelte';
+	import type { Post } from '$lib/types/post';
 
-	export let raw: any;
+	export let initPosts: Post[];
 
-	onMount(() => {
-		init(raw);
-		const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
-		filterTag.set(getTagBySlug(tags.get(), slug));
-	});
+	const filteredPosts = initPosts;
 
-	function onSelectTag(slug: string) {
-		filterTag.set(getTagBySlug(tags.get(), slug));
-		const url = new URL(window.location.toString());
-		url.searchParams.set('tag', filterTag.get().slug);
-		window.history.pushState({}, '', url.href);
-	}
+	// onMount(() => {
+	// 	init(raw);
+	// 	const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
+	// 	filterTag.set(getTagBySlug(tags.get(), slug));
+	// });
+
+	// function onSelectTag(slug: string) {
+	// 	filterTag.set(getTagBySlug(tags.get(), slug));
+	// 	const url = new URL(window.location.toString());
+	// 	url.searchParams.set('tag', filterTag.get().slug);
+	// 	window.history.pushState({}, '', url.href);
+	// }
 </script>
 
 <section>
-	<aside class="tags">
+	<!-- <aside class="tags">
 		<h2>Tags</h2>
 		<ul>
 			{#each $tags as tag}
@@ -34,8 +36,8 @@
 				</li>
 			{/each}
 		</ul>
-	</aside>
-	<!-- <div class="posts">
+	</aside> -->
+	<div class="posts">
 		<ul>
 			{#each filteredPosts as post}
 				<li class="h-feed">
@@ -44,8 +46,8 @@
 							<strong class="title">
 								{post.title}
 							</strong>
-							<ul class="categories">
-								{#each post.categories as category}
+							<ul class="tags">
+								{#each post.tags as category}
 									<li>
 										<a href={category.fullPath} class="link">
 											{category.display}
@@ -54,8 +56,8 @@
 								{/each}
 							</ul>
 						</div>
-						<time class="date dt-published" datetime={post.publishDate.toString()}>
-							{post.publishDateFormatted}
+						<time class="date dt-published" datetime={post.published.raw.toString()}>
+							{post.published.display}
 						</time>
 						<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 32 32"
 							><rect width="32" height="32" fill="none" /><circle
@@ -90,7 +92,7 @@
 				</li>
 			{/each}
 		</ul>
-	</div> -->
+	</div>
 </section>
 
 <style lang="postcss">
@@ -194,7 +196,7 @@
 						font-family: var(--font-family);
 						letter-spacing: var(--font-letter-spacing-headline);
 					}
-					.categories {
+					.tags {
 						flex-base: 100%;
 						display: flex;
 						flex-grow: 1;

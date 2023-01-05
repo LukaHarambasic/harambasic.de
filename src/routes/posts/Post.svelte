@@ -26,7 +26,7 @@
 		<time class="date dt-published" datetime={published.raw.toString()}>
 			<a href={relativePath} class="u-url">{published.display}</a>
 		</time>
-		<div class="categories">
+		<div class="tags">
 			<ul>
 				{#each tags as tag}
 					<li>
@@ -96,7 +96,7 @@
 					font-size: var(--font-s);
 				}
 			}
-			.categories {
+			.tags {
 				ul {
 					display: flex;
 					position: relative;

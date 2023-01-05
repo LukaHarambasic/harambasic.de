@@ -41,15 +41,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@types/marked": "^4.0.8",
 		"axios": "^1.2.1",
 		"date-fns": "^2.29.3",
-		"rehype-sanitize": "^5.0.1",
-		"rehype-stringify": "^9.0.3",
-		"remark-frontmatter": "^4.0.1",
-		"remark-parse": "^10.0.1",
-		"remark-rehype": "^10.1.0",
-		"remark-stringify": "^10.0.2",
-		"to-vfile": "^7.2.3",
-		"unified": "^10.1.2"
+		"gray-matter": "^4.0.3",
+		"marked": "^4.2.5"
 	}
 }
