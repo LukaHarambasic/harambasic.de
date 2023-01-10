@@ -1,20 +1,22 @@
+
+import { atom } from 'nanostores';
 import type { Bookmark } from '$lib/types/bookmark';
 import { BookmarkSortProperty, BookmarkStatus, EntryType, SortDirection } from '$lib/types/enums';
 import type { Tag } from '$lib/types/tag';
 import { getTag, getUniqueTags } from '$lib/util/entries';
 import { getBookmark, getSortedBookmarks, getFilteredProjects } from '$lib/data/bookmarks/helper';
-import { writable, type Writable } from 'svelte/store';
 
 const initialTag: Tag = getTag('all', EntryType.Project);
 
-export const initEntries: Writable<Bookmark[]> = writable([]);
-export const initTags: Writable<Tag[]> = writable([]);
-export let entries: Writable<Bookmark[]> = writable([]);
-export let tags: Writable<Tag[]> = writable([]);
-export let filterTag: Writable<Tag> = writable(initialTag);
-export let filterStatus: Writable<BookmarkStatus> = writable(BookmarkStatus.Empty);
-export let sortProperty: Writable<BookmarkSortProperty> = writable(BookmarkSortProperty.Title);
-export let sortDirection: Writable<SortDirection> = writable(SortDirection.Desc);
+export const initEntries = atom<Bookmark[]>([]);
+export const initTags = atom<Tag[]>([]);
+export let entries = atom<Bookmark[]>([]);
+export let tags = atom<Tag[]>([]);
+export let filterTag = atom<Tag>(initialTag);
+export let filterStatus = atom<BookmarkStatus>(BookmarkStatus.Empty);
+export let sortProperty = atom<BookmarkSortProperty>(BookmarkSortProperty.Title);
+export let sortDirection = atom<SortDirection>(SortDirection.Desc);
+
 
 export function init(raw: any) {
 	const enrichedEntries = raw.map(getBookmark);

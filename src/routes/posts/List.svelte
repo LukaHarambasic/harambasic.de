@@ -1,14 +1,9 @@
 <script lang="ts">
 	import { getTagBySlug } from '../../lib/util/entries';
 	import { onMount } from 'svelte';
-	import type { Post } from '$lib/types/post';
-
-	export let initPosts: Post[];
-
-	const filteredPosts = initPosts;
+	import { entries, filterTag, tags } from '$lib/data/posts/store';
 
 	// onMount(() => {
-	// 	init(raw);
 	// 	const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
 	// 	filterTag.set(getTagBySlug(tags.get(), slug));
 	// });
@@ -24,22 +19,22 @@
 <section>
 	<aside class="tags">
 		<h2>Tags</h2>
-		<ul>
+		<ol>
 			{#each $tags as tag}
 				<li>
 					<button
 						class:selected={$filterTag.slug === tag.slug}
 						on:click={() => onSelectTag(tag.slug)}
 					>
-						{tag.title} ({tag.count})
+						{tag.display} ({tag.count})
 					</button>
 				</li>
 			{/each}
-		</ul>
+		</ol>
 	</aside>
 	<div class="posts">
 		<ul>
-			{#each filteredPosts as post}
+			{#each $entries as post}
 				<li class="h-feed">
 					<a href={post.relativePath}>
 						<div class="column">

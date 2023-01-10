@@ -17,6 +17,12 @@
 		href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap"
 		rel="stylesheet"
 	/>
+	<!-- Statistics -->
+	<script
+		data-goatcounter="https://luha.goatcounter.com/count"
+		async
+		src="//gc.zgo.at/count.js"
+	></script>
 	<!-- Global Metadata -->
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />

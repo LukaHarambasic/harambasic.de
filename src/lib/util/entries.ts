@@ -42,6 +42,7 @@ export function getUniqueTags(entries: Project[] | Bookmark[] | Post[]): Tag[] {
 }
 
 export function getTagBySlug(tags: Tag[], slug: string): Tag {
+	console.log(tags)
 	const foundTag = tags.find((tag) => tag.slug === slug);
 	if (foundTag === undefined) {
 		throw new Error(`Tag couldn't be found by slug: ${slug}`);

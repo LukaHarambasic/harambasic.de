@@ -36,3 +36,13 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+
+
+## Data structure
+
+- random data accessed on home
+- one general feed with posts, bookmarks and projects - later maybe posts from mastodon
+- posts, bookmarks and projects need their dedicated tags - so only tags that are used in this category
+- there also needs to be a combined tags list from posts, bookmarks and projects
+- also filtering needs to work

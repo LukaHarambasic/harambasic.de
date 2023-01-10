@@ -1,3 +1,4 @@
+import { atom } from 'nanostores';
 import { EntryType, ProjectStatus, ProjectSortProperty, SortDirection } from '$lib/types/enums';
 import type { Tag } from '$lib/types/tag';
 import type { Project } from '$lib/types/project';
