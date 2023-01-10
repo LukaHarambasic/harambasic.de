@@ -22,7 +22,7 @@
 </script>
 
 <section>
-	<!-- <aside class="tags">
+	<aside class="tags">
 		<h2>Tags</h2>
 		<ul>
 			{#each $tags as tag}
@@ -36,7 +36,7 @@
 				</li>
 			{/each}
 		</ul>
-	</aside> -->
+	</aside>
 	<div class="posts">
 		<ul>
 			{#each filteredPosts as post}
