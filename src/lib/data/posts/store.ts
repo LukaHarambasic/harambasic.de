@@ -1,49 +1,28 @@
-import { atom } from 'nanostores';
-import { EntryType, PostSortProperty, SortDirection } from '$lib/types/enums';
+import { atom, computed } from 'nanostores';
+import { PostSortProperty, SortDirection } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import type { Tag } from '$lib/types/tag';
-import { getTag, getUniqueTags } from '$lib/util/entries';
+import { getUniqueTags } from '$lib/util/entries';
 import { getSortedPosts, getFilteredPosts } from './helper';
 
-const initialTag: Tag = getTag('all', EntryType.Post);
-
 export const initEntries = atom<Post[]>([]);
-export const initTags = atom<Tag[]>([]);
-export const entries = atom<Post[]>([]);
 export const tags = atom<Tag[]>([]);
-export const filterTag = atom<Tag>(initialTag);
+export const filterTagSlug = atom<string>('all');
 export const sortProperty = atom<PostSortProperty>(PostSortProperty.Title);
 export const sortDirection = atom<SortDirection>(SortDirection.Desc);
 
-export function init(raw: any) {
-	initEntries.set(raw);
-	console.log('initEntries');
-	console.log(initEntries.get());
+export const entries = computed(
+	[initEntries, tags, filterTagSlug, sortProperty, sortDirection],
+	(initEntries, tags, filterTagSlug, sortProperty, sortDirection) => {
+		console.log('compute entries"');
+		const filtered = getFilteredPosts(initEntries, filterTagSlug);
+		return getSortedPosts(filtered, sortProperty, sortDirection);
+	}
+);
+
+// TODO should/could be an action but the only benefit is the logging which I dont use, soooooo nah
+export function init(entries: Post[]) {
+	const uniqueTags = getUniqueTags(entries);
+	tags.set(uniqueTags);
+	initEntries.set(entries);
 }
-
-initEntries.listen((value: readonly Post[]) => {
-	const uniqueTags = getUniqueTags(value as Post[]);
-	initTags.set(uniqueTags);
-	const sorted = getSortedPosts(value as Post[], sortProperty.get(), sortDirection.get());
-	entries.set(sorted);
-});
-
-initTags.listen((value: readonly Tag[]) => {
-	tags.set(value as Tag[]);
-});
-
-filterTag.listen((value: Readonly<Tag>) => {
-	const filtered = getFilteredPosts(initEntries.get(), value);
-	const sortedAndFiltered = getSortedPosts(filtered, sortProperty.get(), sortDirection.get());
-	entries.set(sortedAndFiltered);
-});
-
-sortProperty.listen((value: PostSortProperty) => {
-	const sorted = getSortedPosts(entries.get(), value, sortDirection.get());
-	entries.set(sorted);
-});
-
-sortDirection.listen((value: SortDirection) => {
-	const sorted = getSortedPosts(entries.get(), sortProperty.get(), value);
-	entries.set(sorted);
-});

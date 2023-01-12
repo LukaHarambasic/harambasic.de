@@ -6,13 +6,14 @@ import type { Tag } from '$lib/types/tag';
 import type { Project } from '@playwright/test';
 import { getSlug, formatDate } from './helper';
 
-export function getTag(display: string, type: EntryType): Tag {
+export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
 	const slug = getSlug(display);
 	return {
 		display,
 		slug: slug,
 		fullPath: `/${type.toLowerCase()}s/?tag=${slug}`,
-		count: 0
+		count: iniCount,
+		type
 	};
 }
 
@@ -26,7 +27,7 @@ export function getDate(rawString: string): EntryDate {
 
 export function getUniqueTags(entries: Project[] | Bookmark[] | Post[]): Tag[] {
 	const duplicateTags = entries.map((entry) => entry.tags).flat();
-	return duplicateTags.reduce((unique: Tag[], item: Tag): Tag[] => {
+	const uniqueTags: Tag[] = duplicateTags.reduce((unique: Tag[], item: Tag): Tag[] => {
 		const tagIndex = unique.findIndex((u) => item.slug === u.slug);
 		const isItemInUnique = tagIndex >= 0;
 		if (isItemInUnique) {
@@ -39,10 +40,12 @@ export function getUniqueTags(entries: Project[] | Bookmark[] | Post[]): Tag[] {
 		}
 		return unique;
 	}, []);
+	const type = uniqueTags[0].type;
+	const allTag = getTag('All', type, entries.length);
+	return [allTag, ...uniqueTags];
 }
 
 export function getTagBySlug(tags: Tag[], slug: string): Tag {
-	console.log(tags)
 	const foundTag = tags.find((tag) => tag.slug === slug);
 	if (foundTag === undefined) {
 		throw new Error(`Tag couldn't be found by slug: ${slug}`);

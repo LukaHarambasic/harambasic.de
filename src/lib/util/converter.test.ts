@@ -4,8 +4,8 @@ import { expect, test } from 'vitest';
 
 // TODO provide test data
 test('getFiles - retrieve raw content', async () => {
-    const entries = await getRawEntries(EntryType.Project)
-    expect(true).toBe(true);
+	const entries = await getRawEntries(EntryType.Project);
+	expect(true).toBe(true);
 });
 
 // test('getMarkdown - TODO', async () => {

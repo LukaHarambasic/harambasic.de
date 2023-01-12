@@ -3,4 +3,5 @@ export interface Tag {
 	slug: string;
 	fullPath: string;
 	count: number;
+	type: EntryType;
 }

@@ -38,13 +38,13 @@ export function getSortedPosts(
 	return [];
 }
 
-export function getFilteredPosts(unfiltered: Post[], filteringTag: Tag): Post[] {
+export function getFilteredPosts(unfiltered: Post[], filteringTagSlug: string): Post[] {
 	const entriesCopy = JSON.parse(JSON.stringify(unfiltered));
-	if (filteringTag.slug === 'all') {
+	if (filteringTagSlug === 'all') {
 		return entriesCopy;
 	}
 	return entriesCopy.filter((entry: Post) => {
-		return entry.tags.some((tag) => tag.slug === filteringTag.slug);
+		return entry.tags.some((tag) => tag.slug === filteringTagSlug);
 	});
 }
 

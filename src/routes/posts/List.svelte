@@ -1,19 +1,18 @@
 <script lang="ts">
-	import { getTagBySlug } from '../../lib/util/entries';
-	import { onMount } from 'svelte';
-	import { entries, filterTag, tags } from '$lib/data/posts/store';
+	import { afterUpdate } from 'svelte';
+	import { entries, filterTagSlug, tags } from '$lib/data/posts/store';
 
-	// onMount(() => {
-	// 	const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
-	// 	filterTag.set(getTagBySlug(tags.get(), slug));
-	// });
+	afterUpdate(() => {
+		const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
+		filterTagSlug.set(slug);
+	});
 
-	// function onSelectTag(slug: string) {
-	// 	filterTag.set(getTagBySlug(tags.get(), slug));
-	// 	const url = new URL(window.location.toString());
-	// 	url.searchParams.set('tag', filterTag.get().slug);
-	// 	window.history.pushState({}, '', url.href);
-	// }
+	function onSelectTag(slug: string) {
+		filterTagSlug.set(slug);
+		const url = new URL(window.location.toString());
+		url.searchParams.set('tag', slug);
+		window.history.pushState({}, '', url.href);
+	}
 </script>
 
 <section>
@@ -23,7 +22,7 @@
 			{#each $tags as tag}
 				<li>
 					<button
-						class:selected={$filterTag.slug === tag.slug}
+						class:selected={$filterTagSlug === tag.slug}
 						on:click={() => onSelectTag(tag.slug)}
 					>
 						{tag.display} ({tag.count})

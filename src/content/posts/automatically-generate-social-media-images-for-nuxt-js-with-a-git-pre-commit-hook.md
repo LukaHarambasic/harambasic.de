@@ -105,9 +105,9 @@ const fileToMeta = (name, basePath) => {
  * if not execute generateImage(), nothing will be returned
  */
 const generateSocialMediaPreview = async () => {
-	console.log('>> GENERATE SOCIAL MEDIA PREVIEWS <<');
-	console.log('🆕 newly generated, 🛑 already exists');
-	console.log('-------------------------------------');
+	console.info('>> GENERATE SOCIAL MEDIA PREVIEWS <<');
+	console.info('🆕 newly generated, 🛑 already exists');
+	console.info('-------------------------------------');
 	const browser = await chromium.launch();
 	const page = await browser.newPage();
 	const posts = readdirSync(POSTS_PATH).map((name) => fileToMeta(name, POSTS_PATH));
@@ -117,10 +117,10 @@ const generateSocialMediaPreview = async () => {
 		const content = readFileSync(file.path, 'utf8');
 		const title = getTitle(content);
 		if (!doesImageAlreadyExist(file.slug)) {
-			console.log('🆕', title);
+			console.info('🆕', title);
 			await generateImage(page, title, file.slug);
 		} else {
-			console.log('🛑', title);
+			console.info('🛑', title);
 		}
 	}
 	await browser.close();
@@ -133,7 +133,7 @@ const generateSocialMediaPreview = async () => {
 	try {
 		await generateSocialMediaPreview();
 	} catch (error) {
-		console.log('Error:', error);
+		console.info('Error:', error);
 	}
 })();
 ```
