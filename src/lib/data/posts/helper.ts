@@ -1,6 +1,5 @@
 import { PostSortProperty, SortDirection, EntryType } from '$lib/types/enums';
 import type { Post, TocNode } from '$lib/types/post';
-import type { Tag } from '$lib/types/tag';
 import { getTag, getDate } from '$lib/util/entries';
 import { sortAlphabetical, sortDate, getSlug } from '$lib/util/helper';
 

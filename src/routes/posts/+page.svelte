@@ -7,10 +7,10 @@
 	import { onMount } from 'svelte';
 
 	export let data: PageData;
-	const posts: Post[] = data.posts;
+	const entries: Post[] = data.entries;
 
 	onMount(() => {
-		init(posts);
+		init(entries);
 	});
 </script>
 

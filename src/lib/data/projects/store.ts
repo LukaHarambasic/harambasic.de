@@ -1,55 +1,31 @@
-import { atom } from 'nanostores';
-import { EntryType, ProjectStatus, ProjectSortProperty, SortDirection } from '$lib/types/enums';
-import type { Tag } from '$lib/types/tag';
+import { atom, computed } from 'nanostores';
+import { ProjectSortProperty, ProjectStatus, SortDirection } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
-import { getTag, getUniqueTags } from '$lib/util/entries';
-import { getProject } from './helper';
-
-const initialTag: Tag = getTag('all', EntryType.Project);
+import type { Tag } from '$lib/types/tag';
+import { getUniqueTags } from '$lib/util/entries';
+import { getSortedProjects, getFilteredProjects } from './helper';
 
 export const initEntries = atom<Project[]>([]);
-export const initTags = atom<Tag[]>([]);
-export let entries = atom<Project[]>([]);
-export let tags = atom<Tag[]>([]);
-export let filterTag = atom<Tag>(initialTag);
-export let filterStatus = atom<ProjectStatus>(ProjectStatus.Null);
-export let sortProperty = atom<ProjectSortProperty>(ProjectSortProperty.Priority);
-export let sortDirection = atom<SortDirection>(SortDirection.Desc);
+export const tags = atom<Tag[]>([]);
+export const filterTagSlug = atom<string>('all');
+export const filterStatus = atom<ProjectStatus>(ProjectStatus.Empty);
+export const sortProperty = atom<ProjectSortProperty>(ProjectSortProperty.Title);
+export const sortDirection = atom<SortDirection>(SortDirection.Desc);
 
-export function init(raw: any) {
-	const enrichedEntries = raw.map(getProject);
-	initEntries.set(enrichedEntries);
+export const entries = computed(
+	[initEntries, tags, filterTagSlug, filterStatus, sortProperty, sortDirection],
+	(initEntries, tags, filterTagSlug, filterStatus, sortProperty, sortDirection) => {
+		const filtered = getFilteredProjects(initEntries, filterTagSlug, filterStatus);
+		return getSortedProjects(filtered, sortProperty, sortDirection);
+	}
+);
+
+// TODO should/could be an action but the only benefit is the logging which I dont use, soooooo nah
+export function init(entries: Project[]) {
+	if (initEntries.get().length !== 0) return
+	console.log('init projects');
+	console.log(entries);
+	const uniqueTags = getUniqueTags(entries);
+	tags.set(uniqueTags);
+	initEntries.set(entries);
 }
-
-initEntries.listen((value: readonly Project[]) => {
-	const uniqueTags = getUniqueTags(value as Project[]);
-	initTags.set(uniqueTags);
-	const sorted = entries.get(); // getSortedProjects(value as Project[], sortProperty.get(), sortDirection.get())
-	entries.set(sorted);
-});
-
-initTags.listen((value: readonly Tag[]) => {
-	tags.set(value as Tag[]);
-});
-
-filterTag.listen((value: Readonly<Tag>) => {
-	const filtered = entries.get(); // getFilteredProjects(initEntries.get(), value, filterStatus.get())
-	const sortedAndFiltered = entries.get(); // getSortedProjects(filtered, sortProperty.get(), sortDirection.get())
-	entries.set(sortedAndFiltered);
-});
-
-filterStatus.listen((value: Readonly<ProjectStatus>) => {
-	const filtered = entries.get(); // getFilteredProjects(initEntries.get(), filterTag.get(), value)
-	const sortedAndFiltered = entries.get(); // getSortedProjects(filtered, sortProperty.get(), sortDirection.get())
-	entries.set(sortedAndFiltered);
-});
-
-sortProperty.listen((value: ProjectSortProperty) => {
-	const sorted = entries.get(); // getSortedProjects(entries.get(), value, sortDirection.get())
-	entries.set(sorted);
-});
-
-sortDirection.listen((value: SortDirection) => {
-	const sorted = entries.get(); // getSortedProjects(entries.get(), sortProperty.get(), value)
-	entries.set(sorted);
-});

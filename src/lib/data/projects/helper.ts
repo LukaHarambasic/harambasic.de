@@ -1,9 +1,8 @@
 import { ProjectSortProperty, SortDirection, ProjectStatus, EntryType } from '$lib/types/enums';
 import type { Tag } from '$lib/types/tag';
 import type { Project } from '$lib/types/project';
-import { getTag } from '$lib/util/entries';
+import { getDate, getTag } from '$lib/util/entries';
 import { sortAlphabetical, sortDate, sortNumber, getSlug } from '$lib/util/helper';
-import { getDate } from 'date-fns';
 
 export function getSortedProjects(
 	unsorted: Project[],
@@ -52,51 +51,51 @@ export function getSortedProjects(
 
 export function getFilteredProjects(
 	unfiltered: Project[],
-	filteringTag: Tag,
+	filteringTagSlug: string,
 	filteringStatus: ProjectStatus
 ): Project[] {
 	const entriesCopy = JSON.parse(JSON.stringify(unfiltered));
-	const showAll = filteringTag.slug === 'all' && filteringStatus === ProjectStatus.Null;
+	const showAll = filteringTagSlug === 'all' && filteringStatus === ProjectStatus.Null;
 	if (showAll) {
 		return entriesCopy;
 	}
-	const onlyFilterTags = filteringTag.slug !== 'all' && filteringStatus === ProjectStatus.Null;
+	const onlyFilterTags = filteringTagSlug !== 'all' && filteringStatus === ProjectStatus.Null;
 	if (onlyFilterTags) {
 		return entriesCopy.filter((entry: Project) => {
-			return entry.tags.some((tag) => tag.slug === filteringTag.slug);
+			return entry.tags.some((tag) => tag.slug === filteringTagSlug);
 		});
 	}
-	const onlyFilterStatus = filteringTag.slug === 'all' && filteringStatus !== ProjectStatus.Null;
+	const onlyFilterStatus = filteringTagSlug === 'all' && filteringStatus !== ProjectStatus.Null;
 	if (onlyFilterStatus) {
 		return entriesCopy.filter((entry: Project) => entry.status === filteringStatus);
 	}
 	// TODO
-	return entriesCopy.filter((entry): Project[] => {
-		const hasTag = entry.tags.some((tag: Tag) => tag.slug === filteringTag.slug);
+	return entriesCopy.filter((entry: Project) => {
+		const hasTag = entry.tags.some((tag: Tag) => tag.slug === filteringTagSlug);
 		const hasStatus = entry.status == filteringStatus;
 		return hasTag && hasStatus;
 	});
 }
 
-export function getProject(e: any): Project {
-	const f = e.frontmatter;
+export function getProject(entry: any): Project {
+	const meta = entry.meta;
 	const type = EntryType.Project;
-	const slug = getSlug(f.title);
+	const slug = getSlug(meta.title);
 	const relativePath = `/${type.toLowerCase()}s/${slug}`;
 	return {
 		type,
-		title: f.title,
-		description: f.description,
-		image: f.image,
-		tags: f.tags.map((tag) => getTag(tag, type)),
-		published: getDate(f.published),
-		updated: getDate(f.updated),
-		Content: e.Content,
-		links: f.links,
-		prio: f.prio,
-		status: f.status,
+		title: meta.title,
+		description: meta.description,
+		image: meta.image || '',
+		tags: meta.tags.map((tag: string) => getTag(tag, type)),
+		published: getDate(meta.published),
+		updated: getDate(meta.updated),
+		links: meta.links,
+		prio: meta.prio,
+		status: meta.status,
 		slug,
 		relativePath,
-		fullPath: `https://harambasic.de${relativePath}`
+		fullPath: `https://harambasic.de${relativePath}`,
+		html: entry.html
 	};
 }

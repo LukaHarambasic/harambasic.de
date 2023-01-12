@@ -14,7 +14,6 @@ export const sortDirection = atom<SortDirection>(SortDirection.Desc);
 export const entries = computed(
 	[initEntries, tags, filterTagSlug, sortProperty, sortDirection],
 	(initEntries, tags, filterTagSlug, sortProperty, sortDirection) => {
-		console.log('compute entries"');
 		const filtered = getFilteredPosts(initEntries, filterTagSlug);
 		return getSortedPosts(filtered, sortProperty, sortDirection);
 	}
@@ -22,6 +21,7 @@ export const entries = computed(
 
 // TODO should/could be an action but the only benefit is the logging which I dont use, soooooo nah
 export function init(entries: Post[]) {
+	if (initEntries.get().length !== 0) return
 	const uniqueTags = getUniqueTags(entries);
 	tags.set(uniqueTags);
 	initEntries.set(entries);

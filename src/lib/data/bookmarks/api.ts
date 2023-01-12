@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 // TODO change to fetch or whatelse sveltekit recommends or leave it like this
-export async function load() {
+export async function request() {
 	// TODO get from env and change key afterwards
 	const AIRTABLE_API_KEY = 'keyfsz1s90ZOkjmwL';
 	const BASE_ID = 'appRJTFR1tt8TgVZs';

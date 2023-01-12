@@ -1,4 +1,3 @@
-import { filterStatus } from '$lib/data/bookmarks/store';
 import type { Bookmark } from '$lib/types/bookmark';
 import { BookmarkSortProperty, BookmarkStatus, EntryType, SortDirection } from '$lib/types/enums';
 import type { Tag } from '$lib/types/tag';
@@ -47,30 +46,30 @@ export function getSortedBookmarks(
 	return [];
 }
 
-export function getFilteredProjects(
+export function getFilteredBookmarks(
 	unfiltered: Bookmark[],
-	filteringTag: Tag,
+	filteringTagSlug: string,
 	filteringStatus: BookmarkStatus
 ): Bookmark[] {
 	const entriesCopy = JSON.parse(JSON.stringify(unfiltered));
-	const showAll = filteringTag.slug === 'all' && filteringStatus === BookmarkStatus.Empty;
+	const showAll = filteringTagSlug === 'all' && filteringStatus === BookmarkStatus.Empty;
 	if (showAll) {
 		return entriesCopy;
 	}
-	const onlyFilterTags = filteringTag.slug !== 'all' && filteringStatus === BookmarkStatus.Empty;
+	const onlyFilterTags = filteringTagSlug !== 'all' && filteringStatus === BookmarkStatus.Empty;
 	if (onlyFilterTags) {
 		return entriesCopy.filter((entry: Bookmark) => {
-			return entry.tags.some((tag) => tag.slug === filteringTag.slug);
+			return entry.tags.some((tag) => tag.slug === filteringTagSlug);
 		});
 	}
-	const onlyFilterStatus = filteringTag.slug === 'all' && filteringStatus !== BookmarkStatus.Empty;
+	const onlyFilterStatus = filteringTagSlug === 'all' && filteringStatus !== BookmarkStatus.Empty;
 	if (onlyFilterStatus) {
 		return entriesCopy.filter((entry: Bookmark) => entry.status === filteringStatus);
 	}
 	// TODO
-	return entriesCopy.filter((entry: any): Bookmark[] => {
-		const hasTag = entry.tags.some((tag: Tag) => tag.slug === filteringTag.slug);
-		const hasStatus = entry.status == filterStatus;
+	return entriesCopy.filter((entry: Bookmark) => {
+		const hasTag = entry.tags.some((tag: Tag) => tag.slug === filteringTagSlug);
+		const hasStatus = entry.status == filteringStatus;
 		return hasTag && hasStatus;
 	});
 }

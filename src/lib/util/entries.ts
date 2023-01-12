@@ -2,8 +2,8 @@ import type { Bookmark } from '$lib/types/bookmark';
 import type { EntryDate } from '$lib/types/entry';
 import type { EntryType } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
+import type { Project } from '$lib/types/project';
 import type { Tag } from '$lib/types/tag';
-import type { Project } from '@playwright/test';
 import { getSlug, formatDate } from './helper';
 
 export function getTag(display: string, type: EntryType, iniCount = 0): Tag {

@@ -1,14 +1,10 @@
 import { EntryType } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
 import { getRawEntries } from '$lib/util/converter';
+import { getProject } from './helper';
 
-export async function load(): Promise<Project[]> {
-	const rawEntries = await getRawEntries(EntryType.Post);
-	const entries: Project[] = rawEntries.map(({ html, meta }) => {
-		return {
-			html,
-			...meta
-		};
-	});
+export async function request(): Promise<Project[]> {
+	const rawEntries = await getRawEntries(EntryType.Project);
+	const entries: Project[] = rawEntries.map(getProject);
 	return entries;
 }

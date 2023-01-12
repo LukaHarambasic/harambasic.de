@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { afterUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import { entries, filterTagSlug, tags } from '$lib/data/posts/store';
 
-	afterUpdate(() => {
+	onMount(() => {
 		const slug = new URLSearchParams(window.location.search).get('tag') || 'all';
 		filterTagSlug.set(slug);
 	});
@@ -16,6 +16,7 @@
 </script>
 
 <section>
+	<!-- TODO empty state, but tbh this shouldnt happen -->
 	<aside class="tags">
 		<h2>Tags</h2>
 		<ol>

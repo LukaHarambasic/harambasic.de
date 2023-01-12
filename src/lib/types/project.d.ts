@@ -6,4 +6,5 @@ export interface Project extends Entry {
 	links: Link[];
 	prio: number;
 	status: ProjectStatus;
+	html: string;
 }
