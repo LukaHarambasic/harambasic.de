@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { entries, filterTagSlug, tags } from '$lib/data/posts/store';
+  import { entries, filterTagSlug, tags } from '$lib/data/posts/store'
 </script>
 
 <strong>list here</strong>

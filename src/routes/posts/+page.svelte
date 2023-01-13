@@ -1,23 +1,23 @@
 <script lang="ts">
-	import List from './List.svelte';
-	import BaseFootnote from '$lib/components/Base/BaseFootnote.svelte';
-	import type { Post } from '$lib/types/post';
-	import type { PageData } from './$types';
-	import { init } from '$lib/data/posts/store';
-	import { onMount } from 'svelte';
+  import List from './List.svelte'
+  import BaseFootnote from '$lib/components/Base/BaseFootnote.svelte'
+  import type { Post } from '$lib/types/post'
+  import type { PageData } from './$types'
+  import { init } from '$lib/data/posts/store'
+  import { onMount } from 'svelte'
 
-	export let data: PageData;
-	const entries: Post[] = data.entries;
+  export let data: PageData
+  const entries: Post[] = data.entries
 
-	onMount(() => {
-		init(entries);
-	});
+  onMount(() => {
+    init(entries)
+  })
 </script>
 
 <List />
 <BaseFootnote>
-	<!-- TODO adapt urls -->
-	Check out the <a href="globals.blogFeedURL">RSS feed</a> or
-	<a href="TODO">my Twitter account</a>
-	to keep up to date.
+  <!-- TODO adapt urls -->
+  Check out the <a href="globals.blogFeedURL">RSS feed</a> or
+  <a href="TODO">my Twitter account</a>
+  to keep up to date.
 </BaseFootnote>

@@ -34,24 +34,24 @@ The next step was to publish my first website. To be honest, I can't even rememb
 
 ```html
 <div id="container">
-	<div id="top"></div>
-	<div id="middle">
-		<h1>About Us</h1>
-		<p>Lorem Ipsum...</p>
-	</div>
-	<div id="bottom"></div>
+  <div id="top"></div>
+  <div id="middle">
+    <h1>About Us</h1>
+    <p>Lorem Ipsum...</p>
+  </div>
+  <div id="bottom"></div>
 </div>
 ```
 
 ```css
 #top {
-	background: url('/container-top.png') no-repeat;
+  background: url('/container-top.png') no-repeat;
 }
 #middle {
-	background: url('/container-middle.png') repeat-y;
+  background: url('/container-middle.png') repeat-y;
 }
 #bottom {
-	background: url('/container-bottom.png') no-repeat;
+  background: url('/container-bottom.png') no-repeat;
 }
 ```
 

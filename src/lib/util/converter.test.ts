@@ -1,12 +1,12 @@
-import { EntryType } from '$lib/types/enums';
-import { getRawEntries } from '$lib/util/converter';
-import { expect, test } from 'vitest';
+import { EntryType } from '$lib/types/enums'
+import { getRawEntries } from '$lib/util/converter'
+import { expect, test } from 'vitest'
 
 // TODO provide test data
 test('getFiles - retrieve raw content', async () => {
-	const entries = await getRawEntries(EntryType.Project);
-	expect(true).toBe(true);
-});
+  const entries = await getRawEntries(EntryType.Project)
+  expect(true).toBe(true)
+})
 
 // test('getMarkdown - TODO', async () => {
 //     const file = '---\n' +
