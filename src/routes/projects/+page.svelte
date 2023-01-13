@@ -5,6 +5,7 @@
 	import type { PageData } from './$types';
 	import { init } from '$lib/data/projects/store';
 	import { onMount } from 'svelte';
+	import { entries as test } from '$lib/data/projects/store';
 
 	export let data: PageData;
 	const entries: Project[] = data.entries;
@@ -14,7 +15,9 @@
 	});
 </script>
 
-<List />
+{$test}
+{$test.length}
+<!-- <List /> -->
 <BaseFootnote>
 	<!-- TODO adapt urls -->
 	Check out the <a href="globals.blogFeedURL">RSS feed</a> or

@@ -15,6 +15,7 @@ export const sortDirection = atom<SortDirection>(SortDirection.Desc);
 export const entries = computed(
 	[initEntries, tags, filterTagSlug, filterStatus, sortProperty, sortDirection],
 	(initEntries, tags, filterTagSlug, filterStatus, sortProperty, sortDirection) => {
+		console.log('computing projects', initEntries.length)
 		const filtered = getFilteredProjects(initEntries, filterTagSlug, filterStatus);
 		return getSortedProjects(filtered, sortProperty, sortDirection);
 	}
@@ -22,9 +23,7 @@ export const entries = computed(
 
 // TODO should/could be an action but the only benefit is the logging which I dont use, soooooo nah
 export function init(entries: Project[]) {
-	if (initEntries.get().length !== 0) return
-	console.log('init projects');
-	console.log(entries);
+	if (initEntries.get().length !== 0) return;
 	const uniqueTags = getUniqueTags(entries);
 	tags.set(uniqueTags);
 	initEntries.set(entries);

@@ -21,7 +21,7 @@ export const entries = computed(
 
 // TODO should/could be an action but the only benefit is the logging which I dont use, soooooo nah
 export function init(entries: Post[]) {
-	if (initEntries.get().length !== 0) return
+	if (initEntries.get().length !== 0) return;
 	const uniqueTags = getUniqueTags(entries);
 	tags.set(uniqueTags);
 	initEntries.set(entries);
