@@ -5,6 +5,5 @@ import { getProject } from './helper';
 
 export async function request(): Promise<Project[]> {
 	const rawEntries = await getRawEntries(EntryType.Project);
-	const entries: Project[] = rawEntries.map(getProject);
-	return entries;
+	return rawEntries.map(getProject);
 }
