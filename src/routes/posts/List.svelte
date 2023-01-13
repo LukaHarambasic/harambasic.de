@@ -1,29 +1,47 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { entries, filterTagSlug, tags } from '$lib/data/posts/store'
+  import type { Post } from '$lib/types/post'
+  import { filterAndSortPosts } from '$lib/data/posts/helper'
+  import { PostSortProperty, SortDirection } from '$lib/types/enums'
+  import type { Tag } from '$lib/types/tag'
+
+  export let initEntries: Post[]
+  export let tags: Tag[]
+
+  $: filterTagSlug = ''
+  $: sortProperty = PostSortProperty.Published
+  $: sortDirection = SortDirection.Asc
+  $: entries = filterAndSortPosts(initEntries, filterTagSlug, sortProperty, sortDirection)
 
   onMount(() => {
     const slug = new URLSearchParams(window.location.search).get('tag') || 'all'
-    filterTagSlug.set(slug)
+    filterTagSlug = slug
   })
 
   function onSelectTag(slug: string) {
-    filterTagSlug.set(slug)
+    filterTagSlug = slug
     const url = new URL(window.location.toString())
     url.searchParams.set('tag', slug)
     window.history.pushState({}, '', url.href)
   }
+
+  function onSortProperty(property: PostSortProperty) {
+    sortProperty = property
+  }
+
+  function onSortDirection(direciton: SortDirection) {
+    sortDirection = direciton
+  }
 </script>
 
 <section>
-  <!-- TODO empty state, but tbh this shouldnt happen -->
   <aside class="tags">
     <h2>Tags</h2>
     <ol>
-      {#each $tags as tag}
+      {#each tags as tag}
         <li>
           <button
-            class:selected={$filterTagSlug === tag.slug}
+            class:selected={filterTagSlug === tag.slug}
             on:click={() => onSelectTag(tag.slug)}
           >
             {tag.display} ({tag.count})
@@ -34,7 +52,7 @@
   </aside>
   <div class="posts">
     <ul>
-      {#each $entries as post}
+      {#each entries as post}
         <li class="h-feed">
           <a href={post.relativePath}>
             <div class="column">

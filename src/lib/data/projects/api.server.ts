@@ -1,6 +1,6 @@
 import { EntryType } from '$lib/types/enums'
 import type { Project } from '$lib/types/project'
-import { getRawEntries } from '$lib/util/converter'
+import { getRawEntries } from '$lib/util/converter.server'
 import { getProject } from './helper'
 
 export async function request(): Promise<Project[]> {

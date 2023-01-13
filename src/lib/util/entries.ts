@@ -26,6 +26,7 @@ export function getDate(rawString: string): EntryDate {
 }
 
 export function getUniqueTags(entries: Project[] | Bookmark[] | Post[]): Tag[] {
+  // rewrite with map and than loop over non uniqque for counting - aka make henry happy > no functional change :D
   const duplicateTags = entries.map((entry) => entry.tags).flat()
   const uniqueTags: Tag[] = duplicateTags.reduce((unique: Tag[], item: Tag): Tag[] => {
     const tagIndex = unique.findIndex((u) => item.slug === u.slug)

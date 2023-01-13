@@ -7,7 +7,6 @@
   import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
   import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
   import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
-
   const { title, description, permalink, socialImg, socialImgAlt } = $page.data
 </script>
 

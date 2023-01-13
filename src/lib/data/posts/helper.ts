@@ -1,50 +1,40 @@
-import { PostSortProperty, SortDirection, EntryType } from '$lib/types/enums'
+import { PostSortProperty, EntryType, SortDirection } from '$lib/types/enums'
 import type { Post, TocNode } from '$lib/types/post'
 import { getTag, getDate } from '$lib/util/entries'
 import { sortAlphabetical, sortDate, getSlug } from '$lib/util/helper'
 
-export function getSortedPosts(
-  unsorted: Post[],
-  property: PostSortProperty,
-  direction: SortDirection
+export function filterAndSortPosts(
+  entries: Post[],
+  filterTagSlug: string,
+  sortProperty: PostSortProperty,
+  sortDirection: SortDirection,
 ): Post[] {
-  const entriesCopy = JSON.parse(JSON.stringify(unsorted))
-  switch (property) {
-    case PostSortProperty.Title:
-      if (direction === SortDirection.Asc) {
-        return entriesCopy.sort((a: Post, b: Post) => sortAlphabetical(a.title, b.title))
-      } else if (direction === SortDirection.Desc) {
-        return entriesCopy.sort((a: Post, b: Post) => sortAlphabetical(b.title, a.title))
-      }
-      break
-    case PostSortProperty.Published:
-      if (direction === SortDirection.Asc) {
-        return entriesCopy.sort((a: Post, b: Post) => sortDate(b.published.raw, a.published.raw))
-      } else if (direction === SortDirection.Desc) {
-        return entriesCopy.sort((a: Post, b: Post) => sortDate(a.published.raw, b.published.raw))
-      }
-      break
-    case PostSortProperty.Updated:
-      if (direction === SortDirection.Asc) {
-        return entriesCopy.sort((a: Post, b: Post) => sortDate(b.updated.raw, a.updated.raw))
-      } else if (direction === SortDirection.Desc) {
-        return entriesCopy.sort((a: Post, b: Post) => sortDate(a.updated.raw, b.updated.raw))
-      }
-      break
-    default:
-      return []
-  }
-  return []
+  const filtered = entries.filter((entry) => filterByTag(entry, filterTagSlug))
+  return filtered.sort((a, b) =>
+    sortByProperty(a, b, sortProperty) * (sortDirection === SortDirection.Asc ? 1 : -1),
+  )
 }
 
-export function getFilteredPosts(unfiltered: Post[], filteringTagSlug: string): Post[] {
-  const entriesCopy = JSON.parse(JSON.stringify(unfiltered))
-  if (filteringTagSlug === 'all') {
-    return entriesCopy
+export function sortByProperty(
+  a: Post,
+  b: Post,
+  property: PostSortProperty,
+): number {
+  switch (property) {
+    case PostSortProperty.Title:
+      return sortAlphabetical(b.title, a.title)
+    case PostSortProperty.Published:
+      return sortDate(b.published.raw, a.published.raw)
+    case PostSortProperty.Updated:
+      return sortDate(b.updated.raw, a.updated.raw)
+    default:
+      return 0
   }
-  return entriesCopy.filter((entry: Post) => {
-    return entry.tags.some((tag) => tag.slug === filteringTagSlug)
-  })
+}
+
+export function filterByTag(entry: Post, filterTagSlug: string): boolean {
+  if (filterTagSlug === 'all' || filterTagSlug === '') return true
+  return entry.tags.some((tag) => tag.slug === filterTagSlug)
 }
 
 export function getPost(entry: any): Post {

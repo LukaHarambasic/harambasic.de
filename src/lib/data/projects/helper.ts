@@ -10,8 +10,10 @@ export function getSortedProjects(
   direction: SortDirection
 ): Project[] {
   const entriesCopy = JSON.parse(JSON.stringify(unsorted))
+  // TODO just sort based on the property and then reverse the array in the end
   switch (property) {
     case ProjectSortProperty.Title:
+      // TODO just sort ones and than revert the array
       if (direction === SortDirection.Asc) {
         return entriesCopy.sort((a: Project, b: Project) => sortAlphabetical(a.title, b.title))
       } else if (direction === SortDirection.Desc) {
@@ -55,17 +57,17 @@ export function getFilteredProjects(
   filteringStatus: ProjectStatus
 ): Project[] {
   const entriesCopy = JSON.parse(JSON.stringify(unfiltered))
-  const showAll = filteringTagSlug === 'all' && filteringStatus === ProjectStatus.Null
+  const showAll = filteringTagSlug === 'all' && filteringStatus === ProjectStatus.None
   if (showAll) {
     return entriesCopy
   }
-  const onlyFilterTags = filteringTagSlug !== 'all' && filteringStatus === ProjectStatus.Null
+  const onlyFilterTags = filteringTagSlug !== 'all' && filteringStatus === ProjectStatus.None
   if (onlyFilterTags) {
     return entriesCopy.filter((entry: Project) => {
       return entry.tags.some((tag) => tag.slug === filteringTagSlug)
     })
   }
-  const onlyFilterStatus = filteringTagSlug === 'all' && filteringStatus !== ProjectStatus.Null
+  const onlyFilterStatus = filteringTagSlug === 'all' && filteringStatus !== ProjectStatus.None
   if (onlyFilterStatus) {
     return entriesCopy.filter((entry: Project) => entry.status === filteringStatus)
   }

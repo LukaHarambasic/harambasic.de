@@ -8,7 +8,7 @@ import { getSortedProjects, getFilteredProjects } from './helper'
 export const initEntries = atom<Project[]>([])
 export const tags = atom<Tag[]>([])
 export const filterTagSlug = atom<string>('all')
-export const filterStatus = atom<ProjectStatus>(ProjectStatus.Empty)
+export const filterStatus = atom<ProjectStatus>(ProjectStatus.None)
 export const sortProperty = atom<ProjectSortProperty>(ProjectSortProperty.Title)
 export const sortDirection = atom<SortDirection>(SortDirection.Desc)
 
