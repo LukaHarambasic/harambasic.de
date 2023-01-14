@@ -21,7 +21,7 @@ export function getRandomItems(items: any[], amount: number) {
 }
 
 export function formatDate(date: Date) {
-  return format(new Date(date), 'MM/dd/yyyy')
+  return format(new Date(date), 'yyyy-MM-dd')
 }
 
 export function sortAlphabetical(a: string, b: string): number {
@@ -38,4 +38,13 @@ export function sortNumber(a: number, b: number): number {
 
 export function deepCopy(obj: any): any {
   return JSON.parse(JSON.stringify(obj))
+}
+
+export function enumToArray(rawEnum: any): any {
+  return Object.keys(rawEnum).map((key) => {
+    return {
+      display: key,
+      key: rawEnum[key]
+    }
+  })
 }

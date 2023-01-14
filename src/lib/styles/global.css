@@ -30,7 +30,6 @@ body {
     padding: var(--xs) 0 var(--xs) var(--s);
     font-weight: 600;
     font-size: var(--font-m);
-    font-size: var(--font-m);
     font-family: var(--font-family);
     letter-spacing: var(--font-letter-spacing-headline);
   }

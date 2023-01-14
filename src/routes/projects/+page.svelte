@@ -3,15 +3,9 @@
   import BaseFootnote from '$lib/components/Base/BaseFootnote.svelte'
   import type { Project } from '$lib/types/project'
   import type { PageData } from './$types'
-  import { init } from '$lib/data/projects/store'
-  import { onMount } from 'svelte'
 
   export let data: PageData
-  const entries: Project[] = data.entries
-
-  onMount(() => {
-    init(entries)
-  })
+  const [entries, tags] = data.posts
 </script>
 
 <List />

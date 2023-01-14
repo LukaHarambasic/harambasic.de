@@ -4,14 +4,22 @@
   import { filterAndSortPosts } from '$lib/data/posts/helper'
   import { PostSortProperty, SortDirection } from '$lib/types/enums'
   import type { Tag } from '$lib/types/tag'
+  import { enumToArray, sortAlphabetical } from '$lib/util/helper'
 
   export let initEntries: Post[]
   export let tags: Tag[]
 
   $: filterTagSlug = ''
   $: sortProperty = PostSortProperty.Published
-  $: sortDirection = SortDirection.Asc
+  $: sortDirection = SortDirection.Desc
   $: entries = filterAndSortPosts(initEntries, filterTagSlug, sortProperty, sortDirection)
+
+  const properties = enumToArray(PostSortProperty).sort((a: any, b: any) =>
+    sortAlphabetical(a.key, b.key)
+  )
+  const directions = enumToArray(SortDirection).sort((a: any, b: any) =>
+    sortAlphabetical(a.key, b.key)
+  )
 
   onMount(() => {
     const slug = new URLSearchParams(window.location.search).get('tag') || 'all'
@@ -24,31 +32,46 @@
     url.searchParams.set('tag', slug)
     window.history.pushState({}, '', url.href)
   }
-
-  function onSortProperty(property: PostSortProperty) {
-    sortProperty = property
-  }
-
-  function onSortDirection(direciton: SortDirection) {
-    sortDirection = direciton
-  }
 </script>
 
 <section>
-  <aside class="tags">
-    <h2>Tags</h2>
-    <ol>
-      {#each tags as tag}
-        <li>
-          <button
-            class:selected={filterTagSlug === tag.slug}
-            on:click={() => onSelectTag(tag.slug)}
-          >
-            {tag.display} ({tag.count})
-          </button>
-        </li>
-      {/each}
-    </ol>
+  <aside>
+    <div class="sorter">
+      <h3>Sort</h3>
+      <div class="selects">
+        <div class="wrapper">
+          <label for="property">Property</label>
+          <select bind:value={sortProperty} name="property">
+            {#each properties as property}
+              <option value={property.key}>{property.display}</option>
+            {/each}
+          </select>
+        </div>
+        <div class="wrapper">
+          <label for="direction">Direction</label>
+          <select bind:value={sortDirection} name="direction">
+            {#each directions as direction}
+              <option value={direction.key}>{direction.display}</option>
+            {/each}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="tags">
+      <h3>Tags</h3>
+      <ol>
+        {#each tags as tag}
+          <li>
+            <button
+              class:selected={filterTagSlug === tag.slug}
+              on:click={() => onSelectTag(tag.slug)}
+            >
+              {tag.display} ({tag.count})
+            </button>
+          </li>
+        {/each}
+      </ol>
+    </div>
   </aside>
   <div class="posts">
     <ul>
@@ -118,42 +141,97 @@
     align-items: stretch;
     gap: var(--xl);
     width: 100%;
-    > .tags {
+  }
+  aside {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: var(--layout-sidebar);
+    gap: var(--xl);
+  }
+  .sorter {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: var(--m);
+    .selects {
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
       align-content: stretch;
       justify-content: flex-start;
       align-items: stretch;
-      gap: var(--m);
-      width: var(--layout-sidebar);
-      ol {
+      gap: var(--s);
+      .wrapper {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         align-content: stretch;
         justify-content: flex-start;
         align-items: stretch;
-        gap: var(--s);
-        li {
-          button {
-            margin: 0;
-            border: none;
-            background: none;
-            padding: 0;
-            color: var(--c-font-accent-dark);
-            font-size: var(--font-s);
+        gap: var(--xs);
+        label {
+          margin: 0;
+          padding: 0;
+          color: var(--c-font-accent-dark);
+          font-size: var(--font-s);
+          font-weight: bold;
+        }
+        select {
+          margin: 0;
+          border: none;
+          padding: 0.25rem 0;
+          color: var(--c-font-accent-dark);
+          font-size: var(--font-s);
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-thickness: var(--underline-thickness);
+          }
+        }
+      }
+    }
+  }
+  .tags {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: var(--m);
+    ol {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: stretch;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: var(--s);
+      li {
+        button {
+          margin: 0;
+          border: none;
+          background: none;
+          padding: 0;
+          color: var(--c-font-accent-dark);
+          font-size: var(--font-s);
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-thickness: var(--underline-thickness);
+          }
+          &.selected {
+            text-decoration: underline;
+            text-decoration-thickness: var(--underline-thickness);
             &:hover {
-              cursor: pointer;
-              text-decoration: underline;
-              text-decoration-thickness: var(--underline-thickness);
-            }
-            &.selected {
-              text-decoration: underline;
-              text-decoration-thickness: var(--underline-thickness);
-              &:hover {
-                text-decoration: none;
-              }
+              text-decoration: none;
             }
           }
         }
