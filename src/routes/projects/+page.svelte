@@ -8,7 +8,7 @@
   const [entries, tags] = data.posts
 </script>
 
-<List />
+<List initEntries={entries} {tags} />
 <BaseFootnote>
   <!-- TODO adapt urls -->
   Check out the <a href="globals.blogFeedURL">RSS feed</a> or

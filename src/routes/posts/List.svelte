@@ -73,7 +73,7 @@
       </ol>
     </div>
   </aside>
-  <div class="posts">
+  <div class="entries">
     <ul>
       {#each entries as post}
         <li class="h-feed">
@@ -238,7 +238,7 @@
       }
     }
   }
-  .posts {
+  .entries {
     width: 100%;
     > ul {
       display: flex;

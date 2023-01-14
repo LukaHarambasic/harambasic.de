@@ -43,4 +43,4 @@ You can preview the production build with `npm run preview`.
 - one general feed with posts, bookmarks and projects - later maybe posts from mastodon
 - posts, bookmarks and projects need their dedicated tags - so only tags that are used in this category
 - there also needs to be a combined tags list from posts, bookmarks and projects
-- also filtering needs to work
+- also filter needs to work

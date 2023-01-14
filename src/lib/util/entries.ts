@@ -1,10 +1,15 @@
 import type { Bookmark } from '$lib/types/bookmark'
 import type { EntryDate } from '$lib/types/entry'
-import type { EntryType } from '$lib/types/enums'
+import { ProjectStatus, SortDirection, type EntryType } from '$lib/types/enums'
 import type { Post } from '$lib/types/post'
 import type { Project } from '$lib/types/project'
 import type { Tag } from '$lib/types/tag'
 import { getSlug, formatDate } from './helper'
+
+// export function filterByQuery(entry: Post | Project | Bookmark): boolean {
+//   const query = this as any
+//   return Object.keys(query).every((key) => entry[key] === query[key]);
+// }
 
 export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
   const slug = getSlug(display)
@@ -23,6 +28,15 @@ export function getDate(rawString: string): EntryDate {
     raw,
     display: formatDate(raw)
   }
+}
+
+export function filterByTag(entry: Post | Project | Bookmark, filterTagSlug: string): boolean {
+  if (filterTagSlug === 'all' || filterTagSlug === '') return true
+  return entry.tags.some((tag) => tag.slug === filterTagSlug)
+}
+
+export function sortByDirection(sortDirection: SortDirection): number {
+  return sortDirection === SortDirection.Asc ? 1 : -1
 }
 
 export function getUniqueTags(entries: Project[] | Bookmark[] | Post[]): Tag[] {

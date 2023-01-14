@@ -1,6 +1,6 @@
 import { PostSortProperty, EntryType, SortDirection } from '$lib/types/enums'
 import type { Post, TocNode } from '$lib/types/post'
-import { getTag, getDate } from '$lib/util/entries'
+import { getTag, getDate, filterByTag, sortByDirection } from '$lib/util/entries'
 import { sortAlphabetical, sortDate, getSlug } from '$lib/util/helper'
 
 export function filterAndSortPosts(
@@ -9,10 +9,10 @@ export function filterAndSortPosts(
   sortProperty: PostSortProperty,
   sortDirection: SortDirection,
 ): Post[] {
-  const filtered = entries.filter((entry) => filterByTag(entry, filterTagSlug))
-  return filtered.sort((a, b) =>
-    sortByProperty(a, b, sortProperty) * (sortDirection === SortDirection.Asc ? 1 : -1),
-  )
+  return entries
+    .filter((entry) => filterByTag(entry, filterTagSlug))
+    .sort((a, b) => sortByProperty(a, b, sortProperty))
+    .sort(() => sortByDirection(sortDirection))
 }
 
 export function sortByProperty(
@@ -30,11 +30,6 @@ export function sortByProperty(
     default:
       return 0
   }
-}
-
-export function filterByTag(entry: Post, filterTagSlug: string): boolean {
-  if (filterTagSlug === 'all' || filterTagSlug === '') return true
-  return entry.tags.some((tag) => tag.slug === filterTagSlug)
 }
 
 export function getPost(entry: any): Post {

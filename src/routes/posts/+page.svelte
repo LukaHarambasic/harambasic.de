@@ -2,7 +2,6 @@
   import List from './List.svelte'
   import BaseFootnote from '$lib/components/Base/BaseFootnote.svelte'
   import type { PageData } from '../$types'
-  import type { initEntries } from '$lib/data/bookmarks/store'
 
   export let data: PageData
   const [entries, tags] = data.posts

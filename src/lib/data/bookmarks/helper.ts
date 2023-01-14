@@ -48,28 +48,28 @@ export function getSortedBookmarks(
 
 export function getFilteredBookmarks(
   unfiltered: Bookmark[],
-  filteringTagSlug: string,
-  filteringStatus: BookmarkStatus
+  filterTagSlug: string,
+  filterStatus: BookmarkStatus
 ): Bookmark[] {
   const entriesCopy = JSON.parse(JSON.stringify(unfiltered))
-  const showAll = filteringTagSlug === 'all' && filteringStatus === BookmarkStatus.Empty
+  const showAll = filterTagSlug === 'all' && filterStatus === BookmarkStatus.Empty
   if (showAll) {
     return entriesCopy
   }
-  const onlyFilterTags = filteringTagSlug !== 'all' && filteringStatus === BookmarkStatus.Empty
+  const onlyFilterTags = filterTagSlug !== 'all' && filterStatus === BookmarkStatus.Empty
   if (onlyFilterTags) {
     return entriesCopy.filter((entry: Bookmark) => {
-      return entry.tags.some((tag) => tag.slug === filteringTagSlug)
+      return entry.tags.some((tag) => tag.slug === filterTagSlug)
     })
   }
-  const onlyFilterStatus = filteringTagSlug === 'all' && filteringStatus !== BookmarkStatus.Empty
+  const onlyFilterStatus = filterTagSlug === 'all' && filterStatus !== BookmarkStatus.Empty
   if (onlyFilterStatus) {
-    return entriesCopy.filter((entry: Bookmark) => entry.status === filteringStatus)
+    return entriesCopy.filter((entry: Bookmark) => entry.status === filterStatus)
   }
   // TODO
   return entriesCopy.filter((entry: Bookmark) => {
-    const hasTag = entry.tags.some((tag: Tag) => tag.slug === filteringTagSlug)
-    const hasStatus = entry.status == filteringStatus
+    const hasTag = entry.tags.some((tag: Tag) => tag.slug === filterTagSlug)
+    const hasStatus = entry.status == filterStatus
     return hasTag && hasStatus
   })
 }
