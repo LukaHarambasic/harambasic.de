@@ -117,6 +117,7 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: var(--xl);
+    width: 100%;
     > .tags {
       display: flex;
       flex-direction: column;
