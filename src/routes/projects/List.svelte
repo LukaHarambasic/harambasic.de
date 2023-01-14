@@ -1,25 +1,22 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import type { Post } from '$lib/types/post'
-  import { filterAndSortPosts } from '$lib/data/projects/helper'
-  import { PostSortProperty, SortDirection } from '$lib/types/enums'
+  import { filterAndSort } from '$lib/data/projects/helper'
+  import { ProjectSortProperty, ProjectStatus, SortDirection } from '$lib/types/enums'
   import type { Tag } from '$lib/types/tag'
   import { enumToArray, sortAlphabetical } from '$lib/util/helper'
+  import type { Project } from '$lib/types/project'
 
-  export let initEntries: Post[]
+  export let initEntries: Project[]
   export let tags: Tag[]
 
   $: filterTagSlug = ''
-  $: sortProperty = PostSortProperty.Published
-  $: sortDirection = SortDirection.Desc
-  $: entries = filterAndSortPosts(initEntries, filterTagSlug, sortProperty, sortDirection)
+  $: filterStatus = ProjectStatus.None
+  $: sortProperty = ProjectSortProperty.Priority
+  $: sortDirection = SortDirection.Asc
+  $: entries = filterAndSort(initEntries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 
-  const properties = enumToArray(PostSortProperty).sort((a: any, b: any) =>
-    sortAlphabetical(a.key, b.key)
-  )
-  const directions = enumToArray(SortDirection).sort((a: any, b: any) =>
-    sortAlphabetical(a.key, b.key)
-  )
+  const properties = enumToArray(ProjectSortProperty).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
+  const directions = enumToArray(SortDirection).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
 
   onMount(() => {
     const slug = new URLSearchParams(window.location.search).get('tag') || 'all'
@@ -62,10 +59,7 @@
       <ol>
         {#each tags as tag}
           <li>
-            <button
-              class:selected={filterTagSlug === tag.slug}
-              on:click={() => onSelectTag(tag.slug)}
-            >
+            <button class:selected={filterTagSlug === tag.slug} on:click={() => onSelectTag(tag.slug)}>
               {tag.display} ({tag.count})
             </button>
           </li>

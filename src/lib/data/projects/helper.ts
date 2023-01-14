@@ -3,7 +3,7 @@ import type { Project } from "$lib/types/project"
 import { getTag, getDate, filterByTag, sortByDirection } from "$lib/util/entries"
 import { sortAlphabetical, sortNumber, sortDate, getSlug } from "$lib/util/helper"
 
-export function filterAndSortProjects(
+export function filterAndSort(
   entries: Project[],
   filterTagSlug: string,
   filterStatus: ProjectStatus,

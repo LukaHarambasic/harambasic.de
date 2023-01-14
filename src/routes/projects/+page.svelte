@@ -1,11 +1,10 @@
 <script lang="ts">
   import List from './List.svelte'
   import BaseFootnote from '$lib/components/Base/BaseFootnote.svelte'
-  import type { Project } from '$lib/types/project'
   import type { PageData } from './$types'
 
   export let data: PageData
-  const [entries, tags] = data.posts
+  const [entries, tags] = data.projects
 </script>
 
 <List initEntries={entries} {tags} />
