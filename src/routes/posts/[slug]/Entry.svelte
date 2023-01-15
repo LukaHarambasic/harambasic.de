@@ -4,20 +4,7 @@
   import type { Post } from '$lib/types/post'
 
   export let post: Post
-  const {
-    title,
-    published,
-    updated,
-    tldr,
-    tags,
-    description,
-    image,
-    slug,
-    relativePath,
-    fullPath,
-    toc,
-    html
-  } = post
+  const { title, published, updated, tldr, tags, description, image, slug, relativePath, fullPath, toc, html } = post
 </script>
 
 <article class="post h-entry">
@@ -60,8 +47,8 @@
       <!-- TODO links -->
       If you have any thoughts or questions feel free to share them in
       <a href="post.tweet">this thread</a> or send me an
-      <a href="globals.mailto">email</a>. And if you want to stay up to date you can subscribe to
-      the <a href="globals.blogFeedURL">RSS feed</a>.
+      <a href="globals.mailto">email</a>. And if you want to stay up to date you can subscribe to the
+      <a href="globals.blogFeedURL">RSS feed</a>.
     </div>
     <div class="author">
       <a href="https://harambasic.de" rel="author" class="p-author h-card">by Luka Harambasic</a>
@@ -69,7 +56,7 @@
   </footer>
 </article>
 
-<style>
+<style lang="postcss">
   article {
     display: grid;
     grid-template-rows: auto 1fr auto;
