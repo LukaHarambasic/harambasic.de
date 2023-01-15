@@ -73,7 +73,8 @@
         <li class="h-feed">
           <a href={entry.url}>
             <div class="logo">
-              <img src={entry.image} alt={entry.title} width="64px" />
+              <!-- TODO <img src={entry.image} alt={entry.title} width="64px" /> -->
+              <img src="" alt={entry.title} width="64px" />
             </div>
             <div class="content">
               <strong class="title">

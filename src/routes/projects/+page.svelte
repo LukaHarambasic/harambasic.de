@@ -10,7 +10,7 @@
 <List initEntries={entries} {tags} />
 <BaseFootnote>
   <!-- TODO adapt urls -->
-  Check out the <a href="globals.blogFeedURL">RSS feed</a> or
-  <a href="TODO">my Twitter account</a>
+  Check out the <a href="">RSS feed</a> or
+  <a href="">my Twitter account</a>
   to keep up to date.
 </BaseFootnote>

@@ -71,7 +71,8 @@
     <ul>
       {#each entries as entry}
         <li class="h-feed">
-          <img src={entry.image} alt="TODO" width="8rem" />
+          <!-- TODO <img src={entry.image} alt="TODO" width="8rem" /> -->
+          <img src="" alt="TODO" width="8rem" />
           <div class="content">
             <strong>{entry.title}</strong>
           </div>
