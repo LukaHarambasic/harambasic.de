@@ -1,12 +1,9 @@
 <script lang="ts">
-  import Entry from './Entry.svelte'
-  import type { Post } from '$lib/types/post'
-  import { findBySlug } from '$lib/util/entries'
   import type { PageData } from './$types'
+  import Entry from './Entry.svelte'
 
   export let data: PageData
-  const [entries, _] = data.posts
-  const entry: Post | undefined = entries.find((entry) => findBySlug(entry, data.slug))
+  const entry = data.entry
 </script>
 
 <Entry post={entry} />
