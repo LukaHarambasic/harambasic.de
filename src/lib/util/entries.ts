@@ -1,15 +1,14 @@
 import type { Bookmark } from '$lib/types/bookmark'
 import type { EntryDate } from '$lib/types/entry'
-import { ProjectStatus, SortDirection, type EntryType } from '$lib/types/enums'
+import { SortDirection, type EntryType } from '$lib/types/enums'
 import type { Post } from '$lib/types/post'
 import type { Project } from '$lib/types/project'
 import type { Tag } from '$lib/types/tag'
 import { getSlug, formatDate } from './helper'
 
-// export function filterByQuery(entry: Post | Project | Bookmark): boolean {
-//   const query = this as any
-//   return Object.keys(query).every((key) => entry[key] === query[key]);
-// }
+export function findBySlug(entry: Post | Project | Bookmark, slug: string): boolean {
+  return entry.slug === slug
+}
 
 export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
   const slug = getSlug(display)

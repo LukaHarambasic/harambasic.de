@@ -1,10 +1,10 @@
 import type { PageServerLoad } from './$types'
 
-export const load = (async () => {
+export const load = (async ({ params }) => {
     //TODO other meta data
-    // TODO
+    const slug = params.slug
     return {
-        title: 'Static post for testing',
-        // entry: await getEntryBySlug('add-github-actions-for-testing-linting-to-your-repository')
+        title: slug,
+        slug
     }
 }) satisfies PageServerLoad

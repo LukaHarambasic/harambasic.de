@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   .callout {
     display: flex;
     flex-direction: row;
