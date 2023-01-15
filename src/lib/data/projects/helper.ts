@@ -10,7 +10,6 @@ export function filterAndSort(
   sortProperty: ProjectSortProperty,
   sortDirection: SortDirection,
 ): Project[] {
-  // TODO sort - make this somehow nicer and as function
   return entries
     .filter((entry) => filterByTag(entry, filterTagSlug))
     .filter((entry) => filterByStatus(entry, filterStatus))

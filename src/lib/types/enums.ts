@@ -30,7 +30,7 @@ export enum ProjectStatus {
 }
 
 export enum BookmarkStatus {
-  Empty = 'EMPTY',
+  None = 'None',
   Active = 'ACTIVE',
   Inactive = 'INACTIVE'
 }

@@ -14,12 +14,8 @@
   $: sortDirection = SortDirection.Desc
   $: entries = filterAndSortPosts(initEntries, filterTagSlug, sortProperty, sortDirection)
 
-  const properties = enumToArray(PostSortProperty).sort((a: any, b: any) =>
-    sortAlphabetical(a.key, b.key)
-  )
-  const directions = enumToArray(SortDirection).sort((a: any, b: any) =>
-    sortAlphabetical(a.key, b.key)
-  )
+  const properties = enumToArray(PostSortProperty).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
+  const directions = enumToArray(SortDirection).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
 
   onMount(() => {
     const slug = new URLSearchParams(window.location.search).get('tag') || 'all'
@@ -62,10 +58,7 @@
       <ol>
         {#each tags as tag}
           <li>
-            <button
-              class:selected={filterTagSlug === tag.slug}
-              on:click={() => onSelectTag(tag.slug)}
-            >
+            <button class:selected={filterTagSlug === tag.slug} on:click={() => onSelectTag(tag.slug)}>
               {tag.display} ({tag.count})
             </button>
           </li>
@@ -83,10 +76,10 @@
                 {post.title}
               </strong>
               <ul class="tags">
-                {#each post.tags as category}
+                {#each post.tags as tag}
                   <li>
-                    <a href={category.fullPath} class="link">
-                      {category.display}
+                    <a href={tag.relativePath} class="link">
+                      {tag.display}
                     </a>
                   </li>
                 {/each}

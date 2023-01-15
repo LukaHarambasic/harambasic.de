@@ -1,0 +1,26 @@
+Title;Tag;Description;URL;Status;Image;OpenSource;Updated;Published
+vue-resume-component;Development;My first npm package which powered the CV of a previous version of this page.;https://www.npmjs.com/package/vue-resume-component;INACTIVE;;checked;2022-12-01 20:32;2022-12-01 20:17
+Apple MacBook Air;Hardware;Specs: M1 (Processor), 16 GB (Memory), 256 GB (Storage);https://www.apple.com/de/macbook-air/;INACTIVE;;;2022-12-01 20:18;2022-12-01 20:18
+ASUS ZenScreen MB16AC;Hardware;Mobile display, powered over USB-C which gives me a dual display set up almost everywhere.;https://www.asus.com/de/displays-desktops/monitors/zenscreen/zenscreen-mb16ac/;INACTIVE;;;2022-12-01 20:24;2022-12-01 20:18
+Elgato Ring Light;Hardware;Quite expansive, but the warmness (Kelvin) and brightness can be adjusted seamlessly (Mobile & Desktop).;https://www.elgato.com/en/ring-light;ACTIVE;;;2022-12-01 20:20;2022-12-01 20:19
+Elgato Streamdeck;Hardware;Programmable keyboard with displays which shows different keys depending on the context.;https://www.elgato.com/en/stream-deck;INACTIVE;;;2022-12-01 20:20;2022-12-01 20:20
+Logitech Streamcam;Hardware;Supports default mounting options and produces a pretty good Full HD image.;https://www.logitech.com/de-de/products/webcams/streamcam.960-001281.html;ACTIVE;;;2022-12-01 20:21;2022-12-01 20:20
+Netlify;Development;Connect Netlify to your repository to get a build when you push to main and also get previews in PRs.;https://www.netlify.com/;ACTIVE;;;2022-12-01 20:22;2022-12-01 20:21
+nuxt/content;Development;File based CMS for Nuxt, apropos this website is powered by nuxt/content.;https://content.nuxtjs.org/;INACTIVE;;checked;2022-12-01 20:32;2022-12-01 20:21
+Playwright;Development;A Node.js browser automation framework I use it to automate websites which won't give me API access or to generate images.;https://playwright.dev/;ACTIVE;;checked;2022-12-01 20:32;2022-12-01 20:22
+Rode NT-USB Mini;Hardware;Nice quality (as far as I can tell) and can be used without an arm.;https://en.rode.com/microphones/nt-usb_mini;INACTIVE;;;2022-12-01 20:24;2022-12-01 20:23
+Vue.js;Development;My favorite JS framework, as it lets you use what the web was made with: HTML and CSS! And Single File Components are just awesome.;https://vuejs.org/;INACTIVE;;checked;2022-12-01 20:32;2022-12-01 20:23
+Vercel;Development;Same as Netlify, but I prefer Vercel for projects with serverless functions.;https://vercel.com/;ACTIVE;;;2022-12-01 20:26;2022-12-01 20:24
+GitHub Actions;Development;As all my projects are on GitHub I'm just happy about such a simple solution for automation.;https://github.com/features/actions;ACTIVE;;;2022-12-01 20:26;2022-12-01 20:26
+google-webfonts-helper;Development;Tool to help you host Google fonts without the CDN. Why should you care? GDPR, Performance, Control.;https://google-webfonts-helper.herokuapp.com/fonts;ACTIVE;;checked;2022-12-01 20:32;2022-12-01 20:26
+Enpass;Digital Tools;I bought this password manager before they started the subscription model. Therefore, I can use it without any monthly fees.;https://www.enpass.io/;ACTIVE;;;2022-12-01 20:29;2022-12-01 20:29
+Figma;Digital Tools;Awesome vector tool, you can work live at files and share them easily.;https://www.figma.com/;ACTIVE;;;2022-12-01 20:29;2022-12-01 20:29
+WebStorm;Digital Tools;I like it as it just works and has all the features I need built-in.;https://www.jetbrains.com/webstorm/;ACTIVE;;;2022-12-01 20:30;2022-12-01 20:29
+WorkFlowy;Digital Tools;My go-to knowledge app, you could also call it a note app. Basically it is an endless list.;https://workflowy.com/;ACTIVE;;;2022-12-01 20:30;2022-12-01 20:30
+Clipy;Digital Tools;A clipboard manager for macOS. No more, no less.;https://clipy-app.com/;ACTIVE;;checked;2022-12-01 20:32;2022-12-01 20:30
+Bookmark Divider;Digital Tools;A tool created by myself to use it as a bookmark divider between my favicon bookmarks.;https://bookmark-divider.netlify.app/;ACTIVE;;checked;2022-12-01 20:32;2022-12-01 20:31
+VS Code;Digital Tools;As I'm not a big fan of TextEdit (macOS) I use VS Code as my primarily text editor. And nowadays also for Astro.js.;https://code.visualstudio.com/;ACTIVE;;checked;2022-12-01 20:35;2022-12-01 20:32
+Slack;Digital Tools;If there is a new side project with multiple people I tend to directly create a workspace to streamline the communication.;https://slack.com;ACTIVE;;;2022-12-01 20:34;2022-12-01 20:33
+Google Workspace;Digital Tools;In my case it is used privately, but it is also very easy to set up for small to large organizations.;https://workspace.google.com;ACTIVE;;;2022-12-01 20:34;2022-12-01 20:34
+Rectangle;Digital Tools;Move and snap windows in macOS via mouse and shortcuts.;https://rectangleapp.com/;ACTIVE;;checked;2022-12-01 20:36;2022-12-01 20:35
+Nuxt.js;Development;Opinionated meta framework for Vue.js.;https://nuxtjs.org/;ACTIVE;;checked;2022-12-01 20:37;2022-12-01 20:36

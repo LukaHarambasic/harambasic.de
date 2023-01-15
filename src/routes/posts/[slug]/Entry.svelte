@@ -17,7 +17,7 @@
       <ul>
         {#each tags as tag}
           <li>
-            <a href={tag.fullPath} class="link">
+            <a href={tag.relativePath} class="link">
               {tag.display}
             </a>
           </li>

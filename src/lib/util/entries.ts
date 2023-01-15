@@ -15,7 +15,7 @@ export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
   return {
     display,
     slug: slug,
-    fullPath: `/${type.toLowerCase()}s/?tag=${slug}`,
+    relativePath: `/${type.toLowerCase()}s/?tag=${slug}`,
     count: iniCount,
     type
   }

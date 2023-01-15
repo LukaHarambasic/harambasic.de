@@ -16,6 +16,7 @@ export function getSlug(str: string) {
 }
 
 // Won't be tested
+// TODO items should be gneric not any and the output should be the same type as the input
 export function getRandomItems(items: any[], amount: number) {
   return items.sort(() => 0.5 - Math.random()).slice(0, amount)
 }

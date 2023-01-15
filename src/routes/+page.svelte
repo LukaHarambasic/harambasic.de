@@ -7,17 +7,14 @@
   import type { Post } from '$lib/types/post'
   import type { PageData } from './$types'
 
-  // const rawPosts = await Astro.glob('../content/posts/*.md');
-  // const posts = []; // rawToPosts(rawPosts);
-  // const randomPosts: Post[] = []; // getRandomItems(posts, 3);
-
   export let data: PageData
   const [posts] = data.posts
   const [projects] = data.projects
+  const [bookmarks] = data.bookmarks
 
   const randomProjects: Project[] = getRandomItems(projects, 1)
-  const randomBookmarks: Bookmark[] = []
-  const randomPosts: Post[] = getRandomItems(posts, 3)
+  const randomBookmarks: Bookmark[] = getRandomItems(bookmarks, 3)
+  const randomPosts: Post[] = getRandomItems(posts, 2)
 </script>
 
 <section class="heyho">

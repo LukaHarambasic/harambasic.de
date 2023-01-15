@@ -1,98 +1,62 @@
 import type { Bookmark } from '$lib/types/bookmark'
 import { BookmarkSortProperty, BookmarkStatus, EntryType, SortDirection } from '$lib/types/enums'
-import type { Tag } from '$lib/types/tag'
-import { getTag, getDate } from '$lib/util/entries'
+import { getTag, getDate, filterByTag, sortByDirection } from '$lib/util/entries'
 import { sortAlphabetical, sortDate, getSlug } from '$lib/util/helper'
 
-export function getSortedBookmarks(
-  unsorted: Bookmark[],
-  property: BookmarkSortProperty,
-  direction: SortDirection
-): Bookmark[] {
-  const entriesCopy = JSON.parse(JSON.stringify(unsorted))
-  switch (property) {
-    case BookmarkSortProperty.Title:
-      if (direction === SortDirection.Asc) {
-        return entriesCopy.sort((a: Bookmark, b: Bookmark) => sortAlphabetical(a.title, b.title))
-      } else if (direction === SortDirection.Desc) {
-        return entriesCopy.sort((a: Bookmark, b: Bookmark) => sortAlphabetical(b.title, a.title))
-      }
-      break
-    case BookmarkSortProperty.Published:
-      if (direction === SortDirection.Asc) {
-        return entriesCopy.sort((a: Bookmark, b: Bookmark) =>
-          sortDate(b.published.raw, a.published.raw)
-        )
-      } else if (direction === SortDirection.Desc) {
-        return entriesCopy.sort((a: Bookmark, b: Bookmark) =>
-          sortDate(a.published.raw, b.published.raw)
-        )
-      }
-      break
-    case BookmarkSortProperty.Updated:
-      if (direction === SortDirection.Asc) {
-        return entriesCopy.sort((a: Bookmark, b: Bookmark) =>
-          sortDate(b.updated.raw, a.updated.raw)
-        )
-      } else if (direction === SortDirection.Desc) {
-        return entriesCopy.sort((a: Bookmark, b: Bookmark) =>
-          sortDate(a.updated.raw, b.updated.raw)
-        )
-      }
-      break
-    default:
-      return []
-  }
-  return []
-}
-
-export function getFilteredBookmarks(
-  unfiltered: Bookmark[],
+export function filterAndSort(
+  entries: Bookmark[],
   filterTagSlug: string,
-  filterStatus: BookmarkStatus
+  filterStatus: BookmarkStatus,
+  sortProperty: BookmarkSortProperty,
+  sortDirection: SortDirection
 ): Bookmark[] {
-  const entriesCopy = JSON.parse(JSON.stringify(unfiltered))
-  const showAll = filterTagSlug === 'all' && filterStatus === BookmarkStatus.Empty
-  if (showAll) {
-    return entriesCopy
-  }
-  const onlyFilterTags = filterTagSlug !== 'all' && filterStatus === BookmarkStatus.Empty
-  if (onlyFilterTags) {
-    return entriesCopy.filter((entry: Bookmark) => {
-      return entry.tags.some((tag) => tag.slug === filterTagSlug)
-    })
-  }
-  const onlyFilterStatus = filterTagSlug === 'all' && filterStatus !== BookmarkStatus.Empty
-  if (onlyFilterStatus) {
-    return entriesCopy.filter((entry: Bookmark) => entry.status === filterStatus)
-  }
-  // TODO
-  return entriesCopy.filter((entry: Bookmark) => {
-    const hasTag = entry.tags.some((tag: Tag) => tag.slug === filterTagSlug)
-    const hasStatus = entry.status == filterStatus
-    return hasTag && hasStatus
-  })
+  return entries
+    .filter((entry) => filterByTag(entry, filterTagSlug))
+    .filter((entry) => filterByStatus(entry, filterStatus))
+    .sort((a, b) => sortByProperty(a, b, sortProperty))
+    .sort(() => sortByDirection(sortDirection))
 }
 
-export function getBookmark(bookmark: any): Bookmark {
-  const f = bookmark.fields
+export function getBookmark(entry: any): Bookmark {
+  const meta = entry.meta
   const type = EntryType.Bookmark
-  const slug = getSlug(f.Title)
+  const slug = getSlug(meta.title)
   const relativePath = `/${type.toLowerCase()}s/${slug}`
-  const rawTags = [f.Tag]
   return {
     type,
-    title: f.Title,
-    description: f.Description,
-    image: f.Image || '',
-    tags: rawTags.map((tag) => getTag(tag, type)),
-    published: getDate(f.Published),
-    updated: getDate(f.Updated),
-    url: f.URL,
-    status: f.Status,
-    openSource: f.OpenSource,
+    title: meta.title,
+    description: meta.description,
+    image: meta.image || '',
+    tags: meta.tags.map((tag: string) => getTag(tag, type)),
+    published: getDate(meta.published),
+    updated: getDate(meta.updated),
+    url: meta.url,
+    status: meta.status,
+    openSource: meta.openSource,
     slug,
     relativePath,
     fullPath: `https://harambasic.de${relativePath}`
   }
+}
+
+function sortByProperty(
+  a: Bookmark,
+  b: Bookmark,
+  property: BookmarkSortProperty,
+): number {
+  switch (property) {
+    case BookmarkSortProperty.Title:
+      return sortAlphabetical(b.title, a.title)
+    case BookmarkSortProperty.Published:
+      return sortDate(b.published.raw, a.published.raw)
+    case BookmarkSortProperty.Updated:
+      return sortDate(b.updated.raw, a.updated.raw)
+    default:
+      return 0
+  }
+}
+
+function filterByStatus(entry: Bookmark, filterStatus: BookmarkStatus): boolean {
+  if (filterStatus === BookmarkStatus.None) return true
+  return entry.status === filterStatus
 }

@@ -1,7 +1,7 @@
 export interface Tag {
   display: string
   slug: string
-  fullPath: string
+  relativePath: string
   count: number
   type: EntryType
 }
