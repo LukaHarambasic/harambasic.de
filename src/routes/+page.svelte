@@ -5,14 +5,19 @@
   import type { Project } from '$lib/types/project'
   import type { Bookmark } from '$lib/types/bookmark'
   import type { Post } from '$lib/types/post'
+  import type { PageData } from './$types'
 
   // const rawPosts = await Astro.glob('../content/posts/*.md');
   // const posts = []; // rawToPosts(rawPosts);
   // const randomPosts: Post[] = []; // getRandomItems(posts, 3);
 
-  const randomProjects: Project[] = []
+  export let data: PageData
+  const [posts] = data.posts
+  const [projects] = data.projects
+
+  const randomProjects: Project[] = getRandomItems(projects, 1)
   const randomBookmarks: Bookmark[] = []
-  const randomPosts: Post[] = []
+  const randomPosts: Post[] = getRandomItems(posts, 3)
 </script>
 
 <section class="heyho">
@@ -21,9 +26,9 @@
     <div class="content rich-text">
       <h2>Heyho, I'm Luka!</h2>
       <p>
-        Simpler version, interstes and what I do, for more infos send to about page with a text and
-        link to CV. <em>Pinnace</em> holystone mizzenmast <a>lorem ipsum</a> quarter crow's nest nipperkin
-        grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard.
+        Simpler version, interstes and what I do, for more infos send to about page with a text and link to CV. <em>Pinnace</em> holystone
+        mizzenmast <a>lorem ipsum</a> quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon
+        starboard.
       </p>
     </div>
   </div>
