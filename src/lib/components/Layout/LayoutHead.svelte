@@ -1,9 +1,9 @@
 <script lang="ts">
-  export let title: string = ''
-  export let description: string = ''
-  export let permalink: string = ''
-  export let socialImg: string = ''
-  export let socialImgAlt: string = ''
+  export let title: string = 'Default title'
+  export let description: string = 'Beautiful description'
+  export let permalink: string = 'https://TODO.com/'
+  export let socialImg: string = 'https://TODO.com/image.png'
+  export let socialImgAlt: string = 'same as title?'
 
   const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
 </script>
@@ -17,7 +17,6 @@
   <!-- Statistics -->
   <script data-goatcounter="https://luha.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <!-- Global Metadata -->
-  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <meta name="theme-color" content="#e2ebf0" />
   <meta name="HandheldFriendly" content="True" />

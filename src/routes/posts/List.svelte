@@ -85,7 +85,7 @@
                 {/each}
               </ul>
             </div>
-            <time class="date dt-published" datetime={post.published.raw.toString()}>
+            <time class="date dt-published" datetime={post?.published?.raw?.toString()}>
               {post.published.display}
             </time>
             <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 32 32"

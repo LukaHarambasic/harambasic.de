@@ -10,7 +10,7 @@
 <article class="post h-entry">
   <!-- TODO the 4 section could be split up in dedicated files -->
   <div class="meta">
-    <time class="date dt-published" datetime={published.raw.toString()}>
+    <time class="date dt-published" datetime={published?.raw?.toString()}>
       <a href={relativePath} class="u-url">{published.display}</a>
     </time>
     <div class="tags">
