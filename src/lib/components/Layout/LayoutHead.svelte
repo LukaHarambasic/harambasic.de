@@ -1,9 +1,9 @@
 <script lang="ts">
-  export let title: string
-  export let description: string
-  export let permalink: string
-  export let socialImg: string
-  export let socialImgAlt: string
+  export let title: string = ''
+  export let description: string = ''
+  export let permalink: string = ''
+  export let socialImg: string = ''
+  export let socialImgAlt: string = ''
 
   const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
 </script>
@@ -13,16 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- TODO replace -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
   <!-- Statistics -->
-  <script
-    data-goatcounter="https://luha.goatcounter.com/count"
-    async
-    src="//gc.zgo.at/count.js"
-  ></script>
+  <script data-goatcounter="https://luha.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <!-- Global Metadata -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />

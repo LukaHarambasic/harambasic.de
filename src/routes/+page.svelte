@@ -42,7 +42,7 @@
           <a class="card image" href="/projects">
             <Icon icon="ph:arrow-circle-right-bold" />
             <!-- TODO <img src={project.image} alt={project.title} width="8rem" /> -->
-            <img src="" alt={project.title} width="8rem" />
+            <img src="./../lib/images/projects/techmobshow.svg" alt={project.title} width="8rem" />
             <div class="content">
               <strong>{project.title}</strong>
               <p>{project.description}</p>
@@ -106,7 +106,7 @@
       <small>Get in touch!</small>
     </div>
     <div class="segmented-buttons">
-      <a href="" class="button">Signal</a>
+      <a href="https://TODO.com" class="button">Signal</a>
       <a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
       <a href="https://github.com/LukaHarambasic" class="button">GitHub</a>
       <a href="https://mstdn.social/..luha" class="button">Mastodon</a>

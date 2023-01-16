@@ -46,9 +46,9 @@
     <div class="follow">
       <!-- TODO links -->
       If you have any thoughts or questions feel free to share them in
-      <a href="">this thread</a> or send me an
-      <a href="">email</a>. And if you want to stay up to date you can subscribe to the
-      <a href="">RSS feed</a>.
+      <a href="https://TODO.com">this thread</a> or send me an
+      <a href="https://TODO.com">email</a>. And if you want to stay up to date you can subscribe to the
+      <a href="https://TODO.com">RSS feed</a>.
     </div>
     <div class="author">
       <a href="https://harambasic.de" rel="author" class="p-author h-card">by Luka Harambasic</a>
