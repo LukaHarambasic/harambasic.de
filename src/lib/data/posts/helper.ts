@@ -60,6 +60,7 @@ export function getPost(entry: any): Post {
 // TODO can this be rewritten in a nicer way?
 // provided by https://codepen.io/Frnak/pen/mdmEjyG?editors=0011
 // TODO fix markdownHeadings any
+// check if this might be a nicer solution: https://github.com/ryanfiller/portfolio-svelte/blob/main/src/plugins/rehype/table-of-contents.js#L29
 export function getNestedToc(markdownHeading: any): TocNode[] {
   let latestEntry: TocNode | null
   let latestParent: TocNode | null

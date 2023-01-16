@@ -42,7 +42,8 @@
           <a class="card image" href="/projects">
             <Icon icon="ph:arrow-circle-right-bold" />
             <!-- TODO <img src={project.image} alt={project.title} width="8rem" /> -->
-            <img src="./../lib/images/projects/techmobshow.svg" alt={project.title} width="8rem" />
+            <!-- ./../lib/images/projects/techmobshow.svg -->
+            <img src="https://TODO.com/image.png" alt={project.title} width="8rem" />
             <div class="content">
               <strong>{project.title}</strong>
               <p>{project.description}</p>

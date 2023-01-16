@@ -1,8 +1,14 @@
 import type { EntryType } from '$lib/types/enums'
 import { join } from 'path'
 import * as fs from 'fs/promises'
-import { marked } from 'marked'
 import matter from 'gray-matter'
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypePrism from 'rehype-prism'
+import rehypeFormat from 'rehype-format'
+import rehypeStringify from 'rehype-stringify'
+
 
 // TODO still needs to be transformed to the corresponding Entry types
 export async function getRawEntries(entryType: EntryType): Promise<any[]> {
@@ -29,7 +35,15 @@ export async function _getFiles(entryType: EntryType): Promise<string[]> {
 }
 
 export async function _getHTML(markdown: string): Promise<string> {
-  return marked.parse(markdown)
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypePrism, { plugins: ['line-numbers'] })
+    .use(rehypeFormat)
+    .use(rehypeStringify)
+    .process(markdown)
+  //TODO type html?
+  return result.value as string
 }
 
 export async function _getMeta(frontmatter: string): Promise<[string, object]> {
