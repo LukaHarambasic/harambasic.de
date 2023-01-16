@@ -34,7 +34,7 @@ Feel free to send us [an email](mailto:luka@active-ambassadors.org) or a message
 
 ## The tools we use
 
-![Flow of all the tools we use](./../lib/images/posts/almost-free-setup-for-ngos-startups-and-side-projects/operations_flow.png)
+![Flow of all the tools we use](/posts/almost-free-setup-for-ngos-startups-and-side-projects/operations_flow.png)
 
 As I'm a big fan of structured content I split our tools into four categories: (1) Communication, (2) Operations, (3) Marketing and (4) Website. I'll shortly go over them and explain how we use them. We are using all of these tools in the free tier, we only have to pay for the domain & emails. If you are a registered NGO you even can use some premium tiers for free, e.g. on [Slack](https://slack.com/intl/en-de/help/articles/204368833-Apply-for-the-Slack-for-Nonprofits-discount) or [Google](https://www.google.com/nonprofits/offerings/g-suite/).
 

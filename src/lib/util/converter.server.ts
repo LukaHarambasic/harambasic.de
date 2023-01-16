@@ -34,6 +34,23 @@ export async function _getFiles(entryType: EntryType): Promise<string[]> {
   )
 }
 
+import { visit } from 'unist-util-visit'
+
+
+const modules = import.meta.glob('$lib/images/**/*.{png,jpg,jpeg,gif,svg}', { eager: true, import: 'default' })
+
+function rehypePostImage() {
+  return function transformer(tree: any, file: any) {
+    visit(tree, 'element', visitor)
+    function visitor(node: any) {
+      if (node.tagName === 'img') {
+        const srcAttribute = node.properties.src
+        node.properties.src = modules[`/src/lib/images${srcAttribute}`]
+      }
+    }
+  }
+}
+
 export async function _getHTML(markdown: string): Promise<string> {
   const result = await unified()
     .use(remarkParse)
@@ -41,6 +58,7 @@ export async function _getHTML(markdown: string): Promise<string> {
     .use(rehypePrism, { plugins: ['line-numbers'] })
     .use(rehypeFormat)
     .use(rehypeStringify)
+    .use(rehypePostImage)
     .process(markdown)
   //TODO type html?
   return result.value as string

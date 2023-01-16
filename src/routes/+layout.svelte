@@ -7,12 +7,12 @@
   import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
   import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte'
   import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
-  import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
+  // import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
   import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
   const { title, description, permalink, socialImg, socialImgAlt } = $page.data
 </script>
 
-<LayoutHead {title} {description} {permalink} {socialImg} {socialImgAlt} />
+<!-- <LayoutHead {title} {description} {permalink} {socialImg} {socialImgAlt} /> -->
 <LayoutSkipToContent />
 <div class="container">
   <LayoutHeader />
