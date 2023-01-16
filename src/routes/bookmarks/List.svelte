@@ -74,7 +74,7 @@
           <a href={entry.url}>
             <div class="logo">
               <!-- TODO <img src={entry.image} alt={entry.title} width="64px" /> -->
-              <img src="" alt={entry.title} width="64px" />
+              <img src="https://TODO.com/image.png" alt={entry.title} width="64px" />
             </div>
             <div class="content">
               <strong class="title">

@@ -72,7 +72,7 @@
       {#each entries as entry}
         <li class="h-feed">
           <!-- TODO <img src={entry.image} alt="TODO" width="8rem" /> -->
-          <img src="" alt="TODO" width="8rem" />
+          <img src="https://TODO.com/image.png" alt="TODO" width="8rem" />
           <div class="content">
             <strong>{entry.title}</strong>
           </div>
