@@ -84,6 +84,7 @@ body {
 
 .rich-text {
   line-height: 1.75;
+  /* TODO remove */
   img {
     padding: 1rem;
     background: tomato;
@@ -158,5 +159,8 @@ body {
         margin: 0;
       }
     }
+  }
+  img {
+    max-width: 100%;
   }
 }

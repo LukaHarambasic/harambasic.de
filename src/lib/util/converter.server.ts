@@ -36,12 +36,16 @@ export async function _getFiles(entryType: EntryType): Promise<string[]> {
 
 import { visit } from 'unist-util-visit'
 
+type ImageOptions = {
+  modules: Record<string, string>
+}
 
-const modules = import.meta.glob('$lib/images/**/*.{png,jpg,jpeg,gif,svg}', { eager: true, import: 'default' })
-
-function rehypePostImage() {
+function rehypePostImage(options?: ImageOptions | undefined) {
+  // https://stackblitz.com/edit/sveltejs-kit-template-default-7tba4y?file=src%2Froutes%2F%2Bpage.svelte
+  // https://vitejs.dev/guide/features.html#glob-import1
+  const modules = options?.modules || []
   return function transformer(tree: any, file: any) {
-    visit(tree, 'element', visitor)
+    return visit(tree, 'element', visitor)
     function visitor(node: any) {
       if (node.tagName === 'img') {
         const srcAttribute = node.properties.src
@@ -52,13 +56,14 @@ function rehypePostImage() {
 }
 
 export async function _getHTML(markdown: string): Promise<string> {
+  const modules = import.meta.glob('$lib/images/**/*.{png,jpg,jpeg,gif,svg}', { eager: true, import: 'default' })
   const result = await unified()
     .use(remarkParse)
     .use(remarkRehype)
+    .use(rehypePostImage, { modules })
     .use(rehypePrism, { plugins: ['line-numbers'] })
     .use(rehypeFormat)
     .use(rehypeStringify)
-    .use(rehypePostImage)
     .process(markdown)
   //TODO type html?
   return result.value as string
