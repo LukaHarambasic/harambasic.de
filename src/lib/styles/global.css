@@ -84,10 +84,8 @@ body {
 
 .rich-text {
   line-height: 1.75;
-  /* TODO remove */
   img {
-    padding: 1rem;
-    background: tomato;
+    border-radius: var(--border-radius);
   }
   h2 {
     margin: var(--xl) 0 var(--m) 0;

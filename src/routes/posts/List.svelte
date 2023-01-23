@@ -258,7 +258,7 @@
           gap: var(--l);
           transition: var(--transition);
           border-radius: var(--border-radius);
-          background: var(--c-surface);
+          background: var(--c-surface-accent);
           padding: var(--l);
           color: var(--c-font);
           text-decoration: none;

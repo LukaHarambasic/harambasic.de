@@ -6,6 +6,15 @@
   --c-font-accent-dark: rgba(1, 3, 15, 0.8);
   --c-font-accent-super-light: rgba(1, 3, 15, 0.2);
 
+  @media (prefers-color-scheme: dark) {
+    --c-surface: rgba(255, 255, 255, 0.03);
+    --c-surface-accent: rgba(255, 255, 255, 0.06);
+    --c-light: rgba(1, 3, 15, 1);
+    --c-font: rgba(255, 255, 255, 1);
+    --c-font-accent-dark: rgba(255, 255, 255, 0.8);
+    --c-font-accent-super-light: rgba(255, 255, 255, 0.04);
+  }
+
   /* 1.200 Minor Third - https://type-scale.com/ */
   --font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   --font-s: 0.833rem;
@@ -32,13 +41,4 @@
   --layout-sidebar: 40ch;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --c-surface: rgba(255, 255, 255, 0.03);
-    --c-surface-accent: rgba(255, 255, 255, 0.1);
-    --c-light: rgba(1, 3, 15, 1);
-    --c-font: rgba(255, 255, 255, 1);
-    --c-font-accent-dark: rgba(255, 255, 255, 0.8);
-    --c-font-accent-super-light: rgba(255, 255, 255, 0.04);
-  }
-}
+
