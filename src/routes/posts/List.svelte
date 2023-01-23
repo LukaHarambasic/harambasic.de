@@ -1,59 +1,27 @@
 <script lang="ts">
   import type { Post } from '$lib/types/post'
   import { filterAndSortPosts } from '$lib/data/posts/helper'
-  import { PostSortProperty, SortDirection } from '$lib/types/enums'
+  import { PostSortProperty } from '$lib/types/enums'
+  import { SortDirection } from '$lib/types/enums'
   import type { Tag } from '$lib/types/tag'
-  import { enumToArray, sortAlphabetical } from '$lib/util/helper'
   import Icon from '@iconify/svelte'
   import { page } from '$app/stores'
+  import Sort from '$lib/components/Entries/Sort.svelte'
+  import Tags from '$lib/components/Entries/Tags.svelte'
 
   export let initEntries: Post[]
   export let tags: Tag[]
 
   $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: sortProperty = PostSortProperty.Published
-  $: sortDirection = SortDirection.Desc
+  $: sortProperty = $page.url.searchParams.get('property') || PostSortProperty.Published
+  $: sortDirection = $page.url.searchParams.get('direction') || SortDirection.Desc
   $: entries = filterAndSortPosts(initEntries, filterTagSlug, sortProperty, sortDirection)
-
-  const properties = enumToArray(PostSortProperty).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
-  const directions = enumToArray(SortDirection).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
 </script>
 
 <section>
   <aside>
-    <div class="sorter card">
-      <h3><Icon class="icon" icon="ph:faders-bold" /><span>Tags</span></h3>
-      <div class="selects">
-        <div class="wrapper">
-          <label for="property">Property</label>
-          <select bind:value={sortProperty} name="property">
-            {#each properties as property}
-              <option value={property.key}>{property.display}</option>
-            {/each}
-          </select>
-        </div>
-        <div class="wrapper">
-          <label for="direction">Direction</label>
-          <select bind:value={sortDirection} name="direction">
-            {#each directions as direction}
-              <option value={direction.key}>{direction.display}</option>
-            {/each}
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="tags card">
-      <h3><Icon class="icon" icon="ph:hash-bold" /><span>Tags</span></h3>
-      <ol>
-        {#each tags as tag}
-          <li>
-            <a class:selected={filterTagSlug === tag.slug} href={tag.relativePath}>
-              {tag.display} ({tag.count})
-            </a>
-          </li>
-        {/each}
-      </ol>
-    </div>
+    <Sort propertiesEnum={PostSortProperty} />
+    <Tags {tags} />
   </aside>
   <div class="entries">
     <ul>
@@ -86,25 +54,11 @@
 </section>
 
 <style lang="postcss">
-  h3 {
-    display: flex;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.25rem;
-    span {
-      line-height: 1;
-    }
-    :global(.icon) {
-      size: 1.4rem;
-    }
-  }
   section {
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: 1fr 70ch;
-    grid-template-areas: 'sorter entries' 'tags entries';
+    grid-template-areas: 'sorting entries' 'tags entries';
     column-gap: var(--l);
     row-gap: var(--l);
     width: 100%;
@@ -121,93 +75,11 @@
     gap: var(--l);
     width: 100%;
   }
-  .sorter {
-    grid-area: sorter;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: var(--m);
-    .selects {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: stretch;
-      justify-content: flex-start;
-      align-items: stretch;
-      gap: var(--s);
-      .wrapper {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-content: stretch;
-        justify-content: flex-start;
-        align-items: stretch;
-        gap: var(--xs);
-        label {
-          margin: 0;
-          padding: 0;
-          color: var(--c-font-accent-dark);
-          font-size: var(--font-s);
-          font-weight: bold;
-        }
-        select {
-          margin: 0;
-          border: none;
-          padding: 0.25rem 0;
-          color: var(--c-font-accent-dark);
-          font-size: var(--font-s);
-          &:hover {
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration-thickness: var(--underline-thickness);
-          }
-        }
-      }
-    }
+  .sort {
+    grid-area: sorting;
   }
   .tags {
     grid-area: tags;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: var(--m);
-    ol {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: stretch;
-      justify-content: flex-start;
-      align-items: stretch;
-      gap: var(--s);
-      li {
-        a {
-          margin: 0;
-          border: none;
-          background: none;
-          padding: 0;
-          color: var(--c-font-accent-dark);
-          font-size: var(--font-s);
-          &:hover {
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration-thickness: var(--underline-thickness);
-          }
-          &.selected {
-            text-decoration: underline;
-            text-decoration-thickness: var(--underline-thickness);
-            &:hover {
-              text-decoration: none;
-            }
-          }
-        }
-      }
-    }
   }
   .entries {
     grid-area: entries;
