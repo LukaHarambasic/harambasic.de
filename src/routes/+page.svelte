@@ -90,7 +90,7 @@
     </ul>
   </div>
 </section>
-<section class="contact">
+<section class="contact" id="contact">
   <div class="group">
     <div class="meta">
       <strong>E-Mail</strong>

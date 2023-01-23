@@ -7,7 +7,7 @@ updated: 2021-07-18
 tags:
   - Development
   - Docker
-tldr: 'Here is the <a href="#complete-docker-composeyml">docker-compose.yml</a> you are looking for.'
+tldr: 'Scroll down to get the full docker composable.'
 discussion: https://twitter.com/luka_harambasic/status/1349487071614930944
 ---
 

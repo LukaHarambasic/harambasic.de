@@ -9,7 +9,6 @@ import rehypePrism from 'rehype-prism'
 import rehypeFormat from 'rehype-format'
 import rehypeStringify from 'rehype-stringify'
 
-
 // TODO still needs to be transformed to the corresponding Entry types
 export async function getRawEntries(entryType: EntryType): Promise<any[]> {
   const files = await _getFiles(entryType)
