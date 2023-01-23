@@ -21,7 +21,7 @@ export function getRandomItems(items: any[], amount: number) {
   return items.sort(() => 0.5 - Math.random()).slice(0, amount)
 }
 
-export function formatDate(date: Date) {
+export function formatDate(date: Date): string {
   return format(new Date(date), 'yyyy-MM-dd')
 }
 
@@ -35,10 +35,6 @@ export function sortDate(a: Date, b: Date): number {
 
 export function sortNumber(a: number, b: number): number {
   return b - a
-}
-
-export function deepCopy(obj: any): any {
-  return JSON.parse(JSON.stringify(obj))
 }
 
 export function enumToArray(rawEnum: any): any {
