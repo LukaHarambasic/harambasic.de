@@ -11,44 +11,18 @@
   import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
   const { title, description, permalink, socialImg, socialImgAlt } = $page.data
 
-  // const images: string[] = $page.data.images
-
-  // images.forEach(async (image) => {
-  //   console.log(image)
-  //   await import(`../lib/images${image}`)
-  // })
-
-  // Okay it works, but please make this dynamic!!
-  // and lets not forget about the other images: projects, bookmarks can have one if not the favicon should be fetched and saved
-  // social images could be moved to static as they are fine as they are
-  // https://help.sumologic.com/docs/send-data/reference-information/use-wildcards-paths/
+  // needs to be here until the following issue in vite is resolved and included in an sveltekit release
+  // https://github.com/sveltejs/kit/issues/5240
   import.meta.glob(
     [
-      '../lib/images/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook/*.png',
-      '../lib/images/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook/*.svg',
-      '../lib/images/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook/*.jpg',
-      '../lib/images/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook/*.gif',
-      '../lib/images/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/*.png',
-      '../lib/images/posts/almost-free-setup-for-ngos-startups-and-side-projects/*.png',
-      '../lib/images/posts/almost-free-setup-for-ngos-startups-and-side-projects/*.jpg',
-      '../lib/images/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook/*.png',
-      '../lib/images/posts/custom-search-engines-in-your-browser/*.png',
-      '../lib/images/posts/custom-search-engines-in-your-browser/*.gif',
-      '../lib/images/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/*.png',
-      '../lib/images/posts/my-nerd-path/*.png',
-      '../lib/images/posts/my-nerd-path/*.svg',
-      '../lib/images/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/*.mp3',
-      '../lib/images/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/*.jpg',
-      '../lib/images/posts/pdf-cvresume-from-figma-template-with-auto-layout/*.png',
-      '../lib/images/posts/quickly-copying-paths-to-the-terminal-on-macos/*.gif'
+      '../lib/images/**/**/*.png',
+      '../lib/images/**/**/*.svg',
+      '../lib/images/**/**/*.jpg',
+      '../lib/images/**/**/*.gif',
+      '../lib/images/**/**/*.mp3'
     ],
     { eager: true }
   )
-
-  // import.meta.glob(
-  //     ['../lib/images/posts/**/*.png', '../lib/images/posts/**/*.svg', '../lib/images/posts/**/*.jpg', '../lib/images/posts/**/*.gif'],
-  //     { eager: true }
-  // )
 </script>
 
 <LayoutHead {title} {description} {permalink} {socialImg} {socialImgAlt} />
