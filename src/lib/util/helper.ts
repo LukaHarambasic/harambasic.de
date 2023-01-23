@@ -26,7 +26,7 @@ export function formatDate(date: Date) {
 }
 
 export function sortAlphabetical(a: string, b: string): number {
-  return b.localeCompare(a)
+  return a.localeCompare(b)
 }
 
 export function sortDate(a: Date, b: Date): number {
