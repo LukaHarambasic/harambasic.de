@@ -1,39 +1,28 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
   import type { Post } from '$lib/types/post'
   import { filterAndSortPosts } from '$lib/data/posts/helper'
   import { PostSortProperty, SortDirection } from '$lib/types/enums'
   import type { Tag } from '$lib/types/tag'
   import { enumToArray, sortAlphabetical } from '$lib/util/helper'
+  import Icon from '@iconify/svelte'
+  import { page } from '$app/stores'
 
   export let initEntries: Post[]
   export let tags: Tag[]
 
-  $: filterTagSlug = ''
+  $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
   $: sortProperty = PostSortProperty.Published
   $: sortDirection = SortDirection.Desc
   $: entries = filterAndSortPosts(initEntries, filterTagSlug, sortProperty, sortDirection)
 
   const properties = enumToArray(PostSortProperty).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
   const directions = enumToArray(SortDirection).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
-
-  onMount(() => {
-    const slug = new URLSearchParams(window.location.search).get('tag') || 'all'
-    filterTagSlug = slug
-  })
-
-  function onSelectTag(slug: string) {
-    filterTagSlug = slug
-    const url = new URL(window.location.toString())
-    url.searchParams.set('tag', slug)
-    window.history.pushState({}, '', url.href)
-  }
 </script>
 
 <section>
   <aside>
     <div class="sorter card">
-      <h3>Sort</h3>
+      <h3><Icon class="icon" icon="ph:faders-bold" /><span>Tags</span></h3>
       <div class="selects">
         <div class="wrapper">
           <label for="property">Property</label>
@@ -54,13 +43,13 @@
       </div>
     </div>
     <div class="tags card">
-      <h3>Tags</h3>
+      <h3><Icon class="icon" icon="ph:hash-bold" /><span>Tags</span></h3>
       <ol>
         {#each tags as tag}
           <li>
-            <button class:selected={filterTagSlug === tag.slug} on:click={() => onSelectTag(tag.slug)}>
+            <a class:selected={filterTagSlug === tag.slug} href={tag.relativePath}>
               {tag.display} ({tag.count})
-            </button>
+            </a>
           </li>
         {/each}
       </ol>
@@ -88,35 +77,7 @@
             <time class="date dt-published" datetime={post?.published?.raw?.toString()}>
               {post.published.display}
             </time>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 32 32"
-              ><rect width="32" height="32" fill="none" /><circle
-                cx="128"
-                cy="128"
-                r="96"
-                fill="none"
-                stroke="#000000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="24"
-              /><polyline
-                points="134.1 161.9 168 128 134.1 94.1"
-                fill="none"
-                stroke="#000000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="24"
-              /><line
-                x1="88"
-                y1="128"
-                x2="168"
-                y2="128"
-                fill="none"
-                stroke="#000000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="24"
-              /></svg
-            >
+            <Icon class="arrow" icon="ph:arrow-circle-right-bold" />
           </a>
         </li>
       {/each}
@@ -125,7 +86,20 @@
 </section>
 
 <style lang="postcss">
-  /* TODO: should be a grid */
+  h3 {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.25rem;
+    span {
+      line-height: 1;
+    }
+    :global(.icon) {
+      size: 1.4rem;
+    }
+  }
   section {
     display: grid;
     grid-template-rows: auto auto;
@@ -212,7 +186,7 @@
       align-items: stretch;
       gap: var(--s);
       li {
-        button {
+        a {
           margin: 0;
           border: none;
           background: none;
@@ -263,9 +237,11 @@
           color: var(--c-font);
           text-decoration: none;
           &:hover {
-            transform: scale(1.05);
+            transform: scale(0.99);
             cursor: pointer;
-            svg {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.03),
+              0 8px 16px rgba(0, 0, 0, 0.03), 0 16px 32px rgba(0, 0, 0, 0.03), 0 32px 64px rgba(0, 0, 0, 0.03);
+            :global(svg) {
               opacity: 1;
             }
           }
@@ -314,7 +290,8 @@
             margin: 0 0 var(--xs) 0;
             font-size: var(--font-m);
           }
-          svg {
+          :global(.arrow) {
+            color: var(--c-font-accent-dark);
             size: var(--l);
             position: absolute;
             top: var(--m);
@@ -324,6 +301,8 @@
             border: 4px solid var(--c-light);
             border-radius: 100%;
             background: var(--c-light);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.03),
+              0 8px 16px rgba(0, 0, 0, 0.03), 0 16px 32px rgba(0, 0, 0, 0.03), 0 32px 64px rgba(0, 0, 0, 0.03);
           }
         }
       }
