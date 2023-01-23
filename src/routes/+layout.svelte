@@ -19,6 +19,9 @@
   // })
 
   // Okay it works, but please make this dynamic!!
+  // and lets not forget about the other images: projects, bookmarks can have one if not the favicon should be fetched and saved
+  // social images could be moved to static as they are fine as they are
+  // https://help.sumologic.com/docs/send-data/reference-information/use-wildcards-paths/
   import.meta.glob(
     [
       '../lib/images/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook/*.png',
