@@ -164,3 +164,16 @@ body {
     max-width: 100%;
   }
 }
+
+.card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: var(--m);
+    border-radius: var(--border-radius);
+    background: var(--c-surface);
+    padding: var(--l);
+}

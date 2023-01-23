@@ -9,7 +9,7 @@
 
 <article class="post h-entry">
   <!-- TODO the 4 section could be split up in dedicated files -->
-  <div class="meta">
+  <div class="meta card">
     <time class="date dt-published" datetime={published?.raw?.toString()}>
       <a href={relativePath} class="u-url">{published.display}</a>
     </time>
@@ -28,7 +28,7 @@
     <div class="discussion">Discuss on Mastodon</div>
   </div>
   <div class="toc">
-    <div class="content">
+    <div class="content card">
       <PostsTableOfContent nodes={toc} />
     </div>
   </div>
@@ -60,22 +60,19 @@
   article {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 70ch 1fr;
-    grid-template-areas: 'tldr meta' 'post toc' 'footer footer';
+    grid-template-columns: 1fr 70ch;
+    grid-template-areas: 'meta tldr' 'toc post ' 'footer footer';
     column-gap: var(--l);
     row-gap: var(--l);
     .meta {
-      display: flex;
       grid-area: meta;
+      display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
       align-content: stretch;
       justify-content: flex-start;
       align-items: stretch;
       gap: var(--m);
-      border-radius: var(--border-radius);
-      background: var(--c-surface);
-      padding: var(--l);
       .date {
         a {
           color: var(--c-font-680);

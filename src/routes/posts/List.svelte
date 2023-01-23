@@ -32,7 +32,7 @@
 
 <section>
   <aside>
-    <div class="sorter">
+    <div class="sorter card">
       <h3>Sort</h3>
       <div class="selects">
         <div class="wrapper">
@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div class="tags">
+    <div class="tags card">
       <h3>Tags</h3>
       <ol>
         {#each tags as tag}
@@ -125,27 +125,30 @@
 </section>
 
 <style lang="postcss">
+  /* TODO: should be a grid */
   section {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: var(--xl);
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 70ch;
+    grid-template-areas: 'sorter entries' 'tags entries';
+    column-gap: var(--l);
+    row-gap: var(--l);
     width: 100%;
   }
   aside {
+    position: sticky;
+    top: var(--l);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: stretch;
     justify-content: flex-start;
     align-items: stretch;
-    width: var(--layout-sidebar);
-    gap: var(--xl);
+    gap: var(--l);
+    width: 100%;
   }
   .sorter {
+    grid-area: sorter;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -192,6 +195,7 @@
     }
   }
   .tags {
+    grid-area: tags;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -232,6 +236,7 @@
     }
   }
   .entries {
+    grid-area: entries;
     width: 100%;
     > ul {
       display: flex;

@@ -29,7 +29,7 @@
   --layout-xl: 64rem;
   --layout-l: 48rem;
   --layout-m: 36rem;
-  --layout-sidebar: 14rem;
+  --layout-sidebar: 40ch;
 }
 
 @media (prefers-color-scheme: dark) {

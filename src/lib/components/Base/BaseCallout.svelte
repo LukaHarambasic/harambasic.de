@@ -2,7 +2,7 @@
   export let prefix: string
 </script>
 
-<div class="callout">
+<div class="callout card">
   {#if prefix}
     <strong>{prefix}</strong>
   {/if}
@@ -13,16 +13,6 @@
 
 <style lang="postcss">
   .callout {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: var(--m);
-    border-radius: var(--border-radius);
-    background: var(--c-surface);
-    padding: var(--l);
     strong {
       display: inline;
       border-radius: var(--border-radius-small);
