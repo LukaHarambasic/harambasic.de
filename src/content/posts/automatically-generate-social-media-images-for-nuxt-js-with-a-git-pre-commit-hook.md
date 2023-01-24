@@ -140,7 +140,7 @@ const generateSocialMediaPreview = async () => {
 
 I would say this code is quite self-explaining, but as I have spent some time with it, I might miss something. Feel free to get in touch on [Twitter](https://twitter.com/luka_harambasic) if you have any questions. However, I might not forget the appropriate [HTML template](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/template.html).
 
-```html[template.html]
+```html
 <!DOCTYPE>
 <html lang="en">
     <head>
@@ -162,6 +162,7 @@ I would say this code is quite self-explaining, but as I have spent some time wi
     </body>
 </html>
 ```
+[template.html]
 
 It's super simple, directly using Google Fonts with a [svg graphic as background](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/template.svg). Thereby only the text has to be styled.
 
@@ -173,7 +174,7 @@ I looked in the native git pre-commit hook and I was able to execute the file, b
 
 I only need to define a new script in my `package.json`. This will be executed in my `post-commit` hook and don't forget to also define a `pre-commit` hook.
 
-```json[package.json]
+```javascript
 {
   ...
   "scripts": {
@@ -183,8 +184,9 @@ I only need to define a new script in my `package.json`. This will be executed i
   }
 }
 ```
+[package.json]
 
-```bash[.husky/pre-commit]
+```console
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
@@ -192,10 +194,11 @@ I only need to define a new script in my `package.json`. This will be executed i
 touch .commit
 exit
 ```
+[.husky/pre-commit]
 
 The new script is then called here `npm run socialMedia:auto`.
 
-```bash[.husky/post-commit]
+```sh
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
@@ -209,12 +212,13 @@ if [ -e .commit ]
 fi
 exit
 ```
+[.husky/post-commit]
 
 ## Manual
 
 For some pages, which are unique like home or imprint I also need images, but automating these would be a little bit overkill. The corresponding pages don't even have the required meta data, they could, but currently, they don't have. For that, I wanted a way to generate social media previews manually by passing in a title.
 
-```json[package.json]
+```javascript
 {
   ...
   "scripts": {
@@ -224,6 +228,7 @@ For some pages, which are unique like home or imprint I also need images, but au
   }
 }
 ```
+[package.json]
 
 You only need to add a script to your `package.json` and then parse the arguments to retrieve the title.
 
@@ -233,7 +238,7 @@ const title = process.argv[2].replace('--title=', '')
 
 Finally, execute your new command with the according title. And yes somehow the `--` is needed, I just accepted it and didn't ask why.
 
-```bash
+```console
 npm run socialMedia:manual -- --title="Your preferred title"
 ```
 
