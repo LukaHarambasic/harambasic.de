@@ -45,3 +45,9 @@ export function enumToArray(rawEnum: any): any {
     }
   })
 }
+
+export function setParam(key: string, value: string) {
+  const url = new URL(window.location.toString())
+  url.searchParams.set(key, value)
+  window.history.pushState({}, '', url.href)
+}

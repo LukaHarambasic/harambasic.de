@@ -1,17 +1,20 @@
 <script lang="ts">
   import { page } from '$app/stores'
   import type { Tag } from '$lib/types/tag'
+  import { setParam } from '$lib/util/helper'
   import Icon from '@iconify/svelte'
+  import { createEventDispatcher } from 'svelte'
+
+  const dispatch = createEventDispatcher()
 
   export let tags: Tag[]
 
   $: tagSlug = $page.url.searchParams.get('tag') || 'all'
 
-  function onSelect(slug: string) {
-    console.log(slug)
-    const url = new URL(window.location.toString())
-    url.searchParams.set('tag', slug)
-    window.history.pushState({}, '', url.href)
+  function onTagChange(slug: string) {
+    tagSlug = slug
+    setParam('tag', slug)
+    dispatch('tag', slug)
   }
 </script>
 
@@ -23,7 +26,7 @@
         <button
           class:selected={tagSlug === tag.slug}
           on:click={() => {
-            onSelect(tag.slug)
+            onTagChange(tag.slug)
           }}
         >
           {tag.display} ({tag.count})

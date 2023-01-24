@@ -1,26 +1,27 @@
 <script lang="ts">
   import { page } from '$app/stores'
   import { PostSortProperty, SortDirection, type BookmarkSortProperty, type ProjectSortProperty } from '$lib/types/enums'
-  import { enumToArray, sortAlphabetical } from '$lib/util/helper'
+  import { enumToArray, setParam, sortAlphabetical } from '$lib/util/helper'
   import Icon from '@iconify/svelte'
+  import { createEventDispatcher } from 'svelte'
+
+  const dispatch = createEventDispatcher()
 
   export let propertiesEnum: PostSortProperty | ProjectSortProperty | BookmarkSortProperty
   const properties: PostSortProperty | ProjectSortProperty | BookmarkSortProperty = enumToArray(propertiesEnum).sort((a: any, b: any) =>
     sortAlphabetical(a.key, b.key)
   )
-  $: property = PostSortProperty.Published
+  let property: PostSortProperty = ($page.url.searchParams.get('property') as PostSortProperty) || PostSortProperty.Published
   function onPropertyChange() {
-    const url = new URL(window.location.toString())
-    url.searchParams.set('property', property)
-    window.history.pushState({}, '', url.href)
+    setParam('property', property)
+    dispatch('property', property)
   }
 
   const directions = enumToArray(SortDirection).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
-  $: direction = SortDirection.Desc
+  let direction: SortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
   function onDirectionChange() {
-    const url = new URL(window.location.toString())
-    url.searchParams.set('direction', direction)
-    window.history.pushState({}, '', url.href)
+    setParam('direction', direction)
+    dispatch('direction', direction)
   }
 </script>
 
@@ -30,16 +31,16 @@
     <div class="wrapper">
       <label for="property">Property</label>
       <select bind:value={property} on:change={onPropertyChange} name="property">
-        {#each properties as property}
-          <option value={property.key}>{property.display}</option>
+        {#each properties as item}
+          <option value={item.key}>{item.display}</option>
         {/each}
       </select>
     </div>
     <div class="wrapper">
       <label for="direction">Direction</label>
       <select bind:value={direction} on:change={onDirectionChange} name="direction">
-        {#each directions as direction}
-          <option value={direction.key}>{direction.display}</option>
+        {#each directions as item}
+          <option value={item.key}>{item.display}</option>
         {/each}
       </select>
     </div>

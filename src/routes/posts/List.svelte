@@ -16,12 +16,24 @@
   $: sortProperty = $page.url.searchParams.get('property') || PostSortProperty.Published
   $: sortDirection = $page.url.searchParams.get('direction') || SortDirection.Desc
   $: entries = filterAndSortPosts(initEntries, filterTagSlug, sortProperty, sortDirection)
+
+  function onProperty(event: { detail: PostSortProperty }) {
+    sortProperty = event.detail
+  }
+
+  function onDirection(event: { detail: SortDirection }) {
+    sortDirection = event.detail
+  }
+
+  function onTag(event: { detail: string }) {
+    filterTagSlug = event.detail
+  }
 </script>
 
 <section>
   <aside>
-    <Sort propertiesEnum={PostSortProperty} />
-    <Tags {tags} />
+    <Sort propertiesEnum={PostSortProperty} on:property={onProperty} on:direction={onDirection} />
+    <Tags {tags} on:tag={onTag} />
   </aside>
   <div class="entries">
     <ul>
