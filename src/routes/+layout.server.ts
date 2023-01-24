@@ -6,7 +6,7 @@ import { requestBookmarks } from '$lib/data/bookmarks/api.server';
 
 // default mode for all pages - prerender = static
 // https://kit.svelte.dev/docs/page-options#prerender
-export const prerender = true;
+export const prerender = false;
 
 export const load = (async () => {
     return {
