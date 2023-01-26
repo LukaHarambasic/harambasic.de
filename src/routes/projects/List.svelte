@@ -5,29 +5,26 @@
   import type { Tag } from '$lib/types/tag'
   import { enumToArray, sortAlphabetical } from '$lib/util/helper'
   import type { Project } from '$lib/types/project'
+  import { page } from '$app/stores'
 
   export let initEntries: Project[]
   export let tags: Tag[]
 
-  $: filterTagSlug = ''
-  $: filterStatus = ProjectStatus.None
-  $: sortProperty = ProjectSortProperty.Priority
-  $: sortDirection = SortDirection.Asc
-  $: entries = filterAndSort(initEntries, filterTagSlug, filterStatus, sortProperty, sortDirection)
+  $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
+  $: sortProperty = $page.url.searchParams.get('property') || ProjectSortProperty.Published
+  $: sortDirection = $page.url.searchParams.get('direction') || SortDirection.Desc
+  $: entries = filterAndSort(initEntries, filterTagSlug, sortProperty, sortDirection)
 
-  const properties = enumToArray(ProjectSortProperty).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
-  const directions = enumToArray(SortDirection).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
+  function onProperty(event: { detail: ProjectSortProperty }) {
+    sortProperty = event.detail
+  }
 
-  onMount(() => {
-    const slug = new URLSearchParams(window.location.search).get('tag') || 'all'
-    filterTagSlug = slug
-  })
+  function onDirection(event: { detail: SortDirection }) {
+    sortDirection = event.detail
+  }
 
-  function onSelectTag(slug: string) {
-    filterTagSlug = slug
-    const url = new URL(window.location.toString())
-    url.searchParams.set('tag', slug)
-    window.history.pushState({}, '', url.href)
+  function onTag(event: { detail: string }) {
+    filterTagSlug = event.detail
   }
 </script>
 
