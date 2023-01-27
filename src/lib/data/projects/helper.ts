@@ -60,6 +60,6 @@ function sortByProperty(
 }
 
 function filterByStatus(entry: Project, filterStatus: ProjectStatus): boolean {
-  if (filterStatus === ProjectStatus.None) return true
+  if (filterStatus === ProjectStatus.All) return true
   return entry.status === filterStatus
 }

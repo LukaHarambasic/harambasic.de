@@ -116,15 +116,14 @@
           gap: var(--l);
           transition: var(--transition);
           border-radius: var(--border-radius);
-          background: var(--c-surface-accent);
+          background: var(--c-surface);
+          border: var(--border);
           padding: var(--l);
           color: var(--c-font);
           text-decoration: none;
           &:hover {
             transform: scale(0.99);
             cursor: pointer;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.03),
-              0 8px 16px rgba(0, 0, 0, 0.03), 0 16px 32px rgba(0, 0, 0, 0.03), 0 32px 64px rgba(0, 0, 0, 0.03);
             :global(svg) {
               opacity: 1;
             }

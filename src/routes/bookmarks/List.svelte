@@ -10,7 +10,7 @@
   export let tags: Tag[]
 
   $: filterTagSlug = ''
-  $: filterStatus = BookmarkStatus.None
+  $: filterStatus = BookmarkStatus.All
   $: sortProperty = BookmarkSortProperty.Published
   $: sortDirection = SortDirection.Asc
   $: entries = filterAndSort(initEntries, filterTagSlug, filterStatus, sortProperty, sortDirection)

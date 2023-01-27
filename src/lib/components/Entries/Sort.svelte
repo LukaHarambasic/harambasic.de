@@ -4,6 +4,7 @@
   import { enumToArray, setParam, sortAlphabetical } from '$lib/util/helper'
   import Icon from '@iconify/svelte'
   import { createEventDispatcher } from 'svelte'
+  import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
 
   const dispatch = createEventDispatcher()
 
@@ -26,7 +27,7 @@
 </script>
 
 <div class="sort card">
-  <h3><Icon class="icon" icon="ph:faders-bold" /><span>Sort</span></h3>
+  <BaseHeadlineIcon title="Sort" icon="ph:sort-ascending-bold" />
   <div class="selects">
     <div class="wrapper">
       <label for="property">Property</label>
@@ -56,6 +57,7 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: var(--m);
+    border: var(--border);
     h3 {
       display: flex;
       flex-wrap: nowrap;

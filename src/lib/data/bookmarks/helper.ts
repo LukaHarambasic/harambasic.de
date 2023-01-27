@@ -57,6 +57,6 @@ function sortByProperty(
 }
 
 function filterByStatus(entry: Bookmark, filterStatus: BookmarkStatus): boolean {
-  if (filterStatus === BookmarkStatus.None) return true
+  if (filterStatus === BookmarkStatus.All) return true
   return entry.status === filterStatus
 }

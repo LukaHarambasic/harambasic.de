@@ -10,6 +10,8 @@ body {
   font-family: var(--font-family);
 }
 
+/* TODO: all global styles indicate the need for an component, only super basic styles are allwed in here */
+
 .select-button {
   display: flex;
   flex-direction: row;
@@ -18,7 +20,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: var(--s);
-  border: 1px solid var(--c-surface-accent);
+  border: var(--border);
   border-radius: var(--border-radius-small);
   background: var(--c-surface);
   select {
@@ -46,7 +48,7 @@ body {
   align-content: stretch;
   justify-content: space-between;
   align-items: flex-start;
-  border: 1px solid var(--c-surface-accent);
+  border: var(--border);
   border-radius: var(--border-radius-small);
   background: var(--c-surface);
   overflow: hidden;
@@ -174,4 +176,5 @@ body {
     border-radius: var(--border-radius);
     background: var(--c-surface);
     padding: var(--l);
+    border: var(--border);
 }

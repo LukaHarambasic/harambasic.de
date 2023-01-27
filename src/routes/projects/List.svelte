@@ -1,19 +1,21 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
   import { filterAndSort } from '$lib/data/projects/helper'
   import { ProjectSortProperty, ProjectStatus, SortDirection } from '$lib/types/enums'
   import type { Tag } from '$lib/types/tag'
-  import { enumToArray, sortAlphabetical } from '$lib/util/helper'
   import type { Project } from '$lib/types/project'
   import { page } from '$app/stores'
+  import Sort from '$lib/components/Entries/Sort.svelte'
+  import Tags from '$lib/components/Entries/Tags.svelte'
+  import Filter from '$lib/components/Entries/Filter.svelte'
 
   export let initEntries: Project[]
   export let tags: Tag[]
 
   $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
+  $: filterStatus = $page.url.searchParams.get('status') || ProjectStatus.All
   $: sortProperty = $page.url.searchParams.get('property') || ProjectSortProperty.Published
   $: sortDirection = $page.url.searchParams.get('direction') || SortDirection.Desc
-  $: entries = filterAndSort(initEntries, filterTagSlug, sortProperty, sortDirection)
+  $: entries = filterAndSort(initEntries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 
   function onProperty(event: { detail: ProjectSortProperty }) {
     sortProperty = event.detail
@@ -26,48 +28,22 @@
   function onTag(event: { detail: string }) {
     filterTagSlug = event.detail
   }
+
+  function onStatus(event: { detail: string }) {
+    filterStatus = event.detail
+  }
 </script>
 
 <section>
   <aside>
-    <div class="sorter">
-      <h3>Sort</h3>
-      <div class="selects">
-        <div class="wrapper">
-          <label for="property">Property</label>
-          <select bind:value={sortProperty} name="property">
-            {#each properties as property}
-              <option value={property.key}>{property.display}</option>
-            {/each}
-          </select>
-        </div>
-        <div class="wrapper">
-          <label for="direction">Direction</label>
-          <select bind:value={sortDirection} name="direction">
-            {#each directions as direction}
-              <option value={direction.key}>{direction.display}</option>
-            {/each}
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="tags">
-      <h3>Tags</h3>
-      <ol>
-        {#each tags as tag}
-          <li>
-            <button class:selected={filterTagSlug === tag.slug} on:click={() => onSelectTag(tag.slug)}>
-              {tag.display} ({tag.count})
-            </button>
-          </li>
-        {/each}
-      </ol>
-    </div>
+    <Sort propertiesEnum={ProjectSortProperty} on:property={onProperty} on:direction={onDirection} />
+    <Filter statusEnum={ProjectStatus} on:status={onStatus} />
+    <Tags {tags} on:tag={onTag} />
   </aside>
   <div class="entries">
     <ul>
       {#each entries as entry}
-        <li class="h-feed">
+        <li class="h-feed card">
           <!-- TODO <img src={entry.image} alt="TODO" width="8rem" /> -->
           <img src="https://TODO.com/image.png" alt="TODO" width="8rem" />
           <div class="content">
@@ -81,117 +57,41 @@
 
 <style lang="postcss">
   section {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: var(--xl);
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 70ch;
+    grid-template-areas: 'sorting entries' 'status entries' 'tags entries';
+    column-gap: var(--l);
+    row-gap: var(--l);
     width: 100%;
   }
   aside {
+    position: sticky;
+    top: var(--l);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: stretch;
     justify-content: flex-start;
     align-items: stretch;
-    width: var(--layout-sidebar);
-    gap: var(--xl);
+    gap: var(--l);
+    width: 100%;
   }
-  .sorter {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: var(--m);
-    .selects {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: stretch;
-      justify-content: flex-start;
-      align-items: stretch;
-      gap: var(--s);
-      .wrapper {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-content: stretch;
-        justify-content: flex-start;
-        align-items: stretch;
-        gap: var(--xs);
-        label {
-          margin: 0;
-          padding: 0;
-          color: var(--c-font-accent-dark);
-          font-size: var(--font-s);
-          font-weight: bold;
-        }
-        select {
-          margin: 0;
-          border: none;
-          padding: 0.25rem 0;
-          color: var(--c-font-accent-dark);
-          font-size: var(--font-s);
-          &:hover {
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration-thickness: var(--underline-thickness);
-          }
-        }
-      }
-    }
+  .sort {
+    grid-area: sorting;
   }
   .tags {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: var(--m);
-    ol {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: stretch;
-      justify-content: flex-start;
-      align-items: stretch;
-      gap: var(--s);
-      li {
-        button {
-          margin: 0;
-          border: none;
-          background: none;
-          padding: 0;
-          color: var(--c-font-accent-dark);
-          font-size: var(--font-s);
-          &:hover {
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration-thickness: var(--underline-thickness);
-          }
-          &.selected {
-            text-decoration: underline;
-            text-decoration-thickness: var(--underline-thickness);
-            &:hover {
-              text-decoration: none;
-            }
-          }
-        }
-      }
-    }
+    grid-area: tags;
+  }
+  .status {
+    grid-area: status;
   }
   .entries {
     width: 100%;
     ul {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--xl);
+      gap: var(--l);
       li {
         display: flex;
         position: relative;
@@ -201,8 +101,6 @@
         justify-content: flex-start;
         align-items: stretch;
         transition: var(--transition);
-        border-radius: var(--border-radius);
-        background: var(--c-surface);
         height: 100%;
         color: var(--c-font);
         text-decoration: none;

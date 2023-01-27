@@ -4,6 +4,7 @@
   import { setParam } from '$lib/util/helper'
   import Icon from '@iconify/svelte'
   import { createEventDispatcher } from 'svelte'
+  import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
 
   const dispatch = createEventDispatcher()
 
@@ -19,7 +20,7 @@
 </script>
 
 <div class="tags card">
-  <h3><Icon class="icon" icon="ph:hash-bold" /><span>Tags</span></h3>
+  <BaseHeadlineIcon title="Tags" icon="ph:hash-bold" />
   <ol>
     {#each tags as tag}
       <li>
@@ -46,6 +47,7 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: var(--m);
+    border: var(--border);
     /* TODO should be a component - maybe no headline? */
     h3 {
       display: flex;

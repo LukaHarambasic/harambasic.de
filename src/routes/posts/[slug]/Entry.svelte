@@ -72,7 +72,6 @@
       align-content: stretch;
       justify-content: flex-start;
       align-items: stretch;
-      gap: var(--m);
       .date {
         a {
           color: var(--c-font-680);
@@ -108,9 +107,6 @@
       .content {
         position: sticky;
         top: var(--l);
-        border-radius: var(--border-radius);
-        background: var(--c-surface);
-        padding: var(--l);
         strong {
           display: block;
           margin: 0 0 var(--m) 0;

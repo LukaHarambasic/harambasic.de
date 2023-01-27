@@ -34,7 +34,7 @@
   <div class="project group">
     <h3 class="section-label">
       <span>Project</span>
-      <Icon icon="ph:projector-screen-chart-duotone" />
+      <Icon icon="ph:projector-screen-chart-bold" />
     </h3>
     <ul>
       {#each randomProjects as project}
@@ -56,7 +56,7 @@
   <div class="posts group">
     <h3 class="section-label">
       <span>Posts</span>
-      <Icon icon="ph:files-duotone" />
+      <Icon icon="ph:files-bold" />
     </h3>
     <ul>
       {#each randomPosts as post}
@@ -75,7 +75,7 @@
   <div class="lists group">
     <h3 class="section-label">
       <span>Bookmarks</span>
-      <Icon icon="ph:clipboard-text-duotone" />
+      <Icon icon="ph:clipboard-text-bold" />
     </h3>
     <ul>
       {#each randomBookmarks as bookmark}
@@ -193,7 +193,7 @@
         span {
           line-height: 1;
         }
-        svg {
+        :global(svg) {
           size: 1.5rem;
         }
       }
@@ -229,13 +229,14 @@
             color: var(--c-font);
             text-decoration: none;
             &:hover {
-              transform: scale(1.05);
+              transform: scale(0.97);
               cursor: pointer;
-              svg {
+              cursor: pointer;
+              :global(svg) {
                 opacity: 1;
               }
             }
-            svg {
+            :global(svg) {
               size: var(--l);
               position: absolute;
               top: var(--m);
