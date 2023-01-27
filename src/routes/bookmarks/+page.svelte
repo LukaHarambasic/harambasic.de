@@ -13,10 +13,11 @@
   export let data: PageData
   const [entries, tags] = data.bookmarks
 
+  // all that "as" stuff should be removed, thats not right
   $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: filterStatus = $page.url.searchParams.get('status') || BookmarkStatus.All
-  $: sortProperty = $page.url.searchParams.get('property') || BookmarkSortProperty.Published
-  $: sortDirection = $page.url.searchParams.get('direction') || SortDirection.Desc
+  $: filterStatus = ($page.url.searchParams.get('status') as BookmarkStatus) || BookmarkStatus.All
+  $: sortProperty = ($page.url.searchParams.get('property') as BookmarkSortProperty) || BookmarkSortProperty.Published
+  $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 
   function onProperty(event: { detail: BookmarkSortProperty }) {
@@ -31,7 +32,7 @@
     filterTagSlug = event.detail
   }
 
-  function onStatus(event: { detail: string }) {
+  function onStatus(event: { detail: BookmarkStatus }) {
     filterStatus = event.detail
   }
 </script>

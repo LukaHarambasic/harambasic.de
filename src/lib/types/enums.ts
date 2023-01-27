@@ -21,8 +21,6 @@ export enum ProjectSortProperty {
   Priority = 'PRIORITY'
 }
 
-// Don't like the Null here, but there doesn't seem to be another way to have a nullable enum
-// TODO replace usage of null with empty to not confuse it with null
 export enum ProjectStatus {
   All = 'ALL',
   Active = 'ACTIVE',
@@ -31,7 +29,6 @@ export enum ProjectStatus {
 
 export enum BookmarkStatus {
   All = 'ALL',
-  None = 'NONE',
   Active = 'ACTIVE',
   Inactive = 'INACTIVE'
 }

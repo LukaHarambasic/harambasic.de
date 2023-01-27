@@ -13,9 +13,9 @@
   const [entries, tags] = data.projects
 
   $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: filterStatus = $page.url.searchParams.get('status') || ProjectStatus.All
-  $: sortProperty = $page.url.searchParams.get('property') || ProjectSortProperty.Published
-  $: sortDirection = $page.url.searchParams.get('direction') || SortDirection.Desc
+  $: filterStatus = ($page.url.searchParams.get('status') as ProjectStatus) || ProjectStatus.All
+  $: sortProperty = ($page.url.searchParams.get('property') as ProjectSortProperty) || ProjectSortProperty.Published
+  $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 
   function onProperty(event: { detail: ProjectSortProperty }) {
@@ -30,7 +30,7 @@
     filterTagSlug = event.detail
   }
 
-  function onStatus(event: { detail: string }) {
+  function onStatus(event: { detail: ProjectStatus }) {
     filterStatus = event.detail
   }
 </script>

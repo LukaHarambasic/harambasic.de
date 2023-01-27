@@ -1,3 +1,5 @@
+import type { SortProperty, StatusFilter } from '$lib/types/entry'
+import type { SortDirection } from '$lib/types/enums'
 import { format } from 'date-fns'
 
 // solution inspired by https://www.designcise.com/web/tutorial/how-to-fix-replaceall-is-not-a-function-javascript-error
@@ -37,7 +39,7 @@ export function sortNumber(a: number, b: number): number {
   return b - a
 }
 
-export function enumToArray(rawEnum: any): any {
+export function enumToArray(rawEnum: SortDirection | StatusFilter | SortProperty): { display: string, key: string }[] {
   return Object.keys(rawEnum).map((key) => {
     return {
       display: key,

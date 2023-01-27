@@ -13,8 +13,8 @@
   const [entries, tags] = data.posts
 
   $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: sortProperty = $page.url.searchParams.get('property') || PostSortProperty.Published
-  $: sortDirection = $page.url.searchParams.get('direction') || SortDirection.Desc
+  $: sortProperty = ($page.url.searchParams.get('property') as PostSortProperty) || PostSortProperty.Published
+  $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
   $: filteredAndSortedEntries = filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
 
   function onProperty(event: { detail: PostSortProperty }) {

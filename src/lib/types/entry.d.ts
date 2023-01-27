@@ -1,4 +1,4 @@
-import { EntryType } from './enums'
+import { BookmarkSortProperty, EntryType, PostSortProperty, ProjectSortProperty, ProjectStatus } from './enums'
 import type { Tag } from './tag'
 
 export interface EntryDate {
@@ -18,3 +18,7 @@ export interface Entry {
   relativePath: string
   fullPath: string
 }
+
+export type SortProperty = PostSortProperty | ProjectSortProperty | BookmarkSortProperty
+
+export type StatusFilter = ProjectStatus | BookmarkStatus

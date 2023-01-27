@@ -1,17 +1,17 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import { PostSortProperty, SortDirection, type BookmarkSortProperty, type ProjectSortProperty } from '$lib/types/enums'
+  import type { SortProperty } from '$lib/types/entry'
+  import { SortDirection } from '$lib/types/enums'
   import { enumToArray, setParam, sortAlphabetical } from '$lib/util/helper'
   import { createEventDispatcher } from 'svelte'
   import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
 
   const dispatch = createEventDispatcher()
 
-  export let propertiesEnum: PostSortProperty | ProjectSortProperty | BookmarkSortProperty
-  const properties: PostSortProperty | ProjectSortProperty | BookmarkSortProperty = enumToArray(propertiesEnum).sort((a: any, b: any) =>
-    sortAlphabetical(a.key, b.key)
-  )
-  let property: PostSortProperty = ($page.url.searchParams.get('property') as PostSortProperty) || PostSortProperty.Published
+  export let propertiesEnum: SortProperty
+
+  const properties = enumToArray(propertiesEnum).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
+  let property: SortProperty = ($page.url.searchParams.get('property') as SortProperty) || 'PUBLISHED'
   function onPropertyChange() {
     setParam('property', property)
     dispatch('property', property)

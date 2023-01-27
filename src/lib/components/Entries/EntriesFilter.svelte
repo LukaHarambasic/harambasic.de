@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores'
+  import type { StatusFilter } from '$lib/types/entry'
   import type { BookmarkStatus, ProjectStatus } from '$lib/types/enums'
   import { enumToArray, setParam } from '$lib/util/helper'
   import { createEventDispatcher } from 'svelte'
@@ -7,9 +8,9 @@
 
   const dispatch = createEventDispatcher()
 
-  export let statusEnum: ProjectStatus | BookmarkStatus
-  const statuses: ProjectStatus | BookmarkStatus = enumToArray(statusEnum)
-  let status: ProjectStatus | BookmarkStatus = ($page.url.searchParams.get('status') as ProjectStatus | BookmarkStatus) || 'ALL'
+  export let statusEnum: StatusFilter
+  const statuses = enumToArray(statusEnum)
+  let status: StatusFilter = ($page.url.searchParams.get('status') as StatusFilter) || 'ALL'
   function onStatusChange() {
     setParam('status', status)
     dispatch('status', status)

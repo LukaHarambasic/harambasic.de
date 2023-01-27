@@ -1,7 +1,3 @@
-<script lang="ts">
-  import EntriesSidebar from './EntriesSidebar.svelte'
-</script>
-
 <section>
   <slot name="sidebar" />
   <div class="entries">
