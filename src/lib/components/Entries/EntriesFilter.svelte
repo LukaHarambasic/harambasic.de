@@ -16,7 +16,7 @@
   }
 </script>
 
-<div class="status card">
+<div class="filter card">
   <BaseHeadlineIcon title="Filter" icon="ph:faders-bold" />
   <div class="selects">
     <div class="wrapper">
@@ -31,7 +31,7 @@
 </div>
 
 <style lang="postcss">
-  .status {
+  .filter {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;

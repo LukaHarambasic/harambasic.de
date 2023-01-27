@@ -1,16 +1,161 @@
 <script lang="ts">
-  import List from './List.svelte'
-  import BaseFootnote from '$lib/components/Base/BaseFootnote.svelte'
   import type { PageData } from '../$types'
+  import Entries from '$lib/components/Entries/Entries.svelte'
+  import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte'
+  import EntriesTags from '$lib/components/Entries/EntriesTags.svelte'
+  import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
+  import Icon from '@iconify/svelte'
+  import { page } from '$app/stores'
+  import { PostSortProperty, SortDirection } from '$lib/types/enums'
+  import { filterAndSort } from '$lib/data/posts/helper'
 
   export let data: PageData
   const [entries, tags] = data.posts
+
+  $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
+  $: sortProperty = $page.url.searchParams.get('property') || PostSortProperty.Published
+  $: sortDirection = $page.url.searchParams.get('direction') || SortDirection.Desc
+  $: filteredAndSortedEntries = filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
+
+  function onProperty(event: { detail: PostSortProperty }) {
+    sortProperty = event.detail
+  }
+
+  function onDirection(event: { detail: SortDirection }) {
+    sortDirection = event.detail
+  }
+
+  function onTag(event: { detail: string }) {
+    filterTagSlug = event.detail
+  }
 </script>
 
-<List initEntries={entries} {tags} />
-<BaseFootnote>
-  <!-- TODO adapt urls -->
-  Check out the <a href="">RSS feed</a> or
-  <a href="">my Twitter account</a>
-  to keep up to date.
-</BaseFootnote>
+<Entries>
+  <EntriesSidebar slot="sidebar">
+    <EntriesSorter propertiesEnum={PostSortProperty} on:property={onProperty} on:direction={onDirection} />
+    <EntriesTags {tags} on:tag={onTag} />
+  </EntriesSidebar>
+  <ul slot="entries" class="entries">
+    {#each filteredAndSortedEntries as post}
+      <li class="h-feed">
+        <a href={post.relativePath}>
+          <div class="column">
+            <strong class="title">
+              {post.title}
+            </strong>
+            <ul class="tags">
+              {#each post.tags as tag}
+                <li>
+                  <a href={tag.relativePath} class="link">
+                    {tag.display}
+                  </a>
+                </li>
+              {/each}
+            </ul>
+          </div>
+          <time class="date dt-published" datetime={post?.published?.raw?.toString()}>
+            {post.published.display}
+          </time>
+          <Icon class="arrow" icon="ph:arrow-circle-right-bold" />
+        </a>
+      </li>
+    {/each}
+  </ul>
+</Entries>
+
+<style lang="postcss">
+  .entries {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: var(--l);
+    > li {
+      > a {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: var(--l);
+        transition: var(--transition);
+        border-radius: var(--border-radius);
+        background: var(--c-surface);
+        border: var(--border);
+        padding: var(--l);
+        color: var(--c-font);
+        text-decoration: none;
+        &:hover {
+          transform: scale(0.99);
+          cursor: pointer;
+          :global(svg) {
+            opacity: 1;
+          }
+        }
+        .column {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          align-content: stretch;
+          justify-content: flex-start;
+          align-items: stretch;
+          gap: var(--xs);
+        }
+        .title {
+          display: inline-block;
+          font-weight: 900;
+          font-size: var(--font-m);
+          line-height: 1.2;
+          font-family: var(--font-family);
+          letter-spacing: var(--font-letter-spacing-headline);
+        }
+        .tags {
+          flex-base: 100%;
+          display: flex;
+          flex-grow: 1;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          align-content: stretch;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: var(--xs);
+          li {
+            a {
+              color: var(--c-font-accent-dark);
+              font-weight: 400;
+              font-size: var(--font-s);
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+                text-decoration-thickness: var(--underline-thickness);
+              }
+            }
+          }
+        }
+        .date {
+          display: inline-block;
+          margin: 0 0 var(--xs) 0;
+          font-size: var(--font-m);
+        }
+        :global(.arrow) {
+          color: var(--c-font-accent-dark);
+          size: var(--l);
+          position: absolute;
+          top: var(--m);
+          right: calc((-1) * var(--m));
+          opacity: 0;
+          transition: var(--transition);
+          border: 4px solid var(--c-light);
+          border-radius: 100%;
+          background: var(--c-light);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.03),
+            0 8px 16px rgba(0, 0, 0, 0.03), 0 16px 32px rgba(0, 0, 0, 0.03), 0 32px 64px rgba(0, 0, 0, 0.03);
+        }
+      }
+    }
+  }
+</style>

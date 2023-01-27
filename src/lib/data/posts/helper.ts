@@ -3,7 +3,7 @@ import type { Post, TocNode } from '$lib/types/post'
 import { getTag, getDate, filterByTag, sortByDirection } from '$lib/util/entries'
 import { sortAlphabetical, sortDate, getSlug } from '$lib/util/helper'
 
-export function filterAndSortPosts(
+export function filterAndSort(
   entries: Post[],
   filterTagSlug: string,
   sortProperty: PostSortProperty,
