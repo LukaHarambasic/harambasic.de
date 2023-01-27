@@ -2,7 +2,6 @@
   import { page } from '$app/stores'
   import type { Tag } from '$lib/types/tag'
   import { setParam } from '$lib/util/helper'
-  import Icon from '@iconify/svelte'
   import { createEventDispatcher } from 'svelte'
   import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
 

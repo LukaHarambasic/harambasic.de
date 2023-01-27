@@ -1,8 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores'
   import type { BookmarkStatus, ProjectStatus } from '$lib/types/enums'
-  import { enumToArray, setParam, sortAlphabetical } from '$lib/util/helper'
-  import Icon from '@iconify/svelte'
+  import { enumToArray, setParam } from '$lib/util/helper'
   import { createEventDispatcher } from 'svelte'
   import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
 

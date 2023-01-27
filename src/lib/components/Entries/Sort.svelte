@@ -2,7 +2,6 @@
   import { page } from '$app/stores'
   import { PostSortProperty, SortDirection, type BookmarkSortProperty, type ProjectSortProperty } from '$lib/types/enums'
   import { enumToArray, setParam, sortAlphabetical } from '$lib/util/helper'
-  import Icon from '@iconify/svelte'
   import { createEventDispatcher } from 'svelte'
   import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
 
