@@ -10,7 +10,8 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "test:unit": "vitest",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write ."
+    "format": "prettier --plugin-search-dir . --write .",
+    "generate-favicons": "node scripts/fetch-favicon/index.js"
   },
   "devDependencies": {
     "@fontsource/fira-mono": "^4.5.10",
@@ -27,12 +28,14 @@
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "autoprefixer": "^10.4.13",
+    "cheerio": "^1.0.0-rc.12",
     "cssnano": "^5.1.14",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte3": "^4.0.0",
     "gray-matter": "^4.0.3",
     "marked": "^4.2.5",
+    "node-fetch": "^3.3.0",
     "postcss-nested": "^6.0.0",
     "postcss-size": "^4.0.1",
     "postcss-sorting": "^7.0.1",
