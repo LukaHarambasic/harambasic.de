@@ -3,6 +3,10 @@ import { load } from 'cheerio'
 import { join } from 'path'
 import * as fs from 'fs/promises'
 
+// TODO before continuing check the following implementation by Brian lovin
+// He solves it in a smarter way, which doesn't require to sotre the image
+// https://github.com/brianlovin/briOS/blob/e337307c1a91d5099565955ce9d79b2de30f1fce/src/graphql/resolvers/mutations/bookmarks/getBookmarkMetaData.ts#L28
+
 async function directoryExists(path) {
     try {
         const stat = await fs.stat(path);
@@ -14,7 +18,6 @@ async function directoryExists(path) {
         throw error;
     }
 }
-
 
 async function fetchFavicons(url) {
     const response = await fetch(url)
