@@ -1,13 +1,51 @@
+<script lang="ts">
+  import { page } from '$app/stores'
+
+  const links = [
+    {
+      name: 'Home',
+      url: '/'
+    },
+    {
+      name: 'Projects',
+      url: '/projects'
+    },
+    {
+      name: 'Shareable',
+      url: '/shareable'
+    },
+    {
+      name: 'Stack',
+      url: '/stacks'
+    },
+    {
+      name: 'Posts',
+      url: '/posts'
+    }
+  ]
+
+  function isActiveRoute(url: string): boolean {
+    const pathname = $page.url.pathname
+    console.log(pathname, url)
+    if(url === '/' && pathname === '/') {
+      console.log('home')
+      return true
+    } else if (url !== '/') {
+      return pathname.includes(url)
+    }
+    return false
+  }
+</script>
+
 <header>
   <div class="logo">
     <a href="/">Luka Harambasic</a>
   </div>
   <nav>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/projects">Projects</a></li>
-      <li><a href="/bookmarks">Bookmarks</a></li>
-      <li><a href="/posts">Posts</a></li>
+      {#each links as {name, url}}
+        <li><a href="{url}" class:is-active={isActiveRoute(url)}>{name}</a></li>
+      {/each}
     </ul>
   </nav>
 </header>
@@ -56,6 +94,7 @@
       gap: var(--m);
       li {
         a {
+          transition: var(--transition);
           color: var(--c-font);
           font-weight: 600;
           font-size: var(--font-m);
@@ -65,6 +104,13 @@
           &:hover {
             text-decoration: underline;
             text-decoration-thickness: var(--underline-thickness);
+          }
+        }
+        .is-active {
+          text-decoration: underline;
+          text-decoration-thickness: var(--underline-thickness);
+          &:hover {
+            text-decoration: none;
           }
         }
       }

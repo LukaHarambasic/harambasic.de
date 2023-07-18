@@ -11,6 +11,8 @@ export const load = (async ({ parent, params }) => {
     const entry = entries.find((post) => post.slug === params.slug);
     return {
         title: entry?.title,
+        published: entry?.published,
+        relativeLink: entry?.relativePath,
         entry
     }
 }) satisfies PageServerLoad

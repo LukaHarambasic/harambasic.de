@@ -9,7 +9,7 @@
   import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
   import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
   import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
-  const { title, description, permalink, socialImg, socialImgAlt } = $page.data
+  const { title, description, published, relativePath, permalink, socialImg, socialImgAlt } = $page.data
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release
   // https://github.com/sveltejs/kit/issues/5240
@@ -31,8 +31,13 @@
   <LayoutHeader />
   <main id="main">
     {#if title}
-      <section>
+      <section class="header">
         <h1>{title}</h1>
+        {#if published}
+            <time class="date dt-published" datetime={published?.raw?.toString()}>
+              <a href={relativePath} class="u-url">{published.display}</a>
+            </time>
+        {/if}
       </section>
     {/if}
     <slot />
@@ -63,14 +68,32 @@
       justify-content: flex-start;
       align-items: center;
       gap: var(--xl);
-      h1 {
-        width: 30ch;
-        font-weight: 900;
-        font-size: var(--font-xl);
-        line-height: 1.2;
-        font-family: var(--font-family);
-        letter-spacing: var(--font-letter-spacing-headline);
-        text-align: center;
+      .header {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: center;
+        gap: var(--s);
+        h1 {
+          width: 30ch;
+          font-weight: 900;
+          font-size: var(--font-xl);
+          line-height: 1.2;
+          font-family: var(--font-family);
+          letter-spacing: var(--font-letter-spacing-headline);
+          text-align: center;
+        }
+        .date {
+          a {
+            color: var(--c-font-680);
+            font-weight: 400;
+            font-size: var(--font-m);
+            text-decoration: none;
+            font-style: italic;
+          }
+        }
       }
     }
     :global(> footer) {

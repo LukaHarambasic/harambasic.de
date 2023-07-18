@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Icon from '@iconify/svelte'
   import BaseCallout from '$lib/components/Base/BaseCallout.svelte'
   import PostsTableOfContent from './TableOfContent.svelte'
   import type { Post } from '$lib/types/post'
@@ -10,9 +11,7 @@
 <article class="post h-entry">
   <!-- TODO the 4 section could be split up in dedicated files -->
   <div class="meta card">
-    <time class="date dt-published" datetime={published?.raw?.toString()}>
-      <a href={relativePath} class="u-url">{published.display}</a>
-    </time>
+    <strong>Tags</strong>
     <div class="tags">
       <ul>
         {#each tags as tag}
@@ -24,8 +23,6 @@
         {/each}
       </ul>
     </div>
-    <div class="read-time">3min</div>
-    <div class="discussion">Discuss on Mastodon</div>
   </div>
   <div class="toc">
     <div class="content card">
@@ -60,8 +57,8 @@
   article {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr 70ch;
-    grid-template-areas: 'meta tldr' 'toc post ' 'footer footer';
+    grid-template-columns: 70ch 1fr;
+    grid-template-areas: 'tldr meta' 'post toc' 'footer footer';
     column-gap: var(--l);
     row-gap: var(--l);
     .meta {
@@ -72,12 +69,12 @@
       align-content: stretch;
       justify-content: flex-start;
       align-items: stretch;
-      .date {
-        a {
-          color: var(--c-font-680);
-          font-weight: 400;
-          font-size: var(--font-s);
-        }
+      strong {
+        font-weight: 900;
+        font-size: var(--font-l);
+        line-height: 1.2;
+        font-family: var(--font-family);
+        letter-spacing: var(--font-letter-spacing-headline);
       }
       .tags {
         ul {
@@ -94,6 +91,11 @@
               color: var(--c-font-accent-dark);
               font-weight: 400;
               font-size: var(--font-s);
+              text-decoration: none;
+              padding: var(--xxs) var(--s);
+              border-radius: var(--border-radius);
+              background: var(--c-surface);
+              border: var(--border);
               &:hover {
                 text-decoration: none;
               }
