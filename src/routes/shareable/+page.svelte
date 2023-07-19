@@ -5,22 +5,22 @@
   import EntriesTags from '$lib/components/Entries/EntriesTags.svelte'
   import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte'
   import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
-  import { filterAndSort } from '$lib/data/bookmarks/helper'
-  import { BookmarkSortProperty, BookmarkStatus, SortDirection } from '$lib/types/enums'
+  import { filterAndSort } from '$lib/data/stack/helper'
+  import { StackEntrySortProperty, StackEntryStatus, SortDirection } from '$lib/types/enums'
   import type { PageData } from './$types'
   import Icon from '@iconify/svelte'
 
   export let data: PageData
-  const [entries, tags] = data.bookmarks
+  const [entries, tags] = data.stack
 
   // all that "as" stuff should be removed, thats not right
   $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: filterStatus = ($page.url.searchParams.get('status') as BookmarkStatus) || BookmarkStatus.All
-  $: sortProperty = ($page.url.searchParams.get('property') as BookmarkSortProperty) || BookmarkSortProperty.Published
+  $: filterStatus = ($page.url.searchParams.get('status') as StackEntryStatus) || StackEntryStatus.All
+  $: sortProperty = ($page.url.searchParams.get('property') as StackEntrySortProperty) || StackEntrySortProperty.Published
   $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 
-  function onProperty(event: { detail: BookmarkSortProperty }) {
+  function onProperty(event: { detail: StackEntrySortProperty }) {
     sortProperty = event.detail
   }
 
@@ -32,7 +32,7 @@
     filterTagSlug = event.detail
   }
 
-  function onStatus(event: { detail: BookmarkStatus }) {
+  function onStatus(event: { detail: StackEntryStatus }) {
     filterStatus = event.detail
   }
 </script>
@@ -42,8 +42,8 @@
     </p>
 <Entries>
   <EntriesSidebar slot="sidebar">
-    <EntriesSorter propertiesEnum={BookmarkSortProperty} on:property={onProperty} on:direction={onDirection} />
-    <EntriesFilter statusEnum={BookmarkStatus} on:status={onStatus} />
+    <EntriesSorter propertiesEnum={StackEntrySortProperty} on:property={onProperty} on:direction={onDirection} />
+    <EntriesFilter statusEnum={StackEntryStatus} on:status={onStatus} />
     <EntriesTags {tags} on:tag={onTag} />
   </EntriesSidebar>
   <ul slot="entries" class="entries">

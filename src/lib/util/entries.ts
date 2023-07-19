@@ -1,12 +1,13 @@
-import type { Bookmark } from '$lib/types/bookmark'
+import type { StackEntry } from '$lib/types/stackEntry'
 import type { EntryDate } from '$lib/types/entry'
 import { SortDirection, type EntryType } from '$lib/types/enums'
 import type { Post } from '$lib/types/post'
 import type { Project } from '$lib/types/project'
 import type { Tag } from '$lib/types/tag'
 import { getSlug, formatDate, sortAlphabetical } from './helper'
+import type { Shareable } from '$lib/types/shareable'
 
-export function findBySlug(entry: Post | Project | Bookmark, slug: string): boolean {
+export function findBySlug(entry: Post | Project | StackEntry | Shareable, slug: string): boolean {
   return entry.slug === slug
 }
 
@@ -29,7 +30,7 @@ export function getDate(rawString: string): EntryDate {
   }
 }
 
-export function filterByTag(entry: Post | Project | Bookmark, filterTagSlug: string): boolean {
+export function filterByTag(entry: Post | Project | StackEntry | Shareable, filterTagSlug: string): boolean {
   if (filterTagSlug === 'all' || filterTagSlug === '') return true
   return entry.tags.some((tag) => tag.slug === filterTagSlug)
 }
@@ -38,7 +39,7 @@ export function sortByDirection(sortDirection: SortDirection): number {
   return sortDirection === SortDirection.Asc ? 1 : -1
 }
 
-export function getUniqueTags(entries: Project[] | Bookmark[] | Post[]): Tag[] {
+export function getUniqueTags(entries: Project[] | StackEntry[] | Post[] | Shareable[]): Tag[] {
   // rewrite with map and than loop over non uniqque for counting - aka make henry happy > no functional change :D
   const duplicateTags = entries.map((entry) => entry.tags).flat()
   const uniqueTags: Tag[] = duplicateTags

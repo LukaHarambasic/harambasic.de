@@ -16,7 +16,7 @@
     },
     {
       name: 'Stack',
-      url: '/stacks'
+      url: '/stack'
     },
     {
       name: 'Posts',

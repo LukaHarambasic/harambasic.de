@@ -1,38 +1,34 @@
-import type { Bookmark } from '$lib/types/bookmark'
-import { BookmarkSortProperty, BookmarkStatus, EntryType, SortDirection } from '$lib/types/enums'
+import type { Shareable } from '$lib/types/shareable'
+import { ShareableSortProperty, EntryType, SortDirection } from '$lib/types/enums'
 import { getTag, getDate, filterByTag, sortByDirection } from '$lib/util/entries'
 import { sortAlphabetical, sortDate, getSlug } from '$lib/util/helper'
 
 export function filterAndSort(
-  entries: Bookmark[],
+  entries: Shareable[],
   filterTagSlug: string,
-  filterStatus: BookmarkStatus,
-  sortProperty: BookmarkSortProperty,
+  sortProperty: ShareableSortProperty,
   sortDirection: SortDirection
-): Bookmark[] {
+): Shareable[] {
   return entries
     .filter((entry) => filterByTag(entry, filterTagSlug))
-    .filter((entry) => filterByStatus(entry, filterStatus))
     .sort((a, b) => sortByProperty(a, b, sortProperty))
     .sort(() => sortByDirection(sortDirection))
 }
 
-export function getBookmark(entry: any): Bookmark {
+export function getShareable(entry: any): Shareable {
   const meta = entry.meta
-  const type = EntryType.Bookmark
+  const type = EntryType.Shareable
   const slug = getSlug(meta.title)
   const relativePath = `/${type.toLowerCase()}s/${slug}`
   return {
     type,
     title: meta.title,
     description: meta.description,
-    image: meta.image || '',
+    comment: '', // TODO fix mapping
     tags: meta.tags.map((tag: string) => getTag(tag, type)),
     published: getDate(meta.published),
     updated: getDate(meta.updated),
     url: meta.url,
-    status: meta.status,
-    openSource: meta.openSource,
     slug,
     relativePath,
     fullPath: `https://harambasic.de${relativePath}`
@@ -40,23 +36,18 @@ export function getBookmark(entry: any): Bookmark {
 }
 
 function sortByProperty(
-  a: Bookmark,
-  b: Bookmark,
-  property: BookmarkSortProperty,
+  a: Shareable,
+  b: Shareable,
+  property: ShareableSortProperty,
 ): number {
   switch (property) {
-    case BookmarkSortProperty.Title:
+    case ShareableSortProperty.Title:
       return sortAlphabetical(b.title, a.title)
-    case BookmarkSortProperty.Published:
+    case ShareableSortProperty.Published:
       return sortDate(b.published.raw, a.published.raw)
-    case BookmarkSortProperty.Updated:
+    case ShareableSortProperty.Updated:
       return sortDate(b.updated.raw, a.updated.raw)
     default:
       return 0
   }
-}
-
-function filterByStatus(entry: Bookmark, filterStatus: BookmarkStatus): boolean {
-  if (filterStatus === BookmarkStatus.All) return true
-  return entry.status === filterStatus
 }

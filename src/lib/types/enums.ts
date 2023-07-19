@@ -1,5 +1,6 @@
 export enum EntryType {
-  Bookmark = 'BOOKMARK',
+  StackEntry = 'STACK_ENTRY',
+  Shareable = 'SHAREABLE',
   Post = 'POST',
   Project = 'PROJECT'
 }
@@ -27,13 +28,19 @@ export enum ProjectStatus {
   Inactive = 'INACTIVE'
 }
 
-export enum BookmarkStatus {
+export enum StackEntryStatus {
   All = 'ALL',
   Active = 'ACTIVE',
   Inactive = 'INACTIVE'
 }
 
-export enum BookmarkSortProperty {
+export enum StackEntrySortProperty {
+  Title = 'TITLE',
+  Published = 'PUBLISHED',
+  Updated = 'UPDATED'
+}
+
+export enum ShareableSortProperty {
   Title = 'TITLE',
   Published = 'PUBLISHED',
   Updated = 'UPDATED'

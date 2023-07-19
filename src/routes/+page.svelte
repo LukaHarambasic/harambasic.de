@@ -3,17 +3,17 @@
   import BaseToClipboardButton from '$lib/components/Base/BaseToClipboardButton.svelte'
   import { getRandomItems } from '$lib/util/helper'
   import type { Project } from '$lib/types/project'
-  import type { Bookmark } from '$lib/types/bookmark'
+  import type { StackEntry } from '$lib/types/stackEntry'
   import type { Post } from '$lib/types/post'
   import type { PageData } from './$types'
 
   export let data: PageData
   const [posts] = data.posts
   const [projects] = data.projects
-  const [bookmarks] = data.bookmarks
+  const [stack] = data.stack
 
   const randomProjects: Project[] = getRandomItems(projects, 1)
-  const randomBookmarks: Bookmark[] = getRandomItems(bookmarks, 3)
+  const randomStack: StackEntry[] = getRandomItems(stack, 3)
   const randomPosts: Post[] = getRandomItems(posts, 2)
 </script>
 
@@ -74,16 +74,16 @@
   </div>
   <div class="lists group">
     <h3 class="section-label">
-      <span>Bookmarks</span>
+      <span>Stack</span>
       <Icon icon="ph:clipboard-text-bold" />
     </h3>
     <ul>
-      {#each randomBookmarks as bookmark}
+      {#each randomStack as stackEntry}
         <li>
-          <a class="card text" href={bookmark.slug && ''}>
+          <a class="card text" href={stackEntry.slug && ''}>
             <Icon icon="ph:arrow-circle-right-bold" />
-            <strong>{bookmark.title}</strong>
-            <p>{bookmark.description}</p>
+            <strong>{stackEntry.title}</strong>
+            <p>{stackEntry.description}</p>
           </a>
         </li>
       {/each}
