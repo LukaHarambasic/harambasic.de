@@ -16,10 +16,14 @@
     align-items: center;
     gap: 0.25rem;
     span {
-      line-height: 1;
+      font-weight: 900;
+      font-size: var(--font-m);
+      line-height: 1.2;
+      font-family: var(--font-family);
+      letter-spacing: var(--font-letter-spacing-headline);
     }
     :global(.icon) {
-      size: 1.4rem;
+      size: 1rem;
     }
   }
 </style>

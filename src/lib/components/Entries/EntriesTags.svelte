@@ -3,7 +3,7 @@
   import type { Tag } from '$lib/types/tag'
   import { setParam } from '$lib/util/helper'
   import { createEventDispatcher } from 'svelte'
-  import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
+  import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte'
 
   const dispatch = createEventDispatcher()
 

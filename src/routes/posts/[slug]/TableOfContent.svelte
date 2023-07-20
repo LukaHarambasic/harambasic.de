@@ -1,4 +1,5 @@
 <script lang="ts">
+  import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte'
   import type { TocNode } from '$lib/types/post'
   import PostsTableOfContentNode from './TableOfContentNode.svelte'
 
@@ -6,7 +7,7 @@
 </script>
 
 <div class="toc">
-  <strong>Table of Contents</strong>
+  <BaseHeadlineIcon title="Table of Content" icon="ph:list-bullets-bold" />
   <ol class="nodes">
     {#each nodes as node}
       <PostsTableOfContentNode {node} />
@@ -17,13 +18,6 @@
 <style lang="postcss" global>
   .toc {
     font-size: var(--font-m);
-    strong {
-      font-weight: 900;
-      font-size: var(--font-l);
-      line-height: 1.2;
-      font-family: var(--font-family);
-      letter-spacing: var(--font-letter-spacing-headline);
-    }
     ol {
       margin: 0 0 0 var(--l);
       list-style: decimal;

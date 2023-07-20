@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Icon from '@iconify/svelte'
   import BaseCallout from '$lib/components/Base/BaseCallout.svelte'
   import PostsTableOfContent from './TableOfContent.svelte'
   import type { Post } from '$lib/types/post'
+  import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte'
 
   export let post: Post
   const { title, published, updated, tldr, tags, description, image, slug, relativePath, fullPath, toc, html } = post
@@ -10,19 +10,18 @@
 
 <article class="post h-entry">
   <!-- TODO the 4 section could be split up in dedicated files -->
-  <div class="meta card">
-    <strong>Tags</strong>
-    <div class="tags">
-      <ul>
-        {#each tags as tag}
-          <li>
-            <a href={tag.relativePath} class="link">
-              {tag.display}
-            </a>
-          </li>
-        {/each}
-      </ul>
-    </div>
+  <div class="placeholder card"></div>
+  <div class="tags card">
+    <BaseHeadlineIcon title="Tags" icon="ph:hash-bold" />
+    <ul>
+      {#each tags as tag}
+        <li>
+          <a href={tag.relativePath} class="link">
+            {tag.display}
+          </a>
+        </li>
+      {/each}
+    </ul>
   </div>
   <div class="toc">
     <div class="content card">
@@ -56,13 +55,17 @@
 <style lang="postcss">
   article {
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
     grid-template-columns: 70ch 1fr;
-    grid-template-areas: 'tldr meta' 'post toc' 'footer footer';
+    grid-template-areas: 'tldr placeholder' 'post tags' 'post toc' 'footer footer';
     column-gap: var(--l);
     row-gap: var(--l);
-    .meta {
-      grid-area: meta;
+    .placeholder {
+      grid-area: placeholder;
+      opacity: 0.5;
+    }
+    .tags {
+      grid-area: tags;
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
@@ -76,29 +79,29 @@
         font-family: var(--font-family);
         letter-spacing: var(--font-letter-spacing-headline);
       }
-      .tags {
-        ul {
-          display: flex;
-          position: relative;
-          flex-direction: row;
-          flex-wrap: wrap;
-          align-content: stretch;
-          justify-content: flex-start;
-          align-items: flex-start;
-          gap: var(--xs);
-          li {
-            a {
-              color: var(--c-font-accent-dark);
-              font-weight: 400;
-              font-size: var(--font-s);
+      ul {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: stretch;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: var(--xs);
+        li {
+          a {
+            color: var(--c-font-accent-dark);
+            font-weight: 400;
+            font-size: var(--font-s);
+            text-decoration: none;
+            padding: var(--xxs) var(--s);
+            border-radius: var(--border-radius);
+            background: var(--c-surface-accent);
+            border: var(--border);
+            transition: transform 0 ease;
+            &:hover {
               text-decoration: none;
-              padding: var(--xxs) var(--s);
-              border-radius: var(--border-radius);
-              background: var(--c-surface);
-              border: var(--border);
-              &:hover {
-                text-decoration: none;
-              }
+              font-weight: bold;
             }
           }
         }
