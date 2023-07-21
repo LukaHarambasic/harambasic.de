@@ -11,7 +11,11 @@
     "test:unit": "vitest",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
-    "generate-favicons": "node scripts/fetch-favicon/index.js"
+    "generate-favicons": "node scripts/fetch-favicon/index.js",
+    "socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
+    "socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
+    "newPost": "node scripts/generate-post/index.js",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@fontsource/fira-mono": "^4.5.10",
