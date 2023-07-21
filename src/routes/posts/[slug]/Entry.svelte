@@ -16,7 +16,7 @@
     <ul>
       {#each tags as tag}
         <li>
-          <a href={tag.relativePath} class="link">
+          <a href={tag.relativePath} title={tag.display} class="link">
             {tag.display}
           </a>
         </li>
@@ -90,6 +90,8 @@
         gap: var(--xs);
         li {
           a {
+            display:inline-block;
+            text-align:center;
             color: var(--c-font-accent-dark);
             font-weight: 400;
             font-size: var(--font-s);
@@ -98,10 +100,19 @@
             border-radius: var(--border-radius);
             background: var(--c-surface-accent);
             border: var(--border);
-            transition: transform 0 ease;
+            transition: transform var(--transition-time) var(--transition-ease);
             &:hover {
               text-decoration: none;
               font-weight: bold;
+              transform: scale(1.05);
+            }
+            &::before {
+              display: block;
+              content: attr(title);
+              font-weight: bold;
+              height: 0;
+              overflow: hidden;
+              visibility: hidden;
             }
           }
         }
