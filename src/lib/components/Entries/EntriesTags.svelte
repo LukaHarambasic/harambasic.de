@@ -4,6 +4,8 @@
   import { setParam } from '$lib/util/helper'
   import { createEventDispatcher } from 'svelte'
   import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte'
+    import BaseTag from '../Base/BaseTag.svelte'
+    import type { B } from 'vitest/dist/types-198fd1d9'
 
   const dispatch = createEventDispatcher()
 
@@ -23,14 +25,12 @@
   <ol>
     {#each tags as tag}
       <li>
-        <button
-          class:selected={tagSlug === tag.slug}
+        <BaseTag 
+          tag={tag} 
+          selected={tagSlug === tag.slug} 
           on:click={() => {
             onTagChange(tag.slug)
-          }}
-        >
-          {tag.display} ({tag.count})
-        </button>
+          }} />
       </li>
     {/each}
   </ol>
@@ -49,35 +49,12 @@
     border: var(--border);
     ol {
       display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
+      flex-direction: row;
+      flex-wrap: wrap;
       align-content: stretch;
       justify-content: flex-start;
       align-items: stretch;
       gap: var(--s);
-      li {
-        button {
-          margin: 0;
-          border: none;
-          background: none;
-          padding: 0;
-          color: var(--c-font-accent-dark);
-          font-size: var(--font-s);
-          text-decoration: none;
-          &:hover {
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration-thickness: var(--underline-thickness);
-          }
-          &.selected {
-            text-decoration: underline;
-            text-decoration-thickness: var(--underline-thickness);
-            &:hover {
-              text-decoration: none;
-            }
-          }
-        }
-      }
     }
   }
 </style>

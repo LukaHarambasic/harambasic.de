@@ -8,6 +8,7 @@
   import { page } from '$app/stores'
   import { PostSortProperty, SortDirection } from '$lib/types/enums'
   import { filterAndSort } from '$lib/data/posts/helper'
+    import BaseTag from '$lib/components/Base/BaseTag.svelte'
 
   export let data: PageData
   const [entries, tags] = data.posts
@@ -46,9 +47,7 @@
             <ul class="tags">
               {#each post.tags as tag}
                 <li>
-                  <a href={tag.relativePath} class="link">
-                    {tag.display}
-                  </a>
+                  <BaseTag tag={tag} />
                 </li>
               {/each}
             </ul>
@@ -123,18 +122,6 @@
           justify-content: flex-start;
           align-items: flex-start;
           gap: var(--xs);
-          li {
-            a {
-              color: var(--c-font-accent-dark);
-              font-weight: 400;
-              font-size: var(--font-s);
-              text-decoration: none;
-              &:hover {
-                text-decoration: underline;
-                text-decoration-thickness: var(--underline-thickness);
-              }
-            }
-          }
         }
         .date {
           display: inline-block;

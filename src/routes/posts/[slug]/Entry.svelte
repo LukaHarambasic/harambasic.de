@@ -3,6 +3,7 @@
   import PostsTableOfContent from './TableOfContent.svelte'
   import type { Post } from '$lib/types/post'
   import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte'
+    import BaseTag from '$lib/components/Base/BaseTag.svelte'
 
   export let post: Post
   const { title, published, updated, tldr, tags, description, image, slug, relativePath, fullPath, toc, html } = post
@@ -16,9 +17,7 @@
     <ul>
       {#each tags as tag}
         <li>
-          <a href={tag.relativePath} title={tag.display} class="link">
-            {tag.display}
-          </a>
+          <BaseTag tag={tag} />
         </li>
       {/each}
     </ul>
@@ -88,34 +87,6 @@
         justify-content: flex-start;
         align-items: flex-start;
         gap: var(--xs);
-        li {
-          a {
-            display:inline-block;
-            text-align:center;
-            color: var(--c-font-accent-dark);
-            font-weight: 400;
-            font-size: var(--font-s);
-            text-decoration: none;
-            padding: var(--xxs) var(--s);
-            border-radius: var(--border-radius);
-            background: var(--c-surface-accent);
-            border: var(--border);
-            transition: transform var(--transition-time) var(--transition-ease);
-            &:hover {
-              text-decoration: none;
-              font-weight: bold;
-              transform: scale(1.05);
-            }
-            &::before {
-              display: block;
-              content: attr(title);
-              font-weight: bold;
-              height: 0;
-              overflow: hidden;
-              visibility: hidden;
-            }
-          }
-        }
       }
     }
     .toc {

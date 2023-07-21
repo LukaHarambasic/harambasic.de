@@ -19,7 +19,7 @@
 
 <section class="heyho">
   <div class="inner">
-    <!-- <img src="../images/profile.jpeg" alt="Picture of Luka Harambasic" class="profile" /> -->
+    <img src="../profile.jpeg" alt="Picture of Luka Harambasic" class="profile" />
     <div class="content rich-text">
       <h2>Heyho, I'm Luka!</h2>
       <p>
@@ -135,6 +135,7 @@
     align-items: stretch;
     gap: var(--l);
     width: var(--layout-l);
+    margin: var(--xl) 0;
     .inner {
       display: flex;
       flex-direction: row;
@@ -144,7 +145,7 @@
       align-items: flex-end;
       gap: var(--l);
       .profile {
-        size: 18rem;
+        size: 10rem;
         border-radius: var(--border-radius);
       }
       .content {
@@ -302,6 +303,7 @@
     justify-content: flex-start;
     align-items: stretch;
     width: var(--layout-m);
+    margin: var(--xl) 0;
     .group {
       display: flex;
       flex-direction: row;
