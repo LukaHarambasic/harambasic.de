@@ -22,6 +22,7 @@
       font-size: var(--font-m);
       font-family: var(--font-family);
       letter-spacing: var(--font-letter-spacing-headline);
+      border: var(--border);
     }
   }
 </style>

@@ -87,7 +87,7 @@
         }
         .date {
           a {
-            color: var(--c-font-680);
+            color: var(--c-font);
             font-weight: 400;
             font-size: var(--font-m);
             text-decoration: none;

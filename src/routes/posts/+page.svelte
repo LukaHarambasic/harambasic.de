@@ -126,7 +126,11 @@
         .date {
           display: inline-block;
           margin: 0 0 var(--xs) 0;
+          color: var(--c-font);
+          font-weight: 400;
           font-size: var(--font-m);
+          text-decoration: none;
+          font-style: italic;
         }
         :global(.arrow) {
           color: var(--c-font-accent-dark);
