@@ -20,6 +20,7 @@ export function getShareable(entry: any): Shareable {
   const type = EntryType.Shareable
   const slug = getSlug(meta.title)
   const relativePath = `/${type.toLowerCase()}s/${slug}`
+  console.log(entry)
   return {
     type,
     title: meta.title,

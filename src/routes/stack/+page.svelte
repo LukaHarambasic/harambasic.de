@@ -48,8 +48,9 @@
       <li class="h-feed">
         <a href={entry.url}>
           <div class="logo">
-            <!-- TODO <img src={entry.image} alt={entry.title} width="64px" /> -->
-            <img src="https://TODO.com/image.png" alt={entry.title} width="64px" />
+            {#if entry.image}
+              <img src="/stack/{entry.image}" alt={entry.title} width="64px" />
+            {/if}
           </div>
           <div class="content">
             <strong class="title">
@@ -57,7 +58,7 @@
             </strong>
             <p>{entry.description}</p>
           </div>
-          <Icon class="arrow" icon="ph:arrow-circle-right-bold" />
+          <Icon class="arrow" icon="ph:arrow-square-out-bold" />
         </a>
       </li>
     {/each}
@@ -77,13 +78,11 @@
     > li {
       width: 100%;
       > a {
-        display: flex;
-        position: relative;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-content: flex-start;
-        justify-content: flex-start;
-        align-items: stretch;
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: 8rem 1fr;
+        grid-template-areas: 'logo content';
+        row-gap: var(--xl);
         transition: var(--transition);
         border-radius: var(--border-radius);
         background: var(--c-surface);
@@ -97,20 +96,17 @@
           }
         }
         .logo {
-          flex-base: 16rem;
+          grid-area: logo;
           display: flex;
-          flex-shrink: 1;
-          flex-direction: column;
-          flex-wrap: nowrap;
-          align-content: center;
+          align-items: center;
           justify-content: center;
           background: var(--c-font-accent-super-light);
-          padding: var(--l);
           img {
             height: 4rem;
           }
         }
         .content {
+          grid-area: content;
           display: flex;
           flex-direction: column;
           flex-wrap: nowrap;

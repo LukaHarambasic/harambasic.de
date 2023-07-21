@@ -5,22 +5,21 @@
   import EntriesTags from '$lib/components/Entries/EntriesTags.svelte'
   import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte'
   import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
-  import { filterAndSort } from '$lib/data/stack/helper'
-  import { StackEntrySortProperty, StackEntryStatus, SortDirection } from '$lib/types/enums'
+  import { filterAndSort } from '$lib/data/shareable/helper'
+  import { ShareableSortProperty, SortDirection } from '$lib/types/enums'
   import type { PageData } from './$types'
   import Icon from '@iconify/svelte'
 
   export let data: PageData
-  const [entries, tags] = data.stack
+  const [entries, tags] = data.shareable
 
   // all that "as" stuff should be removed, thats not right
   $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: filterStatus = ($page.url.searchParams.get('status') as StackEntryStatus) || StackEntryStatus.All
-  $: sortProperty = ($page.url.searchParams.get('property') as StackEntrySortProperty) || StackEntrySortProperty.Published
+  $: sortProperty = ($page.url.searchParams.get('property') as ShareableSortProperty) || ShareableSortProperty.Published
   $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
-  $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
+  $: filteredAndSorted = filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
 
-  function onProperty(event: { detail: StackEntrySortProperty }) {
+  function onProperty(event: { detail: ShareableSortProperty }) {
     sortProperty = event.detail
   }
 
@@ -31,19 +30,14 @@
   function onTag(event: { detail: string }) {
     filterTagSlug = event.detail
   }
-
-  function onStatus(event: { detail: StackEntryStatus }) {
-    filterStatus = event.detail
-  }
 </script>
 
-    <p>
-      TODO: Newsletter block to sign up to get infrequent updates.
-    </p>
+<p>
+  TODO: Newsletter block to sign up to get infrequent updates.
+</p>
 <Entries>
   <EntriesSidebar slot="sidebar">
-    <EntriesSorter propertiesEnum={StackEntrySortProperty} on:property={onProperty} on:direction={onDirection} />
-    <EntriesFilter statusEnum={StackEntryStatus} on:status={onStatus} />
+    <EntriesSorter propertiesEnum={ShareableSortProperty} on:property={onProperty} on:direction={onDirection} />
     <EntriesTags {tags} on:tag={onTag} />
   </EntriesSidebar>
   <ul slot="entries" class="entries">
@@ -57,7 +51,7 @@
             </strong>
             <p>{entry.description}</p>
           </div>
-          <Icon class="arrow" icon="ph:arrow-circle-right-bold" />
+          <Icon class="arrow" icon="ph:arrow-square-out-bold" />
         </a>
       </li>
     {/each}
