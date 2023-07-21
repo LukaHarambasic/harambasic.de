@@ -2,17 +2,24 @@ const { readdirSync, readFileSync } = require('fs')
 const fm = require('front-matter')
 const yaml = require('js-yaml')
 const { chromium } = require('playwright')
-const { getCategoriesUniq } = require('../../assets/js/getCategoriesUniq')
-const { getCategoryMeta } = require('../../assets/js/getCategoryMeta.js')
-const {
-  doesImageAlreadyExist,
-  generateImage,
-  fileToMeta,
-  ROOT_PATH,
-} = require('./util.js')
+// TODO const { getCategoriesUniq } = require('../../assets/js/getCategoriesUniq')
+// TODO const { getCategoryMeta } = require('../../assets/js/getCategoryMeta.js')
+// TODO const { doesImageAlreadyExist, generateImage, fileToMeta, ROOT_PATH } = require('./util.js')
 
 const POSTS_PATH = `${ROOT_PATH}/content/posts`
 const LISTS_PATH = `${ROOT_PATH}/content/lists`
+
+export function getSlug(str) {
+  if (!str) return ''
+  const slug = str
+    .trim()
+    .toLowerCase()
+    // remove all chars which aren't characters, numbers or spaces
+    .replace(/[^a-zA-Z0-9\s]+/g, '')
+    // replace all spaces with dashes
+    .replace(/\s+/g, '-')
+  return slug
+}
 
 const generateSocialMediaPreview = async () => {
   console.log('>> GENERATE SOCIAL MEDIA PREVIEWS <<')
@@ -20,12 +27,8 @@ const generateSocialMediaPreview = async () => {
   console.log('-------------------------------------')
   const browser = await chromium.launch()
   const page = await browser.newPage()
-  const posts = readdirSync(POSTS_PATH).map((name) =>
-    fileToMeta(name, POSTS_PATH)
-  )
-  const lists = readdirSync(LISTS_PATH).map((name) =>
-    fileToMeta(name, LISTS_PATH)
-  )
+  const posts = readdirSync(POSTS_PATH).map((name) => fileToMeta(name, POSTS_PATH))
+  const lists = readdirSync(LISTS_PATH).map((name) => fileToMeta(name, LISTS_PATH))
   const files = [...posts, ...lists]
   for (const file of files) {
     const data = readFileSync(file.path, 'utf8')
@@ -44,7 +47,7 @@ const generateSocialMediaPreview = async () => {
     const content = fm(data)
     return {
       ...content.attributes,
-      categories: getCategoryMeta(content.attributes.categories),
+      categories: getCategoryMeta(content.attributes.categories)
     }
   })
   const categories = getCategoriesUniq(rawCategories)
