@@ -101,6 +101,7 @@
           align-items: center;
           justify-content: center;
           background: var(--c-font-accent-super-light);
+          border-radius: var(--border-radius) 0 0 var(--border-radius);
           img {
             height: 4rem;
           }
