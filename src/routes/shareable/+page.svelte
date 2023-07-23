@@ -11,7 +11,7 @@
   import Icon from '@iconify/svelte'
 
   export let data: PageData
-  const [entries, tags] = data.shareable
+  const [entries, tags] = data.shareables
 
   // all that "as" stuff should be removed, thats not right
   $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'

@@ -8,6 +8,7 @@
   import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte'
   import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
   import type { PageData } from './$types'
+    import BaseTag from '$lib/components/Base/BaseTag.svelte'
 
   export let data: PageData
   const [entries, tags] = data.projects
@@ -43,11 +44,17 @@
   </EntriesSidebar>
   <ul class="entries" slot="entries">
     {#each filteredAndSorted as entry}
-      <li class="h-feed card">
-        <!-- TODO <img src={entry.image} alt="TODO" width="8rem" /> -->
-        <img src="https://TODO.com/image.png" alt="TODO" width="8rem" />
+      <li class="h-feed card no-spacing">
+        <img src="/projects/{entry.image}" alt="{entry.title}" width="8rem" />
         <div class="content">
           <strong>{entry.title}</strong>
+          <ul class="tags">
+            {#each entry.tags as tag}
+              <li>
+                <BaseTag tag={tag} />
+              </li>
+            {/each}
+          </ul>
         </div>
       </li>
     {/each}
@@ -93,6 +100,17 @@
           line-height: 1.2;
           font-family: var(--font-family);
           letter-spacing: var(--font-letter-spacing-headline);
+        }
+        .tags {
+          flex-base: 100%;
+          display: flex;
+          flex-grow: 1;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-content: stretch;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: var(--xs);
         }
       }
     }

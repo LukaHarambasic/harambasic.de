@@ -1,6 +1,6 @@
 ---
 title: Q-Summit
-image: ./src/assets/images/projects/q-summit.png
+image: q-summit.png
 description: TODO Lorem Ipsum
 published: 2020-12-21
 updated: 2020-12-21

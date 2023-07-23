@@ -14,7 +14,7 @@ export const load = (async () => {
         posts: await requestPosts(),
         projects: await requestProjects(),
         stack: await requestStack(),
-        shareable: await requestShareables(),
+        shareables: await requestShareables(),
         // images: await getImages()
     };
 }) satisfies LayoutServerLoad;

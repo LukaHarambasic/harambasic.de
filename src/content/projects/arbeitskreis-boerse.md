@@ -1,6 +1,6 @@
 ---
 title: Arbeitskreis Börse
-image: ./src/assets/images/projects/arbeitskreis-boerse.jpg
+image: arbeitskreis-boerse.jpg
 description: TODO Lorem Ipsum
 published: 2020-12-21
 updated: 2020-12-21

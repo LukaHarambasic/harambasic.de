@@ -6,20 +6,23 @@
   import type { StackEntry } from '$lib/types/stackEntry'
   import type { Post } from '$lib/types/post'
   import type { PageData } from './$types'
+  import type { Shareable } from '$lib/types/shareable'
 
   export let data: PageData
   const [posts] = data.posts
   const [projects] = data.projects
   const [stack] = data.stack
+  const [shareables] = data.shareables
 
-  const randomProjects: Project[] = getRandomItems(projects, 1)
+  const randomProjects: Project[] = getRandomItems(projects, 2)
   const randomStack: StackEntry[] = getRandomItems(stack, 3)
   const randomPosts: Post[] = getRandomItems(posts, 2)
+  const randomShareables: Shareable[] = getRandomItems(shareables, 4)
 </script>
 
 <section class="heyho">
   <div class="inner">
-    <img src="../profile.jpeg" alt="Picture of Luka Harambasic" class="profile" />
+    <img src="../profile.jpeg" alt="Profile of Luka Harambasic" class="profile" />
     <div class="content rich-text">
       <h2>Heyho, I'm Luka!</h2>
       <p>
@@ -31,28 +34,6 @@
   </div>
 </section>
 <section class="featured">
-  <div class="project group">
-    <h3 class="section-label">
-      <span>Project</span>
-      <Icon icon="ph:projector-screen-chart-bold" />
-    </h3>
-    <ul>
-      {#each randomProjects as project}
-        <li>
-          <a class="card image" href="/projects">
-            <Icon icon="ph:arrow-circle-right-bold" />
-            <!-- TODO <img src={project.image} alt={project.title} width="8rem" /> -->
-            <!-- ./../lib/images/projects/techmobshow.svg -->
-            <img src="https://TODO.com/image.png" alt={project.title} width="8rem" />
-            <div class="content">
-              <strong>{project.title}</strong>
-              <p>{project.description}</p>
-            </div>
-          </a>
-        </li>
-      {/each}
-    </ul>
-  </div>
   <div class="posts group">
     <h3 class="section-label">
       <span>Posts</span>
@@ -80,10 +61,51 @@
     <ul>
       {#each randomStack as stackEntry}
         <li>
-          <a class="card text" href={stackEntry.slug && ''}>
-            <Icon icon="ph:arrow-circle-right-bold" />
+          <a class="card text" href={stackEntry.url}>
+            <Icon icon="ph:arrow-square-out-bold" />
             <strong>{stackEntry.title}</strong>
             <p>{stackEntry.description}</p>
+          </a>
+        </li>
+      {/each}
+    </ul>
+  </div>
+  <div class="project group">
+    <h3 class="section-label">
+      <span>Projects</span>
+      <Icon icon="ph:projector-screen-chart-bold" />
+    </h3>
+    <ul>
+      {#each randomProjects as project}
+        <li>
+          <a class="card no-spacing image" href="/projects">
+            <Icon icon="ph:arrow-circle-right-bold" />
+            <!-- TODO <img src={project.image} alt={project.title} width="8rem" /> -->
+            <!-- ./../lib/images/projects/techmobshow.svg -->
+            <img src="projects/{project.image}" alt={project.title} width="8rem" />
+            <div class="content">
+              <strong>{project.title}</strong>
+              <p>{project.description}</p>
+            </div>
+          </a>
+        </li>
+      {/each}
+    </ul>
+  </div>
+  <div class="shareables group">
+    <h3 class="section-label">
+      <span>Shareables</span>
+      <Icon icon="ph:share-bold" />
+    </h3>
+    <ul>
+      {#each randomShareables as shareable}
+        <li>
+          <a class="card text" href={shareable.url}>
+            <Icon icon="ph:arrow-square-out-bold" />
+            <time class="date dt-published" datetime={shareable?.published?.raw?.toString()}>
+              {shareable.published.display}
+            </time>
+            <strong>{shareable.title}</strong>
           </a>
         </li>
       {/each}
@@ -220,6 +242,10 @@
           &:first-child:nth-last-child(3) ~ li {
             width: calc(100% / 3);
           }
+          &:first-child:nth-last-child(4),
+          &:first-child:nth-last-child(4) ~ li {
+            width: calc(100% / 4);
+          }
           .card {
             display: block;
             position: relative;
@@ -258,15 +284,15 @@
               align-content: stretch;
               justify-content: flex-start;
               align-items: stretch;
-              gap: var(--xs);
+              gap: 0;
               > img {
-                flex: 1 0 auto;
                 border-radius: var(--border-radius) 0 0 var(--border-radius);
                 aspect-ratio: 1 / 1;
                 width: 12rem;
                 height: 12rem;
               }
               > .content {
+                flex: 1 0 auto;
                 padding: var(--l);
               }
             }
@@ -284,7 +310,10 @@
             time {
               display: inline-block;
               margin: 0 0 var(--xs) 0;
-              font-size: var(--font-s);
+              font-weight: 400;
+              font-size: var(--font-m);
+              text-decoration: none;
+              font-style: italic;
             }
             p,
             .description {

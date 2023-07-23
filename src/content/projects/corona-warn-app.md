@@ -1,6 +1,6 @@
 ---
 title: Corona-Warn-App
-image: ./src/assets/images/projects/corona-warn-app.jpg
+image: corona-warn-app.jpg
 description: TODO Lorem Ipsum
 published: 2020-12-21
 updated: 2020-12-21
