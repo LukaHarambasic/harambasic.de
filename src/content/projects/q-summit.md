@@ -1,7 +1,7 @@
 ---
 title: Q-Summit
 image: q-summit.png
-description: TODO Lorem Ipsum
+description: Swab barque interloper chantey doubloon starboard
 published: 2020-12-21
 updated: 2020-12-21
 prio: 70

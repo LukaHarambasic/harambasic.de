@@ -44,10 +44,10 @@
         <li>
           <a class="card text" href={post.relativePath}>
             <Icon icon="ph:arrow-circle-right-bold" />
+            <strong>{post.title}</strong>
             <time class="date dt-published" datetime={post?.published?.raw?.toString()}>
               {post.published.display}
             </time>
-            <strong>{post.title}</strong>
           </a>
         </li>
       {/each}
@@ -80,8 +80,7 @@
         <li>
           <a class="card no-spacing image" href="/projects">
             <Icon icon="ph:arrow-circle-right-bold" />
-            <!-- TODO <img src={project.image} alt={project.title} width="8rem" /> -->
-            <!-- ./../lib/images/projects/techmobshow.svg -->
+            <!-- TODO ./../lib/images/projects/techmobshow.svg -->
             <img src="projects/{project.image}" alt={project.title} width="8rem" />
             <div class="content">
               <strong>{project.title}</strong>
@@ -102,10 +101,10 @@
         <li>
           <a class="card text" href={shareable.url}>
             <Icon icon="ph:arrow-square-out-bold" />
+            <strong>{shareable.title}</strong>
             <time class="date dt-published" datetime={shareable?.published?.raw?.toString()}>
               {shareable.published.display}
             </time>
-            <strong>{shareable.title}</strong>
           </a>
         </li>
       {/each}
@@ -292,15 +291,19 @@
                 height: 12rem;
               }
               > .content {
-                flex: 1 0 auto;
                 padding: var(--l);
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-content: stretch;
+                align-items: stretch;
               }
             }
           }
           > a {
             strong {
               display: block;
-              margin: 0 0 var(--xs) 0;
               font-weight: 900;
               font-size: var(--font-m);
               line-height: 1.2;
@@ -311,13 +314,15 @@
               display: inline-block;
               margin: 0 0 var(--xs) 0;
               font-weight: 400;
-              font-size: var(--font-m);
+              font-size: var(--font-s);
               text-decoration: none;
               font-style: italic;
             }
             p,
             .description {
+              margin: var(--xs) 0 0 0;
               line-height: 1.5;
+              font-size: var(--font-m);
             }
           }
         }

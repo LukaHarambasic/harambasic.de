@@ -1,7 +1,7 @@
 ---
 title: Techmob Show
 image: techmobshow.svg
-description: TODO Lorem Ipsum
+description: Swab barque interloper chantey doubloon starboard
 published: 2020-12-21
 updated: 2020-12-21
 prio: 80
