@@ -1,6 +1,6 @@
 ---
 title: Arbeitskreis Börse
-image: arbeitskreis-boerse.jpg
+image: arbeitskreis-boerse.png
 description: Swab barque interloper chantey doubloon starboard
 published: 2020-12-21
 updated: 2020-12-21
