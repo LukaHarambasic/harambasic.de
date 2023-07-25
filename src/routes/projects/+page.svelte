@@ -8,14 +8,14 @@
   import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte'
   import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
   import type { PageData } from './$types'
-    import BaseTag from '$lib/components/Base/BaseTag.svelte'
+  import BaseTag from '$lib/components/Base/BaseTag.svelte'
 
   export let data: PageData
   const [entries, tags] = data.projects
 
   $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
   $: filterStatus = ($page.url.searchParams.get('status') as ProjectStatus) || ProjectStatus.All
-  $: sortProperty = ($page.url.searchParams.get('property') as ProjectSortProperty) || ProjectSortProperty.Published
+  $: sortProperty = ($page.url.searchParams.get('property') as ProjectSortProperty) || ProjectSortProperty.Priority
   $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 
@@ -38,7 +38,7 @@
 
 <Entries>
   <EntriesSidebar slot="sidebar">
-    <EntriesSorter propertiesEnum={ProjectSortProperty} on:property={onProperty} on:direction={onDirection} />
+    <EntriesSorter propertiesEnum={ProjectSortProperty} propertiesDefault={ProjectSortProperty.Priority} on:property={onProperty} on:direction={onDirection} />
     <EntriesFilter statusEnum={ProjectStatus} on:status={onStatus} />
     <EntriesTags {tags} on:tag={onTag} />
   </EntriesSidebar>
@@ -84,11 +84,15 @@
         svg {
           opacity: 1;
         }
+        > img {
+          filter: grayscale(0);
+        }
       }
       > img {
         border-radius: var(--border-radius) var(--border-radius) 0 0;
         aspect-ratio: 1 / 1;
         width: 100%;
+        filter: grayscale(1);
       }
       > .content {
         padding: var(--l);

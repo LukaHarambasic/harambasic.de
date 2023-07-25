@@ -9,9 +9,10 @@
   const dispatch = createEventDispatcher()
 
   export let propertiesEnum: SortProperty
+  export let propertiesDefault: SortProperty
 
   const properties = enumToArray(propertiesEnum).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
-  let property: SortProperty = ($page.url.searchParams.get('property') as SortProperty) || 'PUBLISHED'
+  let property: SortProperty = ($page.url.searchParams.get('property') as SortProperty) || propertiesDefault || 'PUBLISHED'
   function onPropertyChange() {
     setParam('property', property)
     dispatch('property', property)

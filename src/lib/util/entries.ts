@@ -36,7 +36,7 @@ export function filterByTag(entry: Post | Project | StackEntry | Shareable, filt
 }
 
 export function sortByDirection(sortDirection: SortDirection): number {
-  return sortDirection === SortDirection.Asc ? 1 : -1
+  return sortDirection === SortDirection.Asc ? -1 : 1
 }
 
 export function getUniqueTags(entries: Project[] | StackEntry[] | Post[] | Shareable[]): Tag[] {

@@ -284,11 +284,17 @@
               justify-content: flex-start;
               align-items: stretch;
               gap: 0;
+              &:hover {
+                > img {
+                  filter: grayscale(0);
+                }
+              }
               > img {
                 border-radius: var(--border-radius) 0 0 var(--border-radius);
                 aspect-ratio: 1 / 1;
                 width: 12rem;
                 height: 12rem;
+                filter: grayscale(1);
               }
               > .content {
                 padding: var(--l);
