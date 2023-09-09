@@ -3,8 +3,6 @@
   import '$lib/styles/reset.css'
   import '$lib/styles/variables.css'
   import '$lib/styles/global.css'
-  import 'prismjs/themes/prism-tomorrow.css'
-  import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
   import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte'
   import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
   import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
