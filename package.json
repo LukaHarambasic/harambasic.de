@@ -14,8 +14,7 @@
     "generate-favicons": "node scripts/fetch-favicon/index.js",
     "socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
     "socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
-    "newPost": "node scripts/generate-post/index.js",
-    "prepare": "husky install"
+    "newPost": "node scripts/generate-post/index.js"
   },
   "devDependencies": {
     "@fontsource/fira-mono": "^5.0.8",
