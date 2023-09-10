@@ -21,7 +21,6 @@ export async function getRawEntries(entryType: EntryType): Promise<any[]> {
 
 export async function _getFiles(entryType: EntryType): Promise<string[]> {
   const folderName = entryType.toLowerCase() === 'stack_entry' ? 'stack' : `${entryType.toLowerCase()}s`
-console.log('folderName', folderName)
   const folderPath = join(process.cwd(), 'src', 'content', folderName)
   const fileNames = await fs.readdir(folderPath)
   return await Promise.all(
