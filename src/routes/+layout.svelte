@@ -8,9 +8,6 @@
   import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
   import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
 
-  // For full SSG: https://kit.svelte.dev/docs/adapter-static
-  export const prerender = true;
-
   const { title, description, published, relativePath, permalink, socialImg, socialImgAlt } = $page.data
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release

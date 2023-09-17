@@ -5,6 +5,8 @@ import { requestStack } from '$lib/data/stack/api.server';
 import { requestShareables } from '$lib/data/shareable/api.server';
 // import { getImages } from '$lib/util/markdown-images';
 
+// For full SSG: https://kit.svelte.dev/docs/adapter-static
+export const prerender = true;
 
 export const load = (async () => {
     return {
