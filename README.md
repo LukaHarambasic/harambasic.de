@@ -44,3 +44,5 @@ You can preview the production build with `npm run preview`.
 - posts, bookmarks and projects need their dedicated tags - so only tags that are used in this category
 - there also needs to be a combined tags list from posts, bookmarks and projects
 - also filter needs to work
+
+trigger build
