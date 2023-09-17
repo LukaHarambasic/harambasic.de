@@ -4,7 +4,7 @@
   import { setParam } from '$lib/util/helper'
   import { createEventDispatcher, onMount } from 'svelte'
   import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte'
-  import BaseTag from '../Base/BaseTag.svelte'
+  import BaseTag from '$lib/components/Base/BaseTag.svelte'
 
   const dispatch = createEventDispatcher()
 

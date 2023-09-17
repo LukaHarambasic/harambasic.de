@@ -21,7 +21,7 @@ export function getStackEntry(entry: any): StackEntry {
   const meta = entry.meta
   const type = EntryType.StackEntry
   const slug = getSlug(meta.title)
-  const relativePath = `/${type.toLowerCase()}s/${slug}`
+  const relativePath = `/stack/${slug}`
   return {
     type,
     title: meta.title,

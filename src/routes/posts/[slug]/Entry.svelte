@@ -22,11 +22,12 @@
       {/each}
     </ul>
   </div>
-  <div class="toc">
+  <!-- TODO -->
+  <!-- <div class="toc">
     <div class="content card">
       <PostsTableOfContent nodes={toc} />
     </div>
-  </div>
+  </div> -->
   <div class="tldr">
     <BaseCallout prefix="TL;DR">
       {@html tldr}
@@ -38,13 +39,13 @@
     </div>
   </section>
   <footer class="rich-text">
-    <div class="follow">
-      <!-- TODO links -->
+  <!-- TODO -->
+    <!-- <div class="follow">
       If you have any thoughts or questions feel free to share them in
       <a href="https://TODO.com">this thread</a> or send me an
       <a href="https://TODO.com">email</a>. And if you want to stay up to date you can subscribe to the
       <a href="https://TODO.com">RSS feed</a>.
-    </div>
+    </div> -->
     <div class="author">
       <a href="https://harambasic.de" rel="author" class="p-author h-card">by Luka Harambasic</a>
     </div>

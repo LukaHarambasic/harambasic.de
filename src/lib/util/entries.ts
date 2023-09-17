@@ -1,6 +1,6 @@
 import type { StackEntry } from '$lib/types/stackEntry'
 import type { EntryDate } from '$lib/types/entry'
-import { SortDirection, type EntryType } from '$lib/types/enums'
+import { SortDirection, EntryType } from '$lib/types/enums'
 import type { Post } from '$lib/types/post'
 import type { Project } from '$lib/types/project'
 import type { Tag } from '$lib/types/tag'
@@ -13,10 +13,11 @@ export function findBySlug(entry: Post | Project | StackEntry | Shareable, slug:
 
 export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
   const slug = getSlug(display)
+  const path = type === EntryType.StackEntry ? 'stack' : `${type.toLowerCase()}s`
   return {
     display,
     slug: slug,
-    relativePath: `/${type.toLowerCase()}s/?tag=${slug}`,
+    relativePath: `/${path}?tag=${slug}`,
     count: iniCount,
     type
   }
