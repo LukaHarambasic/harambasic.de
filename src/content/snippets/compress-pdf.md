@@ -1,7 +1,7 @@
 ---
-title: "Compress PDF"
-description: "Bla bla"
-tags: 
+title: 'Compress PDF'
+description: 'Bla bla'
+tags:
   - Mac OS
   - Terminal
 image: CodeScreenshot.png
@@ -24,6 +24,7 @@ rm $input && \
 mv $output $input && \
 echo "Done!"
 ```
+
 3. Make the script executable: `chmod +x compress-pdf.sh`.
 4. Run the script: `./compress-pdf.sh <filename.pdf>`.
 5. (Optional) Create an alias in your `.bash_profile` or `.zshrc` file: `alias compress-pdf='./compress-pdf.sh'`.

@@ -9,8 +9,5 @@ export async function request(): Promise<[Post[], Tag[]]> {
   const rawEntries = await getRawEntries(EntryType.Post)
   const entries: Post[] = rawEntries.map(getPost)
   const tags: Tag[] = getUniqueTags(entries)
-  return [
-    entries,
-    tags
-  ]
+  return [entries, tags]
 }

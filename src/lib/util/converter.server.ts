@@ -4,7 +4,7 @@ import * as fs from 'fs/promises'
 import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 
-const md = new MarkdownIt();
+const md = new MarkdownIt()
 
 // TODO still needs to be transformed to the corresponding Entry types
 export async function getRawEntries(entryType: EntryType): Promise<any[]> {

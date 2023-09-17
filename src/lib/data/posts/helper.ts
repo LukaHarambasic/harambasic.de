@@ -7,7 +7,7 @@ export function filterAndSort(
   entries: Post[],
   filterTagSlug: string,
   sortProperty: PostSortProperty,
-  sortDirection: SortDirection,
+  sortDirection: SortDirection
 ): Post[] {
   return entries
     .filter((entry) => filterByTag(entry, filterTagSlug))
@@ -15,11 +15,7 @@ export function filterAndSort(
     .sort(() => sortByDirection(sortDirection))
 }
 
-export function sortByProperty(
-  a: Post,
-  b: Post,
-  property: PostSortProperty,
-): number {
+export function sortByProperty(a: Post, b: Post, property: PostSortProperty): number {
   switch (property) {
     case PostSortProperty.Title:
       return sortAlphabetical(b.title, a.title)

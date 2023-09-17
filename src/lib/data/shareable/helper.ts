@@ -35,11 +35,7 @@ export function getShareable(entry: any): Shareable {
   }
 }
 
-function sortByProperty(
-  a: Shareable,
-  b: Shareable,
-  property: ShareableSortProperty,
-): number {
+function sortByProperty(a: Shareable, b: Shareable, property: ShareableSortProperty): number {
   switch (property) {
     case ShareableSortProperty.Title:
       return sortAlphabetical(b.title, a.title)

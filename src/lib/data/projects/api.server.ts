@@ -9,8 +9,5 @@ export async function request(): Promise<[Project[], Tag[]]> {
   const rawEntries = await getRawEntries(EntryType.Project)
   const entries: Project[] = rawEntries.map(getProject)
   const tags: Tag[] = getUniqueTags(entries)
-  return [
-    entries,
-    tags
-  ]
+  return [entries, tags]
 }
