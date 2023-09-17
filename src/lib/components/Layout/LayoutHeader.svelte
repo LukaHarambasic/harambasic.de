@@ -10,10 +10,10 @@
       name: 'Projects',
       url: '/projects'
     },
-    {
-      name: 'Shareable',
-      url: '/shareable'
-    },
+    // {
+    //   name: 'Shareable',
+    //   url: '/shareable'
+    // },
     {
       name: 'Stack',
       url: '/stack'

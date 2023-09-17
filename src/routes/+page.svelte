@@ -12,12 +12,12 @@
   const [posts] = data.posts
   const [projects] = data.projects
   const [stack] = data.stack
-  const [shareables] = data.shareables
+  // const [shareables] = data.shareables
 
   const randomProjects: Project[] = getRandomItems(projects, 2)
   const randomStack: StackEntry[] = getRandomItems(stack, 3)
   const randomPosts: Post[] = getRandomItems(posts, 2)
-  const randomShareables: Shareable[] = getRandomItems(shareables, 4)
+  // const randomShareables: Shareable[] = getRandomItems(shareables, 4)
 </script>
 
 <section class="heyho">
@@ -91,7 +91,7 @@
       {/each}
     </ul>
   </div>
-  <div class="shareables group">
+  <!-- <div class="shareables group">
     <h3 class="section-label">
       <span>Shareables</span>
       <Icon icon="ph:share-bold" />
@@ -109,7 +109,7 @@
         </li>
       {/each}
     </ul>
-  </div>
+  </div> -->
 </section>
 <section class="contact" id="contact">
   <div class="group">
