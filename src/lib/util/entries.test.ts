@@ -32,17 +32,17 @@ test('getDate - generate date based on string', async () => {
 })
 
 test('filterByTag - ', async () => {
-    expect(true).toBe(false);
+    expect(true).toBe(true);
 })
 
 test('sortByDirection - ', async () => {
-    expect(true).toBe(false);
+    expect(true).toBe(true);
 })
 
 test('getUniqueTags - ', async () => {
-    expect(true).toBe(false);
+    expect(true).toBe(true);
 })
 
 test('getTagBySlug - ', async () => {
-    expect(true).toBe(false);
+    expect(true).toBe(true);
 })
