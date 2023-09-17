@@ -71,13 +71,6 @@
       align-content: stretch;
       justify-content: flex-start;
       align-items: stretch;
-      strong {
-        font-weight: 900;
-        font-size: var(--font-l);
-        line-height: 1.2;
-        font-family: var(--font-family);
-        letter-spacing: var(--font-letter-spacing-headline);
-      }
       ul {
         display: flex;
         position: relative;
@@ -94,14 +87,6 @@
       .content {
         position: sticky;
         top: var(--l);
-        strong {
-          display: block;
-          margin: 0 0 var(--m) 0;
-          font-weight: 900;
-          font-size: var(--font-l);
-          font-family: var(--font-family);
-          letter-spacing: var(--font-letter-spacing-headline);
-        }
       }
     }
     .tldr {

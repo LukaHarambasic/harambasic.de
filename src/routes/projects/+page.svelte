@@ -90,9 +90,6 @@
       &:hover {
         transform: scale(1.05);
         cursor: pointer;
-        svg {
-          opacity: 1;
-        }
         > img {
           filter: grayscale(0);
         }

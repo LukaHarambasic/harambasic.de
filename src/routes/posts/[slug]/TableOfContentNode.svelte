@@ -1,14 +1,14 @@
 <script lang="ts">
-  import type { TocNode } from '../../types/post'
+  import type { TocNode } from "$lib/types/post"
 
   export let node: TocNode
   const anchor = `#${node.slug}`
-  const hasChildren = node.children && node.children.length !== 0
 </script>
 
 <li>
   <a href={anchor}>{node.text}</a>
-  {#if hasChildren}
+  // Otherwise it throws an type error if done in a variable above
+  {#if node.children && node.children.length !== 0}
     <ol>
       {#each node.children as child}
         <svelte:self node={child} />
@@ -18,4 +18,15 @@
 </li>
 
 <style lang="postcss">
+li {
+  margin: var(--s) 0 0 0;
+  a {
+    color: var(--c-font);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: var(--underline-thickness);
+    }
+  }
+}
 </style>

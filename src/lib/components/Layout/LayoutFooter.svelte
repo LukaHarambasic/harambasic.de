@@ -35,7 +35,4 @@
       }
     }
   }
-  .logo {
-    size: var(--l);
-  }
 </style>

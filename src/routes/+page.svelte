@@ -27,7 +27,7 @@
       <h2>Heyho, I'm Luka!</h2>
       <p>
         Simpler version, interstes and what I do, for more infos send to about page with a text and link to CV. <em>Pinnace</em> holystone
-        mizzenmast <a>lorem ipsum</a> quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon
+        mizzenmast <a href="/">lorem ipsum</a> quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon
         starboard.
       </p>
     </div>
@@ -324,8 +324,7 @@
               text-decoration: none;
               font-style: italic;
             }
-            p,
-            .description {
+            p {
               margin: var(--xs) 0 0 0;
               line-height: 1.5;
               font-size: var(--font-m);

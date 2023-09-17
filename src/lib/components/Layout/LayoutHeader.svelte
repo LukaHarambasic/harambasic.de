@@ -65,9 +65,6 @@
     justify-content: flex-start;
     align-items: center;
     gap: var(--m);
-    img {
-      size: var(--l);
-    }
     a {
       color: var(--c-font);
       font-weight: 900;

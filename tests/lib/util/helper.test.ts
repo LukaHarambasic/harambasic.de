@@ -1,4 +1,4 @@
-import { getSlug } from '../../util/helper'
+import { getSlug } from '$lib/util/helper'
 import { expect, test } from 'vitest'
 
 test('getSlug - generate slugs', () => {

@@ -50,8 +50,7 @@
   <ul slot="entries" class="entries">
     {#each filteredAndSorted as entry}
       <li class="h-feed">
-        <!-- <a href={entry.url}> -->
-        <a href="https://harambasic.de">
+        <a href={entry.url}>
           <div class="content">
             <!-- TODO add fields from supabase -->
             <strong class="title">
@@ -96,20 +95,6 @@
           cursor: pointer;
           :global(svg) {
             opacity: 1;
-          }
-        }
-        .logo {
-          flex-base: 16rem;
-          display: flex;
-          flex-shrink: 1;
-          flex-direction: column;
-          flex-wrap: nowrap;
-          align-content: center;
-          justify-content: center;
-          background: var(--c-font-accent-super-light);
-          padding: var(--l);
-          img {
-            height: 4rem;
           }
         }
         .content {
