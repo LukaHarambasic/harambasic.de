@@ -5,9 +5,6 @@ import { requestStack } from '$lib/data/stack/api.server';
 import { requestShareables } from '$lib/data/shareable/api.server';
 // import { getImages } from '$lib/util/markdown-images';
 
-// default mode for all pages - prerender = static
-// https://kit.svelte.dev/docs/page-options#prerender
-export const prerender = false;
 
 export const load = (async () => {
     return {
