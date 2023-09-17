@@ -9,7 +9,18 @@ const config = {
   preprocess: [vitePreprocess({ postcss: true })],
 
   kit: {
-    adapter: adapter()
+    adapter: adapter(),
+    prerender: {
+      handleHttpError: ({ path, status, message }) => {
+        console.log(status, path, message)
+        if (status === 404) {
+          return
+        }
+
+        // otherwise fail the build
+        throw new Error(message)
+      }
+    }
   }
 }
 
