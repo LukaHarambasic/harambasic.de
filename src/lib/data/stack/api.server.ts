@@ -9,8 +9,5 @@ export async function requestStack(): Promise<[StackEntry[], Tag[]]> {
   const rawEntries = await getRawEntries(EntryType.StackEntry)
   const entries: StackEntry[] = rawEntries.map(getStackEntry)
   const tags: Tag[] = getUniqueTags(entries)
-  return [
-    entries,
-    tags
-  ]
+  return [entries, tags]
 }

@@ -39,11 +39,7 @@ export function getStackEntry(entry: any): StackEntry {
   }
 }
 
-function sortByProperty(
-  a: StackEntry,
-  b: StackEntry,
-  property: StackEntrySortProperty,
-): number {
+function sortByProperty(a: StackEntry, b: StackEntry, property: StackEntrySortProperty): number {
   switch (property) {
     case StackEntrySortProperty.Title:
       return sortAlphabetical(b.title, a.title)

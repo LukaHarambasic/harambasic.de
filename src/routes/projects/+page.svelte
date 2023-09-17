@@ -9,14 +9,15 @@
   import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
   import type { PageData } from './$types'
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
+  import { onMount } from 'svelte'
 
   export let data: PageData
   const [entries, tags] = data.projects
 
-  $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: filterStatus = ($page.url.searchParams.get('status') as ProjectStatus) || ProjectStatus.All
-  $: sortProperty = ($page.url.searchParams.get('property') as ProjectSortProperty) || ProjectSortProperty.Priority
-  $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+  $: filterTagSlug = 'all'
+  $: filterStatus = ProjectStatus.All
+  $: sortProperty = ProjectSortProperty.Priority
+  $: sortDirection = SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 
   function onProperty(event: { detail: ProjectSortProperty }) {
@@ -34,6 +35,14 @@
   function onStatus(event: { detail: ProjectStatus }) {
     filterStatus = event.detail
   }
+
+  // For full static rendering searchparams has to be accessed in onMount
+  onMount(() => {
+    filterTagSlug = $page.url.searchParams.get('tag') || 'all'
+    filterStatus = ($page.url.searchParams.get('status') as ProjectStatus) || ProjectStatus.All
+    sortProperty = ($page.url.searchParams.get('property') as ProjectSortProperty) || ProjectSortProperty.Priority
+    sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+	});
 </script>
 
 <Entries>
@@ -81,9 +90,6 @@
       &:hover {
         transform: scale(1.05);
         cursor: pointer;
-        svg {
-          opacity: 1;
-        }
         > img {
           filter: grayscale(0);
         }

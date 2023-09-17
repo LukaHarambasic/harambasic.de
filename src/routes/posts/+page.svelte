@@ -8,14 +8,15 @@
   import { page } from '$app/stores'
   import { PostSortProperty, SortDirection } from '$lib/types/enums'
   import { filterAndSort } from '$lib/data/posts/helper'
-    import BaseTag from '$lib/components/Base/BaseTag.svelte'
+  import BaseTag from '$lib/components/Base/BaseTag.svelte'
+	import { onMount } from 'svelte';
 
   export let data: PageData
   const [entries, tags] = data.posts
 
-  $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: sortProperty = ($page.url.searchParams.get('property') as PostSortProperty) || PostSortProperty.Published
-  $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+  $: filterTagSlug = 'all'
+  $: sortProperty = PostSortProperty.Published
+  $: sortDirection = SortDirection.Desc
   $: filteredAndSortedEntries = filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
 
   function onProperty(event: { detail: PostSortProperty }) {
@@ -29,6 +30,12 @@
   function onTag(event: { detail: string }) {
     filterTagSlug = event.detail
   }
+
+  onMount(() => {
+    filterTagSlug = $page.url.searchParams.get('tag') || 'all'
+    sortProperty = ($page.url.searchParams.get('property') as PostSortProperty) || PostSortProperty.Published
+    sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+	});
 </script>
 
 <Entries>

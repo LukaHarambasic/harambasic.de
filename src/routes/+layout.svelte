@@ -3,12 +3,11 @@
   import '$lib/styles/reset.css'
   import '$lib/styles/variables.css'
   import '$lib/styles/global.css'
-  import 'prismjs/themes/prism-tomorrow.css'
-  import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
   import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte'
   import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
   import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
   import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
+
   const { title, description, published, relativePath, permalink, socialImg, socialImgAlt } = $page.data
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release

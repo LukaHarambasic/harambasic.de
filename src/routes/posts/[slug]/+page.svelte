@@ -6,4 +6,6 @@
   const entry = data.entry
 </script>
 
-<Entry post={entry} />
+{#if entry}
+  <Entry post={entry} />
+{/if}

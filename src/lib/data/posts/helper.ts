@@ -7,7 +7,7 @@ export function filterAndSort(
   entries: Post[],
   filterTagSlug: string,
   sortProperty: PostSortProperty,
-  sortDirection: SortDirection,
+  sortDirection: SortDirection
 ): Post[] {
   return entries
     .filter((entry) => filterByTag(entry, filterTagSlug))
@@ -15,11 +15,7 @@ export function filterAndSort(
     .sort(() => sortByDirection(sortDirection))
 }
 
-export function sortByProperty(
-  a: Post,
-  b: Post,
-  property: PostSortProperty,
-): number {
+export function sortByProperty(a: Post, b: Post, property: PostSortProperty): number {
   switch (property) {
     case PostSortProperty.Title:
       return sortAlphabetical(b.title, a.title)
@@ -66,10 +62,12 @@ export function getNestedToc(markdownHeading: any): TocNode[] {
   let latestParent: TocNode | null
   const markdownHeadingCopy = JSON.parse(JSON.stringify(markdownHeading))
   if (markdownHeadingCopy.length <= 1) return markdownHeadingCopy
-  const entryDepth = markdownHeading.reduce((acc, item) => {
+  // TODO fix any
+  const entryDepth: number[] = markdownHeading.reduce((acc: number, item: any) => {
     return item.depth < acc ? item.depth : acc
   }, Number.POSITIVE_INFINITY)
-  return markdownHeadingCopy.reduce((result, entry) => {
+  // TODO fix any
+  return markdownHeadingCopy.reduce((result: any, entry: any) => {
     if (latestEntry && !latestEntry.children) {
       latestEntry.children = []
     }

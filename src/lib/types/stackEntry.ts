@@ -1,5 +1,5 @@
 import type { Entry } from './entry'
-import { StackEntryStatus } from './enums'
+import type { StackEntryStatus } from './enums'
 
 export interface StackEntry extends Entry {
   url: string

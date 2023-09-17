@@ -2,22 +2,25 @@
   import { page } from '$app/stores'
   import type { Tag } from '$lib/types/tag'
   import { setParam } from '$lib/util/helper'
-  import { createEventDispatcher } from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte'
-    import BaseTag from '../Base/BaseTag.svelte'
-    import type { B } from 'vitest/dist/types-198fd1d9'
+  import BaseTag from '../Base/BaseTag.svelte'
 
   const dispatch = createEventDispatcher()
 
   export let tags: Tag[]
 
-  $: tagSlug = $page.url.searchParams.get('tag') || 'all'
+  $: tagSlug = 'all'
 
   function onTagChange(slug: string) {
     tagSlug = slug
     setParam('tag', slug)
     dispatch('tag', slug)
   }
+
+  onMount(() => {
+    tagSlug = $page.url.searchParams.get('tag') || 'all'
+	});
 </script>
 
 <div class="tags card">

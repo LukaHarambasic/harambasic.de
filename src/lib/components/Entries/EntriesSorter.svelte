@@ -3,27 +3,32 @@
   import type { SortProperty } from '$lib/types/entry'
   import { SortDirection } from '$lib/types/enums'
   import { enumToArray, setParam, sortAlphabetical } from '$lib/util/helper'
-  import { createEventDispatcher } from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
 
   const dispatch = createEventDispatcher()
 
   export let propertiesEnum: SortProperty
-  export let propertiesDefault: SortProperty
+  export let propertiesDefault: SortProperty = null
 
   const properties = enumToArray(propertiesEnum).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
-  let property: SortProperty = ($page.url.searchParams.get('property') as SortProperty) || propertiesDefault || 'PUBLISHED'
+  let property: SortProperty = propertiesDefault || 'PUBLISHED'
   function onPropertyChange() {
     setParam('property', property)
     dispatch('property', property)
   }
 
   const directions = enumToArray(SortDirection).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
-  let direction: SortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+  let direction: SortDirection = SortDirection.Desc
   function onDirectionChange() {
     setParam('direction', direction)
     dispatch('direction', direction)
   }
+
+  onMount(() => {
+    property = ($page.url.searchParams.get('property') as SortProperty) || propertiesDefault || 'PUBLISHED'
+    direction = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+	});
 </script>
 
 <div class="sort card">
@@ -58,20 +63,6 @@
     align-items: stretch;
     gap: var(--m);
     border: var(--border);
-    h3 {
-      display: flex;
-      flex-wrap: nowrap;
-      align-content: center;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 0.25rem;
-      span {
-        line-height: 1;
-      }
-      :global(.icon) {
-        size: 1.4rem;
-      }
-    }
     .selects {
       display: flex;
       flex-direction: column;

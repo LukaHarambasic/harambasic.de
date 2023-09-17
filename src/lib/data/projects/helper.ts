@@ -1,14 +1,14 @@
-import { ProjectSortProperty, SortDirection, EntryType, ProjectStatus } from "$lib/types/enums"
-import type { Project } from "$lib/types/project"
-import { getTag, getDate, filterByTag, sortByDirection } from "$lib/util/entries"
-import { sortAlphabetical, sortNumber, sortDate, getSlug } from "$lib/util/helper"
+import { ProjectSortProperty, SortDirection, EntryType, ProjectStatus } from '$lib/types/enums'
+import type { Project } from '$lib/types/project'
+import { getTag, getDate, filterByTag, sortByDirection } from '$lib/util/entries'
+import { sortAlphabetical, sortNumber, sortDate, getSlug } from '$lib/util/helper'
 
 export function filterAndSort(
   entries: Project[],
   filterTagSlug: string,
   filterStatus: ProjectStatus,
   sortProperty: ProjectSortProperty,
-  sortDirection: SortDirection,
+  sortDirection: SortDirection
 ): Project[] {
   return entries
     .filter((entry) => filterByTag(entry, filterTagSlug))
@@ -40,11 +40,7 @@ export function getProject(entry: any): Project {
   }
 }
 
-function sortByProperty(
-  a: Project,
-  b: Project,
-  property: ProjectSortProperty,
-): number {
+function sortByProperty(a: Project, b: Project, property: ProjectSortProperty): number {
   switch (property) {
     case ProjectSortProperty.Title:
       return sortAlphabetical(b.title, a.title)

@@ -26,7 +26,7 @@ const generateImage = async (page, title, slug) => {
   const cardHandle = await page.$('.card')
   await cardHandle.screenshot({
     type: 'png',
-    path: SCREENSHOT_PATH,
+    path: SCREENSHOT_PATH
   })
 }
 
@@ -35,7 +35,7 @@ const fileToMeta = (name, basePath) => {
     name,
     path: `${basePath}/${name}`,
     slug: name.split('.')[0],
-    type: name.split('.')[1],
+    type: name.split('.')[1]
   }
 }
 
@@ -44,5 +44,5 @@ module.exports = {
   SOCIAL_PATH,
   doesImageAlreadyExist,
   generateImage,
-  fileToMeta,
+  fileToMeta
 }

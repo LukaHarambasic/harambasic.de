@@ -9,8 +9,5 @@ export async function requestShareables(): Promise<[Shareable[], Tag[]]> {
   const rawEntries = await getRawEntries(EntryType.Shareable)
   const entries: Shareable[] = rawEntries.map(getShareable)
   const tags: Tag[] = getUniqueTags(entries)
-  return [
-    entries,
-    tags
-  ]
+  return [entries, tags]
 }

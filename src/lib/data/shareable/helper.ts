@@ -20,7 +20,6 @@ export function getShareable(entry: any): Shareable {
   const type = EntryType.Shareable
   const slug = getSlug(meta.title)
   const relativePath = `/${type.toLowerCase()}s/${slug}`
-  console.log(entry)
   return {
     type,
     title: meta.title,
@@ -36,11 +35,7 @@ export function getShareable(entry: any): Shareable {
   }
 }
 
-function sortByProperty(
-  a: Shareable,
-  b: Shareable,
-  property: ShareableSortProperty,
-): number {
+function sortByProperty(a: Shareable, b: Shareable, property: ShareableSortProperty): number {
   switch (property) {
     case ShareableSortProperty.Title:
       return sortAlphabetical(b.title, a.title)

@@ -26,9 +26,7 @@
 
   function isActiveRoute(url: string): boolean {
     const pathname = $page.url.pathname
-    console.log(pathname, url)
     if(url === '/' && pathname === '/') {
-      console.log('home')
       return true
     } else if (url !== '/') {
       return pathname.includes(url)
@@ -67,9 +65,6 @@
     justify-content: flex-start;
     align-items: center;
     gap: var(--m);
-    img {
-      size: var(--l);
-    }
     a {
       color: var(--c-font);
       font-weight: 900;

@@ -9,15 +9,16 @@
   import { StackEntrySortProperty, StackEntryStatus, SortDirection } from '$lib/types/enums'
   import type { PageData } from './$types'
   import Icon from '@iconify/svelte'
+  import { onMount } from 'svelte'
 
   export let data: PageData
   const [entries, tags] = data.stack
 
   // all that "as" stuff should be removed, thats not right
-  $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: filterStatus = ($page.url.searchParams.get('status') as StackEntryStatus) || StackEntryStatus.All
-  $: sortProperty = ($page.url.searchParams.get('property') as StackEntrySortProperty) || StackEntrySortProperty.Published
-  $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+  $: filterTagSlug = 'all'
+  $: filterStatus = StackEntryStatus.All
+  $: sortProperty = StackEntrySortProperty.Published
+  $: sortDirection = SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 
   function onProperty(event: { detail: StackEntrySortProperty }) {
@@ -35,6 +36,13 @@
   function onStatus(event: { detail: StackEntryStatus }) {
     filterStatus = event.detail
   }
+
+  onMount(() => {
+    filterTagSlug = $page.url.searchParams.get('tag') || 'all'
+    filterStatus = ($page.url.searchParams.get('status') as StackEntryStatus) || StackEntryStatus.All
+    sortProperty = ($page.url.searchParams.get('property') as StackEntrySortProperty) || StackEntrySortProperty.Published
+    sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+	});
 </script>
 
 <Entries>

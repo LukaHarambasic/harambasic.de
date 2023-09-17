@@ -141,27 +141,45 @@ const generateSocialMediaPreview = async () => {
 I would say this code is quite self-explaining, but as I have spent some time with it, I might miss something. Feel free to get in touch on [Twitter](https://twitter.com/luka_harambasic) if you have any questions. However, I might not forget the appropriate [HTML template](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/template.html).
 
 ```html
-<!DOCTYPE>
+<!DOCTYPE >
 <html lang="en">
-    <head>
-        <title>Hello</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
-        <style>
-            * {box-sizing: border-box;}
-            body {font-family: Open Sans, Helvetica Neue, Arial, sans-serif; color: #121218;}
-            .card {width: 1200px; height: 630px; background: url("./template.svg") no-repeat; padding: 5rem;}
-            .title {font-size: 5rem; font-weight: bold;}
-        </style>
-    </head>
-    <body>
-        <div class="card">
-            <div class="title">Will be replaced! Wuhu! Party :)</div>
-        </div>
-    </body>
+  <head>
+    <title>Hello</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family:
+          Open Sans,
+          Helvetica Neue,
+          Arial,
+          sans-serif;
+        color: #121218;
+      }
+      .card {
+        width: 1200px;
+        height: 630px;
+        background: url('./template.svg') no-repeat;
+        padding: 5rem;
+      }
+      .title {
+        font-size: 5rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="title">Will be replaced! Wuhu! Party :)</div>
+    </div>
+  </body>
 </html>
 ```
+
 [template.html]
 
 It's super simple, directly using Google Fonts with a [svg graphic as background](https://github.com/LukaHarambasic/harambasic.de/blob/main/scripts/generate-social-media-preview/template.svg). Thereby only the text has to be styled.
@@ -184,6 +202,7 @@ I only need to define a new script in my `package.json`. This will be executed i
   }
 }
 ```
+
 [package.json]
 
 ```console
@@ -194,6 +213,7 @@ I only need to define a new script in my `package.json`. This will be executed i
 touch .commit
 exit
 ```
+
 [.husky/pre-commit]
 
 The new script is then called here `npm run socialMedia:auto`.
@@ -212,6 +232,7 @@ if [ -e .commit ]
 fi
 exit
 ```
+
 [.husky/post-commit]
 
 ## Manual
@@ -228,6 +249,7 @@ For some pages, which are unique like home or imprint I also need images, but au
   }
 }
 ```
+
 [package.json]
 
 You only need to add a script to your `package.json` and then parse the arguments to retrieve the title.

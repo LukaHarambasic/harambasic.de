@@ -4,7 +4,7 @@ const { getSlug } = require('../../assets/js/getSlug')
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout,
+  output: process.stdout
 })
 
 const ROOT_PATH = process.cwd()
