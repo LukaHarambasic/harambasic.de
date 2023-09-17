@@ -3,18 +3,22 @@
   import type { StatusFilter } from '$lib/types/entry'
   import type { StackEntryStatus, ProjectStatus } from '$lib/types/enums'
   import { enumToArray, setParam } from '$lib/util/helper'
-  import { createEventDispatcher } from 'svelte'
+  import { createEventDispatcher, onMount} from 'svelte'
   import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
 
   const dispatch = createEventDispatcher()
 
   export let statusEnum: StatusFilter
   const statuses = enumToArray(statusEnum)
-  let status: StatusFilter = ($page.url.searchParams.get('status') as StatusFilter) || 'ALL'
+  let status: StatusFilter = 'ALL'
   function onStatusChange() {
     setParam('status', status)
     dispatch('status', status)
   }
+
+	onMount(() => {
+    status = ($page.url.searchParams.get('status') as StatusFilter) || 'ALL'
+	});
 </script>
 
 <div class="filter card">

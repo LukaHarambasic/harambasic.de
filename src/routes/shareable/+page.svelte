@@ -9,14 +9,15 @@
   import { ShareableSortProperty, SortDirection } from '$lib/types/enums'
   import type { PageData } from './$types'
   import Icon from '@iconify/svelte'
+  import { onMount } from 'svelte'
 
   export let data: PageData
   const [entries, tags] = data.shareables
 
   // all that "as" stuff should be removed, thats not right
-  $: filterTagSlug = $page.url.searchParams.get('tag') || 'all'
-  $: sortProperty = ($page.url.searchParams.get('property') as ShareableSortProperty) || ShareableSortProperty.Published
-  $: sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+  $: filterTagSlug = 'all'
+  $: sortProperty = ShareableSortProperty.Published
+  $: sortDirection = SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
 
   function onProperty(event: { detail: ShareableSortProperty }) {
@@ -30,6 +31,12 @@
   function onTag(event: { detail: string }) {
     filterTagSlug = event.detail
   }
+
+  onMount(() => {
+    filterTagSlug = $page.url.searchParams.get('tag') || 'all'
+    sortProperty = ($page.url.searchParams.get('property') as ShareableSortProperty) || ShareableSortProperty.Published
+    sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+	});
 </script>
 
 <p>
