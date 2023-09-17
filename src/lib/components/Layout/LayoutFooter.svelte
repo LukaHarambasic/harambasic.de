@@ -2,7 +2,8 @@
   <ul>
     <li><a href="https://www.linkedin.com/in/harambasic/">LinkedIn</a></li>
     <li><a href="https://github.com/LukaHarambasic">GitHub</a></li>
-    <li><a rel="me" href="https://mstdn.social/@luha">Mastodon</a></li>
+    <li><a href="https://twitter.com/luka_harambasic">Twitter</a></li>
+    <!-- <li><a rel="me" href="https://mstdn.social/@luha">Mastodon</a></li> -->
   </ul>
   <ul>
     <li><a href="/imprint">Imprint</a></li>

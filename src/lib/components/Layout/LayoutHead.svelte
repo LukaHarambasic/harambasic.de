@@ -1,11 +1,11 @@
 <script lang="ts">
-  export let title: string = 'Default title'
+  export let title: string = ''
   export let description: string = 'Beautiful description'
   export let permalink: string = 'https://TODO.com/'
   export let socialImg: string = 'https://TODO.com/image.png'
   export let socialImgAlt: string = 'same as title?'
 
-  const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
+  $: fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
 </script>
 
 <svelte:head>

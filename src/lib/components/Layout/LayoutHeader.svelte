@@ -24,7 +24,7 @@
     }
   ]
 
-  function isActiveRoute(url: string): boolean {
+  $: isActiveRoute = (url: string): boolean => {
     const pathname = $page.url.pathname
     if(url === '/' && pathname === '/') {
       return true
