@@ -126,10 +126,10 @@
       <small>Get in touch!</small>
     </div>
     <div class="segmented-buttons">
-      <a href="https://TODO.com" class="button">Signal</a>
+      <!-- <a href="https://TODO.com" class="button">Signal</a> -->
       <a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
       <a href="https://github.com/LukaHarambasic" class="button">GitHub</a>
-      <a href="https://mstdn.social/TODO" class="button">Mastodon</a>
+      <!-- <a href="https://mstdn.social/TODO" class="button">Mastodon</a> -->
     </div>
   </div>
   <div class="group">
@@ -164,7 +164,7 @@
       align-items: flex-end;
       gap: var(--l);
       .profile {
-        size: 10rem;
+        size: 14.cqb;
         border-radius: var(--border-radius);
       }
       .content {
