@@ -9,10 +9,7 @@ const config = {
   preprocess: [vitePreprocess({ postcss: true })],
 
   kit: {
-    adapter: adapter(),
-    prerender: {
-      entries: ['*']
-    }
+    adapter: adapter()
   }
 }
 
