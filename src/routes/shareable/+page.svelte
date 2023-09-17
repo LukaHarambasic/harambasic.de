@@ -50,7 +50,8 @@
   <ul slot="entries" class="entries">
     {#each filteredAndSorted as entry}
       <li class="h-feed">
-        <a href={entry.url}>
+        <!-- <a href={entry.url}> -->
+        <a href="https://harambasic.de">
           <div class="content">
             <!-- TODO add fields from supabase -->
             <strong class="title">
