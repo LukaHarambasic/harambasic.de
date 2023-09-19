@@ -3,10 +3,9 @@ import type { Tag } from "$lib/types/tag"
 
 export let tag: Tag
 export let selected: boolean = false
-export let isClickable: boolean = true
 </script>
 
-{#if isClickable}
+
 <button
     on:click
     class="tag"
@@ -15,12 +14,6 @@ export let isClickable: boolean = true
 >
     {tag.display}
 </button>
-{:else}
-<div class="tag" class:selected={selected}>
-    {tag.display}
-</div>
-
-{/if}
 
 <style lang="postcss">
 .tag {
