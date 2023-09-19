@@ -44,8 +44,8 @@
 </p>
 <Entries>
   <EntriesSidebar slot="sidebar">
-    <EntriesSorter propertiesEnum={ShareableSortProperty} on:property={onProperty} on:direction={onDirection} />
-    <EntriesTags {tags} on:tag={onTag} />
+    <EntriesSorter propertiesEnum={ShareableSortProperty} on:propertyChange={onProperty} on:directionChange={onDirection} />
+    <EntriesTags {tags} on:tagChange={onTag} />
   </EntriesSidebar>
   <ul slot="entries" class="entries">
     {#each filteredAndSorted as entry}

@@ -29,6 +29,7 @@
 
   function onTag(event: { detail: string }) {
     filterTagSlug = event.detail
+    console.log('ontag posts')
   }
 
   onMount(() => {
@@ -40,8 +41,8 @@
 
 <Entries>
   <EntriesSidebar slot="sidebar">
-    <EntriesSorter propertiesEnum={PostSortProperty} on:property={onProperty} on:direction={onDirection} />
-    <EntriesTags {tags} on:tag={onTag} />
+    <EntriesSorter propertiesEnum={PostSortProperty} on:propertyChange={onProperty} on:directionChange={onDirection} />
+    <EntriesTags {tags} on:tagChange={onTag} />
   </EntriesSidebar>
   <ul slot="entries" class="entries">
     {#each filteredAndSortedEntries as post}

@@ -15,14 +15,14 @@
   let property: SortProperty = propertiesDefault || 'PUBLISHED'
   function onPropertyChange() {
     setParam('property', property)
-    dispatch('property', property)
+    dispatch('propertyChange', property)
   }
 
   const directions = enumToArray(SortDirection).sort((a: any, b: any) => sortAlphabetical(a.key, b.key))
   let direction: SortDirection = SortDirection.Desc
   function onDirectionChange() {
     setParam('direction', direction)
-    dispatch('direction', direction)
+    dispatch('directionChange', direction)
   }
 
   onMount(() => {

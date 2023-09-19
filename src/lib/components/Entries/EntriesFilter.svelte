@@ -12,7 +12,7 @@
   let status: StatusFilter = 'ALL'
   function onStatusChange() {
     setParam('status', status)
-    dispatch('status', status)
+    dispatch('statusChange', status)
   }
 
 	onMount(() => {

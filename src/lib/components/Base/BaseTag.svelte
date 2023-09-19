@@ -3,14 +3,27 @@ import type { Tag } from "$lib/types/tag"
 
 export let tag: Tag
 export let selected: boolean = false
+export let isClickable: boolean = true
 </script>
 
-<a href={tag.relativePath} title={tag.display} class:selected={selected}>
+{#if isClickable}
+<button
+    on:click
+    class="tag"
+    title={tag.display} 
+    class:selected={selected}
+>
     {tag.display}
-</a>
+</button>
+{:else}
+<div class="tag" class:selected={selected}>
+    {tag.display}
+</div>
+
+{/if}
 
 <style lang="postcss">
-a {
+.tag {
     display:inline-block;
     text-align:center;
     color: var(--c-font-accent-dark);

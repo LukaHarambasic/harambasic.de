@@ -15,7 +15,7 @@
   function onTagChange(slug: string) {
     tagSlug = slug
     setParam('tag', slug)
-    dispatch('tag', slug)
+    dispatch('tagChange', slug)
   }
 
   onMount(() => {
@@ -30,7 +30,8 @@
       <li>
         <BaseTag 
           tag={tag} 
-          selected={tagSlug === tag.slug} 
+          selected={tagSlug === tag.slug}
+          isClickable={true}
           on:click={() => {
             onTagChange(tag.slug)
           }} />

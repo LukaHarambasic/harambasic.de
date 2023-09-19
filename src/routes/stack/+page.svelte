@@ -47,9 +47,9 @@
 
 <Entries>
   <EntriesSidebar slot="sidebar">
-    <EntriesSorter propertiesEnum={StackEntrySortProperty} on:property={onProperty} on:direction={onDirection} />
-    <EntriesFilter statusEnum={StackEntryStatus} on:status={onStatus} />
-    <EntriesTags {tags} on:tag={onTag} />
+    <EntriesSorter propertiesEnum={StackEntrySortProperty} on:propertyChange={onProperty} on:directionChange={onDirection} />
+    <EntriesFilter statusEnum={StackEntryStatus} on:statusChange={onStatus} />
+    <EntriesTags {tags} on:tagChange={onTag} />
   </EntriesSidebar>
   <ul slot="entries" class="entries">
     {#each filteredAndSorted as entry}

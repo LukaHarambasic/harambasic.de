@@ -47,9 +47,9 @@
 
 <Entries>
   <EntriesSidebar slot="sidebar">
-    <EntriesSorter propertiesEnum={ProjectSortProperty} propertiesDefault={ProjectSortProperty.Priority} on:property={onProperty} on:direction={onDirection} />
-    <EntriesFilter statusEnum={ProjectStatus} on:status={onStatus} />
-    <EntriesTags {tags} on:tag={onTag} />
+    <EntriesSorter propertiesEnum={ProjectSortProperty} propertiesDefault={ProjectSortProperty.Priority} on:propertyChange={onProperty} on:directionChange={onDirection} />
+    <EntriesFilter statusEnum={ProjectStatus} on:statusChange={onStatus} />
+    <EntriesTags {tags} on:tagChange={onTag} />
   </EntriesSidebar>
   <ul class="entries" slot="entries">
     {#each filteredAndSorted as entry}
