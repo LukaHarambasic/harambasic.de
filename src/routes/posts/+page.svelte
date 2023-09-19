@@ -32,7 +32,7 @@
   }
 
   onMount(() => {
-    filterTagSlug = $page.url.searchParams.get('tag') || 'all'
+    filterTagSlug = ($page.url.searchParams.get('tag')) || 'all'
     sortProperty = ($page.url.searchParams.get('property') as PostSortProperty) || PostSortProperty.Published
     sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
 	});
