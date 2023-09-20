@@ -155,8 +155,7 @@
     gap: var(--l);
     width: var(--layout-l);
     margin: var(--xl) 0;
-    @media screen and (max-width: calc(48rem + 2 * 4rem)) {
-      background: pink;
+    @media screen and (max-width: 56rem) {
       width: 100%
     }
     .inner {
@@ -165,8 +164,11 @@
       flex-wrap: nowrap;
       align-content: stretch;
       justify-content: flex-start;
-      align-items: flex-end;
+      align-items: flex-start;
       gap: var(--l);
+      @media screen and (max-width: 44rem) {
+        flex-direction: column;
+      }
       .profile {
         size: 14.5rem;
         border-radius: var(--border-radius);
@@ -197,7 +199,7 @@
     width: 100%;
     .group {
       position: relative;
-      @media screen and (max-width: 1400px) {
+      @media screen and (max-width: 86rem) {
         position: static;
       }
       h3 {
@@ -217,7 +219,7 @@
         font-family: var(--font-family);
         letter-spacing: var(--font-letter-spacing-headline);
         text-align: right;
-        @media screen and (max-width: 1400px) {
+        @media screen and (max-width: 86rem) {
           position: static;
           top: none;
           left: none;
@@ -242,6 +244,9 @@
         justify-content: flex-start;
         align-items: stretch;
         gap: var(--l);
+        @media screen and (max-width: 68rem) {
+          flex-wrap: wrap;
+        }
         > li {
           flex: 1 1 auto;
           &:first-child:nth-last-child(1),
@@ -251,14 +256,23 @@
           &:first-child:nth-last-child(2),
           &:first-child:nth-last-child(2) ~ li {
             width: calc(100% / 2);
+            @media screen and (max-width: 68rem) {
+              width: 100%;
+            }
           }
           &:first-child:nth-last-child(3),
           &:first-child:nth-last-child(3) ~ li {
             width: calc(100% / 3);
+            @media screen and (max-width: 60rem) {
+              width: 100%;
+            }
           }
           &:first-child:nth-last-child(4),
           &:first-child:nth-last-child(4) ~ li {
             width: calc(100% / 4);
+            @media screen and (max-width: 60rem) {
+              width: 100%;
+            }
           }
           .card {
             display: block;
@@ -358,6 +372,9 @@
     align-items: stretch;
     width: var(--layout-m);
     margin: var(--xl) 0;
+    @media screen and (max-width: 40rem) {
+      width: 100%
+    }
     .group {
       display: flex;
       flex-direction: row;

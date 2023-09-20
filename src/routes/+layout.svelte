@@ -55,9 +55,8 @@
     width: 100%;
     height: auto;
     min-height: 100vh;
-    @media screen and (max-width: 1400px) {
+    @media screen and (max-width: 86rem) {
       grid-template-columns: 4rem 1fr 4rem;
-      background:tomato;
     }
     :global(> header) {
       grid-area: header;

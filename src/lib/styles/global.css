@@ -92,11 +92,15 @@ body {
   h2 {
     margin: var(--xl) 0 var(--m) 0;
     width: 30ch;
+    background: tomato;
     font-weight: 900;
     font-size: var(--font-xl);
     line-height: 1.2;
     font-family: var(--font-family);
     letter-spacing: var(--font-letter-spacing-headline);
+    @media screen and (width: 31ch) {
+      width: 100%
+    }
     &:first-of-type {
       margin: 0 0 var(--m) 0;
     }
@@ -109,6 +113,9 @@ body {
     line-height: 1.2;
     font-family: var(--font-family);
     letter-spacing: var(--font-letter-spacing-headline);
+    @media screen and (width: 31ch) {
+      width: 100%
+    }
   }
   /* If not done specific it overrides other margins */
   > p,
@@ -136,6 +143,9 @@ body {
   > ol {
     margin: var(--l) 0 var(--l) var(--l);
     width: 50ch;
+    @media screen and (width: 51ch) {
+      width: 100%
+    }
     ul,
     ol {
       margin: 0 0 0 var(--l);
