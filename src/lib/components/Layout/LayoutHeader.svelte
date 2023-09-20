@@ -56,6 +56,7 @@
     align-content: stretch;
     justify-content: space-between;
     align-items: flex-start;
+    width: 100%;
   }
   .logo {
     display: flex;

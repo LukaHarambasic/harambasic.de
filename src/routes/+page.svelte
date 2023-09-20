@@ -6,7 +6,7 @@
   import type { StackEntry } from '$lib/types/stackEntry'
   import type { Post } from '$lib/types/post'
   import type { PageData } from './$types'
-  import type { Shareable } from '$lib/types/shareable'
+  // import type { Shareable } from '$lib/types/shareable'
 
   export let data: PageData
   const [posts] = data.posts
@@ -155,6 +155,10 @@
     gap: var(--l);
     width: var(--layout-l);
     margin: var(--xl) 0;
+    @media screen and (max-width: calc(48rem + 2 * 4rem)) {
+      background: pink;
+      width: 100%
+    }
     .inner {
       display: flex;
       flex-direction: row;
@@ -164,7 +168,7 @@
       align-items: flex-end;
       gap: var(--l);
       .profile {
-        size: 14.cqb;
+        size: 14.5rem;
         border-radius: var(--border-radius);
       }
       .content {
@@ -193,6 +197,9 @@
     width: 100%;
     .group {
       position: relative;
+      @media screen and (max-width: 1400px) {
+        position: static;
+      }
       h3 {
         display: flex;
         position: absolute;
@@ -210,6 +217,16 @@
         font-family: var(--font-family);
         letter-spacing: var(--font-letter-spacing-headline);
         text-align: right;
+        @media screen and (max-width: 1400px) {
+          position: static;
+          top: none;
+          left: none;
+          width: 100%;
+          height: auto;
+          justify-content: flex-start;
+          text-align: center;
+          margin: 0 0 var(--m) var(--xs)
+        }
         span {
           line-height: 1;
         }
