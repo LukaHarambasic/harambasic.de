@@ -188,6 +188,9 @@
         p {
           font-weight: normal;
           line-height: 1.5;
+          a {
+            line-break: loose;
+          }
         }
       }
     }

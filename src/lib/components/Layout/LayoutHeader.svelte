@@ -78,6 +78,9 @@
       font-family: var(--font-family);
       letter-spacing: var(--font-letter-spacing-headline);
       text-decoration: none;
+      @media screen and (max-width: 26rem) {
+        text-align: center;
+      }
       &:hover {
         text-decoration: underline;
         text-decoration-thickness: var(--underline-thickness);
@@ -85,7 +88,6 @@
     }
   }
   nav {
-    background: tomato;
     ul {
       display: flex;
       flex-direction: row;
@@ -94,6 +96,10 @@
       justify-content: flex-start;
       align-items: flex-start;
       gap: var(--m);
+      @media screen and (max-width: 26rem) {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
       li {
         a {
           transition: var(--transition);

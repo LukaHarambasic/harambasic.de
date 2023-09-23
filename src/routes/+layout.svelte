@@ -58,6 +58,11 @@
     @media screen and (max-width: 86rem) {
       grid-template-columns: 4rem 1fr 4rem;
     }
+    @media screen and (max-width: 32rem) {
+      row-gap: var(-l);
+      padding: var(--l) 0;
+      grid-template-columns: 2rem 1fr 2rem;
+    }
     :global(> header) {
       grid-area: header;
     }

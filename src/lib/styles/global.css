@@ -97,8 +97,8 @@ body {
     line-height: 1.2;
     font-family: var(--font-family);
     letter-spacing: var(--font-letter-spacing-headline);
-    @media screen and (width: 31ch) {
-      width: 100%
+    @media screen and (max-width: 28rem) {
+      width: 100%;
     }
     &:first-of-type {
       margin: 0 0 var(--m) 0;
@@ -112,8 +112,8 @@ body {
     line-height: 1.2;
     font-family: var(--font-family);
     letter-spacing: var(--font-letter-spacing-headline);
-    @media screen and (width: 31ch) {
-      width: 100%
+    @media screen and (max-width: 28rem) {
+      width: 100%;
     }
   }
   /* If not done specific it overrides other margins */
