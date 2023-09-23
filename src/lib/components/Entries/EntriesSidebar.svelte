@@ -1,4 +1,5 @@
 <aside>
+  <!-- TODO filter and sort for mobile, collapsable -->
   <slot />
 </aside>
 
@@ -14,5 +15,8 @@
     align-items: stretch;
     gap: var(--l);
     width: 100%;
+    @media screen and (max-width: 50rem) {
+      position: static;
+    }
   }
 </style>

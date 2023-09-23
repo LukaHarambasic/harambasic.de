@@ -75,6 +75,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--l);
+    @media screen and (max-width: 62rem) {
+      grid-template-columns: 1fr;
+    }
     li {
       display: flex;
       position: relative;
