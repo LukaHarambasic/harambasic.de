@@ -57,6 +57,11 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    @media screen and (max-width: 32rem) {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--l);
+    }
   }
   .logo {
     display: flex;

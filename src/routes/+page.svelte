@@ -316,6 +316,7 @@
               &:hover {
                 > img {
                   filter: grayscale(0);
+                  opacity: 1;
                 }
               }
               > img {
@@ -324,6 +325,7 @@
                 width: 12rem;
                 height: 12rem;
                 filter: grayscale(1);
+                opacity: 0.5;
               }
               > .content {
                 padding: var(--l);
@@ -372,7 +374,7 @@
     align-items: stretch;
     width: var(--layout-m);
     margin: var(--xl) 0;
-    @media screen and (max-width: 40rem) {
+    @media screen and (max-width: 46rem) {
       width: 100%
     }
     .group {

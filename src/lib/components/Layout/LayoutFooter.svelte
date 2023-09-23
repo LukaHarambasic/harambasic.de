@@ -20,6 +20,11 @@
     align-content: stretch;
     justify-content: space-between;
     align-items: flex-start;
+    @media screen and (max-width: 42rem) {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--m);
+    }
   }
   ul {
     display: flex;
@@ -29,6 +34,13 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: var(--m);
+    @media screen and (max-width: 42rem) {
+      flex-wrap: wrap;
+    }
+    @media screen and (max-width: 32rem) {
+      flex-direction: column;
+      align-items: center;
+    }
     li {
       a {
         color: var(--c-font);
