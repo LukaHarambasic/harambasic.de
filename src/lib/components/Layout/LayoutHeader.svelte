@@ -85,6 +85,7 @@
     }
   }
   nav {
+    background: tomato;
     ul {
       display: flex;
       flex-direction: row;

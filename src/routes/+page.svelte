@@ -172,6 +172,10 @@
       .profile {
         size: 14.5rem;
         border-radius: var(--border-radius);
+        @media screen and (max-width: 32rem) {
+          width: 100%;
+          height: auto;
+        }
       }
       .content {
         h2 {
@@ -301,6 +305,7 @@
               border: 4px solid var(--c-light);
               border-radius: 100%;
               background: var(--c-light);
+              z-index: 1000;
             }
             &.text {
               padding: var(--l);
@@ -313,6 +318,9 @@
               justify-content: flex-start;
               align-items: stretch;
               gap: 0;
+              @media screen and (max-width: 32rem) {
+                flex-direction: column;
+              }
               &:hover {
                 > img {
                   filter: grayscale(0);
@@ -326,6 +334,11 @@
                 height: 12rem;
                 filter: grayscale(1);
                 opacity: 0.5;
+                @media screen and (max-width: 32rem) {
+                  width: 100%;
+                  height: auto;
+                  border-radius: var(--border-radius) var(--border-radius) 0 0;
+                }
               }
               > .content {
                 padding: var(--l);
@@ -386,6 +399,10 @@
       align-items: flex-start;
       border-bottom: 1px solid var(--c-surface);
       padding: var(--l);
+      @media screen and (max-width: 32rem) {
+        flex-direction: column;
+        gap: var(--l);
+      }
       .meta {
         display: flex;
         flex-direction: column;
