@@ -9,18 +9,17 @@
     isOpen = detailsElement.open;
   }
 
-  let isMobile = true
+  let isDesktop = true
 
   onMount(() => {
     window.addEventListener('resize', () => {
-      isMobile = window.innerWidth < 50 * 16 * 1.25;
+      isDesktop = window.innerWidth > 50 * 16 * 1.25;
     });
   })
 </script>
 
 <aside>
-  <!-- TODO filter and sort for mobile, collapsable -->
-  <details open bind:this={detailsElement} on:toggle={handleToggle}>
+  <details open={isDesktop} bind:this={detailsElement} on:toggle={handleToggle}>
     <summary class="card hoverable">
       <span>Filter & Sort</span>
       {#if isOpen}
