@@ -14,6 +14,7 @@
   let isDesktop: boolean;
 
   function handleSummaryVisibility() {
+    if (!summaryElement) return;
     const style = window.getComputedStyle(summaryElement);
     isDesktop = style.display === 'none';
   }
