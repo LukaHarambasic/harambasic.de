@@ -91,6 +91,9 @@
           font-family: var(--font-family);
           letter-spacing: var(--font-letter-spacing-headline);
           text-align: center;
+          @media screen and (max-width: 28rem) {
+            width: 100%;
+          }
         }
         .date {
           a {
