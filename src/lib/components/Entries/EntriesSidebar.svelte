@@ -9,11 +9,16 @@
     isOpen = detailsElement.open;
   }
 
-  let isDesktop = true
+  let isDesktop: boolean;
+
+  function handleResize() {
+    isDesktop = window.innerWidth > 50 * 16 * 1.25;
+  }
 
   onMount(() => {
+    handleResize();
     window.addEventListener('resize', () => {
-      isDesktop = window.innerWidth > 50 * 16 * 1.25;
+      handleResize();
     });
   })
 </script>
