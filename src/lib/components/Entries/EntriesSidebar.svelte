@@ -62,6 +62,9 @@
           background: var(--c-surface-accent);
           color: var(--c-font);
         }
+        &::-webkit-details-marker {
+          display:none;
+        }
         @media screen and (max-width: 50rem) {
           display: flex;
         }
