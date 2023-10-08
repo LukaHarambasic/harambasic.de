@@ -96,6 +96,9 @@
         padding: var(--l);
         color: var(--c-font);
         text-decoration: none;
+        @media screen and (max-width: 50rem) {
+          flex-direction: column-reverse;
+        }
         &:hover {
           transform: scale(0.99);
           cursor: pointer;
@@ -125,7 +128,7 @@
           display: flex;
           flex-grow: 1;
           flex-direction: row;
-          flex-wrap: nowrap;
+          flex-wrap: wrap;
           align-content: stretch;
           justify-content: flex-start;
           align-items: flex-start;
@@ -139,6 +142,12 @@
           font-size: var(--font-m);
           text-decoration: none;
           font-style: italic;
+          text-align: right;
+          flex-shrink: 0;
+          @media screen and (max-width: 50rem) {
+            margin: 0 0 calc(-1 * var(--m)) 0;
+            flex-shrink: 1;
+          }
         }
         :global(.arrow) {
           color: var(--c-font-accent-dark);
