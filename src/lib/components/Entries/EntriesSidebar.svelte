@@ -1,5 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte"
+    import { onMount } from "svelte"
   
   let detailsElement: any;
   let isOpen: boolean;
@@ -7,6 +8,14 @@
   function handleToggle() {
     isOpen = detailsElement.open;
   }
+
+  let isMobile = true
+
+  onMount(() => {
+    window.addEventListener('resize', () => {
+      isMobile = window.innerWidth < 50 * 16 * 1.25;
+    });
+  })
 </script>
 
 <aside>

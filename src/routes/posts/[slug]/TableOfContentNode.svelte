@@ -7,7 +7,7 @@
 
 <li>
   <a href={anchor}>{node.text}</a>
-  // Otherwise it throws an type error if done in a variable above
+  <!-- Otherwise it throws an type error if done in a variable above -->
   {#if node.children && node.children.length !== 0}
     <ol>
       {#each node.children as child}
