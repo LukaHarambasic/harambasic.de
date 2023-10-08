@@ -1,8 +1,10 @@
 <script lang="ts">
   import Icon from "@iconify/svelte"
-    import { onMount } from "svelte"
+  import { onMount } from "svelte"
   
+  // TODO types
   let detailsElement: any;
+  let summaryElement: any;
   let isOpen: boolean;
 
   function handleToggle() {
@@ -11,21 +13,22 @@
 
   let isDesktop: boolean;
 
-  function handleResize() {
-    isDesktop = window.innerWidth > 50 * 16 * 1.25;
+  function handleSummaryVisibility() {
+    const style = window.getComputedStyle(summaryElement);
+    isDesktop = style.display === 'none';
   }
 
   onMount(() => {
-    handleResize();
+    handleSummaryVisibility();
     window.addEventListener('resize', () => {
-      handleResize();
+      handleSummaryVisibility();
     });
   })
 </script>
 
 <aside>
   <details open={isDesktop} bind:this={detailsElement} on:toggle={handleToggle}>
-    <summary class="card hoverable">
+    <summary class="card hoverable" bind:this={summaryElement}>
       <span>Filter & Sort</span>
       {#if isOpen}
         <Icon icon="ph:x-circle-bold" />
