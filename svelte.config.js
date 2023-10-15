@@ -7,7 +7,6 @@ const config = {
   // for more information about preprocessors
   // TODO check if I wanna use it:
   preprocess: [vitePreprocess({ postcss: true })],
-
   kit: {
     adapter: adapter(),
     prerender: {

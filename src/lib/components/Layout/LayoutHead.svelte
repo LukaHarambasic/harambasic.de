@@ -1,10 +1,12 @@
-<script lang="ts">
+<script lang="ts">  
   export let title: string = ''
   const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
 
   export let description: string = 'Beautiful description'
 
   export let permalink: string = 'https://harambasic.de'
+  export let relativePath: string
+  console.log(`permalink: ${permalink}\nrelativePath: ${relativePath}`)
 
   const socialImg = `${permalink}/social.png`
   export let socialImgAlt: string = fullTitle
