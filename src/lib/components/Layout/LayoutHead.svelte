@@ -4,9 +4,9 @@
 
   export let description: string = 'Beautiful description'
 
-  export let permalink: string = 'https://harambasic.de'
+  export let permalink: string
   export let relativePath: string
-  console.log(`permalink: ${permalink}\nrelativePath: ${relativePath}`)
+  console.log('----------------')
 
   const socialImg = `${permalink}/social.png`
   export let socialImgAlt: string = fullTitle
