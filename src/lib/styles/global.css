@@ -1,3 +1,7 @@
+* {
+  outline: 1px solid rgba(255, 0, 0, 0.25);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -86,6 +90,12 @@ body {
 
 .rich-text {
   line-height: 1.75;
+  * {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
   img {
     border-radius: var(--border-radius);
   }
@@ -112,7 +122,7 @@ body {
     line-height: 1.2;
     font-family: var(--font-family);
     letter-spacing: var(--font-letter-spacing-headline);
-    @media screen and (max-width: 28rem) {
+    @media screen and (max-width: 30rem) {
       width: 100%;
     }
   }
@@ -142,8 +152,8 @@ body {
   > ol {
     margin: var(--l) 0 var(--l) var(--l);
     width: 50ch;
-    @media screen and (width: 51ch) {
-      width: 100%
+    @media screen and (max-width: 50rem) {
+      width: calc(100% - var(--l));
     }
     ul,
     ol {
@@ -186,6 +196,9 @@ body {
   background: var(--c-surface);
   padding: var(--l);
   border: var(--border);
+  @media screen and (max-width: 42rem) {
+    flex-direction: column;
+  }
   &.no-spacing {
     padding: 0;
     gap: 0;

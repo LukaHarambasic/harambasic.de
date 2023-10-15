@@ -33,9 +33,9 @@
       <section class="header">
         <h1>{title}</h1>
         {#if published}
-            <time class="date dt-published" datetime={published?.raw?.toString()}>
-              <a href={relativePath} class="u-url">{published.display}</a>
-            </time>
+          <time class="date dt-published" datetime={published?.raw?.toString()}>
+            <a href={relativePath} class="u-url">{published.display}</a>
+          </time>
         {/if}
       </section>
     {/if}
@@ -91,7 +91,7 @@
           font-family: var(--font-family);
           letter-spacing: var(--font-letter-spacing-headline);
           text-align: center;
-          @media screen and (max-width: 28rem) {
+          @media screen and (max-width: 42rem) {
             width: 100%;
           }
         }

@@ -60,9 +60,17 @@
     grid-template-areas: 'tldr placeholder' 'post tags' 'post toc' 'footer footer';
     column-gap: var(--l);
     row-gap: var(--l);
+    @media screen and (max-width: 74rem) {
+      grid-template-areas: 'tldr' 'tags' 'toc' 'post' 'footer';
+      grid-template-rows: auto;
+      grid-template-columns: 100%;
+    }
     .placeholder {
       grid-area: placeholder;
       opacity: 0.5;
+      @media screen and (max-width: 74rem) {
+        display: none;
+      }
     }
     .tags {
       grid-area: tags;
