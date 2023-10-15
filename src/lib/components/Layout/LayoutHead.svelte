@@ -1,18 +1,18 @@
 <script lang="ts">  
-  export let title: string = ''
+  export let title: string
   const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
 
-  export let description: string = 'Beautiful description'
+  export let description: string
 
   export let permalink: string
   export let relativePath: string
-  console.log('----------------')
+
 
   const socialImg = `${permalink}/social.png`
   export let socialImgAlt: string = fullTitle
 
   console.log(
-    `title: ${title}\nfullTitle: ${fullTitle}\ndescription: ${description}\npermalink: ${permalink}\nsocialImg: ${socialImg}\nsocialImgAlt: ${socialImgAlt}`
+    `title: ${title}\nfullTitle: ${fullTitle}\ndescription: ${description}\npermalink: ${permalink}\nrelativePath: ${relativePath}\nsocialImg: ${socialImg}\nsocialImgAlt: ${socialImgAlt}`
   );
 </script>
 
