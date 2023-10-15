@@ -2,9 +2,9 @@
     <p>Information in accordance with Section 5 TMG</p>
     <h3>Address</h3>
     <ul>
-        <li>Bühler Straße 7</li>
-        <li>69126 Heidelberg</li>
-        <li>Germany</li>
+        <li>Fredericagade 38</li>
+        <li>1310 Copenhagen</li>
+        <li>Denmark</li>
     </ul>
     <h3>Contact Information</h3>
     <ul>
