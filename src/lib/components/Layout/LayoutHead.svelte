@@ -9,9 +9,9 @@
   const socialImg = `${permalink}/social.png`
   export let socialImgAlt: string = fullTitle
 
-console.log(
-  `title: ${title}\nfullTitle: ${fullTitle}\ndescription: ${description}\npermalink: ${permalink}\nsocialImg: ${socialImg}\nsocialImgAlt: ${socialImgAlt}`
-);
+  console.log(
+    `title: ${title}\nfullTitle: ${fullTitle}\ndescription: ${description}\npermalink: ${permalink}\nsocialImg: ${socialImg}\nsocialImgAlt: ${socialImgAlt}`
+  );
 </script>
 
 <svelte:head>

@@ -24,7 +24,7 @@
   )
 </script>
 
-<LayoutHead {title} {description} {permalink} {socialImg} {socialImgAlt} />
+<LayoutHead {title} {description} {permalink} {socialImgAlt} />
 <LayoutSkipToContent />
 <div class="container">
   <LayoutHeader />

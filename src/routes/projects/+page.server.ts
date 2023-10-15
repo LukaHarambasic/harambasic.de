@@ -1,6 +1,12 @@
 import type { PageServerLoad } from './$types'
+import { env } from '$env/dynamic/private'
+
 
 export const load = (async ({url}) => {
+  console.log('#lh')
+  console.log(env)
+  console.log(url)
+  console.log('################################')
   //TODO other meta data
   return {
     title: 'Projects',
