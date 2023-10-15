@@ -1,8 +1,4 @@
 <script lang="ts">
-  import { URL, DEPLOY_URL, DEPLOY_PRIME_URL } from '$env/static/private'
-
-  console.log(URL, DEPLOY_URL, DEPLOY_PRIME_URL)
-
   export let title: string = ''
   const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
 
