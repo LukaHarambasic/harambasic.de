@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types'
 import { env } from '$env/dynamic/private'
 
-export const load = (async ({url}) => {
+export const load = (async ({ url }) => {
   console.log('#lh')
   console.log(url)
   console.log('################################')
@@ -14,6 +14,6 @@ export const load = (async ({url}) => {
     socialImgAlt: 'TODO',
     relativePath: url.pathname,
     href: url.href,
-    permalink: env.DEPLOY_PRIME_URL || env.URL,
+    permalink: env.DEPLOY_PRIME_URL || env.URL
   }
 }) satisfies PageServerLoad
