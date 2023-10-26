@@ -26,7 +26,7 @@
     <div class="content rich-text">
       <h2>Heyho, I'm Luka!</h2>
       <p>
-        I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Wrapping up my master's in <a href="https://www.entrepreneurship.dtu.dk/education/msc-technology-entrepreneurship">Technology Entrepreneurship at DTU</a>. At <a href="https://monta.com/">Monta</a>, I work as a Product Manger for Product Led Support. Feel free to explore my past <a href="/projects">projects</a> or to check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If you want to <a href="#contact">chat</a>, just start a conversation about handball, woodworking, cooking, or dive into product and IT topics. I'm always eager to discuss!
+        I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Wrapping up my master in <a href="https://www.entrepreneurship.dtu.dk/education/msc-technology-entrepreneurship">Technology Entrepreneurship at DTU</a>. At <a href="https://monta.com/">Monta</a>, I work as a Product Manger. Feel free to explore my past <a href="/projects">projects</a> or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If you want to <a href="#contact">chat</a>, just start a conversation about handball, woodworking, cooking, sustianability, or dive into product and IT topics.
       </p>
     </div>
   </div>
