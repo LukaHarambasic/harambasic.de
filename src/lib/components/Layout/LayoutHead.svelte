@@ -21,13 +21,7 @@
   console.log('--------- LayoutHead (END) ---------')
 </script>
 
-<svelte:head>
-  <!-- TODO include locally -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <!-- TODO replace -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
-  <!-- Statistics -->
+<svelte:head><!-- Statistics -->
   <script data-goatcounter="https://luha.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <!-- Global Metadata -->
   <meta name="viewport" content="width=device-width" />

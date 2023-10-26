@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores'
   import '$lib/styles/reset.css'
+  import '$lib/styles/fonts.css'
   import '$lib/styles/variables.css'
   import '$lib/styles/global.css'
   import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte'
