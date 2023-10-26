@@ -24,7 +24,6 @@ const manualImageGeneration = async (title) => {
 }
 
 ;(async () => {
-  console.log()
   try {
     const title = process.argv[2].replace('--title=', '')
     await manualImageGeneration(title)
