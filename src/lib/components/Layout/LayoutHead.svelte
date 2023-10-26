@@ -18,6 +18,7 @@
   console.log(`relativePath: ${relativePath}`);
   console.log(`socialImg: ${socialImg}`);
   console.log(`socialImgAlt: ${socialImgAlt}`);
+  console.log('--------- LayoutHead (END) ---------')
 </script>
 
 <svelte:head>

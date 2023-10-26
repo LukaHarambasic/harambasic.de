@@ -17,6 +17,7 @@
   console.log(`permalink: ${permalink}`);
   console.log(`relativePath: ${relativePath}`);
   console.log(`socialImgAlt: ${socialImgAlt}`);
+  console.log('--------- Layout (END) ---------')
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release
   // https://github.com/sveltejs/kit/issues/5240
