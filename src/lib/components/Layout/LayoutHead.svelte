@@ -4,7 +4,7 @@
 
   export let description: string
 
-  export let permalink: string
+  export let permalink: string = ''
   export let relativePath: string
 
   const socialImg = `${permalink}/social.png`
