@@ -4,7 +4,6 @@ import { env } from '$env/dynamic/private'
 export const load = (async ({ url }) => {
   console.log('--------- Project (page.server.ts) ---------')
   console.log(url)
-  TODO other meta data
   const pathname = url.pathname
   console.log(pathname)
   console.log('---------- Project (page.server.ts) (END) -----------------')
