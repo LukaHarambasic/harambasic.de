@@ -1,8 +1,12 @@
 import type { PageServerLoad } from './$types'
+import { env } from '$env/dynamic/private'
 
-export const load = (async () => {
-  //TODO other meta data
+export const load = (async ({ url }) => {
   return {
-    title: 'Data Privacy'
+    title: 'Data Privacy',
+    description: "Data Privacy, not more, but also not less.",
+    socialImgAlt: 'TODO',
+    relativePath: url.pathname,
+    permalink: env.DEPLOY_PRIME_URL || env.URL
   }
 }) satisfies PageServerLoad
