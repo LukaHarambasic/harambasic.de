@@ -10,15 +10,15 @@
   const socialImg = `${permalink}/social.png`
   export let socialImgAlt: string = fullTitle
 
-  // console.log('--------- LayoutHead ---------')
-  // console.log(`title: ${title}`);
-  // console.log(`fullTitle: ${fullTitle}`);
-  // console.log(`description: ${description}`);
-  // console.log(`permalink: ${permalink}`);
-  // console.log(`relativePath: ${relativePath}`);
-  // console.log(`socialImg: ${socialImg}`);
-  // console.log(`socialImgAlt: ${socialImgAlt}`);
-  // console.log('--------- LayoutHead (END) ---------')
+  console.log('--------- LayoutHead ---------')
+  console.log(`title: ${title}`);
+  console.log(`fullTitle: ${fullTitle}`);
+  console.log(`description: ${description}`);
+  console.log(`permalink: ${permalink}`);
+  console.log(`relativePath: ${relativePath}`);
+  console.log(`socialImg: ${socialImg}`);
+  console.log(`socialImgAlt: ${socialImgAlt}`);
+  console.log('--------- LayoutHead (END) ---------')
 </script>
 
 <svelte:head><!-- Statistics -->
