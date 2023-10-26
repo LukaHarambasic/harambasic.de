@@ -1,24 +1,15 @@
 <script lang="ts">  
   export let title: string
-  const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
+  $: fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
 
-  export let description: string
+  export let description: string = ''
 
   export let permalink: string = ''
-  export let relativePath: string
 
-  const socialImg = `${permalink}/social.png`
+  export let relativePath: string = ''
+
   export let socialImgAlt: string = fullTitle
-
-  console.log('--------- LayoutHead ---------')
-  console.log(`title: ${title}`);
-  console.log(`fullTitle: ${fullTitle}`);
-  console.log(`description: ${description}`);
-  console.log(`permalink: ${permalink}`);
-  console.log(`relativePath: ${relativePath}`);
-  console.log(`socialImg: ${socialImg}`);
-  console.log(`socialImgAlt: ${socialImgAlt}`);
-  console.log('--------- LayoutHead (END) ---------')
+  $: socialImg = `${permalink}/${relativePath}/social.png`
 </script>
 
 <svelte:head><!-- Statistics -->
