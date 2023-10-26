@@ -7,13 +7,17 @@
   export let permalink: string
   export let relativePath: string
 
-
   const socialImg = `${permalink}/social.png`
   export let socialImgAlt: string = fullTitle
 
-  console.log(
-    `title: ${title}\nfullTitle: ${fullTitle}\ndescription: ${description}\npermalink: ${permalink}\nrelativePath: ${relativePath}\nsocialImg: ${socialImg}\nsocialImgAlt: ${socialImgAlt}`
-  );
+  console.log('--------- LayoutHead ---------')
+  console.log(`title: ${title}`);
+  console.log(`fullTitle: ${fullTitle}`);
+  console.log(`description: ${description}`);
+  console.log(`permalink: ${permalink}`);
+  console.log(`relativePath: ${relativePath}`);
+  console.log(`socialImg: ${socialImg}`);
+  console.log(`socialImgAlt: ${socialImgAlt}`);
 </script>
 
 <svelte:head>

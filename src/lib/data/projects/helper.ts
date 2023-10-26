@@ -10,6 +10,7 @@ export function filterAndSort(
   sortProperty: ProjectSortProperty,
   sortDirection: SortDirection
 ): Project[] {
+  console.log('filter and sort projects')
   return entries
     .filter((entry) => filterByTag(entry, filterTagSlug))
     .filter((entry) => filterByStatus(entry, filterStatus))
