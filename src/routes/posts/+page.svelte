@@ -29,7 +29,6 @@
 
   function onTag(event: { detail: string }) {
     filterTagSlug = event.detail
-    console.log('ontag posts')
   }
 
   onMount(() => {

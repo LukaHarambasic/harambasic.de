@@ -11,14 +11,13 @@
 
   $: ({ title, description, published, relativePath, permalink, socialImgAlt } = $page.data)
 
-
-  console.log('--------- Layout ---------')
-  console.log(`title: ${title}`);
-  console.log(`description: ${description}`);
-  console.log(`permalink: ${permalink}`);
-  console.log(`relativePath: ${relativePath}`);
-  console.log(`socialImgAlt: ${socialImgAlt}`);
-  console.log('--------- Layout (END) ---------')
+  // console.log('--------- Layout ---------')
+  // console.log(`title: ${title}`);
+  // console.log(`description: ${description}`);
+  // console.log(`permalink: ${permalink}`);
+  // console.log(`relativePath: ${relativePath}`);
+  // console.log(`socialImgAlt: ${socialImgAlt}`);
+  // console.log('--------- Layout (END) ---------')
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release
   // https://github.com/sveltejs/kit/issues/5240
