@@ -91,7 +91,7 @@
       color: var(--c-font);
       text-decoration: none;
       &:hover {
-        transform: scale(1.05);
+        transform: scale(0.97);
         cursor: pointer;
         > img {
           filter: grayscale(0);

@@ -97,7 +97,7 @@
         color: var(--c-font);
         text-decoration: none;
         &:hover {
-          transform: scale(0.99);
+          transform: scale(0.97);
           cursor: pointer;
           :global(svg) {
             opacity: 1;

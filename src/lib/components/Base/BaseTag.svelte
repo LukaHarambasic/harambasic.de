@@ -31,7 +31,7 @@ export let selected: boolean = false
     &:hover {
         text-decoration: none;
         font-weight: bold;
-        transform: scale(1.05);
+        transform: scale(0.97);
     }
     &::before {
         display: block;
