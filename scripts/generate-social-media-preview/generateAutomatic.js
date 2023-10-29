@@ -39,24 +39,6 @@ const generateSocialMediaPreview = async () => {
       console.log('🛑 Post/List:', title)
     }
   }
-  // Categories aren't stored in files so they need a special treatment
-  const rawCategories = posts.map((post) => {
-    const data = readFileSync(post.path, 'utf8')
-    const content = fm(data)
-    return {
-      ...content.attributes,
-      categories: getCategoryMeta(content.attributes.categories)
-    }
-  })
-  const categories = getCategoriesUniq(rawCategories)
-  for (const category of categories) {
-    if (!doesImageAlreadyExist(category.slug)) {
-      console.log('🆕 Category:', category.title)
-      await generateImage(page, category.title, category.slug)
-    } else {
-      console.log('🛑 Category:', category.title)
-    }
-  }
   await browser.close()
 }
 

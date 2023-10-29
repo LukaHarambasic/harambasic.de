@@ -1,5 +1,5 @@
-const { chromium } = require('playwright')
-// TODO const { generateImage } = require('./util.js')
+import { chromium } from 'playwright'
+import { generateImage } from './util.js'
 
 export function getSlug(str) {
   if (!str) return ''
