@@ -1,13 +1,11 @@
-const { readdirSync, readFileSync } = require('fs')
-const fm = require('front-matter')
-const yaml = require('js-yaml')
-const { chromium } = require('playwright')
-// TODO const { getCategoriesUniq } = require('../../assets/js/getCategoriesUniq')
-// TODO const { getCategoryMeta } = require('../../assets/js/getCategoryMeta.js')
-// TODO const { doesImageAlreadyExist, generateImage, fileToMeta, ROOT_PATH } = require('./util.js')
+import { readdirSync, readFileSync } from 'fs'
+import fm from 'front-matter'
+import yaml from 'js-yaml'
+import { chromium } from 'playwright'
+import { ROOT_PATH, doesImageAlreadyExist, generateImage, fileToMeta } from './util.js'
 
-const POSTS_PATH = `${ROOT_PATH}/content/posts`
-const LISTS_PATH = `${ROOT_PATH}/content/lists`
+const POSTS_PATH = `${ROOT_PATH}/src/content/posts`
+const LISTS_PATH = `${ROOT_PATH}/src/content/stack`
 
 export function getSlug(str) {
   if (!str) return ''
