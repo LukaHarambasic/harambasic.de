@@ -78,7 +78,6 @@
         <li>
           <a class="card no-spacing image" href="/projects">
             <Icon icon="ph:arrow-circle-right-bold" />
-            <!-- TODO ./../lib/images/projects/techmobshow.svg -->
             <img src="projects/{project.image}" alt={project.title} width="8rem" />
             <div class="content">
               <strong>{project.title}</strong>

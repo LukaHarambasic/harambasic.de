@@ -1,8 +1,9 @@
 import type { PageServerLoad } from './$types'
+import { env } from '$env/dynamic/private'
 
 export const prerender = true
 
-export const load = (async ({ parent, params }) => {
+export const load = (async ({ url, parent, params }) => {
   //TODO other meta data
   // TODO
   // console.log('args', args);
@@ -13,7 +14,8 @@ export const load = (async ({ parent, params }) => {
     title: entry?.title,
     description: entry?.description,
     published: entry?.published,
-    relativePath: entry?.relativePath,
+    relativePath: url.pathname,
+    permalink: env.DEPLOY_PRIME_URL || env.URL,
     entry
   }
 }) satisfies PageServerLoad

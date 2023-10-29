@@ -5,7 +5,6 @@ export const load = (async ({ url }) => {
   return {
     title: 'Data Privacy',
     description: "Data Privacy, not more, but also not less.",
-    socialImgAlt: 'TODO',
     relativePath: url.pathname,
     permalink: env.DEPLOY_PRIME_URL || env.URL
   }

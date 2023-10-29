@@ -9,7 +9,7 @@
   import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
   import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
 
-  $: ({ title, description, published, relativePath, permalink, socialImgAlt } = $page.data)
+  $: ({ title, description, published, permalink } = $page.data)
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release
   // https://github.com/sveltejs/kit/issues/5240
@@ -25,7 +25,7 @@
   )
 </script>
 
-<LayoutHead {title} {description} {permalink} {relativePath} {socialImgAlt} />
+<LayoutHead {title} {description} {permalink} />
 <LayoutSkipToContent />
 <div class="container">
   <LayoutHeader />

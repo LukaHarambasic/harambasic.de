@@ -8,10 +8,9 @@
 
   export let permalink: string = 'https://harambasic.de'
 
-  export let relativePath: string = ''
+  let socialImgAlt: string = fullTitle
 
-  export let socialImgAlt: string = fullTitle
-  $: socialImg = `${permalink}/social/${getSlug(title)}.png`
+  $: socialImg = `${permalink}/social/${getSlug(title)}.png` && `${permalink}/social/default.png`
 </script>
 
 <svelte:head><!-- Statistics -->
