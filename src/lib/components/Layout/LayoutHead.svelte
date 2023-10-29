@@ -1,4 +1,6 @@
-<script lang="ts">  
+<script lang="ts">
+  import { getSlug } from "$lib/util/helper"
+
   export let title: string
   $: fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
 
@@ -9,9 +11,7 @@
   export let relativePath: string = ''
 
   export let socialImgAlt: string = fullTitle
-
-  const fileName = relativePath.substring(0, relativePath.lastIndexOf("/"))
-  $: socialImg = `${permalink}/social/${fileName}.png`
+  $: socialImg = `${permalink}/social/${getSlug(title)}.png`
 </script>
 
 <svelte:head><!-- Statistics -->
