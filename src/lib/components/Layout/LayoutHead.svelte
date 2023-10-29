@@ -36,11 +36,11 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <!-- Twitter -->
+  <meta property="twitter:title" content={fullTitle} />
+  <meta property="twitter:description" content={description} />
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:site" content="@luka_harambasic" />
   <meta property="twitter:url" content={permalink} />
-  <meta property="twitter:title" content={fullTitle} />
-  <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content={socialImg} />
   <meta property="twitter:image:alt" content={socialImgAlt} />
 </svelte:head>
