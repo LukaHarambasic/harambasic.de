@@ -4,12 +4,12 @@
 
   export let description: string = ''
 
-  export let permalink: string = ''
+  export let permalink: string = 'https://harambasic.de'
 
   export let relativePath: string = ''
 
   export let socialImgAlt: string = fullTitle
-  $: socialImg = `${permalink}/${relativePath}/social.png`
+  $: socialImg = `${permalink}${relativePath}/social.png`
 </script>
 
 <svelte:head><!-- Statistics -->
