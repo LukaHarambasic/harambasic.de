@@ -9,7 +9,7 @@
   export let relativePath: string = ''
 
   export let socialImgAlt: string = fullTitle
-  $: socialImg = `${permalink}${relativePath}/social.png`
+  $: socialImg = `${permalink}/social${relativePath}.png`
 </script>
 
 <svelte:head><!-- Statistics -->
