@@ -1,37 +1,88 @@
 <!DOCTYPE >
 <html lang="en">
   <head>
-    <title>Hello</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet" />
+    <title>Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;900&display=swap" rel="stylesheet">
     <style>
       * {
         box-sizing: border-box;
       }
       body {
         font-family:
-          Open Sans,
+          'Source Sans 3',
           Helvetica Neue,
           Arial,
           sans-serif;
-        color: #ffffff;
+        color: rgba(1, 3, 15, 1);
       }
       .card {
         width: 1200px;
         height: 630px;
-        background: url('./template.svg') no-repeat;
-        padding: 5rem;
+        /* background: url('./template.svg') no-repeat; */
+        padding: 4rem;
+        margin: 2rem;
+        border-radius: 1rem;
+        background: rgba(247, 247, 247, 1);
+        border: 1px solid rgba(1, 3, 15, 0.03);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
       .title {
         font-size: 5rem;
-        font-weight: bold;
+        font-weight: 900;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+      }
+      .slogan {
+        font-size: 2rem;
+        font-weight: 900;
+        bottom: 1rem;
+        left: 1rem;
+      }
+      .logo svg {
+        width: 2rem;
+        height: 2rem;
       }
     </style>
   </head>
   <body>
     <div class="card">
       <div class="title">Will be replaced! Wuhu! Party :)</div>
+      <div class="footer"><div class="slogan">Luka Harambasic</div>
+      <div class="logo">
+        <svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            .background {
+              fill: rgba(1, 3, 15, 1);
+            }
+      
+            .initials {
+              fill: rgba(247, 247, 247, 1);
+            }
+          </style>
+          <path class="background"
+            d="M0 32C0 14.3269 14.3269 0 32 0H768C785.673 0 800 14.3269 800 32V768C800 785.673 785.673 800 768 800H32C14.3269 800 0 785.673 0 768V32Z"
+            fill="#F7F7F7" />
+          <path class="initials"
+            d="M213 153C213 151.343 214.343 150 216 150H272.5C274.157 150 275.5 151.343 275.5 153V400H460C461.657 400 463 401.343 463 403V459.5C463 461.157 461.657 462.5 460 462.5H216C214.343 462.5 213 461.157 213 459.5V153Z"
+            fill="#01030E" />
+          <path class="initials"
+            d="M525.5 153C525.5 151.343 526.844 150 528.5 150H585C586.657 150 588 151.343 588 153V647C588 648.657 586.657 650 585 650H528.5C526.844 650 525.5 648.657 525.5 647V153Z"
+            fill="#01030E" />
+          <path class="initials"
+            d="M216 525C214.343 525 213 526.343 213 528V647C213 648.657 214.343 650 216 650H272.5C274.157 650 275.5 648.657 275.5 647V528C275.5 526.343 274.157 525 272.5 525H216Z"
+            fill="#01030E" />
+        </svg>
+      </div>
+      </div>
     </div>
   </body>
 </html>
