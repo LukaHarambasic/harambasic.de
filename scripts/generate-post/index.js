@@ -1,6 +1,6 @@
-const { readFileSync, writeFileSync, mkdirSync } = require('fs')
-const readline = require('readline')
-const { getSlug } = require('../../assets/js/getSlug')
+import { readFileSync, writeFileSync, mkdirSync } from 'fs'
+import readline from 'readline'
+// import { getSlug } from '../../src/lib/util/helper'
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -9,7 +9,7 @@ const rl = readline.createInterface({
 
 const ROOT_PATH = process.cwd()
 const TEMPLATE_PATH = `${ROOT_PATH}/scripts/generate-post/template.md`
-const POSTS_PATH = `${ROOT_PATH}/content/posts`
+const POSTS_PATH = `${ROOT_PATH}/src/content/posts`
 const IMAGES_PATH = `${ROOT_PATH}/static/posts`
 
 const generatePost = (title) => {
@@ -37,3 +37,18 @@ const generatePost = (title) => {
     console.log('Error:', error)
   }
 })()
+
+// solution inspired by https://www.designcise.com/web/tutorial/how-to-fix-replaceall-is-not-a-function-javascript-error
+// implementation inspired by https://futurestud.io/tutorials/node-js-string-replace-all-appearances
+// TODO replace with magic regex
+export function getSlug(str) {
+  if (!str) return ''
+  const slug = str
+    .trim()
+    .toLowerCase()
+    // remove all chars which aren't characters, numbers or spaces
+    .replace(/[^a-zA-Z0-9\s]+/g, '')
+    // replace all spaces with dashes
+    .replace(/\s+/g, '-')
+  return slug
+}
