@@ -16,6 +16,7 @@
   console.log(getSlug(title))
   console.log(permalink)
   console.log(relativePath)
+  console.log(`${permalink}/social/${getSlug(title)}.png`)
   $: socialImg = `${permalink}/social/${getSlug(title)}.png` || `${permalink}/social/default.png`
 </script>
 
