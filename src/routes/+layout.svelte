@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { page } from '$app/stores'
-  import '$lib/styles/reset.css'
-  import '$lib/styles/fonts.css'
-  import '$lib/styles/variables.css'
-  import '$lib/styles/global.css'
-  import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte'
-  import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
-  import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
-  import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
+import { page } from '$app/stores'
+import '$lib/styles/reset.css'
+import '$lib/styles/fonts.css'
+import '$lib/styles/variables.css'
+import '$lib/styles/global.css'
+import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte'
+import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
+import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
+import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
 
-  $: ({ title, description, published, permalink } = $page.data)
+  $: ({ title, description, published, relativePath, permalink } = $page.data)
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release
   // https://github.com/sveltejs/kit/issues/5240
@@ -33,7 +33,7 @@
     {#if title}
       <section class="header">
         <h1>{title}</h1>
-        {#if published}
+        {#if published && relativePath}
           <time class="date dt-published" datetime={published?.raw?.toString()}>
             <a href={relativePath} class="u-url">{published.display}</a>
           </time>

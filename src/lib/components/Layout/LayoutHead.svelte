@@ -13,7 +13,8 @@
   $: socialImg = `${permalink}/social/${getSlug(title)}.png` && `${permalink}/social/default.png`
 </script>
 
-<svelte:head><!-- Statistics -->
+<svelte:head>
+  <!-- Statistics -->
   <script data-goatcounter="https://luha.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <!-- Global Metadata -->
   <meta name="viewport" content="width=device-width" />
@@ -25,21 +26,21 @@
   <meta name="title" content={fullTitle} />
   <meta name="description" content={description} />
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Luka Harambasic" />
-  <meta property="og:url" content={permalink} />
-  <meta property="og:title" content={fullTitle} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image" content={socialImg} />
-  <meta property="og:image:alt" content={socialImgAlt} />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="Luka Harambasic" />
+  <meta name="og:url" content={permalink} />
+  <meta name="og:title" content={fullTitle} />
+  <meta name="og:description" content={description} />
+  <meta name="og:image" content={socialImg} />
+  <meta name="og:image:alt" content={socialImgAlt} />
+  <meta name="og:image:width" content="1200" />
+  <meta name="og:image:height" content="630" />
   <!-- Twitter -->
-  <meta property="twitter:title" content={fullTitle} />
-  <meta property="twitter:description" content={description} />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:site" content="@luka_harambasic" />
-  <meta property="twitter:url" content={permalink} />
-  <meta property="twitter:image" content={socialImg} />
-  <meta property="twitter:image:alt" content={socialImgAlt} />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@luka_harambasic" />
+  <meta name="twitter:url" content={permalink} />
+  <meta name="twitter:image" content={socialImg} />
+  <meta name="twitter:image:alt" content={socialImgAlt} />
 </svelte:head>

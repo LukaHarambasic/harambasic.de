@@ -1,5 +1,4 @@
 import type { PageServerLoad } from './$types'
-import { env } from '$env/dynamic/private'
 
 export const prerender = true
 
@@ -15,7 +14,6 @@ export const load = (async ({ url, parent, params }) => {
     description: entry?.description,
     published: entry?.published,
     relativePath: url.pathname,
-    permalink: env.DEPLOY_PRIME_URL || env.URL,
     entry
   }
 }) satisfies PageServerLoad
