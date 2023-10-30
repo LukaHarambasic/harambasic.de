@@ -7,12 +7,12 @@ updated: 2020-12-21
 prio: 500
 status: INACTIVE
 links:
-  - display: Website
-    href: https://active-ambassadors.org/
-  - display: Instagram
-    href: https://www.instagram.com/active_ambassadors/
-  - display: LinkedIn
-    href: https://www.linkedin.com/company/active-ambassadors
+  - title: Website
+    url: https://active-ambassadors.org/
+  - title: Instagram
+    url: https://www.instagram.com/active_ambassadors/
+  - title: LinkedIn
+    url: https://www.linkedin.com/company/active-ambassadors
 tags:
   - Co-Founder
   - Design

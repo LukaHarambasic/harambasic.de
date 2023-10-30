@@ -10,6 +10,8 @@
   import type { PageData } from './$types'
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
   import { onMount } from 'svelte'
+    import BaseModal from '$lib/components/Base/BaseModal.svelte'
+    import type { Project } from '$lib/types/project'
 
   export let data: PageData
   const [entries, tags] = data.projects
@@ -43,6 +45,15 @@
     sortProperty = ($page.url.searchParams.get('property') as ProjectSortProperty) || ProjectSortProperty.Priority
     sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
 	});
+
+  let showModal = false;
+  let activeProject: Project;
+
+  function openModal(project: Project) {
+    console.log(project)
+    activeProject = project;
+    showModal = true;
+  }
 </script>
 
 <Entries>
@@ -53,7 +64,12 @@
   </EntriesSidebar>
   <ul class="entries" slot="entries">
     {#each filteredAndSorted as entry, index}
-      <li class="h-feed card no-spacing" data-highlighted={index < 4}>
+	    <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
+      <li 
+        class="h-feed card no-spacing"
+        data-highlighted={index < 4} 
+        on:click={() => openModal(entry)}
+      >
         {#if index < 4}
           <img src="/projects/{entry.image}" alt="{entry.title}" width="8rem" />
         {/if}
@@ -71,6 +87,35 @@
     {/each}
   </ul>
 </Entries>
+
+<!-- This is not in the normal dom flow -->
+<BaseModal bind:showModal>
+  {#if activeProject}
+    <div class="modal">
+      <img src="projects/{activeProject.image}" alt={activeProject.title} width="8rem" />
+      <div class="content">
+        <h2>{activeProject.title}</h2>
+        <ul class="tags">
+          {#each activeProject.tags as tag}
+            <li>
+              <BaseTag tag={tag} />
+            </li>
+          {/each}
+        </ul>
+        <div class="rich-text">
+          {@html activeProject.html}
+        </div>
+        <ul class="links rich-text">
+          {#each activeProject.links as link}
+            <li>
+              <a href="{link.url}" target="_blank" rel="noopener noreferrer">{link.title}</a>
+            </li>
+          {/each}
+        </ul>
+      </div>
+    </div>
+  {/if}
+</BaseModal>
 
 <style lang="postcss">
   .entries {
@@ -130,6 +175,68 @@
           align-items: flex-start;
           gap: var(--xs);
         }
+      }
+    }
+  }
+  .modal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: var(--l);
+    @media screen and (max-width: 32rem) {
+      flex-direction: column;
+    }
+    > img {
+      border-radius: var(--border-radius);
+      aspect-ratio: 1 / 1;
+      size: 20rem;
+      @media screen and (max-width: 32rem) {
+        width: 100%;
+        height: auto;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+      }
+    }
+    > .content {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+      align-items: flex-start;
+      h2 {
+        font-weight: 900;
+        font-size: var(--font-xl);
+        line-height: 1.2;
+        font-family: var(--font-family);
+        letter-spacing: var(--font-letter-spacing-headline);
+        margin: 0 0 0 0;
+      }
+      .tags {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: var(--xs);
+        margin: 0 0 var(--m) 0;
+      }
+      .rich-text {
+        margin: 0 0 var(--m) 0;
+      }
+      .links {
+        flex-base: 100%;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: stretch;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: var(--m);
       }
     }
   }

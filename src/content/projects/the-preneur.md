@@ -1,24 +1,24 @@
 ---
 title: The Preneur
-image: techmobshow.svg
+image: the_preneur.png
 description: Swab barque interloper chantey doubloon starboard
 published: 2020-12-21
 updated: 2020-12-21
-prio: 600
+prio: 800
 status: INACTIVE
 links:
-  - display: Website
-    href: https://techmob.show
-  - display: Instagram
-    href: https://www.instagram.com/techmobshow/
-  - display: GitHub
-    href: https://github.com/Techmob-Show
+  - title: Website
+    url: https://www.coronawarn.app/en/
+  - title: GitHub
+    url: https://github.com/corona-warn-app/cwa-app-android
+  - title: Play Store
+    url: https://play.google.com/store/apps/details?id=de.rki.coronawarnapp
+  - title: App Store
+    url: https://apps.apple.com/de/app/corona-warn-app/id1512595757
 tags:
-  - Co-Founder
-  - Host
-  - Design
-  - Website
-  - Process Automation
+  - Team Lead
+  - Scrum Master
+  - Android Developer
 ---
 
-Previously known as Technopreneur
+I worked on the Android version of the German Corona-Warn-App. In the beginning, I focused on the UI implementation for version 1.0.0, which was released after only 50 days of development. A few weeks later, I took on even more responsibility and facilitated the development as team lead and scrum master.

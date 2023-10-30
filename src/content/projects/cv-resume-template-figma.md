@@ -7,10 +7,10 @@ updated: 2020-12-21
 prio: 400
 status: ACTIVE
 links:
-  - display: Template
-    href: TBD
-  - display: My CV
-    href: TBD
+  - title: Template
+    url: TBD
+  - title: My CV
+    url: TBD
 tags:
   - Design
 ---

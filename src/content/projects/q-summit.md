@@ -7,10 +7,10 @@ updated: 2020-12-21
 prio: 300
 status: INACTIVE
 links:
-  - display: Website
-    href: https://q-summit.com/
-  - display: Instagram
-    href: https://www.instagram.com/qsummit/
+  - title: Website
+    url: https://q-summit.com/
+  - title: Instagram
+    url: https://www.instagram.com/qsummit/
 tags:
   - Head of IT
   - Digital Transformation

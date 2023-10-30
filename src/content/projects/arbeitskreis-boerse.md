@@ -7,8 +7,8 @@ updated: 2020-12-21
 prio: 70
 status: INACTIVE
 links:
-  - display: Website
-    href: https://www.akboerse.de/
+  - title: Website
+    url: https://www.akboerse.de/
 tags:
   - Co-Head of IT
   - Digital Transformation
