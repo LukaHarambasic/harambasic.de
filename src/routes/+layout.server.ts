@@ -8,9 +8,10 @@ import { requestShareables } from '$lib/data/shareable/api.server'
 // For full SSG: https://kit.svelte.dev/docs/adapter-static
 export const prerender = true
 
-export const load = (async () => {
+export const load = (async ({ url }) => {
   return {
     permalink: env.DEPLOY_PRIME_URL || env.URL,
+    relativePath: url.pathname,
     posts: await requestPosts(),
     projects: await requestProjects(),
     stack: await requestStack(),
