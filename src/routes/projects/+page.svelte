@@ -52,9 +52,11 @@
     <EntriesTags {tags} on:tagChange={onTag} />
   </EntriesSidebar>
   <ul class="entries" slot="entries">
-    {#each filteredAndSorted as entry}
-      <li class="h-feed card no-spacing">
-        <img src="/projects/{entry.image}" alt="{entry.title}" width="8rem" />
+    {#each filteredAndSorted as entry, index}
+      <li class="h-feed card no-spacing" data-highlighted={index < 4}>
+        {#if index < 4}
+          <img src="/projects/{entry.image}" alt="{entry.title}" width="8rem" />
+        {/if}
         <div class="content">
           <strong>{entry.title}</strong>
           <ul class="tags">
@@ -90,6 +92,9 @@
       height: 100%;
       color: var(--c-font);
       text-decoration: none;
+      &[data-highlighted="false"] {
+        grid-column: span 2;
+      }
       &:hover {
         transform: scale(0.97);
         cursor: pointer;

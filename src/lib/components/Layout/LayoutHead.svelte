@@ -13,13 +13,6 @@
   let socialImgAlt: string = fullTitle
   const slug = getSlug(title)
   $: socialImg = permalink && slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`
-
-  console.log('###lh links')
-  console.log(getSlug(title))
-  console.log(permalink)
-  console.log(relativePath)
-  console.log(`${permalink}/social/${slug}.png`)
-  console.log(getSlug(title))
 </script>
 
 <svelte:head>
