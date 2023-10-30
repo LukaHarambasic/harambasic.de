@@ -1,5 +1,5 @@
 ---
-title: Almost free setup for NGOs, startups & side projects
+title: Almost free setup for NGOs, startups and side projects
 description: 'I want to inspire you how you can set up a professional working environment for your next idea with almost no money.'
 image: TODO
 published: 2020-12-09
