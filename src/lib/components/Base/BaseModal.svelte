@@ -34,8 +34,12 @@
         border: var(--border);
         color: var(--c-font);
         margin: auto;
+        box-shadow: var(--shadow);
         &::backdrop {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(1, 3, 15, .6);
+            @media (prefers-color-scheme: dark) {
+                background:rgba(255, 255, 255, .4);
+            }
         }
         .content {
             padding: var(--xl);
