@@ -8,8 +8,14 @@
 
   export let permalink: string = 'https://harambasic.de'
 
+  export let relativePath: string = ''
+
   let socialImgAlt: string = fullTitle
 
+  console.log('###lh links')
+  console.log(getSlug(title))
+  console.log(permalink)
+  console.log(relativePath)
   $: socialImg = `${permalink}/social/${getSlug(title)}.png` && `${permalink}/social/default.png`
 </script>
 

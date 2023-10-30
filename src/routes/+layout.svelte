@@ -25,7 +25,7 @@ import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svel
   )
 </script>
 
-<LayoutHead {title} {description} {permalink} />
+<LayoutHead {title} {description} {permalink} {relativePath} />
 <LayoutSkipToContent />
 <div class="container">
   <LayoutHeader />
