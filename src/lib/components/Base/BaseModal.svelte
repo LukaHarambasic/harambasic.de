@@ -43,6 +43,9 @@
         }
         .content {
             padding: var(--xl);
+            @media screen and (max-width: 54rem) {
+                padding: var(--l);
+            }
             .close {
                 position: absolute;
                 top: var(--l);
