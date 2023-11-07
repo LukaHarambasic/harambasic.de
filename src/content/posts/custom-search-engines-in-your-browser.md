@@ -46,7 +46,7 @@ If you have a unique identifier you can find it. I don't even want to know how m
   - [Jira](https://www.atlassian.com/de/software/jira)\*
   - [GitHub](https://github.com/)
 
-<small>\*I use these multiple times a week.</small>
+\*I use this multiple times a week.
 
 ## How to add a custom search engines
 

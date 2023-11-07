@@ -268,4 +268,4 @@ npm run socialMedia:manual -- --title="Your preferred title"
 
 Webstorm does some strange things. I'm a big fan of the JetBrain IDEs but didn't consider that they would change the default behavior of git.\* But in the end, it works quite well, I learned a lot and I'll consider husky also for some other projects. Playwright showed again why I fall in love with it and why I'll use it for every browser automation project I have. Finally, I also got an idea for another approach: GitHub Actions. But that's something for another post.
 
-<small>\*currently it's working with commits via the UI</small>
+\*currently it's working with commits via the UI

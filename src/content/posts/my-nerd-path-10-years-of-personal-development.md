@@ -124,8 +124,6 @@ However, I have taken a new path. I moved to Copenhagen to start my master's in 
 
 Right now, I'm already three and a half months into this program, and I love it. It's just an inspiring environment where everything seems to be possible. I already got my first megalomaniac idea. More on that later when I make that dream come true.
 
-<small>Wood picture: https://unsplash.com/photos/q2Fyzn-KJOQ</small>
+Wood picture: [Andrey Haimin](https://unsplash.com/photos/q2Fyzn-KJOQ)
 
-<base-thanks>
-    Thank's to Niklas and Leo for proofreading.
-</base-thanks>
+Thank's to Niklas and Leo for proofreading.
