@@ -1,18 +1,16 @@
 ---
 title: CV/Resume template Figma
 image: cv-figma-template.png
-description: Swab barque interloper chantey doubloon starboard
+imageAlt: Part of the CV template showing a picture, name and some relevant work experiences
 published: 2020-12-21
-updated: 2020-12-21
+updated: 2023-11-07
 prio: 400
 status: ACTIVE
 links:
   - title: Template
-    url: TBD
-  - title: My CV
-    url: TBD
+    url: https://www.figma.com/community/file/1128439910915950322/cv-resume-template-with-auto-layout-pdf-export
 tags:
-  - Design
+  - UI Design
 ---
 
-TBD. Why bother with Word or a graphics program when creating your CV? Hence, I designed and developed a tool with Vue 3 which takes a JSON and generates a CV from it. It is easy to maintain as new entries can be added to JSON and the CV will be updated automatically.
+Why bother with Word, a graphics program, or some generator when creating your CV? I went through all that, only to discover Figma—and it was fantastic. But then, Figma's auto layouts arrived, and I went all in. Friends, and more than 100 strangers, are already using the template. It's incredibly easy to adapt—the overall structure, colors, and just about everything else. Let me know if you land your next job with it!

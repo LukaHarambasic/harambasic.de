@@ -71,7 +71,7 @@
         on:click={() => openModal(entry)}
       >
         {#if index < 4}
-          <img src="/projects/{entry.image}" alt="{entry.title}" width="8rem" />
+          <img src="/projects/{entry.image}" alt="{entry.imageAlt}" width="8rem" />
         {/if}
         <div class="content">
           <strong>{entry.title}</strong>
@@ -92,7 +92,7 @@
 <BaseModal bind:showModal>
   {#if activeProject}
     <div class="modal">
-      <img src="projects/{activeProject.image}" alt={activeProject.title} width="8rem" />
+      <img src="projects/{activeProject.image}" alt={activeProject.imageAlt} width="8rem" />
       <div class="content">
         <h2>{activeProject.title}</h2>
         <ul class="tags">

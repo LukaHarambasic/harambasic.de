@@ -27,7 +27,7 @@ export function getStackEntry(entry: any): StackEntry {
     title: meta.title,
     description: meta.description,
     image: meta.image || '',
-    tags: meta.tags.map((tag: string) => getTag(tag, type)),
+    tags: meta.tags.map((tag: string) => getTag(tag, type)) || [],
     published: getDate(meta.published),
     updated: getDate(meta.updated),
     url: meta.url,

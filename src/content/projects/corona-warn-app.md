@@ -1,7 +1,7 @@
 ---
 title: Corona-Warn-App
 image: coronawarnapp.png
-description: Swab barque interloper chantey doubloon starboard
+imageAlt: First screen of the Corona Warn App
 published: 2020-12-21
 updated: 2020-12-21
 prio: 1000

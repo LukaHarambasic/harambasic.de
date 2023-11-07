@@ -1,24 +1,23 @@
 ---
 title: GreenKayak
 image: greenkayak.jpeg
-description: Swab barque interloper chantey doubloon starboard
-published: 2020-12-21
-updated: 2020-12-21
+imageAlt: First screen of the GreenKayak app on a device mockup
+published: 2023-11-07
+updated: 2023-11-07
 prio: 900
 status: INACTIVE
 links:
   - title: Website
-    url: https://www.coronawarn.app/en/
-  - title: GitHub
-    url: https://github.com/corona-warn-app/cwa-app-android
+    url: https://www.greenkayak.org/
   - title: Play Store
-    url: https://play.google.com/store/apps/details?id=de.rki.coronawarnapp
+    url: https://play.google.com/store/apps/details?id=org.greenkayak.app&pli=1
   - title: App Store
-    url: https://apps.apple.com/de/app/corona-warn-app/id1512595757
+    url: https://apps.apple.com/us/app/greenkayak/id6446000420
 tags:
-  - Team Lead
-  - Scrum Master
-  - Android Developer
+  - Product Manager
+  - UX Design
+  - UI Design
+  - User Research
 ---
 
-I worked on the Android version of the German Corona-Warn-App. In the beginning, I focused on the UI implementation for version 1.0.0, which was released after only 50 days of development. A few weeks later, I took on even more responsibility and facilitated the development as team lead and scrum master.
+GreenKayak's booking system was exclusively web-based, which relinquished control over parts of the booking experience and data collection. An integral component of this NGO's business model involves reporting the amount of trash collected, a process that was analog and error-prone until the app's release. I orchestrated the planning and design of the app and managed its development with an external agency. Since its launch, the app has garnered over 10,000 downloads and engaged more than 16,000 volunteers in the 2023 season.

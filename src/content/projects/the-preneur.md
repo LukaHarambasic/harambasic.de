@@ -1,24 +1,23 @@
 ---
 title: The Preneur
 image: the_preneur.png
-description: Swab barque interloper chantey doubloon starboard
+imageAlt: 'Podcast cover saying: The Preneur'
 published: 2020-12-21
 updated: 2020-12-21
 prio: 800
 status: INACTIVE
 links:
-  - title: Website
-    url: https://www.coronawarn.app/en/
-  - title: GitHub
-    url: https://github.com/corona-warn-app/cwa-app-android
-  - title: Play Store
-    url: https://play.google.com/store/apps/details?id=de.rki.coronawarnapp
-  - title: App Store
-    url: https://apps.apple.com/de/app/corona-warn-app/id1512595757
+  - title: Apple Podcast
+    url: https://podcasts.apple.com/de/podcast/the-preneur/id1605492643?l=en
+  - title: Spotify
+    url: https://open.spotify.com/show/03PwaeNcCcjYCvzQN8s3As?si=ce9aecdf8dbb4547&nd=1
+  - title: LinkedIn
+    url: https://www.linkedin.com/company/thepreneurpodcast/
 tags:
-  - Team Lead
-  - Scrum Master
-  - Android Developer
+  - Co-Founder
+  - Host
+  - Social Media
+  - Brand Design
 ---
 
-I worked on the Android version of the German Corona-Warn-App. In the beginning, I focused on the UI implementation for version 1.0.0, which was released after only 50 days of development. A few weeks later, I took on even more responsibility and facilitated the development as team lead and scrum master.
+During the period when I co-founded and hosted the podcast, it was known as "Technopreneur". We conducted interviews with founders of impact startups based in Copenhagen. We constructed our own studio, which accommodated recordings with up to four people. Following the production of twelve episodes, we transferred ownership of the podcast, an action that entailed a rebranding to "The Preneur".

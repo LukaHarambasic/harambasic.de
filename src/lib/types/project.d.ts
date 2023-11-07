@@ -7,4 +7,5 @@ export interface Project extends Entry {
   prio: number
   status: ProjectStatus
   html: string
+  imageAlt: string
 }

@@ -1,7 +1,7 @@
 ---
 title: Active Ambassadors
 image: active-ambassadors.png
-description: Swab barque interloper chantey doubloon starboard
+imageAlt: 'Active Ambassadors logo, contianing a heart with a globe stating: Active-Ambassadory - we care.'
 published: 2020-12-21
 updated: 2020-12-21
 prio: 500
@@ -15,7 +15,7 @@ links:
     url: https://www.linkedin.com/company/active-ambassadors
 tags:
   - Co-Founder
-  - Design
+  - Brand Design
   - Website
   - Process Automation
 ---

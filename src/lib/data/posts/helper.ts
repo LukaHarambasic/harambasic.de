@@ -39,7 +39,7 @@ export function getPost(entry: any): Post {
     title: meta.title,
     description: meta.description,
     image: meta.image || '',
-    tags: meta.tags.map((tag: string) => getTag(tag, type)),
+    tags: meta.tags.map((tag: string) => getTag(tag, type)) || [],
     published: getDate(meta.published),
     updated: getDate(meta.updated),
     tldr: meta.tldr,
