@@ -140,6 +140,11 @@
       &[data-highlighted="false"] {
         grid-column: span 2;
       }
+      &[data-highlighted="true"] {
+        @media screen and (max-width: 62rem) {
+          grid-column: span 2;
+        }
+      }
       &:hover {
         transform: scale(0.97);
         cursor: pointer;
