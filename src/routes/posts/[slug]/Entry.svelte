@@ -1,9 +1,9 @@
 <script lang="ts">
   import BaseCallout from '$lib/components/Base/BaseCallout.svelte'
-  import PostsTableOfContent from './TableOfContent.svelte'
+  // import PostsTableOfContent from './TableOfContent.svelte'
   import type { Post } from '$lib/types/post'
   import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte'
-    import BaseTag from '$lib/components/Base/BaseTag.svelte'
+  import BaseTag from '$lib/components/Base/BaseTag.svelte'
 
   export let post: Post
   const { title, published, updated, tldr, tags, description, image, slug, relativePath, fullPath, toc, html } = post
@@ -56,7 +56,7 @@
   article {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
-    grid-template-columns: 70ch 1fr;
+    grid-template-columns: 1fr 30ch;
     grid-template-areas: 'tldr placeholder' 'post tags' 'post toc' 'footer footer';
     column-gap: var(--l);
     row-gap: var(--l);
