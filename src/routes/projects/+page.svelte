@@ -186,17 +186,16 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: var(--l);
-    @media screen and (max-width: 32rem) {
+    @media screen and (max-width: 64rem) {
       flex-direction: column;
     }
     > img {
       border-radius: var(--border-radius);
       aspect-ratio: 1 / 1;
       size: 20rem;
-      @media screen and (max-width: 32rem) {
+      @media screen and (max-width: 48rem) {
         width: 100%;
         height: auto;
-        border-radius: var(--border-radius) var(--border-radius) 0 0;
       }
     }
     > .content {
