@@ -76,7 +76,7 @@
     <ul>
       {#each randomProjects as project}
         <li>
-          <a class="card no-spacing image" href="/projects">
+          <a class="card no-spacing image" href="/projects?slug={project.slug}">
             <Icon icon="ph:arrow-circle-right-bold" />
             <img src="projects/{project.image}" alt={project.title} width="8rem" />
             <div class="content">

@@ -1,17 +1,19 @@
 <script lang="ts">
+  import type { PageData } from './$types'
+  import type { Project } from '$lib/types/project'
   import { filterAndSort } from '$lib/data/projects/helper'
   import { ProjectSortProperty, ProjectStatus, SortDirection } from '$lib/types/enums'
   import { page } from '$app/stores'
+  import { onMount } from 'svelte'
+  import { goto } from '$app/navigation'
+  import { setParam } from '$lib/util/helper'
   import Entries from '$lib/components/Entries/Entries.svelte'
   import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte'
   import EntriesTags from '$lib/components/Entries/EntriesTags.svelte'
   import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte'
   import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
-  import type { PageData } from './$types'
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
-  import { onMount } from 'svelte'
-    import BaseModal from '$lib/components/Base/BaseModal.svelte'
-    import type { Project } from '$lib/types/project'
+  import BaseModal from '$lib/components/Base/BaseModal.svelte'
 
   export let data: PageData
   const [entries, tags] = data.projects
@@ -21,6 +23,8 @@
   $: sortProperty = ProjectSortProperty.Priority
   $: sortDirection = SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
+  $: projectSlug = ($page.url.searchParams.get('slug') as string) || ''
+  $: activeProject = entries.find((entry) => entry.slug === projectSlug);
 
   function onProperty(event: { detail: ProjectSortProperty }) {
     sortProperty = event.detail
@@ -44,15 +48,21 @@
     filterStatus = ($page.url.searchParams.get('status') as ProjectStatus) || ProjectStatus.All
     sortProperty = ($page.url.searchParams.get('property') as ProjectSortProperty) || ProjectSortProperty.Priority
     sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
+    projectSlug = ($page.url.searchParams.get('slug') as string) || ''
+    openModal()
 	});
 
   let showModal = false;
-  let activeProject: Project;
 
-  function openModal(project: Project) {
-    console.log(project)
-    activeProject = project;
-    showModal = true;
+  function openModal(project?: Project) {
+    console.log("openModal", project)
+    if(project) {
+      setParam('slug', project.slug)
+      projectSlug = project.slug
+      showModal = true;
+    } else if (projectSlug && !project) {
+      showModal = true;
+    }
   }
 </script>
 
