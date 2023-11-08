@@ -172,7 +172,7 @@
         padding: var(--l);
         strong {
           display: block;
-          margin: 0 0 var(--xs) 0;
+          margin: 0 0 var(--m) 0;
           font-weight: 900;
           font-size: var(--font-m);
           line-height: 1.2;
