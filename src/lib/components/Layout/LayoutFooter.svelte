@@ -45,6 +45,7 @@
       a {
         color: var(--c-font);
         text-decoration: none;
+        font-size: var(--font-m);
       }
     }
   }
