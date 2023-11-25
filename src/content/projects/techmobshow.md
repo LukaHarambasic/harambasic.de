@@ -1,5 +1,6 @@
 ---
 title: Techmob Show
+description: Podast where three friends are talking tech.
 image: techmobshow.svg
 imageAlt: 'Podcast cover saying: Tech Mob Show by Henry Stoll, Jakob Möller and Luka Harambasic'
 published: 2020-12-21

@@ -1,5 +1,6 @@
 ---
 title: Arbeitskreis Börse
+description: Germany's largest student finance society.
 image: arbeitskreis-boerse.png
 imageAlt: 'Logo of the Arbeitskreis Börse: AKB Mannheim'
 published: 2020-12-21

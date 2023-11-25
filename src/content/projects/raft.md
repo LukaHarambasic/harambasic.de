@@ -1,5 +1,6 @@
 ---
 title: Koben (Raft)
+description: Best raft in Copenhagen.
 image: raft.jpg
 imageAlt: Self made raft with five people on it
 published: 2023-11-07

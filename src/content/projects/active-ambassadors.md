@@ -1,5 +1,6 @@
 ---
 title: Active Ambassadors
+description: Raising awareness for NGOs.
 image: active-ambassadors.png
 imageAlt: 'Active Ambassadors logo, contianing a heart with a globe stating: Active-Ambassadory - we care.'
 published: 2020-12-21

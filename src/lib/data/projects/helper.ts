@@ -27,7 +27,7 @@ export function getProject(entry: any): Project {
     title: meta.title,
     image: meta.image || '',
     imageAlt: meta.imageAlt || '',
-    description: '',
+    description: meta.description || '',
     tags: meta.tags.map((tag: string) => getTag(tag, type)) || [],
     published: getDate(meta.published),
     updated: getDate(meta.updated),
