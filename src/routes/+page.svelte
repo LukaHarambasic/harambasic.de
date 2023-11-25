@@ -26,12 +26,13 @@
     <div class="content rich-text">
       <h2>Heyho, I'm Luka!</h2>
       <p>
-        I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Wrapping up my master in <a href="https://www.entrepreneurship.dtu.dk/education/msc-technology-entrepreneurship">Technology Entrepreneurship at DTU</a>. At <a href="https://monta.com/">Monta</a>, I work as a Product Manger. Feel free to explore my past <a href="/projects">projects</a> or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If you want to <a href="#contact">chat</a>, just start a conversation about handball, woodworking, cooking, sustianability, or dive into product and IT topics.
+        I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Wrapping up my master's degree in <a href="https://www.entrepreneurship.dtu.dk/education/msc-technology-entrepreneurship">Technology Entrepreneurship at DTU</a>. At <a href="https://monta.com/">Monta</a>, I work as a Product Manger. Feel free to explore my past <a href="/projects">projects</a> or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If you want to <a href="#contact">chat</a>, just start a conversation about handball, woodworking, cooking, sustainability, or dive into product and IT topics.
       </p>
     </div>
   </div>
 </section>
 <section class="featured">
+  <h2>Explore</h2>
   <div class="posts group">
     <h3 class="section-label">
       <span>Posts</span>
@@ -76,7 +77,7 @@
     <ul>
       {#each randomProjects as project}
         <li>
-          <a class="card no-spacing image" href="/projects">
+          <a class="card no-spacing image" href="/projects?slug={project.slug}">
             <Icon icon="ph:arrow-circle-right-bold" />
             <img src="projects/{project.image}" alt={project.title} width="8rem" />
             <div class="content">
@@ -137,7 +138,7 @@
       <small>Wanna talk?</small>
     </div>
     <div class="segmented-buttons">
-      <a href="https://cal.com/luhara/p" class="button">Book</a>
+      <a href="https://cal.com/luhara/%F0%9F%93%85?duration=30" class="button">Book</a>
     </div>
   </div>
 </section>
@@ -203,6 +204,15 @@
     align-items: stretch;
     gap: var(--l);
     width: 100%;
+    h2 {
+      margin: var(--xl) 0 var(--m) 0;
+      font-weight: 900;
+      font-size: var(--font-xl);
+      line-height: 1.2;
+      font-family: var(--font-family);
+      letter-spacing: var(--font-letter-spacing-headline);
+      text-align: center;
+    }
     .group {
       position: relative;
       @media screen and (max-width: 86rem) {

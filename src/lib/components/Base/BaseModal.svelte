@@ -1,6 +1,7 @@
 <!-- From: https://svelte.dev/examples/modal -->
 
 <script lang="ts">
+    import { resetParams } from "$lib/util/helper"
     import Icon from "@iconify/svelte"
 
 	export let showModal: boolean;
@@ -8,13 +9,19 @@
 	let dialog: HTMLDialogElement;
 
 	$: if (dialog && showModal) dialog.showModal();
+
+    function closeModal() {
+        dialog.close();
+        showModal = false;
+        resetParams()
+    }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <dialog
 	bind:this={dialog}
-	on:close={() => (showModal = false)}
-	on:click|self={() => dialog.close()}
+	on:close={() => closeModal()}
+	on:click|self={() => closeModal()}
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div class="content" on:click|stopPropagation>

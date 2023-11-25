@@ -9,7 +9,7 @@ import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
 import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
 import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
 
-  $: ({ title, description, published, relativePath, permalink } = $page.data)
+  $: ({ title,subtitle, description, published, relativePath, permalink } = $page.data)
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release
   // https://github.com/sveltejs/kit/issues/5240
@@ -33,6 +33,9 @@ import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svel
     {#if title}
       <section class="header">
         <h1>{title}</h1>
+        {#if subtitle}
+          <strong class="subtitle">{subtitle}</strong>
+        {/if}
         {#if published && relativePath}
           <time class="date dt-published" datetime={published?.raw?.toString()}>
             <a href={relativePath} class="u-url">{published.display}</a>
@@ -95,6 +98,14 @@ import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svel
           @media screen and (max-width: 42rem) {
             width: 100%;
           }
+        }
+        .subtitle {
+          color: var(--c-font-accent-dark);
+          font-size: var(--font-m);
+          font-weight: normal;
+          text-align: center;
+          font-style: italic;
+          margin: calc(-1 * var(--xs)) 0 0 0;
         }
         .date {
           a {
