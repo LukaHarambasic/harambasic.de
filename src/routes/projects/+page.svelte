@@ -23,7 +23,7 @@
   $: sortProperty = ProjectSortProperty.Priority
   $: sortDirection = SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
-  $: projectSlug = ($page.url.searchParams.get('slug') as string) || ''
+  $: projectSlug = ''
   $: activeProject = entries.find((entry) => entry.slug === projectSlug);
 
   function onProperty(event: { detail: ProjectSortProperty }) {
