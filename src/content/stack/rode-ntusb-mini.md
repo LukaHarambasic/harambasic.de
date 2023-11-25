@@ -5,7 +5,7 @@ tags:
   - Hardware
 url: https://en.rode.com/microphones/nt-usb_mini
 status: INACTIVE
-image:
+image: rode.svg
 openSource:
 updated: 2022-12-01 20:24
 published: 2022-12-01 20:23

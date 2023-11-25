@@ -110,8 +110,11 @@
           justify-content: center;
           background: var(--c-font-accent-super-light);
           border-radius: var(--border-radius) 0 0 var(--border-radius);
+          padding: 0 var(--l);
           img {
+            width: 100%;
             height: 4rem;
+            object-fit: contain;
           }
         }
         .content {
