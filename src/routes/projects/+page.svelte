@@ -85,6 +85,7 @@
         {/if}
         <div class="content">
           <strong>{entry.title}</strong>
+          <p>{entry.description}</p>
           <ul class="tags">
             {#each entry.tags as tag}
               <li>
@@ -172,12 +173,17 @@
         padding: var(--l);
         strong {
           display: block;
-          margin: 0 0 var(--m) 0;
+          margin: 0 0 var(--xxs) 0;
           font-weight: 900;
           font-size: var(--font-m);
           line-height: 1.2;
           font-family: var(--font-family);
           letter-spacing: var(--font-letter-spacing-headline);
+        }
+        p {
+          margin: 0 0 var(--s) 0;
+          line-height: 1.5;
+          font-size: var(--font-m);
         }
         .tags {
           flex-base: 100%;
