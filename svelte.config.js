@@ -1,10 +1,8 @@
 import adapter from '@sveltejs/adapter-static'
 import { vitePreprocess } from '@sveltejs/kit/vite'
-import { enhancedImages } from '@sveltejs/enhanced-img'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  plugins: [enhancedImages()],
   // Consult https://kit.svelte.dev/docs/integrations#preprocessors
   // for more information about preprocessors
   // TODO check if I wanna use it:
