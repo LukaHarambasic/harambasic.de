@@ -7,7 +7,26 @@
   import type { Post } from '$lib/types/post'
   import type { PageData } from './$types'
   // import type { Shareable } from '$lib/types/shareable'
-  // import ProfileImage from '../assets/img/profile.jpeg?enhanced'
+  
+  // TODO: remove eager and only load images that got randomly selected
+  const pictures = import.meta.glob(
+    '../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
+    {
+      eager: true,
+      query: {
+        enhanced: true,
+        w: '1280;640;400'
+      }
+    }
+  );
+
+  const getImage = (name: string) => {
+    const image = pictures[`../assets/img/projects/${name}`]
+    if (!image) {
+      return {}
+    }
+    return image.default
+  }
 
   export let data: PageData
   const [posts] = data.posts
@@ -85,7 +104,11 @@
         <li>
           <a class="card no-spacing image" href="/projects?slug={project.slug}">
             <Icon icon="ph:arrow-circle-right-bold" />
-            <img src="projects/{project.image}" alt={project.title} width="8rem" />
+            <enhanced:img 
+              src={getImage(project.image)}
+              sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+              alt={project.title} 
+            />
             <div class="content">
               <strong>{project.title}</strong>
               <p>{project.description}</p>
@@ -340,22 +363,30 @@
                 flex-direction: column;
               }
               &:hover {
-                > img {
-                  filter: grayscale(0);
-                  opacity: 1;
+                > picture {
+                  source, img {
+                    filter: grayscale(0);
+                    opacity: 1;
+                  }
                 }
               }
-              > img {
-                border-radius: var(--border-radius) 0 0 var(--border-radius);
-                aspect-ratio: 1 / 1;
+              > picture {
                 width: 12rem;
                 height: 12rem;
-                filter: grayscale(1);
-                opacity: 0.5;
                 @media screen and (max-width: 32rem) {
                   width: 100%;
                   height: auto;
-                  border-radius: var(--border-radius) var(--border-radius) 0 0;
+                }
+                img {
+                  width: inherit;
+                  height: inherit;
+                  border-radius: var(--border-radius) 0 0 var(--border-radius);
+                  aspect-ratio: 1 / 1;
+                  filter: grayscale(1);
+                  opacity: 0.5;
+                  @media screen and (max-width: 32rem) {
+                    border-radius: var(--border-radius) var(--border-radius) 0 0;
+                  }
                 }
               }
               > .content {

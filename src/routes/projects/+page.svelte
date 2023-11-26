@@ -5,7 +5,6 @@
   import { ProjectSortProperty, ProjectStatus, SortDirection } from '$lib/types/enums'
   import { page } from '$app/stores'
   import { onMount } from 'svelte'
-  import { goto } from '$app/navigation'
   import { setParam } from '$lib/util/helper'
   import Entries from '$lib/components/Entries/Entries.svelte'
   import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte'
@@ -14,6 +13,29 @@
   import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
   import BaseModal from '$lib/components/Base/BaseModal.svelte'
+
+    
+  // TODO: remove eager and only load images that got randomly selected
+  const pictures = import.meta.glob(
+    '../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
+    {
+      eager: true,
+      query: {
+        enhanced: true,
+        w: '1280;640;400'
+      }
+    }
+  );
+
+  console.log(pictures)
+
+  const getImage = (name: string) => {
+    const image = pictures[`../../assets/img/projects/${name}`]
+    if (!image) {
+      return {}
+    }
+    return image.default
+  }
 
   export let data: PageData
   const [entries, tags] = data.projects
@@ -81,7 +103,11 @@
         on:click={() => openModal(entry)}
       >
         {#if index < 4}
-          <img src="/projects/{entry.image}" alt="{entry.imageAlt}" width="8rem" />
+          <enhanced:img 
+            src={getImage(entry.image)}
+            sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+            alt={entry.title} 
+          />
         {/if}
         <div class="content">
           <strong>{entry.title}</strong>
@@ -103,7 +129,11 @@
 <BaseModal bind:showModal>
   {#if activeProject}
     <div class="modal">
-      <img src="projects/{activeProject.image}" alt={activeProject.imageAlt} width="8rem" />
+      <enhanced:img 
+        src={getImage(activeProject.image)}
+        sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+        alt={activeProject.title} 
+      />
       <div class="content">
         <h2>{activeProject.title}</h2>
         <ul class="tags">
@@ -163,11 +193,19 @@
           filter: grayscale(0);
         }
       }
-      > img {
-        border-radius: var(--border-radius) var(--border-radius) 0 0;
-        aspect-ratio: 1 / 1;
+      > picture {
         width: 100%;
-        filter: grayscale(1);
+        img {
+          width: 100%;
+          height: inherit;
+          border-radius: var(--border-radius) var(--border-radius) 0 0;
+          aspect-ratio: 1 / 1;
+          filter: grayscale(1);
+          opacity: 0.5;
+          @media screen and (max-width: 32rem) {
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+          }
+        }
       }
       > .content {
         padding: var(--l);
@@ -210,13 +248,17 @@
     @media screen and (max-width: 64rem) {
       flex-direction: column;
     }
-    > img {
-      border-radius: var(--border-radius);
-      aspect-ratio: 1 / 1;
+    > picture {
       size: 20rem;
       @media screen and (max-width: 48rem) {
         width: 100%;
         height: auto;
+      }
+      img {
+        width: inherit;
+        height: inherit;
+        border-radius: var(--border-radius);
+        aspect-ratio: 1 / 1;
       }
     }
     > .content {
