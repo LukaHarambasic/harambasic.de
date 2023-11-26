@@ -7,7 +7,7 @@
   import type { Post } from '$lib/types/post'
   import type { PageData } from './$types'
   // import type { Shareable } from '$lib/types/shareable'
-  import ProfileImage from '../assets/img/profile.jpeg?enhanced'
+  // import ProfileImage from '../assets/img/profile.jpeg?enhanced'
 
   export let data: PageData
   const [posts] = data.posts
@@ -24,7 +24,7 @@
 <section class="heyho">
   <div class="inner">
     <enhanced:img 
-      src={ProfileImage}
+      src="../assets/img/profile.jpeg?w=1280;640;400"
       sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
       alt="Profile of Luka Harambasic" 
       class="profile"
