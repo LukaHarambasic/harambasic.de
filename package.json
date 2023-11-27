@@ -39,7 +39,6 @@
     "front-matter": "^4.0.2",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
-    "markdown-it": "^13.0.1",
     "playwright": "^1.37.1",
     "postcss-nested": "^6.0.1",
     "postcss-size": "^4.0.1",
@@ -53,7 +52,13 @@
     "typescript": "^5.2.2",
     "unist-util-visit": "^5.0.0",
     "vite": "^4.4.9",
-    "vitest": "^0.34.4"
+    "vitest": "^0.34.4",
+    "rehype-stringify": "^10.0.0",
+    "remark": "^15.0.1",
+    "remark-frontmatter": "^5.0.0",
+    "remark-parse-frontmatter": "^1.0.3",
+    "remark-rehype": "^11.0.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {}
 }

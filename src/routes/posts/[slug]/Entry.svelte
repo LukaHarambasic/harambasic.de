@@ -6,7 +6,7 @@
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
 
   export let post: Post
-  const { title, published, updated, tldr, tags, description, image, slug, relativePath, fullPath, toc, html } = post
+  const { tldr, tags, html } = post
 </script>
 
 <article class="post h-entry">
