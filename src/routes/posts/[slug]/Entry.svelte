@@ -91,13 +91,13 @@
         gap: var(--xs);
       }
     }
-    .toc {
+    /* .toc {
       grid-area: toc;
       .content {
         position: sticky;
         top: var(--l);
       }
-    }
+    } */
     .tldr {
       grid-area: tldr;
     }
