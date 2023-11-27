@@ -26,7 +26,7 @@
 
   $: isActiveRoute = (url: string): boolean => {
     const pathname = $page.url.pathname
-    if(url === '/' && pathname === '/') {
+    if (url === '/' && pathname === '/') {
       return true
     } else if (url !== '/') {
       return pathname.includes(url)
@@ -41,8 +41,8 @@
   </div>
   <nav>
     <ul>
-      {#each links as {name, url}}
-        <li><a href="{url}" class:is-active={isActiveRoute(url)}>{name}</a></li>
+      {#each links as { name, url }}
+        <li><a href={url} class:is-active={isActiveRoute(url)}>{name}</a></li>
       {/each}
     </ul>
   </nav>

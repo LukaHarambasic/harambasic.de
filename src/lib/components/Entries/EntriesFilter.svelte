@@ -2,7 +2,7 @@
   import { page } from '$app/stores'
   import type { StatusFilter } from '$lib/types/entry'
   import { enumToArray, setParam } from '$lib/util/helper'
-  import { createEventDispatcher, onMount} from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte'
 
   const dispatch = createEventDispatcher()
@@ -15,9 +15,9 @@
     dispatch('statusChange', status)
   }
 
-	onMount(() => {
+  onMount(() => {
     status = ($page.url.searchParams.get('status') as StatusFilter) || 'ALL'
-	});
+  })
 </script>
 
 <div class="filter card">

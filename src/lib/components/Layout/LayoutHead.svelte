@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getSlug } from "$lib/util/helper"
+  import { getSlug } from '$lib/util/helper'
 
   export let title: string
   $: fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
@@ -8,14 +8,13 @@
 
   export let permalink: string = 'https://harambasic.de'
 
-  export let relativePath: string = ''
-
   let socialImgAlt: string = fullTitle
   const slug = getSlug(title)
   $: socialImg = permalink && slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`
 </script>
 
 <svelte:head>
+  <!-- Statistics -->
   <!-- Statistics -->
   <script data-goatcounter="https://luha.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <!-- Global Metadata -->

@@ -6,7 +6,7 @@
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
 
   export let post: Post
-  const { title, published, updated, tldr, tags, description, image, slug, relativePath, fullPath, toc, html } = post
+  const { tldr, tags, html } = post
 </script>
 
 <article class="post h-entry">
@@ -17,7 +17,7 @@
     <ul>
       {#each tags as tag}
         <li>
-          <BaseTag tag={tag} />
+          <BaseTag {tag} />
         </li>
       {/each}
     </ul>
@@ -39,7 +39,7 @@
     </div>
   </section>
   <footer class="rich-text">
-  <!-- TODO -->
+    <!-- TODO -->
     <!-- <div class="follow">
       If you have any thoughts or questions feel free to share them in
       <a href="https://TODO.com">this thread</a> or send me an
@@ -56,7 +56,7 @@
   article {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
-    grid-template-columns: 1fr 30ch;
+    grid-template-columns: 70ch 30ch;
     grid-template-areas: 'tldr placeholder' 'post tags' 'post toc' 'footer footer';
     column-gap: var(--l);
     row-gap: var(--l);
@@ -91,13 +91,13 @@
         gap: var(--xs);
       }
     }
-    .toc {
+    /* .toc {
       grid-area: toc;
       .content {
         position: sticky;
         top: var(--l);
       }
-    }
+    } */
     .tldr {
       grid-area: tldr;
     }

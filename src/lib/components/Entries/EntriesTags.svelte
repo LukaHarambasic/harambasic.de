@@ -20,7 +20,7 @@
 
   onMount(() => {
     tagSlug = $page.url.searchParams.get('tag') || 'all'
-	});
+  })
 </script>
 
 <div class="tags card">
@@ -28,12 +28,13 @@
   <ol>
     {#each tags as tag}
       <li>
-        <BaseTag 
-          tag={tag} 
+        <BaseTag
+          {tag}
           selected={tagSlug === tag.slug}
           on:click={() => {
             onTagChange(tag.slug)
-          }} />
+          }}
+        />
       </li>
     {/each}
   </ol>

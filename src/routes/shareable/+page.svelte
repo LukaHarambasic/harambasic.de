@@ -36,12 +36,10 @@
     filterTagSlug = $page.url.searchParams.get('tag') || 'all'
     sortProperty = ($page.url.searchParams.get('property') as ShareableSortProperty) || ShareableSortProperty.Published
     sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
-	});
+  })
 </script>
 
-<p>
-  TODO: Newsletter block to sign up to get infrequent updates.
-</p>
+<p>TODO: Newsletter block to sign up to get infrequent updates.</p>
 <Entries>
   <EntriesSidebar slot="sidebar">
     <EntriesSorter propertiesEnum={ShareableSortProperty} on:propertyChange={onProperty} on:directionChange={onDirection} />
@@ -126,8 +124,13 @@
           border: 4px solid var(--c-light);
           border-radius: 100%;
           background: var(--c-light);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.03),
-            0 8px 16px rgba(0, 0, 0, 0.03), 0 16px 32px rgba(0, 0, 0, 0.03), 0 32px 64px rgba(0, 0, 0, 0.03);
+          box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.03),
+            0 2px 4px rgba(0, 0, 0, 0.03),
+            0 4px 8px rgba(0, 0, 0, 0.03),
+            0 8px 16px rgba(0, 0, 0, 0.03),
+            0 16px 32px rgba(0, 0, 0, 0.03),
+            0 32px 64px rgba(0, 0, 0, 0.03);
         }
       }
     }

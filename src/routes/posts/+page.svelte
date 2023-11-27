@@ -9,7 +9,7 @@
   import { PostSortProperty, SortDirection } from '$lib/types/enums'
   import { filterAndSort } from '$lib/data/posts/helper'
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
-	import { onMount } from 'svelte';
+  import { onMount } from 'svelte'
 
   export let data: PageData
   const [entries, tags] = data.posts
@@ -32,10 +32,10 @@
   }
 
   onMount(() => {
-    filterTagSlug = ($page.url.searchParams.get('tag')) || 'all'
+    filterTagSlug = $page.url.searchParams.get('tag') || 'all'
     sortProperty = ($page.url.searchParams.get('property') as PostSortProperty) || PostSortProperty.Published
     sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
-	});
+  })
 </script>
 
 <Entries>
@@ -54,7 +54,7 @@
             <ul class="tags">
               {#each post.tags as tag}
                 <li>
-                  <BaseTag tag={tag} />
+                  <BaseTag {tag} />
                 </li>
               {/each}
             </ul>
@@ -159,8 +159,13 @@
           border: 4px solid var(--c-light);
           border-radius: 100%;
           background: var(--c-light);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.03),
-            0 8px 16px rgba(0, 0, 0, 0.03), 0 16px 32px rgba(0, 0, 0, 0.03), 0 32px 64px rgba(0, 0, 0, 0.03);
+          box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.03),
+            0 2px 4px rgba(0, 0, 0, 0.03),
+            0 4px 8px rgba(0, 0, 0, 0.03),
+            0 8px 16px rgba(0, 0, 0, 0.03),
+            0 16px 32px rgba(0, 0, 0, 0.03),
+            0 32px 64px rgba(0, 0, 0, 0.03);
         }
       }
     }

@@ -1,31 +1,32 @@
 <script lang="ts">
-import { page } from '$app/stores'
-import '$lib/styles/reset.css'
-import '$lib/styles/fonts.css'
-import '$lib/styles/variables.css'
-import '$lib/styles/global.css'
-import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte'
-import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
-import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
-import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
+  import { page } from '$app/stores'
+  import '$lib/styles/reset.css'
+  import '$lib/styles/fonts.css'
+  import '$lib/styles/variables.css'
+  import '$lib/styles/global.css'
+  import '$lib/styles/highlight.css'
+  import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte'
+  import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte'
+  import LayoutHead from '$lib/components/Layout/LayoutHead.svelte'
+  import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte'
 
-  $: ({ title,subtitle, description, published, relativePath, permalink } = $page.data)
+  $: ({ title, subtitle, description, published, relativePath, permalink } = $page.data)
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release
   // https://github.com/sveltejs/kit/issues/5240
-  import.meta.glob(
-    [
-      '../lib/images/**/**/*.png',
-      '../lib/images/**/**/*.svg',
-      '../lib/images/**/**/*.jpg',
-      '../lib/images/**/**/*.gif',
-      '../lib/images/**/**/*.mp3'
-    ],
-    { eager: true }
-  )
+  // import.meta.glob(
+  //   [
+  //     '../lib/images/**/**/*.png',
+  //     '../lib/images/**/**/*.svg',
+  //     '../lib/images/**/**/*.jpg',
+  //     '../lib/images/**/**/*.gif',
+  //     '../lib/images/**/**/*.mp3'
+  //   ],
+  //   { eager: true }
+  // )
 </script>
 
-<LayoutHead {title} {description} {permalink} {relativePath} />
+<LayoutHead {title} {description} {permalink} />
 <LayoutSkipToContent />
 <div class="container">
   <LayoutHeader />

@@ -56,5 +56,5 @@ export function setParam(key: string, value: string) {
 
 export function resetParams() {
   const url = new URL(window.location.toString())
-  window.history.pushState({}, '' , `${url.origin}${url.pathname}`);
+  window.history.pushState({}, '', `${url.origin}${url.pathname}`)
 }
