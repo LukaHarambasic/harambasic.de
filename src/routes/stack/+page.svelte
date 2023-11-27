@@ -10,6 +10,30 @@
   import type { PageData } from './$types'
   import Icon from '@iconify/svelte'
   import { onMount } from 'svelte'
+    
+  // TODO: remove eager and only load images that got randomly selected
+  const pictures = import.meta.glob(
+    '../../assets/img/stack/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
+    {
+      eager: true,
+      query: {
+        enhanced: true,
+        w: '1280;640;400'
+      }
+    }
+  );
+
+  const getImage = (name: string) => {
+    const image = pictures[`../../assets/img/stack/${name}`]
+    if (!image) {
+      return {}
+    }
+    return image.default
+  }
+
+  const isSvg = (name: string) => {
+    return name.endsWith('.svg')
+  }
 
   export let data: PageData
   const [entries, tags] = data.stack
@@ -57,7 +81,15 @@
         <a href={entry.url}>
           <div class="logo">
             {#if entry.image}
-              <img src="/stack/{entry.image}" alt={entry.title} width="64px" />
+              {#if isSvg(entry.image)}
+                <img src="/stack/{entry.image}" alt={entry.title} width="64px" />
+              {:else}
+                <enhanced:img 
+                  src={getImage(entry.image)}
+                  sizes="(min-width:768px) 400px"
+                  alt={entry.title} 
+                />
+              {/if}
             {/if}
           </div>
           <div class="content">

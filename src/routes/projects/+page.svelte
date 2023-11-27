@@ -13,7 +13,6 @@
   import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
   import BaseModal from '$lib/components/Base/BaseModal.svelte'
-
     
   // TODO: remove eager and only load images that got randomly selected
   const pictures = import.meta.glob(
@@ -26,8 +25,6 @@
       }
     }
   );
-
-  console.log(pictures)
 
   const getImage = (name: string) => {
     const image = pictures[`../../assets/img/projects/${name}`]
@@ -66,7 +63,7 @@
 
   // For full static rendering searchparams has to be accessed in onMount
   onMount(() => {
-    filterTagSlug = $page.url.searchParams.get('tag') || 'all'
+    filterTagSlug = $page.url.searchParams.get('tag') || 'all'http://localhost:5173/stack
     filterStatus = ($page.url.searchParams.get('status') as ProjectStatus) || ProjectStatus.All
     sortProperty = ($page.url.searchParams.get('property') as ProjectSortProperty) || ProjectSortProperty.Priority
     sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
