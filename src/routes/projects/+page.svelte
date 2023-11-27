@@ -63,7 +63,7 @@
 
   // For full static rendering searchparams has to be accessed in onMount
   onMount(() => {
-    filterTagSlug = $page.url.searchParams.get('tag') || 'all'http://localhost:5173/stack
+    filterTagSlug = $page.url.searchParams.get('tag') || 'all'
     filterStatus = ($page.url.searchParams.get('status') as ProjectStatus) || ProjectStatus.All
     sortProperty = ($page.url.searchParams.get('property') as ProjectSortProperty) || ProjectSortProperty.Priority
     sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc

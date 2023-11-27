@@ -13,16 +13,16 @@ import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svel
 
   // needs to be here until the following issue in vite is resolved and included in an sveltekit release
   // https://github.com/sveltejs/kit/issues/5240
-  import.meta.glob(
-    [
-      '../lib/images/**/**/*.png',
-      '../lib/images/**/**/*.svg',
-      '../lib/images/**/**/*.jpg',
-      '../lib/images/**/**/*.gif',
-      '../lib/images/**/**/*.mp3'
-    ],
-    { eager: true }
-  )
+  // import.meta.glob(
+  //   [
+  //     '../lib/images/**/**/*.png',
+  //     '../lib/images/**/**/*.svg',
+  //     '../lib/images/**/**/*.jpg',
+  //     '../lib/images/**/**/*.gif',
+  //     '../lib/images/**/**/*.mp3'
+  //   ],
+  //   { eager: true }
+  // )
 </script>
 
 <LayoutHead {title} {description} {permalink} {relativePath} />
