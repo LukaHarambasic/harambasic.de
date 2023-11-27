@@ -28,7 +28,7 @@ hue-6-2: #e6c07b
     background: #282c34;
     border-radius: var(--border-radius);
     font-size: var(--font-m);
-    font-family: 'JetBrains Mono';
+    font-family: var(--font-family-code);
     margin: 0 0 var(--l) 0;
 }
 
