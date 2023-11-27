@@ -18,7 +18,7 @@
   }
 
   --font-family: 'Source Sans 3', Arial, Helvetica, sans-serif;
-  --font-family:-code: 'JetBrains Mono', Arial, Helvetica, sans-serif;
+  --font-family-code: 'JetBrains Mono', Arial, Helvetica, sans-serif;
   
   /* 1.200 Minor Third - https://type-scale.com/ */
   --font-s: 0.833rem;
