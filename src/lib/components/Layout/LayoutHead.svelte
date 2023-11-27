@@ -8,8 +8,6 @@
 
   export let permalink: string = 'https://harambasic.de'
 
-  export let relativePath: string = ''
-
   let socialImgAlt: string = fullTitle
   const slug = getSlug(title)
   $: socialImg = permalink && slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`
