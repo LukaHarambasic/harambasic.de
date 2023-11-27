@@ -10,18 +10,15 @@
   import type { PageData } from './$types'
   import Icon from '@iconify/svelte'
   import { onMount } from 'svelte'
-    
+
   // TODO: remove eager and only load images that got randomly selected
-  const pictures = import.meta.glob(
-    '../../assets/img/stack/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-    {
-      eager: true,
-      query: {
-        enhanced: true,
-        w: '1280;640;400'
-      }
+  const pictures = import.meta.glob('../../assets/img/stack/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
+    eager: true,
+    query: {
+      enhanced: true,
+      w: '1280;640;400'
     }
-  );
+  })
 
   const getImage = (name: string) => {
     const image = pictures[`../../assets/img/stack/${name}`]
@@ -66,7 +63,7 @@
     filterStatus = ($page.url.searchParams.get('status') as StackEntryStatus) || StackEntryStatus.All
     sortProperty = ($page.url.searchParams.get('property') as StackEntrySortProperty) || StackEntrySortProperty.Published
     sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
-	});
+  })
 </script>
 
 <Entries>
@@ -84,11 +81,7 @@
               {#if isSvg(entry.image)}
                 <img src="/stack/{entry.image}" alt={entry.title} width="64px" />
               {:else}
-                <enhanced:img 
-                  src={getImage(entry.image)}
-                  sizes="(min-width:768px) 400px"
-                  alt={entry.title} 
-                />
+                <enhanced:img src={getImage(entry.image)} sizes="(min-width:768px) 400px" alt={entry.title} />
               {/if}
             {/if}
           </div>
@@ -179,8 +172,13 @@
           border: 4px solid var(--c-light);
           border-radius: 100%;
           background: var(--c-light);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.03),
-            0 8px 16px rgba(0, 0, 0, 0.03), 0 16px 32px rgba(0, 0, 0, 0.03), 0 32px 64px rgba(0, 0, 0, 0.03);
+          box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.03),
+            0 2px 4px rgba(0, 0, 0, 0.03),
+            0 4px 8px rgba(0, 0, 0, 0.03),
+            0 8px 16px rgba(0, 0, 0, 0.03),
+            0 16px 32px rgba(0, 0, 0, 0.03),
+            0 32px 64px rgba(0, 0, 0, 0.03);
         }
       }
     }

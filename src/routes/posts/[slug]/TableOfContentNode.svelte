@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { TocNode } from "$lib/types/post"
+  import type { TocNode } from '$lib/types/post'
 
   export let node: TocNode
   const anchor = `#${node.slug}`
@@ -18,15 +18,15 @@
 </li>
 
 <style lang="postcss">
-li {
-  margin: var(--s) 0 0 0;
-  a {
-    color: var(--c-font);
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-      text-decoration-thickness: var(--underline-thickness);
+  li {
+    margin: var(--s) 0 0 0;
+    a {
+      color: var(--c-font);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+        text-decoration-thickness: var(--underline-thickness);
+      }
     }
   }
-}
 </style>

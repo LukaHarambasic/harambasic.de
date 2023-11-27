@@ -1,18 +1,13 @@
 import type { EntryType } from '$lib/types/enums'
 import { join } from 'path'
 import * as fs from 'fs/promises'
-import {remark} from 'remark';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkParseFrontmatter from 'remark-parse-frontmatter';
-import remarkRehype from 'remark-rehype';
-import rehypeStringify from 'rehype-stringify';
+import { remark } from 'remark'
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkParseFrontmatter from 'remark-parse-frontmatter'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
 
-const processor = remark()
-  .use(remarkFrontmatter)
-  .use(remarkParseFrontmatter)
-  .use(remarkRehype)
-  .use(rehypeStringify)
-  .freeze();
+const processor = remark().use(remarkFrontmatter).use(remarkParseFrontmatter).use(remarkRehype).use(rehypeStringify).freeze()
 
 // TODO still needs to be transformed to the corresponding Entry types
 export async function getRawEntries(entryType: EntryType): Promise<any[]> {

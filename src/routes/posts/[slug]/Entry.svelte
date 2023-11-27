@@ -17,7 +17,7 @@
     <ul>
       {#each tags as tag}
         <li>
-          <BaseTag tag={tag} />
+          <BaseTag {tag} />
         </li>
       {/each}
     </ul>
@@ -39,7 +39,7 @@
     </div>
   </section>
   <footer class="rich-text">
-  <!-- TODO -->
+    <!-- TODO -->
     <!-- <div class="follow">
       If you have any thoughts or questions feel free to share them in
       <a href="https://TODO.com">this thread</a> or send me an

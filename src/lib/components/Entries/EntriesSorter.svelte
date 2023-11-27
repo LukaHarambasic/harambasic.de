@@ -28,7 +28,7 @@
   onMount(() => {
     property = ($page.url.searchParams.get('property') as SortProperty) || propertiesDefault || 'PUBLISHED'
     direction = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
-	});
+  })
 </script>
 
 <div class="sort card">

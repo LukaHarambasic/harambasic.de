@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getSlug } from "$lib/util/helper"
+  import { getSlug } from '$lib/util/helper'
 
   export let title: string
   $: fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic'
@@ -14,6 +14,7 @@
 </script>
 
 <svelte:head>
+  <!-- Statistics -->
   <!-- Statistics -->
   <script data-goatcounter="https://luha.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <!-- Global Metadata -->

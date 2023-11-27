@@ -13,18 +13,15 @@
   import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte'
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
   import BaseModal from '$lib/components/Base/BaseModal.svelte'
-    
+
   // TODO: remove eager and only load images that got randomly selected
-  const pictures = import.meta.glob(
-    '../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-    {
-      eager: true,
-      query: {
-        enhanced: true,
-        w: '1280;640;400'
-      }
+  const pictures = import.meta.glob('../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
+    eager: true,
+    query: {
+      enhanced: true,
+      w: '1280;640;400'
     }
-  );
+  })
 
   const getImage = (name: string) => {
     const image = pictures[`../../assets/img/projects/${name}`]
@@ -43,7 +40,7 @@
   $: sortDirection = SortDirection.Desc
   $: filteredAndSorted = filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
   $: projectSlug = ''
-  $: activeProject = entries.find((entry) => entry.slug === projectSlug);
+  $: activeProject = entries.find((entry) => entry.slug === projectSlug)
 
   function onProperty(event: { detail: ProjectSortProperty }) {
     sortProperty = event.detail
@@ -69,41 +66,42 @@
     sortDirection = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc
     projectSlug = ($page.url.searchParams.get('slug') as string) || ''
     openModal()
-	});
+  })
 
-  let showModal = false;
+  let showModal = false
 
   function openModal(project?: Project) {
-    console.log("openModal", project)
-    if(project) {
+    console.log('openModal', project)
+    if (project) {
       setParam('slug', project.slug)
       projectSlug = project.slug
-      showModal = true;
+      showModal = true
     } else if (projectSlug && !project) {
-      showModal = true;
+      showModal = true
     }
   }
 </script>
 
 <Entries>
   <EntriesSidebar slot="sidebar">
-    <EntriesSorter propertiesEnum={ProjectSortProperty} propertiesDefault={ProjectSortProperty.Priority} on:propertyChange={onProperty} on:directionChange={onDirection} />
+    <EntriesSorter
+      propertiesEnum={ProjectSortProperty}
+      propertiesDefault={ProjectSortProperty.Priority}
+      on:propertyChange={onProperty}
+      on:directionChange={onDirection}
+    />
     <EntriesFilter statusEnum={ProjectStatus} on:statusChange={onStatus} />
     <EntriesTags {tags} on:tagChange={onTag} />
   </EntriesSidebar>
   <ul class="entries" slot="entries">
     {#each filteredAndSorted as entry, index}
-	    <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
-      <li 
-        class="h-feed card no-spacing"
-        data-highlighted={index < 4} 
-        on:click={() => openModal(entry)}
-      >
+      <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
+      <li class="h-feed card no-spacing" data-highlighted={index < 4} on:click={() => openModal(entry)}>
         {#if index < 4}
-          <enhanced:img 
+          <enhanced:img
             src={getImage(entry.image)}
             sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-            alt={entry.title} 
+            alt={entry.title}
           />
         {/if}
         <div class="content">
@@ -112,7 +110,7 @@
           <ul class="tags">
             {#each entry.tags as tag}
               <li>
-                <BaseTag tag={tag} />
+                <BaseTag {tag} />
               </li>
             {/each}
           </ul>
@@ -126,17 +124,17 @@
 <BaseModal bind:showModal>
   {#if activeProject}
     <div class="modal">
-      <enhanced:img 
+      <enhanced:img
         src={getImage(activeProject.image)}
         sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-        alt={activeProject.title} 
+        alt={activeProject.title}
       />
       <div class="content">
         <h2>{activeProject.title}</h2>
         <ul class="tags">
           {#each activeProject.tags as tag}
             <li>
-              <BaseTag tag={tag} />
+              <BaseTag {tag} />
             </li>
           {/each}
         </ul>
@@ -146,7 +144,7 @@
         <ul class="links rich-text">
           {#each activeProject.links as link}
             <li>
-              <a href="{link.url}" target="_blank" rel="noopener noreferrer">{link.title}</a>
+              <a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
             </li>
           {/each}
         </ul>
@@ -175,10 +173,10 @@
       height: 100%;
       color: var(--c-font);
       text-decoration: none;
-      &[data-highlighted="false"] {
+      &[data-highlighted='false'] {
         grid-column: span 2;
       }
-      &[data-highlighted="true"] {
+      &[data-highlighted='true'] {
         @media screen and (max-width: 62rem) {
           grid-column: span 2;
         }

@@ -7,18 +7,15 @@
   import type { Post } from '$lib/types/post'
   import type { PageData } from './$types'
   // import type { Shareable } from '$lib/types/shareable'
-  
+
   // TODO: remove eager and only load images that got randomly selected
-  const pictures = import.meta.glob(
-    '../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-    {
-      eager: true,
-      query: {
-        enhanced: true,
-        w: '1280;640;400'
-      }
+  const pictures = import.meta.glob('../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
+    eager: true,
+    query: {
+      enhanced: true,
+      w: '1280;640;400'
     }
-  );
+  })
 
   const getImage = (name: string) => {
     const image = pictures[`../assets/img/projects/${name}`]
@@ -42,16 +39,21 @@
 
 <section class="heyho">
   <div class="inner">
-    <enhanced:img 
+    <enhanced:img
       src="../assets/img/profile.jpeg?w=1280;640;400"
       sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-      alt="Profile of Luka Harambasic" 
+      alt="Profile of Luka Harambasic"
       class="profile"
     />
     <div class="content rich-text">
       <h2>Heyho, I'm Luka!</h2>
       <p>
-        I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Wrapping up my master's degree in <a href="https://www.entrepreneurship.dtu.dk/education/msc-technology-entrepreneurship">Technology Entrepreneurship at DTU</a>. At <a href="https://monta.com/">Monta</a>, I work as a Product Manger. Feel free to explore my past <a href="/projects">projects</a> or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If you want to <a href="#contact">chat</a>, just start a conversation about handball, woodworking, cooking, sustainability, or dive into product and IT topics.
+        I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Wrapping up my master's degree in <a
+          href="https://www.entrepreneurship.dtu.dk/education/msc-technology-entrepreneurship">Technology Entrepreneurship at DTU</a
+        >. At <a href="https://monta.com/">Monta</a>, I work as a Product Manger. Feel free to explore my past
+        <a href="/projects">projects</a>
+        or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If you want to <a href="#contact">chat</a>,
+        just start a conversation about handball, woodworking, cooking, sustainability, or dive into product and IT topics.
       </p>
     </div>
   </div>
@@ -104,10 +106,10 @@
         <li>
           <a class="card no-spacing image" href="/projects?slug={project.slug}">
             <Icon icon="ph:arrow-circle-right-bold" />
-            <enhanced:img 
+            <enhanced:img
               src={getImage(project.image)}
               sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-              alt={project.title} 
+              alt={project.title}
             />
             <div class="content">
               <strong>{project.title}</strong>
@@ -185,7 +187,7 @@
     width: var(--layout-l);
     margin: var(--xl) 0;
     @media screen and (max-width: 56rem) {
-      width: 100%
+      width: 100%;
     }
     .inner {
       display: flex;
@@ -272,7 +274,7 @@
           height: auto;
           justify-content: flex-start;
           text-align: center;
-          margin: 0 0 var(--m) var(--xs)
+          margin: 0 0 var(--m) var(--xs);
         }
         span {
           line-height: 1;
@@ -364,7 +366,8 @@
               }
               &:hover {
                 > picture {
-                  source, img {
+                  source,
+                  img {
                     filter: grayscale(0);
                     opacity: 1;
                   }
@@ -437,7 +440,7 @@
     width: var(--layout-m);
     margin: var(--xl) 0;
     @media screen and (max-width: 46rem) {
-      width: 100%
+      width: 100%;
     }
     .group {
       display: flex;

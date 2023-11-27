@@ -1,29 +1,29 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte"
-  import { onMount } from "svelte"
-  
+  import Icon from '@iconify/svelte'
+  import { onMount } from 'svelte'
+
   // TODO types
-  let detailsElement: any;
-  let summaryElement: any;
-  let isOpen: boolean;
+  let detailsElement: any
+  let summaryElement: any
+  let isOpen: boolean
 
   function handleToggle() {
-    isOpen = detailsElement.open;
+    isOpen = detailsElement.open
   }
 
-  let isDesktop: boolean;
+  let isDesktop: boolean
 
   function handleSummaryVisibility() {
-    if (!summaryElement) return;
-    const style = window.getComputedStyle(summaryElement);
-    isDesktop = style.display === 'none';
+    if (!summaryElement) return
+    const style = window.getComputedStyle(summaryElement)
+    isDesktop = style.display === 'none'
   }
 
   onMount(() => {
-    handleSummaryVisibility();
+    handleSummaryVisibility()
     window.addEventListener('resize', () => {
-      handleSummaryVisibility();
-    });
+      handleSummaryVisibility()
+    })
   })
 </script>
 
@@ -71,7 +71,7 @@
           color: var(--c-font);
         }
         &::-webkit-details-marker {
-          display:none;
+          display: none;
         }
         @media screen and (max-width: 50rem) {
           display: flex;
