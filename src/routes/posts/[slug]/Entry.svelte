@@ -56,7 +56,7 @@
   article {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
-    grid-template-columns: 1fr 30ch;
+    grid-template-columns: 70ch 30ch;
     grid-template-areas: 'tldr placeholder' 'post tags' 'post toc' 'footer footer';
     column-gap: var(--l);
     row-gap: var(--l);
