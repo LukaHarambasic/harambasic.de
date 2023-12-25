@@ -184,8 +184,9 @@
       &:hover {
         transform: scale(0.97);
         cursor: pointer;
-        > img {
+        img {
           filter: grayscale(0);
+          opacity: 1;
         }
       }
       > picture {
