@@ -12,7 +12,7 @@
   import { onMount } from 'svelte'
 
   // TODO: remove eager and only load images that got randomly selected
-  const pictures = import.meta.glob('../../assets/img/stack/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
+  const pictures = import.meta.glob('../../../assets/img/stack/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
     eager: true,
     query: {
       enhanced: true,
@@ -21,7 +21,7 @@
   })
 
   const getImage = (name: string) => {
-    const image = pictures[`../../assets/img/stack/${name}`]
+    const image = pictures[`../../../assets/img/stack/${name}`]
     if (!image) {
       return {}
     }
