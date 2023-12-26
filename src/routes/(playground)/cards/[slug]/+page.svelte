@@ -6,6 +6,7 @@
   import '$lib/styles/global.css'
   import { onMount } from 'svelte'
   import { getAddress, type Address } from './getAddress'
+    import { t } from './i18n'
 
   export let data: PageData
 
@@ -14,19 +15,14 @@
   let address: Address;
   $: address
 
-  const isDe = language === "de"
-  const fullTitle = isDe ? `Post für ${name}` : `Mail for ${name}`
-  const description = isDe ? `Luka hat dir eine digitale Postkarte geschickt.` : `Luka sent you a digital postcard.`
-  const socialImg = '' // TODO static image
-  const socialImgAlt = 'Purely decorative postcard image' 
-  const greeting = isDe ? `Hallo ${name},` : `Hello ${name},`
-  const farewell = isDe ? "Frohe Weihnachten, " : "Merry Christmas,"
-  
+  const fullTitle = t('title', language, name)
+  const description = t('description', language)
+  const socialImg = t('socialImg', language)
+  const socialImgAlt = t('socialImgAlt', language)
+
   onMount(async () => {
     address = await getAddress()
-    console.log(address)
   })
-
 </script>
 
 <svelte:head>
@@ -60,17 +56,17 @@
 <main>
   <article class="card rich-text">
     <div class="content">
-      <p class="greeting">{greeting}</p>
+      <p class="greeting">{t('greeting', language, name)}</p>
       <p>{content}</p>
-      <p class="farewell">{farewell} <br /> Luka</p>
+      <p class="farewell">{t('farewell', language)} <br /> Luka</p>
     </div>
     <div class="address">
-      <p>{name}</p>
+      <p class="name">{name}</p>
       {#if address}
         <p>{address.line1}</p>
         <p>{address.line2}</p>
       {:else}
-        <p>Fetching your address...</p>
+        <p>{t('adressLoading', language)}</p>
       {/if}
     </div>
   </article>
@@ -91,7 +87,7 @@ main {
   .greeting, .farewell {
     font-weight: 800;
     font-size: var(--font-xl);
-    line-height: 1.2;
+    line-height: 1.5;
     margin: 0;
     font-style: italic;
   }
@@ -102,6 +98,9 @@ main {
   }
   .address {
     font-style: italic;
+    .name {
+      font-weight: 800;
+    }
   }
 }
 </style>
