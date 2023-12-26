@@ -1,5 +1,11 @@
 export function t(key: string, languageCode: string, value?: any): string {
     const languages = import.meta.glob('./i18n.*.ts', { eager: true })
-    const {default: language} = languages[`./i18n.${languageCode}.ts`]
-    return language[key](value)
+
+    const languageModule = languages[`./i18n.${languageCode}.ts`]
+
+    if (!languageModule) {
+        return key
+    }
+    const language = languageModule.default
+    return value ? language[key](value) : language[key]
 }

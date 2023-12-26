@@ -5,5 +5,5 @@ export default {
     'socialImgAlt': () => 'Purely decorative postcard image',
     'greeting': (value: string) => `Hallo ${value},`,
     'farewell': () => 'Frohe Weihnachten, ',
-    'adressLoading': () => 'Lade deine Adresse...',
+    'addressLoading': () => 'Lade deine Adresse...',
 }
