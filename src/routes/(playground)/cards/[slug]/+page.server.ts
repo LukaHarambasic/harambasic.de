@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import type { EntryGenerator, RouteParams } from './$types';
+import { t } from './i18n';
 
 const supabase = createClient(
   'https://xqlghnitokncvzvxoiyq.supabase.co',
@@ -32,7 +33,7 @@ async function fetchCards(): Promise<Card[]> {
 }
 
 function getCardBySlug(slug: string, cards: Card[]): Card | undefined {
-    return cards.find((card) => card.slug === slug)
+    return cards.find((card) => card!.slug === slug)
 }
 
 function getEntries(cards: Card[]): RouteParams[] {
@@ -41,8 +42,19 @@ function getEntries(cards: Card[]): RouteParams[] {
 
 export const load = async ({params}) => {
     const cards = await fetchCards()
+    const card = getCardBySlug(params.slug, cards)
     return {
-        card: getCardBySlug(params.slug, cards)
+        name: card!.name,
+        language: card!.language,
+        slug: card!.slug,
+        content: card!.content,
+        greeting: t('greeting', card!.language, card!.name),
+        farewell: t('farewell', card!.language),
+        addressLoading: t('addressLoading', card!.language),
+        fullTitle: t('title', card!.language, card!.name),
+        description: t('description', card!.language),
+        socialImg: t('socialImg', card!.language),
+        socialImgAlt: t('socialImgAlt', card!.language),
     }
 }
 

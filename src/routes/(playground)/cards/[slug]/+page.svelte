@@ -6,32 +6,14 @@
   import '$lib/styles/global.css'
   import { onMount } from 'svelte'
   import { getAddress, type Address } from './getAddress'
-  import { t } from './i18n.server'
+  import { t } from './i18n'
 
   export let data: PageData
 
-  $: card = data.card
+  const { name, content, fullTitle, description, socialImg, socialImgAlt, greeting, farewell, addressLoading } = data
 
-  let language: string
-  let name: string
-  let content: string
-  let fullTitle: string
-  let description: string
-  let socialImg: string
-  let socialImgAlt: string
   let address: Address
   $: address
-
-  if (card) {
-    name = card.name
-    language = card.language
-    content = card.content
-    console.log(name, language, content)
-    fullTitle = t('title', language, name)
-    description = t('description', language)
-    socialImg = t('socialImg', language)
-    socialImgAlt = t('socialImgAlt', language)
-  }
 
   onMount(async () => {
     address = await getAddress()
@@ -69,9 +51,9 @@
 <main>
   <article class="card rich-text">
     <div class="content">
-      <p class="greeting">{t('greeting', language, name)}</p>
+      <p class="greeting">{greeting}</p>
       <p>{content}</p>
-      <p class="farewell">{t('farewell', language)} <br /> Luka</p>
+      <p class="farewell">{farewell} <br /> Luka</p>
     </div>
     <div class="address">
       <p class="name">{name}</p>
@@ -79,7 +61,7 @@
         <p>{address.line1}</p>
         <p>{address.line2}</p>
       {:else}
-        <p>{t('addressLoading', language)}</p>
+        <p>{addressLoading}</p>
       {/if}
     </div>
   </article>

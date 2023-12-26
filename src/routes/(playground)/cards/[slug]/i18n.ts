@@ -5,5 +5,5 @@ export function t(key: string, languageCode: string, value?: any): string {
         return `error.${key}`
     }
     const language = languageModule.default
-    return value ? language[key](value) : language[key]
+    return language[key](value)
 }
