@@ -6,7 +6,7 @@
   import '$lib/styles/global.css'
   import { onMount } from 'svelte'
   import { getAddress, type Address } from './getAddress'
-  import { t } from './i18n'
+  import { t } from './i18n.server'
 
   export let data: PageData
 
@@ -22,10 +22,7 @@
   let address: Address
   $: address
 
-  console.log('card-out')
-  console.log(card)
   if (card) {
-    console.log('card-in')
     name = card.name
     language = card.language
     content = card.content
