@@ -26,15 +26,15 @@ async function fetchCards(): Promise<Card[]> {
     return data.map(({uuid, name, content, language}) => {
         return {
             slug: uuid,
-            name: name,
-            content: content,
-            language: language,
+            name,
+            content,
+            language,
         }
     })
 }
 
 function getCardBySlug(slug: string, cards: Card[]): Card | undefined {
-    return cards.find((card) => card.name === slug)
+    return cards.find((card) => card.slug === slug)
 }
 
 function getEntries(cards: Card[]): RouteParams[] {
@@ -44,7 +44,7 @@ function getEntries(cards: Card[]): RouteParams[] {
 export const load = async ({params}) => {
     const cards = await fetchCards()
     return {
-        card: await getCardBySlug(params.slug, cards)
+        card: getCardBySlug(params.slug, cards)
     }
 }
 
