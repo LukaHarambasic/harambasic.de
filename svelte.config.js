@@ -15,7 +15,6 @@ const config = {
         if (status === 404) {
           return
         }
-
         // otherwise fail the build
         throw new Error(message)
       }
