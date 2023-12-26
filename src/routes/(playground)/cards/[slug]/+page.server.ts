@@ -6,14 +6,12 @@ const supabase = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxbGdobml0b2tuY3Z6dnhvaXlxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4MzQyMzYwNSwiZXhwIjoxOTk4OTk5NjA1fQ.QzoaOpgNPQF32zJl5c-Olx6ZEhw03M5mkbAA_zkBrT8'
 )
 
-export interface Card {
+interface Card {
     slug: string,
     name: string,
     content: string,
     language: string,
 }
-
-export const prerender = true
 
 async function fetchCards(): Promise<Card[]> {
     const { data, error } = await supabase.from('cards').select('*')
@@ -50,6 +48,7 @@ export const load = async ({params}) => {
 
 export const entries: EntryGenerator = async () => {
     const cards = await fetchCards()
-    console.log(getEntries(cards))
 	return getEntries(cards)
-};
+}
+
+export const prerender = true
