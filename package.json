@@ -11,10 +11,11 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
-    "generate-favicons": "node scripts/fetch-favicon/index.js",
+    "generateFavicons": "node scripts/fetch-favicon/index.js",
     "socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
     "socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
-    "newPost": "node scripts/generate-post/index.js"
+    "newPost": "node scripts/generate-post/index.js",
+    "generateCardImages": "node --env-file=.env scripts/generate-card-images/index.js"
   },
   "devDependencies": {
     "@fontsource/fira-mono": "^5.0.8",
@@ -38,13 +39,16 @@
     "eslint-config-prettier": "^9.0.0",
     "front-matter": "^4.0.2",
     "gray-matter": "^4.0.3",
+    "highlight.js": "^11.9.0",
     "js-yaml": "^4.1.0",
+    "openai": "^4.24.1",
     "playwright": "^1.37.1",
     "postcss-nested": "^6.0.1",
     "postcss-size": "^4.0.1",
     "postcss-sorting": "^8.0.2",
     "prettier": "^3.0.3",
     "prettier-plugin-svelte": "^3.0.3",
+    "rehype-highlight": "^7.0.0",
     "rehype-stringify": "^10.0.0",
     "remark": "^15.0.1",
     "remark-frontmatter": "^5.0.0",
@@ -57,10 +61,7 @@
     "typescript": "^5.2.2",
     "unist-util-visit": "^5.0.0",
     "vite": "^4.4.9",
-    "vitest": "^0.34.4",
-    "highlight.js": "^11.9.0",
-    "rehype-highlight": "^7.0.0"
+    "vitest": "^0.34.4"
   },
-  "type": "module",
-  "dependencies": {}
+  "type": "module"
 }

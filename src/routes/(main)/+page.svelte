@@ -9,7 +9,7 @@
   // import type { Shareable } from '$lib/types/shareable'
 
   // TODO: remove eager and only load images that got randomly selected
-  const pictures = import.meta.glob('../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
+  const pictures = import.meta.glob('../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
     eager: true,
     query: {
       enhanced: true,
@@ -18,7 +18,7 @@
   })
 
   const getImage = (name: string) => {
-    const image = pictures[`../assets/img/projects/${name}`]
+    const image = pictures[`../../assets/img/projects/${name}`]
     if (!image) {
       return {}
     }
@@ -40,7 +40,7 @@
 <section class="heyho">
   <div class="inner">
     <enhanced:img
-      src="../assets/img/profile.jpeg?w=1280;640;400"
+      src="../../assets/img/profile.jpeg?w=1280;640;400"
       sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
       alt="Profile of Luka Harambasic"
       class="profile"

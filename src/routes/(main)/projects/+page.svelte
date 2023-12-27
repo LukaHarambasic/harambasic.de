@@ -15,7 +15,7 @@
   import BaseModal from '$lib/components/Base/BaseModal.svelte'
 
   // TODO: remove eager and only load images that got randomly selected
-  const pictures = import.meta.glob('../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
+  const pictures = import.meta.glob('../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
     eager: true,
     query: {
       enhanced: true,
@@ -24,7 +24,7 @@
   })
 
   const getImage = (name: string) => {
-    const image = pictures[`../../assets/img/projects/${name}`]
+    const image = pictures[`../../../assets/img/projects/${name}`]
     if (!image) {
       return {}
     }
@@ -71,7 +71,6 @@
   let showModal = false
 
   function openModal(project?: Project) {
-    console.log('openModal', project)
     if (project) {
       setParam('slug', project.slug)
       projectSlug = project.slug
@@ -184,8 +183,9 @@
       &:hover {
         transform: scale(0.97);
         cursor: pointer;
-        > img {
+        img {
           filter: grayscale(0);
+          opacity: 1;
         }
       }
       > picture {

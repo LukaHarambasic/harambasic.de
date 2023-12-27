@@ -10,7 +10,7 @@
   <ul>
     <li>Name: Luka Harambasic</li>
     <li>
-      E-Mail: <a href="luka@haramabsic.de">luka@haramabsic.de</a>
+      E-Mail: <a href="mailto:luka@haramabsic.de">luka@haramabsic.de</a>
     </li>
   </ul>
   <h3>Graphics and Image Sources</h3>
