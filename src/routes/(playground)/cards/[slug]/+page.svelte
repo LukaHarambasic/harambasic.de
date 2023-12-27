@@ -110,7 +110,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     margin: var(--l) 0 0 0;
   }
@@ -118,7 +118,7 @@ main {
     position: absolute;
     border-radius: var(--border-radius);
     width: calc(100vw - (var(--l) * 2));
-    height: calc(100vh - (var(--l) * 2));
+    min-height: calc(100vh - (var(--l) * 2));
     backface-visibility: hidden;
     transition: transform 0.6s;
     overflow: hidden;
