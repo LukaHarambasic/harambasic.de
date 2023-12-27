@@ -5,12 +5,14 @@
   import Icon from '@iconify/svelte'
 
   export let showModal: boolean
+  export let isClosable: boolean = true
 
   let dialog: HTMLDialogElement
 
   $: if (dialog && showModal) dialog.showModal()
 
   function closeModal() {
+    if (!isClosable) return
     dialog.close()
     showModal = false
     resetParams()
@@ -23,9 +25,11 @@
   <div class="content" on:click|stopPropagation>
     <slot />
     <!-- svelte-ignore a11y-autofocus -->
-    <button class="close" autofocus on:click={() => dialog.close()}>
-      <Icon icon="ph:x-circle-bold" />
-    </button>
+    {#if isClosable}
+      <button class="close" autofocus on:click={() => dialog.close()}>
+        <Icon icon="ph:x-circle-bold" />
+      </button>
+    {/if}
   </div>
 </dialog>
 

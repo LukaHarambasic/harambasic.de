@@ -71,7 +71,6 @@
   let showModal = false
 
   function openModal(project?: Project) {
-    console.log('openModal', project)
     if (project) {
       setParam('slug', project.slug)
       projectSlug = project.slug

@@ -3,21 +3,12 @@
   import '$lib/styles/reset.css'
   import '$lib/styles/fonts.css'
   import '$lib/styles/variables.css'
-  import '$lib/styles/global.css'
+  import '$lib/styles/base.css'
   import { onMount } from 'svelte'
-  import { getAddress, type Address } from './getAddress'
-  import { t } from './i18n'
 
   export let data: PageData
 
-  const { name, content, fullTitle, description, socialImg, socialImgAlt, greeting, farewell, addressLoading } = data
-
-  let address: Address
-  $: address
-
-  onMount(async () => {
-    address = await getAddress()
-  })
+  const { name, content, imageUrl, fullTitle, description, socialImg, socialImgAlt, greeting, farewell } = data
 </script>
 
 <svelte:head>
@@ -48,53 +39,101 @@
   <meta name="twitter:image:alt" content={socialImgAlt} />
 </svelte:head>
 
+<div class="background" style="background-image: url({imageUrl});"></div>
 <main>
   <article class="card rich-text">
-    <div class="content">
+    <div class="box">
       <p class="greeting">{greeting}</p>
-      <p>{content}</p>
+      <p class="content">{content}</p>
       <p class="farewell">{farewell} <br /> Luka</p>
     </div>
-    <div class="address">
-      <p class="name">{name}</p>
-      {#if address}
-        <p>{address.line1}</p>
-        <p>{address.line2}</p>
-      {:else}
-        <p>{addressLoading}</p>
-      {/if}
-    </div>
   </article>
+  <footer>
+    <p>Custom image generated for <em>{name}</em> by OpenAi - DALL·E 3</p>
+    <p>Designed & developed by <a href="https://haramabsic.de">Luka Harambasic</a></p>
+  </footer>
 </main>
 
 <style lang="postcss">
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-position: 50% 50%;
+  filter: blur(3px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
 main {
-  font-family: var(--font-family);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  .card {
+  font-family: var(--font-family);
+  color: rgba(1, 3, 15, 1);
+  article {
     margin: var(--l);
+    display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-start;
     align-items: flex-start;
-  }
-  .greeting, .farewell {
-    font-weight: 800;
-    font-size: var(--font-xl);
-    line-height: 1.5;
-    margin: 0;
-    font-style: italic;
-  }
-  .content {
-    padding: 0 0 var(--l) 0;
-    margin: 0 0 var(--m) 0;
-    border-bottom: 1px solid var(--c-font-accent-super-light);
-  }
-  .address {
-    font-style: italic;
-    .name {
+    gap: var(--m);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.75);
+    padding: var(--l);
+    border: var(--border);
+    .box {
+      padding: 0 0 var(--l) 0;
+      margin: 0 0 var(--m) 0;
+    }
+    .greeting, .farewell {
       font-weight: 800;
+      font-size: var(--font-xl);
+      margin: 0;
+      font-style: italic;
+    }
+    .greeting {
+      margin: 0 0 var(--m) 0;
+    }
+    .content {
+      line-height: 1.5;
+      margin: 0 0 var(--m) 0;
+    }
+  }
+  footer {
+    margin: var(--l) var(--l) var(--xl) var(--l);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: var(--m);
+    font-size: var(--font-m);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.75);
+    padding: var(--l);
+    border: var(--border);
+    p {
+      color: rgba(1, 3, 15, 0.6);
+      text-align: center;
+      em {
+        font-style: italic;
+      }
+      a {
+        color: rgba(1, 3, 15, 0.6);
+        font-style: italic;
+        text-decoration: underline;
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
   }
 }

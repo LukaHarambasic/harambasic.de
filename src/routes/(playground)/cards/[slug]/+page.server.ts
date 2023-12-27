@@ -12,6 +12,7 @@ interface Card {
     name: string,
     content: string,
     language: string,
+    imageUrl: string,
 }
 
 async function fetchCards(): Promise<Card[]> {
@@ -22,12 +23,13 @@ async function fetchCards(): Promise<Card[]> {
     if (!data) {
         throw new Error('No data: data')
     }
-    return data.map(({uuid, name, content, language}) => {
+    return data.map(({uuid, name, content, language, imageUrl}) => {
         return {
             slug: uuid,
             name,
             content,
             language,
+            imageUrl,
         }
     })
 }
@@ -48,9 +50,9 @@ export const load = async ({params}) => {
         language: card!.language,
         slug: card!.slug,
         content: card!.content,
+        imageUrl: card!.imageUrl,
         greeting: t('greeting', card!.language, card!.name),
         farewell: t('farewell', card!.language),
-        addressLoading: t('addressLoading', card!.language),
         fullTitle: t('title', card!.language, card!.name),
         description: t('description', card!.language),
         socialImg: t('socialImg', card!.language),

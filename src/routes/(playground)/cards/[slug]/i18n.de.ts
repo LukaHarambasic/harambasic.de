@@ -3,7 +3,7 @@ export default {
     'description': () => `Luka hat dir eine digitale Postkarte geschickt.`,
     'socialImg': () => '', // TODO static image
     'socialImgAlt': () => 'Purely decorative postcard image',
-    'greeting': (value: string) => `Hallo ${value},`,
+    'greeting': (value: string) => `Heyho ${value},`,
     'farewell': () => 'Frohe Weihnachten, ',
     'addressLoading': () => 'Lade deine Adresse...',
 }
