@@ -8,5 +8,6 @@ export default {
     'frontGenerated': (value: string) => `Imagen única generada para <em>${value}</em>`,
     'frontBlink': () => `¡Haz clic aquí!`,
     'footerGenerated': (value: string) => `Imagen única generada para <em>${value}</em> por OpenAi - DALL·E 3`,
-    'footerBy': () => `Diseñado y desarrollado por <a style="color: rgba(1, 3, 15, 0.6);" href="https://harambasic.de">Luka Harambasic</a>`
+    'footerBy': () => `Diseñado y desarrollado por <a style="color: rgba(1, 3, 15, 0.6);" href="https://harambasic.de">Luka Harambasic</a>`,
+    'backDownload': () => `Descargar imagen`,
 }

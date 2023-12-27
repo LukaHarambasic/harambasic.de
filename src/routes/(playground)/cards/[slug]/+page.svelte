@@ -14,14 +14,15 @@
     fullTitle, 
     description, 
     socialImg, 
-    socialImgAlt, 
+    socialImgAlt,
     greeting, 
     farewell,
     frontTitle,
     frontBlink,
     frontGenerated,
     footerGenerated,
-    footerBy
+    footerBy,
+    backDownload
   } = data
 
   let flipped = false;
@@ -74,6 +75,7 @@
       <p class="greeting">{greeting}</p>
       <p class="content">{@html content}</p>
       <p class="farewell">{farewell} <br /> Luka</p>
+      <p class="download"><a target="_blank" href={imageUrl}>{backDownload}</a></p>
     </div>
   </article>
   <footer>
@@ -205,6 +207,19 @@ main {
     .content {
       line-height: 1.5;
       margin: 0 0 var(--m) 0;
+    }
+    .download {
+      width: 100%;
+      text-align: center;
+      margin: var(--l) 0 0 0;
+      a {
+        color: rgba(1, 3, 15, 1);
+        font-style: italic;
+        text-decoration: underline;
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
   }
   .flipped .front {
