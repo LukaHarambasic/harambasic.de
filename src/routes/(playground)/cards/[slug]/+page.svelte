@@ -28,8 +28,6 @@
   function flipCard() {
     flipped = !flipped;
   }
-
-  const testImageUrl = imageUrl // 'https://images.unsplash.com/photo-1575110170591-983f78ecedab'
 </script>
 
 <svelte:head>
@@ -60,13 +58,13 @@
   <meta name="twitter:image:alt" content={socialImgAlt} />
 </svelte:head>
 
-<div class="background" style="background-image: url({testImageUrl});"></div>
+<div class="background" style="background-image: url({imageUrl});"></div>
 <main>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <article class="{flipped ? 'flipped' : ''}" on:click={flipCard}>
     <div class="card front">
-      <div class="image" style="background-image: url({testImageUrl});"></div>
+      <div class="image" style="background-image: url({imageUrl});"></div>
       <p class="title">{frontTitle}</p>
       <p class="generated">{@html frontGenerated}</p>
     </div>
