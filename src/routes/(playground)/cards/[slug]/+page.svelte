@@ -72,7 +72,7 @@
     </div>
     <div class="card back">
       <p class="greeting">{greeting}</p>
-      <p class="content">{content}</p>
+      <p class="content">{@html content}</p>
       <p class="farewell">{farewell} <br /> Luka</p>
     </div>
   </article>
