@@ -118,10 +118,10 @@ main {
     position: absolute;
     border-radius: var(--border-radius);
     width: calc(100vw - (var(--l) * 2));
-    min-height: calc(100vh - (var(--l) * 2));
+    height: calc(100vh - (var(--l) * 2));
     backface-visibility: hidden;
     transition: transform 0.6s;
-    overflow: hidden;
+    overflow-y: scroll;
     border: solid 5px rgba(0, 0, 0, 0.5);
   }
   .front {
