@@ -23,13 +23,13 @@ async function fetchCards(): Promise<Card[]> {
     if (!data) {
         throw new Error('No data: data')
     }
-    return data.map(({uuid, name, content, language, imageUrl}) => {
+    return data.map(({uuid, name, content, language, image_url}) => {
         return {
             slug: uuid,
             name,
             content,
             language,
-            imageUrl,
+            imageUrl: image_url,
         }
     })
 }

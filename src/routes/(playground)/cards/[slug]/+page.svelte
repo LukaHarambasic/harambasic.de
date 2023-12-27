@@ -4,11 +4,18 @@
   import '$lib/styles/fonts.css'
   import '$lib/styles/variables.css'
   import '$lib/styles/base.css'
-  import { onMount } from 'svelte'
 
   export let data: PageData
 
   const { name, content, imageUrl, fullTitle, description, socialImg, socialImgAlt, greeting, farewell } = data
+
+  let flipped = false;
+
+  function flipCard() {
+    flipped = !flipped;
+  }
+
+  const testImageUrl = imageUrl // 'https://images.unsplash.com/photo-1575110170591-983f78ecedab'
 </script>
 
 <svelte:head>
@@ -39,17 +46,24 @@
   <meta name="twitter:image:alt" content={socialImgAlt} />
 </svelte:head>
 
-<div class="background" style="background-image: url({imageUrl});"></div>
+<div class="background" style="background-image: url({testImageUrl});"></div>
 <main>
-  <article class="card rich-text">
-    <div class="box">
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+  <article class="{flipped ? 'flipped' : ''}" on:click={flipCard}>
+    <div class="card front">
+      <div class="image" style="background-image: url({testImageUrl});"></div>
+      <p class="title">Merry Christmas {name}</p>
+      <p class="generated">Unique image generated for <em>{name}</em></p>
+    </div>
+    <div class="card back">
       <p class="greeting">{greeting}</p>
       <p class="content">{content}</p>
       <p class="farewell">{farewell} <br /> Luka</p>
     </div>
   </article>
   <footer>
-    <p>Custom image generated for <em>{name}</em> by OpenAi - DALL·E 3</p>
+    <p>Unique image generated for <em>{name}</em> by OpenAi - DALL·E 3</p>
     <p>Designed & developed by <a href="https://haramabsic.de">Luka Harambasic</a></p>
   </footer>
 </main>
@@ -57,10 +71,12 @@
 <style lang="postcss">
 .background {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: -1rem;
+  left: -1rem;
+  right: -1rem;
+  bottom: -1rem;
+  width: calc(100vw + 2rem);
+  height: calc(100vh + 2rem);
   background-position: 50% 50%;
   filter: blur(3px);
   background-size: cover;
@@ -68,7 +84,6 @@
   z-index: -1;
 }
 main {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,7 +91,79 @@ main {
   font-family: var(--font-family);
   color: rgba(1, 3, 15, 1);
   article {
-    margin: var(--l);
+    perspective: 1000px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: var(--l) 0 0 0;
+  }
+  .card {
+    position: absolute;
+    border-radius: var(--border-radius);
+    width: calc(100vw - (var(--l) * 2));
+    height: calc(100vh - (var(--l) * 2));
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    overflow: hidden;
+    border: solid 5px rgba(0, 0, 0, 0.5);
+  }
+  .front {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: flex-start;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: rotateY(0deg);
+    padding: var(--xl) var(--l);
+    .image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+    .title {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 
+        -3px -3px #ffffff, -2px -3px #ffffff, -1px -3px #ffffff, 0 -3px #ffffff, 1px -3px #ffffff, 2px -3px #ffffff, 3px -3px #ffffff,
+        -3px -2px #ffffff, -2px -2px #ffffff, -1px -2px #ffffff, 0 -2px #ffffff, 1px -2px #ffffff, 2px -2px #ffffff, 3px -2px #ffffff,
+        -3px -1px #ffffff, -2px -1px #ffffff, -1px -1px #ffffff, 0 -1px #ffffff, 1px -1px #ffffff, 2px -1px #ffffff, 3px -1px #ffffff,
+        -3px 0 #ffffff, -2px 0 #ffffff, -1px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff,
+        -3px 1px #ffffff, -2px 1px #ffffff, -1px 1px #ffffff, 0 1px #ffffff, 1px 1px #ffffff, 2px 1px #ffffff, 3px 1px #ffffff,
+        -3px 2px #ffffff, -2px 2px #ffffff, -1px 2px #ffffff, 0 2px #ffffff, 1px 2px #ffffff, 2px 2px #ffffff, 3px 2px #ffffff,
+        -3px 3px #ffffff, -2px 3px #ffffff, -1px 3px #ffffff, 0 3px #ffffff, 1px 3px #ffffff, 2px 3px #ffffff, 3px 3px #ffffff;
+    }
+    .generated {
+      font-size: var(--font-xs);
+      font-weight: bold;
+      color: rgba(1, 3, 15, 1);
+      letter-spacing: 1px;
+      text-align: center;
+      text-shadow: 
+        -2px -2px #ffffff, -1px -2px #ffffff, 0 -2px #ffffff, 1px -2px #ffffff, 2px -2px #ffffff,
+        -2px -1px #ffffff, -1px -1px #ffffff, 0 -1px #ffffff, 1px -1px #ffffff, 2px -1px #ffffff,
+        -2px 0 #ffffff, -1px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff,
+        -2px 1px #ffffff, -1px 1px #ffffff, 0 1px #ffffff, 1px 1px #ffffff, 2px 1px #ffffff,
+        -2px 2px #ffffff, -1px 2px #ffffff, 0 2px #ffffff, 1px 2px #ffffff, 2px 2px #ffffff;
+    }
+  }
+  .back {
+    transform: rotateY(180deg);
+    padding: var(--l);
+    background: rgba(255, 255, 255, 0.75);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -84,18 +171,9 @@ main {
     justify-content: flex-start;
     align-items: flex-start;
     gap: var(--m);
-    border-radius: var(--border-radius);
-    background: rgba(255, 255, 255, 0.75);
-    padding: var(--l);
-    border: var(--border);
-    .box {
-      padding: 0 0 var(--l) 0;
-      margin: 0 0 var(--m) 0;
-    }
     .greeting, .farewell {
       font-weight: 800;
       font-size: var(--font-xl);
-      margin: 0;
       font-style: italic;
     }
     .greeting {
@@ -106,34 +184,40 @@ main {
       margin: 0 0 var(--m) 0;
     }
   }
-  footer {
-    margin: var(--l) var(--l) var(--xl) var(--l);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    gap: var(--m);
-    font-size: var(--font-m);
-    border-radius: var(--border-radius);
-    background: rgba(255, 255, 255, 0.75);
-    padding: var(--l);
-    border: var(--border);
-    p {
-      color: rgba(1, 3, 15, 0.6);
-      text-align: center;
-      em {
-        font-style: italic;
-      }
-      a {
-        color: rgba(1, 3, 15, 0.6);
-        font-style: italic;
-        text-decoration: underline;
-        &:hover {
-          text-decoration: none;
-        }
-      }
+  .flipped .front {
+    transform: rotateY(180deg);
+  }
+  .flipped .back {
+    transform: rotateY(0deg);
+  }
+}
+footer {
+  margin: var(--l) var(--l) var(--xl) var(--l);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: var(--m);
+  font-size: var(--font-m);
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.75);
+  padding: var(--l);
+  border: var(--border);
+  p {
+    color: rgba(1, 3, 15, 0.6);
+    text-align: center;
+  }
+  em {
+    font-style: italic;
+  }
+  a {
+    color: rgba(1, 3, 15, 0.6);
+    font-style: italic;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
     }
   }
 }
