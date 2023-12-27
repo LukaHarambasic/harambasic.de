@@ -6,7 +6,7 @@ const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY})
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_API_KEY)
 
 async function _fetchCards() {
-    const { data, error } = await supabase.from('cards').select('*').eq('image_url', null);
+    const { data, error } = await supabase.from('cards').select('*').is('image_url', null);
     console.log('Cards fetched: ', data.length)
     if (error) throw new Error(`error`)
     if (!data) throw new Error('No data: ', data)
@@ -20,6 +20,8 @@ async function _fetchCards() {
     })
 }
 
+// TODO types could be added to the table and based on that a different prompt can be selected, e.g. if the type is christmas the picture below gets generated
+// ok than also the text needs to be changed, but maybe as a type in the translation file as well?
 async function _generateImage(name) {
     const image = await openai.images.generate({
         model: "dall-e-3",
