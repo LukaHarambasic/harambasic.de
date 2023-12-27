@@ -18,6 +18,7 @@
     greeting, 
     farewell,
     frontTitle,
+    frontBlink,
     frontGenerated,
     footerGenerated,
     footerBy
@@ -47,8 +48,8 @@
   <meta name="og:description" content={description} />
   <meta name="og:image" content={socialImg} />
   <meta name="og:image:alt" content={socialImgAlt} />
-  <meta name="og:image:width" content="1200" />
-  <meta name="og:image:height" content="630" />
+  <meta name="og:image:width" content="1024" />
+  <meta name="og:image:height" content="1024" />
   <!-- Twitter -->
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
@@ -66,6 +67,7 @@
     <div class="card front">
       <div class="image" style="background-image: url({imageUrl});"></div>
       <p class="title">{frontTitle}</p>
+      <p class="blink">{frontBlink}</p>
       <p class="generated">{@html frontGenerated}</p>
     </div>
     <div class="card back">
@@ -121,6 +123,7 @@ main {
     transition: transform 0.6s;
     overflow-y: scroll;
     border: solid 5px rgba(0, 0, 0, 0.5);
+    background: #ffffff;
   }
   .front {
     display: flex;
@@ -159,7 +162,11 @@ main {
         -3px 2px #ffffff, -2px 2px #ffffff, -1px 2px #ffffff, 0 2px #ffffff, 1px 2px #ffffff, 2px 2px #ffffff, 3px 2px #ffffff,
         -3px 3px #ffffff, -2px 3px #ffffff, -1px 3px #ffffff, 0 3px #ffffff, 1px 3px #ffffff, 2px 3px #ffffff, 3px 3px #ffffff;
     }
-    .generated {
+    .blink {
+      animation: blink 1s linear infinite;
+      cursor: pointer;
+    }
+    .blink, .generated {
       font-size: var(--font-xs);
       font-weight: bold;
       color: rgba(1, 3, 15, 1);
@@ -233,5 +240,10 @@ footer {
       }
     }
   }
+}
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
 }
 </style>

@@ -58,6 +58,7 @@ export const load = async ({params}) => {
         socialImg: card!.imageUrl,
         socialImgAlt: t('socialImgAlt', card!.language),
         frontTitle: t('frontTitle', card!.language, card!.name),
+        frontBlink: t('frontBlink', card!.language),
         frontGenerated: t('frontGenerated', card!.language, card!.name),
         footerGenerated: t('footerGenerated', card!.language, card!.name),
         footerBy: t('footerBy', card!.language),
