@@ -147,7 +147,7 @@ main {
       z-index: -1;
     }
     .title {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 800;
       text-align: center;
       letter-spacing: 1px;
@@ -166,6 +166,7 @@ main {
       color: rgba(1, 3, 15, 1);
       letter-spacing: 1px;
       text-align: center;
+      width: 100%;
       text-shadow: 
         -2px -2px #ffffff, -1px -2px #ffffff, 0 -2px #ffffff, 1px -2px #ffffff, 2px -2px #ffffff,
         -2px -1px #ffffff, -1px -1px #ffffff, 0 -1px #ffffff, 1px -1px #ffffff, 2px -1px #ffffff,
