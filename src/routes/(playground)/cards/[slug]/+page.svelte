@@ -148,6 +148,7 @@ main {
       font-size: 2.5rem;
       font-weight: 800;
       text-align: center;
+      width: 100%;
       letter-spacing: 1px;
       text-shadow: 
         -3px -3px #ffffff, -2px -3px #ffffff, -1px -3px #ffffff, 0 -3px #ffffff, 1px -3px #ffffff, 2px -3px #ffffff, 3px -3px #ffffff,
