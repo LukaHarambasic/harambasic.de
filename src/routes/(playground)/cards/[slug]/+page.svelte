@@ -7,7 +7,21 @@
 
   export let data: PageData
 
-  const { name, content, imageUrl, fullTitle, description, socialImg, socialImgAlt, greeting, farewell } = data
+  const { 
+    name, 
+    content, 
+    imageUrl, 
+    fullTitle, 
+    description, 
+    socialImg, 
+    socialImgAlt, 
+    greeting, 
+    farewell,
+    frontTitle,
+    frontGenerated,
+    footerGenerated,
+    footerBy
+  } = data
 
   let flipped = false;
 
@@ -53,8 +67,8 @@
   <article class="{flipped ? 'flipped' : ''}" on:click={flipCard}>
     <div class="card front">
       <div class="image" style="background-image: url({testImageUrl});"></div>
-      <p class="title">Merry Christmas {name}</p>
-      <p class="generated">Unique image generated for <em>{name}</em></p>
+      <p class="title">{frontTitle}</p>
+      <p class="generated">{@html frontGenerated}</p>
     </div>
     <div class="card back">
       <p class="greeting">{greeting}</p>
@@ -63,8 +77,8 @@
     </div>
   </article>
   <footer>
-    <p>Unique image generated for <em>{name}</em> by OpenAi - DALL·E 3</p>
-    <p>Designed & developed by <a href="https://haramabsic.de">Luka Harambasic</a></p>
+    <p>{@html footerGenerated}</p>
+    <p>{@html footerBy}</p>
   </footer>
 </main>
 
@@ -170,14 +184,13 @@ main {
     align-content: stretch;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: var(--m);
     .greeting, .farewell {
       font-weight: 800;
       font-size: var(--font-xl);
       font-style: italic;
     }
     .greeting {
-      margin: 0 0 var(--m) 0;
+      margin: 0 0 var(--s) 0;
     }
     .content {
       line-height: 1.5;
@@ -208,16 +221,16 @@ footer {
   p {
     color: rgba(1, 3, 15, 0.6);
     text-align: center;
-  }
-  em {
-    font-style: italic;
-  }
-  a {
-    color: rgba(1, 3, 15, 0.6);
-    font-style: italic;
-    text-decoration: underline;
-    &:hover {
-      text-decoration: none;
+    em {
+      font-style: italic;
+    }
+    a {
+      color: rgba(1, 3, 15, 0.6);
+      font-style: italic;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }
