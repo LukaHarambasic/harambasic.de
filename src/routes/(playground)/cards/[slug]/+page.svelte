@@ -126,6 +126,7 @@ main {
     background: #ffffff;
     max-height: 1200px;
     max-width: 800px;
+    box-shadow: var(--box-shadow);
   }
   .front {
     display: flex;
