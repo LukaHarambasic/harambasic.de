@@ -124,6 +124,8 @@ main {
     overflow-y: scroll;
     border: solid 5px rgba(0, 0, 0, 0.5);
     background: #ffffff;
+    max-height: 1200px;
+    max-width: 800px;
   }
   .front {
     display: flex;
