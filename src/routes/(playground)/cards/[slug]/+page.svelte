@@ -76,10 +76,10 @@
       <p class="content">{@html content}</p>
       <p class="farewell">{farewell} <br /> Luka</p>
       <p class="download"><a target="_blank" href={imageUrl}>{backDownload}</a></p>
+      <p class="generated">{@html footerGenerated}</p>
     </div>
   </article>
   <footer>
-    <p>{@html footerGenerated}</p>
     <p>{@html footerBy}</p>
   </footer>
 </main>
@@ -220,6 +220,11 @@ main {
           text-decoration: none;
         }
       }
+    }
+    .generated {
+      width: 100%;
+      text-align: center;
+      margin: var(--l) 0 0 0;
     }
   }
   .flipped .front {

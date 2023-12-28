@@ -59,14 +59,18 @@ async function _triggerBuild() {
 
 async function main() {
     const cards = await _fetchCards()
+    if (cards.length === 0) {
+        console.log('No cards to generate images for')
+        return
+    }
     cards.forEach(async (card) => {
         console.log(`Generating image for card: ${card.name}`)
         const imageUrl = await _generateImage(card.name)
         const blob = await _fetchImage(imageUrl)
         await _saveImage(blob, card.uuid)
-        await _triggerBuild()
-        console.log('Done!')
     })
+    await _triggerBuild()
+    console.log('Done!')
 }
 
 main()
