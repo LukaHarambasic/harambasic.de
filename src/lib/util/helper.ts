@@ -4,7 +4,6 @@ import { format } from 'date-fns'
 
 // solution inspired by https://www.designcise.com/web/tutorial/how-to-fix-replaceall-is-not-a-function-javascript-error
 // implementation inspired by https://futurestud.io/tutorials/node-js-string-replace-all-appearances
-// TODO replace with magic regex
 export function getSlug(str: string) {
   if (!str) return ''
   const slug = str
@@ -18,9 +17,8 @@ export function getSlug(str: string) {
 }
 
 // Won't be tested
-// TODO items should be gneric not any and the output should be the same type as the input
-export function getRandomItems(items: any[], amount: number) {
-  return items.sort(() => 0.5 - Math.random()).slice(0, amount)
+export function getRandomItems<T>(items: T[], amount: number): T[] {
+  return items.sort(() => 0.5 - Math.random()).slice(0, amount);
 }
 
 export function formatDate(date: Date): string {

@@ -40,7 +40,6 @@ const generatePost = (title) => {
 
 // solution inspired by https://www.designcise.com/web/tutorial/how-to-fix-replaceall-is-not-a-function-javascript-error
 // implementation inspired by https://futurestud.io/tutorials/node-js-string-replace-all-appearances
-// TODO replace with magic regex
 export function getSlug(str) {
   if (!str) return ''
   const slug = str
