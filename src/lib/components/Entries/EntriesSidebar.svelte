@@ -2,9 +2,8 @@
   import Icon from '@iconify/svelte'
   import { onMount } from 'svelte'
 
-  // TODO types
-  let detailsElement: any
-  let summaryElement: any
+  let detailsElement: HTMLDetailsElement
+  let summaryElement: HTMLElement
   let isOpen: boolean
 
   function handleToggle() {
