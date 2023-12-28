@@ -57,6 +57,7 @@
     &:hover {
       cursor: pointer;
       background: var(--c-surface-accent);
+      border-right: 1px transparent solid;
     }
     &:last-child {
       border-right: none;
