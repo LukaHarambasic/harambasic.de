@@ -6,7 +6,7 @@
 </script>
 
 <li>
-  <a href={anchor}>{node.text}</a>
+  <a href={anchor}>{node.value}</a>
   <!-- Otherwise it throws an type error if done in a variable above -->
   {#if node.children && node.children.length !== 0}
     <ol>
@@ -18,15 +18,19 @@
 </li>
 
 <style lang="postcss">
-  li {
-    margin: var(--s) 0 0 0;
-    a {
-      color: var(--c-font);
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-        text-decoration-thickness: var(--underline-thickness);
-      }
+ol {
+  margin: 0 0 0 var(--l);
+  list-style: decimal;
+}
+li {
+  margin: var(--s) 0 0 0;
+  a {
+    color: var(--c-font);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: var(--underline-thickness);
     }
   }
+}
 </style>

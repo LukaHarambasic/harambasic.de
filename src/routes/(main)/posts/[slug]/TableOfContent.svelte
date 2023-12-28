@@ -15,15 +15,15 @@
   </ol>
 </div>
 
-<style lang="postcss" global>
-  .toc {
-    font-size: var(--font-m);
-    ol {
-      margin: 0 0 0 var(--l);
-      list-style: decimal;
-    }
-    > ol {
-      margin: 0 0 0 var(--m);
-    }
+<style lang="postcss">
+.toc {
+  font-size: var(--font-m);
+  ol {
+    margin: 0 0 0 var(--l);
+    list-style: decimal;
   }
+  > ol {
+    margin: 0 0 0 var(--m);
+  }
+}
 </style>
