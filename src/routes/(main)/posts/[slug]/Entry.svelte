@@ -10,7 +10,7 @@
   //console.log(toc)
 </script>
 
-<article class="post h-entry">
+<article class="h-entry">
   <!-- TODO the 4 section could be split up in dedicated files -->
   <div class="placeholder card"></div>
   <div class="tags card">
@@ -56,10 +56,11 @@
   article {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
-    grid-template-columns: 70ch 30ch;
+    grid-template-columns: calc(70% - var(--l)) 30%;
     grid-template-areas: 'tldr placeholder' 'post tags' 'post toc' 'footer footer';
     column-gap: var(--l);
     row-gap: var(--l);
+    width: 100%;
     @media screen and (max-width: 74rem) {
       grid-template-areas: 'tldr' 'tags' 'toc' 'post' 'footer';
       grid-template-rows: auto;
