@@ -5,8 +5,30 @@ import {
 	ProjectStatus,
 	StackEntrySortProperty
 } from './enums';
-import type { Shareable } from './shareable';
 import type { Tag } from './tag';
+
+export interface RawEntry {
+	html: string;
+	meta: RawEntryMeta;
+	toc: TocNode[];
+}
+
+export interface RawEntryMeta {
+	title: string;
+	description: string;
+	image: string;
+	tags: string[];
+	published: string;
+	updated: string;
+	url?: string;
+	status?: StatusFilter;
+	openSource?: boolean;
+	tldr?: string;
+	discussion?: string;
+	links?: Link[];
+	prio?: number;
+	imageAlt?: string;
+}
 
 export interface EntryDate {
 	raw: Date;

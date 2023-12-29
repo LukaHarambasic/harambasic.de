@@ -11,16 +11,17 @@
 	export let propertiesEnum: SortProperty;
 	export let propertiesDefault: SortProperty = null;
 
-	const properties = enumToArray(propertiesEnum).sort((a: any, b: any) =>
+	const properties = enumToArray(propertiesEnum).sort((a: SortProperty, b: SortProperty) =>
 		sortAlphabetical(a.key, b.key)
 	);
+
 	let property: SortProperty = propertiesDefault || 'PUBLISHED';
 	function onPropertyChange() {
 		setParam('property', property);
 		dispatch('propertyChange', property);
 	}
 
-	const directions = enumToArray(SortDirection).sort((a: any, b: any) =>
+	const directions = enumToArray(SortDirection).sort((a: SortProperty, b: SortProperty) =>
 		sortAlphabetical(a.key, b.key)
 	);
 	let direction: SortDirection = SortDirection.Desc;

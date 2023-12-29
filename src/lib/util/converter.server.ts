@@ -14,6 +14,7 @@ import remarkRehype from 'remark-rehype';
 import type { VFile } from 'remark-rehype/lib';
 import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
+import type { RawEntry, RawEntryMeta } from '$lib/types/entry';
 
 // todo maybe markdown file?
 const processor = remark()
@@ -28,13 +29,16 @@ const processor = remark()
 	.use(rehypeStringify)
 	.freeze();
 
-// TODO still needs to be transformed to the corresponding Entry types
-export async function getRawEntries(entryType: EntryType): Promise<any[]> {
+export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 	const files = await _getFiles(entryType);
 	const entries = await Promise.all(
-		files.map(async (file) => {
+		files.map(async (file): Promise<RawEntry> => {
 			const output = processor.processSync(file);
-			return { html: output.value, meta: output.data.frontmatter, toc: output.data.toc };
+			return {
+				html: String(output.value),
+				meta: output.data.frontmatter as RawEntryMeta,
+				toc: output.data.toc as TocNode[]
+			};
 		})
 	);
 	return entries;
@@ -55,19 +59,19 @@ export async function _getFiles(entryType: EntryType): Promise<string[]> {
 
 // todo maybe markdown file?
 function _rehypeEnhanceImage() {
-	console.log('_enhanceImage');
-	return (tree: any) => {
-		visit(tree, 'element', (node) => {
-			if (node.tagName === 'img') {
-				if (!node.properties.src.endsWith('gif') || !node.properties.src.endsWith('svg')) {
-					// TODO dont get processed by svelte or vite or whoever, need to solve this before putting it life
-					// node.tagName = 'enhanced:img'
-					// node.properties.src = `${node.properties.src}?w=1280;640;400`
-					// node.properties.sizes = '(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px'
-				}
-			}
-		});
-	};
+	// console.log('_enhanceImage');
+	// return (tree: Node) => {
+	// 	visit(tree, 'element', (node: Element) => {
+	// 		if (node.tagName === 'img') {
+	// 			if (!node.properties.src.endsWith('gif') || !node.properties.src.endsWith('svg')) {
+	// 				// TODO dont get processed by svelte or vite or whoever, need to solve this before putting it life
+	// 				// node.tagName = 'enhanced:img'
+	// 				// node.properties.src = `${node.properties.src}?w=1280;640;400`
+	// 				// node.properties.sizes = '(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px'
+	// 			}
+	// 		}
+	// 	});
+	// };
 }
 
 // todo maybe markdown file?
@@ -78,7 +82,6 @@ interface HeadingNode extends Node {
 
 // todo maybe markdown file?
 function _remarkGenerateNestedToc() {
-	console.log('------------------');
 	return (tree: Node, file: VFile) => {
 		const headings: { value: string; depth: number; slug: string }[] = [];
 		visit(tree, 'heading', (node: HeadingNode) => {

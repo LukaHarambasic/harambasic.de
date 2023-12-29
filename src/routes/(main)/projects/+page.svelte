@@ -154,6 +154,7 @@
 					{/each}
 				</ul>
 				<div class="rich-text">
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html activeProject.html}
 				</div>
 				<ul class="links rich-text">

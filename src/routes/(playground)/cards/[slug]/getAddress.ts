@@ -26,6 +26,7 @@ function getCurrentPosition(): Promise<GeolocationPosition> {
 }
 
 async function fetchLocation(lat: number, lon: number): Promise<Address> {
+	// TODO change api key and set new one in .env
 	const API_KEY = 'be669b3d2f4d4c8ea1159c413ac1da78';
 	try {
 		const response = await fetch(
@@ -37,8 +38,8 @@ async function fetchLocation(lat: number, lon: number): Promise<Address> {
 			line1: address_line1,
 			line2: address_line2
 		};
-	} catch (error: any) {
-		throw new Error(error.toString());
+	} catch (error) {
+		throw new Error(String(error));
 	}
 }
 

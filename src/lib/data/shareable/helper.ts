@@ -2,6 +2,7 @@ import type { Shareable } from '$lib/types/shareable';
 import { EntryType, ShareableSortProperty, SortDirection } from '$lib/types/enums';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
+import type { RawEntry } from '$lib/types/entry';
 
 export function filterAndSort(
 	entries: Shareable[],
@@ -15,7 +16,7 @@ export function filterAndSort(
 		.sort(() => sortByDirection(sortDirection));
 }
 
-export function getShareable(entry: any): Shareable {
+export function getShareable(entry: RawEntry): Shareable {
 	const meta = entry.meta;
 	const type = EntryType.Shareable;
 	const slug = getSlug(meta.title);
@@ -28,7 +29,7 @@ export function getShareable(entry: any): Shareable {
 		tags: meta.tags.map((tag: string) => getTag(tag, type)) || [],
 		published: getDate(meta.published),
 		updated: getDate(meta.updated),
-		url: meta.url,
+		url: meta.url || '',
 		slug,
 		relativePath,
 		fullPath: `https://harambasic.de${relativePath}`

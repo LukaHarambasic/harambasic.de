@@ -7,6 +7,7 @@ import {
 } from '$lib/types/enums';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
+import type { RawEntry } from '$lib/types/entry';
 
 export function filterAndSort(
 	entries: StackEntry[],
@@ -22,7 +23,10 @@ export function filterAndSort(
 		.sort(() => sortByDirection(sortDirection));
 }
 
-export function getStackEntry(entry: any): StackEntry {
+export function getStackEntry(entry: RawEntry): StackEntry {
+	if (!entry.meta) {
+		throw new Error('Missing meta data');
+	}
 	const meta = entry.meta;
 	const type = EntryType.StackEntry;
 	const slug = getSlug(meta.title);
@@ -35,9 +39,9 @@ export function getStackEntry(entry: any): StackEntry {
 		tags: meta.tags.map((tag: string) => getTag(tag, type)) || [],
 		published: getDate(meta.published),
 		updated: getDate(meta.updated),
-		url: meta.url,
+		url: meta.url || '',
 		status: meta.status,
-		openSource: meta.openSource,
+		openSource: meta.openSource || false,
 		slug,
 		relativePath,
 		fullPath: `https://harambasic.de${relativePath}`

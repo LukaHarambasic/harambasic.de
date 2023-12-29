@@ -30,11 +30,13 @@
 	</div>
 	<div class="tldr">
 		<BaseCallout prefix="TL;DR">
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html tldr}
 		</BaseCallout>
 	</div>
 	<section class="post">
 		<div class="content rich-text e-content">
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html html}
 		</div>
 	</section>

@@ -3,7 +3,6 @@
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
 	import EntriesTags from '$lib/components/Entries/EntriesTags.svelte';
-	import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte';
 	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
 	import { filterAndSort } from '$lib/data/shareable/helper';
 	import { ShareableSortProperty, SortDirection } from '$lib/types/enums';

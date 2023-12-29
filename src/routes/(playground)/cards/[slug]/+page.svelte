@@ -8,7 +8,6 @@
 	export let data: PageData;
 
 	const {
-		name,
 		content,
 		imageUrl,
 		fullTitle,
@@ -69,17 +68,21 @@
 			<div class="image" style="background-image: url({imageUrl});"></div>
 			<p class="title">{frontTitle}</p>
 			<p class="blink">{frontBlink}</p>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			<p class="generated">{@html frontGenerated}</p>
 		</div>
 		<div class="card back">
 			<p class="greeting">{greeting}</p>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			<p class="content">{@html content}</p>
 			<p class="farewell">{farewell} <br /> Luka</p>
 			<p class="download"><a target="_blank" href={imageUrl}>{backDownload}</a></p>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			<p class="generated">{@html footerGenerated}</p>
 		</div>
 	</article>
 	<footer>
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		<p>{@html footerBy}</p>
 	</footer>
 </main>

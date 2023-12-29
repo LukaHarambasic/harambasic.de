@@ -1,3 +1,4 @@
+import type { RawEntry } from '$lib/types/entry';
 import { EntryType, ProjectSortProperty, ProjectStatus, SortDirection } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
@@ -17,7 +18,7 @@ export function filterAndSort(
 		.sort(() => sortByDirection(sortDirection));
 }
 
-export function getProject(entry: any): Project {
+export function getProject(entry: RawEntry): Project {
 	const meta = entry.meta;
 	const type = EntryType.Project;
 	const slug = getSlug(meta.title);
@@ -32,7 +33,7 @@ export function getProject(entry: any): Project {
 		published: getDate(meta.published),
 		updated: getDate(meta.updated),
 		links: meta.links || [],
-		prio: meta.prio,
+		prio: meta.prio || 0,
 		status: meta.status,
 		slug,
 		relativePath,
