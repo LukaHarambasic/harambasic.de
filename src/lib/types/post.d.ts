@@ -3,7 +3,7 @@ import type { Entry } from './entry'
 export interface TocNode {
   depth: number
   slug: string
-  text: string
+  value: string
   children: TocNode[] | null
 }
 

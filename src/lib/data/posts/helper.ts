@@ -33,7 +33,6 @@ export function getPost(entry: any): Post {
   const type = EntryType.Post
   const slug = getSlug(meta.title)
   const relativePath = `/${type.toLowerCase()}s/${slug}`
-  // TODO add toc: getNestedToc(entry.getHeadings()),
   return {
     type,
     title: meta.title,
@@ -44,49 +43,10 @@ export function getPost(entry: any): Post {
     updated: getDate(meta.updated),
     tldr: meta.tldr,
     discussion: meta.discussion,
-    toc: [],
+    toc: entry.toc,
     slug,
     relativePath,
     fullPath: `https://harambasic.de${relativePath}`,
     html: entry.html
   }
-}
-
-// TODO test
-// TODO can this be rewritten in a nicer way?
-// provided by https://codepen.io/Frnak/pen/mdmEjyG?editors=0011
-// TODO fix markdownHeadings any
-// check if this might be a nicer solution: https://github.com/ryanfiller/portfolio-svelte/blob/main/src/plugins/rehype/table-of-contents.js#L29
-export function getNestedToc(markdownHeading: any): TocNode[] {
-  let latestEntry: TocNode | null
-  let latestParent: TocNode | null
-  const markdownHeadingCopy = JSON.parse(JSON.stringify(markdownHeading))
-  if (markdownHeadingCopy.length <= 1) return markdownHeadingCopy
-  // TODO fix any
-  const entryDepth: number[] = markdownHeading.reduce((acc: number, item: any) => {
-    return item.depth < acc ? item.depth : acc
-  }, Number.POSITIVE_INFINITY)
-  // TODO fix any
-  return markdownHeadingCopy.reduce((result: any, entry: any) => {
-    if (latestEntry && !latestEntry.children) {
-      latestEntry.children = []
-    }
-    const latestEntryDepth = latestEntry?.depth || 0
-    const latestEntryChildren = latestEntry?.children || []
-    const latestParentChildren = latestParent?.children || []
-    if (entry.depth === entryDepth) {
-      entry.children = []
-      result.push(entry)
-      latestParent = null
-    } else if (entry.depth === latestEntryDepth + 1) {
-      latestEntryChildren.push(entry)
-      latestParent = latestEntry
-    } else if (entry.depth === latestEntryDepth) {
-      latestParentChildren.push(entry)
-    } else {
-      console.error('Unexpected Toc behaviour', entry)
-    }
-    latestEntry = entry
-    return result
-  }, [])
 }

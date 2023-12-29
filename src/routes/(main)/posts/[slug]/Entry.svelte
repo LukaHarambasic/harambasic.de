@@ -1,12 +1,13 @@
 <script lang="ts">
   import BaseCallout from '$lib/components/Base/BaseCallout.svelte'
-  // import PostsTableOfContent from './TableOfContent.svelte'
+  import PostsTableOfContent from './TableOfContent.svelte'
   import type { Post } from '$lib/types/post'
   import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte'
   import BaseTag from '$lib/components/Base/BaseTag.svelte'
 
   export let post: Post
-  const { tldr, tags, html } = post
+  const { tldr, tags, html, toc } = post
+  //console.log(toc)
 </script>
 
 <article class="post h-entry">
@@ -22,12 +23,11 @@
       {/each}
     </ul>
   </div>
-  <!-- TODO -->
-  <!-- <div class="toc">
+  <div class="toc">
     <div class="content card">
       <PostsTableOfContent nodes={toc} />
     </div>
-  </div> -->
+  </div>
   <div class="tldr">
     <BaseCallout prefix="TL;DR">
       {@html tldr}
@@ -91,13 +91,13 @@
         gap: var(--xs);
       }
     }
-    /* .toc {
+    .toc {
       grid-area: toc;
       .content {
         position: sticky;
         top: var(--l);
       }
-    } */
+    }
     .tldr {
       grid-area: tldr;
     }
