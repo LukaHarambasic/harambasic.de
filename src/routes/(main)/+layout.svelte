@@ -58,16 +58,16 @@
     grid-template-areas: '. header .' '. main .' '. footer .';
     row-gap: var(--xl);
     padding: var(--xl) 0;
-    width: 100%;
+    width: 100vw;
     height: auto;
     min-height: 100vh;
     @media screen and (max-width: 86rem) {
-      grid-template-columns: 4rem 1fr 4rem;
+      grid-template-columns: 4rem minmax(0, 1fr) 4rem;
     }
     @media screen and (max-width: 32rem) {
       row-gap: var(-l);
       padding: var(--l) 0;
-      grid-template-columns: 2rem 1fr 2rem;
+      grid-template-columns: 2rem minmax(0, 1fr) 2rem;
     }
     :global(> header) {
       grid-area: header;

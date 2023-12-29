@@ -1,10 +1,8 @@
 /* Based on https://unpkg.com/browse/highlightjs@9.16.2/styles/atom-one-dark.css */
 
 /*
-
 Atom One Dark by Daniel Gamage
 Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
-
 base:    #282c34
 mono-1:  #abb2bf
 mono-2:  #818896
@@ -17,7 +15,6 @@ hue-5:   #e06c75
 hue-5-2: #be5046
 hue-6:   #d19a66
 hue-6-2: #e6c07b
-
 */
 
 .hljs {
