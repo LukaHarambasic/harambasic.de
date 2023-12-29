@@ -75,17 +75,11 @@ function _rehypeEnhanceImage() {
 }
 
 // todo maybe markdown file?
-interface HeadingNode extends Node {
-	depth: number;
-	children: { value: string }[];
-}
-
-// todo maybe markdown file?
 function _remarkGenerateNestedToc() {
 	return (tree: Node, file: VFile) => {
 		const headings: { value: string; depth: number; slug: string }[] = [];
-		visit(tree, 'heading', (node: HeadingNode) => {
-			const value = node.children.reduce((text, child) => text + child.value, '');
+		visit(tree, 'heading', (node: TocNode) => {
+			const value = (node?.children ?? []).reduce((text, child) => text + child.value, '');
 			const slug = slugger(value);
 			headings.push({ value, depth: node.depth, slug });
 		});
@@ -93,17 +87,17 @@ function _remarkGenerateNestedToc() {
 	};
 }
 
-function _getNestedToc(markdownHeading: any): TocNode[] {
+function _getNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 	let latestEntry: TocNode | null;
 	let latestParent: TocNode | null;
-	const markdownHeadingCopy = JSON.parse(JSON.stringify(markdownHeading));
+	const markdownHeadingCopy = JSON.parse(JSON.stringify(markdownHeadings));
 	if (markdownHeadingCopy.length <= 1) return markdownHeadingCopy;
 	// TODO fix any
-	const entryDepth: number[] = markdownHeading.reduce((acc: number, item: any) => {
+	const entryDepth: number = markdownHeadings.reduce((acc: number, item: TocNode) => {
 		return item.depth < acc ? item.depth : acc;
 	}, Number.POSITIVE_INFINITY);
 	// TODO fix any
-	return markdownHeadingCopy.reduce((result: any, entry: any) => {
+	return markdownHeadingCopy.reduce((result: TocNode[], entry: TocNode) => {
 		if (latestEntry && !latestEntry.children) {
 			latestEntry.children = [];
 		}

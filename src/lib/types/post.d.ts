@@ -4,7 +4,7 @@ export interface TocNode {
 	depth: number;
 	slug: string;
 	value: string;
-	children: TocNode[] | null;
+	children?: TocNode[] | [];
 }
 
 export interface Post extends Entry {
