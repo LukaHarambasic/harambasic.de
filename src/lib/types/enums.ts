@@ -1,53 +1,53 @@
 export enum EntryType {
-  StackEntry = 'STACK_ENTRY',
-  Shareable = 'SHAREABLE',
-  Post = 'POST',
-  Project = 'PROJECT'
+	StackEntry = 'STACK_ENTRY',
+	Shareable = 'SHAREABLE',
+	Post = 'POST',
+	Project = 'PROJECT'
 }
 
 export enum SortDirection {
-  Desc = 'DESC',
-  Asc = 'ASC'
+	Desc = 'DESC',
+	Asc = 'ASC'
 }
 
 export enum TagSortProperty {
-  Title = 'TITLE',
-  Count = 'COUNT'
+	Title = 'TITLE',
+	Count = 'COUNT'
 }
 
 export enum ProjectSortProperty {
-  Title = 'TITLE',
-  Published = 'PUBLISHED',
-  Updated = 'UPDATED',
-  Priority = 'PRIORITY'
+	Title = 'TITLE',
+	Published = 'PUBLISHED',
+	Updated = 'UPDATED',
+	Priority = 'PRIORITY'
 }
 
 export enum ProjectStatus {
-  All = 'ALL',
-  Active = 'ACTIVE',
-  Inactive = 'INACTIVE'
+	All = 'ALL',
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE'
 }
 
 export enum StackEntryStatus {
-  All = 'ALL',
-  Active = 'ACTIVE',
-  Inactive = 'INACTIVE'
+	All = 'ALL',
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE'
 }
 
 export enum StackEntrySortProperty {
-  Title = 'TITLE',
-  Published = 'PUBLISHED',
-  Updated = 'UPDATED'
+	Title = 'TITLE',
+	Published = 'PUBLISHED',
+	Updated = 'UPDATED'
 }
 
 export enum ShareableSortProperty {
-  Title = 'TITLE',
-  Published = 'PUBLISHED',
-  Updated = 'UPDATED'
+	Title = 'TITLE',
+	Published = 'PUBLISHED',
+	Updated = 'UPDATED'
 }
 
 export enum PostSortProperty {
-  Title = 'TITLE',
-  Published = 'PUBLISHED',
-  Updated = 'UPDATED'
+	Title = 'TITLE',
+	Published = 'PUBLISHED',
+	Updated = 'UPDATED'
 }
