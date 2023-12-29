@@ -67,6 +67,5 @@
     "github-slugger": "^2.0.0"
   },
   "type": "module",
-  "dependencies": {
-  }
+  "dependencies": {}
 }

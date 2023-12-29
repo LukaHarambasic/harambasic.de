@@ -16,14 +16,14 @@
 </div>
 
 <style lang="postcss">
-.toc {
-  font-size: var(--font-m);
-  ol {
-    margin: 0 0 0 var(--l);
-    list-style: decimal;
+  .toc {
+    font-size: var(--font-m);
+    ol {
+      margin: 0 0 0 var(--l);
+      list-style: decimal;
+    }
+    > ol {
+      margin: 0 0 0 var(--m);
+    }
   }
-  > ol {
-    margin: 0 0 0 var(--m);
-  }
-}
 </style>

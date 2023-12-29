@@ -7,15 +7,15 @@
 
   export let data: PageData
 
-  const { 
-    name, 
-    content, 
-    imageUrl, 
-    fullTitle, 
-    description, 
-    socialImg, 
+  const {
+    name,
+    content,
+    imageUrl,
+    fullTitle,
+    description,
+    socialImg,
     socialImgAlt,
-    greeting, 
+    greeting,
     farewell,
     frontTitle,
     frontBlink,
@@ -25,10 +25,10 @@
     backDownload
   } = data
 
-  let flipped = false;
+  let flipped = false
 
   function flipCard() {
-    flipped = !flipped;
+    flipped = !flipped
   }
 </script>
 
@@ -64,7 +64,7 @@
 <main>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-  <article class="{flipped ? 'flipped' : ''}" on:click={flipCard}>
+  <article class={flipped ? 'flipped' : ''} on:click={flipCard}>
     <div class="card front">
       <div class="image" style="background-image: url({imageUrl});"></div>
       <p class="title">{frontTitle}</p>
@@ -85,135 +85,239 @@
 </main>
 
 <style lang="postcss">
-.background {
-  position: fixed;
-  top: -1rem;
-  left: -1rem;
-  right: -1rem;
-  bottom: -1rem;
-  width: calc(100vw + 2rem);
-  height: calc(100vh + 2rem);
-  background-position: 50% 50%;
-  filter: blur(3px);
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: -1;
-}
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-family);
-  color: rgba(1, 3, 15, 1);
-  article {
-    perspective: 1000px;
-    position: relative;
+  .background {
+    position: fixed;
+    top: -1rem;
+    left: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    width: calc(100vw + 2rem);
+    height: calc(100vh + 2rem);
+    background-position: 50% 50%;
+    filter: blur(3px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+  main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    width: 100vw;
-    margin: var(--l) 0 0 0;
-  }
-  .card {
-    position: absolute;
-    border-radius: var(--border-radius);
-    width: calc(100vw - (var(--l) * 2));
-    height: calc(100vh - 10vh - (var(--l) * 2));
-    backface-visibility: hidden;
-    transition: transform 0.6s;
-    overflow-y: scroll;
-    border: solid 5px rgba(0, 0, 0, 0.5);
-    background: #ffffff;
-    max-height: 1200px;
-    max-width: 800px;
-    box-shadow: var(--box-shadow);
-  }
-  .front {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-content: stretch;
-    align-items: flex-start;
-    background-position: 50% 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    transform: rotateY(0deg);
-    padding: var(--xl) var(--l);
-    .image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      z-index: -1;
-    }
-    .title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      text-align: center;
-      width: 100%;
-      letter-spacing: 1px;
-      text-shadow: 
-        -3px -3px #ffffff, -2px -3px #ffffff, -1px -3px #ffffff, 0 -3px #ffffff, 1px -3px #ffffff, 2px -3px #ffffff, 3px -3px #ffffff,
-        -3px -2px #ffffff, -2px -2px #ffffff, -1px -2px #ffffff, 0 -2px #ffffff, 1px -2px #ffffff, 2px -2px #ffffff, 3px -2px #ffffff,
-        -3px -1px #ffffff, -2px -1px #ffffff, -1px -1px #ffffff, 0 -1px #ffffff, 1px -1px #ffffff, 2px -1px #ffffff, 3px -1px #ffffff,
-        -3px 0 #ffffff, -2px 0 #ffffff, -1px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff,
-        -3px 1px #ffffff, -2px 1px #ffffff, -1px 1px #ffffff, 0 1px #ffffff, 1px 1px #ffffff, 2px 1px #ffffff, 3px 1px #ffffff,
-        -3px 2px #ffffff, -2px 2px #ffffff, -1px 2px #ffffff, 0 2px #ffffff, 1px 2px #ffffff, 2px 2px #ffffff, 3px 2px #ffffff,
-        -3px 3px #ffffff, -2px 3px #ffffff, -1px 3px #ffffff, 0 3px #ffffff, 1px 3px #ffffff, 2px 3px #ffffff, 3px 3px #ffffff;
-    }
-    .blink {
-      animation: blink 1s linear infinite;
-      cursor: pointer;
-    }
-    .blink, .generated {
-      font-size: var(--font-xs);
-      font-weight: bold;
-      color: rgba(1, 3, 15, 1);
-      letter-spacing: 1px;
-      text-align: center;
-      width: 100%;
-      text-shadow: 
-        -2px -2px #ffffff, -1px -2px #ffffff, 0 -2px #ffffff, 1px -2px #ffffff, 2px -2px #ffffff,
-        -2px -1px #ffffff, -1px -1px #ffffff, 0 -1px #ffffff, 1px -1px #ffffff, 2px -1px #ffffff,
-        -2px 0 #ffffff, -1px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff,
-        -2px 1px #ffffff, -1px 1px #ffffff, 0 1px #ffffff, 1px 1px #ffffff, 2px 1px #ffffff,
-        -2px 2px #ffffff, -1px 2px #ffffff, 0 2px #ffffff, 1px 2px #ffffff, 2px 2px #ffffff;
-    }
-  }
-  .back {
-    transform: rotateY(180deg);
-    padding: var(--l);
-    background: rgba(255, 255, 255, 0.75);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: flex-start;
-    .greeting, .farewell {
-      font-weight: 800;
-      font-size: var(--font-xl);
-      font-style: italic;
-    }
-    .greeting {
-      margin: 0 0 var(--s) 0;
-    }
-    .content {
-      line-height: 1.5;
-      margin: 0 0 var(--m) 0;
-    }
-    .download {
-      width: 100%;
-      text-align: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    color: rgba(1, 3, 15, 1);
+    article {
+      perspective: 1000px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      width: 100vw;
       margin: var(--l) 0 0 0;
-      a {
+    }
+    .card {
+      position: absolute;
+      border-radius: var(--border-radius);
+      width: calc(100vw - (var(--l) * 2));
+      height: calc(100vh - 10vh - (var(--l) * 2));
+      backface-visibility: hidden;
+      transition: transform 0.6s;
+      overflow-y: scroll;
+      border: solid 5px rgba(0, 0, 0, 0.5);
+      background: #ffffff;
+      max-height: 1200px;
+      max-width: 800px;
+      box-shadow: var(--box-shadow);
+    }
+    .front {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-content: stretch;
+      align-items: flex-start;
+      background-position: 50% 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transform: rotateY(0deg);
+      padding: var(--xl) var(--l);
+      .image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        z-index: -1;
+      }
+      .title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-align: center;
+        width: 100%;
+        letter-spacing: 1px;
+        text-shadow:
+          -3px -3px #ffffff,
+          -2px -3px #ffffff,
+          -1px -3px #ffffff,
+          0 -3px #ffffff,
+          1px -3px #ffffff,
+          2px -3px #ffffff,
+          3px -3px #ffffff,
+          -3px -2px #ffffff,
+          -2px -2px #ffffff,
+          -1px -2px #ffffff,
+          0 -2px #ffffff,
+          1px -2px #ffffff,
+          2px -2px #ffffff,
+          3px -2px #ffffff,
+          -3px -1px #ffffff,
+          -2px -1px #ffffff,
+          -1px -1px #ffffff,
+          0 -1px #ffffff,
+          1px -1px #ffffff,
+          2px -1px #ffffff,
+          3px -1px #ffffff,
+          -3px 0 #ffffff,
+          -2px 0 #ffffff,
+          -1px 0 #ffffff,
+          1px 0 #ffffff,
+          2px 0 #ffffff,
+          3px 0 #ffffff,
+          -3px 1px #ffffff,
+          -2px 1px #ffffff,
+          -1px 1px #ffffff,
+          0 1px #ffffff,
+          1px 1px #ffffff,
+          2px 1px #ffffff,
+          3px 1px #ffffff,
+          -3px 2px #ffffff,
+          -2px 2px #ffffff,
+          -1px 2px #ffffff,
+          0 2px #ffffff,
+          1px 2px #ffffff,
+          2px 2px #ffffff,
+          3px 2px #ffffff,
+          -3px 3px #ffffff,
+          -2px 3px #ffffff,
+          -1px 3px #ffffff,
+          0 3px #ffffff,
+          1px 3px #ffffff,
+          2px 3px #ffffff,
+          3px 3px #ffffff;
+      }
+      .blink {
+        animation: blink 1s linear infinite;
+        cursor: pointer;
+      }
+      .blink,
+      .generated {
+        font-size: var(--font-xs);
+        font-weight: bold;
         color: rgba(1, 3, 15, 1);
+        letter-spacing: 1px;
+        text-align: center;
+        width: 100%;
+        text-shadow:
+          -2px -2px #ffffff,
+          -1px -2px #ffffff,
+          0 -2px #ffffff,
+          1px -2px #ffffff,
+          2px -2px #ffffff,
+          -2px -1px #ffffff,
+          -1px -1px #ffffff,
+          0 -1px #ffffff,
+          1px -1px #ffffff,
+          2px -1px #ffffff,
+          -2px 0 #ffffff,
+          -1px 0 #ffffff,
+          1px 0 #ffffff,
+          2px 0 #ffffff,
+          -2px 1px #ffffff,
+          -1px 1px #ffffff,
+          0 1px #ffffff,
+          1px 1px #ffffff,
+          2px 1px #ffffff,
+          -2px 2px #ffffff,
+          -1px 2px #ffffff,
+          0 2px #ffffff,
+          1px 2px #ffffff,
+          2px 2px #ffffff;
+      }
+    }
+    .back {
+      transform: rotateY(180deg);
+      padding: var(--l);
+      background: rgba(255, 255, 255, 0.75);
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: stretch;
+      justify-content: flex-start;
+      align-items: flex-start;
+      .greeting,
+      .farewell {
+        font-weight: 800;
+        font-size: var(--font-xl);
+        font-style: italic;
+      }
+      .greeting {
+        margin: 0 0 var(--s) 0;
+      }
+      .content {
+        line-height: 1.5;
+        margin: 0 0 var(--m) 0;
+      }
+      .download {
+        width: 100%;
+        text-align: center;
+        margin: var(--l) 0 0 0;
+        a {
+          color: rgba(1, 3, 15, 1);
+          font-style: italic;
+          text-decoration: underline;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      .generated {
+        width: 100%;
+        text-align: center;
+        margin: var(--l) 0 0 0;
+      }
+    }
+    .flipped .front {
+      transform: rotateY(180deg);
+    }
+    .flipped .back {
+      transform: rotateY(0deg);
+    }
+  }
+  footer {
+    margin: var(--l) var(--l) var(--xl) var(--l);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: var(--m);
+    font-size: var(--font-m);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.75);
+    padding: var(--l);
+    border: var(--border);
+    p {
+      color: rgba(1, 3, 15, 0.6);
+      text-align: center;
+      em {
+        font-style: italic;
+      }
+      a {
+        color: rgba(1, 3, 15, 0.6);
         font-style: italic;
         text-decoration: underline;
         &:hover {
@@ -221,52 +325,16 @@ main {
         }
       }
     }
-    .generated {
-      width: 100%;
-      text-align: center;
-      margin: var(--l) 0 0 0;
+  }
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
-  .flipped .front {
-    transform: rotateY(180deg);
-  }
-  .flipped .back {
-    transform: rotateY(0deg);
-  }
-}
-footer {
-  margin: var(--l) var(--l) var(--xl) var(--l);
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  gap: var(--m);
-  font-size: var(--font-m);
-  border-radius: var(--border-radius);
-  background: rgba(255, 255, 255, 0.75);
-  padding: var(--l);
-  border: var(--border);
-  p {
-    color: rgba(1, 3, 15, 0.6);
-    text-align: center;
-    em {
-      font-style: italic;
-    }
-    a {
-      color: rgba(1, 3, 15, 0.6);
-      font-style: italic;
-      text-decoration: underline;
-      &:hover {
-        text-decoration: none;
-      }
-    }
-  }
-}
-@keyframes blink {
-  0%   { opacity: 1; }
-  50%  { opacity: 0; }
-  100% { opacity: 1; }
-}
 </style>

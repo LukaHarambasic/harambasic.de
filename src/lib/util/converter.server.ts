@@ -1,5 +1,5 @@
 import type { EntryType } from '$lib/types/enums'
-import type { Node } from 'unist';
+import type { Node } from 'unist'
 import { join } from 'path'
 import * as fs from 'fs/promises'
 import { remark } from 'remark'
@@ -11,9 +11,9 @@ import rehypeHighlight from 'rehype-highlight'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 import { visit } from 'unist-util-visit'
-import type { VFile } from 'remark-rehype/lib';
+import type { VFile } from 'remark-rehype/lib'
 import type { TocNode } from '$lib/types/post'
-import { slug as slugger } from 'github-slugger';
+import { slug as slugger } from 'github-slugger'
 
 // todo maybe markdown file?
 const processor = remark()
@@ -64,29 +64,30 @@ function _rehypeEnhanceImage() {
           // node.properties.src = `${node.properties.src}?w=1280;640;400`
           // node.properties.sizes = '(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px'
         }
-      }});
-  };
+      }
+    })
+  }
 }
 
 // todo maybe markdown file?
 interface HeadingNode extends Node {
-  depth: number;
-  children: { value: string }[];
+  depth: number
+  children: { value: string }[]
 }
 
 // todo maybe markdown file?
 function _remarkGenerateNestedToc() {
   console.log('------------------')
   return (tree: Node, file: VFile) => {
-    const headings: { value: string, depth: number, slug: string }[] = []
+    const headings: { value: string; depth: number; slug: string }[] = []
     visit(tree, 'heading', (node: HeadingNode) => {
       const value = node.children.reduce((text, child) => text + child.value, '')
       const slug = slugger(value)
       headings.push({ value, depth: node.depth, slug })
-    });
+    })
     file.data.toc = _getNestedToc(headings)
-  };
-};
+  }
+}
 
 function _getNestedToc(markdownHeading: any): TocNode[] {
   let latestEntry: TocNode | null

@@ -18,19 +18,19 @@
 </li>
 
 <style lang="postcss">
-ol {
-  margin: 0 0 0 var(--l);
-  list-style: decimal;
-}
-li {
-  margin: var(--s) 0 0 0;
-  a {
-    color: var(--c-font);
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-      text-decoration-thickness: var(--underline-thickness);
+  ol {
+    margin: 0 0 0 var(--l);
+    list-style: decimal;
+  }
+  li {
+    margin: var(--s) 0 0 0;
+    a {
+      color: var(--c-font);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+        text-decoration-thickness: var(--underline-thickness);
+      }
     }
   }
-}
 </style>

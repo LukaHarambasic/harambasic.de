@@ -18,7 +18,7 @@ export function getSlug(str: string) {
 
 // Won't be tested
 export function getRandomItems<T>(items: T[], amount: number): T[] {
-  return items.sort(() => 0.5 - Math.random()).slice(0, amount);
+  return items.sort(() => 0.5 - Math.random()).slice(0, amount)
 }
 
 export function formatDate(date: Date): string {
