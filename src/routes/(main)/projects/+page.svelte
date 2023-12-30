@@ -13,6 +13,7 @@
 	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import BaseModal from '$lib/components/Base/BaseModal.svelte';
+	import Icon from '@iconify/svelte';
 
 	// TODO: remove eager and only load images that got randomly selected
 	const pictures = import.meta.glob(
@@ -49,7 +50,7 @@
 		sortDirection
 	);
 	$: projectSlug = '';
-	$: activeProject = entries.find((entry) => entry.slug === projectSlug);
+	$: activeProject = entries.find((entry: Project) => entry.slug === projectSlug);
 
 	function onProperty(event: { detail: ProjectSortProperty }) {
 		sortProperty = event.detail;
@@ -130,6 +131,7 @@
 						{/each}
 					</ul>
 				</div>
+				<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
 			</li>
 		{/each}
 	</ul>
@@ -178,6 +180,7 @@
 			grid-template-columns: 1fr;
 		}
 		li {
+			position: relative;
 			display: flex;
 			position: relative;
 			flex-direction: column;
@@ -202,6 +205,9 @@
 				cursor: pointer;
 				img {
 					filter: grayscale(0);
+					opacity: 1;
+				}
+				:global(.arrow) {
 					opacity: 1;
 				}
 			}
@@ -246,6 +252,25 @@
 					align-items: flex-start;
 					gap: var(--xs);
 				}
+			}
+			:global(.arrow) {
+				color: var(--c-font-accent-dark);
+				size: var(--l);
+				position: absolute;
+				top: var(--m);
+				right: calc((-1) * var(--m));
+				opacity: 0;
+				transition: var(--transition);
+				border: 4px solid var(--c-light);
+				border-radius: 100%;
+				background: var(--c-light);
+				box-shadow:
+					0 1px 2px rgba(0, 0, 0, 0.03),
+					0 2px 4px rgba(0, 0, 0, 0.03),
+					0 4px 8px rgba(0, 0, 0, 0.03),
+					0 8px 16px rgba(0, 0, 0, 0.03),
+					0 16px 32px rgba(0, 0, 0, 0.03),
+					0 32px 64px rgba(0, 0, 0, 0.03);
 			}
 		}
 	}
