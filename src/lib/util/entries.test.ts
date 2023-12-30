@@ -16,7 +16,7 @@ test('getTag - generate a tag based on display text and type maybe with an initi
 	const resultTag: Tag = {
 		display: 'test',
 		slug: 'test',
-		relativePath: '/projects/?tag=test',
+		relativePath: '/projects?tag=test',
 		count: 0,
 		type: 'PROJECT'
 	};
@@ -31,18 +31,22 @@ test('getDate - generate date based on string', async () => {
 	expect(getDate('1996-02-18')).toStrictEqual(resultDate);
 });
 
+// TODO implement test
 test('filterByTag - ', async () => {
 	expect(true).toBe(true);
 });
 
+// TODO implement test
 test('sortByDirection - ', async () => {
 	expect(true).toBe(true);
 });
 
+// TODO implement test
 test('getUniqueTags - ', async () => {
 	expect(true).toBe(true);
 });
 
+// TODO implement test
 test('getTagBySlug - ', async () => {
 	expect(true).toBe(true);
 });
