@@ -4,6 +4,8 @@ import type { Project } from '$lib/types/project';
 import { getRawEntries } from '$lib/util/converter.server';
 import { generateXml, options } from '$lib/util/rss.server';
 
+export const prerender = true;
+
 export async function GET() {
 	const rawEntries = await getRawEntries(EntryType.Project);
 	const entries: Project[] = rawEntries
