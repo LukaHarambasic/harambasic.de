@@ -18,8 +18,7 @@
 	</div>
 	<div class="rss rich-text">
 		<p>
-			Stay up to date via this antiquite but genius technology, called
-			<a href={rssPath}>RSS</a>.
+			<a href={rssPath}>RSS Feed</a>
 		</p>
 	</div>
 </section>
