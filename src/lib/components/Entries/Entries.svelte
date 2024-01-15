@@ -1,12 +1,25 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+
+	$: pathname = '';
+
+	onMount(() => {
+		pathname = $page.url.pathname;
+	});
+
+	$: rssPath = `${pathname}/rss`;
+</script>
+
 <section>
 	<slot name="sidebar" />
 	<div class="entries">
 		<slot name="entries" />
 	</div>
-	<div class="card rss">
+	<div class="rss rich-text">
 		<p>
 			Stay up to date via this antiquite but genius technology, called
-			<a href="/posts/rss.xml">RSS</a>.
+			<a href={rssPath}>RSS</a>.
 		</p>
 	</div>
 </section>
@@ -30,6 +43,11 @@
 		}
 		.rss {
 			grid-column: 1 / -1;
+			margin: var(--l) 0 0 0;
+			text-align: center;
+			@media screen and (max-width: 50rem) {
+				grid-column: 1 / 1;
+			}
 		}
 	}
 </style>

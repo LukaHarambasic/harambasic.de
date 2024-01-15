@@ -11,7 +11,6 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			handleHttpError: ({ path, status, message }) => {
-				console.log('#lh');
 				console.log(status, path, message);
 				if (status === 404) {
 					return;
