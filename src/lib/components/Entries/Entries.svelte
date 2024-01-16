@@ -1,14 +1,7 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
+	export let path = '';
 
-	$: pathname = '';
-
-	onMount(() => {
-		pathname = $page.url.pathname;
-	});
-
-	$: rssPath = `${pathname}/rss`;
+	$: rssPath = `${path}/rss`;
 </script>
 
 <section>
