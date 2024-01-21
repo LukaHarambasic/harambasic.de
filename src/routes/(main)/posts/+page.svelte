@@ -13,6 +13,7 @@
 
 	export let data: PageData;
 	const [entries, tags] = data.posts;
+	const path = data.path;
 
 	$: filterTagSlug = 'all';
 	$: sortProperty = PostSortProperty.Published;
@@ -40,7 +41,7 @@
 	});
 </script>
 
-<Entries>
+<Entries {path}>
 	<EntriesSidebar slot="sidebar">
 		<EntriesSorter
 			propertiesEnum={PostSortProperty}

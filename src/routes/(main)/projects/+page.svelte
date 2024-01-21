@@ -37,6 +37,7 @@
 
 	export let data: PageData;
 	const [entries, tags] = data.projects;
+	const path = data.path;
 
 	$: filterTagSlug = 'all';
 	$: filterStatus = ProjectStatus.All;
@@ -94,7 +95,7 @@
 	}
 </script>
 
-<Entries>
+<Entries {path}>
 	<EntriesSidebar slot="sidebar">
 		<EntriesSorter
 			propertiesEnum={ProjectSortProperty}

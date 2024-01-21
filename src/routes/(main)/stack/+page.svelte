@@ -37,6 +37,7 @@
 
 	export let data: PageData;
 	const [entries, tags] = data.stack;
+	const path = data.path;
 
 	// all that "as" stuff should be removed, thats not right
 	$: filterTagSlug = 'all';
@@ -79,7 +80,7 @@
 	});
 </script>
 
-<Entries>
+<Entries {path}>
 	<EntriesSidebar slot="sidebar">
 		<EntriesSorter
 			propertiesEnum={StackEntrySortProperty}

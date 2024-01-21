@@ -42,7 +42,7 @@ export function getProject(entry: RawEntry): Project {
 	};
 }
 
-function sortByProperty(a: Project, b: Project, property: ProjectSortProperty): number {
+export function sortByProperty(a: Project, b: Project, property: ProjectSortProperty): number {
 	switch (property) {
 		case ProjectSortProperty.Title:
 			return sortAlphabetical(b.title, a.title);

@@ -48,7 +48,11 @@ export function getStackEntry(entry: RawEntry): StackEntry {
 	};
 }
 
-function sortByProperty(a: StackEntry, b: StackEntry, property: StackEntrySortProperty): number {
+export function sortByProperty(
+	a: StackEntry,
+	b: StackEntry,
+	property: StackEntrySortProperty
+): number {
 	switch (property) {
 		case StackEntrySortProperty.Title:
 			return sortAlphabetical(b.title, a.title);
