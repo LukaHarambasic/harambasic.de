@@ -165,6 +165,7 @@
 		</div>
 		<div class="segmented-buttons">
 			<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
+			<a href="https://twitter.com/luka_harambasic" class="button">Twitter</a>
 			<a href="https://github.com/LukaHarambasic" class="button">GitHub</a>
 		</div>
 	</div>
