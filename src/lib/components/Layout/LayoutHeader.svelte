@@ -15,8 +15,8 @@
 		//   url: '/shareable'
 		// },
 		{
-			name: 'Stack',
-			url: '/stack'
+			name: 'Uses',
+			url: '/uses'
 		},
 		{
 			name: 'Posts',

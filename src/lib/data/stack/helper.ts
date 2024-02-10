@@ -30,7 +30,7 @@ export function getStackEntry(entry: RawEntry): StackEntry {
 	const meta = entry.meta;
 	const type = EntryType.StackEntry;
 	const slug = getSlug(meta.title);
-	const relativePath = `/stack/${slug}`;
+	const relativePath = `/uses/${slug}`;
 	return {
 		type,
 		title: meta.title,

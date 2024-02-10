@@ -88,7 +88,7 @@
 	</div>
 	<div class="lists group">
 		<h3 class="section-label">
-			<span>Stack</span>
+			<span>Uses</span>
 			<Icon icon="ph:clipboard-text-bold" />
 		</h3>
 		<ul>
@@ -160,7 +160,7 @@
 	</div>
 	<div class="group">
 		<div class="meta">
-			<strong>Platforms</strong>
+			<strong>Socials</strong>
 			<small>Get in touch!</small>
 		</div>
 		<div class="segmented-buttons">

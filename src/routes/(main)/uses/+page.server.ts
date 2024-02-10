@@ -2,7 +2,7 @@ import type { PageServerLoad } from './$types';
 
 export const load = (async ({ url }) => {
 	return {
-		title: 'Stack',
+		title: 'Uses',
 		subtitle: 'Stuff I use',
 		description:
 			'An overview of the things I use, like really use. Things I rely on a daily basis.',
