@@ -3,7 +3,7 @@ import {
 	PostSortProperty,
 	ProjectSortProperty,
 	ProjectStatus,
-	StackEntrySortProperty
+	UsesEntrySortProperty
 } from './enums';
 import type { Tag } from './tag';
 
@@ -51,7 +51,7 @@ export interface Entry {
 export type SortProperty =
 	| PostSortProperty
 	| ProjectSortProperty
-	| StackEntrySortProperty
+	| UsesEntrySortProperty
 	| ShareableSortProperty;
 
-export type StatusFilter = ProjectStatus | StackEntryStatus;
+export type StatusFilter = ProjectStatus | UsesEntryStatus;

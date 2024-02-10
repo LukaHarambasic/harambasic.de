@@ -6,7 +6,7 @@ tags:
 url: https://rectangleapp.com/
 status: ACTIVE
 image: rectangle.png
-openSource: checked
+openSource: true
 updated: 2022-12-01 20:36
 published: 2022-12-01 20:35
 ---

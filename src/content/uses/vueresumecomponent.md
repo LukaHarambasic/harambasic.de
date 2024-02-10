@@ -6,7 +6,7 @@ tags:
 url: https://www.npmjs.com/package/vue-resume-component
 status: INACTIVE
 image: vueresumecomponent.svg
-openSource: checked
+openSource: true
 updated: 2022-12-01 20:32
 published: 2022-12-01 20:17
 ---

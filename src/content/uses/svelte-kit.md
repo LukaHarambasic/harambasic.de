@@ -6,7 +6,7 @@ tags:
 url: https://kit.svelte.dev/
 status: ACTIVE
 image: sveltekit.svg
-openSource: checked
+openSource: true
 updated: 2023-11-25 16:35
 published: 2023-11-25 16:35
 ---

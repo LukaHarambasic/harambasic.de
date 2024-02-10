@@ -1,5 +1,5 @@
 export enum EntryType {
-	StackEntry = 'STACK_ENTRY',
+	UsesEntry = 'USES_ENTRY',
 	Shareable = 'SHAREABLE',
 	Post = 'POST',
 	Project = 'PROJECT'
@@ -28,13 +28,13 @@ export enum ProjectStatus {
 	Inactive = 'INACTIVE'
 }
 
-export enum StackEntryStatus {
+export enum UsesEntryStatus {
 	All = 'ALL',
 	Active = 'ACTIVE',
 	Inactive = 'INACTIVE'
 }
 
-export enum StackEntrySortProperty {
+export enum UsesEntrySortProperty {
 	Title = 'TITLE',
 	Published = 'PUBLISHED',
 	Updated = 'UPDATED'
