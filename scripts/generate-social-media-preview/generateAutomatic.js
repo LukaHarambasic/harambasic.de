@@ -5,7 +5,7 @@ import { chromium } from 'playwright';
 import { ROOT_PATH, doesImageAlreadyExist, fileToMeta, generateImage } from './util.js';
 
 const POSTS_PATH = `${ROOT_PATH}/src/content/posts`;
-const LISTS_PATH = `${ROOT_PATH}/src/content/stack`;
+const LISTS_PATH = `${ROOT_PATH}/src/content/uses`;
 
 export function getSlug(str) {
 	if (!str) return '';

@@ -1,21 +1,21 @@
-import type { StackEntry } from '$lib/types/stackEntry';
+import type { UsesEntry } from '$lib/types/usesEntry';
 import {
 	EntryType,
 	SortDirection,
-	StackEntrySortProperty,
-	StackEntryStatus
+	UsesEntrySortProperty,
+	UsesEntryStatus
 } from '$lib/types/enums';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
 import type { RawEntry } from '$lib/types/entry';
 
 export function filterAndSort(
-	entries: StackEntry[],
+	entries: UsesEntry[],
 	filterTagSlug: string,
-	filterStatus: StackEntryStatus,
-	sortProperty: StackEntrySortProperty,
+	filterStatus: UsesEntryStatus,
+	sortProperty: UsesEntrySortProperty,
 	sortDirection: SortDirection
-): StackEntry[] {
+): UsesEntry[] {
 	return entries
 		.filter((entry) => filterByTag(entry, filterTagSlug))
 		.filter((entry) => filterByStatus(entry, filterStatus))
@@ -23,12 +23,12 @@ export function filterAndSort(
 		.sort(() => sortByDirection(sortDirection));
 }
 
-export function getStackEntry(entry: RawEntry): StackEntry {
+export function getUsesEntry(entry: RawEntry): UsesEntry {
 	if (!entry.meta) {
 		throw new Error('Missing meta data');
 	}
 	const meta = entry.meta;
-	const type = EntryType.StackEntry;
+	const type = EntryType.UsesEntry;
 	const slug = getSlug(meta.title);
 	const relativePath = `/uses/${slug}`;
 	return {
@@ -49,23 +49,23 @@ export function getStackEntry(entry: RawEntry): StackEntry {
 }
 
 export function sortByProperty(
-	a: StackEntry,
-	b: StackEntry,
-	property: StackEntrySortProperty
+	a: UsesEntry,
+	b: UsesEntry,
+	property: UsesEntrySortProperty
 ): number {
 	switch (property) {
-		case StackEntrySortProperty.Title:
+		case UsesEntrySortProperty.Title:
 			return sortAlphabetical(b.title, a.title);
-		case StackEntrySortProperty.Published:
+		case UsesEntrySortProperty.Published:
 			return sortDate(b.published.raw, a.published.raw);
-		case StackEntrySortProperty.Updated:
+		case UsesEntrySortProperty.Updated:
 			return sortDate(b.updated.raw, a.updated.raw);
 		default:
 			return 0;
 	}
 }
 
-function filterByStatus(entry: StackEntry, filterStatus: StackEntryStatus): boolean {
-	if (filterStatus === StackEntryStatus.All) return true;
+function filterByStatus(entry: UsesEntry, filterStatus: UsesEntryStatus): boolean {
+	if (filterStatus === UsesEntryStatus.All) return true;
 	return entry.status === filterStatus;
 }

@@ -3,7 +3,7 @@
 	import BaseToClipboardButton from '$lib/components/Base/BaseToClipboardButton.svelte';
 	import { getRandomItems } from '$lib/util/helper';
 	import type { Project } from '$lib/types/project';
-	import type { StackEntry } from '$lib/types/stackEntry';
+	import type { UsesEntry } from '$lib/types/usesEntry';
 	import type { Post } from '$lib/types/post';
 	import type { PageData } from './$types';
 	// import type { Shareable } from '$lib/types/shareable'
@@ -31,11 +31,11 @@
 	export let data: PageData;
 	const [posts] = data.posts;
 	const [projects] = data.projects;
-	const [stack] = data.stack;
+	const [uses] = data.uses;
 	// const [shareables] = data.shareables
 
 	const randomProjects: Project[] = getRandomItems(projects, 2);
-	const randomStack: StackEntry[] = getRandomItems(stack, 3);
+	const randomUses: UsesEntry[] = getRandomItems(uses, 3);
 	const randomPosts: Post[] = getRandomItems(posts, 2);
 	// const randomShareables: Shareable[] = getRandomItems(shareables, 4)
 </script>
@@ -92,12 +92,12 @@
 			<Icon icon="ph:clipboard-text-bold" />
 		</h3>
 		<ul>
-			{#each randomStack as stackEntry}
+			{#each randomUses as usesEntry}
 				<li>
-					<a class="card text" href={stackEntry.url}>
+					<a class="card text" href={usesEntry.url}>
 						<Icon icon="ph:arrow-square-out-bold" />
-						<strong>{stackEntry.title}</strong>
-						<p>{stackEntry.description}</p>
+						<strong>{usesEntry.title}</strong>
+						<p>{usesEntry.description}</p>
 					</a>
 				</li>
 			{/each}
