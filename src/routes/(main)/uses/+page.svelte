@@ -5,6 +5,7 @@
 	import EntriesTags from '$lib/components/Entries/EntriesTags.svelte';
 	import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte';
 	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
+	import BaseStatus from '$lib/components/Base/BaseStatus.svelte';
 	import { filterAndSort } from '$lib/data/uses/helper';
 	import { UsesEntrySortProperty, UsesEntryStatus, SortDirection } from '$lib/types/enums';
 	import type { PageData } from './$types';
@@ -105,9 +106,12 @@
 						{/if}
 					</div>
 					<div class="content">
-						<strong class="title">
-							{entry.title}
-						</strong>
+						<div class="title">
+							<strong>
+								{entry.title}
+							</strong>
+							<BaseStatus status={entry.status} />
+						</div>
 						<p>{entry.description}</p>
 					</div>
 					<Icon class="arrow" icon="ph:arrow-square-out-bold" />
@@ -172,12 +176,30 @@
 					gap: var(--xs);
 					padding: var(--l);
 					.title {
-						display: inline-block;
-						font-weight: 900;
-						font-size: var(--font-m);
-						line-height: 1.2;
-						font-family: var(--font-family);
-						letter-spacing: var(--font-letter-spacing-headline);
+						strong {
+							display: inline;
+							font-weight: 900;
+							font-size: var(--font-m);
+							line-height: 1.2;
+							font-family: var(--font-family);
+							letter-spacing: var(--font-letter-spacing-headline);
+						}
+					}
+					.badge {
+						position: absolute;
+						top: 1rem;
+						left: 2rem;
+						display: inline;
+						text-align: center;
+						color: var(--c-font-accent-dark);
+						font-weight: 600;
+						font-size: var(--font-s);
+						text-decoration: none;
+						padding: 0 var(--xxs);
+						border-radius: var(--border-radius);
+						background: var(--c-surface-accent);
+						border: var(--border);
+						transition: transform var(--transition-time) var(--transition-ease);
 					}
 				}
 				:global(.arrow) {
