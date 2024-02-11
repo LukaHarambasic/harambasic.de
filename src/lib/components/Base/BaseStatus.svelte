@@ -14,12 +14,6 @@
 
 <style lang="postcss">
 	:global(.status-icon) {
-		margin: 0 0 -4px 1px;
-	}
-	:global(.active) {
-		color: #4ade80;
-	}
-	:global(.inactive) {
-		color: #f87171;
+		margin: 0 0 -0.25rem 1px;
 	}
 </style>
