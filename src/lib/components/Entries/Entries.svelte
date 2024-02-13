@@ -8,7 +8,9 @@
 	<div class="entries">
 		<slot name="entries" />
 	</div>
-	<slot name="sidebar" />
+	<div class="sidebar">
+		<slot name="sidebar" />
+	</div>
 	<div class="rss rich-text">
 		<p>
 			<a href={rssPath}>RSS Feed</a>
@@ -32,6 +34,16 @@
 		}
 		.entries {
 			width: 100%;
+			@media screen and (max-width: 50rem) {
+				grid-template-columns: 1fr;
+				order: 1;
+			}
+		}
+		.sidebar {
+			@media screen and (max-width: 50rem) {
+				grid-template-columns: 1fr;
+				order: 0;
+			}
 		}
 		.rss {
 			grid-column: 1 / -1;
@@ -39,6 +51,7 @@
 			text-align: center;
 			@media screen and (max-width: 50rem) {
 				grid-column: 1 / 1;
+				order: 2;
 			}
 		}
 	}
