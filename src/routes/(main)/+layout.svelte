@@ -58,7 +58,7 @@
 		grid-template-areas: '. header .' '. main .' '. footer .';
 		row-gap: var(--xl);
 		padding: var(--xl) 0;
-		width: 100vw;
+		width: 100%;
 		height: auto;
 		min-height: 100vh;
 		@media screen and (max-width: 86rem) {
