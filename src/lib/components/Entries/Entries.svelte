@@ -5,9 +5,11 @@
 </script>
 
 <section>
-	<slot name="sidebar" />
 	<div class="entries">
 		<slot name="entries" />
+	</div>
+	<div class="sidebar">
+		<slot name="sidebar" />
 	</div>
 	<div class="rss rich-text">
 		<p>
@@ -20,18 +22,28 @@
 	section {
 		display: grid;
 		grid-template-rows: auto auto auto;
-		grid-template-columns: 1fr 70ch;
+		grid-template-columns: 70ch 1fr;
 		column-gap: var(--l);
 		row-gap: var(--l);
 		width: 100%;
 		@media screen and (max-width: 74rem) {
-			grid-template-columns: 18rem 1fr;
+			grid-template-columns: 1fr 18rem;
 		}
 		@media screen and (max-width: 50rem) {
 			grid-template-columns: 1fr;
 		}
 		.entries {
 			width: 100%;
+			@media screen and (max-width: 50rem) {
+				grid-template-columns: 1fr;
+				order: 1;
+			}
+		}
+		.sidebar {
+			@media screen and (max-width: 50rem) {
+				grid-template-columns: 1fr;
+				order: 0;
+			}
 		}
 		.rss {
 			grid-column: 1 / -1;
@@ -39,6 +51,7 @@
 			text-align: center;
 			@media screen and (max-width: 50rem) {
 				grid-column: 1 / 1;
+				order: 2;
 			}
 		}
 	}

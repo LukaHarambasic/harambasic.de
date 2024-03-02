@@ -3,7 +3,7 @@ import type { Entry } from '$lib/types/entry';
 
 export function generateXml(entries: Entry[], entryType: EntryType) {
 	const folderName =
-		entryType.toLowerCase() === 'stack_entry' ? 'stack' : `${entryType.toLowerCase()}s`;
+		entryType.toLowerCase() === 'uses_entry' ? 'uses' : `${entryType.toLowerCase()}s`;
 	const type = folderName.charAt(0).toUpperCase() + folderName.slice(1);
 	const body = entries
 		.map(

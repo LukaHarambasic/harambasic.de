@@ -6,7 +6,7 @@ imageAlt: Self made raft with five people on it
 published: 2023-11-07
 updated: 2023-11-07
 prio: 700
-status: INACTIVE
+status: ACTIVE
 links:
 tags:
   - Carpentry

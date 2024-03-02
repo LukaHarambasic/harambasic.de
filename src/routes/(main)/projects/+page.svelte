@@ -14,6 +14,7 @@
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import BaseModal from '$lib/components/Base/BaseModal.svelte';
 	import Icon from '@iconify/svelte';
+	import BaseStatus from '$lib/components/Base/BaseStatus.svelte';
 
 	// TODO: remove eager and only load images that got randomly selected
 	const pictures = import.meta.glob(
@@ -122,7 +123,10 @@
 					/>
 				{/if}
 				<div class="content">
-					<strong>{entry.title}</strong>
+					<div class="title">
+						<strong>{entry.title}</strong>
+						<BaseStatus status={entry.status} />
+					</div>
 					<p>{entry.description}</p>
 					<ul class="tags">
 						{#each entry.tags as tag}
@@ -148,7 +152,10 @@
 				alt={activeProject.title}
 			/>
 			<div class="content">
-				<h2>{activeProject.title}</h2>
+				<h2>
+					{activeProject.title}
+					<BaseStatus status={activeProject.status} />
+				</h2>
 				<ul class="tags">
 					{#each activeProject.tags as tag}
 						<li>
@@ -229,7 +236,7 @@
 			> .content {
 				padding: var(--l);
 				strong {
-					display: block;
+					display: inline;
 					margin: 0 0 var(--xxs) 0;
 					font-weight: 900;
 					font-size: var(--font-m);

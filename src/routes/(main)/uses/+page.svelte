@@ -5,15 +5,15 @@
 	import EntriesTags from '$lib/components/Entries/EntriesTags.svelte';
 	import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte';
 	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
-	import { filterAndSort } from '$lib/data/stack/helper';
-	import { StackEntrySortProperty, StackEntryStatus, SortDirection } from '$lib/types/enums';
+	import BaseStatus from '$lib/components/Base/BaseStatus.svelte';
+	import { filterAndSort } from '$lib/data/uses/helper';
+	import { UsesEntrySortProperty, UsesEntryStatus, SortDirection } from '$lib/types/enums';
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
 
-	// TODO: remove eager and only load images that got randomly selected
 	const pictures = import.meta.glob(
-		'../../../assets/img/stack/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
+		'../../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
 			query: {
@@ -24,7 +24,7 @@
 	);
 
 	const getImage = (name: string) => {
-		const image = pictures[`../../../assets/img/stack/${name}`];
+		const image = pictures[`../../../assets/img/uses/${name}`];
 		if (!image) {
 			return {};
 		}
@@ -36,13 +36,12 @@
 	};
 
 	export let data: PageData;
-	const [entries, tags] = data.stack;
+	const [entries, tags] = data.uses;
 	const path = data.path;
 
-	// all that "as" stuff should be removed, thats not right
 	$: filterTagSlug = 'all';
-	$: filterStatus = StackEntryStatus.All;
-	$: sortProperty = StackEntrySortProperty.Published;
+	$: filterStatus = UsesEntryStatus.All;
+	$: sortProperty = UsesEntrySortProperty.Published;
 	$: sortDirection = SortDirection.Desc;
 	$: filteredAndSorted = filterAndSort(
 		entries,
@@ -52,7 +51,7 @@
 		sortDirection
 	);
 
-	function onProperty(event: { detail: StackEntrySortProperty }) {
+	function onProperty(event: { detail: UsesEntrySortProperty }) {
 		sortProperty = event.detail;
 	}
 
@@ -64,17 +63,16 @@
 		filterTagSlug = event.detail;
 	}
 
-	function onStatus(event: { detail: StackEntryStatus }) {
+	function onStatus(event: { detail: UsesEntryStatus }) {
 		filterStatus = event.detail;
 	}
 
 	onMount(() => {
 		filterTagSlug = $page.url.searchParams.get('tag') || 'all';
-		filterStatus =
-			($page.url.searchParams.get('status') as StackEntryStatus) || StackEntryStatus.All;
+		filterStatus = ($page.url.searchParams.get('status') as UsesEntryStatus) || UsesEntryStatus.All;
 		sortProperty =
-			($page.url.searchParams.get('property') as StackEntrySortProperty) ||
-			StackEntrySortProperty.Published;
+			($page.url.searchParams.get('property') as UsesEntrySortProperty) ||
+			UsesEntrySortProperty.Published;
 		sortDirection =
 			($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc;
 	});
@@ -83,11 +81,11 @@
 <Entries {path}>
 	<EntriesSidebar slot="sidebar">
 		<EntriesSorter
-			propertiesEnum={StackEntrySortProperty}
+			propertiesEnum={UsesEntrySortProperty}
 			on:propertyChange={onProperty}
 			on:directionChange={onDirection}
 		/>
-		<EntriesFilter statusEnum={StackEntryStatus} on:statusChange={onStatus} />
+		<EntriesFilter statusEnum={UsesEntryStatus} on:statusChange={onStatus} />
 		<EntriesTags {tags} on:tagChange={onTag} />
 	</EntriesSidebar>
 	<ul slot="entries" class="entries">
@@ -97,7 +95,7 @@
 					<div class="logo">
 						{#if entry.image}
 							{#if isSvg(entry.image)}
-								<img src="/stack/{entry.image}" alt={entry.title} width="64px" />
+								<img src="/uses/{entry.image}" alt={entry.title} width="64px" />
 							{:else}
 								<enhanced:img
 									src={getImage(entry.image)}
@@ -108,9 +106,12 @@
 						{/if}
 					</div>
 					<div class="content">
-						<strong class="title">
-							{entry.title}
-						</strong>
+						<div class="title">
+							<strong>
+								{entry.title}
+							</strong>
+							<BaseStatus status={entry.status} />
+						</div>
 						<p>{entry.description}</p>
 					</div>
 					<Icon class="arrow" icon="ph:arrow-square-out-bold" />
@@ -175,12 +176,30 @@
 					gap: var(--xs);
 					padding: var(--l);
 					.title {
-						display: inline-block;
-						font-weight: 900;
-						font-size: var(--font-m);
-						line-height: 1.2;
-						font-family: var(--font-family);
-						letter-spacing: var(--font-letter-spacing-headline);
+						strong {
+							display: inline;
+							font-weight: 900;
+							font-size: var(--font-m);
+							line-height: 1.2;
+							font-family: var(--font-family);
+							letter-spacing: var(--font-letter-spacing-headline);
+						}
+					}
+					.badge {
+						position: absolute;
+						top: 1rem;
+						left: 2rem;
+						display: inline;
+						text-align: center;
+						color: var(--c-font-accent-dark);
+						font-weight: 600;
+						font-size: var(--font-s);
+						text-decoration: none;
+						padding: 0 var(--xxs);
+						border-radius: var(--border-radius);
+						background: var(--c-surface-accent);
+						border: var(--border);
+						transition: transform var(--transition-time) var(--transition-ease);
 					}
 				}
 				:global(.arrow) {
