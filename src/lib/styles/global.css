@@ -74,6 +74,7 @@
 		hyphens: auto;
 	}
 	img {
+		max-width: 100%;
 		border-radius: var(--border-radius);
 	}
 	h2 {
@@ -112,6 +113,13 @@
 		&:last-child {
 			margin-bottom: 0;
 		}
+	}
+	hr {
+		border: none;
+		height: 2px;
+		border-radius: 10rem;
+		background: var(--c-surface-accent);
+		margin: var(--l) 0;
 	}
 	a {
 		color: var(--c-font);
@@ -156,8 +164,11 @@
 			}
 		}
 	}
-	img {
-		max-width: 100%;
+	strong {
+		font-weight: 900;
+	}
+	em {
+		font-style: italic;
 	}
 }
 
