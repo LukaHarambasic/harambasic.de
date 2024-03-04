@@ -164,6 +164,7 @@
 			<small>Get in touch!</small>
 		</div>
 		<div class="segmented-buttons">
+			<a href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B" class="button">Signal</a>
 			<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
 			<a href="https://twitter.com/luka_harambasic" class="button">Twitter</a>
 			<a href="https://github.com/LukaHarambasic" class="button">GitHub</a>
@@ -457,7 +458,7 @@
 			align-items: flex-start;
 			border-bottom: 1px solid var(--c-surface);
 			padding: var(--l);
-			@media screen and (max-width: 32rem) {
+			@media screen and (max-width: 40rem) {
 				flex-direction: column;
 				gap: var(--l);
 			}
