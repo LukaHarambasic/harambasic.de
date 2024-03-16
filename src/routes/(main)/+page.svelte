@@ -176,7 +176,7 @@
 			<small>Wanna talk?</small>
 		</div>
 		<div class="segmented-buttons">
-			<a href="https://cal.com/luhara/%F0%9F%93%85?duration=30" class="button">Book</a>
+			<a href="https://cal.com/luhara/1" class="button">Book</a>
 		</div>
 	</div>
 </section>
