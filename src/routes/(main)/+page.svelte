@@ -51,11 +51,7 @@
 		<div class="content rich-text">
 			<h2>Heyho, I'm Luka!</h2>
 			<p>
-				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Wrapping up my master's
-				degree in <a
-					href="https://www.entrepreneurship.dtu.dk/education/msc-technology-entrepreneurship"
-					>Technology Entrepreneurship at DTU</a
-				>. At <a href="https://monta.com/">Monta</a>, I work as a Product Manger. Feel free to
+				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). At <a href="https://monta.com/">Monta</a>, I work as a Product Manger (Home Energy Management). Feel free to
 				explore my past
 				<a href="/projects">projects</a>
 				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If
