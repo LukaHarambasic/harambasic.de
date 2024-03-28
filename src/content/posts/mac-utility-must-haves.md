@@ -12,7 +12,7 @@ discussion: TBD
 
 ## Motivation
 
-Over the last view years I recommended these utilities to firends and some even come back after months/years and thank me for that. Why not write them down, adjust it over time and share it with everyone. I won't do this for all of the stuff I use, but if you want to see more check out my [stack](/stack).
+Over the last view years I recommended these utilities and shortcuts to firends. Why not write them down? Adjust it over time and share it with everyone. Checkout what else I use: [Uses](/uses)
 
 ## The utilities
 
@@ -64,7 +64,11 @@ A nice sideeffect is also that it cleans the styles of the copied text, e.g. cop
 brew install --cask alt-tab
 ```
 
+TODO: Screenshot
+
 like windows, mutliple instances of the same program
+
+This brings just 
 
 ---
 
@@ -75,6 +79,8 @@ like windows, mutliple instances of the same program
 ```bash
 brew install --cask rectangle
 ```
+
+TODO: Screenshot or gif
 
 shortcuts but i use it mainly for tha snapping with the mouse and full screen when double clicking title
 
@@ -101,9 +107,17 @@ but you also can trigger apple shortcuts, so you can build with the nice apple u
 
 dont use clipboard and screenshots
 
+## Useful shortcuts
+
+CTRL + L - copy links
+
+CTRL + K - open a command palet like raycast in other apps
+
 ## Closing thoughts
 
 open source, donate, support
+
+- you might quesiton why i still use macos after all
 
 **Sources**
 
