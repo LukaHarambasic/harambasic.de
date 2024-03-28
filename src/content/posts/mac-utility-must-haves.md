@@ -48,11 +48,9 @@ You might be asking yourself, what the hell is a clipboard manager. And I was li
 
 ![TODO](/posts/mac-utility-must-haves/clipy.png)
 
-TODO: Maybe gif?
-
 After you installed Clipy you can use it via **SHIFT + COMMAND + C**. It's just one additional key stroke to what you are used. It comes with a lot of options to customize, but I don't change a lot. I just make sure that there are already copy items visible without the need to navigate to a folder first (see screenshot). Therefore you need to set the _Number of items place inline_ to a decent numnber, I have it at 10.
 
-A nice sideeffect is also that it cleans the styles of the copied text, e.g. copying something from VSCode to Outlook normally takes all the styling. But I can't think about a usecase where I want that. Maybe the hierarchy of the text but not the styling. Everything should jsut be Markdown.
+A nice sideeffect is also that it cleans the styles of the copied text, e.g. copying something from VSCode to Outlook normally takes all the styling. But I can't think about a usecase where I want that. Maybe the hierarchy of the text but not the styling. Everything should be Markdown.
 
 ---
 
@@ -64,11 +62,13 @@ A nice sideeffect is also that it cleans the styles of the copied text, e.g. cop
 brew install --cask alt-tab
 ```
 
-TODO: Screenshot
+AltTab solves one of my main problems with window switching on MacOs: **COMMAND + TAB** can't handle multiple instances of the same program. I tried multiple virtual desktops switching between them with gestures. But this didn't work that well with multiple monitors. Besides this benefit AltTab also adds more context to the open windows, a screenshot and the title of the instance.
 
-like windows, mutliple instances of the same program
+![ALtTab cycling through multiple windows](/posts/mac-utility-must-haves/alttab.gif)
 
-This brings just 
+I highly recommend to just replace the default **ALT + COMMAND** with AltTab. It will guide you after the installation how to do so. And than you can customize it, below you can see my _Appearance_ settings. That is the outcome of trial and error. You also could disable the screenshots in the preview if you prefer that.
+
+![AlTab appearance of around 20 settings](/posts/mac-utility-must-haves/alttab_settings.png)
 
 ---
 
@@ -80,9 +80,16 @@ This brings just
 brew install --cask rectangle
 ```
 
-TODO: Screenshot or gif
 
 shortcuts but i use it mainly for tha snapping with the mouse and full screen when double clicking title
+
+After beeing able to switch between all the windows they need to be organised. One goes to the left half, one to the right half. Another one needs to be maximized without going fullscreen - I don't like the MacOs fullscreen and split mode.
+
+![Rectangle resizing multiple windows by dragging them to the side of the screen](/posts/mac-utility-must-haves/rectangle.gif)
+
+You therefore either use your mouse to drag a window in one of the hot areas (you can define them in the settings) or you can use the key board shortcuts. I tend to use the mouse, but would love to get used to the shortcuts.
+
+![Overview of the Rectangle shortcut settings](/posts/mac-utility-must-haves/rectangle_shortcuts.png)
 
 ---
 
