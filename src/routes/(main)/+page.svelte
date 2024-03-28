@@ -51,11 +51,7 @@
 		<div class="content rich-text">
 			<h2>Heyho, I'm Luka!</h2>
 			<p>
-				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Wrapping up my master's
-				degree in <a
-					href="https://www.entrepreneurship.dtu.dk/education/msc-technology-entrepreneurship"
-					>Technology Entrepreneurship at DTU</a
-				>. At <a href="https://monta.com/">Monta</a>, I work as a Product Manger. Feel free to
+				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). At <a href="https://monta.com/">Monta</a>, I work as a Product Manger (Home Energy Management). Feel free to
 				explore my past
 				<a href="/projects">projects</a>
 				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If
@@ -164,6 +160,7 @@
 			<small>Get in touch!</small>
 		</div>
 		<div class="segmented-buttons">
+			<a href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B" class="button">Signal</a>
 			<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
 			<a href="https://twitter.com/luka_harambasic" class="button">Twitter</a>
 			<a href="https://github.com/LukaHarambasic" class="button">GitHub</a>
@@ -175,7 +172,7 @@
 			<small>Wanna talk?</small>
 		</div>
 		<div class="segmented-buttons">
-			<a href="https://cal.com/luhara/%F0%9F%93%85?duration=30" class="button">Book</a>
+			<a href="https://cal.com/luhara/1" class="button">Book</a>
 		</div>
 	</div>
 </section>
@@ -457,7 +454,7 @@
 			align-items: flex-start;
 			border-bottom: 1px solid var(--c-surface);
 			padding: var(--l);
-			@media screen and (max-width: 32rem) {
+			@media screen and (max-width: 40rem) {
 				flex-direction: column;
 				gap: var(--l);
 			}

@@ -185,6 +185,10 @@
 							letter-spacing: var(--font-letter-spacing-headline);
 						}
 					}
+					p {
+						font-size: var(--font-m);
+						line-height: 1.2;
+					}
 					.badge {
 						position: absolute;
 						top: 1rem;
