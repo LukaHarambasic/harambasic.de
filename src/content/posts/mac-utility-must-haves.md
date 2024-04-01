@@ -1,6 +1,6 @@
 ---
-title: Mac utility must haves for Product Managers
-description: Explore my essential Mac utilities for Product Managers, including clipboard enhancements, window management, and more.
+title: Mac utility must haves
+description: Explore my essential Mac utilities, including clipboard enhancements, window management, and more.
 published: 2024-04-01
 updated: 2024-04-01
 tags:
@@ -12,7 +12,7 @@ discussion: TBD
 
 ## Motivation
 
-Over the last few years, I have repeatedly recommended these utilities and shortcuts to friends. Most of them are in developer roles. I also used them while coding a lot, but I also switched focus from pure design to university-related work. The recommendations are stable and versatile. As you'll see below, I'm currently working as a Product Manager; therefore, most examples focus on that task field. But you can make it your own.
+Over the last few years, I have repeatedly recommended these utilities and shortcuts to friends. Most of them are in developer roles. I used them while coding a lot, but I also used them for pure design and university-related work. The recommendations are stable and versatile. As you'll see below, I currently work as a Product Manager; therefore, most examples focus on that task field. But you can make it your own.
 
 If you are interested in a video walking you thorugh these tools I can recommend [Set up a Mac in 2024 for Power Users and Developers](https://www.youtube.com/watch?v=GK7zLYAXdDs) by [Syntax](https://syntax.fm/), which covers almost everything I describe here.
 
