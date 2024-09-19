@@ -56,7 +56,7 @@
 				<a href="/projects">projects</a>
 				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If
 				you want to <a href="#contact">chat</a>, just start a conversation about handball,
-				woodworking, cooking, sustainability, or dive into product and IT topics.
+				woodworking, cooking, sustainability, or dive into product and tech topics.
 			</p>
 		</div>
 	</div>
