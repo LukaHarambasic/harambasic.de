@@ -1,0 +1,43 @@
+{
+  "name": "harambasic-de",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+		"test": "vitest",
+		"test:ui": "playwright test",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"lint:fix": "prettier --check . && eslint . --fix",
+		"format": "prettier --write .",
+		"generateFavicons": "node scripts/fetch-favicon/index.js",
+		"socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
+		"socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
+		"newPost": "node scripts/generate-post/index.js",
+		"generateCardImages": "node --env-file=.env scripts/generate-card-images/index.js"
+  },
+  "dependencies": {
+    "astro": "^4.15.9",
+    "@astrojs/check": "^0.9.3",
+    "typescript": "^5.6.2"
+  },
+	"devDependencies": {
+		"@fontsource/fira-mono": "^5.0.8",
+		"@playwright/test": "^1.37.1",
+		"@supabase/supabase-js": "^2.26.0",
+		"autoprefixer": "^10.4.15",
+		"cssnano": "^6.0.1",
+		"date-fns": "^2.29.3",
+		"github-slugger": "^2.0.0",
+		"openai": "^4.24.1",
+		"playwright": "^1.37.1",
+		"postcss-nested": "^6.0.1",
+		"postcss-size": "^4.0.1",
+		"postcss-sorting": "^8.0.2"
+  }
+}
