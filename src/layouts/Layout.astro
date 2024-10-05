@@ -17,6 +17,12 @@ const { title } = Astro.props
         <title>{title}</title>
     </head>
     <body>
+        <header>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/posts">Posts</a>
+            <a href="/uses">Uses</a>
+        </header>
         <slot />
     </body>
 </html>

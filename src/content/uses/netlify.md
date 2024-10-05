@@ -7,7 +7,6 @@ tags:
 url: https://www.netlify.com/
 status: ACTIVE
 image: netlify.svg
-openSource:
 updated: 2022-12-01 20:22
 published: 2022-12-01 20:21
 ---

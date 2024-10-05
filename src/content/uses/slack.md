@@ -7,7 +7,6 @@ tags:
 url: https://slack.com
 status: ACTIVE
 image: slack.svg
-openSource:
 updated: 2022-12-01 20:34
 published: 2022-12-01 20:33
 ---

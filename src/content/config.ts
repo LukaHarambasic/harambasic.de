@@ -25,12 +25,12 @@ const projectsCollection = defineCollection({
         published: z.coerce.date(),
         updated: z.coerce.date(),
         prio: z.number(),
-        status: z.enum(['ACTIVE', 'INACTIVE']),
+        status: z.enum(['ACTIVE', 'INACTIVE', 'ARCHIVED']),
         tags: z.array(reference('tags')),
         links: z.array(z.object({
             title: z.string(),
             url: z.string().url(),
-        })),
+        })).optional(),
         category: reference('categories'),
     }),
 })
@@ -45,7 +45,7 @@ const usesCollection = defineCollection({
         updated: z.coerce.date(),
         tags: z.array(reference('tags')),
         url: z.string().url(),
-        status: z.enum(['ACTIVE', 'INACTIVE']),
+        status: z.enum(['ACTIVE', 'INACTIVE', 'ARCHIVED']),
         openSource: z.boolean().optional(),
         category: reference('categories'),
     }),
@@ -68,7 +68,7 @@ const categoriesCollection = defineCollection({
 })
 
 export const collections = {
-    'blog': postsCollection,
+    'posts': postsCollection,
     'projects': projectsCollection,
     'uses': usesCollection,
     'tags': tagsCollection,

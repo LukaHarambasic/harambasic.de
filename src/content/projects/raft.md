@@ -7,7 +7,6 @@ published: 2023-11-07
 updated: 2023-11-07
 prio: 700
 status: ACTIVE
-links:
 category: diy
 tags:
   - co-founder

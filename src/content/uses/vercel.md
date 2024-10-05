@@ -7,7 +7,6 @@ tags:
 url: https://vercel.com/
 status: ACTIVE
 image: vercel.svg
-openSource:
 updated: 2022-12-01 20:26
 published: 2022-12-01 20:24
 ---
