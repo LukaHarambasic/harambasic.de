@@ -1,13 +1,27 @@
 ---
+type Direction = 'row' | 'column'
 
+interface Props {
+    direction?: Direction
+    class?: string
+}
+
+const {
+    direction = 'row',
+    class: className,
+    ...attributes
+}: Props = Astro.props
+
+const directionClass = direction === 'column' ? 'column' : ''
 ---
 
-<div class="card">
-  <slot />
-</div>
+<li class={`${className} ${directionClass}`} {...attributes}>
+    <slot />
+</li>
 
 <style lang="postcss">
-    .card {
+li {
+    background: green;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -20,6 +34,9 @@
     padding: var(--l);
     border: var(--border);
     @media screen and (max-width: 42rem) {
+        flex-direction: column;
+    }
+    &.column {
         flex-direction: column;
     }
     &.no-spacing {

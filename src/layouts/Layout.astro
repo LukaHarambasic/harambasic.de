@@ -1,29 +1,135 @@
 ---
+import '@styles/reset.css'
+import '@styles/variables.css'
+import '@styles/base.css'
+import '@styles/fonts.css'
+import '@styles/highlight.css'
+import LayoutFooter from '@components/Layout/LayoutFooter.astro'
+import LayoutHeader from '@components/Layout/LayoutHeader.astro'
+
 interface Props {
-  title: string
+    title?: string
+    subtitle?: string
+    published?: Date
+    relativePath?: string
 }
 
-const { title } = Astro.props
+const { title, subtitle, published, relativePath } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body>
-    <header>
-      <a href="/">Home</a>
-      <a href="/projects">Projects</a>
-      <a href="/posts">Posts</a>
-      <a href="/uses">Uses</a>
-    </header>
-    <slot />
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TODO" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body>
+        <div class="container">
+            <LayoutHeader />
+            <main id="main">
+                {
+                    title && (
+                        <section class="header">
+                            <h1>{title}</h1>
+                            {subtitle && (
+                                <strong class="subtitle">{subtitle}</strong>
+                            )}
+                            {published && relativePath && (
+                                <time
+                                    class="date dt-published"
+                                    datetime={published.toLocaleDateString()}
+                                >
+                                    <a href={relativePath} class="u-url">
+                                        {published.toLocaleDateString()}
+                                    </a>
+                                </time>
+                            )}
+                        </section>
+                    )
+                }
+                <slot />
+            </main>
+            <LayoutFooter />
+        </div>
+    </body>
 </html>
-<style is:global></style>
+
+<style lang="postcss">
+	.container {
+		display: grid;
+		grid-template-rows: auto 1fr auto;
+		grid-template-columns: 1fr var(--layout-xl) 1fr;
+		grid-template-areas: '. header .' '. main .' '. footer .';
+		row-gap: var(--xl);
+		padding: var(--xl) 0;
+		width: 100%;
+		height: auto;
+		min-height: 100vh;
+		@media screen and (max-width: 86rem) {
+			grid-template-columns: 4rem minmax(0, 1fr) 4rem;
+		}
+		@media screen and (max-width: 32rem) {
+			row-gap: var(-l);
+			padding: var(--l) 0;
+			grid-template-columns: 2rem minmax(0, 1fr) 2rem;
+		}
+		:global(> header) {
+			grid-area: header;
+		}
+		> main {
+			display: flex;
+			grid-area: main;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-content: stretch;
+			justify-content: flex-start;
+			align-items: center;
+			gap: var(--xl);
+			.header {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-content: stretch;
+				align-items: center;
+				gap: var(--s);
+				h1 {
+					width: 30ch;
+					font-weight: 900;
+					font-size: var(--font-xl);
+					line-height: 1.2;
+					font-family: var(--font-family);
+					letter-spacing: var(--font-letter-spacing-headline);
+					text-align: center;
+					@media screen and (max-width: 42rem) {
+						width: 100%;
+					}
+				}
+				.subtitle {
+					color: var(--c-font-accent-dark);
+					font-size: var(--font-m);
+					font-weight: normal;
+					text-align: center;
+					font-style: italic;
+					margin: calc(-1 * var(--xs)) 0 0 0;
+				}
+				.date {
+					a {
+						color: var(--c-font);
+						font-weight: 400;
+						font-size: var(--font-m);
+						text-decoration: none;
+						font-style: italic;
+					}
+				}
+			}
+		}
+		:global(> footer) {
+			grid-area: footer;
+		}
+	}
+</style>

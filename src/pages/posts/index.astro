@@ -1,36 +1,65 @@
 ---
+import Card from '@components/Card.astro'
 import Layout from '@layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
 const entries: CollectionEntry<'posts'>[] = await getCollection('posts')
+console.log(entries[0])
+console.log(entries[0]?.data.category)
+console.log(entries[0]?.data.tags)
 ---
 
 <Layout title="Posts">
-  <section>
-    <ul class="entries">
-      {
-        entries.map((entry) => (
-          <li class="h-feed">
-            <a href={`/posts/${entry.slug}`}>
-              <div class="column">
-                <strong class="title">{entry.data.title}</strong>
-                <div class="category">Category</div>
-                <div class="tags">Tags</div>
-              </div>
-              {/* <time class="date dt-published" datetime={post?.published?.raw?.toString()}>
+	<section>
+		<ul class="entries">
+			{
+				entries.map((entry) => (
+					<Card class="entry h-feed">
+						<a href={`/posts/${entry.slug}`}>
+							<div class="column">
+								<strong class="title">
+									{entry.data.title}
+								</strong>
+								<div class="category">Category</div>
+							</div>
+							{/* <time class="date dt-published" datetime={post?.published?.raw?.toString()}>
                              {post.published.display}
                          </time>
                          <Icon class="arrow" icon="ph:arrow-circle-right-bold" /> */}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <aside>
-      <slot name="sidebar" />
-    </aside>
-  </section>
+						</a>
+					</Card>
+				))
+			}
+		</ul>
+		<aside>
+			<Card direction="column">
+				<h3>Sort</h3>
+				<ul>
+					<li>Newest</li>
+					<li>Oldest</li>
+					<li>A-Z</li>
+					<li>Z-A</li>
+				</ul>
+			</Card>
+			<Card direction="column">
+				<h3>Categories</h3>
+				<ul>
+					<li>Category 1</li>
+					<li>Category 2</li>
+					<li>Category 3</li>
+				</ul>
+			</Card>
+			<Card direction="column">
+				<h3>Tags</h3>
+				<ul>
+					<li>Tag 1</li>
+					<li>Tag 2</li>
+					<li>Tag 3</li>
+				</ul>
+			</Card>
+		</aside>
+	</section>
 </Layout>
 
 <style lang="postcss">
@@ -49,24 +78,119 @@ const entries: CollectionEntry<'posts'>[] = await getCollection('posts')
 		}
 		.entries {
 			width: 100%;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-content: stretch;
+			justify-content: flex-start;
+			align-items: stretch;
+			gap: var(--l);
 			@media screen and (max-width: 50rem) {
 				grid-template-columns: 1fr;
 				order: 1;
 			}
+		.entry {
+			transition: var(--transition);
+			&:hover {
+				transform: scale(0.97);
+				cursor: pointer;
+				:global(svg) {
+					opacity: 1;
+				}
+			}
+			> a {
+				display: flex;
+				position: relative;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				align-content: stretch;
+				justify-content: space-between;
+				align-items: flex-start;
+				gap: var(--l);
+				color: var(--c-font);
+				text-decoration: none;
+				@media screen and (max-width: 50rem) {
+					flex-direction: column-reverse;
+				}
+				.column {
+					display: flex;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					align-content: stretch;
+					justify-content: flex-start;
+					align-items: stretch;
+					gap: var(--xs);
+				}
+				.title {
+					display: inline-block;
+					font-weight: 900;
+					font-size: var(--font-m);
+					line-height: 1.2;
+					font-family: var(--font-family);
+					letter-spacing: var(--font-letter-spacing-headline);
+				}
+				.category {
+					flex-base: 100%;
+					display: flex;
+					flex-grow: 1;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-content: stretch;
+					justify-content: flex-start;
+					align-items: flex-start;
+					gap: var(--xs);
+					font-size: var(--font-s);
+				}
+				.date {
+					display: inline-block;
+					margin: 0 0 var(--xs) 0;
+					color: var(--c-font);
+					font-weight: 400;
+					font-size: var(--font-m);
+					text-decoration: none;
+					font-style: italic;
+					text-align: right;
+					flex-shrink: 0;
+					@media screen and (max-width: 50rem) {
+						margin: 0 0 calc(-1 * var(--m)) 0;
+						flex-shrink: 1;
+					}
+				}
+				:global(.arrow) {
+					color: var(--c-font-accent-dark);
+					size: var(--l);
+					position: absolute;
+					top: var(--m);
+					right: calc((-1) * var(--m));
+					opacity: 0;
+					transition: var(--transition);
+					border: 4px solid var(--c-light);
+					border-radius: 100%;
+					background: var(--c-light);
+					box-shadow:
+						0 1px 2px rgba(0, 0, 0, 0.03),
+						0 2px 4px rgba(0, 0, 0, 0.03),
+						0 4px 8px rgba(0, 0, 0, 0.03),
+						0 8px 16px rgba(0, 0, 0, 0.03),
+						0 16px 32px rgba(0, 0, 0, 0.03),
+						0 32px 64px rgba(0, 0, 0, 0.03);
+				}
+			
+		}
+	}
 		}
 		aside {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-content: stretch;
+			justify-content: flex-start;
+			align-items: stretch;
+			gap: var(--l);
+			width: 100%;
 			@media screen and (max-width: 50rem) {
 				grid-template-columns: 1fr;
 				order: 0;
-			}
-		}
-		.rss {
-			grid-column: 1 / -1;
-			margin: var(--l) 0 0 0;
-			text-align: center;
-			@media screen and (max-width: 50rem) {
-				grid-column: 1 / 1;
-				order: 2;
 			}
 		}
 	}
