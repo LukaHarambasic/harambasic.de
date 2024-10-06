@@ -1,39 +1,43 @@
 ---
 const links = [
-  {
-    title: 'Home',
-    url: '/',
-  },
-  {
-    title: 'Projects',
-    url: '/projects',
-  },
-  {
-    title: 'Uses',
-    url: '/uses',
-  },
-  {
-    title: 'Posts',
-    url: '/posts',
-  },
+	{
+		title: 'Home',
+		url: '/',
+	},
+	{
+		title: 'Projects',
+		url: '/projects',
+	},
+	{
+		title: 'Uses',
+		url: '/uses',
+	},
+	{
+		title: 'Map',
+		url: '/map',
+	},
+	{
+		title: 'Posts',
+		url: '/posts',
+	},
 ]
 ---
 
 <header>
-  <div class="logo">
-    <a href="/">Luka Harambasic</a>
-  </div>
-  <nav>
-    <ul>
-      {
-        links.map(({ title, url }) => (
-          <li>
-            <a href={url}>{title}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
+	<div class="logo">
+		<a href="/">Luka Harambasic</a>
+	</div>
+	<nav>
+		<ul>
+			{
+				links.map(({ title, url }) => (
+					<li>
+						<a href={url}>{title}</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
 </header>
 
 <style lang="postcss">

@@ -1,15 +1,184 @@
 ---
+import Card from '@components/Card.astro'
 import Layout from '@layouts/Layout.astro'
 import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
 
-const entries = await getCollection('uses')
+const entries: CollectionEntry<'uses'>[] = await getCollection('uses')
 ---
 
-<Layout title="Projects">
-  <h1>Uses</h1>
-  <ul>
-    {entries.map((entry) => <li>{entry.data.title}</li>)}
-  </ul>
+<Layout title="uses">
+  <section>
+    <ul class="entries">
+      {
+        entries.map((entry) => (
+          <Card class="entry h-feed">
+            <a href={entry.data.url}>
+              <div class="column">
+                <strong class="title">{entry.data.title}</strong>
+                <p class="description">{entry.data.description}</p>
+                <div class="category">Category</div>
+              </div>
+              {/* <time class="date dt-published" datetime={use?.published?.raw?.toString()}>
+                             {use.published.display}
+                         </time>
+                         <Icon class="arrow" icon="ph:arrow-circle-right-bold" /> */}
+            </a>
+          </Card>
+        ))
+      }
+    </ul>
+    <aside>
+      <Card direction="column">
+        <h3>Categories</h3>
+        <ul>
+          <li>Category 1</li>
+          <li>Category 2</li>
+          <li>Category 3</li>
+        </ul>
+      </Card>
+      <Card direction="column">
+        <h3>Tags</h3>
+        <ul>
+          <li>Tag 1</li>
+          <li>Tag 2</li>
+          <li>Tag 3</li>
+        </ul>
+      </Card>
+    </aside>
+  </section>
 </Layout>
 
-<style></style>
+<style lang="postcss">
+	section {
+		display: grid;
+		grid-template-rows: auto auto auto;
+		grid-template-columns: 70ch 1fr;
+		column-gap: var(--l);
+		row-gap: var(--l);
+		width: 100%;
+		@media screen and (max-width: 74rem) {
+			grid-template-columns: 1fr 18rem;
+		}
+		@media screen and (max-width: 50rem) {
+			grid-template-columns: 1fr;
+		}
+		.entries {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-content: stretch;
+			justify-content: flex-start;
+			align-items: stretch;
+			gap: var(--l);
+			@media screen and (max-width: 50rem) {
+				grid-template-columns: 1fr;
+				order: 1;
+			}
+		.entry {
+			transition: var(--transition);
+			&:hover {
+				transform: scale(0.97);
+				cursor: pointer;
+				:global(svg) {
+					opacity: 1;
+				}
+			}
+			> a {
+				display: flex;
+				position: relative;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				align-content: stretch;
+				justify-content: space-between;
+				align-items: flex-start;
+				gap: var(--l);
+				color: var(--c-font);
+				text-decoration: none;
+				@media screen and (max-width: 50rem) {
+					flex-direction: column-reverse;
+				}
+				.column {
+					display: flex;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					align-content: stretch;
+					justify-content: flex-start;
+					align-items: stretch;
+					gap: var(--xs);
+				}
+				.title {
+					display: inline-block;
+					font-weight: 900;
+					font-size: var(--font-m);
+					line-height: 1.2;
+					font-family: var(--font-family);
+					letter-spacing: var(--font-letter-spacing-headline);
+				}
+				.category {
+					flex-base: 100%;
+					display: flex;
+					flex-grow: 1;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-content: stretch;
+					justify-content: flex-start;
+					align-items: flex-start;
+					gap: var(--xs);
+					font-size: var(--font-s);
+				}
+				.date {
+					display: inline-block;
+					margin: 0 0 var(--xs) 0;
+					color: var(--c-font);
+					font-weight: 400;
+					font-size: var(--font-m);
+					text-decoration: none;
+					font-style: italic;
+					text-align: right;
+					flex-shrink: 0;
+					@media screen and (max-width: 50rem) {
+						margin: 0 0 calc(-1 * var(--m)) 0;
+						flex-shrink: 1;
+					}
+				}
+				:global(.arrow) {
+					color: var(--c-font-accent-dark);
+					size: var(--l);
+					position: absolute;
+					top: var(--m);
+					right: calc((-1) * var(--m));
+					opacity: 0;
+					transition: var(--transition);
+					border: 4px solid var(--c-light);
+					border-radius: 100%;
+					background: var(--c-light);
+					box-shadow:
+						0 1px 2px rgba(0, 0, 0, 0.03),
+						0 2px 4px rgba(0, 0, 0, 0.03),
+						0 4px 8px rgba(0, 0, 0, 0.03),
+						0 8px 16px rgba(0, 0, 0, 0.03),
+						0 16px 32px rgba(0, 0, 0, 0.03),
+						0 32px 64px rgba(0, 0, 0, 0.03);
+				}
+			
+		}
+	}
+		}
+		aside {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-content: stretch;
+			justify-content: flex-start;
+			align-items: stretch;
+			gap: var(--l);
+			width: 100%;
+			@media screen and (max-width: 50rem) {
+				grid-template-columns: 1fr;
+				order: 0;
+			}
+		}
+	}
+</style>

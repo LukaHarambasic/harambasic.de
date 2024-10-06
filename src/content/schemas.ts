@@ -1,9 +1,9 @@
 import { reference, z } from 'astro:content'
 
-export const postSchema = z.object({
+export const postSchema = ({ image }) => z.object({
   title: z.string(),
   description: z.string(),
-  image: z.string().optional(),
+  image: image().optional(),
   published: z.coerce.date(),
   updated: z.coerce.date(),
   tags: z.array(reference('tags')),
@@ -12,10 +12,10 @@ export const postSchema = z.object({
   category: reference('categories'),
 })
 
-export const projectsSchema = z.object({
+export const projectsSchema = ({ image }) => z.object({
   title: z.string(),
   description: z.string(),
-  image: z.string(),
+  image: image(),
   imageAlt: z.string(),
   published: z.coerce.date(),
   updated: z.coerce.date(),
@@ -33,10 +33,10 @@ export const projectsSchema = z.object({
   category: reference('categories'),
 })
 
-export const usesSchema = z.object({
+export const usesSchema = ({ image }) => z.object({
   title: z.string(),
   description: z.string(),
-  image: z.string().optional(),
+  image: image().optional(),
   published: z.coerce.date(),
   updated: z.coerce.date(),
   tags: z.array(reference('tags')),

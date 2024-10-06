@@ -2,6 +2,7 @@
 import Layout from '@layouts/Layout.astro'
 import worldSvgRaw from '@images/world.svg?raw'
 import { parse } from 'node-html-parser'
+import Card from '@components/Card.astro'
 
 // TODO this should come from a content collection: country code, country name, cities, description, counter
 const visitedCountries = [
@@ -51,12 +52,13 @@ setCountryAttribute(nextCountries, 'data-next')
 ---
 
 <Layout title="Map">
-  <p>
+  <!-- TODO make this look and sound nicer -->
+  <Card>
     Since I'm 18 I got the chance to visit a lot of different countries in
     Europe and two times even to the US. So many incredible journeys and
     experiences. I believe that there is so much to see in Europe so once I have
     seen most here I might go to different continents. But let's see.
-  </p>
+  </Card>
   <div class="map">
     <Fragment set:html={worldSvg} />
     <ul class="legend">
