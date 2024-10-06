@@ -1,0 +1,177 @@
+---
+import Layout from '@layouts/Layout.astro'
+import worldSvgRaw from '@images/world.svg?raw'
+import { parse } from 'node-html-parser'
+
+// TODO this should come from a content collection: country code, country name, cities, description, counter
+const visitedCountries = [
+  'HR',
+  'BA',
+  'ES',
+  'FR',
+  'IT',
+  'SE',
+  'TR',
+  'US',
+  'PT',
+  'NO',
+  'FI',
+  'CZ',
+  'BE',
+  'NL',
+  'LU',
+  'CH',
+  'AT',
+  'AL',
+  'SI',
+  'HU',
+  'IE',
+  'GR',
+  'VA',
+  'DE',
+  'DK',
+]
+const livedCountries = ['DE', 'DK']
+const nextCountries = ['IT', 'BA']
+
+const worldSvg = parse(worldSvgRaw)
+
+function setCountryAttribute(countries: string[], attributeName: string) {
+  countries.forEach((countryCode: string) => {
+    const countryElement = worldSvg.querySelector(`#${countryCode}`)
+    if (countryElement) {
+      countryElement.setAttribute(attributeName, 'true')
+    }
+  })
+}
+
+setCountryAttribute(visitedCountries, 'data-visited')
+setCountryAttribute(livedCountries, 'data-lived')
+setCountryAttribute(nextCountries, 'data-next')
+---
+
+<Layout title="Map">
+  <p>
+    Since I'm 18 I got the chance to visit a lot of different countries in
+    Europe and two times even to the US. So many incredible journeys and
+    experiences. I believe that there is so much to see in Europe so once I have
+    seen most here I might go to different continents. But let's see.
+  </p>
+  <div class="map">
+    <Fragment set:html={worldSvg} />
+    <ul class="legend">
+      <li>
+        <svg
+          class="bar"
+          width="32"
+          height="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="100%" height="100%"></rect>
+        </svg>
+        <span>Visited ({visitedCountries.length})</span>
+      </li>
+      <li>
+        <svg
+          class="bar"
+          width="32"
+          height="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="100%" height="100%" fill="url(#stripes-lived)"></rect>
+        </svg>
+        <span>Lived ({livedCountries.length})</span>
+      </li>
+      <li>
+        <svg
+          class="bar"
+          width="32"
+          height="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="100%" height="100%" fill="url(#stripes-next)"></rect>
+        </svg>
+        <span>Next ({nextCountries.length})</span>
+      </li>
+    </ul>
+  </div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="0"
+    height="0"
+    style="position: absolute;"
+  >
+    <defs>
+      <pattern
+        id="stripes-lived"
+        patternUnits="userSpaceOnUse"
+        width="4"
+        height="4"
+        patternTransform="rotate(45)"
+      >
+        <line x1="0" y="0" x2="0" y2="4" stroke="#262626" stroke-width="6"
+        ></line>
+      </pattern>
+    </defs>
+  </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="0"
+    height="0"
+    style="position: absolute;"
+  >
+    <defs>
+      <pattern
+        id="stripes-next"
+        patternUnits="userSpaceOnUse"
+        width="4"
+        height="4"
+        patternTransform="rotate(135)"
+      >
+        <line x1="0" y="0" x2="0" y2="4" stroke="#4b4b4b" stroke-width="6"
+        ></line>
+      </pattern>
+    </defs>
+  </svg>
+</Layout>
+
+<style lang="postcss">
+  .map {
+    :global(svg > path) {
+        fill: #d6d6d6;
+        stroke-width: 1px;
+        stroke: #c2c2c2;
+    }
+    :global([data-visited="true"]) {
+        fill: #898989;
+    }
+    :global([data-lived="true"]) {
+        fill: url(#stripes-lived);
+    }
+    :global([data-next="true"]) {
+        fill: url(#stripes-next);
+    }
+    .legend {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+        font-size: var(--font-size-small);
+        li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .bar {
+            display: inline-block;
+            width: 2rem;
+            height: 1rem;
+            border-radius: var(--border-radius-small);
+            background: #898989;
+        }
+    }
+  }
+</style>
