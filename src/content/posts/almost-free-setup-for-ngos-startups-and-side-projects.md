@@ -5,8 +5,8 @@ published: 2020-12-09
 updated: 2020-12-09
 category: tech
 tags:
-  - tools
-  - automation
+    - tools
+    - automation
 tldr: The only thing you should definitely pay for is the domain, the free levels of other services are more than enough to get you started. Use what you feel comfortable with. This post reflects only my personal preferences and can easily be transferred to other tools in the same area.
 ---
 
@@ -18,10 +18,10 @@ This post targets someone who has no idea what he/she is doing but also should i
 
 Before we start you should have this points in mind while reading this post:
 
-- We don't want to spend money on our IT setup, our goal is to raise awareness for NGOs.
-- We work 100% remotely, some of us haven't even met!
-- This post isn't only there to list the tools, it's about the stuff we are really using.
-- I would follow the same setup the same for a (digital) company, club or side project.
+-   We don't want to spend money on our IT setup, our goal is to raise awareness for NGOs.
+-   We work 100% remotely, some of us haven't even met!
+-   This post isn't only there to list the tools, it's about the stuff we are really using.
+-   I would follow the same setup the same for a (digital) company, club or side project.
 
 ## What's Active Ambassadors?
 
@@ -49,10 +49,10 @@ As we use [Google Calendar](https://calendar.google.com/) for invitations [Googl
 
 As you can see we follow some simple naming conventions, to be honest they are a little overkill, but I'm used to it and I like conventions. These are inspired directly by [Slack](https://slack.com/intl/en-de/blog/collaboration/how-to-use-slack-channels-to-organize-your-work) and I used them in several teams. They just work even if everybody needs some time to get used to it.
 
-- **a-announcements:** Announcement channels are used to share some information with the whole workspace, e.g. about the christmas party or an all-hands.
-- **b-bots**: These channels are primarily used by bots which only share updates, e.g. a new comment on instagram, a new order or a closed deal in a CRM.
-- **p-projects:** These are not only for projects as they are [defined](https://en.wikipedia.org/wiki/Project#Formal_definition_in_the_project-management_realm), they also can be use as cross-team communication channels, e.g. for an event organization where multiple teams are needed.
-- **r-random:** Just stuff that doesn't fit in any other channel, e.g. you can create one for a [running dinner](https://en.wikipedia.org/wiki/Progressive_dinner) where everybody can share there meals without spamming other channels.
+-   **a-announcements:** Announcement channels are used to share some information with the whole workspace, e.g. about the christmas party or an all-hands.
+-   **b-bots**: These channels are primarily used by bots which only share updates, e.g. a new comment on instagram, a new order or a closed deal in a CRM.
+-   **p-projects:** These are not only for projects as they are [defined](https://en.wikipedia.org/wiki/Project#Formal_definition_in_the_project-management_realm), they also can be use as cross-team communication channels, e.g. for an event organization where multiple teams are needed.
+-   **r-random:** Just stuff that doesn't fit in any other channel, e.g. you can create one for a [running dinner](https://en.wikipedia.org/wiki/Progressive_dinner) where everybody can share there meals without spamming other channels.
 
 In other workspaces I also used **t-teams** and **h-help** but for us this isn't currently needed as we are a small team.
 
@@ -62,13 +62,13 @@ In other workspaces I also used **t-teams** and **h-help** but for us this isn't
 
 We moved from [Google Sheets](https://www.google.com/sheets/about/) to [AirTable](https://airtable.com/) because they offer an API which can be consumed by our website to display expenses and incomes. We have two major categories with five sheets:
 
-- **CRM** ([definition](https://en.wikipedia.org/wiki/Customer_relationship_management))
-  - Active Ambassadors
-  - Organisations
-- **Finance**
-  - Expenses
-  - Income
-  - Cost per DIY kit
+-   **CRM** ([definition](https://en.wikipedia.org/wiki/Customer_relationship_management))
+    -   Active Ambassadors
+    -   Organisations
+-   **Finance**
+    -   Expenses
+    -   Income
+    -   Cost per DIY kit
 
 Our list of Active Ambassadors is somehow a mixture between a CRM and an order system, if a user fills out the form a new entry will be added with all necessary information. The ambassador will also get a confirmation via [Mailchimp](https://mailchimp.com/). The new order is also communicated via Slack, this automation is done via [IFTTT](https://ifttt.com/home). That message in Slack triggers Leonard to start the printing and shipping process. Afterward, the status of the order is reflected manually in the sheet.
 

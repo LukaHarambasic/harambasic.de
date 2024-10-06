@@ -5,7 +5,7 @@ published: 2020-12-21
 updated: 2020-12-21
 category: tech
 tags:
-  - github-actions
+    - github-actions
 tldr: 'GitHub Actions are easy to configure and should be used in all npm/yarn based projects. Checkout the <a href="https://gist.github.com/LukaHarambasic/0ef1c88782b6e8b138d5d0319f5a3a85">Gist</a> if you are only interested in the code.'
 ---
 
@@ -56,8 +56,8 @@ It's redundant as the GitHub Actions run in parallel to the build task, and the 
 
 Just add the following file to your root directory in `.github/workflows/`. The name attributes are visible in the PR (see image). You only have to change the last line per job if you want to run something else, e.g. [Cypress](https://www.cypress.io/). So it's quite easy to adapt it to every other project even if my examples are based on [Vue.js](https://vuejs.org/) and [Nuxt.js](https://nuxtjs.org/):
 
-- [harambasic.de](http://harambasic.de) → only [lint](https://github.com/LukaHarambasic/harambasic.de/pull/22/files#diff-107e910e9f2ebfb9a741fa10b2aa7100cc1fc4f5f3aca2dfe78b905cbd73c0d2) was added (with this post) as I don't have tests until now
-- [jura.education](http://jura.education) → [checks](https://github.com/LukaHarambasic/jura.education/pull/6/files#diff-3ea54af4839eb75404d71b28252bead7e7ec8f676b1f815e1cde02629a75c165) with a lint and test job were added
+-   [harambasic.de](http://harambasic.de) → only [lint](https://github.com/LukaHarambasic/harambasic.de/pull/22/files#diff-107e910e9f2ebfb9a741fa10b2aa7100cc1fc4f5f3aca2dfe78b905cbd73c0d2) was added (with this post) as I don't have tests until now
+-   [jura.education](http://jura.education) → [checks](https://github.com/LukaHarambasic/jura.education/pull/6/files#diff-3ea54af4839eb75404d71b28252bead7e7ec8f676b1f815e1cde02629a75c165) with a lint and test job were added
 
 ```yaml[.github/workflows/checks.yml]
 name: Checks

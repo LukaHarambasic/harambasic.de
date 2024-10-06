@@ -3,7 +3,7 @@ title: Vue.js
 description: 'My favorite JS framework, as it lets you use what the web was made with: HTML and CSS! And Single File Components are just awesome.'
 category: tech
 tags:
-  - development
+    - development
 url: https://vuejs.org/
 status: INACTIVE
 image: vue.svg

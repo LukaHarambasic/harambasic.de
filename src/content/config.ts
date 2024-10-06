@@ -27,10 +27,14 @@ const projectsCollection = defineCollection({
         prio: z.number(),
         status: z.enum(['ACTIVE', 'INACTIVE', 'ARCHIVED']),
         tags: z.array(reference('tags')),
-        links: z.array(z.object({
-            title: z.string(),
-            url: z.string().url(),
-        })).optional(),
+        links: z
+            .array(
+                z.object({
+                    title: z.string(),
+                    url: z.string().url(),
+                })
+            )
+            .optional(),
         category: reference('categories'),
     }),
 })
@@ -54,7 +58,7 @@ const usesCollection = defineCollection({
 const tagsCollection = defineCollection({
     type: 'data',
     schema: z.object({
-        name: z.string(),
+        title: z.string(),
         description: z.string().optional(),
     }),
 })
@@ -68,9 +72,9 @@ const categoriesCollection = defineCollection({
 })
 
 export const collections = {
-    'posts': postsCollection,
-    'projects': projectsCollection,
-    'uses': usesCollection,
-    'tags': tagsCollection,
-    'categories': categoriesCollection,
+    posts: postsCollection,
+    projects: projectsCollection,
+    uses: usesCollection,
+    tags: tagsCollection,
+    categories: categoriesCollection,
 }

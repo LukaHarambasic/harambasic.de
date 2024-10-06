@@ -3,7 +3,7 @@ title: WorkFlowy
 description: 'My go-to knowledge app, you could also call it a note app. Basically it is an endless list.'
 category: tech
 tags:
-  - tools
+    - tools
 url: https://workflowy.com/
 status: INACTIVE
 image: workflowy.jpeg

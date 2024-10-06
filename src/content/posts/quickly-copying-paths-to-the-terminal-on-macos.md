@@ -5,8 +5,8 @@ published: 2022-08-08
 updated: 2021-07-18
 category: tech
 tags:
-  - tools
-  - android
+    - tools
+    - android
 tldr: Select a file in Finder, press <strong>CMD + C</strong>, paste it to the Terminal with <strong>CMD + V</strong>. That's it.
 ---
 

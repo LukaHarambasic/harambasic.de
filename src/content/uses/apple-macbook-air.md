@@ -3,8 +3,8 @@ title: Apple MacBook Air
 description: 'Specs: M1 (Processor), 16 GB (Memory), 256 GB (Storage)'
 category: tech
 tags:
-  - hardware
-  - macos
+    - hardware
+    - macos
 url: https://www.apple.com/de/macbook-air/
 status: ACTIVE
 image: apple.svg

@@ -5,8 +5,8 @@ published: 2021-12-22
 updated: 2021-07-18
 category: personal
 tags:
-  - website
-  - tools
+    - website
+    - tools
 tldr: The web showed me how to code and after almost 15 years this time is over. I'm still in the tech world, but focusing on entrepreneurship and freelancing.
 ---
 
@@ -34,24 +34,24 @@ The next step was to publish my first website. To be honest, I can't even rememb
 
 ```html
 <div id="container">
-	<div id="top"></div>
-	<div id="middle">
-		<h1>About Us</h1>
-		<p>Lorem Ipsum...</p>
-	</div>
-	<div id="bottom"></div>
+    <div id="top"></div>
+    <div id="middle">
+        <h1>About Us</h1>
+        <p>Lorem Ipsum...</p>
+    </div>
+    <div id="bottom"></div>
 </div>
 ```
 
 ```css
 #top {
-	background: url('/container-top.png') no-repeat;
+    background: url('/container-top.png') no-repeat;
 }
 #middle {
-	background: url('/container-middle.png') repeat-y;
+    background: url('/container-middle.png') repeat-y;
 }
 #bottom {
-	background: url('/container-bottom.png') no-repeat;
+    background: url('/container-bottom.png') no-repeat;
 }
 ```
 
@@ -113,8 +113,8 @@ Shortly before my vocational contract with SAP ended, I found an excellent depar
 
 This section is relatively short as I was heavily focused on my work during these two years. Hence, I "only" started two projects with some friends:
 
-- [Active Ambassadors](https://www.active-ambassadors.org/): A NGO to raise awareness for other NGOs.
-- [Tech Mob Show](https://techmob.show/): A technology entertainment podcast with two friends.
+-   [Active Ambassadors](https://www.active-ambassadors.org/): A NGO to raise awareness for other NGOs.
+-   [Tech Mob Show](https://techmob.show/): A technology entertainment podcast with two friends.
 
 ## Ending my nerd path
 

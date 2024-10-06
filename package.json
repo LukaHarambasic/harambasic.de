@@ -1,5 +1,5 @@
 {
-    "name": "harambasic-de",
+    "title": "harambasic-de",
     "type": "module",
     "version": "0.0.1",
     "scripts": {
@@ -24,6 +24,7 @@
     "dependencies": {
         "@astrojs/check": "^0.9.3",
         "astro": "^4.15.9",
+        "astro-icon": "^1.1.1",
         "typescript": "^5.6.2"
     },
     "devDependencies": {

@@ -1,0 +1,135 @@
+<div class="rich-text">
+    <slot />
+</div>
+
+<style lang="postcss">
+.rich-text {
+    line-height: 1.75;
+
+    * {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    img {
+        max-width: 100%;
+        border-radius: var(--border-radius);
+    }
+
+    h2 {
+        margin: var(--xl) 0 var(--m) 0;
+        width: 30ch;
+        font-weight: 900;
+        font-size: var(--font-xl);
+        line-height: 1.2;
+        font-family: var(--font-family);
+        letter-spacing: var(--font-letter-spacing-headline);
+
+        @media screen and (max-width: 28rem) {
+            width: 100%;
+        }
+
+        &:first-of-type {
+            margin: 0 0 var(--m) 0;
+        }
+    }
+
+    h3 {
+        margin: var(--l) 0 var(--m) 0;
+        width: 30ch;
+        font-weight: 900;
+        font-size: var(--font-l);
+        line-height: 1.2;
+        font-family: var(--font-family);
+        letter-spacing: var(--font-letter-spacing-headline);
+
+        @media screen and (max-width: 30rem) {
+            width: 100%;
+        }
+    }
+
+    /* If not done specific it overrides other margins */
+    >p,
+    >ul,
+    >ol,
+    >blockquote {
+        margin-bottom: var(--l);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        border-radius: 10rem;
+        background: var(--c-surface-accent);
+        margin: var(--l) 0;
+    }
+
+    a {
+        color: var(--c-font);
+        text-decoration: underline;
+        text-decoration-thickness: var(--underline-thickness);
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    strong,
+    em {
+        font-weight: 600;
+    }
+
+    >ul,
+    >ol {
+        margin: var(--l) 0 var(--l) var(--l);
+        width: 50ch;
+
+        @media screen and (max-width: 50rem) {
+            width: calc(100% - var(--l));
+        }
+
+        ul,
+        ol {
+            margin: 0 0 0 var(--l);
+        }
+
+        li {
+            margin: var(--xs) 0 0 0;
+        }
+    }
+
+    ul {
+        list-style: disc;
+    }
+
+    ol {
+        list-style: decimal;
+    }
+
+    blockquote {
+        border-radius: var(--border-radius);
+        background: var(--c-surface);
+        padding: var(--l);
+
+        p {
+            &:last-of-type {
+                margin: 0;
+            }
+        }
+    }
+
+    strong {
+        font-weight: 900;
+    }
+
+    em {
+        font-style: italic;
+    }
+}
+</style>

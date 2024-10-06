@@ -3,7 +3,7 @@ title: Nuxt.js
 description: 'Opinionated meta framework for Vue.js.'
 category: tech
 tags:
-  - development
+    - development
 url: https://nuxtjs.org/
 status: INACTIVE
 image: nuxt.svg
