@@ -3,7 +3,7 @@ title: Homebrew
 description: 'Installing all the stuff the easy way, for nerds on Mac.'
 category: tech
 tags:
-    - tools
+  - tools
 url: https://brew.sh/
 status: ACTIVE
 image: brew.svg

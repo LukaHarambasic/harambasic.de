@@ -5,9 +5,9 @@ published: 2021-04-18
 updated: 2021-07-18
 category: essentials
 tags:
-    - hardware
-    - recording
-    - podcast
+  - hardware
+  - recording
+  - podcast
 tldr: You don't have to spend a fortune, but it's a lot of fun to put a little money in your hand.
 discussion: https://twitter.com/luka_harambasic/status/1383820044082106371
 ---
@@ -32,11 +32,11 @@ Before I even bought the microphone I wanted to play with an [Elgato Streamdeck]
 A friend of mine already used a Streamdeck, mainly for ABAP programming. He mentioned that it's only a gadget, though a nice one.
 After two months of use I have to admit he was right, but I use, it multiple times daily. Some of my most used actions:
 
--   _Start/Stop Spotify_: If I get called via Microsoft Teams and press Play/Stop on my keyboard it pauses the ringtone but not Spotify. With a Plugin I stop Spotify directly without going over the system audio. A very small convenience, but I would not want to miss it anymore.
--   _Open Jira Filters and Boards_: A lot of my work happens in Jira where I have some Boards and Filters I visit multiple times a day.
--   _Control my Elgato Ring Light_: I sometimes change the brightness or Kelvin depending on the sunlight, but most of the time I want my default preset.
--   _Shortcuts for my IDEs (Android Studio, Webstorm)_: There are just some shortcuts I can't remember, especially around Git (Git with UI tools <3). I created custom shortcuts to not interfere with existing ones and bound them to the Streamdeck, e.g. Fetch, Pull, Clean, Build.
--   _Run Commands_: Mainly used while testing and reviewing some Android PRs, e.g. open language or time settings.
+- _Start/Stop Spotify_: If I get called via Microsoft Teams and press Play/Stop on my keyboard it pauses the ringtone but not Spotify. With a Plugin I stop Spotify directly without going over the system audio. A very small convenience, but I would not want to miss it anymore.
+- _Open Jira Filters and Boards_: A lot of my work happens in Jira where I have some Boards and Filters I visit multiple times a day.
+- _Control my Elgato Ring Light_: I sometimes change the brightness or Kelvin depending on the sunlight, but most of the time I want my default preset.
+- _Shortcuts for my IDEs (Android Studio, Webstorm)_: There are just some shortcuts I can't remember, especially around Git (Git with UI tools <3). I created custom shortcuts to not interfere with existing ones and bound them to the Streamdeck, e.g. Fetch, Pull, Clean, Build.
+- _Run Commands_: Mainly used while testing and reviewing some Android PRs, e.g. open language or time settings.
 
 All of this is still pretty basic and I would like to do even more with it.
 
@@ -70,24 +70,24 @@ Most 25 € Full-HD webcams would almost look the same on a small square in your
 
 ## Sampels
 
--   Audio
-    -   [Apple Airpod Pro](https://drive.google.com/file/d/1jPfFNk7pl9RGhFwLPKQDO-qPcwzv1duZ/view?usp=sharing)
-    -   [Apple Macbook Pro 16"](https://drive.google.com/file/d/1F_qAQfunPNawBvkAo05kAmx9L-KjkRF6/view?usp=sharing)
-    -   [Rode NT USB Mini](https://drive.google.com/file/d/1huQ1thtXkuRGjaaytHFkYUU_l8ebZZaR/view?usp=sharing)
--   Elgato Ringlight
-    -   [Room Light](https://youtu.be/sezazYiPF1U)
-    -   [Warm Light](https://youtu.be/RmJOWQRzV0g)
-    -   [Cold Light](https://youtu.be/-EFDw52akpk)
-    -   [Default Light](https://youtu.be/FjO4sqxct2o)
--   [Overall Setup](https://youtu.be/v9BVyhclOtk)
+- Audio
+  - [Apple Airpod Pro](https://drive.google.com/file/d/1jPfFNk7pl9RGhFwLPKQDO-qPcwzv1duZ/view?usp=sharing)
+  - [Apple Macbook Pro 16"](https://drive.google.com/file/d/1F_qAQfunPNawBvkAo05kAmx9L-KjkRF6/view?usp=sharing)
+  - [Rode NT USB Mini](https://drive.google.com/file/d/1huQ1thtXkuRGjaaytHFkYUU_l8ebZZaR/view?usp=sharing)
+- Elgato Ringlight
+  - [Room Light](https://youtu.be/sezazYiPF1U)
+  - [Warm Light](https://youtu.be/RmJOWQRzV0g)
+  - [Cold Light](https://youtu.be/-EFDw52akpk)
+  - [Default Light](https://youtu.be/FjO4sqxct2o)
+- [Overall Setup](https://youtu.be/v9BVyhclOtk)
 
 ## Conclusion
 
 I had a lot of fun dealing with the topic so it was totally worth it. For now, I have the perfect setup for my requirements. All of this could be a lot cheaper, but this would require more tinkering and is probably not as convenient as this setup. Having a setup like this is for me mainly about fun. I'm still not a streamer or content creator who needs this. No matter how much you want to spend there are two small points you can always follow:
 
--   _Always use a headset_: It can be quite annoying if your counterparts hear themselves in your microphone. Think about a long conference call...
--   _Turn on your camera_: Not only in these remote times it is nice to see your counterpart. Be the counterpart you would also like to have.
-    If you want to get a more expensive inspiration I recommend the video "[Next Level Video Calls | Best Homeoffice Setup Money Can Buy](https://www.youtube.com/watch?v=rnZ-FHfrpAM)" from Christoph Magnussen.
+- _Always use a headset_: It can be quite annoying if your counterparts hear themselves in your microphone. Think about a long conference call...
+- _Turn on your camera_: Not only in these remote times it is nice to see your counterpart. Be the counterpart you would also like to have.
+  If you want to get a more expensive inspiration I recommend the video "[Next Level Video Calls | Best Homeoffice Setup Money Can Buy](https://www.youtube.com/watch?v=rnZ-FHfrpAM)" from Christoph Magnussen.
 
 > I only linked to the manufactures, most of the time it's more expensive than other retailers. So please check the prices :)
 

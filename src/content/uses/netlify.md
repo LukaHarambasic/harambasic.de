@@ -3,7 +3,7 @@ title: Netlify
 description: 'Connect Netlify to your repository to get a build when you push to main and also get previews in PRs.'
 category: tech
 tags:
-    - development
+  - development
 url: https://www.netlify.com/
 status: ACTIVE
 image: netlify.svg

@@ -3,7 +3,7 @@ title: Playwright
 description: "A Node.js browser automation framework I use it to automate websites which won't give me API access or to generate images."
 category: tech
 tags:
-    - development
+  - development
 url: https://playwright.dev/
 status: ACTIVE
 image: playwright.svg

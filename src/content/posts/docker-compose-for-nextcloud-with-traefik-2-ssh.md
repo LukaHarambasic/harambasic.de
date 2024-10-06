@@ -5,8 +5,8 @@ published: 2021-01-13
 updated: 2024-02-11
 category: tech
 tags:
-    - docker
-    - reverse-proxy
+  - docker
+  - reverse-proxy
 tldr: 'Scroll down to get the full docker composable for Traefik 2.'
 ---
 
@@ -93,8 +93,8 @@ volumes:
 
 After you fired up your Nextcloud you should check if everything is working as expected. NextCloud offers two ways to help you with that:
 
--   Settings > Administration > Overview
--   [Security check](https://scan.nextcloud.com/)
+- Settings > Administration > Overview
+- [Security check](https://scan.nextcloud.com/)
 
 ![Nextcloud administration overview](/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/security_setup_warnings.png)
 
@@ -102,9 +102,9 @@ After you fired up your Nextcloud you should check if everything is working as e
 
 It's quite easy if you use the `docker-compose.yml` above. You need your domain, your user and as it is recommended an app password (Settings > Security > "Create new app password"). With these credentials you can go to every client which supports calDav/cardDav. In the screenshot below you can see a calDav set up in the iOS settings.
 
--   Server: cloud.YOUR-DOMAIN.com
--   User: user
--   Password: app password
+- Server: cloud.YOUR-DOMAIN.com
+- User: user
+- Password: app password
 
 ![iPhone settings calDav example](/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/iphone_caldav.png)
 
@@ -112,7 +112,7 @@ It's quite easy if you use the `docker-compose.yml` above. You need your domain,
 
 I spent some hours in setting up all of these, here is a list with all the links I used. The DigitalOcean Tutorials are just awesome and as far as I can tell are always up to date. I only would start Traefik as a `docker-compose.yml` to be consistent.
 
--   **Server**: [Initial Server Setup with Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04), [How to Set Up SSH Keys on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04)
--   **Traefik**: [How To Use Traefik v2 as a Reverse Proxy for Docker Containers on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-use-traefik-v2-as-a-reverse-proxy-for-docker-containers-on-ubuntu-20-04), [Traefik 2.x configuration](https://mwunderling.com/blog/traefik2.html)
--   **NextCloud Docker (with Traefik)**: [WhiteBahamut/nextcloud](https://github.com/WhiteBahamut/nextcloud), [nextcloud/docker](https://github.com/nextcloud/docker), [Running Nextcloud With Docker and Traefik 2](https://chriswiegman.com/2020/01/running-nextcloud-with-docker-and-traefik-2/), [Notes on traefik v2, Nextcloud, etc.](https://mattsch.com/2020/01/16/notes-on-traefik-v2-nextcloud-etc/), [ismailyenigul/nextcloud-pgsql-redis-traefikv2-docker-compose.yml](https://gist.github.com/ismailyenigul/f03b4f5f15e5e61ac5b80905c5d2890a), [CVJoint/traefik2](https://github.com/CVJoint/traefik2/blob/master/ymlfiles/nextcloud.yml), [pamendoz/personalDockerCompose](https://github.com/pamendoz/personalDockerCompose/blob/master/docker-compose.yml), [Self Hosted Nextcloud Using Docker](https://florianfranke.dev/posts/2018/10/self-hosted-nextcloud-using-docker/), [Cannot make https work properly with Docker + Traefik v.2](https://help.nextcloud.com/t/cannot-make-https-work-properly-with-docker-traefik-v-2/88541)
--   **NextCloud problems**: [Nextcloud really slow after installation](https://help.nextcloud.com/t/nextcloud-really-slow-after-installation/74719/6), [[Help] Add a carddav account to macOS](https://help.nextcloud.com/t/help-add-a-carddav-account-to-macos/37253)
+- **Server**: [Initial Server Setup with Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04), [How to Set Up SSH Keys on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04)
+- **Traefik**: [How To Use Traefik v2 as a Reverse Proxy for Docker Containers on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-use-traefik-v2-as-a-reverse-proxy-for-docker-containers-on-ubuntu-20-04), [Traefik 2.x configuration](https://mwunderling.com/blog/traefik2.html)
+- **NextCloud Docker (with Traefik)**: [WhiteBahamut/nextcloud](https://github.com/WhiteBahamut/nextcloud), [nextcloud/docker](https://github.com/nextcloud/docker), [Running Nextcloud With Docker and Traefik 2](https://chriswiegman.com/2020/01/running-nextcloud-with-docker-and-traefik-2/), [Notes on traefik v2, Nextcloud, etc.](https://mattsch.com/2020/01/16/notes-on-traefik-v2-nextcloud-etc/), [ismailyenigul/nextcloud-pgsql-redis-traefikv2-docker-compose.yml](https://gist.github.com/ismailyenigul/f03b4f5f15e5e61ac5b80905c5d2890a), [CVJoint/traefik2](https://github.com/CVJoint/traefik2/blob/master/ymlfiles/nextcloud.yml), [pamendoz/personalDockerCompose](https://github.com/pamendoz/personalDockerCompose/blob/master/docker-compose.yml), [Self Hosted Nextcloud Using Docker](https://florianfranke.dev/posts/2018/10/self-hosted-nextcloud-using-docker/), [Cannot make https work properly with Docker + Traefik v.2](https://help.nextcloud.com/t/cannot-make-https-work-properly-with-docker-traefik-v-2/88541)
+- **NextCloud problems**: [Nextcloud really slow after installation](https://help.nextcloud.com/t/nextcloud-really-slow-after-installation/74719/6), [[Help] Add a carddav account to macOS](https://help.nextcloud.com/t/help-add-a-carddav-account-to-macos/37253)

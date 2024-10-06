@@ -5,8 +5,8 @@ published: 2024-04-01
 updated: 2024-04-01
 category: tech
 tags:
-    - tools
-    - macos
+  - tools
+  - macos
 tldr: A collection of the utilities I couldn't work without on my Mac. Copy the brew command if you aren't interested in the fluff.
 ---
 
@@ -106,10 +106,10 @@ Everything besides this point is something I would recommend to everyone who wor
 
 I use it in some ways, like Spotlight, e.g., to open all my applications, do simple calculations, and make simple currency conversions. But Raycast allows me to install extensions or to use my scripts. One default extension is the emoji search; this gives me the same way to add emojis in every application. I don't need to consider whether I'm in Slack, Notion, Jira, or Gmail. Besides this, here is a short list of other extensions:
 
--   _Color Picker_ - Pick a color everywhere and get the HEX code on your clipboard.
--   _Todoist_ - Create a task or search through all of them.
--   _Shortcut_ - Use your macOS/iOS shortcuts, I have some tiny automations I want to share between my Mac and my iPhone. Therefore, having a Shortcut instead of a bash script or something similar that only works on my Mac is easier.
--   _Calendar_ - See your next events and join calls.
+- _Color Picker_ - Pick a color everywhere and get the HEX code on your clipboard.
+- _Todoist_ - Create a task or search through all of them.
+- _Shortcut_ - Use your macOS/iOS shortcuts, I have some tiny automations I want to share between my Mac and my iPhone. Therefore, having a Shortcut instead of a bash script or something similar that only works on my Mac is easier.
+- _Calendar_ - See your next events and join calls.
 
 I also use some custom commands for simple automations. For example, to open a specific website with some parameters, below is a simple example of a translation service. But as you can see, this is a bash script, so you can do whatever you want.
 

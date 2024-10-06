@@ -3,7 +3,7 @@ title: Slack
 description: 'If there is a new side project with multiple people I tend to directly create a workspace to streamline the communication.'
 category: tech
 tags:
-    - tools
+  - tools
 url: https://slack.com
 status: ACTIVE
 image: slack.svg

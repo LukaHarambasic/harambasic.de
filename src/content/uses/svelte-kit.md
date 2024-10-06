@@ -3,7 +3,7 @@ title: SvelteKit
 description: 'Opinionated meta framework for Svelte (used for his website).'
 category: tech
 tags:
-    - development
+  - development
 url: https://kit.svelte.dev/
 status: ACTIVE
 image: sveltekit.svg

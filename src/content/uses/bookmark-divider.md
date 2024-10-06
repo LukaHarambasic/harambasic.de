@@ -3,7 +3,7 @@ title: Bookmark Divider
 description: 'A tool created by myself to use it as a bookmark divider between my favicon bookmarks.'
 category: tech
 tags:
-    - tools
+  - tools
 url: https://bookmark-divider.netlify.app/
 status: ACTIVE
 image: bookmarkdivider.svg

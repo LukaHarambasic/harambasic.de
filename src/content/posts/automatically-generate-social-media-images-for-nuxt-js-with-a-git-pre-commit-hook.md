@@ -5,8 +5,8 @@ published: 2021-07-18
 updated: 2021-07-18
 category: tech
 tags:
-    - git
-    - automation
+  - git
+  - automation
 tldr: 'Playwright and husky are a perfect combination. Jump to <a href="https://harambasic.de/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook#how-to-generate-the-images">this section</a> if you are only interested in the implementation without the bla bla.'
 ---
 
@@ -49,16 +49,16 @@ const LISTS_PATH = `${ROOT_PATH}/content/lists`
  * @param {string} slug
  */
 const generateImage = async (page, title, slug) => {
-    const URL = `file:///${path.join(__dirname, '/template.html')}`
-    const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`
-    await page.goto(URL)
-    // strange syntax, check https://playwright.dev/docs/api/class-page#page-eval-on-selector for more infos
-    await page.$eval('.title', (el, title) => (el.textContent = title), title)
-    const cardHandle = await page.$('.card')
-    await cardHandle.screenshot({
-        type: 'png',
-        path: SCREENSHOT_PATH,
-    })
+  const URL = `file:///${path.join(__dirname, '/template.html')}`
+  const SCREENSHOT_PATH = `${SOCIAL_PATH}/${slug}.png`
+  await page.goto(URL)
+  // strange syntax, check https://playwright.dev/docs/api/class-page#page-eval-on-selector for more infos
+  await page.$eval('.title', (el, title) => (el.textContent = title), title)
+  const cardHandle = await page.$('.card')
+  await cardHandle.screenshot({
+    type: 'png',
+    path: SCREENSHOT_PATH,
+  })
 }
 
 /*
@@ -67,8 +67,8 @@ const generateImage = async (page, title, slug) => {
  * @returns {boolean}
  */
 const doesImageAlreadyExist = (slug) => {
-    const files = readdirSync(SOCIAL_PATH)
-    return files.find((file) => file.startsWith(slug))
+  const files = readdirSync(SOCIAL_PATH)
+  return files.find((file) => file.startsWith(slug))
 }
 
 /*
@@ -79,9 +79,9 @@ const doesImageAlreadyExist = (slug) => {
  * @returns {string}
  */
 const getTitle = (str) => {
-    const start = 'title: '
-    const end = '\ndescription: '
-    return str.substring(str.indexOf(start) + start.length, str.indexOf(end))
+  const start = 'title: '
+  const end = '\ndescription: '
+  return str.substring(str.indexOf(start) + start.length, str.indexOf(end))
 }
 
 /*
@@ -91,11 +91,11 @@ const getTitle = (str) => {
  * @returns {{name|string,path|string,slug|string}} // not sure how to do this object syntax without defining a type
  */
 const fileToMeta = (name, basePath) => {
-    return {
-        name,
-        path: `${basePath}/${name}`,
-        slug: name.split('.')[0],
-    }
+  return {
+    name,
+    path: `${basePath}/${name}`,
+    slug: name.split('.')[0],
+  }
 }
 
 /*
@@ -104,40 +104,40 @@ const fileToMeta = (name, basePath) => {
  * if not execute generateImage(), nothing will be returned
  */
 const generateSocialMediaPreview = async () => {
-    console.info('>> GENERATE SOCIAL MEDIA PREVIEWS <<')
-    console.info('🆕 newly generated, 🛑 already exists')
-    console.info('-------------------------------------')
-    const browser = await chromium.launch()
-    const page = await browser.newPage()
-    const posts = readdirSync(POSTS_PATH).map((name) =>
-        fileToMeta(name, POSTS_PATH)
-    )
-    const lists = readdirSync(LISTS_PATH).map((name) =>
-        fileToMeta(name, LISTS_PATH)
-    )
-    const files = [...posts, ...lists]
-    for (const file of files) {
-        const content = readFileSync(file.path, 'utf8')
-        const title = getTitle(content)
-        if (!doesImageAlreadyExist(file.slug)) {
-            console.info('🆕', title)
-            await generateImage(page, title, file.slug)
-        } else {
-            console.info('🛑', title)
-        }
+  console.info('>> GENERATE SOCIAL MEDIA PREVIEWS <<')
+  console.info('🆕 newly generated, 🛑 already exists')
+  console.info('-------------------------------------')
+  const browser = await chromium.launch()
+  const page = await browser.newPage()
+  const posts = readdirSync(POSTS_PATH).map((name) =>
+    fileToMeta(name, POSTS_PATH)
+  )
+  const lists = readdirSync(LISTS_PATH).map((name) =>
+    fileToMeta(name, LISTS_PATH)
+  )
+  const files = [...posts, ...lists]
+  for (const file of files) {
+    const content = readFileSync(file.path, 'utf8')
+    const title = getTitle(content)
+    if (!doesImageAlreadyExist(file.slug)) {
+      console.info('🆕', title)
+      await generateImage(page, title, file.slug)
+    } else {
+      console.info('🛑', title)
     }
-    await browser.close()
+  }
+  await browser.close()
 }
 
 /*
  * Entry point for generateSocialMediaPreview() when this file is executed
  */
 ;(async () => {
-    try {
-        await generateSocialMediaPreview()
-    } catch (error) {
-        console.info('Error:', error)
-    }
+  try {
+    await generateSocialMediaPreview()
+  } catch (error) {
+    console.info('Error:', error)
+  }
 })()
 ```
 
@@ -146,43 +146,43 @@ I would say this code is quite self-explaining, but as I have spent some time wi
 ```html
 <!DOCTYPE >
 <html lang="en">
-    <head>
-        <title>Hello</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-            body {
-                font-family:
-                    Open Sans,
-                    Helvetica Neue,
-                    Arial,
-                    sans-serif;
-                color: #121218;
-            }
-            .card {
-                width: 1200px;
-                height: 630px;
-                background: url('./template.svg') no-repeat;
-                padding: 5rem;
-            }
-            .title {
-                font-size: 5rem;
-                font-weight: bold;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="card">
-            <div class="title">Will be replaced! Wuhu! Party :)</div>
-        </div>
-    </body>
+  <head>
+    <title>Hello</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family:
+          Open Sans,
+          Helvetica Neue,
+          Arial,
+          sans-serif;
+        color: #121218;
+      }
+      .card {
+        width: 1200px;
+        height: 630px;
+        background: url('./template.svg') no-repeat;
+        padding: 5rem;
+      }
+      .title {
+        font-size: 5rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="title">Will be replaced! Wuhu! Party :)</div>
+    </div>
+  </body>
 </html>
 ```
 

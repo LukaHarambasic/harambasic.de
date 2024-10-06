@@ -3,8 +3,8 @@ title: AltTab
 description: 'A better and customizable version of CMD + Tab on MacOS.'
 category: tech
 tags:
-    - tools
-    - macos
+  - tools
+  - macos
 url: https://alt-tab-macos.netlify.app/
 status: ACTIVE
 image: alttab.png

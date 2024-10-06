@@ -3,7 +3,7 @@ title: Enpass
 description: 'I bought this password manager before they started the subscription model. Therefore, I can use it without any monthly fees.'
 category: tech
 tags:
-    - tools
+  - tools
 url: https://www.enpass.io/
 status: ACTIVE
 image: enpass.svg

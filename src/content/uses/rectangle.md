@@ -3,7 +3,7 @@ title: Rectangle
 description: 'Move and snap windows in macOS via mouse and shortcuts.'
 category: tech
 tags:
-    - tools
+  - tools
 url: https://rectangleapp.com/
 status: ACTIVE
 image: rectangle.png

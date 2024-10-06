@@ -3,8 +3,8 @@ title: vue-resume-component
 description: 'My first npm package which powered the CV of a previous version of this page.'
 category: tech
 tags:
-    - development
-    - resume
+  - development
+  - resume
 url: https://www.npmjs.com/package/vue-resume-component
 status: INACTIVE
 image: vueresumecomponent.svg

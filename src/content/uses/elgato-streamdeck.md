@@ -3,7 +3,7 @@ title: Elgato Streamdeck
 description: 'Programmable keyboard with displays which shows different keys depending on the context.'
 category: tech
 tags:
-    - hardware
+  - hardware
 url: https://www.elgato.com/en/stream-deck
 status: INACTIVE
 image: elgato.svg

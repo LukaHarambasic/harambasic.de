@@ -5,8 +5,8 @@ published: 2022-07-12
 updated: 2021-07-18
 category: design
 tags:
-    - resume
-    - figma
+  - resume
+  - figma
 tldr: A simple one-page CV/Resume template that heavily relies on Auto Layout makes it super easy to adjust. <a href="https://www.figma.com/community/file/1128439910915950322">Get it here</a>.
 ---
 
@@ -30,5 +30,5 @@ I thought about writing a comprehensive tutorial. But I think it's straightforwa
 
 **Sources**
 
--   Portrait picture: [Random Face Generator (This Person Does Not Exist)](https://this-person-does-not-exist.com/)
--   Name: [Behind the name](https://www.behindthename.com/random/)
+- Portrait picture: [Random Face Generator (This Person Does Not Exist)](https://this-person-does-not-exist.com/)
+- Name: [Behind the name](https://www.behindthename.com/random/)
