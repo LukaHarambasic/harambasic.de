@@ -2,21 +2,21 @@
 type Direction = 'row' | 'column'
 
 interface Props {
-    direction?: Direction
-    class?: string
+  direction?: Direction
+  class?: string
 }
 
 const {
-    direction = 'row',
-    class: className,
-    ...attributes
+  direction = 'row',
+  class: className,
+  ...attributes
 }: Props = Astro.props
 
 const directionClass = direction === 'column' ? 'column' : ''
 ---
 
 <li class={`${className} ${directionClass}`} {...attributes}>
-    <slot />
+  <slot />
 </li>
 
 <style lang="postcss">

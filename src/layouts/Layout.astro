@@ -8,10 +8,10 @@ import LayoutFooter from '@components/Layout/LayoutFooter.astro'
 import LayoutHeader from '@components/Layout/LayoutHeader.astro'
 
 interface Props {
-    title?: string
-    subtitle?: string
-    published?: Date
-    relativePath?: string
+  title?: string
+  subtitle?: string
+  published?: Date
+  relativePath?: string
 }
 
 const { title, subtitle, published, relativePath } = Astro.props
@@ -19,43 +19,41 @@ const { title, subtitle, published, relativePath } = Astro.props
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="description" content="TODO" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-    </head>
-    <body>
-        <div class="container">
-            <LayoutHeader />
-            <main id="main">
-                {
-                    title && (
-                        <section class="header">
-                            <h1>{title}</h1>
-                            {subtitle && (
-                                <strong class="subtitle">{subtitle}</strong>
-                            )}
-                            {published && relativePath && (
-                                <time
-                                    class="date dt-published"
-                                    datetime={published.toLocaleDateString()}
-                                >
-                                    <a href={relativePath} class="u-url">
-                                        {published.toLocaleDateString()}
-                                    </a>
-                                </time>
-                            )}
-                        </section>
-                    )
-                }
-                <slot />
-            </main>
-            <LayoutFooter />
-        </div>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="TODO" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="container">
+      <LayoutHeader />
+      <main id="main">
+        {
+          title && (
+            <section class="header">
+              <h1>{title}</h1>
+              {subtitle && <strong class="subtitle">{subtitle}</strong>}
+              {published && relativePath && (
+                <time
+                  class="date dt-published"
+                  datetime={published.toLocaleDateString()}
+                >
+                  <a href={relativePath} class="u-url">
+                    {published.toLocaleDateString()}
+                  </a>
+                </time>
+              )}
+            </section>
+          )
+        }
+        <slot />
+      </main>
+      <LayoutFooter />
+    </div>
+  </body>
 </html>
 
 <style lang="postcss">

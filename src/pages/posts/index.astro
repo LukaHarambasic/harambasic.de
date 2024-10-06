@@ -11,55 +11,53 @@ console.log(entries[0]?.data.tags)
 ---
 
 <Layout title="Posts">
-	<section>
-		<ul class="entries">
-			{
-				entries.map((entry) => (
-					<Card class="entry h-feed">
-						<a href={`/posts/${entry.slug}`}>
-							<div class="column">
-								<strong class="title">
-									{entry.data.title}
-								</strong>
-								<div class="category">Category</div>
-							</div>
-							{/* <time class="date dt-published" datetime={post?.published?.raw?.toString()}>
+  <section>
+    <ul class="entries">
+      {
+        entries.map((entry) => (
+          <Card class="entry h-feed">
+            <a href={`/posts/${entry.slug}`}>
+              <div class="column">
+                <strong class="title">{entry.data.title}</strong>
+                <div class="category">Category</div>
+              </div>
+              {/* <time class="date dt-published" datetime={post?.published?.raw?.toString()}>
                              {post.published.display}
                          </time>
                          <Icon class="arrow" icon="ph:arrow-circle-right-bold" /> */}
-						</a>
-					</Card>
-				))
-			}
-		</ul>
-		<aside>
-			<Card direction="column">
-				<h3>Sort</h3>
-				<ul>
-					<li>Newest</li>
-					<li>Oldest</li>
-					<li>A-Z</li>
-					<li>Z-A</li>
-				</ul>
-			</Card>
-			<Card direction="column">
-				<h3>Categories</h3>
-				<ul>
-					<li>Category 1</li>
-					<li>Category 2</li>
-					<li>Category 3</li>
-				</ul>
-			</Card>
-			<Card direction="column">
-				<h3>Tags</h3>
-				<ul>
-					<li>Tag 1</li>
-					<li>Tag 2</li>
-					<li>Tag 3</li>
-				</ul>
-			</Card>
-		</aside>
-	</section>
+            </a>
+          </Card>
+        ))
+      }
+    </ul>
+    <aside>
+      <Card direction="column">
+        <h3>Sort</h3>
+        <ul>
+          <li>Newest</li>
+          <li>Oldest</li>
+          <li>A-Z</li>
+          <li>Z-A</li>
+        </ul>
+      </Card>
+      <Card direction="column">
+        <h3>Categories</h3>
+        <ul>
+          <li>Category 1</li>
+          <li>Category 2</li>
+          <li>Category 3</li>
+        </ul>
+      </Card>
+      <Card direction="column">
+        <h3>Tags</h3>
+        <ul>
+          <li>Tag 1</li>
+          <li>Tag 2</li>
+          <li>Tag 3</li>
+        </ul>
+      </Card>
+    </aside>
+  </section>
 </Layout>
 
 <style lang="postcss">
