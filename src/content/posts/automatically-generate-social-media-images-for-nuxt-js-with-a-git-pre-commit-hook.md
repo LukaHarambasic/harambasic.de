@@ -14,7 +14,7 @@ tldr: 'Playwright and husky are a perfect combination. Jump to <a href="https://
 
 For this website, I want to generate images for social media automatically every time I publish something new. The image for this post looks like this:
 
-![Generated social media preview with the script in this post, it  shows the title of the post](/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook/end-result.png)
+![Generated social media preview with the script in this post, it  shows the title of the post](@images/posts/automatically-generate-social-media-images-for-nuxt-js-with-a-git-pre-commit-hook/end-result.png)
 
 There is a Nuxt.js specific article using Cloudinary by [David Parks](https://davidparks.dev/blog/social-share-images-in-nuxt-content/) which is based on an article by [Jason Lengstrof](https://www.learnwithjason.dev/blog/auto-generate-social-image). I somehow like the idea, but for this website, I want as much control as possible and as few as possible external dependencies, especially on other servers.
 

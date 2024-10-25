@@ -20,4 +20,4 @@ You only have to select a file in Finder, press `CMD + C` to than paste it via `
 
 Here you can see it with a little script I use for compressing PDFs.
 
-![Copy and paste a file path via keyboard commands on macOs](/posts/quickly-copying-paths-to-the-terminal-on-macos/copy_path_terminal.gif)
+![Copy and paste a file path via keyboard commands on macOs](@images/posts/quickly-copying-paths-to-the-terminal-on-macos/copy_path_terminal.gif)

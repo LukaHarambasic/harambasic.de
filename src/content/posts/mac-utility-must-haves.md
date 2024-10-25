@@ -26,7 +26,7 @@ Every section will start with a bit of motivation of why I use it and then go ov
 
 I don't know how many screenshots I take per day. They have one thing in common: they are only temporarily relevant. If it needs to be persisted, I handle it differently (e.g., save a website as a PDF). And I don't need such temporary data on my desktop or saved somewhere else. I need it in my clipboard to paste it somewhere, e.g., E-Mail, Slack, or Figma. I can't remember in which macOS version Apple introduced the current screenshot solution, but that was the time I ditched the way more powerful [Snagit](https://www.techsmith.com/screen-capture.html) (I even paid for it). The built-in solution just works. But you need to set it up to do so.
 
-![TODO](/posts/mac-utility-must-haves/apple_screenshots.png)
+![TODO](@images/posts/mac-utility-must-haves/apple_screenshots.png)
 
 1. Open the _Screenshot_ app.
 2. Make sure one of the three buttons on the left is selected.
@@ -48,7 +48,7 @@ brew install --cask clipy
 
 You might be asking yourself, what the hell is a clipboard manager? And I was like you, now I can't imagine my life without it. It allows you to access stuff you have been copying. This is helpful when you start doing something, need to jump on something else, copy stuff in between, and then need to continue what you didn't finish. With a clipboard manager, you still have all the things you copied previously accessible. Another use case is when I need to copy colors from one place to another, e.g., from a design file to my code editor; I only copy all the codes once and then paste them in whichever order I need them without switching back and forth between the applications. Windows has had it since Windows 10 was integrated, but Mac still misses this feature.
 
-![TODO](/posts/mac-utility-must-haves/clipy.png)
+![TODO](@images/posts/mac-utility-must-haves/clipy.png)
 
 After you install Clipy, you can use it via **SHIFT + COMMAND + C**. It's just one additional keystroke to what you are used to. It has many customization options, but I only changed a little. I make sure that there are already copied items visible without the need to navigate to a folder first (see screenshot). Therefore, you need to set the _Number of items placed inline_ to a decent number, I have it at 10.
 
@@ -66,11 +66,11 @@ brew install --cask alt-tab
 
 AltTab solves one of my main problems with window switching on macOS: **COMMAND + TAB** can't handle multiple instances of the same program. I tried multiple virtual desktops, switching between them with gestures, but this worked better with multiple monitors. Besides this benefit, AltTab adds more context to the open windows, a screenshot, and the instance's title.
 
-![ALtTab cycling through multiple windows](/posts/mac-utility-must-haves/alttab.gif)
+![ALtTab cycling through multiple windows](@images/posts/mac-utility-must-haves/alttab.gif)
 
 I highly recommend replacing the default **ALT + COMMAND** with AltTab. After the installation, it will guide you through the process of replacing it. Below, you can see my _Appearance_ settings. That is the outcome of trial and error. You can also turn off the screenshots in the preview.
 
-![AlTab appearance of around 20 settings](/posts/mac-utility-must-haves/alttab_settings.png)
+![AlTab appearance of around 20 settings](@images/posts/mac-utility-must-haves/alttab_settings.png)
 
 ---
 
@@ -84,11 +84,11 @@ brew install --cask rectangle
 
 After being able to switch between all the windows, they need to be organized. One goes to the left half, one to the right half. Another one needs to be maximized without going fullscreen - I don't like the macOS fullscreen and split mode.
 
-![Rectangle resizing multiple windows by dragging them to the side of the screen](/posts/mac-utility-must-haves/rectangle.gif)
+![Rectangle resizing multiple windows by dragging them to the side of the screen](@images/posts/mac-utility-must-haves/rectangle.gif)
 
 Therefore, you either use your mouse to drag a window into one of the hot areas (you can define them in the settings) or double-click the title bar to maximize a window. But I would encourage you to use the keyboard shortcuts. I tend to use the mouse, but I would love to get used to the shortcuts.
 
-![Overview of the Rectangle shortcut settings](/posts/mac-utility-must-haves/rectangle_shortcuts.png)
+![Overview of the Rectangle shortcut settings](@images/posts/mac-utility-must-haves/rectangle_shortcuts.png)
 
 ---
 
@@ -102,7 +102,7 @@ brew install --cask raycast
 
 Everything besides this point is something I would recommend to everyone who works on a Mac daily. Raycast is a little bit more nerdy but can also be useful for everyone else. But what is it even? It is an extensible version of the default macOS Spotlight, which is already awesome. But Raycast can do more.
 
-![TODO](/posts/mac-utility-must-haves/raycast.gif)
+![TODO](@images/posts/mac-utility-must-haves/raycast.gif)
 
 I use it in some ways, like Spotlight, e.g., to open all my applications, do simple calculations, and make simple currency conversions. But Raycast allows me to install extensions or to use my scripts. One default extension is the emoji search; this gives me the same way to add emojis in every application. I don't need to consider whether I'm in Slack, Notion, Jira, or Gmail. Besides this, here is a short list of other extensions:
 
@@ -137,7 +137,7 @@ I also use some custom commands for simple automations. For example, to open a s
 open "https://www.deepl.com/translator#/$1/$2/$3"
 ```
 
-![TODO](/posts/mac-utility-must-haves/raycast_deepl.png)
+![TODO](@images/posts/mac-utility-must-haves/raycast_deepl.png)
 
 It also offers solutions for screenshots, clipboard management, and window management. But I don't use these; I use the solutions described above, but hey, maybe that's something for you.
 

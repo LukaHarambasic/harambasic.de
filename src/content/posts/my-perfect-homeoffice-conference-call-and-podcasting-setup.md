@@ -16,7 +16,7 @@ discussion: https://twitter.com/luka_harambasic/status/1383820044082106371
 
 A friend had the idea for our podcast [Techmob Show](https://techmob.show) (german). I got one requirement before we would start the first recording: get a new microphone. During this time a colleague also stepped up his camera game which got me thinking. And so one thing led to another...
 
-![Desk with camera, ring light, display, microphone with an arm, stream deck and MacBook.](/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/setup_overview.jpg)
+![Desk with camera, ring light, display, microphone with an arm, stream deck and MacBook.](@images/posts/my-perfect-homeoffice-conference-call-and-podcasting-setup/setup_overview.jpg)
 
 A lot of the following can be achieved a lot cheaper. But in this kind of area, I prefer plug-and-play solutions. Besides, that I had one hard requirement: USB-C. The hardware I bought should last some years, and I don't want to be annoyed in two years that I have to use a USB-A to USB-C adapter.
 

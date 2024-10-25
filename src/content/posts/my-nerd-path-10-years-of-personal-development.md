@@ -28,7 +28,7 @@ In the end, simple websites started my journey, and as I write this, I also unde
 
 ## Using the website builder
 
-![Website with an drop shadow and border radius as image](/posts/my-nerd-path/shadow_rounded_corner.png)
+![Website with an drop shadow and border radius as image](@images/posts/my-nerd-path/shadow_rounded_corner.png)
 
 The next step was to publish my first website. To be honest, I can't even remember the content. Nevertheless, I won't forget that it was at [Homepage Baukasten](https://www.homepage-baukasten.de/) (Homepage Builder), which gave you a pretty lovely domain: .de.tl. And, as before, I stuck to this place because there was a very active community, but this time with "experts" in programming. I remember how I stood in awe of everybody who could build a website from scratch on this platform. It felt like magic. I still have this feeling today for stuff I don't understand. After customizing some designs from the community, I created my own layouts. If you wanted to create a nice background for your content, as you see above, you had to create an image and then split it into three parts putting it together. It wasn't as convenient as it is nowadays.
 
@@ -57,7 +57,7 @@ The next step was to publish my first website. To be honest, I can't even rememb
 
 Another recognizable feature of websites at this time was this glossy, well-known Web 2.0 button. I used masks in GIMP the first time to achieve this. It was quite some fun to rebuild this in Figma, the third generation of graphic tools I use to create websites.
 
-![Glossy Web 2.0 button with the text: Click Me](/posts/my-nerd-path/glossy_button.svg)
+![Glossy Web 2.0 button with the text: Click Me](@images/posts/my-nerd-path/glossy_button.svg)
 
 ## Hosting my own websites
 
@@ -81,11 +81,11 @@ During this time, I started using [WordPress](https://wordpress.com/) and looked
 
 Other solutions like the German homepage builder [Jimdo](https://www.jimdo.com/) were also on my radar. I created a simple website for my Handball team and my parents' construction company. After only 1 year, I moved to a self-implementation (see [archive.org](https://web.archive.org/web/20150920234612/http://ivo-bau.de/)). I used [Koala](http://koala-app.com/) (a GUI tool) for [Sass](https://sass-lang.com/). That was it, no framework or anything like that included, just PHP, HTML & CSS (ok and a third party lightbox).
 
-![An old version of IVO-BAU.de - showing the title and a picture of the office](/posts/my-nerd-path/ivo_bau.png)
+![An old version of IVO-BAU.de - showing the title and a picture of the office](@images/posts/my-nerd-path/ivo_bau.png)
 
 My first customer was my sports club. I developed a multi-WordPress website with a custom theme. I'm still quite happy with how it looks. Of course, it could use some optimization, but it's still alive. Despite some users trying to break it with an entire blog post in red and Comic Sans. During this, I fell in love with this concept of CPTs ([Custom Post Types](https://wordpress.org/support/article/post-types/)) and subsequently added some: teams, department management, and events. Then enhanced all of it with ACF ([Advanced Custom Fields](https://www.advancedcustomfields.com/)), e.g., to link to the current table for each team. I learned a lot and would do it entirely differently nowadays. Like on my previous homepages, I was in charge of the design, assets, hosting, and development.
 
-![Screenshot of handball.tv-edigheim.de showing the start page](/posts/my-nerd-path/tv_edigheim.png)
+![Screenshot of handball.tv-edigheim.de showing the start page](@images/posts/my-nerd-path/tv_edigheim.png)
 
 ## Learn programming
 

@@ -13,7 +13,7 @@ tldr: 'GitHub Actions are easy to configure and should be used in all npm/yarn b
 
 GitHub Actions are there to automate workflows directly in GitHub without the need of setting up a full-blown CI/CD pipeline. You can just use them by adding a file to your root directory. Also, the [pricing](https://github.com/pricing) is very accommodating. I think I won't run into the limits with my private projects especially as there aren't limitations for public repositories.
 
-![Passing GitHub Action Workflow with a successful build on a PR](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_passed.png)
+![Passing GitHub Action Workflow with a successful build on a PR](@images/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_passed.png)
 
 During the time I worked on the [german Corona-Warn-App](https://www.coronawarn.app/en/) I noticed how powerful a CI/CD pipeline is. Therefore, it was clear to me that I want such a safety net for myself. If I'm rushing something or think it's just a quick fix I would love to see this in the PR and not in production. With these two small checks executed for every PR I'll spot errors more easily. It also opens up the possibilities for collaborations, as everybody has to fulfill the same checks.
 
@@ -52,7 +52,7 @@ It's redundant as the GitHub Actions run in parallel to the build task, and the 
 
 ### Implementation
 
-![GitHub Action - Pull request with a failed test job which lead to a failing build](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_failed.png)
+![GitHub Action - Pull request with a failed test job which lead to a failing build](@images/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_failed.png)
 
 Just add the following file to your root directory in `.github/workflows/`. The name attributes are visible in the PR (see image). You only have to change the last line per job if you want to run something else, e.g. [Cypress](https://www.cypress.io/). So it's quite easy to adapt it to every other project even if my examples are based on [Vue.js](https://vuejs.org/) and [Nuxt.js](https://nuxtjs.org/):
 
