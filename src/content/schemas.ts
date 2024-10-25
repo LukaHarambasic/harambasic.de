@@ -1,6 +1,7 @@
 import { reference, z } from 'astro:content'
+import type { ImageFunction } from 'astro:content'
 
-export const postSchema = ({ image }) =>
+export const postSchema = ({ image }: { image: ImageFunction }) =>
   z.object({
     title: z.string(),
     description: z.string(),
@@ -13,7 +14,7 @@ export const postSchema = ({ image }) =>
     category: reference('categories'),
   })
 
-export const projectsSchema = ({ image }) =>
+export const projectsSchema = ({ image }: { image: ImageFunction }) =>
   z.object({
     title: z.string(),
     description: z.string(),
@@ -35,7 +36,7 @@ export const projectsSchema = ({ image }) =>
     category: reference('categories'),
   })
 
-export const usesSchema = ({ image }) =>
+export const usesSchema = ({ image }: { image: ImageFunction }) =>
   z.object({
     title: z.string(),
     description: z.string(),
@@ -50,11 +51,11 @@ export const usesSchema = ({ image }) =>
   })
 
 export const tagsSchema = z.object({
-  name: z.string(),
+  title: z.string(),
   description: z.string().optional(),
 })
 
 export const categoriesSchema = z.object({
-  name: z.string(),
+  title: z.string(),
   description: z.string().optional(),
 })
