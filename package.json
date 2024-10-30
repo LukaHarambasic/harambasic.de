@@ -23,10 +23,12 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/svelte": "^5.7.2",
     "astro": "^4.16.7",
     "astro-icon": "^1.1.1",
     "node-html-parser": "^6.1.13",
-    "typescript": "^5.6.2"
+    "svelte": "^5.1.5",
+    "typescript": "^5.6.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",

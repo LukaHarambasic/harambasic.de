@@ -3,15 +3,45 @@ import Card from '@components/Card.astro'
 import Layout from '@layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
+import { sortDate } from 'src/util/sort'
+import Tag from '@components/Tag.svelte'
+import Category from '@components/Category.svelte'
 
-const entries: CollectionEntry<'posts'>[] = await getCollection('posts')
+const entries: CollectionEntry<'posts'>[] = await getCollection(
+  'posts',
+  (entry: CollectionEntry<'posts'>[]) => !!entry.data.published
+)
+const filteredAndSortedEntries: CollectionEntry<'posts'>[] = entries.sort(
+  (a, b) => sortDate(a.data.published, b.data.published)
+)
+
+const usedEntryCategoryIds = [
+  ...new Set(entries.map((entry) => entry.data.category.id)),
+]
+const categories: CollectionEntry<'categories'>[] = await getCollection(
+  'categories',
+  (category: CollectionEntry<'categories'>) =>
+    usedEntryCategoryIds.includes(category.id)
+)
+
+const usedEntryTagIds = [
+  ...new Set(
+    entries.flatMap((entry) =>
+      entry.data.tags.map((tag: CollectionEntry<'tags'>) => tag.id)
+    )
+  ),
+]
+const tags: CollectionEntry<'tags'>[] = await getCollection(
+  'tags',
+  (tag: CollectionEntry<'tags'>) => usedEntryTagIds.includes(tag.id)
+)
 ---
 
 <Layout title="Posts">
   <section>
     <ul class="entries">
       {
-        entries.map((entry) => (
+        filteredAndSortedEntries.map((entry) => (
           <Card class="entry h-feed">
             <a href={`/posts/${entry.slug}`}>
               <div class="column">
@@ -40,17 +70,25 @@ const entries: CollectionEntry<'posts'>[] = await getCollection('posts')
       <Card direction="column">
         <h3>Categories</h3>
         <ul>
-          <li>Category 1</li>
-          <li>Category 2</li>
-          <li>Category 3</li>
+          {
+            categories.map((category) => (
+              <li>
+                <Category category={category} />
+              </li>
+            ))
+          }
         </ul>
       </Card>
       <Card direction="column">
         <h3>Tags</h3>
         <ul>
-          <li>Tag 1</li>
-          <li>Tag 2</li>
-          <li>Tag 3</li>
+          {
+            tags.map((tag) => (
+              <li>
+                <Tag tag={tag} />
+              </li>
+            ))
+          }
         </ul>
       </Card>
     </aside>

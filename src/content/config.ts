@@ -23,12 +23,12 @@ const usesCollection = defineCollection({
 })
 
 const tagsCollection = defineCollection({
-  type: 'data',
+  type: 'content',
   schema: tagsSchema,
 })
 
 const categoriesCollection = defineCollection({
-  type: 'data',
+  type: 'content',
   schema: categoriesSchema,
 })
 
