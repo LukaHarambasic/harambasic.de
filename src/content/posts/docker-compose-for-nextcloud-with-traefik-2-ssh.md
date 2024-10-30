@@ -16,7 +16,7 @@ I set up [Traefik 2](https://traefik.io/) on a [VServer at Netcup](https://www.n
 
 ## Complete `docker-compose.yml`
 
-```yaml[docker-compose.yml]
+```yaml
 version: '3.7'
 
 services:
