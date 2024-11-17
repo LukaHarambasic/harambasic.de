@@ -1,21 +1,25 @@
 <script lang="ts">
   type Direction = 'row' | 'column'
 
-  let { direction = 'row', class: className } = $props<{
+  let {
+    direction = 'row',
+    class: className,
+    children,
+  } = $props<{
     direction?: Direction
     class?: string
+    children: () => any
   }>()
 
   let directionClass = $derived(direction === 'column' ? 'column' : 'row')
 </script>
 
 <li class={`${className} ${directionClass}`}>
-  {@render ...}
+  {@render children()}
 </li>
 
 <style lang="postcss">
   li {
-    background: green;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

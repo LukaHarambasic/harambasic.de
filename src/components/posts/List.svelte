@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CollectionEntry } from 'astro:content'
-  import Card from '@components/Card.astro'
+  import Card from '@components/Card.svelte'
   import Tag from '@components/Tag.svelte'
   import Category from '@components/Category.svelte'
 
