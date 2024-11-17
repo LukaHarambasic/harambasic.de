@@ -1,7 +1,7 @@
 ---
 title: Q-Summit
 description: Germany’s largest conference for entrepreneurship organized by students.
-image: q-summit.png
+image: "@images/projects/q-summit.png"
 imageAlt: Q-Summit logo which is an abstract Q
 published: 2020-12-21
 updated: 2023-11-07

@@ -6,7 +6,7 @@ tags:
   - tools
 url: https://bookmark-divider.netlify.app/
 status: ACTIVE
-image: bookmarkdivider.svg
+image: "@images/uses/bookmarkdivider.svg"
 openSource: true
 updated: 2022-12-01 20:32
 published: 2022-12-01 20:31

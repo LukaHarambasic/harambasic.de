@@ -1,7 +1,7 @@
 ---
 title: GreenKayak
 description: NGO that engages people in the fight against ocean pollution.
-image: greenkayak.jpeg
+image: "@images/projects/greenkayak.jpeg"
 imageAlt: First screen of the GreenKayak app on a device mockup
 published: 2023-11-07
 updated: 2023-11-07

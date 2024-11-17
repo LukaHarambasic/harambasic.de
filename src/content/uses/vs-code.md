@@ -7,7 +7,7 @@ tags:
   - development
 url: https://code.visualstudio.com/
 status: ACTIVE
-image: vscode.svg
+image: "@images/uses/vscode.svg"
 openSource: true
 updated: 2022-12-01 20:35
 published: 2022-12-01 20:32

@@ -6,7 +6,7 @@ tags:
   - hardware
 url: https://www.elgato.com/en/ring-light
 status: ACTIVE
-image: elgato.svg
+image: "@images/uses/elgato.svg"
 updated: 2022-12-01 20:20
 published: 2022-12-01 20:19
 ---

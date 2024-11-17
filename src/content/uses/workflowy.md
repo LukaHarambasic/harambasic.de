@@ -6,7 +6,7 @@ tags:
   - tools
 url: https://workflowy.com/
 status: INACTIVE
-image: workflowy.jpeg
+image: "@images/uses/workflowy.jpeg"
 updated: 2022-12-01 20:30
 published: 2022-12-01 20:30
 ---

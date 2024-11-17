@@ -28,7 +28,7 @@ const tagsCollection = defineCollection({
 })
 
 const categoriesCollection = defineCollection({
-  type: 'content',
+  type: 'data',
   schema: categoriesSchema,
 })
 

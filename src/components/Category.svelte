@@ -4,17 +4,17 @@
   let {
     category,
     selected = false,
+    href,
   }: {
     category: CollectionEntry<'categories'>
     selected?: boolean
+    href: string
   } = $props()
-
-  console.log(category)
 </script>
 
-<button class="category" title={category.data.title} class:selected>
+<a class="category" {href} class:selected>
   {category.data.title}
-</button>
+</a>
 
 <style lang="postcss">
   .category {

@@ -4,15 +4,17 @@
   let {
     tag,
     selected = false,
+    href,
   }: {
     tag: CollectionEntry<'tags'>
     selected?: boolean
+    href: string
   } = $props()
 </script>
 
-<button class="tag" title={tag.data.title} class:selected>
+<a class="tag" {href} class:selected>
   {tag.data.title}
-</button>
+</a>
 
 <style lang="postcss">
   .tag {

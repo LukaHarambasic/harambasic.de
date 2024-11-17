@@ -7,7 +7,7 @@ tags:
   - automation
 url: https://github.com/features/actions
 status: ACTIVE
-image: githubactions.svg
+image: "@images/uses/githubactions.svg"
 updated: 2022-12-01 20:26
 published: 2022-12-01 20:26
 ---

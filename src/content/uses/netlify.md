@@ -6,7 +6,7 @@ tags:
   - development
 url: https://www.netlify.com/
 status: ACTIVE
-image: netlify.svg
+image: "@images/uses/netlify.svg"
 updated: 2022-12-01 20:22
 published: 2022-12-01 20:21
 ---

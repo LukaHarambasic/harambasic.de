@@ -1,7 +1,7 @@
 ---
 title: CV/Resume template Figma
 description: Template to create a CV/Resume in Figma.
-image: cv-figma-template.png
+image: "@images/projects/cv-figma-template.png"
 imageAlt: Part of the CV template showing a picture, name and some relevant work experiences
 published: 2020-12-21
 updated: 2023-11-07
