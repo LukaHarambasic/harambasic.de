@@ -3,6 +3,8 @@ import Layout from '@layouts/Layout.astro'
 import { Image } from 'astro:assets'
 import { getEntry } from 'astro:content'
 import profile from '@images/profile.jpeg'
+import SegmentedButtons from '@components/SegmentedButtons.svelte'
+import ButtonClipboard from '@components/ButtonClipboard.svelte'
 
 // TODO could be implemented with a featured flag
 const posts = [
@@ -133,19 +135,19 @@ const projects = [
         <strong>E-Mail</strong>
         <small>luka@harambasic.de</small>
       </div>
-      <div class="segmented-buttons">
+      <SegmentedButtons>
         <a href="mailto:luka@harambasic.de" class="button">Write</a>
-        {
-          /* <BaseToClipboardButton toClipboard="luka@harambasic.de">Copy</BaseToClipboardButton> */
-        }
-      </div>
+        <ButtonClipboard client:load toClipboard="luka@harambasic.de"
+          >Copy</ButtonClipboard
+        >
+      </SegmentedButtons>
     </div>
     <div class="group">
       <div class="meta">
         <strong>Socials</strong>
         <small>Get in touch!</small>
       </div>
-      <div class="segmented-buttons">
+      <SegmentedButtons>
         <a
           href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B"
           class="button">Signal</a
@@ -155,16 +157,16 @@ const projects = [
         >
         <a href="https://twitter.com/luka_harambasic" class="button">Twitter</a>
         <a href="https://github.com/LukaHarambasic" class="button">GitHub</a>
-      </div>
+      </SegmentedButtons>
     </div>
     <div class="group">
       <div class="meta">
         <strong>Book a time</strong>
         <small>Wanna talk?</small>
       </div>
-      <div class="segmented-buttons">
+      <SegmentedButtons>
         <a href="https://cal.com/luhara/1" class="button">Book</a>
-      </div>
+      </SegmentedButtons>
     </div>
   </section>
 </Layout>

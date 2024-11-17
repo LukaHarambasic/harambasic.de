@@ -9,17 +9,16 @@
 </div>
 
 <style lang="postcss">
+  /* I hate this, but it seems like its the only way this works... */
   :global(.rich-text) {
     line-height: 1.75;
 
-    /* Apply styles to all descendants */
     :global(*) {
       overflow-wrap: break-word;
       word-break: break-word;
       hyphens: auto;
     }
 
-    /* Image styles */
     :global(img) {
       max-width: 100%;
       height: auto;
@@ -27,7 +26,6 @@
       border-radius: var(--border-radius);
     }
 
-    /* Heading styles */
     :global(h2) {
       margin: var(--xl) 0 var(--m) 0;
       width: 30ch;
@@ -60,7 +58,6 @@
       }
     }
 
-    /* Paragraph and list styles */
     > :global(p) {
       margin-bottom: var(--l);
 
@@ -93,7 +90,6 @@
       }
     }
 
-    /* Horizontal rule */
     :global(hr) {
       border: none;
       height: 2px;
@@ -102,7 +98,6 @@
       margin: var(--l) 0;
     }
 
-    /* Anchor styles */
     :global(a) {
       color: var(--c-font);
       text-decoration: underline;
@@ -113,7 +108,6 @@
       }
     }
 
-    /* Strong and emphasis */
     :global(strong) {
       font-weight: 900;
     }
@@ -122,7 +116,6 @@
       font-style: italic;
     }
 
-    /* List styles */
     > :global(ul),
     > :global(ol) {
       margin: var(--l) 0 var(--l) var(--l);
@@ -132,7 +125,6 @@
         width: calc(100% - var(--l));
       }
 
-      /* Nested lists */
       :global(ul),
       :global(ol) {
         margin: 0 0 0 var(--l);
@@ -151,7 +143,6 @@
       list-style: decimal;
     }
 
-    /* Blockquote styles */
     :global(blockquote) {
       border-radius: var(--border-radius);
       background: var(--c-surface);
