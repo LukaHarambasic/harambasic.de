@@ -20,10 +20,12 @@ const entries: CollectionEntry<'projects'>[] = await getCollection('projects')
                 <p class="description">{entry.data.description}</p>
                 <div class="category">Category</div>
               </div>
-              {/* <time class="date dt-published" datetime={project?.published?.raw?.toString()}>
-                             {project.published.display}
-                         </time>
-                          */}
+              <time
+                class="date dt-published"
+                datetime={entry.data.published.raw}
+              >
+                {entry.data.published.formatted}
+              </time>
               <Icon class="arrow" name="ph:arrow-circle-right-bold" />
             </a>
           </Card>

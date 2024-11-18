@@ -17,7 +17,7 @@ const { Content } = await entry.render()
 <Layout title={entry.data.title}>
   <article>
     <h1>{entry.data.title}</h1>
-    <p>Published on: {entry.data.published.toLocaleDateString()}</p>
+    <p>Published on: {entry.data.published}</p>
     <Content />
   </article>
 </Layout>

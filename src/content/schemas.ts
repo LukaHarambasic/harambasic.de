@@ -1,11 +1,18 @@
+import { formatDate } from '@util/date'
 import { reference, z } from 'astro:content'
 import type { ImageFunction } from 'astro:content'
 
 export const baseEntrySchema = z.object({
   title: z.string(),
   description: z.string(),
-  published: z.coerce.date(),
-  updated: z.coerce.date(),
+  published: z.coerce.date().transform((val) => ({
+    raw: val,
+    formatted: formatDate(val),
+  })),
+  updated: z.coerce.date().transform((val) => ({
+    raw: val,
+    formatted: formatDate(val),
+  })),
   tags: z.array(reference('tags')),
   category: reference('categories'),
 })

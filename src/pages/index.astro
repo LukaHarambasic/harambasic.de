@@ -71,9 +71,9 @@ const projects = [
                 <strong>{post.data.title}</strong>
                 <time
                   class="date dt-published"
-                  datetime={post.data.published.toLocaleDateString()}
+                  datetime={post.data.published.raw}
                 >
-                  {post.data.published}
+                  {post.data.published.formatted}
                 </time>
               </a>
             </li>

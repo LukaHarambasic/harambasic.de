@@ -10,7 +10,7 @@ import LayoutHeader from '@components/Layout/LayoutHeader.astro'
 interface Props {
   title?: string
   subtitle?: string
-  published?: Date
+  published?: { raw: Date; formatted: string }
   relativePath?: string
 }
 
@@ -39,10 +39,10 @@ const { title, subtitle, published, relativePath } = Astro.props
               {published && relativePath && (
                 <time
                   class="date dt-published"
-                  datetime={published.toLocaleDateString()}
+                  datetime={published.raw.toDateString()}
                 >
                   <a href={relativePath} class="u-url">
-                    {published.toLocaleDateString()}
+                    {published}
                   </a>
                 </time>
               )}
