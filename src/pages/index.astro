@@ -5,6 +5,7 @@ import { getEntry } from 'astro:content'
 import profile from '@images/profile.jpeg'
 import SegmentedButtons from '@components/SegmentedButtons.svelte'
 import ButtonClipboard from '@components/ButtonClipboard.svelte'
+import { Icon } from 'astro-icon/components'
 
 // TODO could be implemented with a featured flag
 const posts = [
@@ -59,14 +60,14 @@ const projects = [
     <div class="posts group">
       <h3 class="section-label">
         <span>Posts</span>
-        <!-- <Icon name="ph:files-bold" /> -->
+        <Icon name="ph:files-bold" />
       </h3>
       <ul>
         {
           posts.map((post) => (
             <li>
               <a class="card text" href={post.slug}>
-                {/* <Icon name="ph:arrow-circle-right-bold" /> */}
+                <Icon name="ph:arrow-circle-right-bold" />
                 <strong>{post.data.title}</strong>
                 <time
                   class="date dt-published"
@@ -83,14 +84,14 @@ const projects = [
     <div class="lists group">
       <h3 class="section-label">
         <span>Uses</span>
-        <!-- <Icon name="ph:clipboard-text-bold" /> -->
+        <Icon name="ph:clipboard-text-bold" />
       </h3>
       <ul>
         {
           uses.map((usesEntry) => (
             <li>
               <a class="card text" href={usesEntry.data.url}>
-                {/* <Icon name="ph:arrow-square-out-bold" /> */}
+                <Icon name="ph:arrow-square-out-bold" />
                 <strong>{usesEntry.data.title}</strong>
                 <p>{usesEntry.data.description}</p>
               </a>
@@ -102,7 +103,7 @@ const projects = [
     <div class="project group">
       <h3 class="section-label">
         <span>Projects</span>
-        <!-- <Icon name="ph:projector-screen-chart-bold" /> -->
+        <Icon name="ph:projector-screen-chart-bold" />
       </h3>
       <ul>
         {
@@ -112,7 +113,7 @@ const projects = [
                 class="card no-spacing image"
                 href={`/projects?slug=${project.slug}`}
               >
-                {/* <Icon name="ph:arrow-circle-right-bold" /> */}
+                <Icon name="ph:arrow-circle-right-bold" />
                 <Picture
                   src={project.data.image}
                   alt={project.data.title}

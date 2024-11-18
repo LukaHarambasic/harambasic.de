@@ -3,6 +3,7 @@ import Card from '@components/Card.svelte'
 import Layout from '@layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
+import { Icon } from 'astro-icon/components'
 
 const entries: CollectionEntry<'projects'>[] = await getCollection('projects')
 ---
@@ -22,7 +23,8 @@ const entries: CollectionEntry<'projects'>[] = await getCollection('projects')
               {/* <time class="date dt-published" datetime={project?.published?.raw?.toString()}>
                              {project.published.display}
                          </time>
-                         <Icon class="arrow" icon="ph:arrow-circle-right-bold" /> */}
+                          */}
+              <Icon class="arrow" name="ph:arrow-circle-right-bold" />
             </a>
           </Card>
         ))
