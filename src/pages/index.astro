@@ -1,6 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro'
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import { getEntry } from 'astro:content'
 import profile from '@images/profile.jpeg'
 import SegmentedButtons from '@components/SegmentedButtons.svelte'
@@ -29,13 +29,14 @@ const projects = [
 <Layout>
   <section class="heyho">
     <div class="inner">
-      <!-- <img
-        src="../../assets/img/profile.jpeg"
-        sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+      <Picture
+        src={profile}
         alt="Profile of Luka Harambasic"
         class="profile"
-      /> -->
-      <Image src={profile} alt="Profile of Luka Harambasic" class="profile" />
+        widths={[400, 640, 1280, profile.width]}
+        sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+        formats={['avif', 'webp']}
+      />
       <div class="content rich-text">
         <h2>Heyho, I'm Luka!</h2>
         <p>
@@ -112,12 +113,13 @@ const projects = [
                 href={`/projects?slug=${project.slug}`}
               >
                 {/* <Icon name="ph:arrow-circle-right-bold" /> */}
-                {/* <img
-                  src={getImage(project.image)}
+                <Picture
+                  src={project.data.image}
+                  alt={project.data.title}
+                  widths={[400, 640, 1280, project.data.image.width]}
                   sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-                  alt={project.title}
-                /> */}
-                <Image src={project.data.image} alt={project.data.title} />
+                  formats={['avif', 'webp']}
+                />
                 <div class="content">
                   <strong>{project.data.title}</strong>
                   <p>{project.data.description}</p>
