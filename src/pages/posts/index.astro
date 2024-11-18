@@ -5,8 +5,6 @@ import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import { sortDate } from 'src/util/sort'
 
-const { selectedCategroy, selectedTag } = Astro.url.searchParams
-
 const entries: CollectionEntry<'posts'>[] = await getCollection(
   'posts',
   (entry: CollectionEntry<'posts'>[]) => {
@@ -41,10 +39,9 @@ const tags: CollectionEntry<'tags'>[] = await getCollection(
 
 <Layout title="Posts">
   <List
+    client:only="svelte"
     entries={sortedEntries}
     categories={categories}
     tags={tags}
-    selectedCategroy={selectedCategroy}
-    selectedTag={selectedTag}
   />
 </Layout>

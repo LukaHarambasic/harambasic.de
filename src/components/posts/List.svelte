@@ -1,51 +1,92 @@
 <script lang="ts">
   import type { CollectionEntry } from 'astro:content'
   import Card from '@components/Card.svelte'
-  import Tag from '@components/Tag.svelte'
-  import Category from '@components/Category.svelte'
+  import Categories from '@components/Categories.svelte'
+  import Tags from '@components/Tags.svelte'
+  import { createSearchParamsStore } from '@util/searchParamStore.ts'
 
-  let { entries, categories, tags, selectegCategoty, selectedTag } = $props<{
+  let { entries, categories, tags } = $props<{
     entries: CollectionEntry<'posts'>[]
     categories: CollectionEntry<'categories'>[]
     tags: CollectionEntry<'tags'>[]
-    selectegCategoty: string
-    selectedTag: string
   }>()
+
+  const searchParamsStore = createSearchParamsStore()
+
+  let searchParams = $state(new URLSearchParams(window.location.search))
+  let categoryParam = $state()
+  let tagParam = $state()
+
+  searchParamsStore.subscribe((params) => {
+    searchParams = params
+    categoryParam = searchParams.get('category')
+    tagParam = searchParams.get('tag')
+  })
+
+  let filteredEntries = $derived(
+    entries.filter((entry) => {
+      const hasCategory =
+        categoryParam && entry.data.category.id === categoryParam
+      const hasTag =
+        tagParam && entry.data.tags.some((tag) => tag.id === tagParam)
+      // If no params are set everythign should be in the list
+      if (!categoryParam && !tagParam) return true
+      // If both are set, it has to match both
+      if (hasCategory && hasTag) return true
+      if (!tagParam && hasCategory) return true
+      if (!categoryParam && hasTag) return true
+      return false
+    })
+  )
+
+  function getEntriesCategories(id: string): CollectionEntry<'categories'>[] {
+    return categories.filter(
+      (category: CollectionEntry<'categories'>) => category.id === id
+    )
+  }
+
+  function getEntriesTags(
+    entryTagIds: { id: string }[]
+  ): CollectionEntry<'tags'>[] {
+    return tags.filter((tag: CollectionEntry<'tags'>) =>
+      entryTagIds.find((entryTag) => tag.id === entryTag.id)
+    )
+  }
 </script>
 
 <section>
   <ul class="entries">
-    {#each entries as entry}
-      <Card class="entry h-feed">
-        <a href={`/posts/${entry.slug}`}>
-          <div class="column">
-            <strong class="title">{entry.data.title}</strong>
-            <div class="category">Category</div>
-          </div>
-        </a>
+    {#if filteredEntries.length === 0 && (categoryParam || tagParam)}
+      <Card>
+        <p>
+          No post was published with the selected category/tag. Try to remove
+          one.
+        </p>
       </Card>
-    {/each}
+    {:else}
+      {#each filteredEntries as entry}
+        <Card class="entry h-feed">
+          <a href={`/posts/${entry.slug}`}>
+            <div class="column">
+              <strong class="title">{entry.data.title}</strong>
+              <Categories
+                categories={getEntriesCategories(entry.data.category.id)}
+              />
+              <Tags tags={getEntriesTags(entry.data.tags)} />
+            </div>
+          </a>
+        </Card>
+      {/each}
+    {/if}
   </ul>
   <aside>
     <Card direction="column">
       <h3>Categories</h3>
-      <ul class="tags">
-        {#each categories as category}
-          <li>
-            <Category {category} href={`/posts?category=${category.id}`} />
-          </li>
-        {/each}
-      </ul>
+      <Categories {categories} />
     </Card>
     <Card direction="column">
       <h3>Tags</h3>
-      <ul class="tags">
-        {#each tags as tag}
-          <li>
-            <Tag {tag} href={`/posts?tag=${tag.id}`} />
-          </li>
-        {/each}
-      </ul>
+      <Tags {tags} />
     </Card>
   </aside>
 </section>
