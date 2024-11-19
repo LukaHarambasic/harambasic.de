@@ -54,23 +54,18 @@
       font-weight: 400;
       font-size: var(--font-s);
       text-decoration: none;
-      padding: var(--xxs) var(--s);
-      border-radius: var(--border-radius);
-      background: var(--c-surface-accent);
-      border: var(--border);
+      border: none;
+      background: transparent;
       transition: transform var(--transition-time) var(--transition-ease);
+      font-style: italic;
+      border-bottom: 1px solid transparent;
       &:hover {
-        text-decoration: none;
-        font-weight: bold;
-        transform: scale(0.97);
+        text-decoration: underline;
+        border-bottom: 1px solid var(--c-surface);
+        cursor: pointer;
       }
-      &::before {
-        display: block;
-        content: attr(title);
-        font-weight: bold;
-        height: 0;
-        overflow: hidden;
-        visibility: hidden;
+      &:before {
+        content: '#';
       }
       &.selected {
         font-weight: bold;

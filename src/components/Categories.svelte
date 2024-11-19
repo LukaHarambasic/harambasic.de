@@ -40,35 +40,25 @@
 <style lang="postcss">
   .categories {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: var(--xs);
     align-items: flex-start;
     justify-content: flex-start;
     .category {
-      display: inline-block;
       text-align: center;
       color: var(--c-font-accent-dark);
       font-weight: 400;
       font-size: var(--font-s);
       text-decoration: none;
-      padding: var(--xxs) var(--s);
-      border-radius: var(--border-radius);
-      background: var(--c-surface-accent);
-      border: var(--border);
+      background: transparent;
+      border: none;
       transition: transform var(--transition-time) var(--transition-ease);
+      font-size: var(--font-s);
+      border-bottom: 1px solid transparent;
       &:hover {
         text-decoration: none;
-        font-weight: bold;
-        transform: scale(0.97);
-      }
-      &::before {
-        display: block;
-        content: attr(title);
-        font-weight: bold;
-        height: 0;
-        overflow: hidden;
-        visibility: hidden;
+        border-bottom: 1px solid var(--surface);
       }
       &.selected {
         font-weight: bold;

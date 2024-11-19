@@ -5,15 +5,15 @@
     direction = 'row',
     class: className,
     categoryName,
+    date,
     children,
   } = $props<{
     direction?: Direction
     class?: string
     categoryName: string
+    date: { raw: Date; formatted: string }
     children: () => any
   }>()
-
-  console.log(categoryName)
 
   let directionClass = $derived(direction === 'column' ? 'column' : 'row')
 </script>
@@ -22,9 +22,18 @@
   <div class="content">
     {@render children()}
   </div>
-  {#if categoryName}
-    <div class="category">
-      {categoryName}
+  {#if categoryName || date}
+    <div class="footer">
+      {#if categoryName}
+        <div class="category">
+          {categoryName}
+        </div>
+      {/if}
+      {#if date}
+        <time class="dt-published" datetime={date.raw}>
+          {date.formatted}
+        </time>
+      {/if}
     </div>
   {/if}
 </li>
@@ -50,13 +59,25 @@
       gap: var(--m);
       padding: var(--l);
     }
-    .category {
+    .footer {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: stretch;
+      justify-content: flex-start;
+      align-items: flex-start;
       width: 100%;
       background: var(--c-surface-accent);
       padding: var(--s) var(--l);
-      font-size: var(--font-s);
-      font-weight: bold;
       border-top: var(--border);
+      font-size: var(--font-s);
+      .category {
+        margin-right: auto;
+      }
+      time {
+        font-style: italic;
+        margin-left: auto;
+      }
     }
     @media screen and (max-width: 42rem) {
       flex-direction: column;
