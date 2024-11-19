@@ -65,13 +65,14 @@
       </Card>
     {:else}
       {#each filteredEntries as entry}
-        <Card class="entry h-feed">
+        <Card
+          class="entry h-feed"
+          categoryName={getEntriesCategories(entry.data.category.id)[0].data
+            .title}
+        >
           <a href={`/posts/${entry.slug}`}>
             <div class="column">
               <strong class="title">{entry.data.title}</strong>
-              <Categories
-                categories={getEntriesCategories(entry.data.category.id)}
-              />
               <Tags tags={getEntriesTags(entry.data.tags)} />
             </div>
           </a>

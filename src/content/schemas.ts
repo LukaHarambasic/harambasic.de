@@ -52,6 +52,6 @@ export const tagsSchema = z.object({
 })
 
 export const categoriesSchema = z.object({
-  title: z.string(),
+  title: z.string().transform((val) => val.toUpperCase()),
   description: z.string().optional(),
 })
