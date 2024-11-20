@@ -5,9 +5,10 @@
     categories: CollectionEntry<'categories'>[]
   }>()
 
-  const updateFilter = (id: string) => {
+  let currentCategory = $state()
+
+  const toggleSearchParam = (id: string) => {
     const searchParams = new URLSearchParams(window.location.search)
-    const currentCategory = searchParams.get('category')
 
     if (currentCategory === id) {
       searchParams.delete('category')
@@ -18,19 +19,19 @@
     const url = new URL(window.location.toString())
     url.search = searchParams.toString()
     window.history.pushState({}, '', url.href)
-  }
 
-  // TODO use to set class, add a cross to the button to make it obvious that it can be removed
-  const isSelected = (id: string) => {
-    const searchParams = new SvelteURLSearchParams(window.location.search)
-    return searchParams.get('category') === id
+    currentCategory = searchParams.get('category')
   }
 </script>
 
 <ul class="categories">
   {#each categories as category}
     <li>
-      <button class="category" onclick={() => updateFilter(category.id)}>
+      <button
+        class="category"
+        class:selected={currentCategory === category.id}
+        onclick={() => toggleSearchParam(category.id)}
+      >
         {category?.data?.title}
       </button>
     </li>
@@ -55,13 +56,15 @@
       border: none;
       transition: transform var(--transition-time) var(--transition-ease);
       font-size: var(--font-s);
-      border-bottom: 1px solid transparent;
       &:hover {
-        text-decoration: none;
-        border-bottom: 1px solid var(--surface);
+        text-decoration-thickness: var(--underline-thickness);
+        text-decoration: underline;
+        font-weight: bold;
+        cursor: pointer;
       }
       &.selected {
-        font-weight: bold;
+        text-decoration-thickness: var(--underline-thickness);
+        text-decoration: underline;
       }
     }
   }

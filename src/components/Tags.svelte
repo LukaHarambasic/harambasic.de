@@ -5,11 +5,11 @@
     tags: CollectionEntry<'tags'>[]
   }>()
 
-  console.log(tags)
+  let currentTag = $state()
 
-  const updateFilter = (id: string) => {
+  const toggleSearchParam = (id: string) => {
+    console.log('toggle')
     const searchParams = new URLSearchParams(window.location.search)
-    const currentTag = searchParams.get('tag')
 
     if (currentTag === id) {
       searchParams.delete('tag')
@@ -20,19 +20,19 @@
     const url = new URL(window.location.toString())
     url.search = searchParams.toString()
     window.history.pushState({}, '', url.href)
-  }
 
-  // TODO use to set class
-  const isSelected = (id: string) => {
-    const searchParams = new SvelteURLSearchParams(window.location.search)
-    return searchParams.get('tag') === id
+    currentTag = searchParams.get('tag')
   }
 </script>
 
 <ul class="tags">
   {#each tags as tag}
     <li>
-      <button class="tag" onclick={() => updateFilter(tag.id)}>
+      <button
+        class="tag"
+        class:selected={currentTag === tag.id}
+        onclick={() => toggleSearchParam(tag.id)}
+      >
         {tag?.data?.title}
       </button>
     </li>
@@ -58,17 +58,17 @@
       background: transparent;
       transition: transform var(--transition-time) var(--transition-ease);
       font-style: italic;
-      border-bottom: 1px solid transparent;
       &:hover {
+        text-decoration-thickness: var(--underline-thickness);
         text-decoration: underline;
-        border-bottom: 1px solid var(--c-surface);
         cursor: pointer;
       }
       &:before {
         content: '#';
       }
       &.selected {
-        font-weight: bold;
+        text-decoration-thickness: var(--underline-thickness);
+        text-decoration: underline;
       }
     }
   }
