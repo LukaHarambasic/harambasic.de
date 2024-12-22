@@ -3,7 +3,7 @@
   import Card from '@components/Card.svelte'
   import Categories from '@components/Categories.svelte'
   import Tags from '@components/Tags.svelte'
-  import { searchParamsStore } from '@util/searchParamStore.svelte.ts'
+  import { urlStore } from '@util/urlStore.svelte'
 
   let { entries, categories, tags } = $props<{
     entries: CollectionEntry<'posts'>[]
@@ -11,16 +11,11 @@
     tags: CollectionEntry<'tags'>[]
   }>()
 
-  const categoryParam = $state(searchParamsStore.searchParams.get('category'))
-  const tagParam = $state(searchParamsStore.searchParams.get('tag'))
-
-  $effect(() => {
-    console.log(categoryParam, tagParam)
-  })
+  const categoryParam = $derived(urlStore.searchParams.get('category'))
+  const tagParam = $derived(urlStore.searchParams.get('tag'))
 
   let filteredEntries = $derived(
     entries.filter((entry) => {
-      // console.log(categoryParam, tagParam)
       const hasCategory =
         categoryParam && entry.data.category.id === categoryParam
       const hasTag =
