@@ -3,7 +3,7 @@
   import Card from '@components/Card.svelte'
   import Categories from '@components/Categories.svelte'
   import Tags from '@components/Tags.svelte'
-  import { createSearchParamsStore } from '@util/searchParamStore.ts'
+  import { searchParamsStore } from '@util/searchParamStore.svelte.ts'
 
   let { entries, categories, tags } = $props<{
     entries: CollectionEntry<'posts'>[]
@@ -11,20 +11,16 @@
     tags: CollectionEntry<'tags'>[]
   }>()
 
-  const searchParamsStore = createSearchParamsStore()
+  const categoryParam = $state(searchParamsStore.searchParams.get('category'))
+  const tagParam = $state(searchParamsStore.searchParams.get('tag'))
 
-  let searchParams = $state(new URLSearchParams(window.location.search))
-  let categoryParam = $state()
-  let tagParam = $state()
-
-  searchParamsStore.subscribe((params) => {
-    searchParams = params
-    categoryParam = searchParams.get('category')
-    tagParam = searchParams.get('tag')
+  $effect(() => {
+    console.log(categoryParam, tagParam)
   })
 
   let filteredEntries = $derived(
     entries.filter((entry) => {
+      // console.log(categoryParam, tagParam)
       const hasCategory =
         categoryParam && entry.data.category.id === categoryParam
       const hasTag =
@@ -195,6 +191,14 @@
     @media screen and (max-width: 50rem) {
       grid-template-columns: 1fr;
       order: 0;
+    }
+    h3 {
+      display: inline-block;
+      font-weight: 900;
+      font-size: var(--font-m);
+      line-height: 1;
+      font-family: var(--font-family);
+      letter-spacing: var(--font-letter-spacing-headline);
     }
     .tags {
       display: flex;

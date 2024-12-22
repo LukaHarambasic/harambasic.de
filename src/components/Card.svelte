@@ -10,8 +10,8 @@
   } = $props<{
     direction?: Direction
     class?: string
-    categoryName: string
-    date: { raw: Date; formatted: string }
+    categoryName?: string
+    date?: { raw: Date; formatted: string }
     children: () => any
   }>()
 
