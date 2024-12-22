@@ -20,7 +20,7 @@
 
 <li class={`${className} ${directionClass}`}>
   <div class="content">
-    {@render children()}
+    {@render children?.()}
   </div>
   {#if left || right}
     <div class="footer">

@@ -1,26 +1,21 @@
 <script lang="ts">
   import type { CollectionEntry } from 'astro:content'
-  import { urlStore } from '@util/urlStore.svelte'
+  import { isBrowser } from '@util/helpers'
 
   let { tags } = $props<{
     tags: CollectionEntry<'tags'>[]
   }>()
 
-  let currentTag = $derived(urlStore.searchParams.get('tag'))
+  let currentTag: string | null = $state(null)
+  let handleToggle: ((id: string) => void) | undefined
 
-  const toggleSearchParam = (id: string) => {
-    console.log('toggle')
-    const searchParams = new URLSearchParams(window.location.search)
-
-    if (currentTag === id) {
-      searchParams.delete('tag')
-    } else {
-      searchParams.set('tag', id)
+  if (isBrowser) {
+    const initBrowserLogic = async () => {
+      const { getCurrentTag, toggleTag } = await import('@util/tagStore')
+      currentTag = getCurrentTag()
+      handleToggle = toggleTag
     }
-
-    const url = new URL(window.location.toString())
-    url.search = searchParams.toString()
-    window.history.pushState({}, '', url.href)
+    initBrowserLogic()
   }
 </script>
 
@@ -30,7 +25,7 @@
       <button
         class="tag"
         class:selected={currentTag === tag.id}
-        onclick={() => toggleSearchParam(tag.id)}
+        onclick={() => handleToggle?.(tag.id)}
       >
         {tag?.data?.title}
       </button>
