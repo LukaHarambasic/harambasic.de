@@ -30,6 +30,7 @@
         class="category"
         class:selected={currentCategory === category.id}
         onclick={() => toggleSearchParam(category.id)}
+        data-text={category?.data?.title}
       >
         {category?.data?.title}
       </button>
@@ -49,21 +50,34 @@
       text-align: center;
       color: var(--c-font);
       font-weight: 400;
-      font-size: var(--font-xs);
+      font-size: var(--font-s);
       text-decoration: none;
       background: var(--c-surface-accent);
       border-radius: var(--border-radius);
       border: var(--border);
       padding: var(--xxs) var(--s);
       transition: transform var(--transition-time) var(--transition-ease);
-      font-size: var(--font-s);
+      position: relative;
+      &::after {
+        content: attr(data-text);
+        display: block;
+        height: 0;
+        visibility: hidden;
+        overflow: hidden;
+        font-weight: bold;
+      }
+
       &:hover {
         font-weight: bold;
         cursor: pointer;
       }
       &.selected {
-        text-decoration-thickness: var(--underline-thickness);
-        text-decoration: underline;
+        font-weight: bold;
+        background: var(--c-surface-accent-dark);
+        color: var(--c-font-accent);
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }

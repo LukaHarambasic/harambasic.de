@@ -60,9 +60,8 @@
           <a href={`/posts/${entry.slug}`}>
             <div class="column">
               <Categories
-                categories={getEntriesCategories(entry.data.category.id)[0]}
+                categories={getEntriesCategories(entry.data.category.id)}
               />
-              {console.log(getEntriesCategories(entry.data.category.id)[0])}
               <strong class="title">{entry.data.title}</strong>
             </div>
           </a>
