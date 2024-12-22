@@ -4,14 +4,14 @@
   let {
     direction = 'row',
     class: className,
-    categoryName,
-    date,
+    left,
+    right,
     children,
   } = $props<{
     direction?: Direction
     class?: string
-    categoryName?: string
-    date?: { raw: Date; formatted: string }
+    left?: () => any
+    right?: () => any
     children: () => any
   }>()
 
@@ -22,17 +22,17 @@
   <div class="content">
     {@render children()}
   </div>
-  {#if categoryName || date}
+  {#if left || right}
     <div class="footer">
-      {#if categoryName}
-        <div class="category">
-          {categoryName}
+      {#if left}
+        <div class="left">
+          {@render left()}
         </div>
       {/if}
-      {#if date}
-        <time class="dt-published" datetime={date.raw}>
-          {date.formatted}
-        </time>
+      {#if right}
+        <div class="right">
+          {@render right()}
+        </div>
       {/if}
     </div>
   {/if}
@@ -71,11 +71,10 @@
       padding: var(--s) var(--l);
       border-top: var(--border);
       font-size: var(--font-s);
-      .category {
+      .left {
         margin-right: auto;
       }
-      time {
-        font-style: italic;
+      .right {
         margin-left: auto;
       }
     }

@@ -1,11 +1,12 @@
 <script lang="ts">
   import type { CollectionEntry } from 'astro:content'
+  import { urlStore } from '@util/urlStore.svelte'
 
   let { tags } = $props<{
     tags: CollectionEntry<'tags'>[]
   }>()
 
-  let currentTag = $state()
+  let currentTag = $derived(urlStore.searchParams.get('tag'))
 
   const toggleSearchParam = (id: string) => {
     console.log('toggle')
@@ -20,8 +21,6 @@
     const url = new URL(window.location.toString())
     url.search = searchParams.toString()
     window.history.pushState({}, '', url.href)
-
-    currentTag = searchParams.get('tag')
   }
 </script>
 

@@ -56,18 +56,24 @@
       </Card>
     {:else}
       {#each filteredEntries as entry}
-        <Card
-          class="entry h-feed"
-          categoryName={getEntriesCategories(entry.data.category.id)[0].data
-            .title}
-          date={entry.data.published}
-        >
+        <Card class="entry h-feed">
           <a href={`/posts/${entry.slug}`}>
             <div class="column">
+              <Categories
+                categories={getEntriesCategories(entry.data.category.id)[0]}
+              />
+              {console.log(getEntriesCategories(entry.data.category.id)[0])}
               <strong class="title">{entry.data.title}</strong>
-              <Tags tags={getEntriesTags(entry.data.tags)} />
             </div>
           </a>
+          {#snippet left()}
+            <Tags tags={getEntriesTags(entry.data.tags)} />
+          {/snippet}
+          {#snippet right()}
+            <time class="dt-published" datetime={entry.data.published.raw}>
+              {entry.data.published.formatted}
+            </time>
+          {/snippet}
         </Card>
       {/each}
     {/if}

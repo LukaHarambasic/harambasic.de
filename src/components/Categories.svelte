@@ -1,11 +1,12 @@
 <script lang="ts">
   import type { CollectionEntry } from 'astro:content'
+  import { urlStore } from '@util/urlStore.svelte'
 
   let { categories } = $props<{
     categories: CollectionEntry<'categories'>[]
   }>()
 
-  let currentCategory = $state()
+  const currentCategory = $derived(urlStore.searchParams.get('category'))
 
   const toggleSearchParam = (id: string) => {
     const searchParams = new URLSearchParams(window.location.search)
@@ -19,8 +20,6 @@
     const url = new URL(window.location.toString())
     url.search = searchParams.toString()
     window.history.pushState({}, '', url.href)
-
-    currentCategory = searchParams.get('category')
   }
 </script>
 
@@ -41,24 +40,24 @@
 <style lang="postcss">
   .categories {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: var(--xs);
     align-items: flex-start;
     justify-content: flex-start;
     .category {
       text-align: center;
-      color: var(--c-font-accent-dark);
+      color: var(--c-font);
       font-weight: 400;
-      font-size: var(--font-s);
+      font-size: var(--font-xs);
       text-decoration: none;
-      background: transparent;
-      border: none;
+      background: var(--c-surface-accent);
+      border-radius: var(--border-radius);
+      border: var(--border);
+      padding: var(--xxs) var(--s);
       transition: transform var(--transition-time) var(--transition-ease);
       font-size: var(--font-s);
       &:hover {
-        text-decoration-thickness: var(--underline-thickness);
-        text-decoration: underline;
         font-weight: bold;
         cursor: pointer;
       }
