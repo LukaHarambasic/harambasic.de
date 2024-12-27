@@ -12,7 +12,7 @@
   if (isBrowser) {
     const initBrowserLogic = async () => {
       const { getCurrentCategory, toggleCategory } = await import(
-        '@util/categoryStore'
+        '@util/categoryStore.svelte.ts'
       )
       currentCategory = getCurrentCategory()
       handleToggle = toggleCategory
