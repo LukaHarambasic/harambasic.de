@@ -3,12 +3,15 @@
   import Card from '@components/Card.svelte'
   import Categories from '@components/Categories.svelte'
   import Tags from '@components/Tags.svelte'
+  import { getEntries, getEntry, type CollectionEntry } from 'astro:content'
 
   let { entry, children } = $props<{
     entry: CollectionEntry<'posts'>
     children: () => any
   }>()
-  // TODO get toc here which should be added before?
+
+  let categoryPromise = $state(getEntry(entry.data.category))
+  let tagsPromise = $state(getEntries(entry.data.tags))
 </script>
 
 <article class="h-entry">
@@ -26,17 +29,31 @@
     </Card>
     <Card class="category">
       <h3>Category</h3>
-      <Categories categories={[entry.data.category]} />
+      {#await categoryPromise}
+        <p>Loading...</p>
+      {:then category}
+        <Categories categories={[category]} />
+      {:catch error}
+        <p>Error loading category: {error.message}</p>
+      {/await}
     </Card>
     <Card class="tags">
       <h3>Tags</h3>
-      <Tags tags={entry.data.tags} />
+      {#await tagsPromise}
+        <p>Loading...</p>
+      {:then tags}
+        <Tags {tags} />
+      {:catch error}
+        <p>Error loading tags: {error.message}</p>
+      {/await}
     </Card>
     <Card class="toc card">
+      <h3>Table of Content</h3>
       <!-- <PostsTableOfContent nodes={toc} /> -->
     </Card>
   </aside>
   <Card class="tldr">
+    <h3>Tl;DR</h3>
     <!-- <BaseCallout prefix="TL;DR">
       {@html tldr}
     </BaseCallout> -->

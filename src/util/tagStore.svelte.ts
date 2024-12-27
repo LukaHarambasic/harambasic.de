@@ -1,15 +1,15 @@
 import { urlStore } from './urlStore.svelte'
 
-export const getCurrentCategory = () => $derived(urlStore.searchParams.get('category'))
+export const getCurrentTag = () => $derived(urlStore.searchParams.get('tag'))
 
-export const toggleCategory = (id: string) => {
+export const toggleTag = (id: string) => {
   const searchParams = new URLSearchParams(window.location.search)
-  const currentCategory = getCurrentCategory()
+  const currentTag = getCurrentTag()
 
-  if (currentCategory === id) {
-    searchParams.delete('category')
+  if (currentTag === id) {
+    searchParams.delete('tag')
   } else {
-    searchParams.set('category', id)
+    searchParams.set('tag', id)
   }
 
   const url = new URL(window.location.toString())

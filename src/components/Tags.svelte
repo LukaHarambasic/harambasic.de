@@ -11,7 +11,9 @@
 
   if (isBrowser) {
     const initBrowserLogic = async () => {
-      const { getCurrentTag, toggleTag } = await import('@util/tagStore')
+      const { getCurrentTag, toggleTag } = await import(
+        '@util/tagStore.svelte.ts'
+      )
       currentTag = getCurrentTag()
       handleToggle = toggleTag
     }
@@ -27,7 +29,7 @@
         class:selected={currentTag === tag.id}
         onclick={() => handleToggle?.(tag.id)}
       >
-        {tag?.data?.title}
+        {tag.data.title}
       </button>
     </li>
   {/each}
