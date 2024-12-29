@@ -2,7 +2,7 @@
   import type { CollectionEntry } from 'astro:content'
   import Card from '@components/Card.svelte'
   import CategoryList from '@components/CategoryList.svelte'
-  import Tags from '@components/Tags.svelte'
+  import Tags from '@components/TagList.svelte'
   import { categoryParamStore, tagParamStore } from '@util/urlStore.svelte'
 
   let { entries, categories, tags } = $props<{
@@ -83,7 +83,7 @@
   <aside>
     <Card direction="column">
       <h3>Categories</h3>
-      <Categories {categories} />
+      <CategoryList {categories} />
     </Card>
     <Card direction="column">
       <h3>Tags</h3>

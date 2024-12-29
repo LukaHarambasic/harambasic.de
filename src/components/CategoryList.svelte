@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { CollectionEntry } from 'astro:content'
   import { categoryParamStore } from '@util/urlStore.svelte'
+  import Category from './Category.svelte'
 
   let { categories } = $props<{
     categories: CollectionEntry<'categories'>[]
@@ -11,7 +12,7 @@
   {#each categories as category}
     <li>
       <Category
-        class="category"
+        {category}
         selected={categoryParamStore.searchParamId === category.id}
         onClickHandler={() => categoryParamStore.toggle(category.id)}
       />

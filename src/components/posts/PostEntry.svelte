@@ -3,7 +3,7 @@
   import Card from '@components/Card.svelte'
   import Category from '@components/Category.svelte'
   import { type CollectionEntry } from 'astro:content'
-  import Tags from '@components/Tags.svelte'
+  import Tag from '@components/Tag.svelte'
 
   let { category, tags, children } = $props<{
     entry: CollectionEntry<'posts'>
@@ -32,7 +32,13 @@
     </Card>
     <Card class="tags">
       <h3>Tags</h3>
-      <Tags {tags} />
+      <ul class="tags">
+        {#each tags as tag}
+          <li>
+            <Tag {tag} />
+          </li>
+        {/each}
+      </ul>
     </Card>
     <Card class="toc card">
       <h3>Table of Content</h3>
@@ -105,21 +111,11 @@
       }
       .tags {
         display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-content: stretch;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--xs);
+        align-items: flex-start;
         justify-content: flex-start;
-        align-items: stretch;
-        ul {
-          display: flex;
-          position: relative;
-          flex-direction: row;
-          flex-wrap: wrap;
-          align-content: stretch;
-          justify-content: flex-start;
-          align-items: flex-start;
-          gap: var(--xs);
-        }
       }
       .toc {
         position: sticky;

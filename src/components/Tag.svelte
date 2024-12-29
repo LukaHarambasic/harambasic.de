@@ -2,11 +2,11 @@
   import type { CollectionEntry } from 'astro:content'
 
   let {
-    category,
+    tag,
     selected = false,
     onClickHandler = () => {},
   } = $props<{
-    category: CollectionEntry<'categories'>
+    tag: CollectionEntry<'tags'>
     selected?: boolean
     onClickHandler?: () => void
   }>()
@@ -16,48 +16,39 @@
 </script>
 
 <button
-  class="category"
+  class="tag"
   class:selected
   class:disabled={!isClickable}
   onclick={() => isClickable && onClickHandler()}
-  data-text={category?.data?.title}
+  data-text={tag?.data?.title}
   disabled={!isClickable}
 >
-  {category?.data?.title}
+  {tag?.data?.title}
 </button>
 
 <style lang="postcss">
-  .category {
+  .tag {
+    display: inline-block;
     text-align: center;
-    color: var(--c-font);
+    color: var(--c-font-accent-dark);
     font-weight: 400;
     font-size: var(--font-s);
     text-decoration: none;
-    background: var(--c-surface-accent);
-    border-radius: var(--border-radius);
-    border: var(--border);
-    padding: var(--xxs) var(--s);
+    border: none;
+    background: transparent;
     transition: transform var(--transition-time) var(--transition-ease);
-    position: relative;
-    &::after {
-      content: attr(data-text);
-      display: block;
-      height: 0;
-      visibility: hidden;
-      overflow: hidden;
-      font-weight: bold;
-    }
+    font-style: italic;
     &:hover {
-      font-weight: bold;
+      text-decoration-thickness: var(--underline-thickness);
+      text-decoration: underline;
       cursor: pointer;
     }
+    &:before {
+      content: '#';
+    }
     &.selected {
-      font-weight: bold;
-      background: var(--c-surface-accent-dark);
-      color: var(--c-font-accent);
-      &:hover {
-        cursor: pointer;
-      }
+      text-decoration-thickness: var(--underline-thickness);
+      text-decoration: underline;
     }
     &.disabled {
       opacity: 1;
@@ -65,6 +56,7 @@
       &:hover {
         font-weight: 400;
         cursor: default;
+        text-decoration: none;
       }
     }
   }
