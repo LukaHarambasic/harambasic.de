@@ -56,27 +56,28 @@
       </Card>
     {:else}
       {#each filteredEntries as entry}
-        <Card class="entry h-feed">
-          <a href={`/posts/${entry.slug}`}>
+        <a href={`/posts/${entry.slug}`}>
+          <!-- TODO make tags and categories on card non interactive -->
+          <Card class="entry h-feed">
             <div class="column">
               <CategoryList
                 categories={getEntriesCategories(entry.data.category.id)}
               />
               <strong class="title">{entry.data.title}</strong>
             </div>
-          </a>
-          {#snippet left()}
-            <Tags tags={getEntriesTags(entry.data.tags)} />
-          {/snippet}
-          {#snippet right()}
-            <time
-              class="dt-published"
-              datetime={entry.data.published.raw.toString()}
-            >
-              {entry.data.published.formatted}
-            </time>
-          {/snippet}
-        </Card>
+            {#snippet left()}
+              <Tags tags={getEntriesTags(entry.data.tags)} />
+            {/snippet}
+            {#snippet right()}
+              <time
+                class="dt-published"
+                datetime={entry.data.published.raw.toString()}
+              >
+                {entry.data.published.formatted}
+              </time>
+            {/snippet}
+          </Card>
+        </a>
       {/each}
     {/if}
   </ul>
@@ -121,8 +122,9 @@
       order: 1;
     }
   }
-  :global(.entries .entry) {
+  :global(.entries a) {
     transition: var(--transition);
+    text-decoration: none;
     &:hover {
       transform: scale(0.97);
       cursor: pointer;
@@ -130,28 +132,17 @@
         opacity: 1;
       }
     }
-    a {
+    .column {
       display: flex;
       position: relative;
-      flex-direction: row;
+      flex-direction: column;
       flex-wrap: nowrap;
       align-content: stretch;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: var(--l);
+      justify-content: flex-start;
+      gap: var(--xs);
       color: var(--c-font);
-      text-decoration: none;
       @media screen and (max-width: 50rem) {
         flex-direction: column-reverse;
-      }
-      .column {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-content: stretch;
-        justify-content: flex-start;
-        align-items: stretch;
-        gap: var(--xs);
       }
       .title {
         display: inline-block;
@@ -161,25 +152,25 @@
         font-family: var(--font-family);
         letter-spacing: var(--font-letter-spacing-headline);
       }
-      :global(.arrow) {
-        color: var(--c-font-accent-dark);
-        size: var(--l);
-        position: absolute;
-        top: var(--m);
-        right: calc((-1) * var(--m));
-        opacity: 0;
-        transition: var(--transition);
-        border: 4px solid var(--c-light);
-        border-radius: 100%;
-        background: var(--c-light);
-        box-shadow:
-          0 1px 2px rgba(0, 0, 0, 0.03),
-          0 2px 4px rgba(0, 0, 0, 0.03),
-          0 4px 8px rgba(0, 0, 0, 0.03),
-          0 8px 16px rgba(0, 0, 0, 0.03),
-          0 16px 32px rgba(0, 0, 0, 0.03),
-          0 32px 64px rgba(0, 0, 0, 0.03);
-      }
+    }
+    :global(.arrow) {
+      color: var(--c-font-accent-dark);
+      size: var(--l);
+      position: absolute;
+      top: var(--m);
+      right: calc((-1) * var(--m));
+      opacity: 0;
+      transition: var(--transition);
+      border: 4px solid var(--c-light);
+      border-radius: 100%;
+      background: var(--c-light);
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.03),
+        0 2px 4px rgba(0, 0, 0, 0.03),
+        0 4px 8px rgba(0, 0, 0, 0.03),
+        0 8px 16px rgba(0, 0, 0, 0.03),
+        0 16px 32px rgba(0, 0, 0, 0.03),
+        0 32px 64px rgba(0, 0, 0, 0.03);
     }
   }
   aside {

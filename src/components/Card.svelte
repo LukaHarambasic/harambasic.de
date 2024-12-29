@@ -12,7 +12,7 @@
     class?: string
     left?: () => any
     right?: () => any
-    children: () => any
+    children?: () => any
   }>()
 
   let directionClass = $derived(direction === 'column' ? 'column' : 'row')
@@ -71,6 +71,7 @@
       padding: var(--s) var(--l);
       border-top: var(--border);
       font-size: var(--font-s);
+      color: var(--c-font);
       .left {
         margin-right: auto;
       }

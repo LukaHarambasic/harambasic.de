@@ -7,7 +7,7 @@
 
   let { category, tags, children } = $props<{
     entry: CollectionEntry<'posts'>
-    category: CollectionEntry<'category'>
+    category: CollectionEntry<'categories'>
     tags: CollectionEntry<'tags'>
     children: () => any
   }>()
@@ -20,17 +20,19 @@
     </RichText>
   </section>
   <aside class="sidebar">
-    <Card class="author card">
+    <Card>
       <h3>Author</h3>
-      <a href="https://harambasic.de" rel="author" class="p-author h-card"
-        >Luka Harambasic</a
+      <a
+        href="https://harambasic.de"
+        rel="author"
+        class="author p-author h-card">Luka Harambasic</a
       >
     </Card>
-    <Card class="category">
+    <Card>
       <h3>Category</h3>
       <Category {category} />
     </Card>
-    <Card class="tags">
+    <Card>
       <h3>Tags</h3>
       <ul class="tags">
         {#each tags as tag}
@@ -40,18 +42,18 @@
         {/each}
       </ul>
     </Card>
-    <Card class="toc card">
+    <Card>
       <h3>Table of Content</h3>
       <!-- <PostsTableOfContent nodes={toc} /> -->
     </Card>
   </aside>
-  <Card class="tldr">
+  <Card>
     <h3>Tl;DR</h3>
     <!-- <BaseCallout prefix="TL;DR">
       {@html tldr}
     </BaseCallout> -->
   </Card>
-  <Card class="placeholder card"></Card>
+  <Card class="placeholder"></Card>
   <Card>
     <div class="rss rich-text">
       <a href="/posts/rss">RSS Feed</a>
@@ -87,6 +89,14 @@
         display: none;
       }
     }
+    h3 {
+      display: inline-block;
+      font-weight: 900;
+      font-size: var(--font-m);
+      line-height: 1;
+      font-family: var(--font-family);
+      letter-spacing: var(--font-letter-spacing-headline);
+    }
     .sidebar {
       grid-area: sidebar;
       gap: var(--l);
@@ -94,10 +104,6 @@
       flex-direction: column;
       flex-wrap: nowrap;
       .author {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        a {
           color: var(--c-font);
           font-size: var(--font-m);
           font-family: var(--font-family);
@@ -107,7 +113,6 @@
             text-decoration: underline;
             text-decoration-thickness: var(--underline-thickness);
           }
-        }
       }
       .tags {
         display: flex;
