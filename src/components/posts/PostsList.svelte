@@ -19,10 +19,7 @@
       const hasCategory =
         categoryParamId && entry.data.category.id === categoryParamId
       const hasTag =
-        tagParamId &&
-        entry.data.tags.some(
-          (tag: CollectionEntry<'tags'>) => tag.id === tagParamId
-        )
+        tagParamId && entry.data.tags.some((tag) => tag.id === tagParamId)
       // If no params are set everythign should be in the list
       if (!categoryParamId && !tagParamId) return true
       // If both are set, it has to match both
@@ -72,7 +69,10 @@
             <Tags tags={getEntriesTags(entry.data.tags)} />
           {/snippet}
           {#snippet right()}
-            <time class="dt-published" datetime={entry.data.published.raw}>
+            <time
+              class="dt-published"
+              datetime={entry.data.published.raw.toString()}
+            >
               {entry.data.published.formatted}
             </time>
           {/snippet}

@@ -12,7 +12,7 @@ const entries: CollectionEntry<'posts'>[] = await getCollection(
   }
 )
 const sortedEntries: CollectionEntry<'posts'>[] = entries.sort((a, b) =>
-  sortDate(a.data.published, b.data.published)
+  sortDate(a.data.published.raw, b.data.published.raw)
 )
 
 const usedEntryCategoryIds = [
@@ -27,7 +27,7 @@ const categories: CollectionEntry<'categories'>[] = await getCollection(
 const usedEntryTagIds = [
   ...new Set(
     entries.flatMap((entry) =>
-      entry.data.tags.map((tag: CollectionEntry<'tags'>) => tag.id)
+      entry.data.tags.map((tag) => tag.id)
     )
   ),
 ]

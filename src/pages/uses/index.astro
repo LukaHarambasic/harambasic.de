@@ -22,7 +22,7 @@ const entries: CollectionEntry<'uses'>[] = await getCollection('uses')
               </div>
               <time
                 class="date dt-published"
-                datetime={entry.data.published.raw}
+                datetime={entry.data.published.raw.toString()}
               >
                 {entry.data.published.formatted}
               </time>

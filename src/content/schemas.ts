@@ -6,11 +6,11 @@ export const baseEntrySchema = z.object({
   title: z.string(),
   description: z.string(),
   published: z.coerce.date().transform((val) => ({
-    raw: val,
+    raw: new Date(val),
     formatted: formatDate(val),
   })),
   updated: z.coerce.date().transform((val) => ({
-    raw: val,
+    raw: new Date(val),
     formatted: formatDate(val),
   })),
   tags: z.array(reference('tags')),

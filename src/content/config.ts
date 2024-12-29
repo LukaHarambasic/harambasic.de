@@ -23,7 +23,7 @@ const usesCollection = defineCollection({
 })
 
 const tagsCollection = defineCollection({
-  type: 'content',
+  type: 'data',
   schema: tagsSchema,
 })
 
