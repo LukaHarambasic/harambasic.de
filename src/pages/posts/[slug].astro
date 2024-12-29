@@ -1,23 +1,35 @@
 ---
 import Layout from '@layouts/Layout.astro'
-import { getCollection } from 'astro:content'
+import { getCollection, getEntries, getEntry } from 'astro:content'
 import PostEntry from '@components/posts/PostEntry.svelte'
 import type { CollectionEntry } from 'astro:content'
 
-export async function getStaticPaths() {
-  const entries = await getCollection('posts')
-  return entries.map((entry: CollectionEntry<'posts'>) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }))
+interface Props {
+  entry: CollectionEntry<'posts'>
+  category: CollectionEntry<'categories'>
+  tags: CollectionEntry<'tags'>[]
 }
 
-const { entry } = Astro.props as { entry: CollectionEntry<'posts'> }
+export async function getStaticPaths() {
+  const entries = await getCollection('posts')
+  return await Promise.all(
+    entries.map(async (entry: CollectionEntry<'posts'>) => {
+      const category = await getEntry(entry.data.category)
+      const tags = await getEntries(entry.data.tags)
+      return {
+        params: { slug: entry.slug },
+        props: { entry, category, tags } satisfies Props,
+      }
+    })
+  )
+}
+
+const { entry, category, tags } = Astro.props as Props
 const { Content } = await entry.render()
 ---
 
 <Layout title={entry.data.title} published={entry.data.published}>
-  <PostEntry {entry} ><Content /></PostEntry>
+  <PostEntry {entry} {category} {tags}><Content /></PostEntry>
 </Layout>
 
 <style>

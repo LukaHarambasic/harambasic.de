@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { CollectionEntry } from 'astro:content'
   import Card from '@components/Card.svelte'
-  import Categories from '@components/Categories.svelte'
+  import CategoryList from '@components/CategoryList.svelte'
   import Tags from '@components/Tags.svelte'
   import { categoryParamStore, tagParamStore } from '@util/urlStore.svelte'
 
@@ -62,7 +62,7 @@
         <Card class="entry h-feed">
           <a href={`/posts/${entry.slug}`}>
             <div class="column">
-              <Categories
+              <CategoryList
                 categories={getEntriesCategories(entry.data.category.id)}
               />
               <strong class="title">{entry.data.title}</strong>

@@ -10,5 +10,6 @@
       "@styles/*": ["src/styles/*"],
       "@util/*": ["src/util/*"]
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }

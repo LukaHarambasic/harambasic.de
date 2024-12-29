@@ -1,17 +1,16 @@
 <script lang="ts">
   import RichText from '@components/RichText.svelte'
   import Card from '@components/Card.svelte'
-  import Categories from '@components/Categories.svelte'
+  import Category from '@components/Category.svelte'
+  import { type CollectionEntry } from 'astro:content'
   import Tags from '@components/Tags.svelte'
-  import { getEntries, getEntry, type CollectionEntry } from 'astro:content'
 
-  let { entry, children } = $props<{
+  let { category, tags, children } = $props<{
     entry: CollectionEntry<'posts'>
+    category: CollectionEntry<'category'>
+    tags: CollectionEntry<'tags'>
     children: () => any
   }>()
-
-  let category = $state(getEntry(entry.data.category))
-  let tags = $state(getEntries(entry.data.tags))
 </script>
 
 <article class="h-entry">
@@ -29,7 +28,7 @@
     </Card>
     <Card class="category">
       <h3>Category</h3>
-      <Categories categories={[category]} />
+      <Category {category} />
     </Card>
     <Card class="tags">
       <h3>Tags</h3>
