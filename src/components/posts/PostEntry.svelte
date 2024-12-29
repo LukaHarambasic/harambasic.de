@@ -10,8 +10,8 @@
     children: () => any
   }>()
 
-  let categoryPromise = $state(getEntry(entry.data.category))
-  let tagsPromise = $state(getEntries(entry.data.tags))
+  let category = $state(getEntry(entry.data.category))
+  let tags = $state(getEntries(entry.data.tags))
 </script>
 
 <article class="h-entry">
@@ -29,23 +29,11 @@
     </Card>
     <Card class="category">
       <h3>Category</h3>
-      {#await categoryPromise}
-        <p>Loading...</p>
-      {:then category}
-        <Categories categories={[category]} />
-      {:catch error}
-        <p>Error loading category: {error.message}</p>
-      {/await}
+      <Categories categories={[category]} />
     </Card>
     <Card class="tags">
       <h3>Tags</h3>
-      {#await tagsPromise}
-        <p>Loading...</p>
-      {:then tags}
-        <Tags {tags} />
-      {:catch error}
-        <p>Error loading tags: {error.message}</p>
-      {/await}
+      <Tags {tags} />
     </Card>
     <Card class="toc card">
       <h3>Table of Content</h3>

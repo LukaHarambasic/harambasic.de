@@ -1,24 +1,10 @@
 <script lang="ts">
   import type { CollectionEntry } from 'astro:content'
-  import { isBrowser } from '@util/helpers'
+  import { categoryParamStore } from '@util/urlStore.svelte'
 
   let { categories } = $props<{
     categories: CollectionEntry<'categories'>[]
   }>()
-
-  let currentCategory: string | null = $state(null)
-  let handleToggle: ((id: string) => void) | undefined
-
-  if (isBrowser) {
-    const initBrowserLogic = async () => {
-      const { getCurrentCategory, toggleCategory } = await import(
-        '@util/categoryStore.svelte.ts'
-      )
-      currentCategory = getCurrentCategory()
-      handleToggle = toggleCategory
-    }
-    initBrowserLogic()
-  }
 </script>
 
 <ul class="categories">
@@ -26,8 +12,8 @@
     <li>
       <button
         class="category"
-        class:selected={currentCategory === category.id}
-        onclick={() => handleToggle?.(category.id)}
+        class:selected={categoryParamStore.searchParamId === category.id}
+        onclick={() => categoryParamStore.toggle(category.id)}
         data-text={category?.data?.title}
       >
         {category?.data?.title}

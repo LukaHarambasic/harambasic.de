@@ -3,7 +3,7 @@
   import Card from '@components/Card.svelte'
   import Categories from '@components/Categories.svelte'
   import Tags from '@components/Tags.svelte'
-  import { urlStore } from '@util/urlStore.svelte'
+  import { categoryParamStore, tagParamStore } from '@util/urlStore.svelte'
 
   let { entries, categories, tags } = $props<{
     entries: CollectionEntry<'posts'>[]
@@ -11,21 +11,24 @@
     tags: CollectionEntry<'tags'>[]
   }>()
 
-  const categoryParam = $derived(urlStore.searchParams.get('category'))
-  const tagParam = $derived(urlStore.searchParams.get('tag'))
+  const categoryParamId = $derived(categoryParamStore.searchParamId)
+  const tagParamId = $derived(tagParamStore.searchParamId)
 
   let filteredEntries = $derived(
-    entries.filter((entry) => {
+    entries.filter((entry: CollectionEntry<'posts'>) => {
       const hasCategory =
-        categoryParam && entry.data.category.id === categoryParam
+        categoryParamId && entry.data.category.id === categoryParamId
       const hasTag =
-        tagParam && entry.data.tags.some((tag) => tag.id === tagParam)
+        tagParamId &&
+        entry.data.tags.some(
+          (tag: CollectionEntry<'tags'>) => tag.id === tagParamId
+        )
       // If no params are set everythign should be in the list
-      if (!categoryParam && !tagParam) return true
+      if (!categoryParamId && !tagParamId) return true
       // If both are set, it has to match both
       if (hasCategory && hasTag) return true
-      if (!tagParam && hasCategory) return true
-      if (!categoryParam && hasTag) return true
+      if (!tagParamId && hasCategory) return true
+      if (!categoryParamId && hasTag) return true
       return false
     })
   )
@@ -47,7 +50,7 @@
 
 <section>
   <ul class="entries">
-    {#if filteredEntries.length === 0 && (categoryParam || tagParam)}
+    {#if filteredEntries.length === 0 && (categoryParamId || tagParamId)}
       <Card>
         <p>
           No post was published with the selected category/tag. Try to remove
