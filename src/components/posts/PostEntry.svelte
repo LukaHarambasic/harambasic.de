@@ -45,7 +45,7 @@
         {/each}
       </ul>
     </Card>
-    <Card>
+    <Card class="toc">
       <h3>Table of Content</h3>
       <PostTableOfContent {nestedToc} />
     </Card>

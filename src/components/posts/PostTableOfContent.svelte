@@ -8,8 +8,6 @@
   function getAnchor(slug: String) {
     return `#${slug}`
   }
-
-  console.log(nestedToc)
 </script>
 
 <ol class="toc">
@@ -34,10 +32,20 @@
 <style lang="postcss">
   .toc {
     font-size: var(--font-m);
-    margin: 0 0 0 var(--m);
+    line-height: 1.5;
     list-style: decimal;
+    margin: 0 0 0 var(--m);
     ol {
-      margin: 0 0 0 var(--l);
+      list-style: lower-alpha;
+      margin: 0 0 0 var(--xs);
+    }
+    a {
+      color: var(--c-font);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+        text-decoration-thickness: var(--underline-thickness);
+      }
     }
   }
 </style>
