@@ -7,7 +7,7 @@ import SegmentedButtons from '@components/SegmentedButtons.svelte'
 import ButtonClipboard from '@components/ButtonClipboard.svelte'
 import { Icon } from 'astro-icon/components'
 
-// TODO could be implemented with a featured flag
+// TODO could be implemented with a featured flag in the frontmatter instead of hard coding the slugs
 const posts = [
   await getEntry('posts', 'mac-utility-must-haves'),
   await getEntry(

@@ -4,11 +4,14 @@
   import Category from '@components/Category.svelte'
   import { type CollectionEntry } from 'astro:content'
   import Tag from '@components/Tag.svelte'
+  import type { TocNode } from '@util/markdown'
+  import PostTableOfContent from './PostTableOfContent.svelte'
 
-  let { category, tags, children } = $props<{
+  let { category, tags, children, nestedToc } = $props<{
     entry: CollectionEntry<'posts'>
     category: CollectionEntry<'categories'>
     tags: CollectionEntry<'tags'>
+    nestedToc: TocNode[]
     children: () => any
   }>()
 </script>
@@ -44,7 +47,7 @@
     </Card>
     <Card>
       <h3>Table of Content</h3>
-      <!-- <PostsTableOfContent nodes={toc} /> -->
+      <PostTableOfContent {nestedToc} />
     </Card>
   </aside>
   <Card>
@@ -104,15 +107,15 @@
       flex-direction: column;
       flex-wrap: nowrap;
       .author {
-          color: var(--c-font);
-          font-size: var(--font-m);
-          font-family: var(--font-family);
-          letter-spacing: var(--font-letter-spacing-headline);
-          text-decoration: none;
-          &:hover {
-            text-decoration: underline;
-            text-decoration-thickness: var(--underline-thickness);
-          }
+        color: var(--c-font);
+        font-size: var(--font-m);
+        font-family: var(--font-family);
+        letter-spacing: var(--font-letter-spacing-headline);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+          text-decoration-thickness: var(--underline-thickness);
+        }
       }
       .tags {
         display: flex;

@@ -3,6 +3,7 @@ import Layout from '@layouts/Layout.astro'
 import { getCollection, getEntries, getEntry } from 'astro:content'
 import PostEntry from '@components/posts/PostEntry.svelte'
 import type { CollectionEntry } from 'astro:content'
+import { generateNestedToc } from '@util/markdown'
 
 interface Props {
   entry: CollectionEntry<'posts'>
@@ -25,11 +26,13 @@ export async function getStaticPaths() {
 }
 
 const { entry, category, tags } = Astro.props as Props
-const { Content } = await entry.render()
+const { Content, headings } = await entry.render()
+
+const nestedToc = generateNestedToc(headings)
 ---
 
 <Layout title={entry.data.title} published={entry.data.published}>
-  <PostEntry {entry} {category} {tags}><Content /></PostEntry>
+  <PostEntry {entry} {category} {tags} {nestedToc}><Content /></PostEntry>
 </Layout>
 
 <style>
