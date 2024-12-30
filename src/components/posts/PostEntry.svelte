@@ -7,7 +7,7 @@
   import type { TocNode } from '@util/markdown'
   import PostTableOfContent from './PostTableOfContent.svelte'
 
-  let { category, tags, children, nestedToc } = $props<{
+  let { entry, category, tags, children, nestedToc } = $props<{
     entry: CollectionEntry<'posts'>
     category: CollectionEntry<'categories'>
     tags: CollectionEntry<'tags'>
@@ -52,9 +52,9 @@
   </aside>
   <Card>
     <h3>Tl;DR</h3>
-    <!-- <BaseCallout prefix="TL;DR">
-      {@html tldr}
-    </BaseCallout> -->
+    <RichText>
+      <p>{@html entry.data.tldr}</p>
+    </RichText>
   </Card>
   <Card class="placeholder"></Card>
   <Card>
