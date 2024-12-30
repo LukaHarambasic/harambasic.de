@@ -45,12 +45,12 @@
         {/each}
       </ul>
     </Card>
-    <Card class="toc">
+    <Card class="toc-card">
       <h3>Table of Content</h3>
       <PostTableOfContent {nestedToc} />
     </Card>
   </aside>
-  <Card>
+  <Card class="tldr">
     <h3>Tl;DR</h3>
     <RichText>
       <p>{@html entry.data.tldr}</p>
@@ -82,10 +82,11 @@
         'footer' auto
         / 100%;
     }
-    .tldr {
+    :global(.tldr) {
       grid-area: tldr;
+      font-size: var(--font-m);
     }
-    .placeholder {
+    :global(.placeholder) {
       grid-area: placeholder;
       opacity: 0.5;
       @media screen and (max-width: 74rem) {
@@ -99,6 +100,7 @@
       line-height: 1;
       font-family: var(--font-family);
       letter-spacing: var(--font-letter-spacing-headline);
+      line-height: 0;
     }
     .sidebar {
       grid-area: sidebar;
@@ -125,7 +127,7 @@
         align-items: flex-start;
         justify-content: flex-start;
       }
-      .toc {
+      :global(.toc-card) {
         position: sticky;
         top: var(--l);
       }
