@@ -18,6 +18,7 @@
   let directionClass = $derived(direction === 'column' ? 'column' : 'row')
 </script>
 
+<!-- TODO: Let user allow to select the tag type, div as default, but also could be li for lists -->
 <li class={`${className} ${directionClass}`}>
   <div class="content">
     {@render children?.()}
