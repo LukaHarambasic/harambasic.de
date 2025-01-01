@@ -37,7 +37,7 @@
     margin: 0 0 0 var(--m);
     ol {
       list-style: lower-alpha;
-      margin: 0 0 0 var(--xs);
+      margin: 0 0 0 var(--s);
     }
     a {
       color: var(--c-font);
