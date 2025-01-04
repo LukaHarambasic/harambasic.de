@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { getSlug } from '$lib/util/helper';
 
-
-
 	interface Props {
 		title: string;
 		description?: string;
@@ -11,11 +9,12 @@
 
 	let { title, description = '', permalink = 'https://harambasic.de' }: Props = $props();
 
-	let socialImgAlt: string = fullTitle;
 	const slug = getSlug(title);
 	let fullTitle = $derived(title ? `${title} | Luka Harambasic` : 'Luka Harambasic');
-	let socialImg =
-		$derived(permalink && slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`);
+	let socialImg = $derived(
+		permalink && slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`
+	);
+	let socialImgAlt: string = $derived(fullTitle);
 </script>
 
 <svelte:head>
