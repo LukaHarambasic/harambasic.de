@@ -5,7 +5,7 @@
   import { type CollectionEntry } from 'astro:content'
   import Tag from '@components/Tag.svelte'
   import type { TocNode } from '@util/markdown'
-  import PostTableOfContent from './PostTableOfContent.svelte'
+  import PostTableOfContent from '@components/Posts/PostsTableOfContent.svelte'
 
   let { entry, category, tags, children, nestedToc } = $props<{
     entry: CollectionEntry<'posts'>
