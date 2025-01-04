@@ -1,5 +1,10 @@
 <script lang="ts">
-	export let prefix: string;
+	interface Props {
+		prefix: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let { prefix, children }: Props = $props();
 </script>
 
 <div class="callout card">
@@ -7,7 +12,7 @@
 		<strong>{prefix}</strong>
 	{/if}
 	<div class="content rich-text">
-		<slot />
+		{@render children?.()}
 	</div>
 </div>
 

@@ -1,16 +1,21 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-	let detailsElement: HTMLDetailsElement;
-	let summaryElement: HTMLElement;
-	let isOpen: boolean;
+	let { children }: Props = $props();
+
+	let detailsElement: HTMLDetailsElement = $state();
+	let summaryElement: HTMLElement = $state();
+	let isOpen: boolean = $state();
 
 	function handleToggle() {
 		isOpen = detailsElement.open;
 	}
 
-	let isDesktop: boolean;
+	let isDesktop: boolean = $state();
 
 	function handleSummaryVisibility() {
 		if (!summaryElement) return;
@@ -27,7 +32,7 @@
 </script>
 
 <aside>
-	<details open={isDesktop} bind:this={detailsElement} on:toggle={handleToggle}>
+	<details open={isDesktop} bind:this={detailsElement} ontoggle={handleToggle}>
 		<summary class="card hoverable" bind:this={summaryElement}>
 			<span>Filter & Sort</span>
 			{#if isOpen}
@@ -37,7 +42,7 @@
 			{/if}
 		</summary>
 		<div class="content">
-			<slot />
+			{@render children?.()}
 		</div>
 	</details>
 </aside>

@@ -28,7 +28,11 @@
 		return image.default;
 	};
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 	const [posts] = data.posts;
 	const [projects] = data.projects;
 	const [uses] = data.uses;

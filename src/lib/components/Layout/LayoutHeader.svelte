@@ -24,7 +24,7 @@
 		}
 	];
 
-	$: isActiveRoute = (url: string): boolean => {
+	let isActiveRoute = $derived((url: string): boolean => {
 		const pathname = $page.url.pathname;
 		if (url === '/' && pathname === '/') {
 			return true;
@@ -32,7 +32,7 @@
 			return pathname.includes(url);
 		}
 		return false;
-	};
+	});
 </script>
 
 <header>

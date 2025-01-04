@@ -3,7 +3,11 @@
 	import { ProjectStatus, UsesEntryStatus } from '$lib/types/enums';
 	import Icon from '@iconify/svelte';
 
-	export let status: StatusFilter;
+	interface Props {
+		status: StatusFilter;
+	}
+
+	let { status }: Props = $props();
 </script>
 
 {#if status === UsesEntryStatus.Active || status === ProjectStatus.Active}

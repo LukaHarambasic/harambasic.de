@@ -5,7 +5,11 @@
 	import '$lib/styles/variables.css';
 	import '$lib/styles/base.css';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const {
 		content,
@@ -24,7 +28,7 @@
 		backDownload
 	} = data;
 
-	let flipped = false;
+	let flipped = $state(false);
 
 	function flipCard() {
 		flipped = !flipped;
@@ -61,9 +65,9 @@
 
 <div class="background" style="background-image: url({imageUrl});"></div>
 <main>
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-	<article class={flipped ? 'flipped' : ''} on:click={flipCard}>
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+	<article class={flipped ? 'flipped' : ''} onclick={flipCard}>
 		<div class="card front">
 			<div class="image" style="background-image: url({imageUrl});"></div>
 			<p class="title">{frontTitle}</p>

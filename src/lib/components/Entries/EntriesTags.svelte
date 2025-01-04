@@ -8,9 +8,14 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let tags: Tag[];
+	interface Props {
+		tags: Tag[];
+	}
 
-	$: tagSlug = 'all';
+	let { tags }: Props = $props();
+
+	let tagSlug = $state('all');
+	
 
 	function onTagChange(slug: string) {
 		tagSlug = slug;

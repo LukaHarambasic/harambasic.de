@@ -1,15 +1,25 @@
 <!-- From: https://svelte.dev/examples/modal -->
 
 <script lang="ts">
+	import { run, self, createBubbler, stopPropagation } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { resetParams } from '$lib/util/helper';
 	import Icon from '@iconify/svelte';
 
-	export let showModal: boolean;
-	export let isClosable: boolean = true;
+	interface Props {
+		showModal: boolean;
+		isClosable?: boolean;
+		children?: import('svelte').Snippet;
+	}
 
-	let dialog: HTMLDialogElement;
+	let { showModal = $bindable(), isClosable = true, children }: Props = $props();
 
-	$: if (dialog && showModal) dialog.showModal();
+	let dialog: HTMLDialogElement = $state();
+
+	run(() => {
+		if (dialog && showModal) dialog.showModal();
+	});
 
 	function closeModal() {
 		if (!isClosable) return;
@@ -19,14 +29,14 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
-<dialog bind:this={dialog} on:close={() => closeModal()} on:click|self={() => closeModal()}>
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div class="content" on:click|stopPropagation>
-		<slot />
-		<!-- svelte-ignore a11y-autofocus -->
+<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
+<dialog bind:this={dialog} onclose={() => closeModal()} onclick={self(() => closeModal())}>
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class="content" onclick={stopPropagation(bubble('click'))}>
+		{@render children?.()}
+		<!-- svelte-ignore a11y_autofocus -->
 		{#if isClosable}
-			<button class="close" autofocus on:click={() => dialog.close()}>
+			<button class="close" autofocus onclick={() => dialog.close()}>
 				<Icon icon="ph:x-circle-bold" />
 			</button>
 		{/if}

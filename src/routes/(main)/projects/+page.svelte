@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import type { PageData } from './$types';
 	import type { Project } from '$lib/types/project';
 	import { filterAndSort } from '$lib/data/projects/helper';
@@ -36,23 +38,38 @@
 		return image.default;
 	};
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 	const [entries, tags] = data.projects;
 	const path = data.path;
 
-	$: filterTagSlug = 'all';
-	$: filterStatus = ProjectStatus.All;
-	$: sortProperty = ProjectSortProperty.Priority;
-	$: sortDirection = SortDirection.Desc;
-	$: filteredAndSorted = filterAndSort(
+	let filterTagSlug = $state('all');
+	
+	let filterStatus;
+	run(() => {
+		filterStatus = ProjectStatus.All;
+	});
+	let sortProperty;
+	run(() => {
+		sortProperty = ProjectSortProperty.Priority;
+	});
+	let sortDirection;
+	run(() => {
+		sortDirection = SortDirection.Desc;
+	});
+	let filteredAndSorted = $derived(filterAndSort(
 		entries,
 		filterTagSlug,
 		filterStatus,
 		sortProperty,
 		sortDirection
-	);
-	$: projectSlug = '';
-	$: activeProject = entries.find((entry: Project) => entry.slug === projectSlug);
+	));
+	let projectSlug = $state('');
+	
+	let activeProject = $derived(entries.find((entry: Project) => entry.slug === projectSlug));
 
 	function onProperty(event: { detail: ProjectSortProperty }) {
 		sortProperty = event.detail;
@@ -83,7 +100,7 @@
 		openModal();
 	});
 
-	let showModal = false;
+	let showModal = $state(false);
 
 	function openModal(project?: Project) {
 		if (project) {
@@ -97,49 +114,53 @@
 </script>
 
 <Entries {path}>
-	<EntriesSidebar slot="sidebar">
-		<EntriesSorter
-			propertiesEnum={ProjectSortProperty}
-			propertiesDefault={ProjectSortProperty.Priority}
-			on:propertyChange={onProperty}
-			on:directionChange={onDirection}
-		/>
-		<EntriesFilter statusEnum={ProjectStatus} on:statusChange={onStatus} />
-		<EntriesTags {tags} on:tagChange={onTag} />
-	</EntriesSidebar>
-	<ul class="entries" slot="entries">
-		{#each filteredAndSorted as entry, index}
-			<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
-			<li
-				class="h-feed card no-spacing"
-				data-highlighted={index < 4}
-				on:click={() => openModal(entry)}
-			>
-				{#if index < 4}
-					<enhanced:img
-						src={getImage(entry.image)}
-						sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-						alt={entry.title}
-					/>
-				{/if}
-				<div class="content">
-					<div class="title">
-						<strong>{entry.title}</strong>
-						<BaseStatus status={entry.status} />
+	{#snippet sidebar()}
+		<EntriesSidebar >
+			<EntriesSorter
+				propertiesEnum={ProjectSortProperty}
+				propertiesDefault={ProjectSortProperty.Priority}
+				on:propertyChange={onProperty}
+				on:directionChange={onDirection}
+			/>
+			<EntriesFilter statusEnum={ProjectStatus} on:statusChange={onStatus} />
+			<EntriesTags {tags} on:tagChange={onTag} />
+		</EntriesSidebar>
+	{/snippet}
+	{#snippet entries()}
+		<ul class="entries" >
+			{#each filteredAndSorted as entry, index}
+				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
+				<li
+					class="h-feed card no-spacing"
+					data-highlighted={index < 4}
+					onclick={() => openModal(entry)}
+				>
+					{#if index < 4}
+						<enhanced:img
+							src={getImage(entry.image)}
+							sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+							alt={entry.title}
+						/>
+					{/if}
+					<div class="content">
+						<div class="title">
+							<strong>{entry.title}</strong>
+							<BaseStatus status={entry.status} />
+						</div>
+						<p>{entry.description}</p>
+						<ul class="tags">
+							{#each entry.tags as tag}
+								<li>
+									<BaseTag {tag} />
+								</li>
+							{/each}
+						</ul>
 					</div>
-					<p>{entry.description}</p>
-					<ul class="tags">
-						{#each entry.tags as tag}
-							<li>
-								<BaseTag {tag} />
-							</li>
-						{/each}
-					</ul>
-				</div>
-				<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
-			</li>
-		{/each}
-	</ul>
+					<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
+				</li>
+			{/each}
+		</ul>
+	{/snippet}
 </Entries>
 
 <!-- This is not in the normal dom flow -->

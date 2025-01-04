@@ -1,7 +1,12 @@
 <script lang="ts">
+	import TableOfContentNode from './TableOfContentNode.svelte';
 	import type { TocNode } from '$lib/types/post';
 
-	export let node: TocNode;
+	interface Props {
+		node: TocNode;
+	}
+
+	let { node }: Props = $props();
 	const anchor = `#${node.slug}`;
 </script>
 
@@ -11,7 +16,7 @@
 	{#if node.children && node.children.length !== 0}
 		<ol>
 			{#each node.children as child}
-				<svelte:self node={child} />
+				<TableOfContentNode node={child} />
 			{/each}
 		</ol>
 	{/if}

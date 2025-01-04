@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import type { PageData } from '../$types';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
@@ -11,14 +13,25 @@
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import { onMount } from 'svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 	const [entries, tags] = data.posts;
 	const path = data.path;
 
-	$: filterTagSlug = 'all';
-	$: sortProperty = PostSortProperty.Published;
-	$: sortDirection = SortDirection.Desc;
-	$: filteredAndSortedEntries = filterAndSort(entries, filterTagSlug, sortProperty, sortDirection);
+	let filterTagSlug = $state('all');
+	
+	let sortProperty;
+	run(() => {
+		sortProperty = PostSortProperty.Published;
+	});
+	let sortDirection;
+	run(() => {
+		sortDirection = SortDirection.Desc;
+	});
+	let filteredAndSortedEntries = $derived(filterAndSort(entries, filterTagSlug, sortProperty, sortDirection));
 
 	function onProperty(event: { detail: PostSortProperty }) {
 		sortProperty = event.detail;
@@ -42,38 +55,42 @@
 </script>
 
 <Entries {path}>
-	<EntriesSidebar slot="sidebar">
-		<EntriesSorter
-			propertiesEnum={PostSortProperty}
-			on:propertyChange={onProperty}
-			on:directionChange={onDirection}
-		/>
-		<EntriesTags {tags} on:tagChange={onTag} />
-	</EntriesSidebar>
-	<ul slot="entries" class="entries">
-		{#each filteredAndSortedEntries as post}
-			<li class="h-feed">
-				<a href={post.relativePath}>
-					<div class="column">
-						<strong class="title">
-							{post.title}
-						</strong>
-						<ul class="tags">
-							{#each post.tags as tag}
-								<li>
-									<BaseTag {tag} />
-								</li>
-							{/each}
-						</ul>
-					</div>
-					<time class="date dt-published" datetime={post?.published?.raw?.toString()}>
-						{post.published.display}
-					</time>
-					<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
-				</a>
-			</li>
-		{/each}
-	</ul>
+	{#snippet sidebar()}
+		<EntriesSidebar >
+			<EntriesSorter
+				propertiesEnum={PostSortProperty}
+				on:propertyChange={onProperty}
+				on:directionChange={onDirection}
+			/>
+			<EntriesTags {tags} on:tagChange={onTag} />
+		</EntriesSidebar>
+	{/snippet}
+	{#snippet entries()}
+		<ul  class="entries">
+			{#each filteredAndSortedEntries as post}
+				<li class="h-feed">
+					<a href={post.relativePath}>
+						<div class="column">
+							<strong class="title">
+								{post.title}
+							</strong>
+							<ul class="tags">
+								{#each post.tags as tag}
+									<li>
+										<BaseTag {tag} />
+									</li>
+								{/each}
+							</ul>
+						</div>
+						<time class="date dt-published" datetime={post?.published?.raw?.toString()}>
+							{post.published.display}
+						</time>
+						<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
+					</a>
+				</li>
+			{/each}
+		</ul>
+	{/snippet}
 </Entries>
 
 <style lang="postcss">

@@ -3,7 +3,11 @@
 	import type { TocNode } from '$lib/types/post';
 	import PostsTableOfContentNode from './TableOfContentNode.svelte';
 
-	export let nodes: TocNode[];
+	interface Props {
+		nodes: TocNode[];
+	}
+
+	let { nodes }: Props = $props();
 </script>
 
 <div class="toc">
