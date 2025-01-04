@@ -1,56 +1,40 @@
 ---
-import Card from '@components/Card.svelte'
 import Layout from '@layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
-import { Icon } from 'astro-icon/components'
+import { sortNumber } from '@util/sort'
+import ProjectsList from '@components/Projects/ProjectsList.svelte'
 
 const entries: CollectionEntry<'projects'>[] = await getCollection('projects')
+
+const sortedEntries = entries.sort((a, b) =>
+  sortNumber(a.data.prio, b.data.prio)
+)
+
+const usedEntryCategoryIds = [
+  ...new Set(entries.map((entry) => entry.data.category.id)),
+]
+const categories: CollectionEntry<'categories'>[] = await getCollection(
+  'categories',
+  (category: CollectionEntry<'categories'>) =>
+    usedEntryCategoryIds.includes(category.id)
+)
+
+const usedEntryTagIds = [
+  ...new Set(
+    entries.flatMap((entry) =>
+      entry.data.tags.map((tag) => tag.id)
+    )
+  ),
+]
+const tags: CollectionEntry<'tags'>[] = await getCollection(
+  'tags',
+  (tag: CollectionEntry<'tags'>) => usedEntryTagIds.includes(tag.id)
+)
 ---
 
 <Layout title="Projects">
-  <section>
-    <ul class="entries">
-      {
-        entries.map((entry) => (
-          <Card class="entry h-feed">
-            <a href={`/projects/${entry.slug}`}>
-              <div class="column">
-                <strong class="title">{entry.data.title}</strong>
-                <p class="description">{entry.data.description}</p>
-                <div class="category">Category</div>
-              </div>
-              <time
-                class="date dt-published"
-                datetime={entry.data.published.raw.toString()}
-              >
-                {entry.data.published.formatted}
-              </time>
-              <Icon class="arrow" name="ph:arrow-circle-right-bold" />
-            </a>
-          </Card>
-        ))
-      }
-    </ul>
-    <aside>
-      <Card direction="column">
-        <h3>Categories</h3>
-        <ul>
-          <li>Category 1</li>
-          <li>Category 2</li>
-          <li>Category 3</li>
-        </ul>
-      </Card>
-      <Card direction="column">
-        <h3>Tags</h3>
-        <ul>
-          <li>Tag 1</li>
-          <li>Tag 2</li>
-          <li>Tag 3</li>
-        </ul>
-      </Card>
-    </aside>
-  </section>
+	<ProjectsList entries={sortedEntries} {categories} {tags}/>
 </Layout>
 
 <style lang="postcss">

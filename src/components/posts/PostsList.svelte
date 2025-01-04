@@ -57,7 +57,7 @@
     {:else}
       {#each filteredEntries as entry}
         <a href={`/posts/${entry.slug}`}>
-          <!-- TODO make tags and categories on card non interactive -->
+          <!-- TODO make tags and categories on card non interactive, use just the base components to do so -->
           <Card class="entry h-feed">
             <div class="column">
               <CategoryList
