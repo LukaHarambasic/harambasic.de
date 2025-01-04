@@ -9,7 +9,6 @@ export const load = (async ({ parent, params }) => {
 	return {
 		title: entry?.title,
 		description: entry?.description,
-		published: entry?.published,
 		entry
 	};
 }) satisfies PageServerLoad;

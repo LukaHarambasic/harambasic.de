@@ -67,10 +67,16 @@
 		gap: var(--l);
 		width: 90ch;
 		@media screen and (max-width: 64rem) {
+			width: 100%;
+		}
+		@media screen and (max-width: 48rem) {
 			flex-direction: column;
 		}
 		> picture {
 			size: 20rem;
+			@media screen and (max-width: 64rem) {
+				size: 15rem;
+			}
 			@media screen and (max-width: 48rem) {
 				width: 100%;
 				height: auto;
