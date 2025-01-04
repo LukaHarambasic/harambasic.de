@@ -5,7 +5,7 @@ image: the_preneur.png
 imageAlt: 'Podcast cover saying: The Preneur'
 published: 2020-12-21
 updated: 2020-12-21
-prio: 800
+prio: 700
 status: INACTIVE
 links:
   - title: Apple Podcast

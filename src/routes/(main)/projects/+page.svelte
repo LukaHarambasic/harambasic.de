@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import type { PageData } from './$types';
 	import type { Project } from '$lib/types/project';
 	import { filterAndSort } from '$lib/data/projects/helper';
@@ -8,10 +6,6 @@
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import Entries from '$lib/components/Entries/Entries.svelte';
-	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
-	import EntriesTags from '$lib/components/Entries/EntriesTags.svelte';
-	import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte';
-	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import BaseModal from '$lib/components/Base/BaseModal.svelte';
 	import Icon from '@iconify/svelte';
@@ -42,55 +36,21 @@
 	}
 
 	let { data }: Props = $props();
+
 	const [entries, tags] = data.projects;
 	const path = data.path;
 
-	let filterTagSlug = $state('all');
-
-	let filterStatus;
-	run(() => {
-		filterStatus = ProjectStatus.All;
-	});
-	let sortProperty;
-	run(() => {
-		sortProperty = ProjectSortProperty.Priority;
-	});
-	let sortDirection;
-	run(() => {
-		sortDirection = SortDirection.Desc;
-	});
 	let filteredAndSorted = $derived(
-		filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
+		filterAndSort(
+			entries,
+			'all',
+			ProjectStatus.All,
+			ProjectSortProperty.Priority,
+			SortDirection.Desc
+		)
 	);
 
 	let activeProject: Project | undefined = $state();
-
-	function onProperty(event: { detail: ProjectSortProperty }) {
-		sortProperty = event.detail;
-	}
-
-	function onDirection(event: { detail: SortDirection }) {
-		sortDirection = event.detail;
-	}
-
-	function onTag(event: { detail: string }) {
-		filterTagSlug = event.detail;
-	}
-
-	function onStatus(event: { detail: ProjectStatus }) {
-		filterStatus = event.detail;
-	}
-
-	// For full static rendering searchparams has to be accessed in onMount
-	onMount(() => {
-		filterTagSlug = $page.url.searchParams.get('tag') || 'all';
-		filterStatus = ($page.url.searchParams.get('status') as ProjectStatus) || ProjectStatus.All;
-		sortProperty =
-			($page.url.searchParams.get('property') as ProjectSortProperty) ||
-			ProjectSortProperty.Priority;
-		sortDirection =
-			($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc;
-	});
 
 	let baseModalComponent = $state();
 
@@ -101,27 +61,15 @@
 </script>
 
 <Entries {path}>
-	{#snippet sidebar()}
-		<EntriesSidebar>
-			<EntriesSorter
-				propertiesEnum={ProjectSortProperty}
-				propertiesDefault={ProjectSortProperty.Priority}
-				on:propertyChange={onProperty}
-				on:directionChange={onDirection}
-			/>
-			<EntriesFilter statusEnum={ProjectStatus} on:statusChange={onStatus} />
-			<EntriesTags {tags} on:tagChange={onTag} />
-		</EntriesSidebar>
-	{/snippet}
 	{#snippet entries()}
 		<div class="entries">
 			{#each filteredAndSorted as entry, index}
 				<button
 					class="h-feed entry card no-spacing"
-					data-highlighted={index < 4}
+					data-highlighted={index < 3}
 					onclick={() => openModal(entry)}
 				>
-					{#if index < 4}
+					{#if index < 3}
 						<enhanced:img
 							src={getImage(entry.image)}
 							sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
@@ -131,7 +79,6 @@
 					<div class="content">
 						<div class="title">
 							<strong>{entry.title}</strong>
-							<BaseStatus status={entry.status} />
 						</div>
 						<p>{entry.description}</p>
 						<ul class="tags">
@@ -161,7 +108,6 @@
 			<div class="content">
 				<h2>
 					{activeProject.title}
-					<BaseStatus status={activeProject.status} />
 				</h2>
 				<ul class="tags">
 					{#each activeProject.tags as tag}
@@ -189,7 +135,7 @@
 <style lang="postcss">
 	.entries {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		gap: var(--l);
 		@media screen and (max-width: 62rem) {
 			grid-template-columns: 1fr;
@@ -207,8 +153,11 @@
 			height: 100%;
 			color: var(--c-font);
 			text-decoration: none;
-			&[data-highlighted='false'] {
+			&[data-highlighted='true'] {
 				grid-column: span 2;
+			}
+			&[data-highlighted='false'] {
+				grid-column: span 3;
 			}
 			&[data-highlighted='true'] {
 				@media screen and (max-width: 62rem) {

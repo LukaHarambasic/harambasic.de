@@ -5,7 +5,7 @@ image: raft.jpg
 imageAlt: Self made raft with five people on it
 published: 2023-11-07
 updated: 2023-11-07
-prio: 700
+prio: 800
 status: ACTIVE
 links:
 tags:

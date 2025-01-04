@@ -8,9 +8,12 @@
 	let { path = '', entries, sidebar }: Props = $props();
 
 	let rssPath = $derived(`${path}/rss`);
+
+	// Compute if sidebar is empty
+	let hasSidebar = $derived(!!sidebar);
 </script>
 
-<section>
+<section class:no-sidebar={!hasSidebar}>
 	<div class="entries">
 		{@render entries?.()}
 	</div>
@@ -32,6 +35,13 @@
 		column-gap: var(--l);
 		row-gap: var(--l);
 		width: 100%;
+		&.no-sidebar {
+			grid-template-columns: 1fr;
+			width: 100%;
+			.entries {
+				grid-column: 1 / -1;
+			}
+		}
 		@media screen and (max-width: 74rem) {
 			grid-template-columns: 1fr 18rem;
 		}
