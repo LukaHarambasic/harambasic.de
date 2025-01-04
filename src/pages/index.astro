@@ -6,6 +6,7 @@ import profile from '@images/profile.jpeg'
 import SegmentedButtons from '@components/SegmentedButtons.svelte'
 import ButtonClipboard from '@components/ButtonClipboard.svelte'
 import { Icon } from 'astro-icon/components'
+import RichText from '@components/RichText.svelte'
 
 // TODO could be implemented with a featured flag in the frontmatter instead of hard coding the slugs
 const posts = [
@@ -38,20 +39,22 @@ const projects = [
         sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
         formats={['avif', 'webp']}
       />
-      <div class="content rich-text">
-        <h2>Heyho, I'm Luka!</h2>
-        <p>
-          I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). At <a
-            href="https://monta.com/">Monta</a
-          >, I work as a Product Manger (Home Energy Management). Feel free to
-          explore my past
-          <a href="/projects">projects</a>
-          or check out my <a href="https://www.linkedin.com/in/harambasic/"
-            >LinkedIn profile</a
-          >. If you want to <a href="#contact">chat</a>, just start a
-          conversation about handball, woodworking, cooking, sustainability, or
-          dive into product and tech topics.
-        </p>
+      <div class="content">
+		<RichText>
+			<h2>Heyho, I'm Luka!</h2>
+			<p>
+			I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). At <a
+				href="https://monta.com/">Monta</a
+			>, I work as a Product Manger (Home Energy Management). Feel free to
+			explore my past
+			<a href="/projects">projects</a>
+			or check out my <a href="https://www.linkedin.com/in/harambasic/"
+				>LinkedIn profile</a
+			>. If you want to <a href="#contact">chat</a>, just start a
+			conversation about handball, woodworking, cooking, sustainability, or
+			dive into product and tech topics.
+			</p>
+		</RichText>
       </div>
     </div>
   </section>
