@@ -15,7 +15,6 @@
 	let { tags }: Props = $props();
 
 	let tagSlug = $state('all');
-	
 
 	function onTagChange(slug: string) {
 		tagSlug = slug;

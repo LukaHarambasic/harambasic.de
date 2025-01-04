@@ -47,7 +47,7 @@
 	const path = data.path;
 
 	let filterTagSlug = $state('all');
-	
+
 	let filterStatus;
 	run(() => {
 		filterStatus = ProjectStatus.All;
@@ -60,15 +60,11 @@
 	run(() => {
 		sortDirection = SortDirection.Desc;
 	});
-	let filteredAndSorted = $derived(filterAndSort(
-		entries,
-		filterTagSlug,
-		filterStatus,
-		sortProperty,
-		sortDirection
-	));
+	let filteredAndSorted = $derived(
+		filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
+	);
 	let projectSlug = $state('');
-	
+
 	let activeProject = $derived(entries.find((entry: Project) => entry.slug === projectSlug));
 
 	function onProperty(event: { detail: ProjectSortProperty }) {
@@ -115,7 +111,7 @@
 
 <Entries {path}>
 	{#snippet sidebar()}
-		<EntriesSidebar >
+		<EntriesSidebar>
 			<EntriesSorter
 				propertiesEnum={ProjectSortProperty}
 				propertiesDefault={ProjectSortProperty.Priority}
@@ -127,7 +123,7 @@
 		</EntriesSidebar>
 	{/snippet}
 	{#snippet entries()}
-		<ul class="entries" >
+		<ul class="entries">
 			{#each filteredAndSorted as entry, index}
 				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
 				<li

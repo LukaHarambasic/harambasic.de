@@ -46,7 +46,7 @@
 	const path = data.path;
 
 	let filterTagSlug = $state('all');
-	
+
 	let filterStatus;
 	run(() => {
 		filterStatus = UsesEntryStatus.All;
@@ -59,13 +59,9 @@
 	run(() => {
 		sortDirection = SortDirection.Desc;
 	});
-	let filteredAndSorted = $derived(filterAndSort(
-		entries,
-		filterTagSlug,
-		filterStatus,
-		sortProperty,
-		sortDirection
-	));
+	let filteredAndSorted = $derived(
+		filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
+	);
 
 	function onProperty(event: { detail: UsesEntrySortProperty }) {
 		sortProperty = event.detail;
@@ -96,7 +92,7 @@
 
 <Entries {path}>
 	{#snippet sidebar()}
-		<EntriesSidebar >
+		<EntriesSidebar>
 			<EntriesSorter
 				propertiesEnum={UsesEntrySortProperty}
 				on:propertyChange={onProperty}
@@ -107,7 +103,7 @@
 		</EntriesSidebar>
 	{/snippet}
 	{#snippet entries()}
-		<ul  class="entries">
+		<ul class="entries">
 			{#each filteredAndSorted as entry}
 				<li class="h-feed">
 					<a href={entry.url}>

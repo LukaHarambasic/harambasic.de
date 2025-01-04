@@ -22,7 +22,7 @@
 	const path = data.path;
 
 	let filterTagSlug = $state('all');
-	
+
 	let sortProperty;
 	run(() => {
 		sortProperty = PostSortProperty.Published;
@@ -31,7 +31,9 @@
 	run(() => {
 		sortDirection = SortDirection.Desc;
 	});
-	let filteredAndSortedEntries = $derived(filterAndSort(entries, filterTagSlug, sortProperty, sortDirection));
+	let filteredAndSortedEntries = $derived(
+		filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
+	);
 
 	function onProperty(event: { detail: PostSortProperty }) {
 		sortProperty = event.detail;
@@ -56,7 +58,7 @@
 
 <Entries {path}>
 	{#snippet sidebar()}
-		<EntriesSidebar >
+		<EntriesSidebar>
 			<EntriesSorter
 				propertiesEnum={PostSortProperty}
 				on:propertyChange={onProperty}
@@ -66,7 +68,7 @@
 		</EntriesSidebar>
 	{/snippet}
 	{#snippet entries()}
-		<ul  class="entries">
+		<ul class="entries">
 			{#each filteredAndSortedEntries as post}
 				<li class="h-feed">
 					<a href={post.relativePath}>

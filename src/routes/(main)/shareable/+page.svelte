@@ -21,7 +21,7 @@
 
 	// all that "as" stuff should be removed, thats not right
 	let filterTagSlug = $state('all');
-	
+
 	let sortProperty;
 	run(() => {
 		sortProperty = ShareableSortProperty.Published;
@@ -30,7 +30,9 @@
 	run(() => {
 		sortDirection = SortDirection.Desc;
 	});
-	let filteredAndSorted = $derived(filterAndSort(entries, filterTagSlug, sortProperty, sortDirection));
+	let filteredAndSorted = $derived(
+		filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
+	);
 
 	function onProperty(event: { detail: ShareableSortProperty }) {
 		sortProperty = event.detail;
@@ -57,7 +59,7 @@
 <p>TODO: Newsletter block to sign up to get infrequent updates.</p>
 <Entries>
 	{#snippet sidebar()}
-		<EntriesSidebar >
+		<EntriesSidebar>
 			<EntriesSorter
 				propertiesEnum={ShareableSortProperty}
 				on:propertyChange={onProperty}
@@ -67,7 +69,7 @@
 		</EntriesSidebar>
 	{/snippet}
 	{#snippet entries()}
-		<ul  class="entries">
+		<ul class="entries">
 			{#each filteredAndSorted as entry}
 				<li class="h-feed">
 					<a href={entry.url}>
