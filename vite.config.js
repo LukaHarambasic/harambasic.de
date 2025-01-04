@@ -4,8 +4,5 @@ import { defineConfig } from 'vite';
 
 // Add vitest again
 export default defineConfig({
-	plugins: [
-		enhancedImages(),
-		sveltekit()
-	]
+	plugins: [enhancedImages(), sveltekit()]
 });
