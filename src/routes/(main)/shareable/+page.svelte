@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
@@ -10,14 +12,27 @@
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 	const [entries, tags] = data.shareables;
 
 	// all that "as" stuff should be removed, thats not right
-	$: filterTagSlug = 'all';
-	$: sortProperty = ShareableSortProperty.Published;
-	$: sortDirection = SortDirection.Desc;
-	$: filteredAndSorted = filterAndSort(entries, filterTagSlug, sortProperty, sortDirection);
+	let filterTagSlug = $state('all');
+
+	let sortProperty;
+	run(() => {
+		sortProperty = ShareableSortProperty.Published;
+	});
+	let sortDirection;
+	run(() => {
+		sortDirection = SortDirection.Desc;
+	});
+	let filteredAndSorted = $derived(
+		filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
+	);
 
 	function onProperty(event: { detail: ShareableSortProperty }) {
 		sortProperty = event.detail;
@@ -43,30 +58,34 @@
 
 <p>TODO: Newsletter block to sign up to get infrequent updates.</p>
 <Entries>
-	<EntriesSidebar slot="sidebar">
-		<EntriesSorter
-			propertiesEnum={ShareableSortProperty}
-			on:propertyChange={onProperty}
-			on:directionChange={onDirection}
-		/>
-		<EntriesTags {tags} on:tagChange={onTag} />
-	</EntriesSidebar>
-	<ul slot="entries" class="entries">
-		{#each filteredAndSorted as entry}
-			<li class="h-feed">
-				<a href={entry.url}>
-					<div class="content">
-						<!-- TODO add fields from supabase -->
-						<strong class="title">
-							{entry.title}
-						</strong>
-						<p>{entry.description}</p>
-					</div>
-					<Icon class="arrow" icon="ph:arrow-square-out-bold" />
-				</a>
-			</li>
-		{/each}
-	</ul>
+	{#snippet sidebar()}
+		<EntriesSidebar>
+			<EntriesSorter
+				propertiesEnum={ShareableSortProperty}
+				on:propertyChange={onProperty}
+				on:directionChange={onDirection}
+			/>
+			<EntriesTags {tags} on:tagChange={onTag} />
+		</EntriesSidebar>
+	{/snippet}
+	{#snippet entries()}
+		<ul class="entries">
+			{#each filteredAndSorted as entry}
+				<li class="h-feed">
+					<a href={entry.url}>
+						<div class="content">
+							<!-- TODO add fields from supabase -->
+							<strong class="title">
+								{entry.title}
+							</strong>
+							<p>{entry.description}</p>
+						</div>
+						<Icon class="arrow" icon="ph:arrow-square-out-bold" />
+					</a>
+				</li>
+			{/each}
+		</ul>
+	{/snippet}
 </Entries>
 
 <style lang="postcss">

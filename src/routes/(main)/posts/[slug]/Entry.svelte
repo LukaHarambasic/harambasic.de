@@ -5,7 +5,11 @@
 	import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 
-	export let post: Post;
+	interface Props {
+		post: Post;
+	}
+
+	let { post }: Props = $props();
 	const { tldr, tags, html, toc } = post;
 </script>
 

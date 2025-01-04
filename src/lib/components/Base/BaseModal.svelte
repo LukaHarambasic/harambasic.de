@@ -1,35 +1,26 @@
 <!-- From: https://svelte.dev/examples/modal -->
-
 <script lang="ts">
-	import { resetParams } from '$lib/util/helper';
 	import Icon from '@iconify/svelte';
 
-	export let showModal: boolean;
-	export let isClosable: boolean = true;
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-	let dialog: HTMLDialogElement;
+	let { children }: Props = $props();
 
-	$: if (dialog && showModal) dialog.showModal();
+	let dialog: HTMLDialogElement | undefined = $state();
 
-	function closeModal() {
-		if (!isClosable) return;
-		dialog.close();
-		showModal = false;
-		resetParams();
+	export function openModal() {
+		dialog?.showModal();
 	}
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
-<dialog bind:this={dialog} on:close={() => closeModal()} on:click|self={() => closeModal()}>
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div class="content" on:click|stopPropagation>
-		<slot />
-		<!-- svelte-ignore a11y-autofocus -->
-		{#if isClosable}
-			<button class="close" autofocus on:click={() => dialog.close()}>
-				<Icon icon="ph:x-circle-bold" />
-			</button>
-		{/if}
+<dialog bind:this={dialog}>
+	<div class="content">
+		{@render children?.()}
+		<form method="dialog">
+			<button class="close"><Icon icon="ph:x-circle-bold" /></button>
+		</form>
 	</div>
 </dialog>
 
@@ -106,7 +97,7 @@
 			opacity: 0;
 		}
 		to {
-			opacity: 1;
+			opacity: 1);
 		}
 	}
 </style>

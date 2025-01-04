@@ -1,6 +1,14 @@
+<script lang="ts">
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
+</script>
+
 <section class="footnote rich-text">
 	<p>
-		<slot />
+		{@render children?.()}
 	</p>
 </section>
 

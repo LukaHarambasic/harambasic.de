@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let preText: string;
-	export let items: string[];
+	interface Props {
+		preText: string;
+		items: string[];
+	}
+
+	let { preText, items }: Props = $props();
 </script>
 
 <ul class="meta-list">

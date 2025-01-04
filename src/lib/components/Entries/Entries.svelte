@@ -1,15 +1,21 @@
 <script lang="ts">
-	export let path = '';
+	interface Props {
+		path?: string;
+		entries?: import('svelte').Snippet;
+		sidebar?: import('svelte').Snippet;
+	}
 
-	$: rssPath = `${path}/rss`;
+	let { path = '', entries, sidebar }: Props = $props();
+
+	let rssPath = $derived(`${path}/rss`);
 </script>
 
 <section>
 	<div class="entries">
-		<slot name="entries" />
+		{@render entries?.()}
 	</div>
 	<div class="sidebar">
-		<slot name="sidebar" />
+		{@render sidebar?.()}
 	</div>
 	<div class="rss rich-text">
 		<p>

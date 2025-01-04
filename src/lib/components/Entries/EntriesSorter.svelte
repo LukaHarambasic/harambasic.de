@@ -8,14 +8,18 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let propertiesEnum: SortProperty;
-	export let propertiesDefault: SortProperty = null;
+	interface Props {
+		propertiesEnum: SortProperty;
+		propertiesDefault?: SortProperty;
+	}
+
+	let { propertiesEnum, propertiesDefault = null }: Props = $props();
 
 	const properties = enumToArray(propertiesEnum).sort((a: SortProperty, b: SortProperty) =>
 		sortAlphabetical(a.key, b.key)
 	);
 
-	let property: SortProperty = propertiesDefault || 'PUBLISHED';
+	let property: SortProperty = $state(propertiesDefault || 'PUBLISHED');
 	function onPropertyChange() {
 		setParam('property', property);
 		dispatch('propertyChange', property);
@@ -24,7 +28,7 @@
 	const directions = enumToArray(SortDirection).sort((a: SortProperty, b: SortProperty) =>
 		sortAlphabetical(a.key, b.key)
 	);
-	let direction: SortDirection = SortDirection.Desc;
+	let direction: SortDirection = $state(SortDirection.Desc);
 	function onDirectionChange() {
 		setParam('direction', direction);
 		dispatch('directionChange', direction);
@@ -42,7 +46,7 @@
 	<div class="selects">
 		<div class="wrapper">
 			<label for="property">Property</label>
-			<select bind:value={property} on:change={onPropertyChange} name="property">
+			<select bind:value={property} onchange={onPropertyChange} name="property">
 				{#each properties as item}
 					<option value={item.key}>{item.display}</option>
 				{/each}
@@ -50,7 +54,7 @@
 		</div>
 		<div class="wrapper">
 			<label for="direction">Direction</label>
-			<select bind:value={direction} on:change={onDirectionChange} name="direction">
+			<select bind:value={direction} onchange={onDirectionChange} name="direction">
 				{#each directions as item}
 					<option value={item.key}>{item.display}</option>
 				{/each}

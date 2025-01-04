@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
@@ -35,20 +37,30 @@
 		return name.endsWith('.svg');
 	};
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 	const [entries, tags] = data.uses;
 	const path = data.path;
 
-	$: filterTagSlug = 'all';
-	$: filterStatus = UsesEntryStatus.All;
-	$: sortProperty = UsesEntrySortProperty.Published;
-	$: sortDirection = SortDirection.Desc;
-	$: filteredAndSorted = filterAndSort(
-		entries,
-		filterTagSlug,
-		filterStatus,
-		sortProperty,
-		sortDirection
+	let filterTagSlug = $state('all');
+
+	let filterStatus;
+	run(() => {
+		filterStatus = UsesEntryStatus.All;
+	});
+	let sortProperty;
+	run(() => {
+		sortProperty = UsesEntrySortProperty.Published;
+	});
+	let sortDirection;
+	run(() => {
+		sortDirection = SortDirection.Desc;
+	});
+	let filteredAndSorted = $derived(
+		filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 	);
 
 	function onProperty(event: { detail: UsesEntrySortProperty }) {
@@ -79,46 +91,50 @@
 </script>
 
 <Entries {path}>
-	<EntriesSidebar slot="sidebar">
-		<EntriesSorter
-			propertiesEnum={UsesEntrySortProperty}
-			on:propertyChange={onProperty}
-			on:directionChange={onDirection}
-		/>
-		<EntriesFilter statusEnum={UsesEntryStatus} on:statusChange={onStatus} />
-		<EntriesTags {tags} on:tagChange={onTag} />
-	</EntriesSidebar>
-	<ul slot="entries" class="entries">
-		{#each filteredAndSorted as entry}
-			<li class="h-feed">
-				<a href={entry.url}>
-					<div class="logo">
-						{#if entry.image}
-							{#if isSvg(entry.image)}
-								<img src="/uses/{entry.image}" alt={entry.title} width="64px" />
-							{:else}
-								<enhanced:img
-									src={getImage(entry.image)}
-									sizes="(min-width:768px) 400px"
-									alt={entry.title}
-								/>
+	{#snippet sidebar()}
+		<EntriesSidebar>
+			<EntriesSorter
+				propertiesEnum={UsesEntrySortProperty}
+				on:propertyChange={onProperty}
+				on:directionChange={onDirection}
+			/>
+			<EntriesFilter statusEnum={UsesEntryStatus} on:statusChange={onStatus} />
+			<EntriesTags {tags} on:tagChange={onTag} />
+		</EntriesSidebar>
+	{/snippet}
+	{#snippet entries()}
+		<ul class="entries">
+			{#each filteredAndSorted as entry}
+				<li class="h-feed">
+					<a href={entry.url}>
+						<div class="logo">
+							{#if entry.image}
+								{#if isSvg(entry.image)}
+									<img src="/uses/{entry.image}" alt={entry.title} width="64px" />
+								{:else}
+									<enhanced:img
+										src={getImage(entry.image)}
+										sizes="(min-width:768px) 400px"
+										alt={entry.title}
+									/>
+								{/if}
 							{/if}
-						{/if}
-					</div>
-					<div class="content">
-						<div class="title">
-							<strong>
-								{entry.title}
-							</strong>
-							<BaseStatus status={entry.status} />
 						</div>
-						<p>{entry.description}</p>
-					</div>
-					<Icon class="arrow" icon="ph:arrow-square-out-bold" />
-				</a>
-			</li>
-		{/each}
-	</ul>
+						<div class="content">
+							<div class="title">
+								<strong>
+									{entry.title}
+								</strong>
+								<BaseStatus status={entry.status} />
+							</div>
+							<p>{entry.description}</p>
+						</div>
+						<Icon class="arrow" icon="ph:arrow-square-out-bold" />
+					</a>
+				</li>
+			{/each}
+		</ul>
+	{/snippet}
 </Entries>
 
 <style lang="postcss">

@@ -10,8 +10,13 @@
 	import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte';
 	import LayoutHead from '$lib/components/Layout/LayoutHead.svelte';
 	import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-	$: ({ title, subtitle, description, published, relativePath, permalink } = $page.data);
+	let { children }: Props = $props();
+
+	let { title, subtitle, description, published, relativePath, permalink } = $derived($page.data);
 
 	// needs to be here until the following issue in vite is resolved and included in an sveltekit release
 	// https://github.com/sveltejs/kit/issues/5240
@@ -45,7 +50,7 @@
 				{/if}
 			</section>
 		{/if}
-		<slot />
+		{@render children?.()}
 	</main>
 	<LayoutFooter />
 </div>

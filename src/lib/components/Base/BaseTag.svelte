@@ -1,11 +1,18 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import type { Tag } from '$lib/types/tag';
 
-	export let tag: Tag;
-	export let selected: boolean = false;
+	interface Props {
+		tag: Tag;
+		selected?: boolean;
+	}
+
+	let { tag, selected = false }: Props = $props();
 </script>
 
-<button on:click class="tag" title={tag.display} class:selected>
+<button onclick={bubble('click')} class="tag" title={tag.display} class:selected>
 	{tag.display}
 </button>
 

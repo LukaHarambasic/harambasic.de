@@ -1,17 +1,20 @@
 <script lang="ts">
 	import { getSlug } from '$lib/util/helper';
 
-	export let title: string;
-	$: fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic';
+	interface Props {
+		title: string;
+		description?: string;
+		permalink?: string;
+	}
 
-	export let description: string = '';
+	let { title, description = '', permalink = 'https://harambasic.de' }: Props = $props();
 
-	export let permalink: string = 'https://harambasic.de';
-
-	let socialImgAlt: string = fullTitle;
 	const slug = getSlug(title);
-	$: socialImg =
-		permalink && slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`;
+	let fullTitle = $derived(title ? `${title} | Luka Harambasic` : 'Luka Harambasic');
+	let socialImg = $derived(
+		permalink && slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`
+	);
+	let socialImgAlt: string = $derived(fullTitle);
 </script>
 
 <svelte:head>

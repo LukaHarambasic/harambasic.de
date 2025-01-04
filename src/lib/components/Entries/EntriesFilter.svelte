@@ -7,9 +7,13 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let statusEnum: StatusFilter;
+	interface Props {
+		statusEnum: StatusFilter;
+	}
+
+	let { statusEnum }: Props = $props();
 	const statuses = enumToArray(statusEnum);
-	let status: StatusFilter = 'ALL';
+	let status: StatusFilter = $state('ALL');
 	function onStatusChange() {
 		setParam('status', status);
 		dispatch('statusChange', status);
@@ -25,7 +29,7 @@
 	<div class="selects">
 		<div class="wrapper">
 			<label for="property">Status</label>
-			<select bind:value={status} on:change={onStatusChange} name="property">
+			<select bind:value={status} onchange={onStatusChange} name="property">
 				{#each statuses as item}
 					<option value={item.key}>{item.display}</option>
 				{/each}

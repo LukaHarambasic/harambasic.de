@@ -28,11 +28,11 @@ I don't know how many screenshots I take per day. They have one thing in common:
 
 ![TODO](/posts/mac-utility-must-haves/apple_screenshots.png)
 
-1. Open the *Screenshot* app.
+1. Open the _Screenshot_ app.
 2. Make sure one of the three buttons on the left is selected.
-3. Click *Options* and select under *Save to Clipboard*.
+3. Click _Options_ and select under _Save to Clipboard_.
 
-From now on, you can take screenshots with __COMMAND + SHIFT + 4__, which will instantly be saved to your clipboard. You can then paste them as you normally would (__COMMAND + V__), making your workflow more efficient.
+From now on, you can take screenshots with **COMMAND + SHIFT + 4**, which will instantly be saved to your clipboard. You can then paste them as you normally would (**COMMAND + V**), making your workflow more efficient.
 
 Also, an important remark: if you heavily rely on annotations, this might not be the best workflow for you. But if I need to annotate something, I just quickly paste it into Figma and add an arrow or box there.
 
@@ -50,7 +50,7 @@ You might be asking yourself, what the hell is a clipboard manager? And I was li
 
 ![TODO](/posts/mac-utility-must-haves/clipy.png)
 
-After you install Clipy, you can use it via __SHIFT + COMMAND + C__. It's just one additional keystroke to what you are used to. It has many customization options, but I only changed a little. I make sure that there are already copied items visible without the need to navigate to a folder first (see screenshot). Therefore, you need to set the *Number of items placed inline* to a decent number, I have it at 10.
+After you install Clipy, you can use it via **SHIFT + COMMAND + C**. It's just one additional keystroke to what you are used to. It has many customization options, but I only changed a little. I make sure that there are already copied items visible without the need to navigate to a folder first (see screenshot). Therefore, you need to set the _Number of items placed inline_ to a decent number, I have it at 10.
 
 A nice side effect is that it cleans the styles of the copied text. For example, copying something from VSCode to Outlook normally takes all the styling. But I can't think of a use case where I want that. Maybe I want the hierarchy of the text but not the styling. Everything should be Markdown.
 
@@ -64,11 +64,11 @@ A nice side effect is that it cleans the styles of the copied text. For example,
 brew install --cask alt-tab
 ```
 
-AltTab solves one of my main problems with window switching on macOS: __COMMAND + TAB__ can't handle multiple instances of the same program. I tried multiple virtual desktops, switching between them with gestures, but this worked better with multiple monitors. Besides this benefit, AltTab adds more context to the open windows, a screenshot, and the instance's title.
+AltTab solves one of my main problems with window switching on macOS: **COMMAND + TAB** can't handle multiple instances of the same program. I tried multiple virtual desktops, switching between them with gestures, but this worked better with multiple monitors. Besides this benefit, AltTab adds more context to the open windows, a screenshot, and the instance's title.
 
 ![ALtTab cycling through multiple windows](/posts/mac-utility-must-haves/alttab.gif)
 
-I highly recommend replacing the default __ALT + COMMAND__ with AltTab. After the installation, it will guide you through the process of replacing it. Below, you can see my *Appearance* settings. That is the outcome of trial and error. You can also turn off the screenshots in the preview.
+I highly recommend replacing the default **ALT + COMMAND** with AltTab. After the installation, it will guide you through the process of replacing it. Below, you can see my _Appearance_ settings. That is the outcome of trial and error. You can also turn off the screenshots in the preview.
 
 ![AlTab appearance of around 20 settings](/posts/mac-utility-must-haves/alttab_settings.png)
 
@@ -104,12 +104,12 @@ Everything besides this point is something I would recommend to everyone who wor
 
 ![TODO](/posts/mac-utility-must-haves/raycast.gif)
 
-I use it in some ways, like Spotlight, e.g., to open all my applications, do simple calculations, and make simple currency conversions. But Raycast allows me to install extensions or to use my scripts. One default extension is the emoji search; this gives me the same way to add emojis in every application. I don't need to consider whether I'm in Slack, Notion, Jira, or Gmail. Besides this, here is a short list of other extensions: 
+I use it in some ways, like Spotlight, e.g., to open all my applications, do simple calculations, and make simple currency conversions. But Raycast allows me to install extensions or to use my scripts. One default extension is the emoji search; this gives me the same way to add emojis in every application. I don't need to consider whether I'm in Slack, Notion, Jira, or Gmail. Besides this, here is a short list of other extensions:
 
-- *Color Picker* - Pick a color everywhere and get the HEX code on your clipboard.
-- *Todoist* - Create a task or search through all of them.
-- *Shortcut* - Use your macOS/iOS shortcuts, I have some tiny automations I want to share between my Mac and my iPhone. Therefore, having a Shortcut instead of a bash script or something similar that only works on my Mac is easier.
-- *Calendar* - See your next events and join calls.
+- _Color Picker_ - Pick a color everywhere and get the HEX code on your clipboard.
+- _Todoist_ - Create a task or search through all of them.
+- _Shortcut_ - Use your macOS/iOS shortcuts, I have some tiny automations I want to share between my Mac and my iPhone. Therefore, having a Shortcut instead of a bash script or something similar that only works on my Mac is easier.
+- _Calendar_ - See your next events and join calls.
 
 I also use some custom commands for simple automations. For example, to open a specific website with some parameters, below is a simple example of a translation service. But as you can see, this is a bash script, so you can do whatever you want.
 
@@ -143,12 +143,12 @@ It also offers solutions for screenshots, clipboard management, and window manag
 
 ## Useful shortcuts
 
-I use shortcuts besides these utilities—besides copy and paste—on a daily basis. 
+I use shortcuts besides these utilities—besides copy and paste—on a daily basis.
 
-__CTRL + L__—In Notion and Figma (I don't know if there are others), it copies the URL of what you currently have open directly to your clipboard. Quickly share a Notion page via Slack or link a Figma screen in a Jira ticket.
+**CTRL + L**—In Notion and Figma (I don't know if there are others), it copies the URL of what you currently have open directly to your clipboard. Quickly share a Notion page via Slack or link a Figma screen in a Jira ticket.
 
-__CTRL + K__—This opens a similar command palette like Spotlight/Raycast in multiple applications and websites (e.g., Jira, Figma, Notion, Slack) that lets you perform all kinds of tasks, depending on the application.
+**CTRL + K**—This opens a similar command palette like Spotlight/Raycast in multiple applications and websites (e.g., Jira, Figma, Notion, Slack) that lets you perform all kinds of tasks, depending on the application.
 
 ## Closing thoughts
 
-Most of these tools have been shipped with Windows for years, which is strange because I need to go through all this every time I have to set up a new macOS. But thanks to Open Source solutions like [Clipy](https://opencollective.com/clipy#backer), [AltTab](https://www.patreon.com/lwouis), and [Rectangle](https://github.com/sponsors/rxhanson) macOS feels way more usable. So think about donating to them or using the other open-source solutions you use on a daily basis. And remember, besides monetary support, you also can contribute to the code base. 
+Most of these tools have been shipped with Windows for years, which is strange because I need to go through all this every time I have to set up a new macOS. But thanks to Open Source solutions like [Clipy](https://opencollective.com/clipy#backer), [AltTab](https://www.patreon.com/lwouis), and [Rectangle](https://github.com/sponsors/rxhanson) macOS feels way more usable. So think about donating to them or using the other open-source solutions you use on a daily basis. And remember, besides monetary support, you also can contribute to the code base.

@@ -28,7 +28,11 @@
 		return image.default;
 	};
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 	const [posts] = data.posts;
 	const [projects] = data.projects;
 	const [uses] = data.uses;
@@ -51,8 +55,9 @@
 		<div class="content rich-text">
 			<h2>Heyho, I'm Luka!</h2>
 			<p>
-				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). At <a href="https://monta.com/">Monta</a>, I work as a Product Manger (Home Energy Management). Feel free to
-				explore my past
+				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). At <a
+					href="https://monta.com/">Monta</a
+				>, I work as a Product Manger (Home Energy Management). Feel free to explore my past
 				<a href="/projects">projects</a>
 				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If
 				you want to <a href="#contact">chat</a>, just start a conversation about handball,
@@ -160,7 +165,10 @@
 			<small>Get in touch!</small>
 		</div>
 		<div class="segmented-buttons">
-			<a href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B" class="button">Signal</a>
+			<a
+				href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B"
+				class="button">Signal</a
+			>
 			<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
 			<a href="https://twitter.com/luka_harambasic" class="button">Twitter</a>
 			<a href="https://github.com/LukaHarambasic" class="button">GitHub</a>
