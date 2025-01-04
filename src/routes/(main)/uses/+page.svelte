@@ -3,6 +3,7 @@
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
 	import { sortDate } from '$lib/util/helper';
+	import { UsesEntryStatus } from '$lib/types/enums';
 
 	const pictures = import.meta.glob(
 		'../../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
@@ -42,10 +43,13 @@
 
 	const groupedEntriesOrder = ['Hardware', 'Digital Tools', 'Development'];
 
-	const groupedEntries: GroupedEntries[] = tags
+	const activeEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Active);
+	const inactiveEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Inactive);
+
+	const activeGroupedEntries: GroupedEntries[] = tags
 		.map((tag) => ({
 			title: tag.display,
-			entries: usesEntries
+			entries: activeEntries
 				.filter((entry) => entry.tags.some((entryTag) => entryTag.slug === tag.slug))
 				.sort((a, b) => sortDate(b.published.raw, a.published.raw))
 		}))
@@ -67,7 +71,7 @@
 <Entries {path}>
 	{#snippet entries()}
 		<div class="wrapper">
-			{#each groupedEntries as group}
+			{#each activeGroupedEntries as group}
 				<div class="group">
 					<h2>{group.title}</h2>
 					<ul class="entries">
@@ -102,6 +106,26 @@
 					</ul>
 				</div>
 			{/each}
+			<div class="group archive">
+				<h2>Archive</h2>
+				<ul class="entries">
+					{#each inactiveEntries as entry}
+						<li class="h-feed">
+							<a href={entry.url}>
+								<div class="content">
+									<div class="title">
+										<strong>
+											{entry.title}
+										</strong>
+									</div>
+									<p>{entry.description}</p>
+								</div>
+								<Icon class="arrow" icon="ph:arrow-square-out-bold" />
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
 		</div>
 	{/snippet}
 </Entries>
@@ -123,6 +147,17 @@
 				font-weight: 900;
 				font-family: var(--font-family);
 				letter-spacing: var(--font-letter-spacing-headline);
+			}
+			&.archive {
+				.entries {
+					grid-template-columns: repeat(3, minmax(0, 1fr));
+					> li {
+						> a {
+							grid-template-columns: 1fr;
+							grid-template-areas: 'content';
+						}
+					}
+				}
 			}
 		}
 	}
