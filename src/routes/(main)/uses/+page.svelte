@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Entries from '$lib/components/Entries/Entries.svelte';
-	import BaseStatus from '$lib/components/Base/BaseStatus.svelte';
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
 	import { sortDate } from '$lib/util/helper';

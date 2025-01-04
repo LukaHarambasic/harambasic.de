@@ -97,7 +97,7 @@
 			opacity: 0;
 		}
 		to {
-			opacity: 1);
+			opacity: 1;
 		}
 	}
 </style>
