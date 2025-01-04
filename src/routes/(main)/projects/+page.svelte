@@ -69,17 +69,13 @@
 					data-highlighted={index < 3}
 					onclick={() => openModal(entry)}
 				>
-					{#if index < 3}
-						<enhanced:img
-							src={getImage(entry.image)}
-							sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-							alt={entry.title}
-						/>
-					{/if}
+					<enhanced:img
+						src={getImage(entry.image)}
+						sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+						alt={entry.title}
+					/>
 					<div class="content">
-						<div class="title">
-							<strong>{entry.title}</strong>
-						</div>
+						<strong>{entry.title}</strong>
 						<p>{entry.description}</p>
 						<ul class="tags">
 							{#each entry.tags as tag}
@@ -158,8 +154,69 @@
 			}
 			&[data-highlighted='false'] {
 				grid-column: span 3;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				align-content: stretch;
+				justify-content: flex-start;
+				align-items: stretch;
+				gap: 0;
+				@media screen and (max-width: 32rem) {
+					flex-direction: column;
+				}
+				&:hover {
+					> picture {
+						source,
+						img {
+							filter: grayscale(0);
+							opacity: 1;
+						}
+					}
+				}
+				> picture {
+					width: 12rem;
+					height: 12rem;
+					@media screen and (max-width: 32rem) {
+						width: 100%;
+						height: auto;
+					}
+					img {
+						width: inherit;
+						height: inherit;
+						border-radius: var(--border-radius) 0 0 var(--border-radius);
+						aspect-ratio: 1 / 1;
+						filter: grayscale(1);
+						opacity: 0.5;
+						@media screen and (max-width: 32rem) {
+							border-radius: var(--border-radius) var(--border-radius) 0 0;
+						}
+					}
+				}
+				> .content {
+					padding: var(--l);
+					display: flex;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					justify-content: flex-start;
+					align-content: stretch;
+					align-items: stretch;
+				}
 			}
 			&[data-highlighted='true'] {
+				> picture {
+					width: 100%;
+					img {
+						width: 100%;
+						height: inherit;
+						border-radius: var(--border-radius) var(--border-radius) 0 0;
+						aspect-ratio: 1 / 1;
+						filter: grayscale(1);
+						opacity: 0.5;
+						@media screen and (max-width: 32rem) {
+							border-radius: var(--border-radius) var(--border-radius) 0 0;
+						}
+					}
+				}
 				@media screen and (max-width: 62rem) {
 					grid-column: span 2;
 				}
@@ -175,25 +232,18 @@
 					opacity: 1;
 				}
 			}
-			> picture {
-				width: 100%;
-				img {
-					width: 100%;
-					height: inherit;
-					border-radius: var(--border-radius) var(--border-radius) 0 0;
-					aspect-ratio: 1 / 1;
-					filter: grayscale(1);
-					opacity: 0.5;
-					@media screen and (max-width: 32rem) {
-						border-radius: var(--border-radius) var(--border-radius) 0 0;
-					}
-				}
-			}
+
 			> .content {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-content: flex-start;
+				align-items: stretch;
 				padding: var(--l);
+				text-align: left;
 				strong {
-					display: inline;
-					margin: 0 0 var(--xxs) 0;
+					margin: 0 0 var(--xs) 0;
 					font-weight: 900;
 					font-size: var(--font-m);
 					line-height: 1.2;
@@ -206,13 +256,11 @@
 					font-size: var(--font-m);
 				}
 				.tags {
-					flex-base: 100%;
 					display: flex;
-					flex-grow: 1;
 					flex-direction: row;
 					flex-wrap: wrap;
-					align-content: stretch;
 					justify-content: flex-start;
+					align-content: flex-start;
 					align-items: flex-start;
 					gap: var(--xs);
 				}
