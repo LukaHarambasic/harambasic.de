@@ -57,13 +57,9 @@
 		.sort((a, b) => {
 			const indexA = groupedEntriesOrder.indexOf(a.title);
 			const indexB = groupedEntriesOrder.indexOf(b.title);
-			// If both items are not in the order array, maintain their relative position
 			if (indexA === -1 && indexB === -1) return 0;
-			// If only A is not in the order array, it goes to the end
 			if (indexA === -1) return 1;
-			// If only B is not in the order array, it goes to the end
 			if (indexB === -1) return -1;
-			// Both items are in the order array, sort by their index
 			return indexA - indexB;
 		});
 </script>
@@ -137,6 +133,9 @@
 		gap: var(--xl);
 		width: 90ch;
 		margin: 0 auto;
+		@media screen and (max-width: 62rem) {
+			width: 100%;
+		}
 		.group {
 			display: flex;
 			flex-direction: column;
@@ -151,6 +150,9 @@
 			&.archive {
 				.entries {
 					grid-template-columns: repeat(3, minmax(0, 1fr));
+					@media screen and (max-width: 62rem) {
+						grid-template-columns: 1fr;
+					}
 					> li {
 						> a {
 							grid-template-columns: 1fr;
@@ -166,6 +168,9 @@
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--l);
 		width: 100%;
+		@media screen and (max-width: 62rem) {
+			grid-template-columns: 1fr;
+		}
 		> li {
 			width: 100%;
 			> a {
