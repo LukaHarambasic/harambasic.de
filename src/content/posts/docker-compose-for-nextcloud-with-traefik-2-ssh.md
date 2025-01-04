@@ -1,14 +1,13 @@
 ---
 title: Docker Compose for NextCloud with Traefik 2 (SSL)
 description: I faced some problems to set up NextCloud with Traefik and that's why I share my docker-compose.yml.
-image: TODO
 published: 2021-01-13
 updated: 2024-02-11
+category: tech
 tags:
-  - Development
-  - Docker
+  - docker
+  - reverse-proxy
 tldr: 'Scroll down to get the full docker composable for Traefik 2.'
-discussion: https://twitter.com/luka_harambasic/status/1349487071614930944
 ---
 
 ## Intro
@@ -17,7 +16,7 @@ I set up [Traefik 2](https://traefik.io/) on a [VServer at Netcup](https://www.n
 
 ## Complete `docker-compose.yml`
 
-```yaml[docker-compose.yml]
+```yaml
 version: '3.7'
 
 services:
@@ -97,7 +96,7 @@ After you fired up your Nextcloud you should check if everything is working as e
 - Settings > Administration > Overview
 - [Security check](https://scan.nextcloud.com/)
 
-![Nextcloud administration overview](/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/security_setup_warnings.png)
+![Nextcloud administration overview](@images/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/security_setup_warnings.png)
 
 ## Usage of calDav and cardDav
 
@@ -107,7 +106,7 @@ It's quite easy if you use the `docker-compose.yml` above. You need your domain,
 - User: user
 - Password: app password
 
-![iPhone settings calDav example](/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/iphone_caldav.png)
+![iPhone settings calDav example](@images/posts/docker-compose-for-nextcloud-with-traefik-2-ssh/iphone_caldav.png)
 
 ## All the links I found and read
 

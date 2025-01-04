@@ -1,0 +1,47 @@
+---
+import PostsList from '@components/Posts/PostsList.svelte'
+import Layout from '@layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import { sortDate } from 'src/util/sort'
+
+const entries: CollectionEntry<'posts'>[] = await getCollection(
+  'posts',
+  (entry: CollectionEntry<'posts'>) => {
+    return !!entry.data.published
+  }
+)
+const sortedEntries: CollectionEntry<'posts'>[] = entries.sort((a, b) =>
+  sortDate(a.data.published.raw, b.data.published.raw)
+)
+
+const usedEntryCategoryIds = [
+  ...new Set(entries.map((entry) => entry.data.category.id)),
+]
+const categories: CollectionEntry<'categories'>[] = await getCollection(
+  'categories',
+  (category: CollectionEntry<'categories'>) =>
+    usedEntryCategoryIds.includes(category.id)
+)
+
+const usedEntryTagIds = [
+  ...new Set(
+    entries.flatMap((entry) =>
+      entry.data.tags.map((tag) => tag.id)
+    )
+  ),
+]
+const tags: CollectionEntry<'tags'>[] = await getCollection(
+  'tags',
+  (tag: CollectionEntry<'tags'>) => usedEntryTagIds.includes(tag.id)
+)
+---
+
+<Layout title="Posts">
+  <PostsList
+    client:only="svelte"
+    entries={sortedEntries}
+    categories={categories}
+    tags={tags}
+  />
+</Layout>

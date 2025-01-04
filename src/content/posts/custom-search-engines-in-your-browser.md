@@ -1,15 +1,12 @@
 ---
 title: Build a custom search engine in your browser
 description: I show you why custom search engines in your browser are a nice tool and how I use them.
-image: TODO
 published: 2021-06-20
 updated: 2021-07-18
+category: tech
 tags:
-  - Quick Tip
-  - Development
-  - GitHub Actions
+  - tools
 tldr: In less than a minute you can set up custom search engines in your browser to speed up your day-to-day tasks.
-discussion: https://twitter.com/luka_harambasic/status/1406703914045542405
 ---
 
 ## Intro
@@ -22,7 +19,7 @@ There are many other ways how you can achieve this, but if you are signed-in in 
 
 ## Examples
 
-![GIF: Use custom search engine in Google Chrome](/posts/custom-search-engines-in-your-browser/usage.gif)
+![GIF: Use custom search engine in Google Chrome](@images/posts/custom-search-engines-in-your-browser/usage.gif)
 
 ### Search
 
@@ -50,7 +47,7 @@ If you have a unique identifier you can find it. I don't even want to know how m
 
 ## How to add a custom search engines
 
-![GIF: Add a new custom search engine to Google Chrome](/posts/custom-search-engines-in-your-browser/add.gif)
+![GIF: Add a new custom search engine to Google Chrome](@images/posts/custom-search-engines-in-your-browser/add.gif)
 
 1. Right-click in the URL bar (not sure how to name the thing where you put the URL)
 2. Click on `Manage search engines...`
@@ -62,6 +59,6 @@ If you have a unique identifier you can find it. I don't even want to know how m
 
 You can use every website which reflects search results or identifiers in the URL. There are examples where you can't use this as the search is only an overlay and won't manipulate the URL, e.g. [https://vuejs.org/v2/guide/](https://vuejs.org/v2/guide/).
 
-![Firefox search engine shortcuts](/posts/custom-search-engines-in-your-browser/firefox.png)
+![Firefox search engine shortcuts](@images/posts/custom-search-engines-in-your-browser/firefox.png)
 
 You can use the same concept on Firefox it's just called **Search Shortcuts**.

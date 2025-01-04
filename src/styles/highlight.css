@@ -1,0 +1,9 @@
+.astro-code {
+  display: block;
+  overflow-x: auto;
+  padding: var(--m);
+  border-radius: var(--border-radius);
+  font-size: var(--font-s);
+  font-family: var(--font-family-code);
+  margin: 0 0 var(--l) 0;
+}

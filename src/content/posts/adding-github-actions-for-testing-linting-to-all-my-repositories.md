@@ -1,21 +1,19 @@
 ---
 title: Add GitHub Actions for testing & linting to your repository
 description: GitHub Actions are easy to configure and should be used in all npm/yarn based projects.
-image: TODO
 published: 2020-12-21
 updated: 2020-12-21
+category: tech
 tags:
-  - Development
-  - GitHub Actions
+  - github-actions
 tldr: 'GitHub Actions are easy to configure and should be used in all npm/yarn based projects. Checkout the <a href="https://gist.github.com/LukaHarambasic/0ef1c88782b6e8b138d5d0319f5a3a85">Gist</a> if you are only interested in the code.'
-discussion: https://twitter.com/luka_harambasic/status/1341140170628853765
 ---
 
 ## Why should you add this GitHub Actions to your repositories?
 
 GitHub Actions are there to automate workflows directly in GitHub without the need of setting up a full-blown CI/CD pipeline. You can just use them by adding a file to your root directory. Also, the [pricing](https://github.com/pricing) is very accommodating. I think I won't run into the limits with my private projects especially as there aren't limitations for public repositories.
 
-![Passing GitHub Action Workflow with a successful build on a PR](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_passed.png)
+![Passing GitHub Action Workflow with a successful build on a PR](@images/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_passed.png)
 
 During the time I worked on the [german Corona-Warn-App](https://www.coronawarn.app/en/) I noticed how powerful a CI/CD pipeline is. Therefore, it was clear to me that I want such a safety net for myself. If I'm rushing something or think it's just a quick fix I would love to see this in the PR and not in production. With these two small checks executed for every PR I'll spot errors more easily. It also opens up the possibilities for collaborations, as everybody has to fulfill the same checks.
 
@@ -25,7 +23,7 @@ During the time I worked on the [german Corona-Warn-App](https://www.coronawarn.
 
 1. Check the name of the scripts you want to be executed. In this example, I want to run `test` & `lint`.
 
-```json[package.json]
+```json
 {
 ...
 "scripts": {
@@ -54,14 +52,14 @@ It's redundant as the GitHub Actions run in parallel to the build task, and the 
 
 ### Implementation
 
-![GitHub Action - Pull request with a failed test job which lead to a failing build](/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_failed.png)
+![GitHub Action - Pull request with a failed test job which lead to a failing build](@images/posts/adding-github-actions-for-testing-linting-to-all-my-repositories/checks_failed.png)
 
 Just add the following file to your root directory in `.github/workflows/`. The name attributes are visible in the PR (see image). You only have to change the last line per job if you want to run something else, e.g. [Cypress](https://www.cypress.io/). So it's quite easy to adapt it to every other project even if my examples are based on [Vue.js](https://vuejs.org/) and [Nuxt.js](https://nuxtjs.org/):
 
 - [harambasic.de](http://harambasic.de) → only [lint](https://github.com/LukaHarambasic/harambasic.de/pull/22/files#diff-107e910e9f2ebfb9a741fa10b2aa7100cc1fc4f5f3aca2dfe78b905cbd73c0d2) was added (with this post) as I don't have tests until now
 - [jura.education](http://jura.education) → [checks](https://github.com/LukaHarambasic/jura.education/pull/6/files#diff-3ea54af4839eb75404d71b28252bead7e7ec8f676b1f815e1cde02629a75c165) with a lint and test job were added
 
-```yaml[.github/workflows/checks.yml]
+```yaml
 name: Checks
 on: push
 jobs:

@@ -1,0 +1,43 @@
+---
+import Layout from '@layouts/Layout.astro'
+import { getCollection, getEntries, getEntry } from 'astro:content'
+import PostEntry from '@components/Posts/PostsEntry.svelte'
+import type { CollectionEntry } from 'astro:content'
+import { generateNestedToc } from '@util/markdown'
+
+interface Props {
+  entry: CollectionEntry<'posts'>
+  category: CollectionEntry<'categories'>
+  tags: CollectionEntry<'tags'>[]
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection('posts')
+  return await Promise.all(
+    entries.map(async (entry: CollectionEntry<'posts'>) => {
+      const category = await getEntry(entry.data.category)
+      const tags = await getEntries(entry.data.tags)
+      return {
+        params: { slug: entry.slug },
+        props: { entry, category, tags } satisfies Props,
+      }
+    })
+  )
+}
+
+const { entry, category, tags } = Astro.props as Props
+const { Content, headings } = await entry.render()
+
+const nestedToc = generateNestedToc(headings)
+---
+
+<Layout title={entry.data.title} published={entry.data.published}>
+  <PostEntry {entry} {category} {tags} {nestedToc}><Content /></PostEntry>
+</Layout>
+
+<style>
+  article {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+</style>

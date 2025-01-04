@@ -1,13 +1,13 @@
 ---
 title: My nerd path - 10+ years of (personal) development
 description: This post shows how I acquired my technical knowledge and illustrates where my interests lie and how they have developed over almost 15 years.
-image: TODO
 published: 2021-12-22
 updated: 2021-07-18
+category: personal
 tags:
-  - Personal
+  - website
+  - tools
 tldr: The web showed me how to code and after almost 15 years this time is over. I'm still in the tech world, but focusing on entrepreneurship and freelancing.
-discussion: https://twitter.com/luka_harambasic/status/1473711448249581578
 ---
 
 ## Preamble
@@ -28,36 +28,36 @@ In the end, simple websites started my journey, and as I write this, I also unde
 
 ## Using the website builder
 
-![Website with an drop shadow and border radius as image](/posts/my-nerd-path/shadow_rounded_corner.png)
+![Website with an drop shadow and border radius as image](@images/posts/my-nerd-path/shadow_rounded_corner.png)
 
 The next step was to publish my first website. To be honest, I can't even remember the content. Nevertheless, I won't forget that it was at [Homepage Baukasten](https://www.homepage-baukasten.de/) (Homepage Builder), which gave you a pretty lovely domain: .de.tl. And, as before, I stuck to this place because there was a very active community, but this time with "experts" in programming. I remember how I stood in awe of everybody who could build a website from scratch on this platform. It felt like magic. I still have this feeling today for stuff I don't understand. After customizing some designs from the community, I created my own layouts. If you wanted to create a nice background for your content, as you see above, you had to create an image and then split it into three parts putting it together. It wasn't as convenient as it is nowadays.
 
 ```html
 <div id="container">
-	<div id="top"></div>
-	<div id="middle">
-		<h1>About Us</h1>
-		<p>Lorem Ipsum...</p>
-	</div>
-	<div id="bottom"></div>
+  <div id="top"></div>
+  <div id="middle">
+    <h1>About Us</h1>
+    <p>Lorem Ipsum...</p>
+  </div>
+  <div id="bottom"></div>
 </div>
 ```
 
 ```css
 #top {
-	background: url('/container-top.png') no-repeat;
+  background: url('/container-top.png') no-repeat;
 }
 #middle {
-	background: url('/container-middle.png') repeat-y;
+  background: url('/container-middle.png') repeat-y;
 }
 #bottom {
-	background: url('/container-bottom.png') no-repeat;
+  background: url('/container-bottom.png') no-repeat;
 }
 ```
 
 Another recognizable feature of websites at this time was this glossy, well-known Web 2.0 button. I used masks in GIMP the first time to achieve this. It was quite some fun to rebuild this in Figma, the third generation of graphic tools I use to create websites.
 
-![Glossy Web 2.0 button with the text: Click Me](/posts/my-nerd-path/glossy_button.svg)
+![Glossy Web 2.0 button with the text: Click Me](@images/posts/my-nerd-path/glossy_button.svg)
 
 ## Hosting my own websites
 
@@ -81,11 +81,11 @@ During this time, I started using [WordPress](https://wordpress.com/) and looked
 
 Other solutions like the German homepage builder [Jimdo](https://www.jimdo.com/) were also on my radar. I created a simple website for my Handball team and my parents' construction company. After only 1 year, I moved to a self-implementation (see [archive.org](https://web.archive.org/web/20150920234612/http://ivo-bau.de/)). I used [Koala](http://koala-app.com/) (a GUI tool) for [Sass](https://sass-lang.com/). That was it, no framework or anything like that included, just PHP, HTML & CSS (ok and a third party lightbox).
 
-![An old version of IVO-BAU.de - showing the title and a picture of the office](/posts/my-nerd-path/ivo_bau.png)
+![An old version of IVO-BAU.de - showing the title and a picture of the office](@images/posts/my-nerd-path/ivo_bau.png)
 
 My first customer was my sports club. I developed a multi-WordPress website with a custom theme. I'm still quite happy with how it looks. Of course, it could use some optimization, but it's still alive. Despite some users trying to break it with an entire blog post in red and Comic Sans. During this, I fell in love with this concept of CPTs ([Custom Post Types](https://wordpress.org/support/article/post-types/)) and subsequently added some: teams, department management, and events. Then enhanced all of it with ACF ([Advanced Custom Fields](https://www.advancedcustomfields.com/)), e.g., to link to the current table for each team. I learned a lot and would do it entirely differently nowadays. Like on my previous homepages, I was in charge of the design, assets, hosting, and development.
 
-![Screenshot of handball.tv-edigheim.de showing the start page](/posts/my-nerd-path/tv_edigheim.png)
+![Screenshot of handball.tv-edigheim.de showing the start page](@images/posts/my-nerd-path/tv_edigheim.png)
 
 ## Learn programming
 
@@ -101,7 +101,7 @@ I still wouldn't call myself an expert, but I can build a full-stack web applica
 
 Besides all these technologies, I started to follow my passion for UX/UI design. I went into design departments, and in all the projects I did, I was responsible for the logo, colors, typographies, and mockups. You can check out my first UI design, schmackofatz. On the [projects page](/projects), if you want to see my skills during this time in my life. It was my first complete UI design, and even though I would do it quite differently today, I'm still proud of the outcome. Later I had to implement the UI for this idea in Vue.js.
 
-On top of that, I could live out my love for tools. Digital tools. I changed the whole infrastructure of the oldest finance student club in Germany. I was responsible for setting everything up for a newly founded club and fixing all the wrong decisions I took two years later. My favorite failure is the email naming convention. We wanted to look like a startup and decided to only use first names for the email addresses, e.g., luka@q-summit.com. Though I didn't think that another Luka could join this club.
+On top of that, I could live out my love for tools. Tools. I changed the whole infrastructure of the oldest finance student club in Germany. I was responsible for setting everything up for a newly founded club and fixing all the wrong decisions I took two years later. My favorite failure is the email naming convention. We wanted to look like a startup and decided to only use first names for the email addresses, e.g., luka@q-summit.com. Though I didn't think that another Luka could join this club.
 
 On my own, I tried a lot of tools in different areas: to-do lists, note-taking, PDF annotation, data storage, calendar, email. I'm sure I've annoyed most people around me, not just once with a great new tool, not just once. Thank you for still being friends with me. By the way, an [Airtable](https://airtable.com/) with all the tools I found and used is currently in the making (and will be published soon).
 

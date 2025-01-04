@@ -1,17 +1,13 @@
 ---
 title: PDF CV/Resume from Figma template with Auto Layout
 description: A simple one-page CV/Resume template that heavily relies on Auto Layout makes it super easy to adjust.
-image: TODO
 published: 2022-07-12
 updated: 2021-07-18
+category: design
 tags:
-  - Figma
-  - CV
-  - Resume
-  - Template
-  - PDF
+  - resume
+  - figma
 tldr: A simple one-page CV/Resume template that heavily relies on Auto Layout makes it super easy to adjust. <a href="https://www.figma.com/community/file/1128439910915950322">Get it here</a>.
-discussion: TBD
 ---
 
 ## Motivation
@@ -22,7 +18,7 @@ If you look at my [projects](/projects) you can see parts of my history simplify
 
 To be honest, I still like this programmatic approach, but I like pixel-perfect designs, which is hard to achieve with PDFs generated from HTML (at least to my knowledge). And Figma introduced Auto Layout, which makes it sooooo easy to adjust structured designs. That's when I started playing around with CVs in Figma.
 
-![CV template in Figma](/posts/pdf-cvresume-from-figma-template-with-auto-layout/cv.png)
+![CV template in Figma](@images/posts/pdf-cvresume-from-figma-template-with-auto-layout/cv.png)
 
 As my history of CVs is known to friends, and my current CV is public, I was asked multiple times if people could borrow my CV to adjust it to their needs. Of course, they can! But if it's of interest to them, some other people might also benefit from it.
 
