@@ -84,11 +84,12 @@
 		gap: var(--l);
 		@media screen and (max-width: 62rem) {
 			grid-template-columns: 1fr;
+			column-gap: 0;
+			row-gap: var(--l);
 		}
 		.entry {
 			position: relative;
 			display: flex;
-			position: relative;
 			flex-direction: column;
 			flex-wrap: nowrap;
 			align-content: stretch;
@@ -98,29 +99,16 @@
 			height: 100%;
 			color: var(--c-font);
 			text-decoration: none;
-			&[data-highlighted='true'] {
-				grid-column: span 2;
+			@media screen and (max-width: 62rem) {
+				grid-column: span 1;
 			}
 			&[data-highlighted='false'] {
 				grid-column: span 3;
 				display: flex;
 				flex-direction: row;
-				flex-wrap: nowrap;
-				align-content: stretch;
-				justify-content: flex-start;
-				align-items: stretch;
 				gap: 0;
 				@media screen and (max-width: 32rem) {
 					flex-direction: column;
-				}
-				&:hover {
-					> picture {
-						source,
-						img {
-							filter: grayscale(0);
-							opacity: 1;
-						}
-					}
 				}
 				> picture {
 					width: 12rem;
@@ -152,6 +140,7 @@
 				}
 			}
 			&[data-highlighted='true'] {
+				grid-column: span 2;
 				> picture {
 					width: 100%;
 					img {
@@ -161,21 +150,18 @@
 						aspect-ratio: 1 / 1;
 						filter: grayscale(1);
 						opacity: 0.5;
-						@media screen and (max-width: 32rem) {
-							border-radius: var(--border-radius) var(--border-radius) 0 0;
-						}
 					}
-				}
-				@media screen and (max-width: 62rem) {
-					grid-column: span 2;
 				}
 			}
 			&:hover {
 				transform: scale(0.97);
 				cursor: pointer;
-				img {
-					filter: grayscale(0);
-					opacity: 1;
+				> picture {
+					source,
+					img {
+						filter: grayscale(0);
+						opacity: 1;
+					}
 				}
 				:global(.arrow) {
 					opacity: 1;
