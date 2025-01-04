@@ -7,7 +7,6 @@
 	import { ProjectSortProperty, ProjectStatus, SortDirection } from '$lib/types/enums';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { setParam } from '$lib/util/helper';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
 	import EntriesTags from '$lib/components/Entries/EntriesTags.svelte';
@@ -63,9 +62,8 @@
 	let filteredAndSorted = $derived(
 		filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
 	);
-	let projectSlug = $state('');
 
-	let activeProject = $derived(entries.find((entry: Project) => entry.slug === projectSlug));
+	let activeProject: Project | undefined = $state();
 
 	function onProperty(event: { detail: ProjectSortProperty }) {
 		sortProperty = event.detail;
@@ -92,20 +90,13 @@
 			ProjectSortProperty.Priority;
 		sortDirection =
 			($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc;
-		projectSlug = ($page.url.searchParams.get('slug') as string) || '';
-		openModal();
 	});
 
-	let showModal = $state(false);
+	let baseModalComponent = $state();
 
-	function openModal(project?: Project) {
-		if (project) {
-			setParam('slug', project.slug);
-			projectSlug = project.slug;
-			showModal = true;
-		} else if (projectSlug && !project) {
-			showModal = true;
-		}
+	function openModal(project: Project) {
+		activeProject = project;
+		baseModalComponent?.openModal();
 	}
 </script>
 
@@ -123,11 +114,10 @@
 		</EntriesSidebar>
 	{/snippet}
 	{#snippet entries()}
-		<ul class="entries">
+		<div class="entries">
 			{#each filteredAndSorted as entry, index}
-				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
-				<li
-					class="h-feed card no-spacing"
+				<button
+					class="h-feed entry card no-spacing"
 					data-highlighted={index < 4}
 					onclick={() => openModal(entry)}
 				>
@@ -153,14 +143,14 @@
 						</ul>
 					</div>
 					<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
-				</li>
+				</button>
 			{/each}
-		</ul>
+		</div>
 	{/snippet}
 </Entries>
 
 <!-- This is not in the normal dom flow -->
-<BaseModal bind:showModal>
+<BaseModal bind:this={baseModalComponent}>
 	{#if activeProject}
 		<div class="modal">
 			<enhanced:img
@@ -204,7 +194,7 @@
 		@media screen and (max-width: 62rem) {
 			grid-template-columns: 1fr;
 		}
-		li {
+		.entry {
 			position: relative;
 			display: flex;
 			position: relative;
