@@ -1,15 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import type { Project } from '$lib/types/project';
 	import { filterAndSort } from '$lib/data/projects/helper';
 	import { ProjectSortProperty, ProjectStatus, SortDirection } from '$lib/types/enums';
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
-	import BaseModal from '$lib/components/Base/BaseModal.svelte';
 	import Icon from '@iconify/svelte';
-	import BaseStatus from '$lib/components/Base/BaseStatus.svelte';
 
 	// TODO: remove eager and only load images that got randomly selected
 	const pictures = import.meta.glob(
@@ -37,8 +32,7 @@
 
 	let { data }: Props = $props();
 
-	const [entries, tags] = data.projects;
-	const path = data.path;
+	const [entries] = data.projects;
 
 	let filteredAndSorted = $derived(
 		filterAndSort(
@@ -49,25 +43,16 @@
 			SortDirection.Desc
 		)
 	);
-
-	let activeProject: Project | undefined = $state();
-
-	let baseModalComponent = $state();
-
-	function openModal(project: Project) {
-		activeProject = project;
-		baseModalComponent?.openModal();
-	}
 </script>
 
-<Entries {path}>
+<Entries path={data.url}>
 	{#snippet entries()}
 		<div class="entries">
 			{#each filteredAndSorted as entry, index}
-				<button
+				<a
+					href={entry.relativePath}
 					class="h-feed entry card no-spacing"
 					data-highlighted={index < 3}
-					onclick={() => openModal(entry)}
 				>
 					<enhanced:img
 						src={getImage(entry.image)}
@@ -86,47 +71,11 @@
 						</ul>
 					</div>
 					<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
-				</button>
+				</a>
 			{/each}
 		</div>
 	{/snippet}
 </Entries>
-
-<!-- This is not in the normal dom flow -->
-<BaseModal bind:this={baseModalComponent}>
-	{#if activeProject}
-		<div class="modal">
-			<enhanced:img
-				src={getImage(activeProject.image)}
-				sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-				alt={activeProject.title}
-			/>
-			<div class="content">
-				<h2>
-					{activeProject.title}
-				</h2>
-				<ul class="tags">
-					{#each activeProject.tags as tag}
-						<li>
-							<BaseTag {tag} />
-						</li>
-					{/each}
-				</ul>
-				<div class="rich-text">
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-					{@html activeProject.html}
-				</div>
-				<ul class="links rich-text">
-					{#each activeProject.links as link}
-						<li>
-							<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
-						</li>
-					{/each}
-				</ul>
-			</div>
-		</div>
-	{/if}
-</BaseModal>
 
 <style lang="postcss">
 	.entries {
@@ -283,71 +232,6 @@
 					0 8px 16px rgba(0, 0, 0, 0.03),
 					0 16px 32px rgba(0, 0, 0, 0.03),
 					0 32px 64px rgba(0, 0, 0, 0.03);
-			}
-		}
-	}
-	.modal {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: nowrap;
-		align-content: stretch;
-		justify-content: flex-start;
-		align-items: stretch;
-		gap: var(--l);
-		@media screen and (max-width: 64rem) {
-			flex-direction: column;
-		}
-		> picture {
-			size: 20rem;
-			@media screen and (max-width: 48rem) {
-				width: 100%;
-				height: auto;
-			}
-			img {
-				width: inherit;
-				height: inherit;
-				border-radius: var(--border-radius);
-				aspect-ratio: 1 / 1;
-			}
-		}
-		> .content {
-			display: flex;
-			flex-direction: column;
-			flex-wrap: nowrap;
-			justify-content: flex-start;
-			align-content: flex-start;
-			align-items: flex-start;
-			h2 {
-				font-weight: 900;
-				font-size: var(--font-xl);
-				line-height: 1.2;
-				font-family: var(--font-family);
-				letter-spacing: var(--font-letter-spacing-headline);
-				margin: 0 0 0 0;
-			}
-			.tags {
-				display: flex;
-				flex-grow: 1;
-				flex-direction: row;
-				flex-wrap: wrap;
-				justify-content: flex-start;
-				align-items: flex-start;
-				gap: var(--xs);
-				margin: 0 0 var(--m) 0;
-			}
-			.rich-text {
-				margin: 0 0 var(--m) 0;
-			}
-			.links {
-				flex-base: 100%;
-				display: flex;
-				flex-grow: 1;
-				flex-direction: row;
-				flex-wrap: wrap;
-				align-content: stretch;
-				justify-content: flex-start;
-				align-items: flex-start;
-				gap: var(--m);
 			}
 		}
 	}
