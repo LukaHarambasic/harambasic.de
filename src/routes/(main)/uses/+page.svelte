@@ -1,18 +1,9 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
-	import { page } from '$app/stores';
 	import Entries from '$lib/components/Entries/Entries.svelte';
-	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
-	import EntriesTags from '$lib/components/Entries/EntriesTags.svelte';
-	import EntriesFilter from '$lib/components/Entries/EntriesFilter.svelte';
-	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
-	import BaseStatus from '$lib/components/Base/BaseStatus.svelte';
-	import { filterAndSort } from '$lib/data/uses/helper';
-	import { UsesEntrySortProperty, UsesEntryStatus, SortDirection } from '$lib/types/enums';
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
-	import { onMount } from 'svelte';
+	import { sortDate } from '$lib/util/helper';
+	import { UsesEntryStatus } from '$lib/types/enums';
 
 	const pictures = import.meta.glob(
 		'../../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
@@ -42,114 +33,148 @@
 	}
 
 	let { data }: Props = $props();
-	const [entries, tags] = data.uses;
+	const [usesEntries, tags] = data.uses;
 	const path = data.path;
 
-	let filterTagSlug = $state('all');
-
-	let filterStatus;
-	run(() => {
-		filterStatus = UsesEntryStatus.All;
-	});
-	let sortProperty;
-	run(() => {
-		sortProperty = UsesEntrySortProperty.Published;
-	});
-	let sortDirection;
-	run(() => {
-		sortDirection = SortDirection.Desc;
-	});
-	let filteredAndSorted = $derived(
-		filterAndSort(entries, filterTagSlug, filterStatus, sortProperty, sortDirection)
-	);
-
-	function onProperty(event: { detail: UsesEntrySortProperty }) {
-		sortProperty = event.detail;
+	interface GroupedEntries {
+		title: string;
+		entries: typeof usesEntries;
 	}
 
-	function onDirection(event: { detail: SortDirection }) {
-		sortDirection = event.detail;
-	}
+	const groupedEntriesOrder = ['Hardware', 'Digital Tools', 'Development'];
 
-	function onTag(event: { detail: string }) {
-		filterTagSlug = event.detail;
-	}
+	const activeEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Active);
+	const inactiveEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Inactive);
 
-	function onStatus(event: { detail: UsesEntryStatus }) {
-		filterStatus = event.detail;
-	}
-
-	onMount(() => {
-		filterTagSlug = $page.url.searchParams.get('tag') || 'all';
-		filterStatus = ($page.url.searchParams.get('status') as UsesEntryStatus) || UsesEntryStatus.All;
-		sortProperty =
-			($page.url.searchParams.get('property') as UsesEntrySortProperty) ||
-			UsesEntrySortProperty.Published;
-		sortDirection =
-			($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc;
-	});
+	const activeGroupedEntries: GroupedEntries[] = tags
+		.map((tag) => ({
+			title: tag.display,
+			entries: activeEntries
+				.filter((entry) => entry.tags.some((entryTag) => entryTag.slug === tag.slug))
+				.sort((a, b) => sortDate(b.published.raw, a.published.raw))
+		}))
+		.filter((group) => group.entries.length > 0)
+		.sort((a, b) => {
+			const indexA = groupedEntriesOrder.indexOf(a.title);
+			const indexB = groupedEntriesOrder.indexOf(b.title);
+			if (indexA === -1 && indexB === -1) return 0;
+			if (indexA === -1) return 1;
+			if (indexB === -1) return -1;
+			return indexA - indexB;
+		});
 </script>
 
 <Entries {path}>
-	{#snippet sidebar()}
-		<EntriesSidebar>
-			<EntriesSorter
-				propertiesEnum={UsesEntrySortProperty}
-				on:propertyChange={onProperty}
-				on:directionChange={onDirection}
-			/>
-			<EntriesFilter statusEnum={UsesEntryStatus} on:statusChange={onStatus} />
-			<EntriesTags {tags} on:tagChange={onTag} />
-		</EntriesSidebar>
-	{/snippet}
 	{#snippet entries()}
-		<ul class="entries">
-			{#each filteredAndSorted as entry}
-				<li class="h-feed">
-					<a href={entry.url}>
-						<div class="logo">
-							{#if entry.image}
-								{#if isSvg(entry.image)}
-									<img src="/uses/{entry.image}" alt={entry.title} width="64px" />
-								{:else}
-									<enhanced:img
-										src={getImage(entry.image)}
-										sizes="(min-width:768px) 400px"
-										alt={entry.title}
-									/>
-								{/if}
-							{/if}
-						</div>
-						<div class="content">
-							<div class="title">
-								<strong>
-									{entry.title}
-								</strong>
-								<BaseStatus status={entry.status} />
-							</div>
-							<p>{entry.description}</p>
-						</div>
-						<Icon class="arrow" icon="ph:arrow-square-out-bold" />
-					</a>
-				</li>
+		<div class="wrapper">
+			{#each activeGroupedEntries as group}
+				<div class="group">
+					<h2>{group.title}</h2>
+					<ul class="entries">
+						{#each group.entries as entry}
+							<li class="h-feed">
+								<a href={entry.url}>
+									<div class="logo">
+										{#if entry.image}
+											{#if isSvg(entry.image)}
+												<img src="/uses/{entry.image}" alt={entry.title} width="64px" />
+											{:else}
+												<enhanced:img
+													src={getImage(entry.image)}
+													sizes="(min-width:768px) 400px"
+													alt={entry.title}
+												/>
+											{/if}
+										{/if}
+									</div>
+									<div class="content">
+										<div class="title">
+											<strong>
+												{entry.title}
+											</strong>
+										</div>
+										<p>{entry.description}</p>
+									</div>
+									<Icon class="arrow" icon="ph:arrow-square-out-bold" />
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
 			{/each}
-		</ul>
+			<div class="group archive">
+				<h2>Archive</h2>
+				<ul class="entries">
+					{#each inactiveEntries as entry}
+						<li class="h-feed">
+							<a href={entry.url}>
+								<div class="content">
+									<div class="title">
+										<strong>
+											{entry.title}
+										</strong>
+									</div>
+									<p>{entry.description}</p>
+								</div>
+								<Icon class="arrow" icon="ph:arrow-square-out-bold" />
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		</div>
 	{/snippet}
 </Entries>
 
 <style lang="postcss">
-	.entries {
+	.wrapper {
 		display: flex;
 		flex-direction: column;
-		flex-wrap: nowrap;
-		align-content: stretch;
-		justify-content: flex-start;
-		align-items: stretch;
+		gap: var(--xl);
+		width: 90ch;
+		margin: 0 auto;
+		@media screen and (max-width: 62rem) {
+			width: 100%;
+		}
+		.group {
+			display: flex;
+			flex-direction: column;
+			gap: var(--m);
+			> h2 {
+				font-size: var(--font-l);
+				line-height: 1.2;
+				font-weight: 900;
+				font-family: var(--font-family);
+				letter-spacing: var(--font-letter-spacing-headline);
+			}
+			&.archive {
+				.entries {
+					grid-template-columns: repeat(3, minmax(0, 1fr));
+					@media screen and (max-width: 62rem) {
+						grid-template-columns: 1fr;
+					}
+					> li {
+						> a {
+							grid-template-columns: 1fr;
+							grid-template-areas: 'content';
+						}
+					}
+				}
+			}
+		}
+	}
+	.entries {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--l);
 		width: 100%;
+		@media screen and (max-width: 62rem) {
+			grid-template-columns: 1fr;
+		}
 		> li {
 			width: 100%;
 			> a {
+				height: 100%;
 				display: grid;
 				grid-template-rows: auto;
 				grid-template-columns: 8rem 1fr;
