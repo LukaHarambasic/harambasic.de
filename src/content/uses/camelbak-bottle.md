@@ -1,5 +1,5 @@
 ---
-title: Camelbak Chute Mag - Water Bottle (1.2 l)
+title: Camelbak Chute Mag (1.2 l)
 description: 'I fell in love with big water bottles, my old one broke and I got this one as a present. Dropped it multiple times and nothing happened.'
 tags:
   - Essentials
