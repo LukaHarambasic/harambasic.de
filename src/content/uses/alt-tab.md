@@ -2,7 +2,7 @@
 title: AltTab
 description: 'A better and customizable version of CMD + Tab on Mavc.'
 tags:
-  - Digital Tools
+  - Software
 url: https://alt-tab-macos.netlify.app/
 status: ACTIVE
 image: alttab.png

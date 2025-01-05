@@ -2,7 +2,7 @@
 title: WebStorm
 description: 'I like it as it just works and has all the features I need built-in.'
 tags:
-  - Digital Tools
+  - Software
 url: https://www.jetbrains.com/webstorm/
 status: INACTIVE
 image: webstorm.svg

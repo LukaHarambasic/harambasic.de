@@ -2,7 +2,7 @@
 title: Google Workspace
 description: 'In my case it is used privately, but it is also very easy to set up for small to large organizations.'
 tags:
-  - Digital Tools
+  - Software
 url: https://workspace.google.com
 status: ACTIVE
 image: google.svg
