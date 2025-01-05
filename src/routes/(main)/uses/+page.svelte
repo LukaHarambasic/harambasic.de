@@ -41,7 +41,7 @@
 		entries: typeof usesEntries;
 	}
 
-	const groupedEntriesOrder = ['Hardware', 'Digital Tools', 'Development'];
+	const groupedEntriesOrder = ['Essentials', 'Hardware', 'Digital Tools', 'Development'];
 
 	const activeEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Active);
 	const inactiveEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Inactive);

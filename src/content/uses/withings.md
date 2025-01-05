@@ -1,6 +1,6 @@
 ---
 title: Withings ScanWatch 2
-description: ''
+description: 'TODO: Doesnt work, but i like it'
 tags:
   - Essentials
 url: https://www.withings.com/eu/en/scanwatch-2
