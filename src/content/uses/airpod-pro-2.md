@@ -1,6 +1,6 @@
 ---
 title: AirPod Pro 2
-description: ''
+description: 'Had the first version, got the second one but sadly still have them with a Lighntning-Port. USB-C for the win!'
 tags:
   - Hardware
 url: https://www.apple.com/airpods-pro/

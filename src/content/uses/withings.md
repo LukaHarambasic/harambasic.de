@@ -1,6 +1,6 @@
 ---
 title: Withings ScanWatch 2
-description: 'TODO: Doesnt work, but i like it'
+description: "Love that people don't spot that it is a Smart Watch. Love the month-long battery time. But it's not working at the moment, need to fix it."
 tags:
   - Essentials
 url: https://www.withings.com/eu/en/scanwatch-2

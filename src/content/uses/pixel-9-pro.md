@@ -1,6 +1,6 @@
 ---
 title: Pixel 9 Pro
-description: 'TOOO: Trying something new, article will follow. With the most pinkish case.'
+description: 'Have been the last four years with the iPhone 12. Wanted to go back to the roots. With the most pinkish case. Post will follow.'
 tags:
   - Hardware
 url: https://store.google.com/product/pixel_9_pro

@@ -1,6 +1,6 @@
 ---
 title: Ghostty
-description: ''
+description: 'Used Warp, but got to much AI, to much account, to much pushy in updates and it was slow. Giving Ghostty now a shot.'
 tags:
   - Software
 url: https://ghostty.org/

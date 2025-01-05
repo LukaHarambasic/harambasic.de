@@ -1,6 +1,6 @@
 ---
-title: iPad Air 13"
-description: 'TODO: M2, big screen to use it as a seocnd screen in my home office or on the go.'
+title: iPad Air 13" (M2)
+description: 'Always wanted an iPad with a large screen to also use it as a second screen when needed. And as I got to love the Apple silicons I also wanted at least a M1.'
 tags:
   - Hardware
 url: https://www.apple.com/ipad-air/

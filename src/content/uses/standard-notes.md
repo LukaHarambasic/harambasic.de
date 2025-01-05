@@ -1,6 +1,6 @@
 ---
 title: Standard Notes
-description: 'TODO: free is enough for me, e2e encryption, works on any device'
+description: 'My knowledge base, see it as how others use Obsidian. Out of the box sync on multiple devices and web access are important for me. The free version is enough and it is e2e encrypted.'
 tags:
   - Software
 url: https://standardnotes.com/

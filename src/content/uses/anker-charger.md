@@ -1,6 +1,6 @@
 ---
 title: Anker Prime Charger
-description: '100W, 2x Usb-C, 2x USB-A, super small, can charge macbook'
+description: 'As far as I know the smallest 100W charger (enough to charge a Macbook Pro) with 2x USB-Cand 2x USB-A.'
 tags:
   - Hardware
 url: https://www.anker.com/products/a2688-anker-prime-charger-100w-3-ports-gan?ref=naviMenu&variant=43931966079126

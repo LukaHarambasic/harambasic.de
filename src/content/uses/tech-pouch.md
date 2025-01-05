@@ -1,6 +1,6 @@
 ---
 title: Peak Design Tech Pouch
-description: 'TODO: still amazing product but working from the same spot, reducing the type of cables i need i dont bring it with me all the time anymore.'
+description: "Bring a little bit more organization to your tech. I'm not using it at the moment as I heavily reduced what I bring with me. But might become more relevant again."
 tags:
   - Essentials
 url: https://www.peakdesign.com/eu/products/tech-pouch?Size=Regular&Color=Black

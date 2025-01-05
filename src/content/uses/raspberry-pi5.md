@@ -1,6 +1,6 @@
 ---
-title: Raspberry Pi 5
-description: 'TODO: 8gb ram, for home assistent, open vpn, adguard, will be set up with ansible, post will follow.'
+title: Raspberry Pi 5 (8 GB)
+description: 'Set up with Ansible and Docker, right now running Home Assistent with Zigbee. Next on the list: OpenVPN, AdGuard. Post will follow.'
 tags:
   - Hardware
 url: https://www.raspberrypi.com/products/raspberry-pi-5/

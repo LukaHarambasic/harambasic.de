@@ -1,6 +1,6 @@
 ---
 title: Todoist
-description: 'TODO: it does one thing, not mroe not less and it does it less. i have pro subscirption. use it for work and private stuff.'
+description: "My go-to todo list. It exists for that single purpose and doesn't try to be more. I have a pro subscription. I use it at work and for private tasks."
 tags:
   - Software
 url: https://todoist.com/

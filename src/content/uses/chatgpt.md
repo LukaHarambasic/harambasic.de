@@ -1,6 +1,6 @@
 ---
 title: ChatGPT
-description: 'Business version, love the speech mode'
+description: 'I have the Plus version from work. I use it in different situations, dedicated post will follow.'
 tags:
   - Software
 url: https://chatgpt.com/

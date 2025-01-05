@@ -1,6 +1,6 @@
 ---
 title: Loop Quiet 2 Kinetic
-description: 'TODO: Earplugs, got it recommended and have to say they fit well, dont fall of and i love the little case so i can just throw them in my backback.'
+description: 'Got these earplugs recommended and have to say they fit perfectly, they dont fall out. I also love the little case so I can just throw them in my backback.'
 tags:
   - Essentials
 url: https://us.loopearplugs.com/products/quiet?variant=46599252803817

@@ -1,6 +1,6 @@
 ---
 title: Perplexity AI
-description: 'TODO: I use it for more complex search querries where i know ill have to go on multiple sites to gather that information.'
+description: 'I use it for more complex search querries where I know I'll have to go thorugh multiple sites to gather that information.'
 tags:
   - Software
 url: https://www.perplexity.ai/
