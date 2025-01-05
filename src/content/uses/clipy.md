@@ -2,7 +2,7 @@
 title: Clipy
 description: 'A clipboard manager for macOS. No more, no less.'
 tags:
-  - Digital Tools
+  - Software
 url: https://clipy-app.com/
 status: ACTIVE
 image: clipy.png
