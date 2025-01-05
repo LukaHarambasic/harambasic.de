@@ -41,7 +41,7 @@
 		entries: typeof usesEntries;
 	}
 
-	const groupedEntriesOrder = ['Hardware', 'Digital Tools', 'Development'];
+	const groupedEntriesOrder = ['Essentials', 'Hardware', 'Software', 'Development'];
 
 	const activeEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Active);
 	const inactiveEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Inactive);
@@ -51,7 +51,7 @@
 			title: tag.display,
 			entries: activeEntries
 				.filter((entry) => entry.tags.some((entryTag) => entryTag.slug === tag.slug))
-				.sort((a, b) => sortDate(b.published.raw, a.published.raw))
+				.sort((a, b) => sortDate(a.published.raw, b.published.raw))
 		}))
 		.filter((group) => group.entries.length > 0)
 		.sort((a, b) => {

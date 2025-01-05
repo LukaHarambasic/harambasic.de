@@ -2,7 +2,7 @@
 title: Homebrew
 description: 'Installing all the stuff the easy way, for nerds on Mac.'
 tags:
-  - Digital Tools
+  - Software
 url: https://brew.sh/
 status: ACTIVE
 image: brew.svg

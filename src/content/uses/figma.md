@@ -2,7 +2,7 @@
 title: Figma
 description: 'Awesome vector tool, you can work live at files and share them easily.'
 tags:
-  - Digital Tools
+  - Software
 url: https://www.figma.com/
 status: ACTIVE
 image: figma.svg

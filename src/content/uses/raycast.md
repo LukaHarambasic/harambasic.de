@@ -2,7 +2,7 @@
 title: Raycast
 description: 'Nicer version of Spotlight for Mac.'
 tags:
-  - Digital Tools
+  - Software
 url: https://www.raycast.com/
 status: ACTIVE
 image: raycast.svg
