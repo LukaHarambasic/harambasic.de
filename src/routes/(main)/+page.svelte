@@ -6,6 +6,7 @@
 	import type { UsesEntry } from '$lib/types/usesEntry';
 	import type { Post } from '$lib/types/post';
 	import type { PageData } from './$types';
+	import { UsesEntryStatus } from '$lib/types/enums';
 	// import type { Shareable } from '$lib/types/shareable'
 
 	// TODO: remove eager and only load images that got randomly selected
@@ -38,8 +39,10 @@
 	const [uses] = data.uses;
 	// const [shareables] = data.shareables
 
-	const randomProjects: Project[] = getRandomItems(projects, 2);
-	const randomUses: UsesEntry[] = getRandomItems(uses, 3);
+	const priorityProjects = projects.filter((entry) => entry.prio >= 500);
+	const activeUses = uses.filter((entry) => entry.status === UsesEntryStatus.Active);
+	const randomProjects: Project[] = getRandomItems(priorityProjects, 2);
+	const randomUses: UsesEntry[] = getRandomItems(activeUses, 3);
 	const randomPosts: Post[] = getRandomItems(posts, 2);
 	// const randomShareables: Shareable[] = getRandomItems(shareables, 4)
 </script>
