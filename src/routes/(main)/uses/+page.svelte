@@ -51,7 +51,7 @@
 			title: tag.display,
 			entries: activeEntries
 				.filter((entry) => entry.tags.some((entryTag) => entryTag.slug === tag.slug))
-				.sort((a, b) => sortDate(b.published.raw, a.published.raw))
+				.sort((a, b) => sortDate(a.published.raw, b.published.raw))
 		}))
 		.filter((group) => group.entries.length > 0)
 		.sort((a, b) => {
