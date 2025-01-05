@@ -53,7 +53,7 @@
 			class="profile"
 		/>
 		<div class="content rich-text">
-			<h2>Heyho, I'm Luka!</h2>
+			<h2>Heyho, I'm Luka! Test</h2>
 			<p>
 				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). At <a
 					href="https://monta.com/">Monta</a
