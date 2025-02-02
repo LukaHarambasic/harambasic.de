@@ -13,7 +13,7 @@ export const prerender = true;
 export const load = (async ({ url, locals, cookies }) => {
 	const sessionCookie = cookies.get('session');
 	if (sessionCookie) {
-		const sessionUser: User = JSON.parse(sessionCookie)
+		const sessionUser: User = JSON.parse(sessionCookie);
 		const authenticatedUser = authenticateUser(sessionUser.userName, sessionUser.pin);
 		if (authenticatedUser) {
 			locals.user = authenticatedUser;
@@ -22,7 +22,7 @@ export const load = (async ({ url, locals, cookies }) => {
 			throw redirect(302, '/login');
 		}
 	} else {
-	  locals.user = null;
+		locals.user = null;
 	}
 	return {
 		user: locals.user,
