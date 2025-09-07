@@ -1,4 +1,5 @@
 import {
+	ContentStatus,
 	EntryType,
 	PostSortProperty,
 	ProjectSortProperty,
@@ -56,4 +57,4 @@ export type SortProperty =
 	| UsesEntrySortProperty
 	| ShareableSortProperty;
 
-export type StatusFilter = ProjectStatus | UsesEntryStatus;
+export type StatusFilter = ContentStatus;

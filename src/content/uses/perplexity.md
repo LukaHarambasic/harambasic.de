@@ -4,7 +4,7 @@ description: "I use it for more complex search queries where I know I'll have to
 tags:
   - Software
 url: https://www.perplexity.ai/
-status: ACTIVE
+status: active
 image: perplexity.webp
 openSource:
 updated: 2025-01-05 16:00

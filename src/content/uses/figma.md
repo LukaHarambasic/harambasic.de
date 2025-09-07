@@ -4,7 +4,7 @@ description: 'Awesome vector tool, you can work live at files and share them eas
 tags:
   - Software
 url: https://www.figma.com/
-status: ACTIVE
+status: active
 image: figma.svg
 openSource:
 updated: 2022-12-01 20:29

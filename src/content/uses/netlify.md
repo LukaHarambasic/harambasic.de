@@ -4,7 +4,7 @@ description: 'Connect Netlify to your repository to get a build when you push to
 tags:
   - Development
 url: https://www.netlify.com/
-status: ACTIVE
+status: active
 image: netlify.svg
 openSource:
 updated: 2022-12-01 20:22

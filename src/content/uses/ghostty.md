@@ -4,7 +4,7 @@ description: 'Used Warp, but got to much AI, to much account, to much pushy in u
 tags:
   - Software
 url: https://ghostty.org/
-status: ACTIVE
+status: active
 image: ghostty.png
 openSource:
 updated: 2025-01-05 16:00

@@ -4,7 +4,7 @@ description: 'All black city bike for my daily commute. I love it. Just a front 
 tags:
   - Essentials
 url: https://www.bike-components.de/en/Vortrieb/Modell-1-2-Men-s-Bike-p89918/
-status: ACTIVE
+status: active
 image: bike.png
 openSource:
 updated: 2025-01-05 16:00

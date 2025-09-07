@@ -3,7 +3,6 @@
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
 	import { sortDate } from '$lib/util/helper';
-	import { UsesEntryStatus } from '$lib/types/enums';
 
 	const pictures = import.meta.glob(
 		'../../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
@@ -43,8 +42,8 @@
 
 	const groupedEntriesOrder = ['Essentials', 'Hardware', 'Software', 'Development'];
 
-	const activeEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Active);
-	const inactiveEntries = usesEntries.filter((entry) => entry.status === UsesEntryStatus.Inactive);
+	const activeEntries = usesEntries.filter((entry) => entry.status === 'active');
+	const inactiveEntries = usesEntries.filter((entry) => entry.status === 'inactive');
 
 	const activeGroupedEntries: GroupedEntries[] = tags
 		.map((tag) => ({

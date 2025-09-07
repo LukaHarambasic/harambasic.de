@@ -4,7 +4,7 @@ description: 'If there is a new side project with multiple people I tend to dire
 tags:
   - Software
 url: https://slack.com
-status: ACTIVE
+status: active
 image: slack.svg
 openSource:
 updated: 2022-12-01 20:34

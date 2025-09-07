@@ -72,27 +72,22 @@ test('sortNumber - is A smaller than B', async () => {
 	expect(sortNumber(5, 10)).greaterThan(0);
 });
 
-test('statusFilterToArray - convert status filter enum to array', async () => {
-	const inputEnum = {
-		All: 'ALL',
-		Active: 'ACTIVE',
-		Inactive: 'INACTIVE'
-	};
+test('statusFilterToArray - convert status values to array', async () => {
 	const resultArray = [
 		{
-			display: 'All',
-			key: 'ALL'
-		},
-		{
 			display: 'Active',
-			key: 'ACTIVE'
+			key: 'active'
 		},
 		{
 			display: 'Inactive',
-			key: 'INACTIVE'
+			key: 'inactive'
+		},
+		{
+			display: 'All',
+			key: 'all'
 		}
 	];
-	expect(statusFilterToArray(inputEnum as any)).toEqual(resultArray);
+	expect(statusFilterToArray()).toEqual(resultArray);
 });
 
 test('sortDirectionsToArray - convert sort directions to array', async () => {

@@ -4,7 +4,7 @@ description: "I'm not a fan of these sliding wallets, but I also want something 
 tags:
   - Essentials
 url: https://fritzvold.de/collections/geldborsen/products/minimal-wallet-erweitertes-muenzfach-rfid
-status: ACTIVE
+status: active
 image: fritzvold_wallet.png
 openSource:
 updated: 2025-01-05 16:00

@@ -4,7 +4,7 @@ description: 'Use for more valatile notes, not knowledge that should be persiste
 tags:
   - Software
 url: https://keep.google.com/#home
-status: ACTIVE
+status: active
 image: google_keep.webp
 openSource:
 updated: 2025-01-05 16:00

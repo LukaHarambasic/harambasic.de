@@ -4,7 +4,7 @@ description: "I'm getting around a bit, leacing with two room mates. I needed so
 tags:
   - Essentials
 url: https://www.tesa.com/en/industry/tesa-4308.html
-status: ACTIVE
+status: active
 image: blue_tape.png
 openSource:
 updated: 2025-01-05 16:00

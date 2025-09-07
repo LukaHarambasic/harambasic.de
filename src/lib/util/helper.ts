@@ -72,16 +72,15 @@ export function isValidSortDirection(value: string): value is SortDirection {
 	return isValidSortProperty(value, SORT_DIRECTIONS);
 }
 
-// Type-safe enum to array conversion
+// Convert status values to array for UI display
 export function statusFilterToArray(
-	statusFilter: StatusFilter
+	statusFilter?: StatusFilter
 ): { display: string; key: string }[] {
-	return Object.keys(statusFilter).map((key) => {
-		return {
-			display: key,
-			key: String(statusFilter[key as keyof typeof statusFilter])
-		};
-	});
+	const statusValues: StatusFilter[] = ['active', 'inactive', 'all'];
+	return statusValues.map((value) => ({
+		display: value.charAt(0).toUpperCase() + value.slice(1),
+		key: value
+	}));
 }
 
 export function sortDirectionsToArray(): { display: string; key: string }[] {

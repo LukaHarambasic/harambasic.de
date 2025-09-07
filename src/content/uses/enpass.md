@@ -4,7 +4,7 @@ description: 'I bought this password manager before they started the subscriptio
 tags:
   - Software
 url: https://www.enpass.io/
-status: ACTIVE
+status: active
 image: enpass.svg
 openSource:
 updated: 2022-12-01 20:29

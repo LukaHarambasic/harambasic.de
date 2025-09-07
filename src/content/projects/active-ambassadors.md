@@ -6,7 +6,7 @@ imageAlt: 'Active Ambassadors logo, contianing a heart with a globe stating: Act
 published: 2020-12-21
 updated: 2020-12-21
 prio: 500
-status: INACTIVE
+status: inactive
 links:
   - title: Website
     url: https://active-ambassadors.org/

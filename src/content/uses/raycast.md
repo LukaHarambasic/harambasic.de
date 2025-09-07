@@ -4,7 +4,7 @@ description: 'Nicer version of Spotlight for Mac.'
 tags:
   - Software
 url: https://www.raycast.com/
-status: ACTIVE
+status: active
 image: raycast.svg
 openSource: true
 updated: 2023-11-25 16:35

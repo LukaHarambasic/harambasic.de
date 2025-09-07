@@ -4,7 +4,7 @@ description: 'Always wanted an iPad with a large screen to also use it as a seco
 tags:
   - Hardware
 url: https://www.apple.com/ipad-air/
-status: ACTIVE
+status: active
 image: ipair-air-m2.avif
 openSource:
 updated: 2025-01-05 16:00

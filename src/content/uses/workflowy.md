@@ -4,7 +4,7 @@ description: 'My go-to knowledge app, you could also call it a note app. Basical
 tags:
   - Software
 url: https://workflowy.com/
-status: INACTIVE
+status: inactive
 image: workflowy.jpeg
 openSource:
 updated: 2022-12-01 20:30
