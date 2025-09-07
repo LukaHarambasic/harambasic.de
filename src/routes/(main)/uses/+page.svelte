@@ -21,7 +21,7 @@
 		if (!image) {
 			return {};
 		}
-		return image.default;
+		return (image as any).default || {};
 	};
 
 	const isSvg = (name: string) => {

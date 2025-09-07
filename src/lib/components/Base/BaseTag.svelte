@@ -4,12 +4,13 @@
 	interface Props {
 		tag: Tag;
 		selected?: boolean;
+		onclick?: () => void;
 	}
 
-	let { tag, selected = false }: Props = $props();
+	let { tag, selected = false, onclick }: Props = $props();
 </script>
 
-<button class="tag" title={tag.display} class:selected>
+<button class="tag" title={tag.display} class:selected {onclick}>
 	#{tag.display}
 </button>
 

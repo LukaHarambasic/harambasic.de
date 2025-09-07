@@ -33,8 +33,9 @@
 	--transition: all var(--transition-time) var(--transition-ease);
 	--border-radius: 1rem;
 	--border-radius-small: 0.5rem;
-	--box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01), 0 2px 4px rgba(0, 0, 0, 0.01),
-		0 4px 8px rgba(0, 0, 0, 0.01), 0 6px 12px rgba(0, 0, 0, 0.01);
+	--box-shadow:
+		0 1px 2px rgba(0, 0, 0, 0.01), 0 2px 4px rgba(0, 0, 0, 0.01), 0 4px 8px rgba(0, 0, 0, 0.01),
+		0 6px 12px rgba(0, 0, 0, 0.01);
 	--border: 1px solid var(--c-surface-accent);
 
 	--xxs: 0.25rem;
