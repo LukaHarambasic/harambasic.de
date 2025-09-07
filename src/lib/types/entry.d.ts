@@ -3,7 +3,9 @@ import {
 	PostSortProperty,
 	ProjectSortProperty,
 	ProjectStatus,
-	UsesEntrySortProperty
+	ShareableSortProperty,
+	UsesEntrySortProperty,
+	UsesEntryStatus
 } from './enums';
 import type { Tag } from './tag';
 

@@ -1,4 +1,4 @@
-import type { SortProperty, StatusFilter } from '$lib/types/entry';
+import type { StatusFilter } from '$lib/types/entry';
 import type { SortDirection } from '$lib/types/enums';
 import { format } from 'date-fns';
 
@@ -38,12 +38,23 @@ export function sortNumber(a: number, b: number): number {
 }
 
 export function enumToArray(
-	rawEnum: SortDirection | StatusFilter | SortProperty
+	rawEnum: SortDirection | StatusFilter
 ): { display: string; key: string }[] {
 	return Object.keys(rawEnum).map((key) => {
 		return {
 			display: key,
-			key: rawEnum[key]
+			key: (rawEnum as any)[key]
+		};
+	});
+}
+
+export function sortPropertyToArray(sortProperties: string[]): { display: string; key: string }[] {
+	return sortProperties.map((property) => {
+		// Capitalize first letter for display
+		const display = property.charAt(0).toUpperCase() + property.slice(1);
+		return {
+			display,
+			key: property
 		};
 	});
 }

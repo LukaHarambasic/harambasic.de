@@ -85,5 +85,5 @@ test('enumtoArray - convert enum to array', async () => {
 			key: 'PRIORITY'
 		}
 	];
-	expect(enumToArray(InputEnum)).toEqual(resultArray);
+	expect(enumToArray(InputEnum as any)).toEqual(resultArray);
 });

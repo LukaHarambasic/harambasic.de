@@ -6,7 +6,8 @@
 	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/stores';
-	import { PostSortProperty, SortDirection } from '$lib/types/enums';
+	import { SortDirection } from '$lib/types/enums';
+	import type { PostSortProperty } from '$lib/types/enums';
 	import { filterAndSort } from '$lib/data/posts/helper';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import { onMount } from 'svelte';
@@ -20,7 +21,7 @@
 
 	let filterTagSlug = $state('all');
 
-	let sortProperty = $state(PostSortProperty.Published);
+	let sortProperty = $state('published' as PostSortProperty);
 	let sortDirection = $state(SortDirection.Desc);
 	let filteredAndSortedEntries = $derived(
 		filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
@@ -40,8 +41,7 @@
 
 	onMount(() => {
 		filterTagSlug = $page.url.searchParams.get('tag') || 'all';
-		sortProperty =
-			($page.url.searchParams.get('property') as PostSortProperty) || PostSortProperty.Published;
+		sortProperty = ($page.url.searchParams.get('property') as PostSortProperty) || 'published';
 		sortDirection =
 			($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc;
 	});
@@ -51,7 +51,8 @@
 	{#snippet sidebar()}
 		<EntriesSidebar>
 			<EntriesSorter
-				propertiesEnum={PostSortProperty}
+				propertiesArray={['title', 'published', 'updated']}
+				propertiesDefault="published"
 				on:propertyChange={onProperty}
 				on:directionChange={onDirection}
 			/>

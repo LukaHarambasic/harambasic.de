@@ -15,12 +15,14 @@ export enum TagSortProperty {
 	Count = 'COUNT'
 }
 
-export enum ProjectSortProperty {
-	Title = 'TITLE',
-	Published = 'PUBLISHED',
-	Updated = 'UPDATED',
-	Priority = 'PRIORITY'
-}
+// Base sort properties
+type BaseSortProperty = 'title' | 'published' | 'updated';
+
+// Specific types with extensions
+export type PostSortProperty = BaseSortProperty;
+export type ProjectSortProperty = BaseSortProperty | 'priority';
+export type UsesEntrySortProperty = BaseSortProperty;
+export type ShareableSortProperty = BaseSortProperty;
 
 export enum ProjectStatus {
 	All = 'ALL',
@@ -32,22 +34,4 @@ export enum UsesEntryStatus {
 	All = 'ALL',
 	Active = 'ACTIVE',
 	Inactive = 'INACTIVE'
-}
-
-export enum UsesEntrySortProperty {
-	Title = 'TITLE',
-	Published = 'PUBLISHED',
-	Updated = 'UPDATED'
-}
-
-export enum ShareableSortProperty {
-	Title = 'TITLE',
-	Published = 'PUBLISHED',
-	Updated = 'UPDATED'
-}
-
-export enum PostSortProperty {
-	Title = 'TITLE',
-	Published = 'PUBLISHED',
-	Updated = 'UPDATED'
 }

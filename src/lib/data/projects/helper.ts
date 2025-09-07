@@ -1,5 +1,6 @@
 import type { RawEntry } from '$lib/types/entry';
-import { EntryType, ProjectSortProperty, ProjectStatus, SortDirection } from '$lib/types/enums';
+import { EntryType, ProjectStatus, SortDirection } from '$lib/types/enums';
+import type { ProjectSortProperty } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate, sortNumber } from '$lib/util/helper';
@@ -34,7 +35,7 @@ export function getProject(entry: RawEntry): Project {
 		updated: getDate(meta.updated),
 		links: meta.links || [],
 		prio: meta.prio || 0,
-		status: meta.status,
+		status: meta.status as ProjectStatus,
 		slug,
 		relativePath,
 		fullPath: `https://harambasic.de${relativePath}`,
@@ -44,13 +45,13 @@ export function getProject(entry: RawEntry): Project {
 
 export function sortByProperty(a: Project, b: Project, property: ProjectSortProperty): number {
 	switch (property) {
-		case ProjectSortProperty.Title:
+		case 'title':
 			return sortAlphabetical(b.title, a.title);
-		case ProjectSortProperty.Priority:
+		case 'priority':
 			return sortNumber(b.prio, a.prio);
-		case ProjectSortProperty.Published:
+		case 'published':
 			return sortDate(b.published.raw, a.published.raw);
-		case ProjectSortProperty.Updated:
+		case 'updated':
 			return sortDate(b.updated.raw, a.updated.raw);
 		default:
 			return 0;

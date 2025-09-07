@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { StatusFilter } from '$lib/types/entry';
+	import { ProjectStatus } from '$lib/types/enums';
 	import { enumToArray, setParam } from '$lib/util/helper';
 	import { createEventDispatcher, onMount } from 'svelte';
 	import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte';
@@ -13,7 +14,7 @@
 
 	let { statusEnum }: Props = $props();
 	const statuses = enumToArray(statusEnum);
-	let status: StatusFilter = $state('ALL');
+	let status: StatusFilter = $state(ProjectStatus.All);
 	function onStatusChange() {
 		setParam('status', status);
 		dispatch('statusChange', status);
