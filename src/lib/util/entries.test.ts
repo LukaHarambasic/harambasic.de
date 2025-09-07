@@ -1,9 +1,17 @@
 import type { EntryDate } from '$lib/types/entry';
-import { EntryType } from '$lib/types/enums';
+import { EntryType, SortDirection } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
 import type { Tag } from '$lib/types/tag';
 import { expect, test } from 'vitest';
-import { findBySlug, getDate, getTag } from './entries';
+import {
+	findBySlug,
+	getDate,
+	getTag,
+	filterByTag,
+	sortByDirection,
+	getUniqueTags,
+	getTagBySlug
+} from './entries';
 
 test('findBySlug - find entry by slug', async () => {
 	const entry = {
@@ -31,22 +39,92 @@ test('getDate - generate date based on string', async () => {
 	expect(getDate('1996-02-18')).toStrictEqual(resultDate);
 });
 
-// TODO implement test
-test('filterByTag - ', async () => {
-	expect(true).toBe(true);
+test('filterByTag - filter entries by tag slug', async () => {
+	const tags: Tag[] = [
+		{
+			display: 'JavaScript',
+			slug: 'javascript',
+			relativePath: '/projects?tag=javascript',
+			count: 1,
+			type: 'PROJECT'
+		},
+		{
+			display: 'Vue.js',
+			slug: 'vuejs',
+			relativePath: '/projects?tag=vuejs',
+			count: 1,
+			type: 'PROJECT'
+		}
+	];
+	const entry = { tags } as Project;
+
+	expect(filterByTag(entry, 'javascript')).toBe(true);
+	expect(filterByTag(entry, 'python')).toBe(false);
+	expect(filterByTag(entry, 'all')).toBe(true);
+	expect(filterByTag(entry, '')).toBe(true);
 });
 
-// TODO implement test
-test('sortByDirection - ', async () => {
-	expect(true).toBe(true);
+test('sortByDirection - return correct sort direction multiplier', async () => {
+	expect(sortByDirection(SortDirection.Asc)).toBe(1);
+	expect(sortByDirection(SortDirection.Desc)).toBe(-1);
 });
 
-// TODO implement test
-test('getUniqueTags - ', async () => {
-	expect(true).toBe(true);
+test('getUniqueTags - generate unique tags with counts from entries', async () => {
+	const tag1: Tag = {
+		display: 'JavaScript',
+		slug: 'javascript',
+		relativePath: '/projects?tag=javascript',
+		count: 1,
+		type: 'PROJECT'
+	};
+	const tag2: Tag = {
+		display: 'Vue.js',
+		slug: 'vuejs',
+		relativePath: '/projects?tag=vuejs',
+		count: 1,
+		type: 'PROJECT'
+	};
+
+	const entries: Project[] = [{ tags: [tag1, tag2] } as Project, { tags: [tag1] } as Project];
+
+	const result = getUniqueTags(entries);
+
+	// Should have "All" tag + 2 unique tags
+	expect(result).toHaveLength(3);
+	expect(result[0].display).toBe('All');
+	expect(result[0].count).toBe(2); // Total entry count
+
+	// Find JavaScript tag and check its count
+	const jsTag = result.find((tag) => tag.slug === 'javascript');
+	expect(jsTag?.count).toBe(2); // Appears in 2 entries
+
+	// Find Vue.js tag and check its count
+	const vueTag = result.find((tag) => tag.slug === 'vuejs');
+	expect(vueTag?.count).toBe(1); // Appears in 1 entry
 });
 
-// TODO implement test
-test('getTagBySlug - ', async () => {
-	expect(true).toBe(true);
+test('getTagBySlug - find tag by slug or throw error', async () => {
+	const tags: Tag[] = [
+		{
+			display: 'JavaScript',
+			slug: 'javascript',
+			relativePath: '/projects?tag=javascript',
+			count: 1,
+			type: 'PROJECT'
+		},
+		{
+			display: 'Vue.js',
+			slug: 'vuejs',
+			relativePath: '/projects?tag=vuejs',
+			count: 1,
+			type: 'PROJECT'
+		}
+	];
+
+	const foundTag = getTagBySlug(tags, 'javascript');
+	expect(foundTag.display).toBe('JavaScript');
+
+	expect(() => getTagBySlug(tags, 'nonexistent')).toThrow(
+		"Tag couldn't be found by slug: nonexistent"
+	);
 });

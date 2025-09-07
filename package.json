@@ -16,7 +16,8 @@
 		"socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
 		"socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
 		"newPost": "node scripts/generate-post/index.js",
-		"generateCardImages": "node --env-file=.env scripts/generate-card-images/index.js"
+		"generateCardImages": "node --env-file=.env scripts/generate-card-images/index.js",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.4",
@@ -27,6 +28,7 @@
 		"@sveltejs/enhanced-img": "^0.4.4",
 		"@sveltejs/kit": "^2.15.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@testing-library/svelte": "^5.2.8",
 		"@typescript-eslint/eslint-plugin": "^8.19.0",
 		"@typescript-eslint/parser": "^8.19.0",
 		"autoprefixer": "^10.4.20",
@@ -38,7 +40,9 @@
 		"front-matter": "^4.0.2",
 		"github-slugger": "^2.0.0",
 		"globals": "^15.14.0",
+		"husky": "^9.1.7",
 		"js-yaml": "^4.1.0",
+		"lint-staged": "^16.1.6",
 		"playwright": "^1.49.1",
 		"postcss-nested": "^7.0.2",
 		"postcss-size": "^5.0.0",
@@ -63,5 +67,20 @@
 		"vite": "^6.0.7",
 		"vitest": "^2.1.8"
 	},
-	"type": "module"
+	"type": "module",
+	"lint-staged": {
+		"*.{js,ts,svelte}": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.{css,postcss,scss}": [
+			"prettier --write"
+		],
+		"*.{md,json,yaml,yml}": [
+			"prettier --write"
+		]
+	},
+	"dependencies": {
+		"jsdom": "^26.1.0"
+	}
 }

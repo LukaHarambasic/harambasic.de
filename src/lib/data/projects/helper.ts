@@ -34,7 +34,7 @@ export function getProject(entry: RawEntry): Project {
 		updated: getDate(meta.updated),
 		links: meta.links || [],
 		prio: meta.prio || 0,
-		status: meta.status,
+		status: meta.status || ProjectStatus.Active,
 		slug,
 		relativePath,
 		fullPath: `https://harambasic.de${relativePath}`,
@@ -58,6 +58,8 @@ export function sortByProperty(a: Project, b: Project, property: ProjectSortProp
 }
 
 function filterByStatus(entry: Project, filterStatus: ProjectStatus): boolean {
-	if (filterStatus === ProjectStatus.All) return true;
+	if (filterStatus === ProjectStatus.All) {
+		return true;
+	}
 	return entry.status === filterStatus;
 }

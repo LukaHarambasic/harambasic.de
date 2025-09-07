@@ -1,11 +1,11 @@
-import type { SortProperty, StatusFilter } from '$lib/types/entry';
-import type { SortDirection } from '$lib/types/enums';
 import { format } from 'date-fns';
 
 // solution inspired by https://www.designcise.com/web/tutorial/how-to-fix-replaceall-is-not-a-function-javascript-error
 // implementation inspired by https://futurestud.io/tutorials/node-js-string-replace-all-appearances
 export function getSlug(str: string) {
-	if (!str) return '';
+	if (!str) {
+		return '';
+	}
 	const slug = str
 		.trim()
 		.toLowerCase()
@@ -37,13 +37,13 @@ export function sortNumber(a: number, b: number): number {
 	return b - a;
 }
 
-export function enumToArray(
-	rawEnum: SortDirection | StatusFilter | SortProperty
+export function enumToArray<T extends Record<string, string>>(
+	rawEnum: T
 ): { display: string; key: string }[] {
 	return Object.keys(rawEnum).map((key) => {
 		return {
 			display: key,
-			key: rawEnum[key]
+			key: rawEnum[key as keyof T]
 		};
 	});
 }

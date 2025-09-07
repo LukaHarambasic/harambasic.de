@@ -1,6 +1,8 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+# Run lint-staged to check and fix staged files
+npx lint-staged
 
-# https://stackoverflow.com/questions/3284292/can-a-git-hook-automatically-add-files-to-the-commit
-touch .commit
-exit
+# Note: Type checking temporarily disabled due to remaining Svelte 5 compatibility issues
+# npm run check
+
+# Run tests
+npm test -- --run

@@ -35,7 +35,7 @@ export function getUsesEntry(entry: RawEntry): UsesEntry {
 		published: getDate(meta.published),
 		updated: getDate(meta.updated),
 		url: meta.url || '',
-		status: meta.status,
+		status: meta.status || UsesEntryStatus.Active,
 		openSource: meta.openSource || false,
 		slug,
 		relativePath,
@@ -61,6 +61,8 @@ export function sortByProperty(
 }
 
 function filterByStatus(entry: UsesEntry, filterStatus: UsesEntryStatus): boolean {
-	if (filterStatus === UsesEntryStatus.All) return true;
+	if (filterStatus === UsesEntryStatus.All) {
+		return true;
+	}
 	return entry.status === filterStatus;
 }

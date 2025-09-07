@@ -7,18 +7,22 @@
 
 	let { children }: Props = $props();
 
-	let detailsElement: HTMLDetailsElement = $state();
-	let summaryElement: HTMLElement = $state();
-	let isOpen: boolean = $state();
+	let detailsElement: HTMLDetailsElement | undefined = $state();
+	let summaryElement: HTMLElement | undefined = $state();
+	let isOpen: boolean | undefined = $state();
 
 	function handleToggle() {
-		isOpen = detailsElement.open;
+		if (detailsElement) {
+			isOpen = detailsElement.open;
+		}
 	}
 
-	let isDesktop: boolean = $state();
+	let isDesktop: boolean | undefined = $state();
 
 	function handleSummaryVisibility() {
-		if (!summaryElement) return;
+		if (!summaryElement) {
+			return;
+		}
 		const style = window.getComputedStyle(summaryElement);
 		isDesktop = style.display === 'none';
 	}

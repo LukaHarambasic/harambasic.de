@@ -3,9 +3,13 @@ import {
 	PostSortProperty,
 	ProjectSortProperty,
 	ProjectStatus,
-	UsesEntrySortProperty
+	ShareableSortProperty,
+	UsesEntrySortProperty,
+	UsesEntryStatus
 } from './enums';
 import type { Tag } from './tag';
+import type { TocNode } from './post';
+import type { Link } from './generic';
 
 export interface RawEntry {
 	html: string;

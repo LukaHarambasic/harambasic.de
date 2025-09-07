@@ -11,7 +11,7 @@ import { remark } from 'remark';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkParseFrontmatter from 'remark-parse-frontmatter';
 import remarkRehype from 'remark-rehype';
-import type { VFile } from 'remark-rehype/lib';
+import type { VFile } from 'vfile';
 import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 import type { RawEntry, RawEntryMeta } from '$lib/types/entry';
@@ -91,7 +91,9 @@ function _getNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 	let latestEntry: TocNode | null;
 	let latestParent: TocNode | null;
 	const markdownHeadingCopy = JSON.parse(JSON.stringify(markdownHeadings));
-	if (markdownHeadingCopy.length <= 1) return markdownHeadingCopy;
+	if (markdownHeadingCopy.length <= 1) {
+		return markdownHeadingCopy;
+	}
 	// TODO fix any
 	const entryDepth: number = markdownHeadings.reduce((acc: number, item: TocNode) => {
 		return item.depth < acc ? item.depth : acc;
@@ -114,6 +116,8 @@ function _getNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 		} else if (entry.depth === latestEntryDepth) {
 			latestParentChildren.push(entry);
 		} else {
+			// Log unexpected table of contents behavior for debugging
+			// eslint-disable-next-line no-console
 			console.error('Unexpected Toc behaviour', entry);
 		}
 		latestEntry = entry;
