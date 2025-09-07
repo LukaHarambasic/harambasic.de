@@ -87,3 +87,4 @@ Centralized type definitions in `src/lib/types/`:
 - PostCSS processing with nested syntax and optimization
 - Image optimization and processing
 - Prerender error handling for 404s
+- **Deployment**: Netlify via standard integration (automatic builds from Git)
