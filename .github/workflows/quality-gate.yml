@@ -6,12 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - run: npm run lint
   test:
     name: Test (jest)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - run: npm run test
