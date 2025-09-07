@@ -35,7 +35,7 @@
 				<BaseTag
 					{tag}
 					selected={tagSlug === tag.slug}
-					on:click={() => {
+					onclick={() => {
 						onTagChange(tag.slug);
 					}}
 				/>

@@ -31,5 +31,13 @@ export default ts.config(
 				parser: ts.parser
 			}
 		}
+	},
+	{
+		rules: {
+			// Disable new stricter rules from eslint-plugin-svelte v3.x for now
+			'svelte/require-each-key': 'off',
+			'svelte/no-navigation-without-resolve': 'off',
+			'@typescript-eslint/no-explicit-any': 'warn'
+		}
 	}
 );

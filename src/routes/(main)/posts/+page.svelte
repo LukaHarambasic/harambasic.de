@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import type { PageData } from '../$types';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
@@ -19,18 +17,11 @@
 
 	let { data }: Props = $props();
 	const [entries, tags] = data.posts;
-	const path = data.path;
 
 	let filterTagSlug = $state('all');
 
-	let sortProperty;
-	run(() => {
-		sortProperty = PostSortProperty.Published;
-	});
-	let sortDirection;
-	run(() => {
-		sortDirection = SortDirection.Desc;
-	});
+	let sortProperty = $state(PostSortProperty.Published);
+	let sortDirection = $state(SortDirection.Desc);
 	let filteredAndSortedEntries = $derived(
 		filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
 	);
@@ -56,7 +47,7 @@
 	});
 </script>
 
-<Entries {path}>
+<Entries path="/posts">
 	{#snippet sidebar()}
 		<EntriesSidebar>
 			<EntriesSorter

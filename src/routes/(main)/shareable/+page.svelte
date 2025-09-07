@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { page } from '$app/stores';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
@@ -22,14 +20,8 @@
 	// all that "as" stuff should be removed, thats not right
 	let filterTagSlug = $state('all');
 
-	let sortProperty;
-	run(() => {
-		sortProperty = ShareableSortProperty.Published;
-	});
-	let sortDirection;
-	run(() => {
-		sortDirection = SortDirection.Desc;
-	});
+	let sortProperty = $state(ShareableSortProperty.Published);
+	let sortDirection = $state(SortDirection.Desc);
 	let filteredAndSorted = $derived(
 		filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
 	);

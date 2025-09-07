@@ -11,7 +11,7 @@ import { remark } from 'remark';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkParseFrontmatter from 'remark-parse-frontmatter';
 import remarkRehype from 'remark-rehype';
-import type { VFile } from 'remark-rehype/lib';
+import type { VFile } from 'vfile';
 import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 import type { RawEntry, RawEntryMeta } from '$lib/types/entry';

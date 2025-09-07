@@ -23,7 +23,7 @@
 		if (!image) {
 			return {};
 		}
-		return image.default;
+		return (image as any).default || {};
 	};
 
 	interface Props {
