@@ -23,7 +23,7 @@
 		"@eslint/compat": "^1.2.4",
 		"@iconify/svelte": "^4.2.0",
 		"@playwright/test": "^1.49.1",
-		"@supabase/supabase-js": "^2.47.10",
+		"@supabase/supabase-js": "^2.57.2",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/enhanced-img": "^0.4.4",
 		"@sveltejs/kit": "^2.15.1",
