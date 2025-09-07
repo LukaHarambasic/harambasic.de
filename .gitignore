@@ -13,3 +13,7 @@ vite.config.ts.timestamp-*
 
 # Claude Code MCP configuration
 .mcp.json
+
+# Claude Code sessions (local only)
+.claude/sessions/
+.claude/cache/
