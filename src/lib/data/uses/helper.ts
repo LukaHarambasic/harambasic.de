@@ -1,6 +1,6 @@
 import type { UsesEntry } from '$lib/types/usesEntry';
-import { EntryType, SortDirection, UsesEntryStatus } from '$lib/types/enums';
-import type { UsesEntrySortProperty } from '$lib/types/enums';
+import type { EntryType, UsesEntrySortProperty } from '$lib/types/enums';
+import { SortDirection, UsesEntryStatus } from '$lib/types/enums';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
 import type { RawEntry } from '$lib/types/entry';
@@ -24,7 +24,7 @@ export function getUsesEntry(entry: RawEntry): UsesEntry {
 		throw new Error('Missing meta data');
 	}
 	const meta = entry.meta;
-	const type = EntryType.UsesEntry;
+	const type: EntryType = 'uses';
 	const slug = getSlug(meta.title);
 	const relativePath = `/uses/${slug}`;
 	return {

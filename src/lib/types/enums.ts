@@ -1,9 +1,4 @@
-export enum EntryType {
-	UsesEntry = 'USES_ENTRY',
-	Shareable = 'SHAREABLE',
-	Post = 'POST',
-	Project = 'PROJECT'
-}
+export type EntryType = 'post' | 'project' | 'uses' | 'shareable';
 
 // Sort direction constants and types
 export const SORT_DIRECTIONS = ['ASC', 'DESC'] as const;
