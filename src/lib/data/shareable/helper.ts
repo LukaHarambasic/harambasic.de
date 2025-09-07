@@ -1,6 +1,6 @@
 import type { Shareable } from '$lib/types/shareable';
-import type { EntryType } from '$lib/types/enums';
-import { ShareableSortProperty, SortDirection } from '$lib/types/enums';
+import type { EntryType, ShareableSortProperty } from '$lib/types/enums';
+import { SortDirection } from '$lib/types/enums';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
 import type { RawEntry } from '$lib/types/entry';
@@ -39,11 +39,11 @@ export function getShareable(entry: RawEntry): Shareable {
 
 function sortByProperty(a: Shareable, b: Shareable, property: ShareableSortProperty): number {
 	switch (property) {
-		case ShareableSortProperty.Title:
+		case 'title':
 			return sortAlphabetical(b.title, a.title);
-		case ShareableSortProperty.Published:
+		case 'published':
 			return sortDate(b.published.raw, a.published.raw);
-		case ShareableSortProperty.Updated:
+		case 'updated':
 			return sortDate(b.updated.raw, a.updated.raw);
 		default:
 			return 0;

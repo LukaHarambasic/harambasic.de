@@ -5,7 +5,9 @@
 	import EntriesTags from '$lib/components/Entries/EntriesTags.svelte';
 	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
 	import { filterAndSort } from '$lib/data/shareable/helper';
-	import { ShareableSortProperty, SortDirection } from '$lib/types/enums';
+	import { SortDirection, BASE_SORT_PROPERTIES, SORT_DEFAULTS } from '$lib/types/enums';
+	import type { ShareableSortProperty } from '$lib/types/enums';
+	import { isValidShareableSortProperty, isValidSortDirection } from '$lib/util/helper';
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
@@ -20,8 +22,8 @@
 	// all that "as" stuff should be removed, thats not right
 	let filterTagSlug = $state('all');
 
-	let sortProperty = $state(ShareableSortProperty.Published);
-	let sortDirection = $state(SortDirection.Desc);
+	let sortProperty: ShareableSortProperty = $state(SORT_DEFAULTS.SHAREABLE);
+	let sortDirection: SortDirection = $state(SortDirection.Desc);
 	let filteredAndSorted = $derived(
 		filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
 	);
@@ -40,11 +42,16 @@
 
 	onMount(() => {
 		filterTagSlug = $page.url.searchParams.get('tag') || 'all';
+
+		const propertyParam = $page.url.searchParams.get('property');
 		sortProperty =
-			($page.url.searchParams.get('property') as ShareableSortProperty) ||
-			ShareableSortProperty.Published;
+			propertyParam && isValidShareableSortProperty(propertyParam)
+				? propertyParam
+				: SORT_DEFAULTS.SHAREABLE;
+
+		const directionParam = $page.url.searchParams.get('direction');
 		sortDirection =
-			($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc;
+			directionParam && isValidSortDirection(directionParam) ? directionParam : SortDirection.Desc;
 	});
 </script>
 
@@ -53,7 +60,8 @@
 	{#snippet sidebar()}
 		<EntriesSidebar>
 			<EntriesSorter
-				propertiesEnum={ShareableSortProperty}
+				propertiesArray={BASE_SORT_PROPERTIES}
+				propertiesDefault={SORT_DEFAULTS.SHAREABLE}
 				on:propertyChange={onProperty}
 				on:directionChange={onDirection}
 			/>

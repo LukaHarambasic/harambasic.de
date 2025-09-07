@@ -1,6 +1,6 @@
 import type { RawEntry } from '$lib/types/entry';
-import type { EntryType } from '$lib/types/enums';
-import { PostSortProperty, SortDirection } from '$lib/types/enums';
+import type { EntryType, PostSortProperty } from '$lib/types/enums';
+import { SortDirection } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
@@ -19,11 +19,11 @@ export function filterAndSort(
 
 export function sortByProperty(a: Post, b: Post, property: PostSortProperty): number {
 	switch (property) {
-		case PostSortProperty.Title:
+		case 'title':
 			return sortAlphabetical(b.title, a.title);
-		case PostSortProperty.Published:
+		case 'published':
 			return sortDate(b.published.raw, a.published.raw);
-		case PostSortProperty.Updated:
+		case 'updated':
 			return sortDate(b.updated.raw, a.updated.raw);
 		default:
 			return 0;

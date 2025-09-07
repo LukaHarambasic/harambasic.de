@@ -1,6 +1,6 @@
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { EntryType } from '$lib/types/enums';
-import { SortDirection, UsesEntrySortProperty, UsesEntryStatus } from '$lib/types/enums';
+import type { EntryType, UsesEntrySortProperty } from '$lib/types/enums';
+import { SortDirection, UsesEntryStatus } from '$lib/types/enums';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
 import type { RawEntry } from '$lib/types/entry';
@@ -36,7 +36,7 @@ export function getUsesEntry(entry: RawEntry): UsesEntry {
 		published: getDate(meta.published),
 		updated: getDate(meta.updated),
 		url: meta.url || '',
-		status: meta.status,
+		status: meta.status as UsesEntryStatus,
 		openSource: meta.openSource || false,
 		slug,
 		relativePath,
@@ -50,11 +50,11 @@ export function sortByProperty(
 	property: UsesEntrySortProperty
 ): number {
 	switch (property) {
-		case UsesEntrySortProperty.Title:
+		case 'title':
 			return sortAlphabetical(b.title, a.title);
-		case UsesEntrySortProperty.Published:
+		case 'published':
 			return sortDate(b.published.raw, a.published.raw);
-		case UsesEntrySortProperty.Updated:
+		case 'updated':
 			return sortDate(b.updated.raw, a.updated.raw);
 		default:
 			return 0;

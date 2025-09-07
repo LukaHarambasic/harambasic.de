@@ -1,5 +1,4 @@
 import { getProject, sortByProperty } from '$lib/data/projects/helper';
-import { ProjectSortProperty } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
 import { getRawEntries } from '$lib/util/converter.server';
 import { generateXml, options } from '$lib/util/rss.server';
@@ -10,7 +9,7 @@ export async function GET() {
 	const rawEntries = await getRawEntries('project');
 	const entries: Project[] = rawEntries
 		.map(getProject)
-		.sort((a, b) => sortByProperty(a, b, ProjectSortProperty.Published));
+		.sort((a, b) => sortByProperty(a, b, 'published'));
 	const body = generateXml(entries, 'project');
 	return new Response(body, options);
 }

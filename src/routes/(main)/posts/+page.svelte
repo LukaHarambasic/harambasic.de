@@ -6,7 +6,9 @@
 	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/stores';
-	import { PostSortProperty, SortDirection } from '$lib/types/enums';
+	import { SortDirection, BASE_SORT_PROPERTIES, SORT_DEFAULTS } from '$lib/types/enums';
+	import type { PostSortProperty } from '$lib/types/enums';
+	import { isValidPostSortProperty, isValidSortDirection } from '$lib/util/helper';
 	import { filterAndSort } from '$lib/data/posts/helper';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import { onMount } from 'svelte';
@@ -20,8 +22,8 @@
 
 	let filterTagSlug = $state('all');
 
-	let sortProperty = $state(PostSortProperty.Published);
-	let sortDirection = $state(SortDirection.Desc);
+	let sortProperty: PostSortProperty = $state(SORT_DEFAULTS.POST);
+	let sortDirection: SortDirection = $state(SortDirection.Desc);
 	let filteredAndSortedEntries = $derived(
 		filterAndSort(entries, filterTagSlug, sortProperty, sortDirection)
 	);
@@ -40,10 +42,14 @@
 
 	onMount(() => {
 		filterTagSlug = $page.url.searchParams.get('tag') || 'all';
+
+		const propertyParam = $page.url.searchParams.get('property');
 		sortProperty =
-			($page.url.searchParams.get('property') as PostSortProperty) || PostSortProperty.Published;
+			propertyParam && isValidPostSortProperty(propertyParam) ? propertyParam : SORT_DEFAULTS.POST;
+
+		const directionParam = $page.url.searchParams.get('direction');
 		sortDirection =
-			($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc;
+			directionParam && isValidSortDirection(directionParam) ? directionParam : SortDirection.Desc;
 	});
 </script>
 
@@ -51,7 +57,8 @@
 	{#snippet sidebar()}
 		<EntriesSidebar>
 			<EntriesSorter
-				propertiesEnum={PostSortProperty}
+				propertiesArray={BASE_SORT_PROPERTIES}
+				propertiesDefault={SORT_DEFAULTS.POST}
 				on:propertyChange={onProperty}
 				on:directionChange={onDirection}
 			/>

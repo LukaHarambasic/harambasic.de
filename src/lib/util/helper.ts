@@ -1,5 +1,12 @@
-import type { SortProperty, StatusFilter } from '$lib/types/entry';
-import type { SortDirection } from '$lib/types/enums';
+import type { StatusFilter } from '$lib/types/entry';
+import type {
+	SortDirection,
+	PostSortProperty,
+	ProjectSortProperty,
+	UsesEntrySortProperty,
+	ShareableSortProperty
+} from '$lib/types/enums';
+import { BASE_SORT_PROPERTIES, PROJECT_SORT_PROPERTIES, SORT_DIRECTIONS } from '$lib/types/enums';
 import { format } from 'date-fns';
 
 // solution inspired by https://www.designcise.com/web/tutorial/how-to-fix-replaceall-is-not-a-function-javascript-error
@@ -37,13 +44,62 @@ export function sortNumber(a: number, b: number): number {
 	return b - a;
 }
 
-export function enumToArray(
-	rawEnum: SortDirection | StatusFilter | SortProperty
+// Runtime validation functions
+export function isValidSortProperty<T extends string>(
+	value: string,
+	validProperties: readonly T[]
+): value is T {
+	return (validProperties as readonly string[]).includes(value);
+}
+
+export function isValidPostSortProperty(value: string): value is PostSortProperty {
+	return isValidSortProperty(value, BASE_SORT_PROPERTIES);
+}
+
+export function isValidProjectSortProperty(value: string): value is ProjectSortProperty {
+	return isValidSortProperty(value, PROJECT_SORT_PROPERTIES);
+}
+
+export function isValidUsesEntrySortProperty(value: string): value is UsesEntrySortProperty {
+	return isValidSortProperty(value, BASE_SORT_PROPERTIES);
+}
+
+export function isValidShareableSortProperty(value: string): value is ShareableSortProperty {
+	return isValidSortProperty(value, BASE_SORT_PROPERTIES);
+}
+
+export function isValidSortDirection(value: string): value is SortDirection {
+	return isValidSortProperty(value, SORT_DIRECTIONS);
+}
+
+// Type-safe enum to array conversion
+export function statusFilterToArray(
+	statusFilter: StatusFilter
 ): { display: string; key: string }[] {
-	return Object.keys(rawEnum).map((key) => {
+	return Object.keys(statusFilter).map((key) => {
 		return {
 			display: key,
-			key: rawEnum[key]
+			key: String(statusFilter[key as keyof typeof statusFilter])
+		};
+	});
+}
+
+export function sortDirectionsToArray(): { display: string; key: string }[] {
+	return SORT_DIRECTIONS.map((direction) => ({
+		display: direction === 'DESC' ? 'Desc' : 'Asc',
+		key: direction
+	}));
+}
+
+export function sortPropertyToArray(
+	sortProperties: readonly string[]
+): { display: string; key: string }[] {
+	return sortProperties.map((property) => {
+		// Capitalize first letter for display
+		const display = property.charAt(0).toUpperCase() + property.slice(1);
+		return {
+			display,
+			key: property
 		};
 	});
 }
