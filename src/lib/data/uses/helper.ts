@@ -20,24 +20,20 @@ export function filterAndSort(
 }
 
 export function getUsesEntry(entry: RawEntry): UsesEntry {
-	if (!entry.meta) {
-		throw new Error('Missing meta data');
-	}
-	const meta = entry.meta;
 	const type = EntryType.UsesEntry;
-	const slug = getSlug(meta.title);
+	const slug = getSlug(entry.title);
 	const relativePath = `/uses/${slug}`;
 	return {
 		type,
-		title: meta.title,
-		description: meta.description,
-		image: meta.image || '',
-		tags: meta.tags.map((tag: string) => getTag(tag, type)) || [],
-		published: getDate(meta.published),
-		updated: getDate(meta.updated),
-		url: meta.url || '',
-		status: meta.status as UsesEntryStatus,
-		openSource: meta.openSource || false,
+		title: entry.title,
+		description: entry.description,
+		image: entry.image || '',
+		tags: entry.tags.map((tag: string) => getTag(tag, type)) || [],
+		published: getDate(entry.published),
+		updated: getDate(entry.updated),
+		url: entry.url || '',
+		status: entry.status as UsesEntryStatus,
+		openSource: entry.openSource || false,
 		slug,
 		relativePath,
 		fullPath: `https://harambasic.de${relativePath}`

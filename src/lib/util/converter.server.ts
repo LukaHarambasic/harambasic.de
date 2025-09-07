@@ -14,7 +14,7 @@ import remarkRehype from 'remark-rehype';
 import type { VFile } from 'vfile';
 import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
-import type { RawEntry, RawEntryMeta } from '$lib/types/entry';
+import type { RawEntry } from '$lib/types/entry';
 
 // todo maybe markdown file?
 const processor = remark()
@@ -36,8 +36,9 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 			const output = processor.processSync(file);
 			return {
 				html: String(output.value),
-				meta: output.data.frontmatter as RawEntryMeta,
-				toc: output.data.toc as TocNode[]
+				toc: output.data.toc as TocNode[],
+				// Flatten frontmatter fields directly into the object
+				...(output.data.frontmatter as any)
 			};
 		})
 	);

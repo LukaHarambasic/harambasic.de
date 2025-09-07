@@ -31,20 +31,19 @@ export function sortByProperty(a: Post, b: Post, property: PostSortProperty): nu
 }
 
 export function getPost(entry: RawEntry): Post {
-	const meta = entry.meta;
 	const type = EntryType.Post;
-	const slug = getSlug(meta.title);
+	const slug = getSlug(entry.title);
 	const relativePath = `/${type.toLowerCase()}s/${slug}`;
 	return {
 		type,
-		title: meta.title,
-		description: meta.description,
-		image: meta.image || '',
-		tags: meta.tags.map((tag: string) => getTag(tag, type)) || [],
-		published: getDate(meta.published),
-		updated: getDate(meta.updated),
-		tldr: meta.tldr || '',
-		discussion: meta.discussion || '',
+		title: entry.title,
+		description: entry.description,
+		image: entry.image || '',
+		tags: entry.tags.map((tag: string) => getTag(tag, type)) || [],
+		published: getDate(entry.published),
+		updated: getDate(entry.updated),
+		tldr: entry.tldr || '',
+		discussion: entry.discussion || '',
 		toc: entry.toc,
 		slug,
 		relativePath,
