@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { filterAndSort } from '$lib/data/projects/helper';
-	import { ProjectStatus, SortDirection } from '$lib/types/enums';
+	import { ProjectStatus, SortDirection, SORT_DEFAULTS } from '$lib/types/enums';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import Icon from '@iconify/svelte';
@@ -35,7 +35,7 @@
 	const [entries] = data.projects;
 
 	let filteredAndSorted = $derived(
-		filterAndSort(entries, 'all', ProjectStatus.All, 'priority', SortDirection.Desc)
+		filterAndSort(entries, 'all', ProjectStatus.All, SORT_DEFAULTS.PROJECT, SortDirection.Desc)
 	);
 </script>
 

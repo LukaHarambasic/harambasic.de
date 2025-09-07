@@ -1,5 +1,17 @@
 import { expect, test } from 'vitest';
-import { enumToArray, formatDate, getSlug, sortAlphabetical, sortDate, sortNumber } from './helper';
+import {
+	statusFilterToArray,
+	sortDirectionsToArray,
+	sortPropertyToArray,
+	formatDate,
+	getSlug,
+	sortAlphabetical,
+	sortDate,
+	sortNumber,
+	isValidPostSortProperty,
+	isValidProjectSortProperty,
+	isValidSortDirection
+} from './helper';
 
 test('getSlug - string to slug', async () => {
 	const data = [
@@ -60,30 +72,82 @@ test('sortNumber - is A smaller than B', async () => {
 	expect(sortNumber(5, 10)).greaterThan(0);
 });
 
-test('enumtoArray - convert enum to array', async () => {
-	enum InputEnum {
-		Title = 'TITLE',
-		Published = 'PUBLISHED',
-		Updated = 'UPDATED',
-		Priority = 'PRIORITY'
-	}
+test('statusFilterToArray - convert status filter enum to array', async () => {
+	const inputEnum = {
+		All: 'ALL',
+		Active: 'ACTIVE',
+		Inactive: 'INACTIVE'
+	};
+	const resultArray = [
+		{
+			display: 'All',
+			key: 'ALL'
+		},
+		{
+			display: 'Active',
+			key: 'ACTIVE'
+		},
+		{
+			display: 'Inactive',
+			key: 'INACTIVE'
+		}
+	];
+	expect(statusFilterToArray(inputEnum as any)).toEqual(resultArray);
+});
+
+test('sortDirectionsToArray - convert sort directions to array', async () => {
+	const resultArray = [
+		{
+			display: 'Asc',
+			key: 'ASC'
+		},
+		{
+			display: 'Desc',
+			key: 'DESC'
+		}
+	];
+	expect(sortDirectionsToArray()).toEqual(resultArray);
+});
+
+test('sortPropertyToArray - convert sort properties to array', async () => {
+	const inputProperties = ['title', 'published', 'updated'];
 	const resultArray = [
 		{
 			display: 'Title',
-			key: 'TITLE'
+			key: 'title'
 		},
 		{
 			display: 'Published',
-			key: 'PUBLISHED'
+			key: 'published'
 		},
 		{
 			display: 'Updated',
-			key: 'UPDATED'
-		},
-		{
-			display: 'Priority',
-			key: 'PRIORITY'
+			key: 'updated'
 		}
 	];
-	expect(enumToArray(InputEnum as any)).toEqual(resultArray);
+	expect(sortPropertyToArray(inputProperties)).toEqual(resultArray);
+});
+
+test('isValidPostSortProperty - validate post sort properties', async () => {
+	expect(isValidPostSortProperty('title')).toBe(true);
+	expect(isValidPostSortProperty('published')).toBe(true);
+	expect(isValidPostSortProperty('updated')).toBe(true);
+	expect(isValidPostSortProperty('priority')).toBe(false);
+	expect(isValidPostSortProperty('invalid')).toBe(false);
+});
+
+test('isValidProjectSortProperty - validate project sort properties', async () => {
+	expect(isValidProjectSortProperty('title')).toBe(true);
+	expect(isValidProjectSortProperty('published')).toBe(true);
+	expect(isValidProjectSortProperty('updated')).toBe(true);
+	expect(isValidProjectSortProperty('priority')).toBe(true);
+	expect(isValidProjectSortProperty('invalid')).toBe(false);
+});
+
+test('isValidSortDirection - validate sort directions', async () => {
+	expect(isValidSortDirection('ASC')).toBe(true);
+	expect(isValidSortDirection('DESC')).toBe(true);
+	expect(isValidSortDirection('asc')).toBe(false);
+	expect(isValidSortDirection('desc')).toBe(false);
+	expect(isValidSortDirection('invalid')).toBe(false);
 });

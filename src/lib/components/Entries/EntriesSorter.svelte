@@ -2,14 +2,19 @@
 	import { page } from '$app/stores';
 	import type { SortProperty } from '$lib/types/entry';
 	import { SortDirection } from '$lib/types/enums';
-	import { enumToArray, sortPropertyToArray, setParam, sortAlphabetical } from '$lib/util/helper';
+	import {
+		sortPropertyToArray,
+		sortDirectionsToArray,
+		setParam,
+		sortAlphabetical
+	} from '$lib/util/helper';
 	import { createEventDispatcher, onMount } from 'svelte';
 	import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte';
 
 	const dispatch = createEventDispatcher();
 
 	interface Props {
-		propertiesArray: string[];
+		propertiesArray: readonly string[];
 		propertiesDefault?: SortProperty;
 	}
 
@@ -19,15 +24,13 @@
 		sortAlphabetical(a.key, b.key)
 	);
 
-	let property: SortProperty = $state(propertiesDefault || 'published');
+	let property: SortProperty = $state(propertiesDefault);
 	function onPropertyChange() {
 		setParam('property', property);
 		dispatch('propertyChange', property);
 	}
 
-	const directions = enumToArray(SortDirection as any).sort((a, b) =>
-		sortAlphabetical(a.key, b.key)
-	);
+	const directions = sortDirectionsToArray().sort((a, b) => sortAlphabetical(a.key, b.key));
 	let direction: SortDirection = $state(SortDirection.Desc);
 	function onDirectionChange() {
 		setParam('direction', direction);
@@ -35,8 +38,7 @@
 	}
 
 	onMount(() => {
-		property =
-			($page.url.searchParams.get('property') as SortProperty) || propertiesDefault || 'published';
+		property = ($page.url.searchParams.get('property') as SortProperty) || propertiesDefault;
 		direction = ($page.url.searchParams.get('direction') as SortDirection) || SortDirection.Desc;
 	});
 </script>
