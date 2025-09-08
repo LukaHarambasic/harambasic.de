@@ -32,7 +32,7 @@ export interface RawEntry {
 	tldr?: string;
 	discussion?: string;
 	links?: Link[];
-	priority?: number; // renamed from prio for consistency
+	prio?: number;
 	imageAlt?: string;
 }
 
@@ -56,7 +56,7 @@ export interface BaseEntry {
 }
 
 // Legacy Entry interface for backward compatibility - maps to BaseEntry
-export interface Entry extends BaseEntry {}
+export type Entry = BaseEntry;
 
 export type SortProperty =
 	| PostSortProperty

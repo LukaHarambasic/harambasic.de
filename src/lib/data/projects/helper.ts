@@ -33,7 +33,7 @@ export function getProject(entry: RawEntry): Project {
 		published: getDate(entry.published),
 		updated: getDate(entry.updated),
 		links: entry.links || [],
-		prio: entry.priority || 0, // Use priority field from flattened structure
+		prio: entry.prio || 0,
 		status: entry.status as ProjectStatus,
 		slug,
 		relativePath,

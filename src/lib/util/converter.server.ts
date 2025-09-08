@@ -16,6 +16,23 @@ import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 import type { RawEntry } from '$lib/types/entry';
 
+interface FrontmatterData {
+	title: string;
+	description: string;
+	image: string;
+	tags: string[];
+	published: string;
+	updated: string;
+	url?: string;
+	status?: string;
+	openSource?: boolean;
+	tldr?: string;
+	discussion?: string;
+	links?: Array<{ title: string; url: string }>;
+	prio?: number;
+	imageAlt?: string;
+}
+
 // todo maybe markdown file?
 const processor = remark()
 	.use(remarkFrontmatter)
@@ -38,7 +55,7 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 				html: String(output.value),
 				toc: output.data.toc as TocNode[],
 				// Flatten frontmatter fields directly into the object
-				...(output.data.frontmatter as any)
+				...(output.data.frontmatter as FrontmatterData)
 			};
 		})
 	);
