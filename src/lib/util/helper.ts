@@ -73,9 +73,7 @@ export function isValidSortDirection(value: string): value is SortDirection {
 }
 
 // Convert status values to array for UI display
-export function statusFilterToArray(
-	statusFilter?: StatusFilter
-): { display: string; key: string }[] {
+export function statusFilterToArray(): { display: string; key: string }[] {
 	const statusValues: StatusFilter[] = ['active', 'inactive', 'all'];
 	return statusValues.map((value) => ({
 		display: value.charAt(0).toUpperCase() + value.slice(1),

@@ -7,12 +7,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	interface Props {
-		statusEnum: StatusFilter;
-	}
-
-	let { statusEnum }: Props = $props();
-	const statuses = statusFilterToArray(statusEnum);
+	const statuses = statusFilterToArray();
 	let status: StatusFilter = $state('all');
 	function onStatusChange() {
 		setParam('status', status);
