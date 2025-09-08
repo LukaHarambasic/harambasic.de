@@ -16,7 +16,7 @@ export interface RawEntry {
 	// Content
 	html: string;
 	toc: TocNode[];
-	
+
 	// Frontmatter (flattened, no nested meta)
 	title: string;
 	description: string;
@@ -24,7 +24,7 @@ export interface RawEntry {
 	tags: string[];
 	published: string;
 	updated: string;
-	
+
 	// Optional fields
 	url?: string;
 	status?: ContentStatus;
