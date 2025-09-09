@@ -14,7 +14,7 @@ import remarkRehype from 'remark-rehype';
 import type { VFile } from 'vfile';
 import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
-import type { RawEntry } from '$lib/types/entry';
+import type { RawEntry, ContentStatus } from '$lib/types/entry';
 
 interface FrontmatterData {
 	title: string;
@@ -24,7 +24,7 @@ interface FrontmatterData {
 	published: string;
 	updated: string;
 	url?: string;
-	status?: string;
+	status?: ContentStatus;
 	openSource?: boolean;
 	tldr?: string;
 	discussion?: string;
