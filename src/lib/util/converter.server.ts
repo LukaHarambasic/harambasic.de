@@ -72,7 +72,7 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 						`Missing 'published' date in ${entryType} file "${fileName}" (title: "${frontmatter.title}"). This field is mandatory and must be a valid ISO date string (YYYY-MM-DD).`
 					);
 				}
-				
+
 				if (frontmatter.updated === undefined || frontmatter.updated === null) {
 					throw new Error(
 						`Missing 'updated' date in ${entryType} file "${fileName}" (title: "${frontmatter.title}"). This field is mandatory and must be a valid ISO date string (YYYY-MM-DD).`
@@ -81,13 +81,13 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 
 				const publishedDate = new Date(frontmatter.published);
 				const updatedDate = new Date(frontmatter.updated);
-				
+
 				if (isNaN(publishedDate.getTime())) {
 					throw new Error(
 						`Invalid 'published' date format in ${entryType} file "${fileName}" (title: "${frontmatter.title}"): "${frontmatter.published}". Must be a valid ISO date string (YYYY-MM-DD).`
 					);
 				}
-				
+
 				if (isNaN(updatedDate.getTime())) {
 					throw new Error(
 						`Invalid 'updated' date format in ${entryType} file "${fileName}" (title: "${frontmatter.title}"): "${frontmatter.updated}". Must be a valid ISO date string (YYYY-MM-DD).`
@@ -113,7 +113,9 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 	return entries;
 }
 
-export async function _getFilesWithNames(entryType: EntryType): Promise<Array<{ fileName: string; content: string }>> {
+export async function _getFilesWithNames(
+	entryType: EntryType
+): Promise<Array<{ fileName: string; content: string }>> {
 	const folderName = entryType === 'uses' ? 'uses' : `${entryType}s`;
 	const folderPath = join(process.cwd(), 'src', 'content', folderName);
 	const fileNames = await fs.readdir(folderPath);
@@ -126,7 +128,7 @@ export async function _getFilesWithNames(entryType: EntryType): Promise<Array<{ 
 	);
 }
 
-// Legacy function for backward compatibility  
+// Legacy function for backward compatibility
 export async function _getFiles(entryType: EntryType): Promise<string[]> {
 	const fileData = await _getFilesWithNames(entryType);
 	return fileData.map(({ content }) => content);

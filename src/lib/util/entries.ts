@@ -28,14 +28,16 @@ export function getDate(rawString: string): EntryDate {
 	if (!rawString || rawString === 'undefined') {
 		throw new Error(`Invalid date string: "${rawString}". Date cannot be empty or undefined.`);
 	}
-	
+
 	const raw = new Date(rawString);
-	
+
 	// Check if the date is valid
 	if (isNaN(raw.getTime())) {
-		throw new Error(`Invalid date format: "${rawString}". Must be a valid ISO date string (YYYY-MM-DD).`);
+		throw new Error(
+			`Invalid date format: "${rawString}". Must be a valid ISO date string (YYYY-MM-DD).`
+		);
 	}
-	
+
 	return {
 		raw,
 		display: formatDate(raw)
@@ -57,7 +59,7 @@ export function sortByDirection(sortDirection: SortDirection): number {
 export function getUniqueTags(entries: Project[] | UsesEntry[] | Post[] | Shareable[]): Tag[] {
 	// Filter out undefined/null entries and ensure tags exist
 	const validEntries = entries.filter((entry) => entry && entry.tags && Array.isArray(entry.tags));
-	
+
 	if (validEntries.length === 0) {
 		// If no valid entries, return empty array with a default "post" type
 		const defaultAllTag = getTag('All', 'post', 0);
