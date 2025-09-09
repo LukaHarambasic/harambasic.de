@@ -1,7 +1,7 @@
 import * as fs from 'fs/promises';
 import type { EntryType } from '$lib/types/enums';
 import { join } from 'path';
-import { RemarkRehypeProcessor, DEFAULT_PROCESSOR_CONFIG } from '$lib/processors';
+import { processMarkdown } from '$lib/processors/MarkdownProcessor';
 import type { RawEntry } from '$lib/types/entry';
 import type { ContentStatus } from '$lib/types/enums';
 
@@ -40,16 +40,29 @@ interface FrontmatterData {
 	imageAlt?: string;
 }
 
-// Create processor instance with production configuration for server-side processing
-const processor = new RemarkRehypeProcessor(DEFAULT_PROCESSOR_CONFIG);
 
 export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 	const fileData = await _getFilesWithNames(entryType);
 	const entries = await Promise.all(
 		fileData.map(async ({ fileName, content }): Promise<RawEntry> => {
 			try {
-				const output = processor.processSync(content);
-				const frontmatter = output.frontmatter as unknown as FrontmatterData;
+				const output = processMarkdown(content);
+				const frontmatter = {
+					title: output.title,
+					description: output.description,
+					image: output.image,
+					tags: output.tags,
+					published: output.published,
+					updated: output.updated,
+					url: output.url,
+					status: output.status,
+					openSource: output.openSource,
+					tldr: output.tldr,
+					discussion: output.discussion,
+					links: output.links,
+					prio: output.prio,
+					imageAlt: output.imageAlt
+				} as FrontmatterData;
 
 				// Validate required fields
 				if (!frontmatter) {
@@ -94,13 +107,7 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 					);
 				}
 
-				return {
-					html: output.html,
-					toc: output.toc || [], // Ensure toc is always an array
-					// Flatten frontmatter fields directly into the object
-					...frontmatter,
-					tags: frontmatter.tags || []
-				};
+				return output;
 			} catch (error) {
 				// Re-throw with file context if not already included
 				if (error instanceof Error && !error.message.includes(fileName)) {
@@ -128,8 +135,3 @@ export async function _getFilesWithNames(
 	);
 }
 
-// Legacy function for backward compatibility
-export async function _getFiles(entryType: EntryType): Promise<string[]> {
-	const fileData = await _getFilesWithNames(entryType);
-	return fileData.map(({ content }) => content);
-}
