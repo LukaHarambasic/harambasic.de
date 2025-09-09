@@ -25,16 +25,15 @@ export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
 }
 
 export function getDate(rawString: string): EntryDate {
+	if (!rawString || rawString === 'undefined') {
+		throw new Error(`Invalid date string: "${rawString}". Date cannot be empty or undefined.`);
+	}
+	
 	const raw = new Date(rawString);
 	
 	// Check if the date is valid
 	if (isNaN(raw.getTime())) {
-		console.warn(`Invalid date format: "${rawString}". Using current date as fallback.`);
-		const fallback = new Date();
-		return {
-			raw: fallback,
-			display: formatDate(fallback)
-		};
+		throw new Error(`Invalid date format: "${rawString}". Must be a valid ISO date string (YYYY-MM-DD).`);
 	}
 	
 	return {

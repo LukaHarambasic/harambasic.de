@@ -44,59 +44,90 @@ interface FrontmatterData {
 const processor = new RemarkRehypeProcessor(ProcessorConfigBuilder.production());
 
 export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
-	const files = await _getFiles(entryType);
+	const fileData = await _getFilesWithNames(entryType);
 	const entries = await Promise.all(
-		files.map(async (file): Promise<RawEntry> => {
-			const output = processor.processSync(file);
-			const frontmatter = output.frontmatter as unknown as FrontmatterData;
+		fileData.map(async ({ fileName, content }): Promise<RawEntry> => {
+			try {
+				const output = processor.processSync(content);
+				const frontmatter = output.frontmatter as unknown as FrontmatterData;
 
-			// Validate required fields
-			if (!frontmatter) {
-				throw new Error(`Missing frontmatter in ${entryType} entry`);
-			}
-			if (
-				!frontmatter.title ||
-				!frontmatter.description ||
-				!frontmatter.published ||
-				!frontmatter.updated
-			) {
-				throw new Error(
-					`Missing required frontmatter fields in ${entryType} entry: ${frontmatter.title || 'untitled'}`
-				);
-			}
+				// Validate required fields
+				if (!frontmatter) {
+					throw new Error(`Missing frontmatter in ${entryType} file "${fileName}"`);
+				}
+				if (
+					!frontmatter.title ||
+					!frontmatter.description ||
+					!frontmatter.published ||
+					!frontmatter.updated
+				) {
+					throw new Error(
+						`Missing required frontmatter fields in ${entryType} file "${fileName}": ${frontmatter.title || 'untitled'}`
+					);
+				}
 
-			// Validate date formats
-			const publishedDate = new Date(frontmatter.published);
-			const updatedDate = new Date(frontmatter.updated);
-			if (isNaN(publishedDate.getTime()) || isNaN(updatedDate.getTime())) {
-				console.warn(
-					`Invalid date format in ${entryType} entry "${frontmatter.title}": published="${frontmatter.published}", updated="${frontmatter.updated}"`
-				);
-			}
+				// Strict validation of date formats - fail fast with detailed error
+				if (frontmatter.published === undefined || frontmatter.published === null) {
+					throw new Error(
+						`Missing 'published' date in ${entryType} file "${fileName}" (title: "${frontmatter.title}"). This field is mandatory and must be a valid ISO date string (YYYY-MM-DD).`
+					);
+				}
+				
+				if (frontmatter.updated === undefined || frontmatter.updated === null) {
+					throw new Error(
+						`Missing 'updated' date in ${entryType} file "${fileName}" (title: "${frontmatter.title}"). This field is mandatory and must be a valid ISO date string (YYYY-MM-DD).`
+					);
+				}
 
-			return {
-				html: output.html,
-				toc: output.toc || [], // Ensure toc is always an array
-				// Flatten frontmatter fields directly into the object
-				...frontmatter,
-				// Ensure required fields have default values
-				published: frontmatter.published || new Date().toISOString(),
-				updated: frontmatter.updated || new Date().toISOString(),
-				tags: frontmatter.tags || []
-			};
+				const publishedDate = new Date(frontmatter.published);
+				const updatedDate = new Date(frontmatter.updated);
+				
+				if (isNaN(publishedDate.getTime())) {
+					throw new Error(
+						`Invalid 'published' date format in ${entryType} file "${fileName}" (title: "${frontmatter.title}"): "${frontmatter.published}". Must be a valid ISO date string (YYYY-MM-DD).`
+					);
+				}
+				
+				if (isNaN(updatedDate.getTime())) {
+					throw new Error(
+						`Invalid 'updated' date format in ${entryType} file "${fileName}" (title: "${frontmatter.title}"): "${frontmatter.updated}". Must be a valid ISO date string (YYYY-MM-DD).`
+					);
+				}
+
+				return {
+					html: output.html,
+					toc: output.toc || [], // Ensure toc is always an array
+					// Flatten frontmatter fields directly into the object
+					...frontmatter,
+					tags: frontmatter.tags || []
+				};
+			} catch (error) {
+				// Re-throw with file context if not already included
+				if (error instanceof Error && !error.message.includes(fileName)) {
+					throw new Error(`Error processing ${entryType} file "${fileName}": ${error.message}`);
+				}
+				throw error;
+			}
 		})
 	);
 	return entries;
 }
 
-export async function _getFiles(entryType: EntryType): Promise<string[]> {
+export async function _getFilesWithNames(entryType: EntryType): Promise<Array<{ fileName: string; content: string }>> {
 	const folderName = entryType === 'uses' ? 'uses' : `${entryType}s`;
 	const folderPath = join(process.cwd(), 'src', 'content', folderName);
 	const fileNames = await fs.readdir(folderPath);
 	return await Promise.all(
 		fileNames.map(async (fileName) => {
 			const filePath = join(folderPath, fileName);
-			return await fs.readFile(filePath, 'utf8');
+			const content = await fs.readFile(filePath, 'utf8');
+			return { fileName, content };
 		})
 	);
+}
+
+// Legacy function for backward compatibility  
+export async function _getFiles(entryType: EntryType): Promise<string[]> {
+	const fileData = await _getFilesWithNames(entryType);
+	return fileData.map(({ content }) => content);
 }
