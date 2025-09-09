@@ -30,7 +30,7 @@ export function getProject(entry: RawEntry): Project {
 		image: entry.image || '',
 		imageAlt: entry.imageAlt || '',
 		description: entry.description || '',
-		tags: entry.tags.map((tag: string) => getTag(tag, type)) || [],
+		tags: (entry.tags || []).map((tag: string) => getTag(tag, type)),
 		published: getDate(entry.published),
 		updated: getDate(entry.updated),
 		links: entry.links || [],

@@ -26,7 +26,7 @@ export function getShareable(entry: RawEntry): Shareable {
 		title: entry.title,
 		description: entry.description,
 		comment: '', // TODO fix mapping
-		tags: entry.tags.map((tag: string) => getTag(tag, type)) || [],
+		tags: (entry.tags || []).map((tag: string) => getTag(tag, type)),
 		published: getDate(entry.published),
 		updated: getDate(entry.updated),
 		url: entry.url || '',

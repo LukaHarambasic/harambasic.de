@@ -67,9 +67,11 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 
 			return {
 				html: output.html,
-				toc: output.toc,
+				toc: output.toc || [], // Ensure toc is always an array
 				// Flatten frontmatter fields directly into the object
-				...frontmatter
+				...frontmatter,
+				// Ensure tags is always an array
+				tags: frontmatter.tags || []
 			};
 		})
 	);
