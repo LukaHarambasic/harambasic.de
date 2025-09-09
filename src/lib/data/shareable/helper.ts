@@ -1,6 +1,6 @@
 import type { Shareable } from '$lib/types/shareable';
-import { EntryType, SortDirection } from '$lib/types/enums';
-import type { ShareableSortProperty } from '$lib/types/enums';
+import type { EntryType, ShareableSortProperty } from '$lib/types/enums';
+import { SortDirection } from '$lib/types/enums';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
 import type { RawEntry } from '$lib/types/entry';
@@ -18,9 +18,9 @@ export function filterAndSort(
 }
 
 export function getShareable(entry: RawEntry): Shareable {
-	const type = EntryType.Shareable;
+	const type: EntryType = 'shareable';
 	const slug = getSlug(entry.title);
-	const relativePath = `/${type.toLowerCase()}s/${slug}`;
+	const relativePath = `/${type}s/${slug}`;
 	return {
 		type,
 		title: entry.title,

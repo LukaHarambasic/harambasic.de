@@ -42,7 +42,8 @@ You are a Senior Software Engineer specializing in implementing features within 
 
 5. **Delivery Phase**:
    - Push branch to remote
-   - Create comprehensive pull request
+   - Create comprehensive pull request with issue number in title (e.g., "feat: implement OAuth integration (#123)")
+   - Link the issue to the pull request using "Fixes #123" or "Closes #123" in PR description
    - Include implementation notes and any concerns raised
 
 **Quality Gates (NEVER BYPASS):**

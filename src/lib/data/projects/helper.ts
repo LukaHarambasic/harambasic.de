@@ -1,6 +1,6 @@
 import type { RawEntry } from '$lib/types/entry';
-import { EntryType, ProjectStatus, SortDirection } from '$lib/types/enums';
-import type { ProjectSortProperty } from '$lib/types/enums';
+import type { EntryType, ProjectSortProperty } from '$lib/types/enums';
+import { ProjectStatus, SortDirection } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate, sortNumber } from '$lib/util/helper';
@@ -20,9 +20,9 @@ export function filterAndSort(
 }
 
 export function getProject(entry: RawEntry): Project {
-	const type = EntryType.Project;
+	const type: EntryType = 'project';
 	const slug = getSlug(entry.title);
-	const relativePath = `/${type.toLowerCase()}s/${slug}`;
+	const relativePath = `/${type}s/${slug}`;
 	return {
 		type,
 		title: entry.title,

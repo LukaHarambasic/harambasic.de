@@ -1,6 +1,6 @@
 import type { RawEntry } from '$lib/types/entry';
-import { EntryType, SortDirection } from '$lib/types/enums';
-import type { PostSortProperty } from '$lib/types/enums';
+import type { EntryType, PostSortProperty } from '$lib/types/enums';
+import { SortDirection } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
@@ -31,9 +31,9 @@ export function sortByProperty(a: Post, b: Post, property: PostSortProperty): nu
 }
 
 export function getPost(entry: RawEntry): Post {
-	const type = EntryType.Post;
+	const type: EntryType = 'post';
 	const slug = getSlug(entry.title);
-	const relativePath = `/${type.toLowerCase()}s/${slug}`;
+	const relativePath = `/${type}s/${slug}`;
 	return {
 		type,
 		title: entry.title,

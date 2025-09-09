@@ -1,6 +1,7 @@
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { EntryDate } from '$lib/types/entry';
-import { EntryType, SortDirection } from '$lib/types/enums';
+import type { EntryType } from '$lib/types/enums';
+import { SortDirection } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { Tag } from '$lib/types/tag';
@@ -13,7 +14,7 @@ export function findBySlug(entry: Post | Project | UsesEntry | Shareable, slug: 
 
 export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
 	const slug = getSlug(display);
-	const path = type === EntryType.UsesEntry ? 'uses' : `${type.toLowerCase()}s`;
+	const path = type === 'uses' ? 'uses' : `${type}s`;
 	return {
 		display,
 		slug: slug,

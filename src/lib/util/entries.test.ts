@@ -1,5 +1,4 @@
 import type { EntryDate } from '$lib/types/entry';
-import { EntryType } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
 import type { Tag } from '$lib/types/tag';
 import { expect, test } from 'vitest';
@@ -18,9 +17,9 @@ test('getTag - generate a tag based on display text and type maybe with an initi
 		slug: 'test',
 		relativePath: '/projects?tag=test',
 		count: 0,
-		type: 'PROJECT'
+		type: 'project'
 	};
-	expect(getTag('test', EntryType.Project)).toStrictEqual(resultTag);
+	expect(getTag('test', 'project')).toStrictEqual(resultTag);
 });
 
 test('getDate - generate date based on string', async () => {
