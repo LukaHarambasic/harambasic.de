@@ -16,7 +16,7 @@ import { createImagePlugin } from './plugins/ImagePlugin';
 import { sanitizeHtml, DEFAULT_SANITIZATION_CONFIG } from './utils/HtmlSanitizer';
 import type { TocNode } from '$lib/types/post';
 
-const createRemarkRehypeProcessor = (config: ProcessorConfig = {}) => {
+function createRemarkRehypeProcessor(config: ProcessorConfig = {}) {
 	validateProcessorConfig(config);
 
 	let processor = remark()
@@ -36,7 +36,7 @@ const createRemarkRehypeProcessor = (config: ProcessorConfig = {}) => {
 	}
 
 	return processor.use(rehypeStringify).freeze();
-};
+}
 
 function createProcessedContent(
 	result: any,
