@@ -5,19 +5,13 @@ import type { RawEntry } from '$lib/types/entry';
 import { processMarkdown } from '$lib/processors/MarkdownProcessor';
 import type { ContentService, ValidationResult } from './ContentService';
 import { ContentServiceError } from './ContentService';
+import { getSlug } from '$lib/util/helper';
 
 function getContentFolderPath(entryType: EntryType, contentRoot: string): string {
 	const folderName = entryType === 'uses' ? 'uses' : `${entryType}s`;
 	return join(contentRoot, folderName);
 }
 
-function generateSlug(title: string): string {
-	return title
-		.toLowerCase()
-		.replace(/[^\w\s-]/g, '')
-		.replace(/[\s_-]+/g, '-')
-		.replace(/^-+|-+$/g, '');
-}
 
 async function readContentFiles(entryType: EntryType, contentRoot: string): Promise<string[]> {
 	const folderPath = getContentFolderPath(entryType, contentRoot);
@@ -132,7 +126,7 @@ export async function getContentEntry(
 	try {
 		const entries = await getContentEntries(entryType, contentRoot);
 		const entry = entries.find((entry) => {
-			const entrySlug = generateSlug(entry.title);
+			const entrySlug = getSlug(entry.title);
 			return entrySlug === slug;
 		});
 		return entry || null;
