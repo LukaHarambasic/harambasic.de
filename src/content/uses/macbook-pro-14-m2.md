@@ -4,7 +4,7 @@ description: 'My work laptop.'
 tags:
   - Hardware
 url: https://support.apple.com/en-us/111340
-status: ACTIVE
+status: active
 image: apple.svg
 openSource:
 updated: 2025-01-05 16:00

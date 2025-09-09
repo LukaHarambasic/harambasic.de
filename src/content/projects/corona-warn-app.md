@@ -6,7 +6,7 @@ imageAlt: First screen of the Corona Warn App
 published: 2020-12-21
 updated: 2020-12-21
 prio: 1000
-status: INACTIVE
+status: inactive
 links:
   - title: Website
     url: https://www.coronawarn.app/en/

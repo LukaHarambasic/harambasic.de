@@ -4,7 +4,7 @@ description: 'Got these earplugs recommended and have to say they fit perfectly,
 tags:
   - Essentials
 url: https://us.loopearplugs.com/products/quiet?variant=46599252803817
-status: ACTIVE
+status: active
 image: loop_earplug.png
 openSource:
 updated: 2025-01-05 16:00

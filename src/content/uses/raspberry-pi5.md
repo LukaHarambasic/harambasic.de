@@ -4,7 +4,7 @@ description: 'Set up with Ansible and Docker, right now running Home Assistent w
 tags:
   - Hardware
 url: https://www.raspberrypi.com/products/raspberry-pi-5/
-status: ACTIVE
+status: active
 image: raspberry_pi_5.png
 openSource:
 updated: 2025-01-05 16:00

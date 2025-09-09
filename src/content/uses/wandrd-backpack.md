@@ -4,7 +4,7 @@ description: "I moved in 2024 and now have a longer way to work on my bike and a
 tags:
   - Essentials
 url: https://eu.wandrd.com/products/prvke?variant=39360658473002
-status: ACTIVE
+status: active
 image: wandrd.png
 openSource:
 updated: 2025-01-05 16:00

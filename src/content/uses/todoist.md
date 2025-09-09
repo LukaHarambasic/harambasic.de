@@ -4,7 +4,7 @@ description: "My go-to todo list. It exists for that single purpose and doesn't 
 tags:
   - Software
 url: https://todoist.com/
-status: ACTIVE
+status: active
 image: todoist.png
 openSource:
 updated: 2025-01-05 16:00

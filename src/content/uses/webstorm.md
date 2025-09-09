@@ -4,7 +4,7 @@ description: 'I like it as it just works and has all the features I need built-i
 tags:
   - Software
 url: https://www.jetbrains.com/webstorm/
-status: INACTIVE
+status: inactive
 image: webstorm.svg
 openSource:
 updated: 2022-12-01 20:30

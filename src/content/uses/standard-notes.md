@@ -4,7 +4,7 @@ description: 'My knowledge base, see it as how others use Obsidian. Out of the b
 tags:
   - Software
 url: https://standardnotes.com/
-status: ACTIVE
+status: active
 image: standard_notes.png
 openSource: true
 updated: 2025-01-05 16:00

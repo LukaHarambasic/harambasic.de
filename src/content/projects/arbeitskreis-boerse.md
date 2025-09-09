@@ -6,7 +6,7 @@ imageAlt: 'Logo of the Arbeitskreis Börse: AKB Mannheim'
 published: 2020-12-21
 updated: 2020-12-21
 prio: 70
-status: INACTIVE
+status: inactive
 links:
   - title: Website
     url: https://www.akboerse.de/

@@ -4,7 +4,7 @@ description: 'Opinionated meta framework for Vue.js.'
 tags:
   - Development
 url: https://nuxtjs.org/
-status: INACTIVE
+status: inactive
 image: nuxt.svg
 openSource: true
 updated: 2022-12-01 20:37

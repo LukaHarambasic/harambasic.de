@@ -4,7 +4,7 @@ description: "Love that people don't spot that it is a Smart Watch. Love the mon
 tags:
   - Essentials
 url: https://www.withings.com/eu/en/scanwatch-2
-status: ACTIVE
+status: active
 image: withings_scan_watch.webp
 openSource:
 updated: 2025-01-05 16:00

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { StatusFilter } from '$lib/types/entry';
-	import { ProjectStatus, UsesEntryStatus } from '$lib/types/enums';
 	import Icon from '@iconify/svelte';
 
 	interface Props {
@@ -10,7 +9,7 @@
 	let { status }: Props = $props();
 </script>
 
-{#if status === UsesEntryStatus.Active || status === ProjectStatus.Active}
+{#if status === 'active'}
 	<Icon class="status-icon active" icon="ph:play-circle-bold" />
 {:else}
 	<Icon class="status-icon inactive" icon="ph:pause-circle-bold" />

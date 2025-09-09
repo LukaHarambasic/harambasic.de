@@ -59,6 +59,6 @@ export function sortByProperty(a: Project, b: Project, property: ProjectSortProp
 }
 
 function filterByStatus(entry: Project, filterStatus: ProjectStatus): boolean {
-	if (filterStatus === ProjectStatus.All) return true;
+	if (filterStatus === 'all') return true;
 	return entry.status === filterStatus;
 }

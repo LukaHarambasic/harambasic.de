@@ -4,7 +4,7 @@ description: 'Have been the last four years with the iPhone 12. Wanted to go bac
 tags:
   - Hardware
 url: https://store.google.com/product/pixel_9_pro
-status: ACTIVE
+status: active
 image: pixel_9_pro_pink.png
 openSource:
 updated: 2025-01-05 16:00

@@ -4,7 +4,7 @@ description: 'Used it for private stuff, heavily during my studies and now at wo
 tags:
   - Software
 url: https://www.notion.com/
-status: ACTIVE
+status: active
 image: notion.png
 openSource:
 updated: 2025-01-05 16:00

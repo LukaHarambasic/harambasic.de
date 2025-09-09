@@ -4,7 +4,7 @@ description: 'A tool created by myself to use it as a bookmark divider between m
 tags:
   - Software
 url: https://bookmark-divider.netlify.app/
-status: ACTIVE
+status: active
 image: bookmarkdivider.svg
 openSource: true
 updated: 2022-12-01 20:32

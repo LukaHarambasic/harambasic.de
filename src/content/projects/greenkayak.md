@@ -6,7 +6,7 @@ imageAlt: First screen of the GreenKayak app on a device mockup
 published: 2023-11-07
 updated: 2023-11-07
 prio: 900
-status: INACTIVE
+status: inactive
 links:
   - title: Website
     url: https://www.greenkayak.org/

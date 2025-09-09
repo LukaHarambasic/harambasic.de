@@ -4,7 +4,7 @@ description: 'In my case it is used privately, but it is also very easy to set u
 tags:
   - Software
 url: https://workspace.google.com
-status: ACTIVE
+status: active
 image: google.svg
 openSource:
 updated: 2022-12-01 20:34

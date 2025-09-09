@@ -4,7 +4,7 @@ description: 'My favorite JS framework, as it lets you use what the web was made
 tags:
   - Development
 url: https://vuejs.org/
-status: INACTIVE
+status: inactive
 image: vue.svg
 openSource: true
 updated: 2022-12-01 20:32
