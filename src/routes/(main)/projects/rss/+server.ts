@@ -1,6 +1,6 @@
 import { getProject, sortByProperty } from '$lib/data/projects/helper';
 import type { Project } from '$lib/types/project';
-import { getRawEntries } from '$lib/util/converter.server';
+import { getRawEntries } from '$lib/util/cachedConverter.server';
 import { generateXml, options } from '$lib/util/rss.server';
 
 export const prerender = true;

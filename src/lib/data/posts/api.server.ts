@@ -1,6 +1,6 @@
 import type { Post } from '$lib/types/post';
 import type { Tag } from '$lib/types/tag';
-import { getRawEntries } from '$lib/util/converter.server';
+import { getRawEntries } from '$lib/util/cachedConverter.server';
 import { getUniqueTags } from '$lib/util/entries';
 import { getPost } from './helper';
 

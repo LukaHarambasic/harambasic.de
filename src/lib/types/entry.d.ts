@@ -1,4 +1,4 @@
-import {
+import type {
 	ContentStatus,
 	EntryType,
 	PostSortProperty,
@@ -81,3 +81,6 @@ export type SortProperty =
 	| ShareableSortProperty;
 
 export type StatusFilter = ContentStatus;
+
+// Re-export ContentStatus for external use
+export type { ContentStatus };

@@ -1,6 +1,6 @@
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { Tag } from '$lib/types/tag';
-import { getRawEntries } from '$lib/util/converter.server';
+import { getRawEntries } from '$lib/util/cachedConverter.server';
 import { getUniqueTags } from '$lib/util/entries';
 import { getUsesEntry } from './helper';
 

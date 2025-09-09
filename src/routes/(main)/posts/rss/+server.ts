@@ -1,6 +1,6 @@
 import { getPost, sortByProperty } from '$lib/data/posts/helper';
 import type { Post } from '$lib/types/post';
-import { getRawEntries } from '$lib/util/converter.server';
+import { getRawEntries } from '$lib/util/cachedConverter.server';
 import { generateXml, options } from '$lib/util/rss.server';
 
 export const prerender = true;

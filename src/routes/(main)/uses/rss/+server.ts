@@ -1,6 +1,6 @@
 import { getUsesEntry, sortByProperty } from '$lib/data/uses/helper';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import { getRawEntries } from '$lib/util/converter.server';
+import { getRawEntries } from '$lib/util/cachedConverter.server';
 import { generateXml, options } from '$lib/util/rss.server';
 
 export const prerender = true;

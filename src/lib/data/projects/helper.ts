@@ -1,6 +1,6 @@
 import type { RawEntry } from '$lib/types/entry';
-import type { EntryType, ProjectSortProperty } from '$lib/types/enums';
-import { ProjectStatus, SortDirection } from '$lib/types/enums';
+import type { EntryType, ProjectSortProperty, ProjectStatus } from '$lib/types/enums';
+import { SortDirection } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate, sortNumber } from '$lib/util/helper';
