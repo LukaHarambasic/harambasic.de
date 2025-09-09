@@ -23,16 +23,22 @@ export function getUsesEntry(entry: RawEntry): UsesEntry {
 	const type: EntryType = 'uses';
 	const slug = getSlug(entry.title);
 	const relativePath = `/uses/${slug}`;
+	
+	// Validate required fields
+	if (!entry.title || !entry.description || !entry.published || !entry.updated) {
+		throw new Error(`Missing required fields in uses entry: ${entry.title || 'untitled'}`);
+	}
+	
 	return {
 		type,
 		title: entry.title,
 		description: entry.description,
 		image: entry.image || '',
-		tags: entry.tags.map((tag: string) => getTag(tag, type)) || [],
+		tags: entry.tags?.map((tag: string) => getTag(tag, type)) || [],
 		published: getDate(entry.published),
 		updated: getDate(entry.updated),
 		url: entry.url || '',
-		status: entry.status as UsesEntryStatus,
+		status: (entry.status as UsesEntryStatus) || 'active',
 		openSource: entry.openSource || false,
 		slug,
 		relativePath,
