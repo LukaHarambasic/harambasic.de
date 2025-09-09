@@ -40,20 +40,6 @@ const sortingConfig = {
 		'max-height',
 		'size',
 
-		// Border
-		'border',
-		'border-top',
-		'border-right',
-		'border-bottom',
-		'border-left',
-		'border-width',
-		'border-style',
-		'border-color',
-		'border-radius',
-		'outline',
-		'outline-offset',
-		'box-shadow',
-
 		// Flexbox
 		'flex',
 		'flex-grow',
@@ -85,7 +71,21 @@ const sortingConfig = {
 		'grid-auto-columns',
 		'grid-auto-flow',
 
-		// Background (at top priority as requested)
+		// Border
+		'border',
+		'border-top',
+		'border-right',
+		'border-bottom',
+		'border-left',
+		'border-width',
+		'border-style',
+		'border-color',
+		'border-radius',
+		'outline',
+		'outline-offset',
+		'box-shadow',
+
+		// Background
 		'background',
 		'background-color',
 		'background-image',

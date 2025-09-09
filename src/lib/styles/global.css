@@ -1,21 +1,21 @@
 .select-button {
 	display: flex;
-	border: var(--border);
-	border-radius: var(--border-radius-small);
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-between;
 	align-items: center;
 	align-content: stretch;
 	gap: var(--s);
+	border: var(--border);
+	border-radius: var(--border-radius-small);
 	background: var(--c-surface);
 }
 .select-button select {
 	margin: 0;
 	padding: 0;
 	padding: var(--xs) 0 var(--xs) var(--s);
-	border: none;
 	flex: 1 0 auto;
+	border: none;
 	background: var(--c-surface);
 	font-family: var(--font-family);
 	font-size: var(--font-m);
@@ -29,13 +29,13 @@
 }
 .segmented-buttons {
 	display: flex;
-	border: var(--border);
-	border-radius: var(--border-radius-small);
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-between;
 	align-items: flex-start;
 	align-content: stretch;
+	border: var(--border);
+	border-radius: var(--border-radius-small);
 	background: var(--c-surface);
 	overflow: hidden;
 }
@@ -197,14 +197,14 @@
 .card {
 	display: flex;
 	padding: var(--l);
-	border: var(--border);
-	border-radius: var(--border-radius);
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: flex-start;
 	align-content: stretch;
 	gap: var(--m);
+	border: var(--border);
+	border-radius: var(--border-radius);
 	background: var(--c-surface);
 }
 @media screen and (max-width: 42rem) {
