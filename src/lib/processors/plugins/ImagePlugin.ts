@@ -73,19 +73,38 @@ function enhanceImageElement(
 		return;
 	}
 
-	// TODO: Implement actual image enhancement logic
-	// This is a placeholder for future implementation when the build system supports it
+	// Image enhancement implementation
+	// Note: Full enhancement requires build-time processing integration
+	
+	// Add loading="lazy" for performance
+	if (!node.properties.loading) {
+		node.properties.loading = 'lazy';
+	}
+	
+	// Add decoding="async" for better performance
+	if (!node.properties.decoding) {
+		node.properties.decoding = 'async';
+	}
 
 	if (responsive && sizes) {
-		// Future enhancement: Convert to enhanced:img component
-		// node.tagName = 'enhanced:img';
-		// node.properties.src = `${src}?w=1280;640;400`;
-		// node.properties.sizes = sizes;
-
-		// For now, just add quality parameter if specified
+		// Add sizes attribute for responsive images
+		if (!node.properties.sizes) {
+			node.properties.sizes = sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
+		}
+		
+		// Add quality parameter if specified
 		if (quality && quality !== 80) {
 			const separator = src.includes('?') ? '&' : '?';
 			node.properties.src = `${src}${separator}q=${quality}`;
 		}
+		
+		// Prepare for future enhanced:img integration
+		// This sets up the groundwork for when build-time image processing is available
+		// node.tagName = 'enhanced:img';
+		// node.properties.src = generateResponsiveSources(src, [1920, 1280, 640, 400]);
+	} else if (quality && quality !== 80) {
+		// Apply quality parameter even for non-responsive images
+		const separator = src.includes('?') ? '&' : '?';
+		node.properties.src = `${src}${separator}q=${quality}`;
 	}
 }

@@ -10,8 +10,10 @@ import rehypeStringify from 'rehype-stringify';
 import type { MarkdownProcessor, ProcessedContent, ContentMetadata } from './MarkdownProcessor';
 import { MarkdownProcessingError } from './MarkdownProcessor';
 import type { ProcessorConfig } from './ProcessorConfig';
+import { validateProcessorConfig } from './ProcessorConfig';
 import { createTocPlugin } from './plugins/TocPlugin';
 import { createImagePlugin } from './plugins/ImagePlugin';
+import { HtmlSanitizer, DEFAULT_SANITIZATION_CONFIG } from './utils/HtmlSanitizer';
 import type { TocNode } from '$lib/types/post';
 
 /**
@@ -23,6 +25,7 @@ import type { TocNode } from '$lib/types/post';
 export class RemarkRehypeProcessor implements MarkdownProcessor {
 	private processor: any;
 	private config: ProcessorConfig;
+	private sanitizer: HtmlSanitizer;
 
 	/**
 	 * Creates a new RemarkRehypeProcessor instance
@@ -30,7 +33,11 @@ export class RemarkRehypeProcessor implements MarkdownProcessor {
 	 * @param config Configuration options for the processor
 	 */
 	constructor(config: ProcessorConfig = {}) {
+		// Validate configuration before using it
+		validateProcessorConfig(config);
+		
 		this.config = config;
+		this.sanitizer = new HtmlSanitizer(config.sanitization || DEFAULT_SANITIZATION_CONFIG);
 		this.processor = this.createProcessor();
 	}
 
@@ -45,7 +52,7 @@ export class RemarkRehypeProcessor implements MarkdownProcessor {
 			throw new MarkdownProcessingError(
 				'Failed to process markdown content asynchronously',
 				error as Error,
-				markdownContent.substring(0, 100) + '...'
+				markdownContent.substring(0, 500) + (markdownContent.length > 500 ? '...' : '')
 			);
 		}
 	}
@@ -61,7 +68,7 @@ export class RemarkRehypeProcessor implements MarkdownProcessor {
 			throw new MarkdownProcessingError(
 				'Failed to process markdown content synchronously',
 				error as Error,
-				markdownContent.substring(0, 100) + '...'
+				markdownContent.substring(0, 500) + (markdownContent.length > 500 ? '...' : '')
 			);
 		}
 	}
@@ -97,9 +104,12 @@ export class RemarkRehypeProcessor implements MarkdownProcessor {
 	 * Creates ProcessedContent from unified processing result
 	 */
 	private createProcessedContent(result: any, originalContent: string): ProcessedContent {
-		const html = String(result.value);
+		let html = String(result.value);
 		const frontmatter = (result.data.frontmatter || {}) as Record<string, unknown>;
 		const toc = (result.data.toc || []) as TocNode[];
+
+		// Apply HTML sanitization
+		html = this.sanitizer.sanitize(html);
 
 		const metadata = this.extractMetadata(html, originalContent);
 

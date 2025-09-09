@@ -7,7 +7,7 @@ import { getPost } from './helper';
 export async function request(): Promise<[Post[], Tag[]]> {
 	const contentService = getContentService();
 	const rawEntries = await contentService.getEntries('post');
-	const entries: Post[] = rawEntries.map(getPost).filter(Boolean); // Filter out undefined entries
+	const entries: Post[] = rawEntries.map(getPost).filter((entry): entry is Post => entry != null);
 	const tags: Tag[] = getUniqueTags(entries);
 	return [entries, tags];
 }

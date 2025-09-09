@@ -37,7 +37,7 @@ export function createTocPlugin(config: TocConfig = {}) {
 					return;
 				}
 
-				const value = (node?.children ?? []).reduce((text, child) => text + child.value, '');
+				const value = (node?.children ?? []).reduce((text, child) => text + (child.value || ''), '');
 				const slug = slugger(value);
 				headings.push({ value, depth: node.depth, slug });
 			});
@@ -56,9 +56,9 @@ export function createTocPlugin(config: TocConfig = {}) {
 function buildNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 	if (markdownHeadings.length === 0) return [];
 
-	const headingsCopy = JSON.parse(JSON.stringify(markdownHeadings));
+	// Efficient shallow copy with children initialization
+	const headingsCopy = markdownHeadings.map(heading => ({ ...heading, children: [] }));
 	if (headingsCopy.length === 1) {
-		headingsCopy[0].children = [];
 		return headingsCopy;
 	}
 
@@ -68,8 +68,6 @@ function buildNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 	const stack: TocNode[] = [];
 
 	for (const heading of headingsCopy) {
-		heading.children = [];
-
 		// Remove all headings from stack that are not parents of current heading
 		while (stack.length > 0 && stack[stack.length - 1].depth >= heading.depth) {
 			stack.pop();

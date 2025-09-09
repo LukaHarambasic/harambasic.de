@@ -7,7 +7,7 @@ import { getProject } from './helper';
 export async function request(): Promise<[Project[], Tag[]]> {
 	const contentService = getContentService();
 	const rawEntries = await contentService.getEntries('project');
-	const entries: Project[] = rawEntries.map(getProject).filter(Boolean); // Filter out undefined entries
+	const entries: Project[] = rawEntries.map(getProject).filter((entry): entry is Project => entry != null);
 	const tags: Tag[] = getUniqueTags(entries);
 	return [entries, tags];
 }

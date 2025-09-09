@@ -1,7 +1,7 @@
 import * as fs from 'fs/promises';
 import { join } from 'path';
 import type { EntryType } from '$lib/types/enums';
-import type { RawEntry, RawEntryMeta } from '$lib/types/entry';
+import type { RawEntry } from '$lib/types/entry';
 import { MarkdownProcessor } from '$lib/processors';
 import type { ContentService, ValidationResult } from './ContentService';
 import { ContentServiceError } from './ContentService';
@@ -26,7 +26,9 @@ export class FileSystemContentService implements ContentService {
 		console.time(`Loading ${entryType} entries`);
 		try {
 			const files = await this.readContentFiles(entryType);
-			const entries = await this.processor.processMany(files);
+			const rawEntries = await this.processor.processMany(files);
+			// Flatten the structure to match RawEntry interface
+			const entries = rawEntries.map((entry: any) => this.flattenEntry(entry));
 			console.timeEnd(`Loading ${entryType} entries`);
 			return entries;
 		} catch (error) {
@@ -46,9 +48,9 @@ export class FileSystemContentService implements ContentService {
 	async getEntry(entryType: EntryType, slug: string): Promise<RawEntry | null> {
 		try {
 			const entries = await this.getEntries(entryType);
-			// Find entry by matching slug (derived from title)
+			// Find entry by matching slug (derived from title) - now using flattened structure
 			const entry = entries.find((entry) => {
-				const entrySlug = this.generateSlug(entry.meta.title);
+				const entrySlug = this.generateSlug(entry.title);
 				return entrySlug === slug;
 			});
 			return entry || null;
@@ -69,15 +71,15 @@ export class FileSystemContentService implements ContentService {
 	async getEntryMetadata(
 		entryType: EntryType,
 		slug: string
-	): Promise<Pick<RawEntryMeta, 'title' | 'description' | 'published'> | null> {
+	): Promise<Pick<RawEntry, 'title' | 'description' | 'published'> | null> {
 		try {
 			const entry = await this.getEntry(entryType, slug);
 			if (!entry) return null;
 
 			return {
-				title: entry.meta.title,
-				description: entry.meta.description,
-				published: entry.meta.published
+				title: entry.title,
+				description: entry.description,
+				published: entry.published
 			};
 		} catch (error) {
 			console.error(`Failed to load ${entryType} metadata for slug ${slug}:`, error);
@@ -199,10 +201,11 @@ export class FileSystemContentService implements ContentService {
 			const content = await fs.readFile(filePath, 'utf8');
 
 			// Try to process the file to validate structure
-			const entry = this.processor.process(content);
+			const rawEntry = this.processor.process(content);
+			const entry = this.flattenEntry(rawEntry);
 
 			// Basic validation checks
-			if (!entry.meta.title) {
+			if (!entry.title) {
 				return {
 					entryType,
 					slug: fileName,
@@ -211,7 +214,7 @@ export class FileSystemContentService implements ContentService {
 				};
 			}
 
-			if (!entry.meta.description) {
+			if (!entry.description) {
 				return {
 					entryType,
 					slug: fileName,
@@ -220,7 +223,7 @@ export class FileSystemContentService implements ContentService {
 				};
 			}
 
-			if (!entry.meta.published) {
+			if (!entry.published) {
 				return {
 					entryType,
 					slug: fileName,
@@ -244,5 +247,34 @@ export class FileSystemContentService implements ContentService {
 				details: error instanceof Error ? error.message : String(error)
 			};
 		}
+	}
+
+	/**
+	 * Flatten nested entry structure to match RawEntry interface
+	 */
+	private flattenEntry(entry: any): RawEntry {
+		return {
+			// Content from root level
+			html: entry.html,
+			toc: entry.toc || [],
+			
+			// Frontmatter from meta property (flattened)
+			title: entry.meta?.title || '',
+			description: entry.meta?.description || '',
+			image: entry.meta?.image || '',
+			tags: entry.meta?.tags || [],
+			published: entry.meta?.published || '',
+			updated: entry.meta?.updated || '',
+			
+			// Optional fields from meta
+			url: entry.meta?.url,
+			status: entry.meta?.status,
+			openSource: entry.meta?.openSource,
+			tldr: entry.meta?.tldr,
+			discussion: entry.meta?.discussion,
+			links: entry.meta?.links,
+			prio: entry.meta?.prio,
+			imageAlt: entry.meta?.imageAlt
+		};
 	}
 }
