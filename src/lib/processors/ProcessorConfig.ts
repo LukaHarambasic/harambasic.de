@@ -50,14 +50,6 @@ export interface ProcessorConfig {
 		/** Whether to allow data attributes (default: false) */
 		allowDataAttributes?: boolean;
 	};
-
-	/** Development-specific optimizations */
-	development?: {
-		/** Skip expensive operations in development mode */
-		skipImageProcessing?: boolean;
-		/** Use lighter syntax highlighting */
-		lightSyntaxHighlighting?: boolean;
-	};
 }
 
 /**
@@ -116,197 +108,75 @@ export function validateProcessorConfig(config: ProcessorConfig): void {
 }
 
 /**
- * Factory class for creating processor configurations
+ * Default processor configuration for all environments
+ * Balanced settings suitable for both development and production
  */
-export class ProcessorConfigBuilder {
-	/**
-	 * Creates a configuration optimized for development
-	 * Fast processing with minimal features for development speed
-	 */
-	static development(): ProcessorConfig {
-		return {
-			toc: {
-				maxDepth: 4,
-				minDepth: 1
-			},
-			autolink: {
-				behavior: 'after',
-				properties: {
-					className: ['heading-link'],
-					'aria-label': 'Link to section'
-				}
-			},
-			images: {
-				enhance: false,
-				responsive: false
-			},
-			highlight: {
-				theme: 'github-light'
-			},
-			metadata: {
-				wordCount: true,
-				readingTime: true,
-				wordsPerMinute: 200
-			},
-			sanitization: {
-				enabled: true,
-				allowedTags: [
-					'p',
-					'br',
-					'strong',
-					'em',
-					'code',
-					'pre',
-					'h1',
-					'h2',
-					'h3',
-					'h4',
-					'h5',
-					'h6',
-					'ul',
-					'ol',
-					'li',
-					'a',
-					'blockquote'
-				],
-				allowedAttributes: ['href', 'title', 'alt', 'class', 'id', 'aria-label'],
-				allowDataAttributes: false
-			},
-			development: {
-				skipImageProcessing: true,
-				lightSyntaxHighlighting: true
-			}
-		};
+export const DEFAULT_PROCESSOR_CONFIG: ProcessorConfig = {
+	toc: {
+		maxDepth: 6,
+		minDepth: 1,
+		includeParents: true
+	},
+	autolink: {
+		behavior: 'after',
+		properties: {
+			className: ['heading-link'],
+			'aria-label': 'Link to section'
+		}
+	},
+	images: {
+		enhance: true,
+		responsive: true,
+		quality: 85,
+		formats: ['webp', 'avif', 'jpeg']
+	},
+	highlight: {
+		theme: 'github-light'
+	},
+	metadata: {
+		wordCount: true,
+		readingTime: true,
+		wordsPerMinute: 200
+	},
+	sanitization: {
+		enabled: true,
+		allowedTags: [
+			'p',
+			'br',
+			'strong',
+			'em',
+			'code',
+			'pre',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'ul',
+			'ol',
+			'li',
+			'a',
+			'blockquote',
+			'img',
+			'table',
+			'tr',
+			'td',
+			'th',
+			'thead',
+			'tbody'
+		],
+		allowedAttributes: [
+			'href',
+			'title',
+			'alt',
+			'class',
+			'id',
+			'aria-label',
+			'src',
+			'width',
+			'height'
+		],
+		allowDataAttributes: true
 	}
-
-	/**
-	 * Creates a configuration optimized for production
-	 * Full feature set with all optimizations enabled
-	 */
-	static production(): ProcessorConfig {
-		return {
-			toc: {
-				maxDepth: 6,
-				minDepth: 1,
-				includeParents: true
-			},
-			autolink: {
-				behavior: 'after',
-				properties: {
-					className: ['heading-link'],
-					'aria-label': 'Link to section'
-				}
-			},
-			images: {
-				enhance: true,
-				responsive: true,
-				quality: 85,
-				formats: ['webp', 'avif', 'jpeg']
-			},
-			highlight: {
-				theme: 'github-light'
-			},
-			metadata: {
-				wordCount: true,
-				readingTime: true,
-				wordsPerMinute: 200
-			},
-			sanitization: {
-				enabled: true,
-				allowedTags: [
-					'p',
-					'br',
-					'strong',
-					'em',
-					'code',
-					'pre',
-					'h1',
-					'h2',
-					'h3',
-					'h4',
-					'h5',
-					'h6',
-					'ul',
-					'ol',
-					'li',
-					'a',
-					'blockquote',
-					'img',
-					'table',
-					'tr',
-					'td',
-					'th',
-					'thead',
-					'tbody'
-				],
-				allowedAttributes: [
-					'href',
-					'title',
-					'alt',
-					'class',
-					'id',
-					'aria-label',
-					'src',
-					'width',
-					'height'
-				],
-				allowDataAttributes: true
-			}
-		};
-	}
-
-	/**
-	 * Creates a minimal configuration for testing
-	 * Basic processing without expensive operations
-	 */
-	static testing(): ProcessorConfig {
-		return {
-			toc: {
-				maxDepth: 3,
-				minDepth: 1
-			},
-			autolink: {
-				behavior: 'after'
-			},
-			images: {
-				enhance: false
-			},
-			highlight: {
-				theme: 'github-light'
-			},
-			metadata: {
-				wordCount: true,
-				readingTime: true,
-				wordsPerMinute: 200
-			},
-			sanitization: {
-				enabled: true,
-				allowedTags: ['p', 'br', 'strong', 'em', 'code', 'h1', 'h2', 'h3'],
-				allowedAttributes: ['class', 'id'],
-				allowDataAttributes: false
-			}
-		};
-	}
-
-	/**
-	 * Creates a custom configuration by merging with defaults
-	 *
-	 * @param baseConfig Base configuration to start with
-	 * @param overrides Configuration overrides
-	 * @returns Merged configuration
-	 */
-	static custom(baseConfig: ProcessorConfig, overrides: Partial<ProcessorConfig>): ProcessorConfig {
-		return {
-			...baseConfig,
-			...overrides,
-			// Deep merge nested objects
-			toc: { ...baseConfig.toc, ...overrides.toc },
-			autolink: { ...baseConfig.autolink, ...overrides.autolink },
-			images: { ...baseConfig.images, ...overrides.images },
-			highlight: { ...baseConfig.highlight, ...overrides.highlight },
-			metadata: { ...baseConfig.metadata, ...overrides.metadata },
-			sanitization: { ...baseConfig.sanitization, ...overrides.sanitization },
-			development: { ...baseConfig.development, ...overrides.development }
-		};
-	}
-}
+};

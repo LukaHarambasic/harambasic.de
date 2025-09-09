@@ -1,7 +1,7 @@
 import * as fs from 'fs/promises';
 import type { EntryType } from '$lib/types/enums';
 import { join } from 'path';
-import { RemarkRehypeProcessor, ProcessorConfigBuilder } from '$lib/processors';
+import { RemarkRehypeProcessor, DEFAULT_PROCESSOR_CONFIG } from '$lib/processors';
 import type { RawEntry } from '$lib/types/entry';
 import type { ContentStatus } from '$lib/types/enums';
 
@@ -41,7 +41,7 @@ interface FrontmatterData {
 }
 
 // Create processor instance with production configuration for server-side processing
-const processor = new RemarkRehypeProcessor(ProcessorConfigBuilder.production());
+const processor = new RemarkRehypeProcessor(DEFAULT_PROCESSOR_CONFIG);
 
 export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 	const fileData = await _getFilesWithNames(entryType);

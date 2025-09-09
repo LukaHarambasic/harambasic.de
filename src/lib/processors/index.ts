@@ -5,9 +5,9 @@ export { MarkdownProcessor } from './MarkdownProcessor.js';
 export type { IMarkdownProcessor, ProcessedContent, ContentMetadata } from './MarkdownProcessor';
 export { MarkdownProcessingError } from './MarkdownProcessor';
 
-// Configuration types and builders
+// Configuration types and defaults
 export type { ProcessorConfig } from './ProcessorConfig';
-export { ProcessorConfigBuilder } from './ProcessorConfig';
+export { DEFAULT_PROCESSOR_CONFIG } from './ProcessorConfig';
 
 // Enhanced processor implementation
 export { RemarkRehypeProcessor } from './RemarkRehypeProcessor';
@@ -20,21 +20,14 @@ export type { ImageConfig } from './plugins/ImagePlugin';
 export { createImagePlugin } from './plugins/ImagePlugin';
 
 import { RemarkRehypeProcessor as RRP } from './RemarkRehypeProcessor';
-import { ProcessorConfigBuilder as PCB } from './ProcessorConfig';
+import { DEFAULT_PROCESSOR_CONFIG } from './ProcessorConfig';
 import type { ProcessorConfig as PC } from './ProcessorConfig';
 
 /**
- * Creates a default processor instance for development
+ * Creates a processor instance with default configuration
  */
-export function createDevelopmentProcessor() {
-	return new RRP(PCB.development());
-}
-
-/**
- * Creates a default processor instance for production
- */
-export function createProductionProcessor() {
-	return new RRP(PCB.production());
+export function createDefaultProcessor() {
+	return new RRP(DEFAULT_PROCESSOR_CONFIG);
 }
 
 /**
