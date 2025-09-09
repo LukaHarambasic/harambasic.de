@@ -20,22 +20,21 @@ export function filterAndSort(
 }
 
 export function getProject(entry: RawEntry): Project {
-	const meta = entry.meta;
 	const type: EntryType = 'project';
-	const slug = getSlug(meta.title);
+	const slug = getSlug(entry.title);
 	const relativePath = `/${type}s/${slug}`;
 	return {
 		type,
-		title: meta.title,
-		image: meta.image || '',
-		imageAlt: meta.imageAlt || '',
-		description: meta.description || '',
-		tags: meta.tags.map((tag: string) => getTag(tag, type)) || [],
-		published: getDate(meta.published),
-		updated: getDate(meta.updated),
-		links: meta.links || [],
-		prio: meta.prio || 0,
-		status: meta.status as ProjectStatus,
+		title: entry.title,
+		image: entry.image || '',
+		imageAlt: entry.imageAlt || '',
+		description: entry.description || '',
+		tags: entry.tags.map((tag: string) => getTag(tag, type)) || [],
+		published: getDate(entry.published),
+		updated: getDate(entry.updated),
+		links: entry.links || [],
+		prio: entry.prio || 0,
+		status: entry.status as ProjectStatus,
 		slug,
 		relativePath,
 		fullPath: `https://harambasic.de${relativePath}`,

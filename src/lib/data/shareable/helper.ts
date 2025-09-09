@@ -18,19 +18,18 @@ export function filterAndSort(
 }
 
 export function getShareable(entry: RawEntry): Shareable {
-	const meta = entry.meta;
 	const type: EntryType = 'shareable';
-	const slug = getSlug(meta.title);
+	const slug = getSlug(entry.title);
 	const relativePath = `/${type}s/${slug}`;
 	return {
 		type,
-		title: meta.title,
-		description: meta.description,
+		title: entry.title,
+		description: entry.description,
 		comment: '', // TODO fix mapping
-		tags: meta.tags.map((tag: string) => getTag(tag, type)) || [],
-		published: getDate(meta.published),
-		updated: getDate(meta.updated),
-		url: meta.url || '',
+		tags: entry.tags.map((tag: string) => getTag(tag, type)) || [],
+		published: getDate(entry.published),
+		updated: getDate(entry.updated),
+		url: entry.url || '',
 		slug,
 		relativePath,
 		fullPath: `https://harambasic.de${relativePath}`

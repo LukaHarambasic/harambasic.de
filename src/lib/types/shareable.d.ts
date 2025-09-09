@@ -1,6 +1,6 @@
-import type { Entry } from './entry';
+import type { BaseEntry } from './entry';
 
-export interface Shareable extends Omit<Entry, 'image'> {
+export interface Shareable extends Omit<BaseEntry, 'image'> {
 	url: string;
 	comment: string;
 }

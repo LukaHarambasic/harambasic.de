@@ -1,4 +1,4 @@
-import type { Entry } from './entry';
+import type { BaseEntry } from './entry';
 
 export interface TocNode {
 	depth: number;
@@ -7,7 +7,7 @@ export interface TocNode {
 	children?: TocNode[] | [];
 }
 
-export interface Post extends Entry {
+export interface Post extends BaseEntry {
 	toc: TocNode[];
 	tldr: string;
 	discussion: string;
