@@ -74,10 +74,10 @@ export function processMarkdown(markdownContent: string): RawEntry {
 	try {
 		const output = processor.processSync(markdownContent);
 		const frontmatter = output.data.frontmatter as any;
-		
+
 		return {
 			html: String(output.value),
-			toc: output.data.toc as TocNode[] || [],
+			toc: (output.data.toc as TocNode[]) || [],
 			title: frontmatter?.title || '',
 			description: frontmatter?.description || '',
 			image: frontmatter?.image || '',
@@ -126,10 +126,7 @@ function remarkGenerateNestedToc() {
 	return (tree: Node, file: VFile) => {
 		const headings: { value: string; depth: number; slug: string }[] = [];
 		visit(tree, 'heading', (node: TocNode) => {
-			const value = (node?.children ?? []).reduce(
-				(text, child) => text + (child.value || ''),
-				''
-			);
+			const value = (node?.children ?? []).reduce((text, child) => text + (child.value || ''), '');
 			const slug = slugger(value);
 			headings.push({ value, depth: node.depth, slug });
 		});

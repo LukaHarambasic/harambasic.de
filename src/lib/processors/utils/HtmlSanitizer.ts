@@ -13,7 +13,7 @@ function buildAttributePattern(config: SanitizationConfig): RegExp {
 	const allowedAttrs = config.allowedAttributes.join('|');
 	const dataAttrPattern = config.allowDataAttributes ? '|data-\\w+' : '';
 	return new RegExp(
-		`\\s((?!(${allowedAttrs}${dataAttrPattern})\\b)\\w+)\\s*=\\s*['\"[^'\"]*['\"]`,
+		`\\s((?!(${allowedAttrs}${dataAttrPattern})\\b)\\w+)\\s*=\\s*['"][^'"]*['"]`,
 		'gi'
 	);
 }
@@ -34,7 +34,7 @@ export function sanitizeHtml(html: string, config: SanitizationConfig): string {
 	let sanitized = html;
 
 	sanitized = sanitized.replace(/<script[^>]*>.*?<\/script>/gis, '');
-	sanitized = sanitized.replace(/\s(on\w+)\s*=\s*['\"[^'\"]*[']/gi, '');
+	sanitized = sanitized.replace(/\s(on\w+)\s*=\s*['"][^'"]*[']/gi, '');
 	sanitized = sanitized.replace(/javascript:/gi, '');
 
 	if (config.allowedTags.length > 0) {

@@ -23,10 +23,10 @@ Another paragraph here.`;
 
 		const result = processor.process(markdown);
 
-		expect(result.meta.title).toBe('Test Article');
-		expect(result.meta.description).toBe('A test article');
-		expect(result.meta.published).toBe('2023-01-01');
-		expect(result.meta.tags).toEqual(['test', 'markdown']);
+		expect(result.title).toBe('Test Article');
+		expect(result.description).toBe('A test article');
+		expect(result.published).toBe('2023-01-01');
+		expect(result.tags).toEqual(['test', 'markdown']);
 		expect(result.html).toContain('id="test-heading"');
 		expect(result.html).toContain('Test Heading');
 		expect(result.html).toContain('<strong>bold text</strong>');
@@ -93,7 +93,7 @@ And another paragraph.`;
 
 		const result = processor.process(markdown);
 
-		expect(result.meta.title).toBe('No Headings');
+		expect(result.title).toBe('No Headings');
 		expect(result.toc).toHaveLength(0);
 		expect(result.html).toContain('<p>Just some regular text');
 	});
@@ -164,8 +164,8 @@ published: 2023-01-02
 		const results = await processor.processMany(markdowns);
 
 		expect(results).toHaveLength(2);
-		expect(results[0].meta.title).toBe('First');
-		expect(results[1].meta.title).toBe('Second');
+		expect(results[0].title).toBe('First');
+		expect(results[1].title).toBe('Second');
 		expect(results[0].html).toContain('First Post');
 		expect(results[1].html).toContain('Second Post');
 	});
@@ -179,7 +179,7 @@ published: 2023-01-01
 
 		const result = processor.process(markdown);
 
-		expect(result.meta.title).toBe('Empty');
+		expect(result.title).toBe('Empty');
 		expect(result.html.trim()).toBe('');
 		expect(result.toc).toHaveLength(0);
 	});

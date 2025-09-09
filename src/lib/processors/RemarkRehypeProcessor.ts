@@ -7,7 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 
-import type { ProcessedContent, ContentMetadata } from './MarkdownProcessor';
+import type { ProcessedContent } from './MarkdownProcessor';
 import { MarkdownProcessingError } from './MarkdownProcessor';
 import type { ProcessorConfig } from './ProcessorConfig';
 import { validateProcessorConfig } from './ProcessorConfig';
@@ -38,57 +38,34 @@ const createRemarkRehypeProcessor = (config: ProcessorConfig = {}) => {
 	return processor.use(rehypeStringify).freeze();
 };
 
-function extractMetadata(html: string, originalContent: string, config: ProcessorConfig): ContentMetadata {
-	const metadataConfig = config.metadata || {};
-	const {
-		wordCount: calculateWordCount = true,
-		readingTime: calculateReadingTime = true,
-		wordsPerMinute = 200
-	} = metadataConfig;
-
-	const textContent = html
-		.replace(/<[^>]*>/g, ' ')
-		.replace(/\s+/g, ' ')
-		.trim();
-
-	const wordCount = calculateWordCount
-		? textContent.split(/\s+/).filter((word) => word.length > 0).length
-		: 0;
-
-	const readingTime = calculateReadingTime ? Math.ceil(wordCount / wordsPerMinute) : 0;
-	const characterCount = textContent.length;
-	const headingMatches = originalContent.match(/^#{1,6}\s+/gm) || [];
-	const headingCount = headingMatches.length;
-
-	return {
-		wordCount,
-		readingTime,
-		headingCount,
-		characterCount
-	};
-}
-
-function createProcessedContent(result: any, originalContent: string, config: ProcessorConfig): ProcessedContent {
+function createProcessedContent(
+	result: any,
+	originalContent: string,
+	config: ProcessorConfig
+): ProcessedContent {
 	let html = String(result.value);
 	const frontmatter = (result.data.frontmatter || {}) as Record<string, unknown>;
 	const toc = (result.data.toc || []) as TocNode[];
 
-	html = sanitizeHtml(html, config.sanitization || DEFAULT_SANITIZATION_CONFIG);
-
-	const metadata = extractMetadata(html, originalContent, config);
+	const sanitizationConfig = config.sanitization
+		? { ...DEFAULT_SANITIZATION_CONFIG, ...config.sanitization }
+		: DEFAULT_SANITIZATION_CONFIG;
+	html = sanitizeHtml(html, sanitizationConfig);
 
 	return {
 		html,
 		frontmatter,
-		toc,
-		metadata
+		tableOfContents: toc
 	};
 }
 
 /**
  * Process markdown content asynchronously using remark and rehype
  */
-export async function processRemarkRehype(markdownContent: string, config: ProcessorConfig = {}): Promise<ProcessedContent> {
+export async function processRemarkRehype(
+	markdownContent: string,
+	config: ProcessorConfig = {}
+): Promise<ProcessedContent> {
 	try {
 		const processor = createRemarkRehypeProcessor(config);
 		const result = await processor.process(markdownContent);
@@ -105,7 +82,10 @@ export async function processRemarkRehype(markdownContent: string, config: Proce
 /**
  * Process markdown content synchronously using remark and rehype
  */
-export function processRemarkRehypeSync(markdownContent: string, config: ProcessorConfig = {}): ProcessedContent {
+export function processRemarkRehypeSync(
+	markdownContent: string,
+	config: ProcessorConfig = {}
+): ProcessedContent {
 	try {
 		const processor = createRemarkRehypeProcessor(config);
 		const result = processor.processSync(markdownContent);

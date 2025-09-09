@@ -39,7 +39,6 @@ async function readContentFiles(entryType: EntryType, contentRoot: string): Prom
 	}
 }
 
-
 async function validateSingleFile(
 	entryType: EntryType,
 	fileName: string,
@@ -99,10 +98,13 @@ async function validateSingleFile(
 /**
  * Get all entries of a specific type
  */
-export async function getContentEntries(entryType: EntryType, contentRoot?: string): Promise<RawEntry[]> {
+export async function getContentEntries(
+	entryType: EntryType,
+	contentRoot?: string
+): Promise<RawEntry[]> {
 	const root = contentRoot || join(process.cwd(), 'src', 'content');
 	console.time(`Loading ${entryType} entries`);
-	
+
 	try {
 		const files = await readContentFiles(entryType, root);
 		const entries = await Promise.all(files.map(processMarkdown));
@@ -122,7 +124,11 @@ export async function getContentEntries(entryType: EntryType, contentRoot?: stri
 /**
  * Get single entry by type and slug
  */
-export async function getContentEntry(entryType: EntryType, slug: string, contentRoot?: string): Promise<RawEntry | null> {
+export async function getContentEntry(
+	entryType: EntryType,
+	slug: string,
+	contentRoot?: string
+): Promise<RawEntry | null> {
 	try {
 		const entries = await getContentEntries(entryType, contentRoot);
 		const entry = entries.find((entry) => {
@@ -172,7 +178,10 @@ export async function getContentEntryMetadata(
 /**
  * Validate content structure for a specific entry type
  */
-export async function validateContent(entryType: EntryType, contentRoot?: string): Promise<ValidationResult[]> {
+export async function validateContent(
+	entryType: EntryType,
+	contentRoot?: string
+): Promise<ValidationResult[]> {
 	const root = contentRoot || join(process.cwd(), 'src', 'content');
 	const results: ValidationResult[] = [];
 

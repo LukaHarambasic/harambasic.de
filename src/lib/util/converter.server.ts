@@ -40,7 +40,6 @@ interface FrontmatterData {
 	imageAlt?: string;
 }
 
-
 export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 	const fileData = await _getFilesWithNames(entryType);
 	const entries = await Promise.all(
@@ -134,4 +133,3 @@ export async function _getFilesWithNames(
 		})
 	);
 }
-
