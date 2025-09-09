@@ -98,22 +98,3 @@ export function processRemarkRehypeSync(
 		);
 	}
 }
-
-/**
- * Implementation of MarkdownProcessor using remark and rehype
- */
-export class RemarkRehypeProcessor {
-	private config: ProcessorConfig;
-
-	constructor(config: ProcessorConfig = {}) {
-		this.config = config;
-	}
-
-	async process(markdownContent: string): Promise<ProcessedContent> {
-		return processRemarkRehype(markdownContent, this.config);
-	}
-
-	processSync(markdownContent: string): ProcessedContent {
-		return processRemarkRehypeSync(markdownContent, this.config);
-	}
-}

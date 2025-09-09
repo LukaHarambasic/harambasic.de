@@ -176,17 +176,3 @@ function getNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 		return result;
 	}, []);
 }
-
-/**
- * Processor for converting Markdown content to structured RawEntry format.
- * Handles frontmatter parsing, table of contents generation, and HTML conversion.
- */
-export class MarkdownProcessor {
-	process(markdownContent: string): RawEntry {
-		return processMarkdown(markdownContent);
-	}
-
-	async processMany(markdownContents: string[]): Promise<RawEntry[]> {
-		return processMarkdownBatch(markdownContents);
-	}
-}

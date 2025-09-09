@@ -41,7 +41,7 @@ interface FrontmatterData {
 }
 
 export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
-	const fileData = await _getFilesWithNames(entryType);
+	const fileData = await getFilesWithNames(entryType);
 	const entries = await Promise.all(
 		fileData.map(async ({ fileName, content }): Promise<RawEntry> => {
 			try {
@@ -119,7 +119,7 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 	return entries;
 }
 
-export async function _getFilesWithNames(
+async function getFilesWithNames(
 	entryType: EntryType
 ): Promise<Array<{ fileName: string; content: string }>> {
 	const folderName = entryType === 'uses' ? 'uses' : `${entryType}s`;
