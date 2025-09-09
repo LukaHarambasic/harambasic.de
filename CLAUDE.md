@@ -31,6 +31,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run socialMedia:manual` - Generate social media previews manually
 - `npm run generateCardImages` - Generate card images (requires .env file)
 
+### Git Hooks & Quality Assurance
+
+Git hooks are managed via **Husky** and automatically enforce quality standards.
+
 ## Architecture
 
 ### SvelteKit Static Site
@@ -88,3 +92,106 @@ Centralized type definitions in `src/lib/types/`:
 - Image optimization and processing
 - Prerender error handling for 404s
 - **Deployment**: Netlify via standard integration (automatic builds from Git)
+
+## Quality Standards & Git Hooks (Husky)
+
+### Automated Quality Gate Workflow
+
+This repository uses **Husky** to enforce strict quality standards through automated git hooks that mirror the GitHub Actions workflows. The commit process includes:
+
+#### Commit Workflow:
+
+1. **Pre-commit** (`/.husky/pre-commit`): Runs quality checks and auto-fixes
+2. **Commit-msg** (`/.husky/commit-msg`): Validates commit message format
+3. **Post-commit** (`/.husky/post-commit`): Generates social media previews
+
+### Pre-Commit Quality Gates
+
+**All commits must pass these quality checks locally before being allowed:**
+
+#### Required Quality Checks (runs automatically on each commit):
+
+1. **Code Formatting** (`npm run format`)
+   - Prettier auto-formatting applied to all files
+   - Modified files automatically staged after formatting
+
+2. **Linting with Auto-Fix** (`npm run lint:fix`)
+   - ESLint rules applied with automatic fixes
+   - Modified files automatically staged after linting
+
+3. **Final Lint Verification** (`npm run lint`)
+   - Ensures all linting issues are resolved
+   - Fails if unfixable issues remain
+
+4. **Type Checking** (`npm run check`)
+   - Svelte and TypeScript type validation
+   - Must pass with zero type errors
+
+5. **Unit Tests** (`npm run test`)
+   - All Vitest unit tests must pass
+   - Zero tolerance for failing tests
+
+6. **Build Verification** (`npm run build`)
+   - Production build must complete successfully
+   - Ensures no build-time errors
+
+### Quality Standards Policy
+
+**CRITICAL**: Everything that runs in the GitHub Actions `quality-gate` workflow **MUST** pass locally before commit. This includes:
+
+- All formatting checks (Prettier)
+- All linting rules (ESLint)
+- Type checking (svelte-check)
+- Unit tests (Vitest)
+- Build verification
+
+### Husky Setup
+
+Husky hooks are automatically active in this repository. No additional setup required.
+
+The integrated workflow:
+
+- ✅ **Auto-fixes** formatting and linting issues when possible
+- ✅ **Stages changes** made by auto-fixes automatically
+- ✅ **Prevents commits** that fail any quality check
+- ✅ **Generates social media previews** after successful commits
+- ✅ **Saves CI/CD time** by catching issues locally
+
+### Bypassing Hooks (Emergency Only)
+
+To temporarily bypass hooks (emergencies only):
+
+```bash
+git commit --no-verify -m "emergency: bypass hooks"
+```
+
+**Note**: Bypassed commits will still fail in GitHub Actions if they don't meet quality standards.
+
+### Troubleshooting
+
+#### Common Issues:
+
+1. **Formatting/Linting Failures**: Usually auto-fixed. If not, fix manually and retry commit.
+2. **Type Errors**: Fix TypeScript/Svelte type issues manually.
+3. **Test Failures**: Fix failing tests before committing.
+4. **Build Failures**: Resolve build errors, often related to imports or syntax.
+5. **Social Media Generation**: Post-commit hook automatically generates previews and amends the commit.
+
+#### Manual Quality Check Commands:
+
+Run individual quality checks manually:
+
+```bash
+npm run format      # Fix formatting
+npm run lint:fix    # Fix linting
+npm run lint        # Check linting
+npm run check       # Type checking
+npm run test        # Run tests
+npm run build       # Verify build
+```
+
+#### Husky Hook Files:
+
+- `.husky/pre-commit` - Quality gates
+- `.husky/commit-msg` - Commit message validation (commitlint)
+- `.husky/post-commit` - Social media preview generation
