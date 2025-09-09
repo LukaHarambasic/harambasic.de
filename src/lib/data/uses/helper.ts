@@ -1,7 +1,7 @@
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { EntryType, UsesEntrySortProperty } from '$lib/types/enums';
-import type { UsesEntryStatus } from '$lib/types/enums';
 import { SortDirection } from '$lib/types/enums';
+import type { UsesEntryStatus } from '$lib/types/enums';
 import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
 import type { RawEntry } from '$lib/types/entry';

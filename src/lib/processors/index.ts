@@ -1,12 +1,15 @@
+// Main processor implementation - backward compatibility with main branch
+export { MarkdownProcessor } from './MarkdownProcessor.js';
+
 // Core interfaces and types
-export type { MarkdownProcessor, ProcessedContent, ContentMetadata } from './MarkdownProcessor';
+export type { MarkdownProcessor as ProcessorInterface, ProcessedContent, ContentMetadata } from './MarkdownProcessor';
 export { MarkdownProcessingError } from './MarkdownProcessor';
 
 // Configuration types and builders
 export type { ProcessorConfig } from './ProcessorConfig';
 export { ProcessorConfigBuilder } from './ProcessorConfig';
 
-// Main processor implementation
+// Enhanced processor implementation
 export { RemarkRehypeProcessor } from './RemarkRehypeProcessor';
 
 // Plugin types and factories

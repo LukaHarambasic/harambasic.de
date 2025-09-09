@@ -1,218 +1,186 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { RemarkRehypeProcessor } from './RemarkRehypeProcessor';
-import { ProcessorConfigBuilder } from './ProcessorConfig';
-import type { MarkdownProcessor } from './MarkdownProcessor';
+import { expect, test, describe } from 'vitest';
+import { MarkdownProcessor } from './MarkdownProcessor';
 
-describe('RemarkRehypeProcessor', () => {
-	let processor: MarkdownProcessor;
+describe('MarkdownProcessor', () => {
+	const processor = new MarkdownProcessor();
 
-	beforeEach(() => {
-		processor = new RemarkRehypeProcessor(ProcessorConfigBuilder.testing());
-	});
-
-	describe('Basic Markdown Processing', () => {
-		it('should process simple markdown with frontmatter', () => {
-			const markdown = `---
-title: Test Post
-description: A test post
-image: test.jpg
-tags: [typescript, testing]
-published: 2024-01-01
-updated: 2024-01-01
+	test('should process simple markdown with frontmatter', () => {
+		const markdown = `---
+title: Test Article
+description: A test article
+published: 2023-01-01
+updated: 2023-01-02
+tags: [test, markdown]
 ---
 
-# Hello World
+# Test Heading
 
-This is a test post with **bold** text.`;
+This is a test paragraph with some **bold text** and *italic text*.
 
-			const result = processor.processSync(markdown);
+## Sub Heading
 
-			expect(result.frontmatter.title).toBe('Test Post');
-			expect(result.frontmatter.description).toBe('A test post');
-			expect(result.frontmatter.tags).toEqual(['typescript', 'testing']);
-			expect(result.html).toContain('id="hello-world"');
-			expect(result.html).toContain('Hello World');
-			expect(result.html).toContain('<strong>bold</strong>');
-		});
+Another paragraph here.`;
 
-		it('should handle markdown without frontmatter', () => {
-			const markdown = `# Simple Heading
+		const result = processor.process(markdown);
 
-Just some content.`;
-
-			const result = processor.processSync(markdown);
-
-			expect(result.frontmatter).toEqual({});
-			expect(result.html).toContain('id="simple-heading"');
-			expect(result.html).toContain('Simple Heading');
-		});
+		expect(result.meta.title).toBe('Test Article');
+		expect(result.meta.description).toBe('A test article');
+		expect(result.meta.published).toBe('2023-01-01');
+		expect(result.meta.tags).toEqual(['test', 'markdown']);
+		expect(result.html).toContain('id="test-heading"');
+		expect(result.html).toContain('Test Heading');
+		expect(result.html).toContain('<strong>bold text</strong>');
+		expect(result.html).toContain('<em>italic text</em>');
+		expect(result.toc).toHaveLength(1);
+		expect(result.toc[0].value).toBe('Test Heading');
+		expect(result.toc[0].depth).toBe(1);
+		expect(result.toc[0].children).toHaveLength(1);
+		expect(result.toc[0].children![0].value).toBe('Sub Heading');
 	});
 
-	describe('Table of Contents Generation', () => {
-		it('should generate nested TOC correctly', () => {
-			const markdown = `---
+	test('should generate table of contents correctly', () => {
+		const markdown = `---
 title: TOC Test
-description: Test
-image: test.jpg
-tags: [test]
-published: 2024-01-01
-updated: 2024-01-01
+description: Testing table of contents
+published: 2023-01-01
 ---
 
-# Level 1
-Content for level 1
+# Main Heading
 
-## Level 2A
-Content for level 2A
+Content under main heading.
 
-### Level 3
-Content for level 3
+## Sub Heading 1
 
-## Level 2B
-Content for level 2B`;
+Content under sub heading 1.
 
-			const result = processor.processSync(markdown);
+### Sub Sub Heading 1
 
-			expect(result.toc).toHaveLength(1);
-			expect(result.toc[0].value).toBe('Level 1');
-			expect(result.toc[0].depth).toBe(1);
-			expect(result.toc[0].children).toHaveLength(2);
-			expect(result.toc[0].children![0].value).toBe('Level 2A');
-			expect(result.toc[0].children![0].children).toHaveLength(1);
-			expect(result.toc[0].children![0].children![0].value).toBe('Level 3');
-		});
+Content under sub sub heading 1.
 
-		it('should respect maxDepth configuration', () => {
-			const processorWithLimit = new RemarkRehypeProcessor({
-				toc: { maxDepth: 2 }
-			});
+## Sub Heading 2
 
-			const markdown = `# H1
-## H2
-### H3
-#### H4`;
+Content under sub heading 2.
 
-			const result = processorWithLimit.processSync(markdown);
+# Another Main Heading
 
-			// Should only include H1 and H2
-			expect(result.toc).toHaveLength(1);
-			expect(result.toc[0].children).toHaveLength(1);
-			expect(result.toc[0].children![0].depth).toBe(2);
-		});
+More content.`;
+
+		const result = processor.process(markdown);
+
+		expect(result.toc).toHaveLength(2);
+
+		// First main heading with sub-items
+		expect(result.toc[0].value).toBe('Main Heading');
+		expect(result.toc[0].depth).toBe(1);
+		expect(result.toc[0].children).toHaveLength(1);
+		expect(result.toc[0].children![0].value).toBe('Sub Heading 1');
+
+		// Second main heading
+		expect(result.toc[1].value).toBe('Another Main Heading');
+		expect(result.toc[1].depth).toBe(1);
 	});
 
-	describe('Metadata Extraction', () => {
-		it('should calculate word count and reading time', () => {
-			const markdown = `---
-title: Test
-description: Test
-image: test.jpg
-tags: [test]
-published: 2024-01-01
-updated: 2024-01-01
+	test('should handle markdown without headings', () => {
+		const markdown = `---
+title: No Headings
+description: A document without headings
+published: 2023-01-01
 ---
 
-# Test Article
+Just some regular text without any headings.
 
-This is a test article with multiple words to test the word counting functionality. 
-It should calculate an approximate reading time based on the standard 200 words per minute.
+And another paragraph.`;
 
-Here is more content to increase the word count and make the reading time calculation more meaningful.`;
+		const result = processor.process(markdown);
 
-			const result = processor.processSync(markdown);
-
-			expect(result.metadata.wordCount).toBeGreaterThan(30);
-			expect(result.metadata.readingTime).toBe(1); // Should be 1 minute for ~40 words
-			expect(result.metadata.headingCount).toBe(1);
-			expect(result.metadata.characterCount).toBeGreaterThan(100);
-		});
-
-		it('should count headings correctly', () => {
-			const markdown = `# Heading 1
-## Heading 2
-### Heading 3
-## Another H2
-Text content`;
-
-			const result = processor.processSync(markdown);
-
-			expect(result.metadata.headingCount).toBe(4);
-		});
+		expect(result.meta.title).toBe('No Headings');
+		expect(result.toc).toHaveLength(0);
+		expect(result.html).toContain('<p>Just some regular text');
 	});
 
-	describe('HTML Processing', () => {
-		it('should add IDs to headings', () => {
-			const markdown = `# My Great Heading
-## Another Heading With Spaces`;
+	test('should handle code blocks with syntax highlighting', () => {
+		const markdown = `---
+title: Code Test
+description: Testing code blocks
+published: 2023-01-01
+---
 
-			const result = processor.processSync(markdown);
+Here's some JavaScript:
 
-			expect(result.html).toContain('id="my-great-heading"');
-			expect(result.html).toContain('id="another-heading-with-spaces"');
-		});
+\`\`\`javascript
+function hello(name) {
+  console.log(\`Hello, \${name}!\`);
+}
+\`\`\`
 
-		it('should add autolink to headings', () => {
-			const markdown = `# Test Heading`;
+And some TypeScript:
 
-			const result = processor.processSync(markdown);
-
-			// Should contain a link element
-			expect(result.html).toContain('<a');
-			expect(result.html).toContain('href="#test-heading"');
-		});
-
-		it('should highlight code blocks', () => {
-			const markdown = `\`\`\`javascript
-console.log('Hello, world!');
+\`\`\`typescript
+interface User {
+  id: number;
+  name: string;
+}
 \`\`\``;
 
-			const result = processor.processSync(markdown);
+		const result = processor.process(markdown);
 
-			expect(result.html).toContain('<pre><code class="hljs language-javascript">');
-			expect(result.html).toContain('console');
-			expect(result.html).toContain('log');
-		});
+		expect(result.html).toContain('class="hljs language-javascript"');
+		expect(result.html).toContain('class="hljs language-typescript"');
+		expect(result.html).toContain('title function_">hello');
+		expect(result.html).toContain('title class_">User');
 	});
 
-	describe('Error Handling', () => {
-		it('should handle malformed frontmatter gracefully', () => {
-			const markdown = `---
-title: Test
+	test('should throw error for invalid markdown processing', () => {
+		// This test verifies error handling in the processor
+		// We'll test this with malformed frontmatter that might cause issues
+		const invalidMarkdown = `---
+title: Missing closing
+description: "Unclosed quote
 ---
 
-# Content`;
+# Test`;
 
-			// Should not throw for valid frontmatter
-			expect(() => processor.processSync(markdown)).not.toThrow();
-		});
-
-		it('should handle empty content', () => {
-			const result = processor.processSync('');
-
-			expect(result.html).toBe('');
-			expect(result.frontmatter).toEqual({});
-			expect(result.toc).toEqual([]);
-			expect(result.metadata.wordCount).toBe(0);
-		});
+		expect(() => processor.process(invalidMarkdown)).toThrow();
 	});
 
-	describe('Async Processing', () => {
-		it('should process content asynchronously', async () => {
-			const markdown = `---
-title: Async Test
-description: Test
-image: test.jpg
-tags: [test]
-published: 2024-01-01
-updated: 2024-01-01
+	test('processMany - should process multiple markdown contents', async () => {
+		const markdowns = [
+			`---
+title: First
+description: First post
+published: 2023-01-01
 ---
 
-# Async Processing Test`;
+# First Post`,
+			`---
+title: Second
+description: Second post
+published: 2023-01-02
+---
 
-			const result = await processor.process(markdown);
+# Second Post`
+		];
 
-			expect(result.frontmatter.title).toBe('Async Test');
-			expect(result.html).toContain('<h1 id="async-processing-test">');
-		});
+		const results = await processor.processMany(markdowns);
+
+		expect(results).toHaveLength(2);
+		expect(results[0].meta.title).toBe('First');
+		expect(results[1].meta.title).toBe('Second');
+		expect(results[0].html).toContain('First Post');
+		expect(results[1].html).toContain('Second Post');
+	});
+
+	test('should handle empty markdown gracefully', () => {
+		const markdown = `---
+title: Empty
+description: Empty content
+published: 2023-01-01
+---`;
+
+		const result = processor.process(markdown);
+
+		expect(result.meta.title).toBe('Empty');
+		expect(result.html.trim()).toBe('');
+		expect(result.toc).toHaveLength(0);
 	});
 });
