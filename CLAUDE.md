@@ -33,7 +33,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Git Hooks & Quality Assurance
 
-- `npm run install-hooks` - Install/update git hooks for automatic quality checks
+Git hooks are managed via **Husky** and automatically enforce quality standards.
 
 ## Architecture
 
@@ -93,11 +93,21 @@ Centralized type definitions in `src/lib/types/`:
 - Prerender error handling for 404s
 - **Deployment**: Netlify via standard integration (automatic builds from Git)
 
-## Quality Standards & Git Hooks
+## Quality Standards & Git Hooks (Husky)
+
+### Automated Quality Gate Workflow
+
+This repository uses **Husky** to enforce strict quality standards through automated git hooks that mirror the GitHub Actions workflows. The commit process includes:
+
+#### Commit Workflow:
+
+1. **Pre-commit** (`/.husky/pre-commit`): Runs quality checks and auto-fixes
+2. **Commit-msg** (`/.husky/commit-msg`): Validates commit message format
+3. **Post-commit** (`/.husky/post-commit`): Generates social media previews
 
 ### Pre-Commit Quality Gates
 
-This repository enforces strict quality standards through automated git hooks that mirror the GitHub Actions workflows. **All commits must pass these quality checks locally before being allowed:**
+**All commits must pass these quality checks locally before being allowed:**
 
 #### Required Quality Checks (runs automatically on each commit):
 
@@ -125,19 +135,6 @@ This repository enforces strict quality standards through automated git hooks th
    - Production build must complete successfully
    - Ensures no build-time errors
 
-### Git Hook Setup
-
-Install the pre-commit hook:
-```bash
-npm run install-hooks
-```
-
-The hook will:
-- ✅ **Auto-fix** formatting and linting issues when possible
-- ✅ **Stage changes** made by auto-fixes automatically
-- ✅ **Prevent commits** that fail any quality check
-- ✅ **Save CI/CD time** by catching issues locally
-
 ### Quality Standards Policy
 
 **CRITICAL**: Everything that runs in the GitHub Actions `quality-gate` workflow **MUST** pass locally before commit. This includes:
@@ -148,11 +145,24 @@ The hook will:
 - Unit tests (Vitest)
 - Build verification
 
+### Husky Setup
+
+Husky hooks are automatically active in this repository. No additional setup required.
+
+The integrated workflow:
+
+- ✅ **Auto-fixes** formatting and linting issues when possible
+- ✅ **Stages changes** made by auto-fixes automatically
+- ✅ **Prevents commits** that fail any quality check
+- ✅ **Generates social media previews** after successful commits
+- ✅ **Saves CI/CD time** by catching issues locally
+
 ### Bypassing Hooks (Emergency Only)
 
-To temporarily bypass the pre-commit hook (emergencies only):
+To temporarily bypass hooks (emergencies only):
+
 ```bash
-git commit --no-verify -m "emergency: bypass hook"
+git commit --no-verify -m "emergency: bypass hooks"
 ```
 
 **Note**: Bypassed commits will still fail in GitHub Actions if they don't meet quality standards.
@@ -165,10 +175,12 @@ git commit --no-verify -m "emergency: bypass hook"
 2. **Type Errors**: Fix TypeScript/Svelte type issues manually.
 3. **Test Failures**: Fix failing tests before committing.
 4. **Build Failures**: Resolve build errors, often related to imports or syntax.
+5. **Social Media Generation**: Post-commit hook automatically generates previews and amends the commit.
 
 #### Manual Quality Check Commands:
 
 Run individual quality checks manually:
+
 ```bash
 npm run format      # Fix formatting
 npm run lint:fix    # Fix linting
@@ -178,8 +190,8 @@ npm run test        # Run tests
 npm run build       # Verify build
 ```
 
-#### Hook Management:
+#### Husky Hook Files:
 
-```bash
-npm run install-hooks    # Install/reinstall hooks
-```
+- `.husky/pre-commit` - Quality gates
+- `.husky/commit-msg` - Commit message validation (commitlint)
+- `.husky/post-commit` - Social media preview generation

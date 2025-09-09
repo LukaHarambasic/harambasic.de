@@ -16,8 +16,7 @@
 		"socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
 		"socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
 		"newPost": "node scripts/generate-post/index.js",
-		"generateCardImages": "node --env-file=.env scripts/generate-card-images/index.js",
-		"install-hooks": "node scripts/install-hooks.js"
+		"generateCardImages": "node --env-file=.env scripts/generate-card-images/index.js"
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "^19.8.1",

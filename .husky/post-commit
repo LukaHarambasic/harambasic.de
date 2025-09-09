@@ -1,5 +1,4 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
 
 # https://stackoverflow.com/questions/3284292/can-a-git-hook-automatically-add-files-to-the-commit
 if [ -e .commit ]
