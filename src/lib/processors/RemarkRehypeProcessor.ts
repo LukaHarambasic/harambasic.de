@@ -8,7 +8,7 @@ import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 
 import type { ProcessedContent } from './MarkdownProcessor';
-import { MarkdownProcessingError } from './MarkdownProcessor';
+import { createMarkdownProcessingError } from './MarkdownProcessor';
 import type { ProcessorConfig } from './ProcessorConfig';
 import { validateProcessorConfig } from './ProcessorConfig';
 import { createTocPlugin } from './plugins/TocPlugin';
@@ -71,7 +71,7 @@ export async function processRemarkRehype(
 		const result = await processor.process(markdownContent);
 		return createProcessedContent(result, markdownContent, config);
 	} catch (error) {
-		throw new MarkdownProcessingError(
+		throw createMarkdownProcessingError(
 			'Failed to process markdown content asynchronously',
 			error as Error,
 			markdownContent.substring(0, 500) + (markdownContent.length > 500 ? '...' : '')
@@ -91,7 +91,7 @@ export function processRemarkRehypeSync(
 		const result = processor.processSync(markdownContent);
 		return createProcessedContent(result, markdownContent, config);
 	} catch (error) {
-		throw new MarkdownProcessingError(
+		throw createMarkdownProcessingError(
 			'Failed to process markdown content synchronously',
 			error as Error,
 			markdownContent.substring(0, 500) + (markdownContent.length > 500 ? '...' : '')

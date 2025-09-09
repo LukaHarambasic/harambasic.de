@@ -38,17 +38,22 @@ export type ContentMetadata = {
 };
 
 /**
- * Error thrown during markdown processing
+ * Creates a markdown processing error with additional context
  */
-export class MarkdownProcessingError extends Error {
-	constructor(
-		message: string,
-		public readonly cause?: Error,
-		public readonly content?: string
-	) {
-		super(message);
-		this.name = 'MarkdownProcessingError';
+export function createMarkdownProcessingError(
+	message: string,
+	cause?: Error,
+	content?: string
+): Error {
+	const error = new Error(message);
+	error.name = 'MarkdownProcessingError';
+	if (cause) {
+		(error as any).cause = cause;
 	}
+	if (content) {
+		(error as any).content = content;
+	}
+	return error;
 }
 
 const createRemarkProcessor = () => {
@@ -94,7 +99,7 @@ export function processMarkdown(markdownContent: string): RawEntry {
 			imageAlt: frontmatter?.imageAlt
 		};
 	} catch (error) {
-		throw new MarkdownProcessingError(
+		throw createMarkdownProcessingError(
 			`Failed to process markdown content: ${error instanceof Error ? error.message : String(error)}`,
 			error instanceof Error ? error : undefined,
 			markdownContent
