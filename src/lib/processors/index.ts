@@ -2,7 +2,7 @@
 export { MarkdownProcessor } from './MarkdownProcessor.js';
 
 // Core interfaces and types
-export type { MarkdownProcessor as ProcessorInterface, ProcessedContent, ContentMetadata } from './MarkdownProcessor';
+export type { IMarkdownProcessor, ProcessedContent, ContentMetadata } from './MarkdownProcessor';
 export { MarkdownProcessingError } from './MarkdownProcessor';
 
 // Configuration types and builders

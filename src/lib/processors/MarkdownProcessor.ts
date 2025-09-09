@@ -40,7 +40,7 @@ export interface ContentMetadata {
 /**
  * Core interface for markdown processing
  */
-export interface MarkdownProcessor {
+export interface IMarkdownProcessor {
 	/**
 	 * Process markdown content and return structured result
 	 * @param content - The markdown content to process
@@ -75,7 +75,7 @@ export class MarkdownProcessingError extends Error {
  * Handles frontmatter parsing, table of contents generation, and HTML conversion.
  * This is the main implementation that maintains backward compatibility.
  */
-export class MarkdownProcessor implements MarkdownProcessor {
+export class MarkdownProcessor implements IMarkdownProcessor {
 	private processor;
 
 	constructor() {
