@@ -42,10 +42,10 @@ export interface EntryDate {
 
 /**
  * Base processed entry interface that serves as the foundation for all content types.
- * 
+ *
  * This interface represents the core structure after raw content has been processed,
  * with computed fields like slug and paths, and transformed data like parsed dates and tags.
- * 
+ *
  * @interface BaseEntry
  * @property {EntryType} type - The type of content (post, project, uses, shareable)
  * @property {string} slug - URL-friendly version of the title

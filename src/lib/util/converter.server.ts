@@ -18,12 +18,12 @@ import type { RawEntry, ContentStatus } from '$lib/types/entry';
 
 /**
  * Interface for frontmatter data extracted from markdown files.
- * 
+ *
  * Required fields:
  * - title, description, image: Basic content metadata
  * - tags: Array of tag strings for categorization
  * - published, updated: ISO date strings for content lifecycle
- * 
+ *
  * Optional fields:
  * - status: Content status (draft, active, etc.)
  * - url: External link for the content
@@ -70,15 +70,22 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 		files.map(async (file): Promise<RawEntry> => {
 			const output = processor.processSync(file);
 			const frontmatter = output.data.frontmatter as FrontmatterData;
-			
+
 			// Validate required fields
 			if (!frontmatter) {
 				throw new Error(`Missing frontmatter in ${entryType} entry`);
 			}
-			if (!frontmatter.title || !frontmatter.description || !frontmatter.published || !frontmatter.updated) {
-				throw new Error(`Missing required frontmatter fields in ${entryType} entry: ${frontmatter.title || 'untitled'}`);
+			if (
+				!frontmatter.title ||
+				!frontmatter.description ||
+				!frontmatter.published ||
+				!frontmatter.updated
+			) {
+				throw new Error(
+					`Missing required frontmatter fields in ${entryType} entry: ${frontmatter.title || 'untitled'}`
+				);
 			}
-			
+
 			return {
 				html: String(output.value),
 				toc: output.data.toc as TocNode[],
