@@ -26,6 +26,17 @@ export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
 
 export function getDate(rawString: string): EntryDate {
 	const raw = new Date(rawString);
+	
+	// Check if the date is valid
+	if (isNaN(raw.getTime())) {
+		console.warn(`Invalid date format: "${rawString}". Using current date as fallback.`);
+		const fallback = new Date();
+		return {
+			raw: fallback,
+			display: formatDate(fallback)
+		};
+	}
+	
 	return {
 		raw,
 		display: formatDate(raw)

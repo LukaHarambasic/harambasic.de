@@ -65,6 +65,15 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 				);
 			}
 
+			// Validate date formats
+			const publishedDate = new Date(frontmatter.published);
+			const updatedDate = new Date(frontmatter.updated);
+			if (isNaN(publishedDate.getTime()) || isNaN(updatedDate.getTime())) {
+				console.warn(
+					`Invalid date format in ${entryType} entry "${frontmatter.title}": published="${frontmatter.published}", updated="${frontmatter.updated}"`
+				);
+			}
+
 			return {
 				html: output.html,
 				toc: output.toc || [], // Ensure toc is always an array
