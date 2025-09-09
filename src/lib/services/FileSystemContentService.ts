@@ -257,7 +257,7 @@ export class FileSystemContentService implements ContentService {
 			// Content from root level
 			html: entry.html,
 			toc: entry.toc || [],
-			
+
 			// Frontmatter from meta property (flattened)
 			title: entry.meta?.title || '',
 			description: entry.meta?.description || '',
@@ -265,7 +265,7 @@ export class FileSystemContentService implements ContentService {
 			tags: entry.meta?.tags || [],
 			published: entry.meta?.published || '',
 			updated: entry.meta?.updated || '',
-			
+
 			// Optional fields from meta
 			url: entry.meta?.url,
 			status: entry.meta?.status,

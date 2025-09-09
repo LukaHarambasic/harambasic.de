@@ -1,6 +1,6 @@
 /**
  * Simple HTML sanitizer for markdown-generated content
- * 
+ *
  * This is a lightweight sanitizer designed specifically for markdown-generated HTML
  * in a static site generator context. For user-generated content, consider using
  * a more comprehensive library like DOMPurify.
@@ -35,15 +35,15 @@ export class HtmlSanitizer {
 		// Simple tag and attribute sanitization using regex
 		// Note: This is a basic implementation suitable for markdown-generated HTML
 		// For more complex scenarios, consider using a proper HTML parser
-		
+
 		let sanitized = html;
 
 		// Remove script tags completely (security critical)
 		sanitized = sanitized.replace(/<script[^>]*>.*?<\/script>/gis, '');
-		
+
 		// Remove on* event handlers (security critical)
 		sanitized = sanitized.replace(/\s(on\w+)\s*=\s*['"[^'"]*[']/gi, '');
-		
+
 		// Remove javascript: URLs (security critical)
 		sanitized = sanitized.replace(/javascript:/gi, '');
 
@@ -71,7 +71,10 @@ export class HtmlSanitizer {
 	private buildAttributePattern(): RegExp {
 		const allowedAttrs = this.config.allowedAttributes.join('|');
 		const dataAttrPattern = this.config.allowDataAttributes ? '|data-\\w+' : '';
-		return new RegExp(`\\s((?!(${allowedAttrs}${dataAttrPattern})\\b)\\w+)\\s*=\\s*['"[^'"]*['"]`, 'gi');
+		return new RegExp(
+			`\\s((?!(${allowedAttrs}${dataAttrPattern})\\b)\\w+)\\s*=\\s*['"[^'"]*['"]`,
+			'gi'
+		);
 	}
 
 	/**
@@ -89,13 +92,30 @@ export class HtmlSanitizer {
 export const DEFAULT_SANITIZATION_CONFIG: SanitizationConfig = {
 	enabled: true,
 	allowedTags: [
-		'p', 'br', 'strong', 'em', 'code', 'pre', 
-		'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-		'ul', 'ol', 'li', 'a', 'blockquote',
-		'table', 'tr', 'td', 'th', 'thead', 'tbody'
+		'p',
+		'br',
+		'strong',
+		'em',
+		'code',
+		'pre',
+		'h1',
+		'h2',
+		'h3',
+		'h4',
+		'h5',
+		'h6',
+		'ul',
+		'ol',
+		'li',
+		'a',
+		'blockquote',
+		'table',
+		'tr',
+		'td',
+		'th',
+		'thead',
+		'tbody'
 	],
-	allowedAttributes: [
-		'href', 'title', 'alt', 'class', 'id', 'aria-label'
-	],
+	allowedAttributes: ['href', 'title', 'alt', 'class', 'id', 'aria-label'],
 	allowDataAttributes: false
 };

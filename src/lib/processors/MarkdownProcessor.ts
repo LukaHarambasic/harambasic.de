@@ -123,7 +123,7 @@ export class MarkdownProcessor implements IMarkdownProcessor {
 		// Process in parallel using Promise.all with chunking for memory efficiency
 		const CHUNK_SIZE = 10; // Process in chunks to avoid memory issues
 		const results: RawEntry[] = [];
-		
+
 		for (let i = 0; i < markdownContents.length; i += CHUNK_SIZE) {
 			const chunk = markdownContents.slice(i, i + CHUNK_SIZE);
 			const chunkResults = await Promise.all(
@@ -134,7 +134,7 @@ export class MarkdownProcessor implements IMarkdownProcessor {
 			);
 			results.push(...chunkResults);
 		}
-		
+
 		return results;
 	}
 
@@ -145,7 +145,10 @@ export class MarkdownProcessor implements IMarkdownProcessor {
 		return (tree: Node, file: VFile) => {
 			const headings: { value: string; depth: number; slug: string }[] = [];
 			visit(tree, 'heading', (node: TocNode) => {
-				const value = (node?.children ?? []).reduce((text, child) => text + (child.value || ''), '');
+				const value = (node?.children ?? []).reduce(
+					(text, child) => text + (child.value || ''),
+					''
+				);
 				const slug = slugger(value);
 				headings.push({ value, depth: node.depth, slug });
 			});
@@ -171,7 +174,7 @@ export class MarkdownProcessor implements IMarkdownProcessor {
 		let latestEntry: TocNode | null;
 		let latestParent: TocNode | null;
 		// Efficient shallow copy with children initialization
-		const markdownHeadingCopy = markdownHeadings.map(heading => ({ ...heading, children: [] }));
+		const markdownHeadingCopy = markdownHeadings.map((heading) => ({ ...heading, children: [] }));
 
 		if (markdownHeadingCopy.length <= 1) return markdownHeadingCopy;
 

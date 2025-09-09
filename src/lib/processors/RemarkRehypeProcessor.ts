@@ -35,7 +35,7 @@ export class RemarkRehypeProcessor implements MarkdownProcessor {
 	constructor(config: ProcessorConfig = {}) {
 		// Validate configuration before using it
 		validateProcessorConfig(config);
-		
+
 		this.config = config;
 		this.sanitizer = new HtmlSanitizer(config.sanitization || DEFAULT_SANITIZATION_CONFIG);
 		this.processor = this.createProcessor();

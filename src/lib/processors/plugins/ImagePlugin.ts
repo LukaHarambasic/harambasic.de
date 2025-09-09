@@ -75,12 +75,12 @@ function enhanceImageElement(
 
 	// Image enhancement implementation
 	// Note: Full enhancement requires build-time processing integration
-	
+
 	// Add loading="lazy" for performance
 	if (!node.properties.loading) {
 		node.properties.loading = 'lazy';
 	}
-	
+
 	// Add decoding="async" for better performance
 	if (!node.properties.decoding) {
 		node.properties.decoding = 'async';
@@ -91,13 +91,13 @@ function enhanceImageElement(
 		if (!node.properties.sizes) {
 			node.properties.sizes = sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
 		}
-		
+
 		// Add quality parameter if specified
 		if (quality && quality !== 80) {
 			const separator = src.includes('?') ? '&' : '?';
 			node.properties.src = `${src}${separator}q=${quality}`;
 		}
-		
+
 		// Prepare for future enhanced:img integration
 		// This sets up the groundwork for when build-time image processing is available
 		// node.tagName = 'enhanced:img';

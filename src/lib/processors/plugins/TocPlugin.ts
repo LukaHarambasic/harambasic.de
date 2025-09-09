@@ -37,7 +37,10 @@ export function createTocPlugin(config: TocConfig = {}) {
 					return;
 				}
 
-				const value = (node?.children ?? []).reduce((text, child) => text + (child.value || ''), '');
+				const value = (node?.children ?? []).reduce(
+					(text, child) => text + (child.value || ''),
+					''
+				);
 				const slug = slugger(value);
 				headings.push({ value, depth: node.depth, slug });
 			});
@@ -57,7 +60,7 @@ function buildNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 	if (markdownHeadings.length === 0) return [];
 
 	// Efficient shallow copy with children initialization
-	const headingsCopy = markdownHeadings.map(heading => ({ ...heading, children: [] }));
+	const headingsCopy = markdownHeadings.map((heading) => ({ ...heading, children: [] }));
 	if (headingsCopy.length === 1) {
 		return headingsCopy;
 	}

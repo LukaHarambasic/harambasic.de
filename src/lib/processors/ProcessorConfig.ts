@@ -71,7 +71,9 @@ export function validateProcessorConfig(config: ProcessorConfig): void {
 		const { maxDepth, minDepth } = config.toc;
 		if (maxDepth !== undefined && minDepth !== undefined) {
 			if (maxDepth < minDepth) {
-				throw new Error(`TOC maxDepth (${maxDepth}) must be greater than or equal to minDepth (${minDepth})`);
+				throw new Error(
+					`TOC maxDepth (${maxDepth}) must be greater than or equal to minDepth (${minDepth})`
+				);
 			}
 			if (minDepth < 1 || minDepth > 6) {
 				throw new Error(`TOC minDepth must be between 1 and 6, got ${minDepth}`);
@@ -104,10 +106,10 @@ export function validateProcessorConfig(config: ProcessorConfig): void {
 	// Validate sanitization configuration
 	if (config.sanitization) {
 		const { allowedTags, allowedAttributes } = config.sanitization;
-		if (allowedTags && allowedTags.some(tag => !tag.trim())) {
+		if (allowedTags && allowedTags.some((tag) => !tag.trim())) {
 			throw new Error('Allowed tags cannot contain empty or whitespace-only strings');
 		}
-		if (allowedAttributes && allowedAttributes.some(attr => !attr.trim())) {
+		if (allowedAttributes && allowedAttributes.some((attr) => !attr.trim())) {
 			throw new Error('Allowed attributes cannot contain empty or whitespace-only strings');
 		}
 	}
@@ -148,7 +150,25 @@ export class ProcessorConfigBuilder {
 			},
 			sanitization: {
 				enabled: true,
-				allowedTags: ['p', 'br', 'strong', 'em', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'a', 'blockquote'],
+				allowedTags: [
+					'p',
+					'br',
+					'strong',
+					'em',
+					'code',
+					'pre',
+					'h1',
+					'h2',
+					'h3',
+					'h4',
+					'h5',
+					'h6',
+					'ul',
+					'ol',
+					'li',
+					'a',
+					'blockquote'
+				],
 				allowedAttributes: ['href', 'title', 'alt', 'class', 'id', 'aria-label'],
 				allowDataAttributes: false
 			},
@@ -193,8 +213,43 @@ export class ProcessorConfigBuilder {
 			},
 			sanitization: {
 				enabled: true,
-				allowedTags: ['p', 'br', 'strong', 'em', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'a', 'blockquote', 'img', 'table', 'tr', 'td', 'th', 'thead', 'tbody'],
-				allowedAttributes: ['href', 'title', 'alt', 'class', 'id', 'aria-label', 'src', 'width', 'height'],
+				allowedTags: [
+					'p',
+					'br',
+					'strong',
+					'em',
+					'code',
+					'pre',
+					'h1',
+					'h2',
+					'h3',
+					'h4',
+					'h5',
+					'h6',
+					'ul',
+					'ol',
+					'li',
+					'a',
+					'blockquote',
+					'img',
+					'table',
+					'tr',
+					'td',
+					'th',
+					'thead',
+					'tbody'
+				],
+				allowedAttributes: [
+					'href',
+					'title',
+					'alt',
+					'class',
+					'id',
+					'aria-label',
+					'src',
+					'width',
+					'height'
+				],
 				allowDataAttributes: true
 			}
 		};
