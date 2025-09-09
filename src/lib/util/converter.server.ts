@@ -79,7 +79,9 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 				toc: output.toc || [], // Ensure toc is always an array
 				// Flatten frontmatter fields directly into the object
 				...frontmatter,
-				// Ensure tags is always an array
+				// Ensure required fields have default values
+				published: frontmatter.published || new Date().toISOString(),
+				updated: frontmatter.updated || new Date().toISOString(),
 				tags: frontmatter.tags || []
 			};
 		})
