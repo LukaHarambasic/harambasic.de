@@ -10,13 +10,8 @@ import type { Tag } from './tag';
 import type { Link } from './generic';
 import type { TocNode } from './post';
 
-// Flattened raw entry structure - no nested meta
-export interface RawEntry {
-	// Content
-	html: string;
-	toc: TocNode[];
-
-	// Frontmatter (flattened, no nested meta)
+// Raw entry metadata structure
+export interface RawEntryMeta {
 	title: string;
 	description: string;
 	image: string;
@@ -33,6 +28,16 @@ export interface RawEntry {
 	links?: Link[];
 	prio?: number;
 	imageAlt?: string;
+}
+
+// Raw entry structure with nested metadata
+export interface RawEntry {
+	// Content
+	html: string;
+	toc: TocNode[];
+
+	// Frontmatter metadata
+	meta: RawEntryMeta;
 }
 
 export interface EntryDate {

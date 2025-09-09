@@ -2,15 +2,14 @@
 
 /**
  * Cache Statistics Script
- * 
+ *
  * Displays information about the content cache including:
  * - Cache size and entry count
- * - Hit/miss statistics 
+ * - Hit/miss statistics
  * - Cache health and performance metrics
  */
 
 import * as fs from 'fs/promises';
-import * as path from 'path';
 
 const CACHE_FILE = '.cache/content/content-cache.json';
 
@@ -47,8 +46,8 @@ async function getCacheStats() {
 		// Entry breakdown by type
 		const entries = cacheData.entries || {};
 		const entryTypes = {};
-		
-		for (const [key, entry] of Object.entries(entries)) {
+
+		for (const [, entry] of Object.entries(entries)) {
 			const type = entry.entryType;
 			if (!entryTypes[type]) {
 				entryTypes[type] = [];
@@ -72,20 +71,21 @@ async function getCacheStats() {
 		for (const entry of Object.values(entries)) {
 			const cacheTime = new Date(entry.cacheTime);
 			const age = now.getTime() - cacheTime.getTime();
-			
+
 			if (age > maxAge) {
 				expiredCount++;
-			} else if (age < 1000 * 60 * 15) { // 15 minutes
+			} else if (age < 1000 * 60 * 15) {
+				// 15 minutes
 				recentCount++;
 			}
 		}
 
 		console.log(`   ✅ Fresh entries (< 15 min): ${recentCount}`);
 		console.log(`   ⚠️  Expired entries (> 1 hour): ${expiredCount}`);
-		
+
 		const totalEntries = Object.keys(entries).length;
 		if (totalEntries > 0) {
-			const healthPercent = ((totalEntries - expiredCount) / totalEntries * 100).toFixed(1);
+			const healthPercent = (((totalEntries - expiredCount) / totalEntries) * 100).toFixed(1);
 			console.log(`   💚 Cache health: ${healthPercent}%`);
 		}
 		console.log('');
@@ -94,7 +94,9 @@ async function getCacheStats() {
 		const fileSizeStats = await fs.stat(CACHE_FILE);
 		console.log('💾 Storage Information:');
 		console.log(`   Cache file size: ${formatBytes(fileSizeStats.size)}`);
-		console.log(`   Average entry size: ${formatBytes(fileSizeStats.size / Math.max(totalEntries, 1))}`);
+		console.log(
+			`   Average entry size: ${formatBytes(fileSizeStats.size / Math.max(totalEntries, 1))}`
+		);
 		console.log('');
 
 		// Recent entries
@@ -116,7 +118,6 @@ async function getCacheStats() {
 		console.log('🔧 Cache Management:');
 		console.log('   npm run cache:clear  - Clear all cached content');
 		console.log('   npm run cache:stats  - Show this statistics report');
-
 	} catch (error) {
 		console.error('❌ Error reading cache statistics:', error.message);
 	}

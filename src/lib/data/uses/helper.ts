@@ -22,25 +22,30 @@ export function filterAndSort(
 
 export function getUsesEntry(entry: RawEntry): UsesEntry {
 	const type: EntryType = 'uses';
-	const slug = getSlug(entry.title);
+	const slug = getSlug(entry.meta.title);
 	const relativePath = `/uses/${slug}`;
 
 	// Validate required fields
-	if (!entry.title || !entry.description || !entry.published || !entry.updated) {
-		throw new Error(`Missing required fields in uses entry: ${entry.title || 'untitled'}`);
+	if (
+		!entry.meta.title ||
+		!entry.meta.description ||
+		!entry.meta.published ||
+		!entry.meta.updated
+	) {
+		throw new Error(`Missing required fields in uses entry: ${entry.meta.title || 'untitled'}`);
 	}
 
 	return {
 		type,
-		title: entry.title,
-		description: entry.description,
-		image: entry.image || '',
-		tags: entry.tags?.map((tag: string) => getTag(tag, type)) || [],
-		published: getDate(entry.published),
-		updated: getDate(entry.updated),
-		url: entry.url || '',
-		status: (entry.status as UsesEntryStatus) || 'active',
-		openSource: entry.openSource || false,
+		title: entry.meta.title,
+		description: entry.meta.description,
+		image: entry.meta.image || '',
+		tags: entry.meta.tags?.map((tag: string) => getTag(tag, type)) || [],
+		published: getDate(entry.meta.published),
+		updated: getDate(entry.meta.updated),
+		url: entry.meta.url || '',
+		status: (entry.meta.status as UsesEntryStatus) || 'active',
+		openSource: entry.meta.openSource || false,
 		slug,
 		relativePath,
 		fullPath: `https://harambasic.de${relativePath}`

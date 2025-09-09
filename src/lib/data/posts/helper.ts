@@ -32,18 +32,18 @@ export function sortByProperty(a: Post, b: Post, property: PostSortProperty): nu
 
 export function getPost(entry: RawEntry): Post {
 	const type: EntryType = 'post';
-	const slug = getSlug(entry.title);
+	const slug = getSlug(entry.meta.title);
 	const relativePath = `/${type}s/${slug}`;
 	return {
 		type,
-		title: entry.title,
-		description: entry.description,
-		image: entry.image || '',
-		tags: entry.tags.map((tag: string) => getTag(tag, type)) || [],
-		published: getDate(entry.published),
-		updated: getDate(entry.updated),
-		tldr: entry.tldr || '',
-		discussion: entry.discussion || '',
+		title: entry.meta.title,
+		description: entry.meta.description,
+		image: entry.meta.image || '',
+		tags: entry.meta.tags.map((tag: string) => getTag(tag, type)) || [],
+		published: getDate(entry.meta.published),
+		updated: getDate(entry.meta.updated),
+		tldr: entry.meta.tldr || '',
+		discussion: entry.meta.discussion || '',
 		toc: entry.toc,
 		slug,
 		relativePath,

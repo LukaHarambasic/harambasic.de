@@ -1,12 +1,13 @@
 import { getProject, sortByProperty } from '$lib/data/projects/helper';
 import type { Project } from '$lib/types/project';
-import { getRawEntries } from '$lib/util/cachedConverter.server';
+import { getContentService } from '$lib/services';
 import { generateXml, options } from '$lib/util/rss.server';
 
 export const prerender = true;
 
 export async function GET() {
-	const rawEntries = await getRawEntries('project');
+	const contentService = getContentService();
+	const rawEntries = await contentService.getEntries('project');
 	const entries: Project[] = rawEntries
 		.map(getProject)
 		.sort((a, b) => sortByProperty(a, b, 'published'));

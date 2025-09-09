@@ -89,8 +89,8 @@ export async function getRawEntries(entryType: EntryType): Promise<RawEntry[]> {
 			return {
 				html: String(output.value),
 				toc: output.data.toc as TocNode[],
-				// Flatten frontmatter fields directly into the object
-				...frontmatter
+				// Nest frontmatter under meta property
+				meta: frontmatter
 			};
 		})
 	);
