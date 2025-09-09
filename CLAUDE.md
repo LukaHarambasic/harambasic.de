@@ -12,9 +12,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Code Quality
 
-- `npm run lint` - Check formatting and linting (Prettier + ESLint)
+- `npm run lint` - Check formatting and linting (Prettier + ESLint + CSS)
 - `npm run lint:fix` - Fix linting issues automatically
-- `npm run format` - Format code with Prettier
+- `npm run lint:css` - Check CSS property ordering and standards
+- `npm run format` - Format code with Prettier and CSS
+- `npm run format:css` - Format CSS files with property ordering
 - `npm run check` - Run Svelte type checking
 - `npm run check:watch` - Run Svelte type checking in watch mode
 
@@ -42,8 +44,9 @@ Git hooks are managed via **Husky** and automatically enforce quality standards.
 - **Framework**: SvelteKit 5 with static adapter
 - **Build Tool**: Vite
 - **Language**: TypeScript
-- **Styling**: PostCSS with nested syntax, autoprefixer, and cssnano
+- **Styling**: PostCSS with nested syntax, autoprefixer, cssnano, and CSS property ordering
 - **Images**: Enhanced image processing via @sveltejs/enhanced-img
+- **CSS Quality**: Automated property ordering and linting with postcss-sorting
 
 ### Content System
 
@@ -89,9 +92,51 @@ Centralized type definitions in `src/lib/types/`:
 
 - Static site generation via `@sveltejs/adapter-static`
 - PostCSS processing with nested syntax and optimization
+- CSS property ordering and linting enforcement
 - Image optimization and processing
 - Prerender error handling for 404s
 - **Deployment**: Netlify via standard integration (automatic builds from Git)
+
+## CSS Quality Standards
+
+### Automated CSS Property Ordering
+
+This project enforces standardized CSS property ordering using `postcss-sorting`:
+
+#### Property Order Hierarchy:
+
+1. **Display & Layout** - `display`, `visibility`, `opacity`
+2. **Positioning** - `position`, `top`, `right`, `bottom`, `left`, `z-index`
+3. **Box Model** - `margin`, `padding`, `width`, `height`, `size`
+4. **Borders** - `border`, `border-radius`, `outline`, `box-shadow`
+5. **Flexbox/Grid** - `flex`, `justify-content`, `align-items`, `grid`
+6. **Background** - `background` properties (high priority as requested)
+7. **Typography** - `color`, `font`, `text-*` properties
+8. **Visual Effects** - `list-style`, `table-layout`
+9. **Animations** - `transition`, `animation`, `transform`
+10. **Miscellaneous** - `cursor`, `user-select`, `overflow`
+
+### CSS Linting Commands
+
+- **`npm run format:css`** - Automatically sorts CSS properties according to standards
+- **`npm run lint:css`** - Validates CSS property ordering and reports violations
+- **Integration** - CSS linting is automatically included in `npm run lint` and `npm run format`
+
+### Quality Gates
+
+CSS quality is enforced at multiple levels:
+
+1. **Pre-commit Hook** - Automatically formats and validates CSS before commits
+2. **GitHub Actions** - CI/CD pipeline includes CSS linting checks
+3. **Development** - CSS formatting available on-demand via npm scripts
+
+#### PostCSS Configuration
+
+Located in `postcss.config.mjs`:
+
+- **Environment-aware** - Different processing for development vs production
+- **Comprehensive** - Includes nested syntax, property sorting, autoprefixer
+- **Production optimized** - cssnano minification for production builds only
 
 ## Quality Standards & Git Hooks (Husky)
 
@@ -113,6 +158,7 @@ This repository uses **Husky** to enforce strict quality standards through autom
 
 1. **Code Formatting** (`npm run format`)
    - Prettier auto-formatting applied to all files
+   - CSS property ordering and formatting via PostCSS
    - Modified files automatically staged after formatting
 
 2. **Linting with Auto-Fix** (`npm run lint:fix`)
@@ -120,7 +166,8 @@ This repository uses **Husky** to enforce strict quality standards through autom
    - Modified files automatically staged after linting
 
 3. **Final Lint Verification** (`npm run lint`)
-   - Ensures all linting issues are resolved
+   - Ensures all linting issues are resolved (ESLint + CSS)
+   - Validates CSS property ordering standards
    - Fails if unfixable issues remain
 
 4. **Type Checking** (`npm run check`)

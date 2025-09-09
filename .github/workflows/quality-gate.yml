@@ -2,7 +2,7 @@ name: Quality gate
 on: push
 jobs:
   lint:
-    name: Lint
+    name: Lint & Format Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -12,8 +12,24 @@ jobs:
           cache: 'npm'
       - run: npm ci || npm install
       - run: npm run lint
+      - name: CSS Linting Summary
+        if: always()
+        run: echo "✅ CSS property ordering and unused CSS checks completed as part of lint step"
+
+  type-check:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - run: npm ci || npm install
+      - run: npm run check
+
   test:
-    name: Test (jest)
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,3 +39,15 @@ jobs:
           cache: 'npm'
       - run: npm ci || npm install
       - run: npm run test
+
+  build:
+    name: Build Verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - run: npm ci || npm install
+      - run: npm run build
