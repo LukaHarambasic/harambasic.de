@@ -6,7 +6,7 @@ imageAlt: 'Podcast cover saying: The Preneur'
 published: 2020-12-21
 updated: 2020-12-21
 prio: 700
-status: INACTIVE
+status: inactive
 links:
   - title: Apple Podcast
     url: https://podcasts.apple.com/de/podcast/the-preneur/id1605492643?l=en

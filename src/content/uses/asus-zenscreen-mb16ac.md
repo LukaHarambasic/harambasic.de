@@ -4,7 +4,7 @@ description: 'Mobile display, powered over USB-C which gives me a dual display s
 tags:
   - Hardware
 url: https://www.asus.com/de/displays-desktops/monitors/zenscreen/zenscreen-mb16ac/
-status: INACTIVE
+status: inactive
 image: asus.svg
 openSource:
 updated: 2022-12-01 20:24

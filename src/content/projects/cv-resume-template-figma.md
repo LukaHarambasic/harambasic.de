@@ -6,7 +6,7 @@ imageAlt: Part of the CV template showing a picture, name and some relevant work
 published: 2020-12-21
 updated: 2023-11-07
 prio: 400
-status: ACTIVE
+status: active
 links:
   - title: Template
     url: https://www.figma.com/community/file/1128439910915950322/cv-resume-template-with-auto-layout-pdf-export

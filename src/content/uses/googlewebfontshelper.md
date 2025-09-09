@@ -4,7 +4,7 @@ description: 'Tool to help you host Google fonts without the CDN. Why should you
 tags:
   - Development
 url: https://gwfh.mranftl.com/fonts
-status: ACTIVE
+status: active
 image:
 openSource: true
 updated: 2023-11-25 16:35

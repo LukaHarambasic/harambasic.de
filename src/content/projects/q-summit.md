@@ -6,7 +6,7 @@ imageAlt: Q-Summit logo which is an abstract Q
 published: 2020-12-21
 updated: 2023-11-07
 prio: 300
-status: INACTIVE
+status: inactive
 links:
   - title: Website
     url: https://q-summit.com/

@@ -34,14 +34,9 @@ export const SORT_DEFAULTS = {
 	SHAREABLE: 'published' as const
 } as const;
 
-export enum ProjectStatus {
-	All = 'ALL',
-	Active = 'ACTIVE',
-	Inactive = 'INACTIVE'
-}
+// Single status type for all content
+export type ContentStatus = 'active' | 'inactive' | 'all';
 
-export enum UsesEntryStatus {
-	All = 'ALL',
-	Active = 'ACTIVE',
-	Inactive = 'INACTIVE'
-}
+// Aliases for specific content types (for backward compatibility)
+export type ProjectStatus = ContentStatus;
+export type UsesEntryStatus = ContentStatus;

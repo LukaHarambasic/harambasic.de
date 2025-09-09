@@ -58,6 +58,6 @@ export function sortByProperty(
 }
 
 function filterByStatus(entry: UsesEntry, filterStatus: UsesEntryStatus): boolean {
-	if (filterStatus === UsesEntryStatus.All) return true;
+	if (filterStatus === 'all') return true;
 	return entry.status === filterStatus;
 }

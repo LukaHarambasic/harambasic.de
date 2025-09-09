@@ -4,7 +4,7 @@ description: 'As far as I know the smallest 100W charger (enough to charge a Mac
 tags:
   - Hardware
 url: https://www.anker.com/products/a2688-anker-prime-charger-100w-3-ports-gan?ref=naviMenu&variant=43931966079126
-status: ACTIVE
+status: active
 image: anker_charger.webp
 openSource:
 updated: 2025-01-05 16:00

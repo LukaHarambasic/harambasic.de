@@ -6,7 +6,7 @@ imageAlt: 'Podcast cover saying: Tech Mob Show by Henry Stoll, Jakob Möller and
 published: 2020-12-21
 updated: 2020-12-21
 prio: 200
-status: INACTIVE
+status: inactive
 links:
   - title: Instagram
     url: https://www.instagram.com/techmobshow/

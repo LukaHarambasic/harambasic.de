@@ -4,7 +4,7 @@ description: "As all my projects are on GitHub I'm just happy about such a simpl
 tags:
   - Development
 url: https://github.com/features/actions
-status: ACTIVE
+status: active
 image: githubactions.svg
 openSource:
 updated: 2022-12-01 20:26

@@ -4,7 +4,7 @@ description: 'I have the Plus version from work. I use it in different situation
 tags:
   - Software
 url: https://chatgpt.com/
-status: ACTIVE
+status: active
 image: chatgpt.webp
 openSource:
 updated: 2025-01-05 16:00

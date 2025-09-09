@@ -4,7 +4,7 @@ description: "Bring a little bit more organization to your tech. I'm not using i
 tags:
   - Essentials
 url: https://www.peakdesign.com/eu/products/tech-pouch?Size=Regular&Color=Black
-status: INACTIVE
+status: inactive
 image: tech_pouch.png
 openSource:
 updated: 2025-01-05 16:00

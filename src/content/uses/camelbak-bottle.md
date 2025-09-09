@@ -4,7 +4,7 @@ description: 'I fell in love with big water bottles, my old one broke and I got 
 tags:
   - Essentials
 url: https://www.camelbak.com/shop/water-bottles/everyday/chute-mag-32-oz-water-bottle-insulated-stainless-steel/CB-1516.html?dwvar_CB-1516_color=Moss
-status: ACTIVE
+status: active
 image: camelbak_bottle.webp
 openSource:
 updated: 2025-01-05 16:00

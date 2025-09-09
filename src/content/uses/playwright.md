@@ -4,7 +4,7 @@ description: "A Node.js browser automation framework I use it to automate websit
 tags:
   - Development
 url: https://playwright.dev/
-status: ACTIVE
+status: active
 image: playwright.svg
 openSource: true
 updated: 2022-12-01 20:32
