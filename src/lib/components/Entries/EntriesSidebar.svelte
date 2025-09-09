@@ -53,40 +53,40 @@
 	aside {
 		position: sticky;
 		top: var(--l);
-		@media screen and (max-width: 50rem) {
+		@media screen and (width <= 50rem) {
 			position: static;
 		}
 		details {
 			summary {
 				display: none;
+				margin: 0 0 var(--l) 0;
+				padding: var(--m);
+				border: var(--border);
+				border-radius: var(--border-radius);
+				background: var(--c-font);
 				flex-direction: row;
 				flex-wrap: nowrap;
 				justify-content: space-between;
-				align-content: center;
 				align-items: center;
-				margin: 0 0 var(--l) 0;
-				border-radius: var(--border-radius);
-				background: var(--c-font);
+				align-content: center;
 				color: var(--c-light);
-				padding: var(--m);
-				border: var(--border);
 				transition: var(--transition);
 				&:hover {
-					cursor: pointer;
 					background: var(--c-surface-accent);
 					color: var(--c-font);
+					cursor: pointer;
 				}
 				&::-webkit-details-marker {
 					display: none;
 				}
-				@media screen and (max-width: 50rem) {
+				@media screen and (width <= 50rem) {
 					display: flex;
 				}
 				span {
-					font-weight: 900;
-					font-size: var(--font-m);
-					line-height: 1.2;
 					font-family: var(--font-family);
+					font-size: var(--font-m);
+					font-weight: 900;
+					line-height: 1.2;
 					letter-spacing: var(--font-letter-spacing-headline);
 				}
 				:global(.icon) {
@@ -96,13 +96,13 @@
 		}
 		.content {
 			display: flex !important;
+			width: 100%;
 			flex-direction: column;
 			flex-wrap: nowrap;
-			align-content: stretch;
 			justify-content: flex-start;
 			align-items: stretch;
+			align-content: stretch;
 			gap: var(--l);
-			width: 100%;
 		}
 	}
 </style>

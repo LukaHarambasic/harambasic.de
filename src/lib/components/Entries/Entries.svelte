@@ -30,44 +30,44 @@
 <style lang="postcss">
 	section {
 		display: grid;
+		width: 100%;
+		row-gap: var(--l);
+		column-gap: var(--l);
 		grid-template-rows: auto auto auto;
 		grid-template-columns: 70ch 1fr;
-		column-gap: var(--l);
-		row-gap: var(--l);
-		width: 100%;
 		&.no-sidebar {
-			grid-template-columns: 1fr;
 			width: 100%;
+			grid-template-columns: 1fr;
 			.entries {
 				grid-column: 1 / -1;
 			}
 		}
-		@media screen and (max-width: 74rem) {
+		@media screen and (width <= 74rem) {
 			grid-template-columns: 1fr 18rem;
 		}
-		@media screen and (max-width: 50rem) {
+		@media screen and (width <= 50rem) {
 			grid-template-columns: 1fr;
 		}
 		.entries {
 			width: 100%;
-			@media screen and (max-width: 50rem) {
-				grid-template-columns: 1fr;
+			@media screen and (width <= 50rem) {
 				order: 1;
+				grid-template-columns: 1fr;
 			}
 		}
 		.sidebar {
-			@media screen and (max-width: 50rem) {
-				grid-template-columns: 1fr;
+			@media screen and (width <= 50rem) {
 				order: 0;
+				grid-template-columns: 1fr;
 			}
 		}
 		.rss {
-			grid-column: 1 / -1;
 			margin: var(--l) 0 0 0;
+			grid-column: 1 / -1;
 			text-align: center;
-			@media screen and (max-width: 50rem) {
-				grid-column: 1 / 1;
+			@media screen and (width <= 50rem) {
 				order: 2;
+				grid-column: 1 / 1;
 			}
 		}
 	}

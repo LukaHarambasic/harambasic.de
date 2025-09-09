@@ -110,10 +110,10 @@ blockquote,
 q {
 	quotes: none;
 }
-blockquote:after,
-blockquote:before,
-q:after,
-q:before {
+blockquote::after,
+blockquote::before,
+q::after,
+q::before {
 	content: '';
 	content: none;
 }
@@ -122,8 +122,8 @@ table {
 	border-spacing: 0;
 }
 *,
-:after,
-:before,
+::after,
+::before,
 body,
 html {
 	margin: 0;
@@ -131,7 +131,7 @@ html {
 	box-sizing: border-box;
 }
 button {
-	-webkit-appearance: none;
+	appearance: none;
 }
 select {
 	background: none;

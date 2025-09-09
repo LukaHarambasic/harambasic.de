@@ -56,14 +56,14 @@
 <style lang="postcss">
 	article {
 		display: grid;
+		width: 100%;
+		gap: var(--l);
 		grid:
 			'tldr placeholder' auto
 			'post sidebar' 1fr
 			'footer footer' auto
 			/ calc(70% - var(--l)) 30%;
-		gap: var(--l);
-		width: 100%;
-		@media screen and (max-width: 74rem) {
+		@media screen and (width <= 74rem) {
 			grid:
 				'tldr' auto
 				'sidebar' auto
@@ -75,26 +75,26 @@
 			grid-area: tldr;
 		}
 		.placeholder {
-			grid-area: placeholder;
 			opacity: 0.5;
-			@media screen and (max-width: 74rem) {
+			grid-area: placeholder;
+			@media screen and (width <= 74rem) {
 				display: none;
 			}
 		}
 		.sidebar {
-			grid-area: sidebar;
-			gap: var(--l);
 			display: flex;
 			flex-direction: column;
 			flex-wrap: nowrap;
+			gap: var(--l);
+			grid-area: sidebar;
 			.author {
 				display: flex;
 				flex-direction: column;
 				flex-wrap: nowrap;
 				a {
 					color: var(--c-font);
-					font-size: var(--font-m);
 					font-family: var(--font-family);
+					font-size: var(--font-m);
 					letter-spacing: var(--font-letter-spacing-headline);
 					text-decoration: none;
 					&:hover {
@@ -107,17 +107,17 @@
 				display: flex;
 				flex-direction: column;
 				flex-wrap: nowrap;
-				align-content: stretch;
 				justify-content: flex-start;
 				align-items: stretch;
+				align-content: stretch;
 				ul {
 					display: flex;
 					position: relative;
 					flex-direction: row;
 					flex-wrap: wrap;
-					align-content: stretch;
 					justify-content: flex-start;
 					align-items: flex-start;
+					align-content: stretch;
 					gap: var(--xs);
 				}
 			}
@@ -130,9 +130,9 @@
 			grid-area: post;
 		}
 		footer {
+			margin: var(--l) 0 0 0;
 			grid-area: footer;
 			text-align: center;
-			margin: var(--l) 0 0 0;
 		}
 	}
 </style>

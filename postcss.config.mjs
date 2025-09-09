@@ -164,8 +164,8 @@ const sortingConfig = {
 
 export default {
 	plugins: {
-		'postcss-nested': {},
 		'postcss-sorting': sortingConfig,
+		'postcss-nested': {},
 		...(env === 'production' ? { cssnano: {} } : {}),
 		'postcss-size': {}
 	}

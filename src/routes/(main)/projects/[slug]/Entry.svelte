@@ -59,25 +59,25 @@
 <style lang="postcss">
 	article {
 		display: flex;
+		width: 90ch;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: flex-start;
 		align-items: stretch;
+		align-content: stretch;
 		gap: var(--l);
-		width: 90ch;
-		@media screen and (max-width: 64rem) {
+		@media screen and (width <= 64rem) {
 			width: 100%;
 		}
-		@media screen and (max-width: 48rem) {
+		@media screen and (width <= 48rem) {
 			flex-direction: column;
 		}
 		> picture {
 			size: 20rem;
-			@media screen and (max-width: 64rem) {
+			@media screen and (width <= 64rem) {
 				size: 15rem;
 			}
-			@media screen and (max-width: 48rem) {
+			@media screen and (width <= 48rem) {
 				width: 100%;
 				height: auto;
 			}
@@ -93,39 +93,39 @@
 			flex-direction: column;
 			flex-wrap: nowrap;
 			justify-content: flex-start;
-			align-content: flex-start;
 			align-items: flex-start;
+			align-content: flex-start;
 			h2 {
-				font-weight: 900;
-				font-size: var(--font-xl);
-				line-height: 1.2;
+				margin: 0;
 				font-family: var(--font-family);
+				font-size: var(--font-xl);
+				font-weight: 900;
+				line-height: 1.2;
 				letter-spacing: var(--font-letter-spacing-headline);
-				margin: 0 0 0 0;
 			}
 			.tags {
 				display: flex;
+				margin: 0 0 var(--m) 0;
 				flex-grow: 1;
 				flex-direction: row;
 				flex-wrap: wrap;
 				justify-content: flex-start;
 				align-items: flex-start;
 				gap: var(--xs);
-				margin: 0 0 var(--m) 0;
 			}
 			.rich-text {
 				margin: 0 0 var(--m) 0;
 			}
 			.links {
-				flex-base: 100%;
 				display: flex;
 				flex-grow: 1;
 				flex-direction: row;
 				flex-wrap: wrap;
-				align-content: stretch;
 				justify-content: flex-start;
 				align-items: flex-start;
+				align-content: stretch;
 				gap: var(--m);
+				flex-base: 100%;
 			}
 		}
 	}

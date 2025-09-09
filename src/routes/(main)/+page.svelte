@@ -191,42 +191,42 @@
 	.heyho {
 		display: flex;
 		position: relative;
+		margin: var(--xl) 0;
+		width: var(--layout-l);
 		flex-direction: column;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: flex-start;
 		align-items: stretch;
+		align-content: stretch;
 		gap: var(--l);
-		width: var(--layout-l);
-		margin: var(--xl) 0;
-		@media screen and (max-width: 56rem) {
+		@media screen and (width <= 56rem) {
 			width: 100%;
 		}
 		.inner {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
-			align-content: stretch;
 			justify-content: flex-start;
 			align-items: flex-start;
+			align-content: stretch;
 			gap: var(--l);
-			@media screen and (max-width: 44rem) {
+			@media screen and (width <= 44rem) {
 				flex-direction: column;
 			}
 			.profile {
 				size: 14.5rem;
 				border-radius: var(--border-radius);
-				@media screen and (max-width: 32rem) {
+				@media screen and (width <= 32rem) {
 					width: 100%;
 					height: auto;
 				}
 			}
 			.content {
 				h2 {
-					margin: 0 0 0.5rem 0;
-					font-weight: 900;
-					font-size: var(--font-l);
+					margin: 0 0 0.5rem;
 					font-family: var(--font-family);
+					font-size: var(--font-l);
+					font-weight: 900;
 					letter-spacing: var(--font-letter-spacing-headline);
 				}
 				p {
@@ -241,25 +241,25 @@
 	}
 	.featured {
 		display: flex;
+		width: 100%;
 		flex-direction: column;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: flex-start;
 		align-items: stretch;
+		align-content: stretch;
 		gap: var(--l);
-		width: 100%;
 		h2 {
 			margin: var(--xl) 0 var(--m) 0;
-			font-weight: 900;
-			font-size: var(--font-xl);
-			line-height: 1.2;
 			font-family: var(--font-family);
+			font-size: var(--font-xl);
+			font-weight: 900;
+			line-height: 1.2;
 			letter-spacing: var(--font-letter-spacing-headline);
 			text-align: center;
 		}
 		.group {
 			position: relative;
-			@media screen and (max-width: 86rem) {
+			@media screen and (width <= 86rem) {
 				position: static;
 			}
 			h3 {
@@ -267,27 +267,27 @@
 				position: absolute;
 				top: 1.8rem;
 				left: -11rem;
-				flex-wrap: nowrap;
-				align-content: center;
-				justify-content: flex-end;
-				align-items: center;
-				gap: 0.25rem;
 				width: 10rem;
 				height: 1.5rem;
-				font-weight: 600;
-				font-size: var(--font-m);
+				flex-wrap: nowrap;
+				justify-content: flex-end;
+				align-items: center;
+				align-content: center;
+				gap: 0.25rem;
 				font-family: var(--font-family);
+				font-size: var(--font-m);
+				font-weight: 600;
 				letter-spacing: var(--font-letter-spacing-headline);
 				text-align: right;
-				@media screen and (max-width: 86rem) {
+				@media screen and (width <= 86rem) {
 					position: static;
-					top: none;
-					left: none;
+					top: auto;
+					left: auto;
+					margin: 0 0 var(--m) var(--xs);
 					width: 100%;
 					height: auto;
 					justify-content: flex-start;
 					text-align: center;
-					margin: 0 0 var(--m) var(--xs);
 				}
 				span {
 					line-height: 1;
@@ -300,11 +300,11 @@
 				display: flex;
 				flex-direction: row;
 				flex-wrap: nowrap;
-				align-content: stretch;
 				justify-content: flex-start;
 				align-items: stretch;
+				align-content: stretch;
 				gap: var(--l);
-				@media screen and (max-width: 68rem) {
+				@media screen and (width <= 68rem) {
 					flex-wrap: wrap;
 				}
 				> li {
@@ -316,52 +316,51 @@
 					&:first-child:nth-last-child(2),
 					&:first-child:nth-last-child(2) ~ li {
 						width: calc(100% / 2);
-						@media screen and (max-width: 68rem) {
+						@media screen and (width <= 68rem) {
 							width: 100%;
 						}
 					}
 					&:first-child:nth-last-child(3),
 					&:first-child:nth-last-child(3) ~ li {
 						width: calc(100% / 3);
-						@media screen and (max-width: 60rem) {
+						@media screen and (width <= 60rem) {
 							width: 100%;
 						}
 					}
 					&:first-child:nth-last-child(4),
 					&:first-child:nth-last-child(4) ~ li {
 						width: calc(100% / 4);
-						@media screen and (max-width: 60rem) {
+						@media screen and (width <= 60rem) {
 							width: 100%;
 						}
 					}
 					.card {
 						display: block;
 						position: relative;
-						transition: var(--transition);
+						height: 100%;
 						border-radius: var(--border-radius);
 						background: var(--c-surface);
-						height: 100%;
 						color: var(--c-font);
 						text-decoration: none;
+						transition: var(--transition);
 						&:hover {
 							transform: scale(0.97);
-							cursor: pointer;
 							cursor: pointer;
 							:global(svg) {
 								opacity: 1;
 							}
 						}
 						:global(svg) {
-							size: var(--l);
+							opacity: 0;
 							position: absolute;
 							top: var(--m);
 							right: calc((-1) * var(--m));
-							opacity: 0;
-							transition: var(--transition);
+							z-index: 1000;
+							size: var(--l);
 							border: 4px solid var(--c-light);
 							border-radius: 100%;
 							background: var(--c-light);
-							z-index: 1000;
+							transition: var(--transition);
 						}
 						&.text {
 							padding: var(--l);
@@ -370,11 +369,11 @@
 							display: flex;
 							flex-direction: row;
 							flex-wrap: nowrap;
-							align-content: stretch;
 							justify-content: flex-start;
 							align-items: stretch;
+							align-content: stretch;
 							gap: 0;
-							@media screen and (max-width: 32rem) {
+							@media screen and (width <= 32rem) {
 								flex-direction: column;
 							}
 							&:hover {
@@ -389,54 +388,54 @@
 							> picture {
 								width: 12rem;
 								height: 12rem;
-								@media screen and (max-width: 32rem) {
+								@media screen and (width <= 32rem) {
 									width: 100%;
 									height: auto;
 								}
 								img {
+									opacity: 0.5;
 									width: inherit;
 									height: inherit;
 									border-radius: var(--border-radius) 0 0 var(--border-radius);
 									aspect-ratio: 1 / 1;
 									filter: grayscale(1);
-									opacity: 0.5;
-									@media screen and (max-width: 32rem) {
+									@media screen and (width <= 32rem) {
 										border-radius: var(--border-radius) var(--border-radius) 0 0;
 									}
 								}
 							}
 							> .content {
-								padding: var(--l);
 								display: flex;
+								padding: var(--l);
 								flex-direction: column;
 								flex-wrap: nowrap;
 								justify-content: flex-start;
-								align-content: stretch;
 								align-items: stretch;
+								align-content: stretch;
 							}
 						}
 					}
 					> a {
 						strong {
 							display: block;
-							font-weight: 900;
-							font-size: var(--font-m);
-							line-height: 1.2;
 							font-family: var(--font-family);
+							font-size: var(--font-m);
+							font-weight: 900;
+							line-height: 1.2;
 							letter-spacing: var(--font-letter-spacing-headline);
 						}
 						time {
 							display: inline-block;
 							margin: 0 0 var(--xs) 0;
-							font-weight: 400;
 							font-size: var(--font-s);
-							text-decoration: none;
+							font-weight: 400;
 							font-style: italic;
+							text-decoration: none;
 						}
 						p {
 							margin: var(--xs) 0 0 0;
-							line-height: 1.5;
 							font-size: var(--font-m);
+							line-height: 1.5;
 						}
 					}
 				}
@@ -445,26 +444,26 @@
 	}
 	.contact {
 		display: flex;
+		margin: var(--xl) 0;
+		width: var(--layout-m);
 		flex-direction: column;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: flex-start;
 		align-items: stretch;
-		width: var(--layout-m);
-		margin: var(--xl) 0;
-		@media screen and (max-width: 46rem) {
+		align-content: stretch;
+		@media screen and (width <= 46rem) {
 			width: 100%;
 		}
 		.group {
 			display: flex;
+			padding: var(--l);
+			border-bottom: 1px solid var(--c-surface);
 			flex-direction: row;
 			flex-wrap: nowrap;
-			align-content: stretch;
 			justify-content: space-between;
 			align-items: flex-start;
-			border-bottom: 1px solid var(--c-surface);
-			padding: var(--l);
-			@media screen and (max-width: 40rem) {
+			align-content: stretch;
+			@media screen and (width <= 40rem) {
 				flex-direction: column;
 				gap: var(--l);
 			}
@@ -472,15 +471,15 @@
 				display: flex;
 				flex-direction: column;
 				flex-wrap: nowrap;
-				align-content: stretch;
 				justify-content: flex-start;
 				align-items: stretch;
+				align-content: stretch;
 				strong {
 					margin: 0 0 var(--xs) 0;
-					font-weight: 900;
-					font-size: var(--font-m);
-					line-height: 1.2;
 					font-family: var(--font-family);
+					font-size: var(--font-m);
+					font-weight: 900;
+					line-height: 1.2;
 					letter-spacing: var(--font-letter-spacing-headline);
 				}
 				small {

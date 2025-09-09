@@ -26,13 +26,13 @@
 
 <style lang="postcss">
 	dialog {
-		width: 54em;
-		border-radius: var(--border-radius);
-		background: var(--c-light);
-		border: var(--border);
-		color: var(--c-font);
 		margin: auto;
+		width: 54em;
+		border: var(--border);
+		border-radius: var(--border-radius);
 		box-shadow: var(--shadow);
+		background: var(--c-light);
+		color: var(--c-font);
 		&::backdrop {
 			background: rgba(1, 3, 15, 0.6);
 			@media (prefers-color-scheme: dark) {
@@ -41,37 +41,38 @@
 		}
 		.content {
 			padding: var(--xl);
-			@media screen and (max-width: 64rem) {
+			@media screen and (width <= 64rem) {
 				padding: var(--l);
 			}
 			.close {
 				--icon-size: 1.5rem;
 				--icon-padding: 0.5rem;
 				--icon-border: 2.5px;
+
 				position: absolute;
 				top: var(--l);
 				right: var(--l);
-				color: var(--c-light);
-				background: var(--c-font);
-				font-size: var(--icon-size);
-				size: calc(var(--icon-size) + var(--icon-border) + var(--icon-padding) * 2);
+				z-index: 3000;
 				padding: var(--icon-padding);
+				size: calc(var(--icon-size) + var(--icon-border) + var(--icon-padding) * 2);
+				border: var(--icon-border) solid var(--c-surface-accent);
+				border-radius: 50%;
+				background: var(--c-font);
+				color: var(--c-light);
+				font-size: var(--icon-size);
+				font-weight: bold;
 				line-height: 1rem;
 				vertical-align: 1rem;
-				font-weight: bold;
-				border-radius: 50%;
-				border: var(--icon-border) solid var(--c-surface-accent);
-				z-index: 3000;
 				:global(svg) {
 					margin: -1px 0 0 -1px;
 				}
 				&:hover {
-					cursor: pointer;
-					color: var(--c-font);
-					background: var(--c-light);
 					border-color: var(--c-font);
+					background: var(--c-light);
+					color: var(--c-font);
+					cursor: pointer;
 				}
-				@media screen and (max-width: 48rem) {
+				@media screen and (width <= 48rem) {
 					top: var(--m);
 					right: var(--m);
 				}

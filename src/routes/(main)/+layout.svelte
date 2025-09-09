@@ -58,20 +58,20 @@
 <style lang="postcss">
 	.container {
 		display: grid;
-		grid-template-rows: auto 1fr auto;
-		grid-template-columns: 1fr var(--layout-xl) 1fr;
-		grid-template-areas: '. header .' '. main .' '. footer .';
-		row-gap: var(--xl);
 		padding: var(--xl) 0;
 		width: 100%;
 		height: auto;
 		min-height: 100vh;
-		@media screen and (max-width: 86rem) {
+		row-gap: var(--xl);
+		grid-template-areas: '. header .' '. main .' '. footer .';
+		grid-template-rows: auto 1fr auto;
+		grid-template-columns: 1fr var(--layout-xl) 1fr;
+		@media screen and (width <= 86rem) {
 			grid-template-columns: 4rem minmax(0, 1fr) 4rem;
 		}
-		@media screen and (max-width: 32rem) {
-			row-gap: var(-l);
+		@media screen and (width <= 32rem) {
 			padding: var(--l) 0;
+			row-gap: var(-l);
 			grid-template-columns: 2rem minmax(0, 1fr) 2rem;
 		}
 		:global(> header) {
@@ -79,48 +79,48 @@
 		}
 		> main {
 			display: flex;
-			grid-area: main;
 			flex-direction: column;
 			flex-wrap: nowrap;
-			align-content: stretch;
 			justify-content: flex-start;
 			align-items: center;
+			align-content: stretch;
 			gap: var(--xl);
+			grid-area: main;
 			.header {
 				display: flex;
 				flex-direction: column;
 				flex-wrap: nowrap;
 				justify-content: flex-start;
-				align-content: stretch;
 				align-items: center;
+				align-content: stretch;
 				gap: var(--s);
 				h1 {
 					width: 30ch;
-					font-weight: 900;
-					font-size: var(--font-xl);
-					line-height: 1.2;
 					font-family: var(--font-family);
+					font-size: var(--font-xl);
+					font-weight: 900;
+					line-height: 1.2;
 					letter-spacing: var(--font-letter-spacing-headline);
 					text-align: center;
-					@media screen and (max-width: 42rem) {
+					@media screen and (width <= 42rem) {
 						width: 100%;
 					}
 				}
 				.subtitle {
+					margin: calc(-1 * var(--xs)) 0 0;
 					color: var(--c-font-accent-dark);
 					font-size: var(--font-m);
 					font-weight: normal;
-					text-align: center;
 					font-style: italic;
-					margin: calc(-1 * var(--xs)) 0 0 0;
+					text-align: center;
 				}
 				.date {
 					a {
 						color: var(--c-font);
-						font-weight: 400;
 						font-size: var(--font-m);
-						text-decoration: none;
+						font-weight: 400;
 						font-style: italic;
+						text-decoration: none;
 					}
 				}
 			}
