@@ -30,24 +30,34 @@ export function sortByProperty(a: Post, b: Post, property: PostSortProperty): nu
 	}
 }
 
-export function getPost(entry: RawEntry): Post {
-	const type: EntryType = 'post';
-	const slug = getSlug(entry.title);
-	const relativePath = `/${type}s/${slug}`;
-	return {
-		type,
-		title: entry.title,
-		description: entry.description,
-		image: entry.image || '',
-		tags: entry.tags.map((tag: string) => getTag(tag, type)) || [],
-		published: getDate(entry.published),
-		updated: getDate(entry.updated),
-		tldr: entry.tldr || '',
-		discussion: entry.discussion || '',
-		toc: entry.toc,
-		slug,
-		relativePath,
-		fullPath: `https://harambasic.de${relativePath}`,
-		html: entry.html
-	};
+export function getPost(entry: RawEntry): Post | null {
+	try {
+		if (!entry || !entry.title || !entry.description) {
+			console.warn('Invalid post entry:', entry);
+			return null;
+		}
+
+		const type: EntryType = 'post';
+		const slug = getSlug(entry.title);
+		const relativePath = `/${type}s/${slug}`;
+		return {
+			type,
+			title: entry.title,
+			description: entry.description,
+			image: entry.image || '',
+			tags: (entry.tags || []).map((tag: string) => getTag(tag, type)),
+			published: getDate(entry.published),
+			updated: getDate(entry.updated),
+			tldr: entry.tldr || '',
+			discussion: entry.discussion || '',
+			toc: entry.toc || [],
+			slug,
+			relativePath,
+			fullPath: `https://harambasic.de${relativePath}`,
+			html: entry.html || ''
+		};
+	} catch (error) {
+		console.error('Error processing post entry:', entry, error);
+		return null;
+	}
 }

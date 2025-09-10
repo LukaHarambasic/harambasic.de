@@ -1,5 +1,5 @@
 import type { EntryType } from '$lib/types/enums';
-import type { RawEntry, RawEntryMeta } from '$lib/types/entry';
+import type { RawEntry } from '$lib/types/entry';
 
 /**
  * Validation result for content structure validation
@@ -61,7 +61,7 @@ export interface ContentService {
 	getEntryMetadata(
 		entryType: EntryType,
 		slug: string
-	): Promise<Pick<RawEntryMeta, 'title' | 'description' | 'published'> | null>;
+	): Promise<Pick<RawEntry, 'title' | 'description' | 'published'> | null>;
 
 	/**
 	 * Validate content structure for a specific entry type

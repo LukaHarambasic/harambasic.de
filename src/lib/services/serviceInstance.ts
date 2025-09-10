@@ -1,5 +1,4 @@
 import { FileSystemContentService } from './FileSystemContentService.js';
-import { MarkdownProcessor } from '$lib/processors';
 import type { ContentService } from './ContentService.js';
 
 /**
@@ -13,10 +12,7 @@ let contentServiceInstance: ContentService | null = null;
  */
 export function getContentService(): ContentService {
 	if (!contentServiceInstance) {
-		contentServiceInstance = new FileSystemContentService(
-			undefined, // Use default content root
-			new MarkdownProcessor()
-		);
+		contentServiceInstance = new FileSystemContentService();
 	}
 	return contentServiceInstance;
 }
