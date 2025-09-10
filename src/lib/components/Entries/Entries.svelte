@@ -1,10 +1,12 @@
 <script lang="ts">
-	import type { ContainerComponentProps } from '$lib/types/component';
 	import { hasSnippet } from '$lib/util/snippet';
 
-	interface Props extends Omit<ContainerComponentProps, 'header' | 'footer'> {
+	interface Props {
 		path?: string;
 		entries?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		sidebar?: import('svelte').Snippet;
+		class?: string;
 	}
 
 	let { path = '', entries, sidebar, children, class: className }: Props = $props();

@@ -1,10 +1,15 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
-	import type { BaseComponentProps } from '$lib/types/component';
 	import { hasSnippet } from '$lib/util/snippet';
 
-	let { children, class: className, id }: BaseComponentProps = $props();
+	interface Props {
+		children?: import('svelte').Snippet;
+		class?: string;
+		id?: string;
+	}
+
+	let { children, class: className, id }: Props = $props();
 
 	let detailsElement: HTMLDetailsElement | undefined = $state();
 	let summaryElement: HTMLElement | undefined = $state();

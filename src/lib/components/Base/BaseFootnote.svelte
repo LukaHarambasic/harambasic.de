@@ -1,8 +1,13 @@
 <script lang="ts">
-	import type { BaseComponentProps } from '$lib/types/component';
 	import { hasSnippet } from '$lib/util/snippet';
 
-	let { children, class: className, id }: BaseComponentProps = $props();
+	interface Props {
+		children?: import('svelte').Snippet;
+		class?: string;
+		id?: string;
+	}
+
+	let { children, class: className, id }: Props = $props();
 </script>
 
 <section class="footnote rich-text" class:className {id}>

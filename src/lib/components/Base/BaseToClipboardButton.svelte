@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { once } from 'svelte/legacy';
-	import type { ButtonComponentProps } from '$lib/types/component';
 	import { hasSnippet } from '$lib/util/snippet';
 
-	interface Props extends Omit<ButtonComponentProps, 'onclick'> {
+	interface Props {
 		toClipboard: string;
+		children?: import('svelte').Snippet;
+		disabled?: boolean;
+		type?: 'button' | 'submit' | 'reset';
 	}
 
 	let { toClipboard, children, disabled, type = 'button' }: Props = $props();

@@ -1,9 +1,11 @@
 <script lang="ts">
-	import type { BaseComponentProps } from '$lib/types/component';
 	import { hasSnippet } from '$lib/util/snippet';
 
-	interface Props extends BaseComponentProps {
+	interface Props {
 		prefix: string;
+		children?: import('svelte').Snippet;
+		class?: string;
+		id?: string;
 	}
 
 	let { prefix, children, class: className, id }: Props = $props();

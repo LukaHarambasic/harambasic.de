@@ -6,12 +6,18 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import type { BaseComponentProps } from '$lib/types/component';
+
+interface BaseCalloutProps {
+	prefix: string;
+	children?: import('svelte').Snippet;
+	class?: string;
+	id?: string;
+}
 
 describe('BaseCallout', () => {
-	it('should follow BaseComponentProps interface', () => {
+	it('should follow BaseCalloutProps interface', () => {
 		// Test that the component accepts all required and optional props
-		const props: BaseComponentProps & { prefix: string } = {
+		const props: BaseCalloutProps = {
 			prefix: 'Test',
 			class: 'test-class',
 			id: 'test-id',
@@ -30,7 +36,7 @@ describe('BaseCallout', () => {
 			prefix: 'Note'
 		};
 
-		const fullProps: BaseComponentProps & { prefix: string } = {
+		const fullProps: BaseCalloutProps = {
 			prefix: 'Important',
 			class: 'custom-class',
 			id: 'custom-id',

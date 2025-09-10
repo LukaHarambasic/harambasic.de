@@ -1,10 +1,15 @@
 <!-- From: https://svelte.dev/examples/modal -->
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import type { ModalComponentProps } from '$lib/types/component';
 	import { hasSnippet } from '$lib/util/snippet';
 
-	let { children, onClose }: ModalComponentProps = $props();
+	interface Props {
+		children?: import('svelte').Snippet;
+		isOpen?: boolean;
+		onClose?: () => void;
+	}
+
+	let { children, onClose }: Props = $props();
 
 	let dialog: HTMLDialogElement | undefined = $state();
 
