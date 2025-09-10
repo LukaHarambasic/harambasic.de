@@ -1,7 +1,7 @@
 import type { EntryType } from '$lib/types/enums';
 import type { RawEntry } from '$lib/types/entry';
 import { getRawEntries as getUncachedRawEntries } from './converter.server';
-import { getCacheManager, ContentCacheManager } from '$lib/cache';
+import { getCacheManager } from '$lib/cache';
 import { getSlug } from './helper';
 import * as path from 'path';
 import * as fs from 'fs/promises';
@@ -134,7 +134,7 @@ async function processAndCacheFile(
 	entryType: EntryType,
 	slug: string,
 	filePath: string,
-	cacheManager: ContentCacheManager
+	cacheManager: ReturnType<typeof getCacheManager>
 ): Promise<RawEntry> {
 	const startTime = Date.now();
 

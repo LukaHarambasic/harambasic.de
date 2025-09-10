@@ -3,7 +3,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as os from 'os';
 import { getRawEntries, getCacheMetrics, clearContentCache } from './cachedConverter.server';
-import { resetCacheManager } from '$lib/cache';
+import { resetCacheState } from '$lib/cache';
 
 describe('Cached Content Converter', () => {
 	let tempDir: string;
@@ -11,7 +11,7 @@ describe('Cached Content Converter', () => {
 
 	beforeEach(async () => {
 		// Reset cache manager for clean tests
-		resetCacheManager();
+		resetCacheState();
 
 		// Create temporary directory structure
 		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'cached-converter-test-'));
