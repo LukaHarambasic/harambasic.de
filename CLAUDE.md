@@ -212,15 +212,22 @@ The integrated workflow:
 - ✅ **Generates social media previews** after successful commits
 - ✅ **Saves CI/CD time** by catching issues locally
 
-### Bypassing Hooks (Emergency Only)
+### Git Hooks Policy
 
-To temporarily bypass hooks (emergencies only):
+**🚫 CRITICAL: NEVER BYPASS GIT HOOKS**
 
-```bash
-git commit --no-verify -m "emergency: bypass hooks"
-```
+Git hooks in this repository are **mandatory quality gates** and must NEVER be bypassed under any circumstances. Claude Code is **strictly forbidden** from using `--no-verify` or any other method to bypass git hooks unless explicitly instructed by the user.
 
-**Note**: Bypassed commits will still fail in GitHub Actions if they don't meet quality standards.
+**If git hooks fail:**
+
+1. Investigate and fix the underlying issue
+2. Run quality checks manually to identify the problem
+3. Resolve all failures before attempting to commit again
+4. Ask the user for guidance if unable to resolve issues
+
+**The `--no-verify` flag is BANNED** - do not use it without explicit user permission.
+
+**Note**: Git hooks ensure code quality and prevent broken code from entering the repository.
 
 ### Troubleshooting
 
