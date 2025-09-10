@@ -22,20 +22,54 @@ export function filterAndSort(
 
 export function getProject(entry: RawEntry): Project {
 	const type: EntryType = 'project';
-	const slug = getSlug(entry.meta.title);
+	const slug = getSlug(entry.title);
 	const relativePath = `/${type}s/${slug}`;
+
+	// Strict validation of date formats - fail fast with detailed error
+	if (entry.published === undefined || entry.published === null) {
+		throw new Error(
+			`Missing 'published' date in project file "${slug}" (title: "${entry.title}"). This field is mandatory and must be a valid ISO date string (YYYY-MM-DD).`
+		);
+	}
+
+	if (entry.updated === undefined || entry.updated === null) {
+		throw new Error(
+			`Missing 'updated' date in project file "${slug}" (title: "${entry.title}"). This field is mandatory and must be a valid ISO date string (YYYY-MM-DD).`
+		);
+	}
+
+	// Process dates with enhanced error context
+	let published: ReturnType<typeof getDate>;
+	let updated: ReturnType<typeof getDate>;
+
+	try {
+		published = getDate(entry.published);
+	} catch (error) {
+		throw new Error(
+			`Invalid 'published' date in project file "${slug}" (title: "${entry.title}"): ${error instanceof Error ? error.message : String(error)}`
+		);
+	}
+
+	try {
+		updated = getDate(entry.updated);
+	} catch (error) {
+		throw new Error(
+			`Invalid 'updated' date in project file "${slug}" (title: "${entry.title}"): ${error instanceof Error ? error.message : String(error)}`
+		);
+	}
+
 	return {
 		type,
-		title: entry.meta.title,
-		image: entry.meta.image || '',
-		imageAlt: entry.meta.imageAlt || '',
-		description: entry.meta.description || '',
-		tags: entry.meta.tags.map((tag: string) => getTag(tag, type)) || [],
-		published: getDate(entry.meta.published),
-		updated: getDate(entry.meta.updated),
-		links: entry.meta.links || [],
-		prio: entry.meta.prio || 0,
-		status: entry.meta.status as ProjectStatus,
+		title: entry.title,
+		image: entry.image || '',
+		imageAlt: entry.imageAlt || '',
+		description: entry.description || '',
+		tags: (entry.tags || []).map((tag: string) => getTag(tag, type)),
+		published,
+		updated,
+		links: entry.links || [],
+		prio: entry.prio || 0,
+		status: entry.status as ProjectStatus,
 		slug,
 		relativePath,
 		fullPath: `https://harambasic.de${relativePath}`,

@@ -1,9 +1,7 @@
 import { expect, test, describe } from 'vitest';
-import { MarkdownProcessor } from './MarkdownProcessor';
+import { processMarkdown, processMarkdownBatch } from './MarkdownProcessor';
 
 describe('MarkdownProcessor', () => {
-	const processor = new MarkdownProcessor();
-
 	test('should process simple markdown with frontmatter', () => {
 		const markdown = `---
 title: Test Article
@@ -21,12 +19,12 @@ This is a test paragraph with some **bold text** and *italic text*.
 
 Another paragraph here.`;
 
-		const result = processor.process(markdown);
+		const result = processMarkdown(markdown);
 
-		expect(result.meta.title).toBe('Test Article');
-		expect(result.meta.description).toBe('A test article');
-		expect(result.meta.published).toBe('2023-01-01');
-		expect(result.meta.tags).toEqual(['test', 'markdown']);
+		expect(result.title).toBe('Test Article');
+		expect(result.description).toBe('A test article');
+		expect(result.published).toBe('2023-01-01');
+		expect(result.tags).toEqual(['test', 'markdown']);
 		expect(result.html).toContain('id="test-heading"');
 		expect(result.html).toContain('Test Heading');
 		expect(result.html).toContain('<strong>bold text</strong>');
@@ -65,7 +63,7 @@ Content under sub heading 2.
 
 More content.`;
 
-		const result = processor.process(markdown);
+		const result = processMarkdown(markdown);
 
 		expect(result.toc).toHaveLength(2);
 
@@ -91,9 +89,9 @@ Just some regular text without any headings.
 
 And another paragraph.`;
 
-		const result = processor.process(markdown);
+		const result = processMarkdown(markdown);
 
-		expect(result.meta.title).toBe('No Headings');
+		expect(result.title).toBe('No Headings');
 		expect(result.toc).toHaveLength(0);
 		expect(result.html).toContain('<p>Just some regular text');
 	});
@@ -122,7 +120,7 @@ interface User {
 }
 \`\`\``;
 
-		const result = processor.process(markdown);
+		const result = processMarkdown(markdown);
 
 		expect(result.html).toContain('class="hljs language-javascript"');
 		expect(result.html).toContain('class="hljs language-typescript"');
@@ -140,7 +138,7 @@ description: "Unclosed quote
 
 # Test`;
 
-		expect(() => processor.process(invalidMarkdown)).toThrow();
+		expect(() => processMarkdown(invalidMarkdown)).toThrow();
 	});
 
 	test('processMany - should process multiple markdown contents', async () => {
@@ -161,11 +159,11 @@ published: 2023-01-02
 # Second Post`
 		];
 
-		const results = await processor.processMany(markdowns);
+		const results = await processMarkdownBatch(markdowns);
 
 		expect(results).toHaveLength(2);
-		expect(results[0].meta.title).toBe('First');
-		expect(results[1].meta.title).toBe('Second');
+		expect(results[0].title).toBe('First');
+		expect(results[1].title).toBe('Second');
 		expect(results[0].html).toContain('First Post');
 		expect(results[1].html).toContain('Second Post');
 	});
@@ -177,9 +175,9 @@ description: Empty content
 published: 2023-01-01
 ---`;
 
-		const result = processor.process(markdown);
+		const result = processMarkdown(markdown);
 
-		expect(result.meta.title).toBe('Empty');
+		expect(result.title).toBe('Empty');
 		expect(result.html.trim()).toBe('');
 		expect(result.toc).toHaveLength(0);
 	});

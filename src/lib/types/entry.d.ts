@@ -30,14 +30,29 @@ export interface RawEntryMeta {
 	imageAlt?: string;
 }
 
-// Raw entry structure with nested metadata
+// Raw entry structure with flattened metadata
 export interface RawEntry {
 	// Content
 	html: string;
 	toc: TocNode[];
 
-	// Frontmatter metadata
-	meta: RawEntryMeta;
+	// Frontmatter metadata (flattened)
+	title: string;
+	description: string;
+	image: string;
+	tags: string[];
+	published: string;
+	updated: string;
+
+	// Optional fields
+	url?: string;
+	status?: ContentStatus;
+	openSource?: boolean;
+	tldr?: string;
+	discussion?: string;
+	links?: Link[];
+	prio?: number;
+	imageAlt?: string;
 }
 
 export interface EntryDate {

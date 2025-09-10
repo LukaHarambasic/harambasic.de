@@ -7,7 +7,9 @@ import { getUsesEntry } from './helper';
 export async function requestUses(): Promise<[UsesEntry[], Tag[]]> {
 	const contentService = getContentService();
 	const rawEntries = await contentService.getEntries('uses');
-	const entries: UsesEntry[] = rawEntries.map(getUsesEntry);
+	const entries: UsesEntry[] = rawEntries
+		.map(getUsesEntry)
+		.filter((entry): entry is UsesEntry => entry != null);
 	const tags: Tag[] = getUniqueTags(entries);
 	return [entries, tags];
 }

@@ -1,5 +1,5 @@
 import type { TocNode } from '$lib/types/post';
-import type { RawEntry, RawEntryMeta } from '$lib/types/entry';
+import type { RawEntry } from '$lib/types/entry';
 import { slug as slugger } from 'github-slugger';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
@@ -14,120 +14,170 @@ import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 
 /**
- * Processor for converting Markdown content to structured RawEntry format.
- * Handles frontmatter parsing, table of contents generation, and HTML conversion.
+ * Result of processing markdown content
  */
-export class MarkdownProcessor {
-	private processor;
+export type ProcessedContent = {
+	/** Generated HTML content */
+	html: string;
+	/** Extracted frontmatter data */
+	frontmatter: Record<string, any>;
+	/** Generated table of contents */
+	tableOfContents: TocNode[];
+};
 
-	constructor() {
-		this.processor = remark()
-			.use(remarkFrontmatter)
-			.use(remarkParseFrontmatter)
-			.use(this.remarkGenerateNestedToc)
-			.use(remarkRehype)
-			.use(rehypeSlug)
-			.use(rehypeAutolinkHeadings)
-			.use(this.rehypeEnhanceImage)
-			.use(rehypeHighlight)
-			.use(rehypeStringify)
-			.freeze();
+/**
+ * Metadata extracted from content during processing
+ */
+export type ContentMetadata = {
+	/** Word count of content */
+	wordCount: number;
+	/** Estimated reading time in minutes */
+	readingTime: number;
+	/** List of headings found */
+	headings: TocNode[];
+};
+
+/**
+ * Creates a markdown processing error with additional context
+ */
+export function createMarkdownProcessingError(
+	message: string,
+	cause?: Error,
+	content?: string
+): Error {
+	const error = new Error(message);
+	error.name = 'MarkdownProcessingError';
+	if (cause) {
+		(error as any).cause = cause;
 	}
-
-	/**
-	 * Process markdown content into structured RawEntry
-	 * @param markdownContent - Raw markdown content as string
-	 * @returns Processed entry with HTML, metadata, and table of contents
-	 */
-	process(markdownContent: string): RawEntry {
-		try {
-			const output = this.processor.processSync(markdownContent);
-			return {
-				html: String(output.value),
-				meta: output.data.frontmatter as RawEntryMeta,
-				toc: output.data.toc as TocNode[]
-			};
-		} catch (error) {
-			throw new Error(
-				`Failed to process markdown content: ${error instanceof Error ? error.message : String(error)}`
-			);
-		}
+	if (content) {
+		(error as any).content = content;
 	}
+	return error;
+}
 
-	/**
-	 * Process multiple markdown contents
-	 * @param markdownContents - Array of markdown content strings
-	 * @returns Array of processed entries
-	 */
-	async processMany(markdownContents: string[]): Promise<RawEntry[]> {
-		return markdownContents.map((content) => this.process(content));
-	}
+const createRemarkProcessor = () => {
+	return remark()
+		.use(remarkFrontmatter)
+		.use(remarkParseFrontmatter)
+		.use(remarkGenerateNestedToc)
+		.use(remarkRehype)
+		.use(rehypeSlug)
+		.use(rehypeAutolinkHeadings)
+		.use(rehypeEnhanceImage)
+		.use(rehypeHighlight)
+		.use(rehypeStringify)
+		.freeze();
+};
 
-	/**
-	 * Remark plugin to generate nested table of contents
-	 */
-	private remarkGenerateNestedToc = () => {
-		return (tree: Node, file: VFile) => {
-			const headings: { value: string; depth: number; slug: string }[] = [];
-			visit(tree, 'heading', (node: TocNode) => {
-				const value = (node?.children ?? []).reduce((text, child) => text + child.value, '');
-				const slug = slugger(value);
-				headings.push({ value, depth: node.depth, slug });
-			});
-			file.data.toc = this.getNestedToc(headings);
+const processor = createRemarkProcessor();
+
+/**
+ * Process markdown content into structured RawEntry
+ */
+export function processMarkdown(markdownContent: string): RawEntry {
+	try {
+		const output = processor.processSync(markdownContent);
+		const frontmatter = output.data.frontmatter as any;
+
+		return {
+			html: String(output.value),
+			toc: (output.data.toc as TocNode[]) || [],
+			title: frontmatter?.title || '',
+			description: frontmatter?.description || '',
+			image: frontmatter?.image || '',
+			tags: frontmatter?.tags || [],
+			published: frontmatter?.published || '',
+			updated: frontmatter?.updated || '',
+			url: frontmatter?.url,
+			status: frontmatter?.status,
+			openSource: frontmatter?.openSource,
+			tldr: frontmatter?.tldr,
+			discussion: frontmatter?.discussion,
+			links: frontmatter?.links,
+			prio: frontmatter?.prio,
+			imageAlt: frontmatter?.imageAlt
 		};
-	};
-
-	/**
-	 * Rehype plugin to enhance image elements (currently inactive but preserved)
-	 */
-	private rehypeEnhanceImage = () => {
-		// TODO: Implement image enhancement when ready
-		// Currently commented out in original implementation
-		// This placeholder preserves the plugin structure for future use
-	};
-
-	/**
-	 * Convert flat heading structure to nested table of contents
-	 * @param markdownHeadings - Array of headings with depth, value, and slug
-	 * @returns Nested table of contents structure
-	 */
-	private getNestedToc(markdownHeadings: TocNode[]): TocNode[] {
-		let latestEntry: TocNode | null;
-		let latestParent: TocNode | null;
-		const markdownHeadingCopy = JSON.parse(JSON.stringify(markdownHeadings));
-
-		if (markdownHeadingCopy.length <= 1) return markdownHeadingCopy;
-
-		// Find the minimum depth to determine entry level
-		const entryDepth: number = markdownHeadings.reduce((acc: number, item: TocNode) => {
-			return item.depth < acc ? item.depth : acc;
-		}, Number.POSITIVE_INFINITY);
-
-		return markdownHeadingCopy.reduce((result: TocNode[], entry: TocNode) => {
-			if (latestEntry && !latestEntry.children) {
-				latestEntry.children = [];
-			}
-
-			const latestEntryDepth = latestEntry?.depth || 0;
-			const latestEntryChildren = latestEntry?.children || [];
-			const latestParentChildren = latestParent?.children || [];
-
-			if (entry.depth === entryDepth) {
-				entry.children = [];
-				result.push(entry);
-				latestParent = null;
-			} else if (entry.depth === latestEntryDepth + 1) {
-				latestEntryChildren.push(entry);
-				latestParent = latestEntry;
-			} else if (entry.depth === latestEntryDepth) {
-				latestParentChildren.push(entry);
-			} else {
-				console.error('Unexpected Toc behaviour', entry);
-			}
-
-			latestEntry = entry;
-			return result;
-		}, []);
+	} catch (error) {
+		throw createMarkdownProcessingError(
+			`Failed to process markdown content: ${error instanceof Error ? error.message : String(error)}`,
+			error instanceof Error ? error : undefined,
+			markdownContent
+		);
 	}
+}
+
+/**
+ * Process multiple markdown contents in parallel
+ */
+export async function processMarkdownBatch(markdownContents: string[]): Promise<RawEntry[]> {
+	const CHUNK_SIZE = 10;
+	const results: RawEntry[] = [];
+
+	for (let i = 0; i < markdownContents.length; i += CHUNK_SIZE) {
+		const chunk = markdownContents.slice(i, i + CHUNK_SIZE);
+		const chunkResults = await Promise.all(
+			chunk.map(async (content) => {
+				return Promise.resolve(processMarkdown(content));
+			})
+		);
+		results.push(...chunkResults);
+	}
+
+	return results;
+}
+
+function remarkGenerateNestedToc() {
+	return (tree: Node, file: VFile) => {
+		const headings: { value: string; depth: number; slug: string }[] = [];
+		visit(tree, 'heading', (node: TocNode) => {
+			const value = (node?.children ?? []).reduce((text, child) => text + (child.value || ''), '');
+			const slug = slugger(value);
+			headings.push({ value, depth: node.depth, slug });
+		});
+		file.data.toc = getNestedToc(headings);
+	};
+}
+
+function rehypeEnhanceImage() {
+	// TODO: Implement image enhancement when ready
+	// Currently commented out in original implementation
+	// This placeholder preserves the plugin structure for future use
+}
+
+function getNestedToc(markdownHeadings: TocNode[]): TocNode[] {
+	let latestEntry: TocNode | null;
+	let latestParent: TocNode | null;
+	const markdownHeadingCopy = markdownHeadings.map((heading) => ({ ...heading, children: [] }));
+
+	if (markdownHeadingCopy.length <= 1) return markdownHeadingCopy;
+
+	const entryDepth: number = markdownHeadings.reduce((acc: number, item: TocNode) => {
+		return item.depth < acc ? item.depth : acc;
+	}, Number.POSITIVE_INFINITY);
+
+	return markdownHeadingCopy.reduce((result: TocNode[], entry: TocNode) => {
+		if (latestEntry && !latestEntry.children) {
+			latestEntry.children = [];
+		}
+
+		const latestEntryDepth = latestEntry?.depth || 0;
+		const latestEntryChildren = latestEntry?.children || [];
+		const latestParentChildren = latestParent?.children || [];
+
+		if (entry.depth === entryDepth) {
+			result.push(entry);
+			latestParent = null;
+		} else if (entry.depth === latestEntryDepth + 1) {
+			latestEntryChildren.push(entry);
+			latestParent = latestEntry;
+		} else if (entry.depth === latestEntryDepth) {
+			latestParentChildren.push(entry);
+		} else {
+			console.error('Unexpected Toc behaviour', entry);
+		}
+
+		latestEntry = entry;
+		return result;
+	}, []);
 }

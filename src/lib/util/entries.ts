@@ -25,7 +25,19 @@ export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
 }
 
 export function getDate(rawString: string): EntryDate {
+	if (!rawString || rawString === 'undefined') {
+		throw new Error(`Invalid date string: "${rawString}". Date cannot be empty or undefined.`);
+	}
+
 	const raw = new Date(rawString);
+
+	// Check if the date is valid
+	if (isNaN(raw.getTime())) {
+		throw new Error(
+			`Invalid date format: "${rawString}". Must be a valid ISO date string (YYYY-MM-DD).`
+		);
+	}
+
 	return {
 		raw,
 		display: formatDate(raw)
@@ -45,9 +57,19 @@ export function sortByDirection(sortDirection: SortDirection): number {
 }
 
 export function getUniqueTags(entries: Project[] | UsesEntry[] | Post[] | Shareable[]): Tag[] {
+	// Filter out undefined/null entries and ensure tags exist
+	const validEntries = entries.filter((entry) => entry && entry.tags && Array.isArray(entry.tags));
+
+	if (validEntries.length === 0) {
+		// If no valid entries, return empty array with a default "post" type
+		const defaultAllTag = getTag('All', 'post', 0);
+		return [defaultAllTag];
+	}
+
 	// rewrite with map and than loop over non uniqque for counting - aka make henry happy > no functional change :D
-	const duplicateTags = entries.map((entry) => entry.tags).flat();
+	const duplicateTags = validEntries.map((entry) => entry.tags).flat();
 	const uniqueTags: Tag[] = duplicateTags
+		.filter((item) => item && item.slug && item.type) // Filter out invalid tag objects
 		.reduce((unique: Tag[], item: Tag): Tag[] => {
 			const tagIndex = unique.findIndex((u) => item.slug === u.slug);
 			const isItemInUnique = tagIndex >= 0;
@@ -62,8 +84,10 @@ export function getUniqueTags(entries: Project[] | UsesEntry[] | Post[] | Sharea
 			return unique;
 		}, [])
 		.sort((a: Tag, b: Tag) => sortAlphabetical(a.display, b.display));
-	const type = uniqueTags[0].type;
-	const allTag = getTag('All', type, entries.length);
+
+	// Get type from first valid entry if no unique tags exist
+	const type = uniqueTags.length > 0 ? uniqueTags[0].type : validEntries[0].type;
+	const allTag = getTag('All', type, validEntries.length);
 	return [allTag, ...uniqueTags];
 }
 
