@@ -166,6 +166,7 @@ export default {
 	plugins: {
 		'postcss-sorting': sortingConfig,
 		'postcss-nested': {},
+		autoprefixer: {},
 		...(env === 'production' ? { cssnano: {} } : {}),
 		'postcss-size': {}
 	}
