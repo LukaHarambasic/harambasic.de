@@ -1,7 +1,8 @@
 import { expect, test, describe, beforeEach } from 'vitest';
 import type { EntryType } from '$lib/types/enums';
 import type { RawEntry } from '$lib/types/entry';
-import type { ContentService, ValidationResult } from './ContentService';
+import type { ContentService } from './ContentService';
+import type { ValidationResult } from '$lib/schemas';
 import { ContentServiceError } from './ContentService';
 
 /**
@@ -48,6 +49,24 @@ class MockContentService implements ContentService {
 				message: 'Mock validation passed'
 			}
 		];
+	}
+
+	async validateAllContent() {
+		return {
+			overall: { total: 1, passed: 1, failed: 0, successRate: 100 },
+			byType: { post: [], project: [], uses: [], shareable: [] } as Record<
+				EntryType,
+				ValidationResult[]
+			>,
+			errors: [] as ValidationResult[]
+		};
+	}
+
+	async validateEntryWithQuality() {
+		return {
+			validation: { entryType: 'post' as EntryType, isValid: true, message: 'Mock validation' },
+			qualityIssues: []
+		};
 	}
 
 	private generateSlug(title: string): string {

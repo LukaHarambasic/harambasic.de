@@ -7,6 +7,6 @@ url: https://www.jetbrains.com/webstorm/
 status: inactive
 image: webstorm.svg
 openSource:
-updated: 2022-12-01 20:30
-published: 2022-12-01 20:29
+updated: 2022-12-01
+published: 2022-12-01
 ---

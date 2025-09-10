@@ -7,6 +7,6 @@ url: https://fritzvold.de/collections/geldborsen/products/minimal-wallet-erweite
 status: active
 image: fritzvold_wallet.png
 openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+updated: 2025-01-05
+published: 2025-01-05
 ---

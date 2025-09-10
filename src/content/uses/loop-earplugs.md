@@ -7,6 +7,6 @@ url: https://us.loopearplugs.com/products/quiet?variant=46599252803817
 status: active
 image: loop_earplug.png
 openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+updated: 2025-01-05
+published: 2025-01-05
 ---

@@ -7,6 +7,6 @@ url: https://www.peakdesign.com/eu/products/tech-pouch?Size=Regular&Color=Black
 status: inactive
 image: tech_pouch.png
 openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+updated: 2025-01-05
+published: 2025-01-05
 ---

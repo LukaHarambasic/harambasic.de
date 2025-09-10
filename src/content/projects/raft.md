@@ -7,7 +7,7 @@ published: 2023-11-07
 updated: 2023-11-07
 prio: 800
 status: active
-links:
+links: []
 tags:
   - Carpentry
   - DIY

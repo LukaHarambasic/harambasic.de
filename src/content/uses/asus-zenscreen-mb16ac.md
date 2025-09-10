@@ -7,6 +7,6 @@ url: https://www.asus.com/de/displays-desktops/monitors/zenscreen/zenscreen-mb16
 status: inactive
 image: asus.svg
 openSource:
-updated: 2022-12-01 20:24
-published: 2022-12-01 20:18
+updated: 2022-12-01
+published: 2022-12-01
 ---
