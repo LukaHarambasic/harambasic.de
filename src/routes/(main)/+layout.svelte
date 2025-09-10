@@ -10,11 +10,10 @@
 	import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte';
 	import LayoutHead from '$lib/components/Layout/LayoutHead.svelte';
 	import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte';
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
+	import type { LayoutComponentProps } from '$lib/types/component';
+	import { hasSnippet } from '$lib/util/snippet';
 
-	let { children }: Props = $props();
+	let { children }: LayoutComponentProps = $props();
 
 	let { title, subtitle, description, published, relativePath, permalink } = $derived($page.data);
 
@@ -50,7 +49,9 @@
 				{/if}
 			</section>
 		{/if}
-		{@render children?.()}
+		{#if hasSnippet(children)}
+			{@render children()}
+		{/if}
 	</main>
 	<LayoutFooter />
 </div>

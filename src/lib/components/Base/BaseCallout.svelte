@@ -1,18 +1,22 @@
 <script lang="ts">
-	interface Props {
+	import type { BaseComponentProps } from '$lib/types/component';
+	import { hasSnippet } from '$lib/util/snippet';
+
+	interface Props extends BaseComponentProps {
 		prefix: string;
-		children?: import('svelte').Snippet;
 	}
 
-	let { prefix, children }: Props = $props();
+	let { prefix, children, class: className, id }: Props = $props();
 </script>
 
-<div class="callout card">
+<div class="callout card" class:className {id}>
 	{#if prefix}
 		<strong>{prefix}</strong>
 	{/if}
 	<div class="content rich-text">
-		{@render children?.()}
+		{#if hasSnippet(children)}
+			{@render children()}
+		{/if}
 	</div>
 </div>
 

@@ -1,12 +1,10 @@
 <!-- From: https://svelte.dev/examples/modal -->
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+	import type { ModalComponentProps } from '$lib/types/component';
+	import { hasSnippet } from '$lib/util/snippet';
 
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
-
-	let { children }: Props = $props();
+	let { children, onClose }: ModalComponentProps = $props();
 
 	let dialog: HTMLDialogElement | undefined = $state();
 
@@ -17,9 +15,11 @@
 
 <dialog bind:this={dialog}>
 	<div class="content">
-		{@render children?.()}
+		{#if hasSnippet(children)}
+			{@render children()}
+		{/if}
 		<form method="dialog">
-			<button class="close"><Icon icon="ph:x-circle-bold" /></button>
+			<button class="close" onclick={onClose}><Icon icon="ph:x-circle-bold" /></button>
 		</form>
 	</div>
 </dialog>

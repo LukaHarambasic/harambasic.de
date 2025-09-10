@@ -1,14 +1,15 @@
 <script lang="ts">
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
+	import type { BaseComponentProps } from '$lib/types/component';
+	import { hasSnippet } from '$lib/util/snippet';
 
-	let { children }: Props = $props();
+	let { children, class: className, id }: BaseComponentProps = $props();
 </script>
 
-<section class="footnote rich-text">
+<section class="footnote rich-text" class:className {id}>
 	<p>
-		{@render children?.()}
+		{#if hasSnippet(children)}
+			{@render children()}
+		{/if}
 	</p>
 </section>
 

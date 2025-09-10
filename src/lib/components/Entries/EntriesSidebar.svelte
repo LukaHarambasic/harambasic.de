@@ -1,11 +1,10 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
+	import type { BaseComponentProps } from '$lib/types/component';
+	import { hasSnippet } from '$lib/util/snippet';
 
-	let { children }: Props = $props();
+	let { children, class: className, id }: BaseComponentProps = $props();
 
 	let detailsElement: HTMLDetailsElement | undefined = $state();
 	let summaryElement: HTMLElement | undefined = $state();
@@ -33,7 +32,7 @@
 	});
 </script>
 
-<aside>
+<aside class:className {id}>
 	<details open={isDesktop} bind:this={detailsElement} ontoggle={handleToggle}>
 		<summary class="card hoverable" bind:this={summaryElement}>
 			<span>Filter & Sort</span>
@@ -44,7 +43,9 @@
 			{/if}
 		</summary>
 		<div class="content">
-			{@render children?.()}
+			{#if hasSnippet(children)}
+				{@render children()}
+			{/if}
 		</div>
 	</details>
 </aside>
