@@ -1,7 +1,6 @@
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { EntryDate } from '$lib/types/entry';
 import type { EntryType } from '$lib/types/enums';
-import { SortDirection } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { Tag } from '$lib/types/tag';
@@ -54,10 +53,6 @@ export function filterByTag(
 ): boolean {
 	if (filterTagSlug === 'all' || filterTagSlug === '') return true;
 	return entry.tags.some((tag) => tag.slug === filterTagSlug);
-}
-
-export function sortByDirection(sortDirection: SortDirection): number {
-	return sortDirection === SortDirection.Asc ? 1 : -1;
 }
 
 export function getUniqueTags(

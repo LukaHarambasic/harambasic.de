@@ -80,36 +80,36 @@ describe('Snippet Helper Functions', () => {
 
 		it('should sort by title in descending order (default)', () => {
 			const result = filterAndSort(mockSnippets, 'all', 'title', SortDirection.Desc);
-			expect(result[0].title).toBe('Gamma Snippet');
+			expect(result[0].title).toBe('Gamma Snippet'); // Z-A descending
 			expect(result[1].title).toBe('Beta Snippet');
 			expect(result[2].title).toBe('Alpha Snippet');
 		});
 
 		it('should sort by title in ascending order', () => {
 			const result = filterAndSort(mockSnippets, 'all', 'title', SortDirection.Asc);
-			expect(result[0].title).toBe('Alpha Snippet');
+			expect(result[0].title).toBe('Alpha Snippet'); // A-Z ascending
 			expect(result[1].title).toBe('Beta Snippet');
 			expect(result[2].title).toBe('Gamma Snippet');
 		});
 
 		it('should sort by published date in descending order (newest first)', () => {
 			const result = filterAndSort(mockSnippets, 'all', 'published', SortDirection.Desc);
-			expect(result[0].title).toBe('Alpha Snippet'); // sortByProperty actually sorts ascending due to b,a parameter order
-			expect(result[1].title).toBe('Beta Snippet');
-			expect(result[2].title).toBe('Gamma Snippet');
+			expect(result[0].title).toBe('Gamma Snippet'); // Newest first (2024-03-01)
+			expect(result[1].title).toBe('Beta Snippet'); // Middle (2024-02-01)
+			expect(result[2].title).toBe('Alpha Snippet'); // Oldest (2024-01-01)
 		});
 
 		it('should sort by published date in ascending order (oldest first)', () => {
 			const result = filterAndSort(mockSnippets, 'all', 'published', SortDirection.Asc);
-			expect(result[0].title).toBe('Gamma Snippet'); // After reversing ascending becomes descending
-			expect(result[1].title).toBe('Beta Snippet');
-			expect(result[2].title).toBe('Alpha Snippet');
+			expect(result[0].title).toBe('Alpha Snippet'); // Oldest first (2024-01-01)
+			expect(result[1].title).toBe('Beta Snippet'); // Middle (2024-02-01)
+			expect(result[2].title).toBe('Gamma Snippet'); // Newest (2024-03-01)
 		});
 
 		it('should combine filtering and sorting correctly', () => {
 			const result = filterAndSort(mockSnippets, 'javascript', 'title', SortDirection.Asc);
 			expect(result).toHaveLength(2);
-			expect(result[0].title).toBe('Alpha Snippet');
+			expect(result[0].title).toBe('Alpha Snippet'); // A-Z ascending
 			expect(result[1].title).toBe('Gamma Snippet');
 		});
 	});
@@ -127,19 +127,19 @@ describe('Snippet Helper Functions', () => {
 			updated: { raw: new Date('2024-02-01'), display: 'February 1, 2024' }
 		});
 
-		it('should sort by title correctly (reverse alphabetical)', () => {
-			expect(sortByProperty(snippetA, snippetB, 'title')).toBeGreaterThan(0);
-			expect(sortByProperty(snippetB, snippetA, 'title')).toBeLessThan(0);
+		it('should sort by title correctly (alphabetical)', () => {
+			expect(sortByProperty(snippetA, snippetB, 'title')).toBeLessThan(0); // Alpha < Beta
+			expect(sortByProperty(snippetB, snippetA, 'title')).toBeGreaterThan(0); // Beta > Alpha
 		});
 
-		it('should sort by published date correctly (newer first)', () => {
-			expect(sortByProperty(snippetA, snippetB, 'published')).toBeLessThan(0); // Alpha is older
-			expect(sortByProperty(snippetB, snippetA, 'published')).toBeGreaterThan(0); // Beta is newer
+		it('should sort by published date correctly (older first)', () => {
+			expect(sortByProperty(snippetA, snippetB, 'published')).toBeLessThan(0); // Alpha is older, comes first
+			expect(sortByProperty(snippetB, snippetA, 'published')).toBeGreaterThan(0); // Beta is newer, comes after
 		});
 
-		it('should sort by updated date correctly (newer first)', () => {
-			expect(sortByProperty(snippetA, snippetB, 'updated')).toBeLessThan(0); // Alpha is older
-			expect(sortByProperty(snippetB, snippetA, 'updated')).toBeGreaterThan(0); // Beta is newer
+		it('should sort by updated date correctly (older first)', () => {
+			expect(sortByProperty(snippetA, snippetB, 'updated')).toBeLessThan(0); // Alpha is older, comes first
+			expect(sortByProperty(snippetB, snippetA, 'updated')).toBeGreaterThan(0); // Beta is newer, comes after
 		});
 
 		it('should return 0 for invalid property', () => {
