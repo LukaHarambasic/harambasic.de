@@ -21,6 +21,10 @@
 		{
 			name: 'Posts',
 			url: '/posts'
+		},
+		{
+			name: 'Snippets',
+			url: '/snippets'
 		}
 	];
 
