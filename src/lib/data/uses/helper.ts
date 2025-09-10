@@ -2,8 +2,8 @@ import type { UsesEntry } from '$lib/types/usesEntry';
 import type { EntryType, UsesEntrySortProperty } from '$lib/types/enums';
 import { SortDirection } from '$lib/types/enums';
 import type { UsesEntryStatus } from '$lib/types/enums';
-import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
-import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
+import { filterByTag, getDate, getTag } from '$lib/util/entries';
+import { getSlug, sortAlphabetical } from '$lib/util/helper';
 import type { RawEntry } from '$lib/types/entry';
 
 export function filterAndSort(
@@ -13,11 +13,12 @@ export function filterAndSort(
 	sortProperty: UsesEntrySortProperty,
 	sortDirection: SortDirection
 ): UsesEntry[] {
-	return entries
+	const sorted = entries
 		.filter((entry) => filterByTag(entry, filterTagSlug))
 		.filter((entry) => filterByStatus(entry, filterStatus))
-		.sort((a, b) => sortByProperty(a, b, sortProperty))
-		.sort(() => sortByDirection(sortDirection));
+		.sort((a, b) => sortByProperty(a, b, sortProperty));
+
+	return sortDirection === SortDirection.Asc ? sorted : sorted.reverse();
 }
 
 export function getUsesEntry(entry: RawEntry): UsesEntry {
@@ -54,11 +55,11 @@ export function sortByProperty(
 ): number {
 	switch (property) {
 		case 'title':
-			return sortAlphabetical(b.title, a.title);
+			return sortAlphabetical(a.title, b.title);
 		case 'published':
-			return sortDate(b.published.raw, a.published.raw);
+			return a.published.raw.getTime() - b.published.raw.getTime(); // ASC order (oldest first)
 		case 'updated':
-			return sortDate(b.updated.raw, a.updated.raw);
+			return a.updated.raw.getTime() - b.updated.raw.getTime(); // ASC order (oldest first)
 		default:
 			return 0;
 	}

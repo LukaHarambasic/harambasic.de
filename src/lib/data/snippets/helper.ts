@@ -3,7 +3,7 @@ import type { EntryType, SnippetSortProperty } from '$lib/types/enums';
 import { SortDirection } from '$lib/types/enums';
 import type { Snippet } from '$lib/types/snippet';
 import { filterByTag, getDate, getTag } from '$lib/util/entries';
-import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
+import { getSlug, sortAlphabetical } from '$lib/util/helper';
 
 export function filterAndSort(
 	entries: Snippet[],
@@ -15,17 +15,17 @@ export function filterAndSort(
 		.filter((entry) => filterByTag(entry, filterTagSlug))
 		.sort((a, b) => sortByProperty(a, b, sortProperty));
 
-	return sortDirection === SortDirection.Asc ? sorted.reverse() : sorted;
+	return sortDirection === SortDirection.Asc ? sorted : sorted.reverse();
 }
 
 export function sortByProperty(a: Snippet, b: Snippet, property: SnippetSortProperty): number {
 	switch (property) {
 		case 'title':
-			return sortAlphabetical(b.title, a.title);
+			return sortAlphabetical(a.title, b.title);
 		case 'published':
-			return sortDate(b.published.raw, a.published.raw);
+			return a.published.raw.getTime() - b.published.raw.getTime(); // ASC order (oldest first)
 		case 'updated':
-			return sortDate(b.updated.raw, a.updated.raw);
+			return a.updated.raw.getTime() - b.updated.raw.getTime(); // ASC order (oldest first)
 		default:
 			return 0;
 	}
