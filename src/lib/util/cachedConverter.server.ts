@@ -1,7 +1,7 @@
 import type { EntryType } from '$lib/types/enums';
 import type { RawEntry } from '$lib/types/entry';
 import { getRawEntries as getUncachedRawEntries } from './converter.server';
-import { getCacheManager } from '$lib/cache';
+import { getCacheManager } from '$lib/cache/CacheManager';
 import { getSlug } from './helper';
 import * as path from 'path';
 import * as fs from 'fs/promises';

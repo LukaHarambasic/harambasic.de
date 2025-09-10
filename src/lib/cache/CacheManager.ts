@@ -1,29 +1,10 @@
 /**
- * Content caching module exports.
+ * Functional cache manager with singleton state management.
  *
- * Provides a centralized caching system for content processing
- * to improve development build performance and enable incremental builds.
+ * Provides a class-like API while using functional programming internally.
+ * Maintains backward compatibility with the original class-based approach.
  */
 
-export {
-	createCacheState,
-	getCacheEntry,
-	setCacheEntry,
-	clearCache,
-	getCacheMetrics,
-	cleanupCache
-} from './ContentCacheManager';
-export type {
-	ContentCacheEntry,
-	ContentCache,
-	CacheValidationResult,
-	CacheMetrics
-} from './CacheEntry';
-export { generateCacheKey, parseCacheKey } from './CacheEntry';
-export type { CacheConfig } from './CacheConfig';
-export { getCacheConfig, DEFAULT_CACHE_CONFIG } from './CacheConfig';
-
-// Create singleton cache state instance using functional approach
 import {
 	createCacheState,
 	getCacheEntry,

@@ -3,7 +3,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as os from 'os';
 import { getRawEntries, getCacheMetrics, clearContentCache } from './cachedConverter.server';
-import { resetCacheState } from '$lib/cache';
+import { resetCacheState } from '$lib/cache/CacheManager';
 
 describe('Cached Content Converter', () => {
 	let tempDir: string;
