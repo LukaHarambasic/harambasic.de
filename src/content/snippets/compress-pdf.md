@@ -1,6 +1,6 @@
 ---
 title: 'Compress PDF'
-description: 'Bla bla'
+description: 'Shell script to compress PDF files using Ghostscript with optimal settings'
 tags:
   - Mac OS
   - Terminal

@@ -28,11 +28,14 @@ async function readContentFiles(entryType: EntryType, contentRoot: string): Prom
 		);
 	} catch (error) {
 		// Handle missing directory for shareables and snippets gracefully
-		if ((error as any)?.code === 'ENOENT' && (entryType === 'shareable' || entryType === 'snippet')) {
+		if (
+			(error as any)?.code === 'ENOENT' &&
+			(entryType === 'shareable' || entryType === 'snippet')
+		) {
 			console.warn(`Content directory for ${entryType} not found: ${folderPath}`);
 			return [];
 		}
-		
+
 		throw new Error(
 			`Failed to read content files from ${folderPath}: ${error instanceof Error ? error.message : String(error)}`
 		);

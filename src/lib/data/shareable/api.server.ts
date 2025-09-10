@@ -13,7 +13,7 @@ export async function requestShareables(): Promise<[Shareable[], Tag[]]> {
 			.filter((entry): entry is Shareable => entry != null);
 		const tags: Tag[] = getUniqueTags(entries);
 		return [entries, tags];
-	} catch (error) {
+	} catch {
 		// Handle missing shareables directory gracefully - return empty arrays
 		console.warn('Shareables directory not found, returning empty arrays');
 		return [[], []];
