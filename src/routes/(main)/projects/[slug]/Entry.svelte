@@ -72,18 +72,20 @@
 		@media screen and (width <= 48rem) {
 			flex-direction: column;
 		}
-		enhanced\:img {
-			width: 20rem;
-			height: 20rem;
-			border-radius: var(--border-radius);
-			aspect-ratio: 1 / 1;
+		> picture {
+			size: 20rem;
 			@media screen and (width <= 64rem) {
-				width: 15rem;
-				height: 15rem;
+				size: 15rem;
 			}
 			@media screen and (width <= 48rem) {
 				width: 100%;
 				height: auto;
+			}
+			img {
+				width: inherit;
+				height: inherit;
+				border-radius: var(--border-radius);
+				aspect-ratio: 1 / 1;
 			}
 		}
 		> .content {

@@ -104,17 +104,23 @@
 				@media screen and (width <= 32rem) {
 					flex-direction: column;
 				}
-				enhanced\:img {
-					opacity: 0.5;
+				> picture {
 					width: 12rem;
 					height: 12rem;
-					border-radius: var(--border-radius) 0 0 var(--border-radius);
-					aspect-ratio: 1 / 1;
-					filter: grayscale(1);
 					@media screen and (width <= 32rem) {
 						width: 100%;
 						height: auto;
-						border-radius: var(--border-radius) var(--border-radius) 0 0;
+					}
+					img {
+						opacity: 0.5;
+						width: inherit;
+						height: inherit;
+						border-radius: var(--border-radius) 0 0 var(--border-radius);
+						aspect-ratio: 1 / 1;
+						filter: grayscale(1);
+						@media screen and (width <= 32rem) {
+							border-radius: var(--border-radius) var(--border-radius) 0 0;
+						}
 					}
 				}
 				> .content {
@@ -129,21 +135,27 @@
 			}
 			&[data-highlighted='true'] {
 				grid-column: span 2;
-				enhanced\:img {
-					opacity: 0.5;
+				> picture {
 					width: 100%;
-					height: inherit;
-					border-radius: var(--border-radius) var(--border-radius) 0 0;
-					aspect-ratio: 1 / 1;
-					filter: grayscale(1);
+					img {
+						opacity: 0.5;
+						width: 100%;
+						height: inherit;
+						border-radius: var(--border-radius) var(--border-radius) 0 0;
+						aspect-ratio: 1 / 1;
+						filter: grayscale(1);
+					}
 				}
 			}
 			&:hover {
 				transform: scale(0.97);
 				cursor: pointer;
-				enhanced\:img {
-					filter: grayscale(0);
-					opacity: 1;
+				> picture {
+					source,
+					img {
+						filter: grayscale(0);
+						opacity: 1;
+					}
 				}
 				:global(.arrow) {
 					opacity: 1;
