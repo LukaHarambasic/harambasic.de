@@ -61,6 +61,7 @@ export const EntryDateSchema = z.object({
 
 export const ContentStatusSchema = z.enum(['active', 'inactive', 'all']);
 export const EntryTypeSchema = z.enum(['post', 'project', 'uses', 'shareable']);
+export type ValidatedEntryType = z.infer<typeof EntryTypeSchema>;
 
 // ===== RAW ENTRY SCHEMA (Pre-processing) =====
 
@@ -221,7 +222,7 @@ export type EntryDate = z.infer<typeof EntryDateSchema>;
 
 // Enum types
 export type ContentStatus = z.infer<typeof ContentStatusSchema>;
-export type EntryType = z.infer<typeof EntryTypeSchema>;
+// Note: Using ValidatedEntryType to avoid conflict with main EntryType that includes 'snippet'
 
 // Entry types
 export type RawEntry = z.infer<typeof RawEntrySchema>;
@@ -249,7 +250,7 @@ export const ENTRY_SCHEMAS = {
 /**
  * Get the appropriate schema for a given entry type
  */
-export function getSchemaForType(type: EntryType) {
+export function getSchemaForType(type: ValidatedEntryType) {
 	return ENTRY_SCHEMAS[type];
 }
 

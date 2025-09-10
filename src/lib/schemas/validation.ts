@@ -1,12 +1,13 @@
 import { z } from 'zod';
 import type {
-	EntryType,
+	ValidatedEntryType,
 	RawEntry,
 	Entry,
 	ValidationResult,
 	ValidationErrorDetail
 } from './content';
 import { RawEntrySchema, getSchemaForType, EntryTypeSchema } from './content';
+import type { EntryType } from '../types/enums';
 
 /**
  * Validation utilities for content using Zod schemas
@@ -118,7 +119,7 @@ export function validateProcessedEntry(
 /**
  * Validate entry type enum
  */
-export function validateEntryType(type: unknown): type is EntryType {
+export function validateEntryType(type: unknown): type is ValidatedEntryType {
 	const result = EntryTypeSchema.safeParse(type);
 	return result.success;
 }
