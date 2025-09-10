@@ -27,8 +27,8 @@ async function readContentFiles(entryType: EntryType, contentRoot: string): Prom
 			})
 		);
 	} catch (error) {
-		// Handle missing directory for shareables gracefully
-		if ((error as any)?.code === 'ENOENT' && entryType === 'shareable') {
+		// Handle missing directory for shareables and snippets gracefully
+		if ((error as any)?.code === 'ENOENT' && (entryType === 'shareable' || entryType === 'snippet')) {
 			console.warn(`Content directory for ${entryType} not found: ${folderPath}`);
 			return [];
 		}
