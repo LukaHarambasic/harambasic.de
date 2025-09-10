@@ -8,10 +8,6 @@ import type { ValidationResult, ValidatedEntryType } from '$lib/schemas';
 import { ContentServiceError } from './ContentService';
 import { getSlug } from '$lib/util/helper';
 
-function isValidatableEntryType(entryType: EntryType): entryType is ValidatedEntryType {
-	return ['post', 'project', 'uses', 'shareable'].includes(entryType);
-}
-
 function getContentFolderPath(entryType: EntryType, contentRoot: string): string {
 	const folderName = entryType === 'uses' ? 'uses' : `${entryType}s`;
 	return join(contentRoot, folderName);
