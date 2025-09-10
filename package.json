@@ -23,7 +23,6 @@
 	"devDependencies": {
 		"@commitlint/config-conventional": "^19.8.1",
 		"@eslint/compat": "^1.2.4",
-		"@fullhuman/postcss-purgecss": "^7.0.2",
 		"@iconify/svelte": "^4.2.0",
 		"@playwright/test": "^1.49.1",
 		"@supabase/supabase-js": "^2.57.2",
