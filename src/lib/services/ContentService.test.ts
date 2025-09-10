@@ -97,7 +97,8 @@ describe('ContentService Interface', () => {
 			post: [mockPost],
 			project: [mockProject],
 			uses: [],
-			shareable: []
+			shareable: [],
+			snippet: []
 		});
 	});
 

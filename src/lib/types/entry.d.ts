@@ -4,6 +4,7 @@ import type {
 	PostSortProperty,
 	ProjectSortProperty,
 	ShareableSortProperty,
+	SnippetSortProperty,
 	UsesEntrySortProperty
 } from './enums';
 import type { Tag } from './tag';
@@ -78,6 +79,7 @@ export type SortProperty =
 	| PostSortProperty
 	| ProjectSortProperty
 	| UsesEntrySortProperty
-	| ShareableSortProperty;
+	| ShareableSortProperty
+	| SnippetSortProperty;
 
 export type StatusFilter = ContentStatus;

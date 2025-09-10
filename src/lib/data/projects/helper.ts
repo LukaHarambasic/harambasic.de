@@ -3,7 +3,7 @@ import type { EntryType, ProjectSortProperty } from '$lib/types/enums';
 import type { ProjectStatus } from '$lib/types/enums';
 import { SortDirection } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
-import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
+import { filterByTag, getDate, getTag } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate, sortNumber } from '$lib/util/helper';
 
 export function filterAndSort(
@@ -13,11 +13,12 @@ export function filterAndSort(
 	sortProperty: ProjectSortProperty,
 	sortDirection: SortDirection
 ): Project[] {
-	return entries
+	const sorted = entries
 		.filter((entry) => filterByTag(entry, filterTagSlug))
 		.filter((entry) => filterByStatus(entry, filterStatus))
-		.sort((a, b) => sortByProperty(a, b, sortProperty))
-		.sort(() => sortByDirection(sortDirection));
+		.sort((a, b) => sortByProperty(a, b, sortProperty));
+
+	return sortDirection === SortDirection.Asc ? sorted.reverse() : sorted;
 }
 
 export function getProject(entry: RawEntry): Project {
