@@ -10,8 +10,6 @@ jobs:
   quality-gate:
     name: Quality Gate
     runs-on: ubuntu-latest
-    outputs:
-      should-deploy: ${{ steps.check-branch.outputs.should-deploy }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,84 +35,53 @@ jobs:
       - name: Build verification
         run: npm run build
 
-      - name: Check if should deploy
-        id: check-branch
-        run: |
-          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]] || [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "should-deploy=true" >> $GITHUB_OUTPUT
-          else
-            echo "should-deploy=false" >> $GITHUB_OUTPUT
-          fi
-
-  netlify-deploy:
-    name: Netlify Deployment
+  wait-for-netlify:
+    name: Wait for Netlify Deployment
     runs-on: ubuntu-latest
     needs: quality-gate
-    if: needs.quality-gate.outputs.should-deploy == 'true'
+    if: needs.quality-gate.result == 'success' && github.event_name == 'pull_request'
     outputs:
-      deploy-url: ${{ steps.deploy.outputs.deploy-url }}
-      deploy-status: ${{ steps.deploy.outputs.status }}
-      site-id: ${{ steps.deploy.outputs.site-id }}
+      netlify-success: ${{ steps.netlify-check.outputs.success }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci || npm install
-
-      - name: Build site
-        run: npm run build
-
-      - name: Deploy to Netlify
-        id: deploy
-        uses: nwtgck/actions-netlify@v3.0
-        with:
-          publish-dir: './build'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deploy from GitHub Actions - ${{ github.event.head_commit.message || github.event.pull_request.title }}'
-          enable-pull-request-comment: true
-          enable-commit-comment: false
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
-  netlify-status-monitor:
-    name: Netlify Status Monitor
-    runs-on: ubuntu-latest
-    needs: [quality-gate, netlify-deploy]
-    if: always() && needs.quality-gate.outputs.should-deploy == 'true' && github.event_name == 'pull_request'
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Check Netlify deployment status
-        id: check-status
-        run: |
-          if [[ "${{ needs.netlify-deploy.result }}" == "failure" ]]; then
-            echo "deployment-failed=true" >> $GITHUB_OUTPUT
-          else
-            echo "deployment-failed=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Comment on PR with deployment failure
-        if: steps.check-status.outputs.deployment-failed == 'true'
+      - name: Wait for Netlify deployment status
+        id: netlify-check
         uses: actions/github-script@v7
         with:
           script: |
             const { owner, repo } = context.repo;
-            const prNumber = context.payload.pull_request.number;
+            const sha = context.payload.pull_request.head.sha;
 
-            const comment = `## 🚨 Netlify Deployment Failed
+            // Wait up to 10 minutes for Netlify deployment
+            const maxAttempts = 60; // 10 minutes with 10-second intervals
+            let attempts = 0;
 
-            The Netlify deployment for this PR has failed. Please check the build logs and fix any issues before the code review can proceed.
+            while (attempts < maxAttempts) {
+              const { data: checks } = await github.rest.checks.listForRef({
+                owner,
+                repo,
+                ref: sha,
+              });
+              
+              const netlifyCheck = checks.check_runs.find(check => 
+                check.name.includes('netlify') && check.name.includes('deploy')
+              );
+              
+              if (netlifyCheck) {
+                console.log(`Netlify check status: ${netlifyCheck.status} - ${netlifyCheck.conclusion}`);
+                
+                if (netlifyCheck.status === 'completed') {
+                  if (netlifyCheck.conclusion === 'success') {
+                    console.log('✅ Netlify deployment successful!');
+                    core.setOutput('success', 'true');
+                    return;
+                  } else {
+                    console.log('❌ Netlify deployment failed');
+                    core.setOutput('success', 'false');
+                    
+                    // Post failure comment
+                    const comment = `## 🚨 Netlify Deployment Failed
+
+            The Netlify deployment for this PR has failed. Please check the [build logs](${netlifyCheck.details_url}) and fix any issues before the code review can proceed.
 
             **Common issues to check:**
             - Build errors or compilation failures
@@ -126,19 +93,48 @@ jobs:
 
             ---
             *This comment was automatically generated by the CI/CD pipeline.*`;
+                    
+                    await github.rest.issues.createComment({
+                      owner,
+                      repo,
+                      issue_number: context.payload.pull_request.number,
+                      body: comment
+                    });
+                    return;
+                  }
+                }
+              }
+              
+              attempts++;
+              console.log(`Waiting for Netlify deployment... (${attempts}/${maxAttempts})`);
+              await new Promise(resolve => setTimeout(resolve, 10000)); // Wait 10 seconds
+            }
+
+            // Timeout reached
+            console.log('⏰ Timeout waiting for Netlify deployment');
+            core.setOutput('success', 'false');
+
+            const timeoutComment = `## ⏰ Netlify Deployment Timeout
+
+            The Netlify deployment is taking longer than expected (10+ minutes). Please check the deployment status manually.
+
+            The Claude Code review will be skipped until the deployment completes successfully.
+
+            ---
+            *This comment was automatically generated by the CI/CD pipeline.*`;
 
             await github.rest.issues.createComment({
               owner,
               repo,
-              issue_number: prNumber,
-              body: comment
+              issue_number: context.payload.pull_request.number,
+              body: timeoutComment
             });
 
   claude-review:
     name: Claude Code Review
     runs-on: ubuntu-latest
-    needs: [quality-gate, netlify-deploy]
-    if: needs.quality-gate.result == 'success' && needs.netlify-deploy.result == 'success' && github.event_name == 'pull_request'
+    needs: [quality-gate, wait-for-netlify]
+    if: needs.quality-gate.result == 'success' && needs.wait-for-netlify.outputs.netlify-success == 'true' && github.event_name == 'pull_request'
     permissions:
       contents: read
       pull-requests: read
