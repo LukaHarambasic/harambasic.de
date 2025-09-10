@@ -10,7 +10,7 @@ import type { Tag } from './tag';
 import type { Link } from './generic';
 import type { TocNode } from './post';
 
-// Raw entry metadata structure
+// Raw entry metadata structure (frontmatter fields)
 export interface RawEntryMeta {
 	title: string;
 	description: string;
@@ -30,29 +30,11 @@ export interface RawEntryMeta {
 	imageAlt?: string;
 }
 
-// Raw entry structure with flattened metadata
-export interface RawEntry {
-	// Content
+// Raw entry structure = metadata + processed content
+export interface RawEntry extends RawEntryMeta {
+	// Processed content fields
 	html: string;
 	toc: TocNode[];
-
-	// Frontmatter metadata (flattened)
-	title: string;
-	description: string;
-	image: string;
-	tags: string[];
-	published: string;
-	updated: string;
-
-	// Optional fields
-	url?: string;
-	status?: ContentStatus;
-	openSource?: boolean;
-	tldr?: string;
-	discussion?: string;
-	links?: Link[];
-	prio?: number;
-	imageAlt?: string;
 }
 
 export interface EntryDate {
