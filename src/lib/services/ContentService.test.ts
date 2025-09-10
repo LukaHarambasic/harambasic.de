@@ -1,6 +1,6 @@
 import { expect, test, describe, beforeEach } from 'vitest';
 import type { EntryType } from '$lib/types/enums';
-import type { RawEntry, RawEntryMeta } from '$lib/types/entry';
+import type { RawEntry } from '$lib/types/entry';
 import type { ContentService, ValidationResult } from './ContentService';
 import { ContentServiceError } from './ContentService';
 
@@ -23,20 +23,20 @@ class MockContentService implements ContentService {
 
 	async getEntry(entryType: EntryType, slug: string): Promise<RawEntry | null> {
 		const entries = await this.getEntries(entryType);
-		return entries.find((entry) => this.generateSlug(entry.meta.title) === slug) || null;
+		return entries.find((entry) => this.generateSlug(entry.title) === slug) || null;
 	}
 
 	async getEntryMetadata(
 		entryType: EntryType,
 		slug: string
-	): Promise<Pick<RawEntryMeta, 'title' | 'description' | 'published'> | null> {
+	): Promise<Pick<RawEntry, 'title' | 'description' | 'published'> | null> {
 		const entry = await this.getEntry(entryType, slug);
 		if (!entry) return null;
 
 		return {
-			title: entry.meta.title,
-			description: entry.meta.description,
-			published: entry.meta.published
+			title: entry.title,
+			description: entry.description,
+			published: entry.published
 		};
 	}
 
@@ -64,14 +64,12 @@ describe('ContentService Interface', () => {
 
 	const mockPost: RawEntry = {
 		html: '<h1>Test Post</h1><p>This is a test post.</p>',
-		meta: {
-			title: 'Test Post',
-			description: 'A test post for unit testing',
-			image: '/images/test.jpg',
-			tags: ['testing', 'unit-test'],
-			published: '2023-01-01',
-			updated: '2023-01-02'
-		},
+		title: 'Test Post',
+		description: 'A test post for unit testing',
+		image: '/images/test.jpg',
+		tags: ['testing', 'unit-test'],
+		published: '2023-01-01',
+		updated: '2023-01-02',
 		toc: [
 			{
 				depth: 1,
@@ -84,15 +82,13 @@ describe('ContentService Interface', () => {
 
 	const mockProject: RawEntry = {
 		html: '<h1>Test Project</h1><p>A sample project.</p>',
-		meta: {
-			title: 'Test Project',
-			description: 'A test project for unit testing',
-			image: '/images/project.jpg',
-			tags: ['project', 'testing'],
-			published: '2023-02-01',
-			updated: '2023-02-02',
-			prio: 1
-		},
+		title: 'Test Project',
+		description: 'A test project for unit testing',
+		image: '/images/project.jpg',
+		tags: ['project', 'testing'],
+		published: '2023-02-01',
+		updated: '2023-02-02',
+		prio: 1,
 		toc: []
 	};
 

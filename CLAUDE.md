@@ -63,6 +63,14 @@ Centralized type definitions in `src/lib/types/`:
 - `enums.ts` - Entry types, sort properties, and status enums
 - Individual type files for posts, projects, shareables, tags
 
+### Programming Paradigm
+
+- **Functional Programming Only** - Use pure functions, avoid classes and OOP patterns
+- Functions should be stateless with clear inputs/outputs
+- Prefer composition over inheritance/interfaces
+- Use type aliases instead of interfaces where possible
+- Avoid side effects, prefer explicit parameter passing
+
 ### Key Concepts
 
 - **Entry System**: Unified content model with `EntryType` enum (POST, PROJECT, USES_ENTRY, SHAREABLE)
