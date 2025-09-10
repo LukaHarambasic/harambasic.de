@@ -27,6 +27,12 @@ async function readContentFiles(entryType: EntryType, contentRoot: string): Prom
 			})
 		);
 	} catch (error) {
+		// Handle missing directory for shareables gracefully
+		if ((error as any)?.code === 'ENOENT' && entryType === 'shareable') {
+			console.warn(`Content directory for ${entryType} not found: ${folderPath}`);
+			return [];
+		}
+		
 		throw new Error(
 			`Failed to read content files from ${folderPath}: ${error instanceof Error ? error.message : String(error)}`
 		);
