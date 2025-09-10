@@ -9,7 +9,6 @@ tags:
   - macOS
   - Terminal
 tldr: Select a file in Finder, press <strong>CMD + C</strong>, paste it to the Terminal with <strong>CMD + V</strong>. That's it.
-discussion: TBD
 ---
 
 ## Intro

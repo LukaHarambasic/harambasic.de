@@ -1,13 +1,13 @@
 ---
 title: Mac utility must haves
 description: Explore my essential Mac utilities, including clipboard enhancements, window management, and more.
+image: TODO
 published: 2024-04-01
 updated: 2024-04-01
 tags:
   - macOS
   - Tools
 tldr: A collection of the utilities I couldn't work without on my Mac. Copy the brew command if you aren't interested in the fluff.
-discussion: TBD
 ---
 
 ## Motivation

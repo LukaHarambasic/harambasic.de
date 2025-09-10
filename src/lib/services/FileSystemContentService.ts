@@ -3,7 +3,8 @@ import { join } from 'path';
 import type { EntryType } from '$lib/types/enums';
 import type { RawEntry } from '$lib/types/entry';
 import { processMarkdown } from '$lib/processors/MarkdownProcessor';
-import type { ContentService, ValidationResult } from './ContentService';
+import type { ContentService } from './ContentService';
+import type { ValidationResult } from '$lib/schemas';
 import { ContentServiceError } from './ContentService';
 import { getSlug } from '$lib/util/helper';
 
@@ -100,7 +101,9 @@ export async function getContentEntries(
 
 	try {
 		const files = await readContentFiles(entryType, root);
-		const entries = await Promise.all(files.map(processMarkdown));
+		const entries = await Promise.all(
+			files.map((content, index) => processMarkdown(content, `${entryType}-${index}.md`))
+		);
 		console.timeEnd(`Loading ${entryType} entries`);
 		return entries;
 	} catch (error) {
@@ -249,5 +252,97 @@ export class FileSystemContentService implements ContentService {
 
 	async validateContent(entryType: EntryType): Promise<ValidationResult[]> {
 		return validateContent(entryType, this.contentRoot);
+	}
+
+	async validateAllContent(): Promise<{
+		overall: {
+			total: number;
+			passed: number;
+			failed: number;
+			successRate: number;
+		};
+		byType: Record<EntryType, ValidationResult[]>;
+		errors: ValidationResult[];
+	}> {
+		const entryTypes: EntryType[] = ['post', 'project', 'uses', 'shareable'];
+		const byType: Record<EntryType, ValidationResult[]> = {} as Record<
+			EntryType,
+			ValidationResult[]
+		>;
+		let allResults: ValidationResult[] = [];
+
+		// Validate each entry type
+		for (const entryType of entryTypes) {
+			try {
+				const results = await this.validateContent(entryType);
+				byType[entryType] = results;
+				allResults = allResults.concat(results);
+			} catch (error) {
+				byType[entryType] = [
+					{
+						entryType,
+						isValid: false,
+						message: `Failed to validate ${entryType}: ${error instanceof Error ? error.message : String(error)}`
+					}
+				];
+				allResults.push(byType[entryType][0]);
+			}
+		}
+
+		// Calculate overall statistics
+		const total = allResults.length;
+		const passed = allResults.filter((r) => r.isValid).length;
+		const failed = total - passed;
+		const successRate = total > 0 ? Math.round((passed / total) * 100 * 100) / 100 : 0;
+		const errors = allResults.filter((r) => !r.isValid);
+
+		return {
+			overall: { total, passed, failed, successRate },
+			byType,
+			errors
+		};
+	}
+
+	async validateEntryWithQuality(
+		entryType: EntryType,
+		slug: string
+	): Promise<{
+		validation: ValidationResult;
+		qualityIssues: import('$lib/schemas').ContentQualityIssue[];
+	} | null> {
+		try {
+			const entry = await this.getEntry(entryType, slug);
+			if (!entry) {
+				return null;
+			}
+
+			// Import validation functions
+			const { validateRawEntry, validateContentQuality, validateMarkdownStructure } = await import(
+				'$lib/schemas/validation'
+			);
+
+			// Validate the entry structure
+			const validation = validateRawEntry(entry, `${entryType}/${slug}.md`);
+
+			// Perform content quality checks
+			const qualityIssues = validation.data
+				? [...validateContentQuality(validation.data), ...validateMarkdownStructure(entry.html)]
+				: [];
+
+			return {
+				validation,
+				qualityIssues
+			};
+		} catch (error) {
+			return {
+				validation: {
+					entryType,
+					slug,
+					isValid: false,
+					message: `Failed to validate entry: ${error instanceof Error ? error.message : String(error)}`
+				},
+				qualityIssues: []
+			};
+		}
 	}
 }
