@@ -377,12 +377,12 @@
 								flex-direction: column;
 							}
 							&:hover {
-								:global(img) {
+								enhanced\:img {
 									filter: grayscale(0);
 									opacity: 1;
 								}
 							}
-							:global(img) {
+							enhanced\:img {
 								opacity: 0.5;
 								width: 12rem;
 								height: 12rem;

@@ -104,7 +104,7 @@
 				@media screen and (width <= 32rem) {
 					flex-direction: column;
 				}
-				:global(img) {
+				enhanced\:img {
 					opacity: 0.5;
 					width: 12rem;
 					height: 12rem;
@@ -129,7 +129,7 @@
 			}
 			&[data-highlighted='true'] {
 				grid-column: span 2;
-				:global(img) {
+				enhanced\:img {
 					opacity: 0.5;
 					width: 100%;
 					height: inherit;
@@ -141,7 +141,7 @@
 			&:hover {
 				transform: scale(0.97);
 				cursor: pointer;
-				:global(img) {
+				enhanced\:img {
 					filter: grayscale(0);
 					opacity: 1;
 				}

@@ -72,7 +72,7 @@
 		@media screen and (width <= 48rem) {
 			flex-direction: column;
 		}
-		:global(img) {
+		enhanced\:img {
 			width: 20rem;
 			height: 20rem;
 			border-radius: var(--border-radius);

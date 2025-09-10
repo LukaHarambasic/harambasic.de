@@ -30,6 +30,12 @@
 				"ignorePseudoClasses": ["global"]
 			}
 		],
+		"selector-type-no-unknown": [
+			true,
+			{
+				"ignoreTypes": ["/^enhanced:/"]
+			}
+		],
 		"property-no-unknown": [
 			true,
 			{
