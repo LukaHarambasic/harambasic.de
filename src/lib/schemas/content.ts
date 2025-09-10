@@ -72,7 +72,7 @@ export const EntryTypeSchema = z.enum(['post', 'project', 'uses', 'shareable']);
  */
 export const RawEntrySchema = z.object({
 	// Content fields
-	html: z.string().min(1, 'HTML content is required'),
+	html: z.string().default(''), // Allow empty HTML - specific schemas will enforce if needed
 	toc: z.array(TocNodeSchema).default([]),
 
 	// Required frontmatter fields
@@ -83,7 +83,10 @@ export const RawEntrySchema = z.object({
 		.max(200, 'Description too long (max 200 chars)'),
 	image: z
 		.string()
+		.nullable()
+		.optional()
 		.default('TODO')
+		.transform((val) => val || 'TODO')
 		.refine((val) => {
 			// Allow "TODO" as temporary placeholder during migration
 			// This will be made stricter once all content has proper images
@@ -116,7 +119,7 @@ export const RawEntrySchema = z.object({
 	// Optional fields (varies by content type)
 	url: z.string().url('Invalid URL format').optional(),
 	status: ContentStatusSchema.optional(),
-	openSource: z.boolean().optional(),
+	openSource: z.boolean().nullable().optional().default(false),
 	tldr: z.string().min(10, 'TLDR must be at least 10 characters').optional(),
 	discussion: z.string().url('Invalid discussion URL').optional(),
 	links: z.array(LinkSchema).optional(),
@@ -145,7 +148,10 @@ export const BaseEntrySchema = z.object({
 		.max(200, 'Description too long for SEO'),
 	image: z
 		.string()
+		.nullable()
+		.optional()
 		.default('TODO')
+		.transform((val) => val || 'TODO')
 		.refine((val) => {
 			// Allow "TODO" as temporary placeholder during migration
 			// This will be made stricter once all content has proper images
@@ -188,7 +194,8 @@ export const UsesEntrySchema = BaseEntrySchema.extend({
 	type: z.literal('uses'),
 	url: z.string().url('Uses entry must have a valid URL'),
 	status: ContentStatusSchema,
-	openSource: z.boolean()
+	openSource: z.boolean().default(false),
+	html: z.string().default('') // Uses entries can have empty HTML content (reference-style entries)
 });
 
 /**
