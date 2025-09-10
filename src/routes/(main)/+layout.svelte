@@ -10,8 +10,12 @@
 	import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte';
 	import LayoutHead from '$lib/components/Layout/LayoutHead.svelte';
 	import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte';
+	import { hasSnippet } from '$lib/util/snippet';
+
 	interface Props {
 		children?: import('svelte').Snippet;
+		class?: string;
+		id?: string;
 	}
 
 	let { children }: Props = $props();
@@ -50,7 +54,9 @@
 				{/if}
 			</section>
 		{/if}
-		{@render children?.()}
+		{#if hasSnippet(children)}
+			{@render children()}
+		{/if}
 	</main>
 	<LayoutFooter />
 </div>

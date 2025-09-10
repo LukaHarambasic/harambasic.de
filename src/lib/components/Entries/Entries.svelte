@@ -1,24 +1,32 @@
 <script lang="ts">
+	import { hasSnippet } from '$lib/util/snippet';
+
 	interface Props {
 		path?: string;
 		entries?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
 		sidebar?: import('svelte').Snippet;
+		class?: string;
 	}
 
-	let { path = '', entries, sidebar }: Props = $props();
+	let { path = '', entries, sidebar, children, class: className }: Props = $props();
 
 	let rssPath = $derived(`${path}/rss`);
-
-	// Compute if sidebar is empty
-	let hasSidebar = $derived(!!sidebar);
+	let hasSidebar = $derived(hasSnippet(sidebar));
 </script>
 
-<section class:no-sidebar={!hasSidebar}>
+<section class:no-sidebar={!hasSidebar} class:className>
 	<div class="entries">
-		{@render entries?.()}
+		{#if hasSnippet(entries)}
+			{@render entries()}
+		{:else if hasSnippet(children)}
+			{@render children()}
+		{/if}
 	</div>
 	<div class="sidebar">
-		{@render sidebar?.()}
+		{#if hasSnippet(sidebar)}
+			{@render sidebar()}
+		{/if}
 	</div>
 	<div class="rss rich-text">
 		<p>
