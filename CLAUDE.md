@@ -74,6 +74,251 @@ Centralized type definitions in `src/lib/types/`:
 - Use type aliases instead of interfaces where possible
 - Avoid side effects, prefer explicit parameter passing
 
+## Functional Programming Guidelines
+
+### Core Principles
+
+#### ✅ Functional Programming Only
+
+- **Pure functions with clear inputs/outputs**
+- **Avoid classes and OOP patterns**
+- **Prefer composition over inheritance**
+- **Use type aliases instead of interfaces where possible**
+- **No side effects - prefer explicit parameter passing**
+
+#### ✅ Simplicity Over Complexity
+
+- **"Boring and obvious" solutions preferred**
+- **Single responsibility per function**
+- **Avoid premature abstractions**
+- **If you need to explain it, it's too complex**
+
+#### ✅ Pragmatic Over Dogmatic
+
+- **Solo project for a small private website**
+- **Adapt to project reality, not enterprise patterns**
+- **Simple solutions that work > complex "best practices"**
+
+### Architectural Patterns to Follow
+
+#### ✅ Current Good Patterns
+
+**Pure Data Transformation Functions:**
+
+```typescript
+// ✅ Good - Pure function, clear input/output
+export function filterByTag(entry: Entry, filterTagSlug: string): boolean {
+	if (filterTagSlug === 'all') return true;
+	return entry.tags.some((tag) => tag.slug === filterTagSlug);
+}
+
+// ✅ Good - Stateless data processing
+export function getPost(rawEntry: RawEntry): Post | null {
+	try {
+		return {
+			type: 'post',
+			slug: getSlug(rawEntry.title),
+			title: rawEntry.title
+			// ... pure transformation
+		};
+	} catch (error) {
+		return null;
+	}
+}
+```
+
+**Service Interfaces (Simple):**
+
+```typescript
+// ✅ Good - Simple interface, pure functions
+export interface ContentService {
+	getEntries(entryType: EntryType): Promise<RawEntry[]>;
+	getEntry(entryType: EntryType, slug: string): Promise<RawEntry | null>;
+}
+```
+
+**Union Types Over Enums:**
+
+```typescript
+// ✅ Good - Simple union type
+export type EntryType = 'post' | 'project' | 'uses' | 'shareable';
+
+// ✅ Good - Union type with constants
+export type ContentStatus = 'active' | 'inactive' | 'all';
+```
+
+#### ❌ Patterns to Avoid
+
+**Complex OOP Architectures:**
+
+```typescript
+// ❌ Avoid - Unnecessary abstraction for solo project
+class ContentRepositoryFactory {
+	createRepository(type: string): AbstractContentRepository {
+		// Complex factory patterns not needed
+	}
+}
+
+// ❌ Avoid - Over-engineered interfaces
+interface AdvancedContentProcessor {
+	withCache(): this;
+	withValidation(): this;
+	withTransformation(): this;
+	// Builder patterns add complexity
+}
+```
+
+**Over-Engineering:**
+
+```typescript
+// ❌ Avoid - Premature optimization
+class ContentCacheManager {
+	private cache = new Map();
+	async invalidate() {
+		/* complex cache logic */
+	}
+	// Caching adds state and complexity
+}
+
+// ❌ Avoid - Unnecessary abstraction
+interface GenericQueryBuilder<T> {
+	where(fn: (item: T) => boolean): this;
+	orderBy(key: keyof T): this;
+	// Generic query builders for simple filtering
+}
+```
+
+### Development Guidelines
+
+#### Issue Creation Standards
+
+**✅ Good Issues:**
+
+- Focus on maintainability and simplification
+- Solve actual problems, not theoretical ones
+- Follow "boring and obvious" principle
+- Examples: Bug fixes, performance improvements, test coverage
+
+**❌ Issues to Avoid:**
+
+- Enterprise patterns (repositories, factories, builders)
+- Premature optimizations (caching, advanced build tools)
+- Over-abstraction (generic utilities, design systems)
+- Complex architectural refactors without clear benefit
+
+#### Code Review Checklist
+
+When reviewing code changes, ask:
+
+- [ ] Does this follow pure function principles?
+- [ ] Is this the simplest solution that works?
+- [ ] Would this be obvious to someone reading it in 6 months?
+- [ ] Does this solve a real problem or is it theoretical?
+- [ ] Is the complexity justified by the benefit?
+
+#### Architecture Decision Framework
+
+When implementing new features, choose based on:
+
+1. **Testability** - Can I easily test this pure function?
+2. **Readability** - Is this boring and obvious?
+3. **Consistency** - Does this match existing functional patterns?
+4. **Simplicity** - Is this the simplest solution that works?
+5. **Reversibility** - How hard to change later?
+
+### Function Organization Standards
+
+#### ✅ Current Good Structure
+
+```
+src/lib/
+├── types/           # Type definitions (union types, interfaces)
+├── util/            # Pure utility functions
+├── data/            # Data transformation functions
+├── processors/      # Pure content transformation
+├── services/        # Simple service interfaces
+└── components/      # Svelte components (functional)
+```
+
+#### Function Organization
+
+- **One function per export when possible**
+- **Group related pure functions in same file**
+- **Keep functions small and focused**
+- **Use descriptive function names**
+
+### Testing Strategy (Functional)
+
+#### ✅ Easy to Test (Pure Functions)
+
+```typescript
+// ✅ Easy - Pure function with predictable output
+describe('filterByTag', () => {
+	it('should return true for matching tag', () => {
+		const entry = { tags: [{ slug: 'typescript' }] };
+		expect(filterByTag(entry, 'typescript')).toBe(true);
+	});
+});
+```
+
+#### ❌ Hard to Test (Stateful/Complex)
+
+```typescript
+// ❌ Hard - Complex state, side effects, mocking needed
+describe('AdvancedCacheManager', () => {
+	it('should invalidate cache when file changes', async () => {
+		// Complex test setup, file system mocking, etc.
+	});
+});
+```
+
+### Quality Gates (Functional)
+
+#### Pre-commit Checklist
+
+- [ ] New functions are pure (predictable input/output)
+- [ ] No unnecessary classes or complex OOP patterns
+- [ ] Functions have single responsibility
+- [ ] Code is "boring and obvious"
+- [ ] Tests are simple and fast
+
+#### Issue Review Criteria
+
+Before creating new issues, ask:
+
+- [ ] Is this solving a real, measured problem?
+- [ ] Is the proposed solution the simplest that works?
+- [ ] Does this align with solo project needs?
+- [ ] Would this add or reduce complexity?
+
+### Migration Guidelines
+
+When updating existing code:
+
+1. **Start with utilities** - Pure functions are easiest to migrate
+2. **Extract pure functions from complex code**
+3. **Replace classes with function compositions**
+4. **Convert interfaces to type aliases where appropriate**
+5. **Remove unused abstractions**
+
+### Success Metrics
+
+#### Code Quality Indicators
+
+- ✅ Most functions are pure (no side effects)
+- ✅ Low complexity scores in linting
+- ✅ Fast, reliable tests
+- ✅ Easy to understand code reviews
+- ✅ Minimal abstraction layers
+
+#### Anti-patterns to Watch For
+
+- ❌ Issues proposing complex architectures
+- ❌ Pull requests adding many abstraction layers
+- ❌ Tests that require extensive mocking
+- ❌ Code that needs long explanations
+- ❌ "Enterprise patterns" in a personal project
+
 ### Key Concepts
 
 - **Entry System**: Unified content model with `EntryType` enum (POST, PROJECT, USES_ENTRY, SHAREABLE)
