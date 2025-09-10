@@ -14,6 +14,7 @@
 		"lint:css": "stylelint \"src/**/*.{css,svelte}\"",
 		"format": "prettier --write . && npm run format:css",
 		"format:css": "stylelint \"src/**/*.{css,svelte}\" --fix",
+		"validate:content": "node scripts/validate-content.js",
 		"generateFavicons": "node scripts/fetch-favicon/index.js",
 		"socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
 		"socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",

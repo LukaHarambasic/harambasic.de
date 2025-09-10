@@ -7,6 +7,6 @@ url: https://eu.wandrd.com/products/prvke?variant=39360658473002
 status: active
 image: wandrd.png
 openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+updated: 2025-01-05
+published: 2025-01-05
 ---

@@ -7,6 +7,6 @@ url: https://nuxtjs.org/
 status: inactive
 image: nuxt.svg
 openSource: true
-updated: 2022-12-01 20:37
-published: 2022-12-01 20:36
+updated: 2022-12-01
+published: 2022-12-01
 ---

@@ -7,6 +7,6 @@ url: https://www.raspberrypi.com/products/raspberry-pi-5/
 status: active
 image: raspberry_pi_5.png
 openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+updated: 2025-01-05
+published: 2025-01-05
 ---

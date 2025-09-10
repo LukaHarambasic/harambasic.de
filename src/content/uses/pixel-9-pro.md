@@ -7,6 +7,6 @@ url: https://store.google.com/product/pixel_9_pro
 status: active
 image: pixel_9_pro_pink.png
 openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+updated: 2025-01-05
+published: 2025-01-05
 ---

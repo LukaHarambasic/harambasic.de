@@ -7,6 +7,6 @@ url: https://github.com/features/actions
 status: active
 image: githubactions.svg
 openSource:
-updated: 2022-12-01 20:26
-published: 2022-12-01 20:26
+updated: 2022-12-01
+published: 2022-12-01
 ---

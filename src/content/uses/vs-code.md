@@ -7,6 +7,6 @@ url: https://code.visualstudio.com/
 status: active
 image: vscode.svg
 openSource: true
-updated: 2022-12-01 20:35
-published: 2022-12-01 20:32
+updated: 2022-12-01
+published: 2022-12-01
 ---

@@ -7,6 +7,6 @@ url: https://alt-tab-macos.netlify.app/
 status: active
 image: alttab.png
 openSource: true
-updated: 2023-11-25 16:35
-published: 2023-11-25 16:35
+updated: 2023-11-25
+published: 2023-11-25
 ---

@@ -5,8 +5,8 @@ tags:
   - Mac OS
   - Terminal
 image: CodeScreenshot.png
-updated: 2022-12-01 20:18
-published: 2022-12-01 20:18
+updated: 2022-12-01
+published: 2022-12-01
 ---
 
 1. Install ghostscript: `brew install ghostscript`.

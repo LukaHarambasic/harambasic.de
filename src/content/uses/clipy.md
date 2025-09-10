@@ -7,6 +7,6 @@ url: https://clipy-app.com/
 status: active
 image: clipy.png
 openSource: true
-updated: 2022-12-01 20:32
-published: 2022-12-01 20:30
+updated: 2022-12-01
+published: 2022-12-01
 ---

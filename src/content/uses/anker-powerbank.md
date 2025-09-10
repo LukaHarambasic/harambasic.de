@@ -7,6 +7,6 @@ url: https://www.anker.com/products/a1259-built-in-cable-power-bank-10000mah?var
 status: active
 image: anker_powerbank.webp
 openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+updated: 2025-01-05
+published: 2025-01-05
 ---
