@@ -2,7 +2,7 @@ import type { RawEntry } from '$lib/types/entry';
 import type { EntryType, PostSortProperty } from '$lib/types/enums';
 import { SortDirection } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
-import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
+import { filterByTag, getDate, getTag } from '$lib/util/entries';
 import { getSlug, sortAlphabetical, sortDate } from '$lib/util/helper';
 
 export function filterAndSort(
@@ -11,10 +11,11 @@ export function filterAndSort(
 	sortProperty: PostSortProperty,
 	sortDirection: SortDirection
 ): Post[] {
-	return entries
+	const sorted = entries
 		.filter((entry) => filterByTag(entry, filterTagSlug))
-		.sort((a, b) => sortByProperty(a, b, sortProperty))
-		.sort(() => sortByDirection(sortDirection));
+		.sort((a, b) => sortByProperty(a, b, sortProperty));
+
+	return sortDirection === SortDirection.Asc ? sorted.reverse() : sorted;
 }
 
 export function sortByProperty(a: Post, b: Post, property: PostSortProperty): number {
