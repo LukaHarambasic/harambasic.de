@@ -10,14 +10,21 @@ import type { Tag } from './tag';
 import type { Link } from './generic';
 import type { TocNode } from './post';
 
-// Frontmatter metadata structure
-export interface RawEntryMeta {
+// Flattened raw entry structure - no nested meta
+export interface RawEntry {
+	// Content
+	html: string;
+	toc: TocNode[];
+
+	// Frontmatter (flattened, no nested meta)
 	title: string;
 	description: string;
 	image: string;
 	tags: string[];
 	published: string;
 	updated: string;
+
+	// Optional fields
 	url?: string;
 	status?: ContentStatus;
 	openSource?: boolean;
@@ -26,14 +33,6 @@ export interface RawEntryMeta {
 	links?: Link[];
 	prio?: number;
 	imageAlt?: string;
-}
-
-// Raw entry structure with nested meta
-export interface RawEntry {
-	// Content
-	html: string;
-	meta: RawEntryMeta;
-	toc: TocNode[];
 }
 
 export interface EntryDate {
@@ -82,6 +81,3 @@ export type SortProperty =
 	| ShareableSortProperty;
 
 export type StatusFilter = ContentStatus;
-
-// Re-export ContentStatus for compatibility
-export type { ContentStatus };

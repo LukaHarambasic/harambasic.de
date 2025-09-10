@@ -72,16 +72,20 @@
 		@media screen and (width <= 48rem) {
 			flex-direction: column;
 		}
-		> enhanced:img {
+		> picture {
 			size: 20rem;
-			border-radius: var(--border-radius);
-			aspect-ratio: 1 / 1;
 			@media screen and (width <= 64rem) {
 				size: 15rem;
 			}
 			@media screen and (width <= 48rem) {
 				width: 100%;
 				height: auto;
+			}
+			img {
+				width: inherit;
+				height: inherit;
+				border-radius: var(--border-radius);
+				aspect-ratio: 1 / 1;
 			}
 		}
 		> .content {
@@ -91,6 +95,14 @@
 			justify-content: flex-start;
 			align-items: flex-start;
 			align-content: flex-start;
+			h2 {
+				margin: 0;
+				font-family: var(--font-family);
+				font-size: var(--font-xl);
+				font-weight: 900;
+				line-height: 1.2;
+				letter-spacing: var(--font-letter-spacing-headline);
+			}
 			.tags {
 				display: flex;
 				margin: 0 0 var(--m) 0;

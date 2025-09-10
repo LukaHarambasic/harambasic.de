@@ -1,5 +1,4 @@
-import { URL } from '$env/static/private';
-import { env } from '$env/dynamic/private';
+import { DEPLOY_PRIME_URL, URL } from '$env/static/private';
 import type { LayoutServerLoad } from './$types';
 import { request as requestPosts } from '$lib/data/posts/api.server';
 import { request as requestProjects } from '$lib/data/projects/api.server';
@@ -11,7 +10,7 @@ export const prerender = true;
 
 export const load = (async ({ url }) => {
 	return {
-		permalink: env.DEPLOY_PRIME_URL || URL,
+		permalink: DEPLOY_PRIME_URL || URL,
 		relativePath: url.pathname,
 		posts: await requestPosts(),
 		projects: await requestProjects(),

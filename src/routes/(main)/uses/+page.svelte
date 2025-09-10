@@ -229,6 +229,22 @@
 						font-size: var(--font-m);
 						line-height: 1.2;
 					}
+					.badge {
+						display: inline;
+						position: absolute;
+						top: 1rem;
+						left: 2rem;
+						padding: 0 var(--xxs);
+						border: var(--border);
+						border-radius: var(--border-radius);
+						background: var(--c-surface-accent);
+						color: var(--c-font-accent-dark);
+						font-size: var(--font-s);
+						font-weight: 600;
+						text-align: center;
+						text-decoration: none;
+						transition: transform var(--transition-time) var(--transition-ease);
+					}
 				}
 				:global(.arrow) {
 					opacity: 0;
