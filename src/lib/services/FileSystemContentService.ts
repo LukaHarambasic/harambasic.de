@@ -12,7 +12,6 @@ function getContentFolderPath(entryType: EntryType, contentRoot: string): string
 	return join(contentRoot, folderName);
 }
 
-
 async function readContentFiles(entryType: EntryType, contentRoot: string): Promise<string[]> {
 	const folderPath = getContentFolderPath(entryType, contentRoot);
 
