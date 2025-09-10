@@ -19,12 +19,12 @@
 			url: '/uses'
 		},
 		{
-			name: 'Posts',
-			url: '/posts'
-		},
-		{
 			name: 'Snippets',
 			url: '/snippets'
+		},
+		{
+			name: 'Posts',
+			url: '/posts'
 		}
 	];
 
