@@ -7,6 +7,6 @@ url: https://vuejs.org/
 status: inactive
 image: vue.svg
 openSource: true
-updated: 2022-12-01 20:32
-published: 2022-12-01 20:23
+updated: 2022-12-01
+published: 2022-12-01
 ---

@@ -7,6 +7,6 @@ url: https://www.logitech.com/de-de/products/webcams/streamcam.960-001281.html
 status: inactive
 image: logitech.svg
 openSource:
-updated: 2022-12-01 20:21
-published: 2022-12-01 20:20
+updated: 2022-12-01
+published: 2022-12-01
 ---

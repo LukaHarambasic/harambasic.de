@@ -7,6 +7,6 @@ url: https://www.apple.com/ipad-air/
 status: active
 image: ipair-air-m2.avif
 openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+updated: 2025-01-05
+published: 2025-01-05
 ---

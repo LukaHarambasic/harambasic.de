@@ -18,9 +18,9 @@
 	const getImage = (name: string) => {
 		const image = pictures[`../../../assets/img/uses/${name}`];
 		if (!image) {
-			return {};
+			return null;
 		}
-		return (image as any).default || {};
+		return (image as any).default || null;
 	};
 
 	const isSvg = (name: string) => {
@@ -78,11 +78,14 @@
 											{#if isSvg(entry.image)}
 												<img src="/uses/{entry.image}" alt={entry.title} width="64px" />
 											{:else}
-												<enhanced:img
-													src={getImage(entry.image)}
-													sizes="(min-width:768px) 400px"
-													alt={entry.title}
-												/>
+												{@const imageData = getImage(entry.image)}
+												{#if imageData}
+													<enhanced:img
+														src={imageData}
+														sizes="(min-width:768px) 400px"
+														alt={entry.title}
+													/>
+												{/if}
 											{/if}
 										{/if}
 									</div>

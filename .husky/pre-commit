@@ -37,7 +37,7 @@ stage_modified_files() {
     return 1
 }
 
-print_status "Step 1/6: Running code formatting..."
+print_status "Step 1/7: Running code formatting..."
 
 # Run Prettier formatting
 if npm run format; then
@@ -48,7 +48,7 @@ else
     exit 1
 fi
 
-print_status "Step 2/6: Running linting with auto-fix..."
+print_status "Step 2/7: Running linting with auto-fix..."
 
 # Run ESLint with auto-fix
 if npm run lint:fix; then
@@ -59,7 +59,7 @@ else
     exit 1
 fi
 
-print_status "Step 3/6: Running final lint check..."
+print_status "Step 3/7: Running final lint check..."
 
 # Verify linting passes after fixes
 if npm run lint; then
@@ -70,7 +70,7 @@ else
     exit 1
 fi
 
-print_status "Step 4/6: Running type checking..."
+print_status "Step 4/7: Running type checking..."
 
 # Run Svelte type checking
 if npm run check; then
@@ -81,7 +81,7 @@ else
     exit 1
 fi
 
-print_status "Step 5/6: Running tests..."
+print_status "Step 5/7: Running tests..."
 
 # Run unit tests
 if npm run test; then
@@ -92,7 +92,18 @@ else
     exit 1
 fi
 
-print_status "Step 6/6: Verifying build..."
+print_status "Step 6/7: Validating content..."
+
+# Run content validation to catch issues early
+if npm run validate:content; then
+    print_success "Content validation passed"
+else
+    print_error "Content validation failed"
+    print_error "Please fix content validation errors and try again"
+    exit 1
+fi
+
+print_status "Step 7/7: Verifying build..."
 
 # Run build to ensure it works
 if npm run build; then

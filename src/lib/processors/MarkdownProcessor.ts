@@ -1,5 +1,11 @@
 import type { TocNode } from '$lib/types/post';
 import type { RawEntry } from '$lib/types/entry';
+import {
+	validateRawEntry,
+	validateContentQuality,
+	validateMarkdownStructure
+} from '$lib/schemas/validation';
+import type { ContentQualityIssue, ValidationResult } from '$lib/schemas';
 import { slug as slugger } from 'github-slugger';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
@@ -14,7 +20,7 @@ import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 
 /**
- * Result of processing markdown content
+ * Result of processing markdown content with validation
  */
 export type ProcessedContent = {
 	/** Generated HTML content */
@@ -23,6 +29,10 @@ export type ProcessedContent = {
 	frontmatter: Record<string, any>;
 	/** Generated table of contents */
 	tableOfContents: TocNode[];
+	/** Validation result */
+	validation: ValidationResult & { data?: RawEntry };
+	/** Content quality issues */
+	qualityIssues: ContentQualityIssue[];
 };
 
 /**
@@ -73,14 +83,14 @@ const createRemarkProcessor = () => {
 const processor = createRemarkProcessor();
 
 /**
- * Process markdown content into structured RawEntry
+ * Process markdown content into structured RawEntry with validation
  */
-export function processMarkdown(markdownContent: string): RawEntry {
+export function processMarkdown(markdownContent: string, filePath?: string): RawEntry {
 	try {
 		const output = processor.processSync(markdownContent);
 		const frontmatter = output.data.frontmatter as any;
 
-		return {
+		const rawEntry = {
 			html: String(output.value),
 			toc: (output.data.toc as TocNode[]) || [],
 			title: frontmatter?.title || '',
@@ -96,7 +106,83 @@ export function processMarkdown(markdownContent: string): RawEntry {
 			discussion: frontmatter?.discussion,
 			links: frontmatter?.links,
 			prio: frontmatter?.prio,
-			imageAlt: frontmatter?.imageAlt
+			imageAlt: frontmatter?.imageAlt,
+			comment: frontmatter?.comment
+		};
+
+		// Validate the processed raw entry
+		const validationResult = validateRawEntry(rawEntry, filePath);
+
+		if (!validationResult.isValid) {
+			throw createMarkdownProcessingError(
+				`Content validation failed: ${validationResult.message}`,
+				undefined,
+				markdownContent
+			);
+		}
+
+		return validationResult.data!;
+	} catch (error) {
+		throw createMarkdownProcessingError(
+			`Failed to process markdown content: ${error instanceof Error ? error.message : String(error)}`,
+			error instanceof Error ? error : undefined,
+			markdownContent
+		);
+	}
+}
+
+/**
+ * Process markdown content with comprehensive validation and quality checks
+ */
+export function processMarkdownWithValidation(
+	markdownContent: string,
+	filePath?: string
+): ProcessedContent {
+	try {
+		const output = processor.processSync(markdownContent);
+		const frontmatter = output.data.frontmatter as any;
+		const html = String(output.value);
+		const toc = (output.data.toc as TocNode[]) || [];
+
+		const rawEntry = {
+			html,
+			toc,
+			title: frontmatter?.title || '',
+			description: frontmatter?.description || '',
+			image: frontmatter?.image || '',
+			tags: frontmatter?.tags || [],
+			published: frontmatter?.published || '',
+			updated: frontmatter?.updated || '',
+			url: frontmatter?.url,
+			status: frontmatter?.status,
+			openSource: frontmatter?.openSource,
+			tldr: frontmatter?.tldr,
+			discussion: frontmatter?.discussion,
+			links: frontmatter?.links,
+			prio: frontmatter?.prio,
+			imageAlt: frontmatter?.imageAlt,
+			comment: frontmatter?.comment
+		};
+
+		// Validate the raw entry structure
+		const validation = validateRawEntry(rawEntry, filePath);
+
+		// Perform content quality checks
+		const qualityIssues: ContentQualityIssue[] = [];
+
+		if (validation.data) {
+			qualityIssues.push(
+				...validateContentQuality(validation.data),
+				...validateMarkdownStructure(html)
+			);
+		}
+
+		return {
+			html,
+			frontmatter,
+			tableOfContents: toc,
+			validation,
+			qualityIssues
 		};
 	} catch (error) {
 		throw createMarkdownProcessingError(
@@ -110,15 +196,17 @@ export function processMarkdown(markdownContent: string): RawEntry {
 /**
  * Process multiple markdown contents in parallel
  */
-export async function processMarkdownBatch(markdownContents: string[]): Promise<RawEntry[]> {
+export async function processMarkdownBatch(
+	markdownContents: Array<{ content: string; filePath?: string }>
+): Promise<RawEntry[]> {
 	const CHUNK_SIZE = 10;
 	const results: RawEntry[] = [];
 
 	for (let i = 0; i < markdownContents.length; i += CHUNK_SIZE) {
 		const chunk = markdownContents.slice(i, i + CHUNK_SIZE);
 		const chunkResults = await Promise.all(
-			chunk.map(async (content) => {
-				return Promise.resolve(processMarkdown(content));
+			chunk.map(async ({ content, filePath }) => {
+				return Promise.resolve(processMarkdown(content, filePath));
 			})
 		);
 		results.push(...chunkResults);

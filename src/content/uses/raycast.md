@@ -7,6 +7,6 @@ url: https://www.raycast.com/
 status: active
 image: raycast.svg
 openSource: true
-updated: 2023-11-25 16:35
-published: 2023-11-25 16:35
+updated: 2023-11-25
+published: 2023-11-25
 ---

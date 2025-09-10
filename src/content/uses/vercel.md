@@ -7,6 +7,6 @@ url: https://vercel.com/
 status: inactive
 image: vercel.svg
 openSource:
-updated: 2022-12-01 20:26
-published: 2022-12-01 20:24
+updated: 2022-12-01
+published: 2022-12-01
 ---

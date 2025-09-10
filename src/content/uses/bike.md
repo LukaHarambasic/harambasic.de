@@ -7,6 +7,6 @@ url: https://www.bike-components.de/en/Vortrieb/Modell-1-2-Men-s-Bike-p89918/
 status: active
 image: bike.png
 openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+updated: 2025-01-05
+published: 2025-01-05
 ---

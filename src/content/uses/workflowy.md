@@ -7,6 +7,6 @@ url: https://workflowy.com/
 status: inactive
 image: workflowy.jpeg
 openSource:
-updated: 2022-12-01 20:30
-published: 2022-12-01 20:30
+updated: 2022-12-01
+published: 2022-12-01
 ---

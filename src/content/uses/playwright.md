@@ -7,6 +7,6 @@ url: https://playwright.dev/
 status: active
 image: playwright.svg
 openSource: true
-updated: 2022-12-01 20:32
-published: 2022-12-01 20:22
+updated: 2022-12-01
+published: 2022-12-01
 ---

@@ -7,7 +7,12 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 
-import type { ProcessedContent } from './MarkdownProcessor';
+// Basic processed content without validation (for low-level processing)
+type BasicProcessedContent = {
+	html: string;
+	frontmatter: Record<string, unknown>;
+	tableOfContents: TocNode[];
+};
 import { createMarkdownProcessingError } from './MarkdownProcessor';
 import type { ProcessorConfig } from './ProcessorConfig';
 import { validateProcessorConfig } from './ProcessorConfig';
@@ -42,7 +47,7 @@ function createProcessedContent(
 	result: any,
 	originalContent: string,
 	config: ProcessorConfig
-): ProcessedContent {
+): BasicProcessedContent {
 	let html = String(result.value);
 	const frontmatter = (result.data.frontmatter || {}) as Record<string, unknown>;
 	const toc = (result.data.toc || []) as TocNode[];
@@ -65,7 +70,7 @@ function createProcessedContent(
 export async function processRemarkRehype(
 	markdownContent: string,
 	config: ProcessorConfig = {}
-): Promise<ProcessedContent> {
+): Promise<BasicProcessedContent> {
 	try {
 		const processor = createRemarkRehypeProcessor(config);
 		const result = await processor.process(markdownContent);
@@ -85,7 +90,7 @@ export async function processRemarkRehype(
 export function processRemarkRehypeSync(
 	markdownContent: string,
 	config: ProcessorConfig = {}
-): ProcessedContent {
+): BasicProcessedContent {
 	try {
 		const processor = createRemarkRehypeProcessor(config);
 		const result = processor.processSync(markdownContent);

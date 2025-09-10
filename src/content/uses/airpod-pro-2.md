@@ -6,7 +6,9 @@ tags:
 url: https://www.apple.com/airpods-pro/
 status: active
 image: airpod_pro2.png
-openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+openSource: false
+updated: 2025-01-05
+published: 2025-01-05
 ---
+
+Great noise-canceling headphones from Apple. Had the first version and upgraded to the second generation. The sound quality and active noise cancellation are excellent.

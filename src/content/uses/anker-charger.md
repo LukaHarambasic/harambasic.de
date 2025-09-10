@@ -6,7 +6,7 @@ tags:
 url: https://www.anker.com/products/a2688-anker-prime-charger-100w-3-ports-gan?ref=naviMenu&variant=43931966079126
 status: active
 image: anker_charger.webp
-openSource:
-updated: 2025-01-05 16:00
-published: 2025-01-05 16:00
+openSource: false
+updated: 2025-01-05
+published: 2025-01-05
 ---
