@@ -19,6 +19,10 @@
 			url: '/uses'
 		},
 		{
+			name: 'Snippets',
+			url: '/snippets'
+		},
+		{
 			name: 'Posts',
 			url: '/posts'
 		}

@@ -3,8 +3,8 @@ import type { EntryType, ProjectSortProperty } from '$lib/types/enums';
 import type { ProjectStatus } from '$lib/types/enums';
 import { SortDirection } from '$lib/types/enums';
 import type { Project } from '$lib/types/project';
-import { filterByTag, getDate, getTag, sortByDirection } from '$lib/util/entries';
-import { getSlug, sortAlphabetical, sortDate, sortNumber } from '$lib/util/helper';
+import { filterByTag, getDate, getTag } from '$lib/util/entries';
+import { getSlug, sortAlphabetical } from '$lib/util/helper';
 
 export function filterAndSort(
 	entries: Project[],
@@ -13,11 +13,12 @@ export function filterAndSort(
 	sortProperty: ProjectSortProperty,
 	sortDirection: SortDirection
 ): Project[] {
-	return entries
+	const sorted = entries
 		.filter((entry) => filterByTag(entry, filterTagSlug))
 		.filter((entry) => filterByStatus(entry, filterStatus))
-		.sort((a, b) => sortByProperty(a, b, sortProperty))
-		.sort(() => sortByDirection(sortDirection));
+		.sort((a, b) => sortByProperty(a, b, sortProperty));
+
+	return sortDirection === SortDirection.Asc ? sorted : sorted.reverse();
 }
 
 export function getProject(entry: RawEntry): Project {
@@ -80,13 +81,13 @@ export function getProject(entry: RawEntry): Project {
 export function sortByProperty(a: Project, b: Project, property: ProjectSortProperty): number {
 	switch (property) {
 		case 'title':
-			return sortAlphabetical(b.title, a.title);
+			return sortAlphabetical(a.title, b.title);
 		case 'priority':
-			return sortNumber(b.prio, a.prio);
+			return a.prio - b.prio; // ASC order (low to high priority)
 		case 'published':
-			return sortDate(b.published.raw, a.published.raw);
+			return a.published.raw.getTime() - b.published.raw.getTime(); // ASC order (oldest first)
 		case 'updated':
-			return sortDate(b.updated.raw, a.updated.raw);
+			return a.updated.raw.getTime() - b.updated.raw.getTime(); // ASC order (oldest first)
 		default:
 			return 0;
 	}
