@@ -16,10 +16,10 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: space-between;
 		align-items: flex-start;
-		@media screen and (max-width: 42rem) {
+		align-content: stretch;
+		@media screen and (width <= 42rem) {
 			flex-direction: column;
 			align-items: center;
 			gap: var(--m);
@@ -29,22 +29,22 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: flex-start;
 		align-items: flex-start;
+		align-content: stretch;
 		gap: var(--m);
-		@media screen and (max-width: 42rem) {
+		@media screen and (width <= 42rem) {
 			flex-wrap: wrap;
 		}
-		@media screen and (max-width: 32rem) {
+		@media screen and (width <= 32rem) {
 			flex-direction: column;
 			align-items: center;
 		}
 		li {
 			a {
 				color: var(--c-font);
-				text-decoration: none;
 				font-size: var(--font-m);
+				text-decoration: none;
 			}
 		}
 	}

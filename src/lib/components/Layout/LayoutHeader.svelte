@@ -51,13 +51,13 @@
 <style lang="postcss">
 	header {
 		display: flex;
+		width: 100%;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: space-between;
 		align-items: flex-start;
-		width: 100%;
-		@media screen and (max-width: 32rem) {
+		align-content: stretch;
+		@media screen and (width <= 32rem) {
 			flex-direction: column;
 			align-items: center;
 			gap: var(--l);
@@ -67,18 +67,18 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		align-content: center;
 		justify-content: flex-start;
 		align-items: center;
+		align-content: center;
 		gap: var(--m);
 		a {
 			color: var(--c-font);
-			font-weight: 900;
-			font-size: var(--font-m);
 			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 900;
 			letter-spacing: var(--font-letter-spacing-headline);
 			text-decoration: none;
-			@media screen and (max-width: 26rem) {
+			@media screen and (width <= 26rem) {
 				text-align: center;
 			}
 			&:hover {
@@ -92,23 +92,23 @@
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
-			align-content: stretch;
 			justify-content: flex-start;
 			align-items: flex-start;
+			align-content: stretch;
 			gap: var(--m);
-			@media screen and (max-width: 26rem) {
+			@media screen and (width <= 26rem) {
 				flex-wrap: wrap;
 				justify-content: center;
 			}
 			li {
 				a {
-					transition: var(--transition);
 					color: var(--c-font);
-					font-weight: 600;
-					font-size: var(--font-m);
 					font-family: var(--font-family);
+					font-size: var(--font-m);
+					font-weight: 600;
 					letter-spacing: var(--font-letter-spacing-headline);
 					text-decoration: none;
+					transition: var(--transition);
 					&:hover {
 						text-decoration: underline;
 						text-decoration-thickness: var(--underline-thickness);

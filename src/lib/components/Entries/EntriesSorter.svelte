@@ -68,28 +68,28 @@
 <style lang="postcss">
 	.sort {
 		display: flex;
+		border: var(--border);
 		flex-direction: column;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: flex-start;
 		align-items: stretch;
+		align-content: stretch;
 		gap: var(--m);
-		border: var(--border);
 		.selects {
 			display: flex;
 			flex-direction: column;
 			flex-wrap: nowrap;
-			align-content: stretch;
 			justify-content: flex-start;
 			align-items: stretch;
+			align-content: stretch;
 			gap: var(--s);
 			.wrapper {
 				display: flex;
 				flex-direction: column;
 				flex-wrap: nowrap;
-				align-content: stretch;
 				justify-content: flex-start;
 				align-items: stretch;
+				align-content: stretch;
 				gap: var(--xs);
 				label {
 					margin: 0;
@@ -100,13 +100,13 @@
 				}
 				select {
 					margin: 0;
-					border: none;
 					padding: 0.25rem 0;
+					border: none;
 					color: var(--c-font-accent-dark);
 					font-size: var(--font-s);
 					&:hover {
-						cursor: pointer;
 						text-decoration: underline;
+						cursor: pointer;
 						text-decoration-thickness: var(--underline-thickness);
 					}
 				}

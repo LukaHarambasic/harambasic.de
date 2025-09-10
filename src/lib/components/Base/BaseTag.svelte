@@ -17,14 +17,14 @@
 <style lang="postcss">
 	.tag {
 		display: inline-block;
-		text-align: center;
-		color: var(--c-font-accent-dark);
-		font-weight: 400;
-		font-size: var(--font-s);
-		text-decoration: none;
-		font-style: italic;
-		background: none;
 		border: none;
+		background: none;
+		color: var(--c-font-accent-dark);
+		font-size: var(--font-s);
+		font-weight: 400;
+		font-style: italic;
+		text-align: center;
+		text-decoration: none;
 		&:hover {
 			text-decoration: underline;
 			cursor: pointer;

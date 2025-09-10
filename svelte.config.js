@@ -7,6 +7,19 @@ const config = {
 	// for more information about preprocessors
 	// TODO check if I wanna use it:
 	preprocess: [vitePreprocess({ postcss: true })],
+	onwarn: (warning, handler) => {
+		const { code, message } = warning;
+
+		// Suppress CSS unused selector warnings for enhanced:img generated picture elements
+		if (
+			code === 'css_unused_selector' &&
+			(message?.includes('picture') || message?.includes('source'))
+		) {
+			return;
+		}
+
+		handler(warning);
+	},
 	kit: {
 		adapter: adapter(),
 		prerender: {

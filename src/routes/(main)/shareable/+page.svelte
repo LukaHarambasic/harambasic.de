@@ -91,28 +91,28 @@
 <style lang="postcss">
 	.entries {
 		display: flex;
+		width: 100%;
 		flex-direction: column;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: flex-start;
 		align-items: stretch;
+		align-content: stretch;
 		gap: var(--l);
-		width: 100%;
 		> li {
 			width: 100%;
 			> a {
 				display: flex;
 				position: relative;
-				flex-direction: row;
-				flex-wrap: nowrap;
-				align-content: flex-start;
-				justify-content: flex-start;
-				align-items: stretch;
-				transition: var(--transition);
 				border-radius: var(--border-radius);
 				background: var(--c-surface);
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-items: stretch;
+				align-content: flex-start;
 				color: var(--c-font);
 				text-decoration: none;
+				transition: var(--transition);
 				&:hover {
 					transform: scale(0.97);
 					cursor: pointer;
@@ -122,33 +122,30 @@
 				}
 				.content {
 					display: flex;
+					padding: var(--l);
 					flex-direction: column;
 					flex-wrap: nowrap;
-					align-content: stretch;
 					justify-content: flex-start;
 					align-items: stretch;
+					align-content: stretch;
 					gap: var(--xs);
-					padding: var(--l);
 					.title {
 						display: inline-block;
-						font-weight: 900;
-						font-size: var(--font-m);
-						line-height: 1.2;
 						font-family: var(--font-family);
+						font-size: var(--font-m);
+						font-weight: 900;
+						line-height: 1.2;
 						letter-spacing: var(--font-letter-spacing-headline);
 					}
 				}
 				:global(.arrow) {
-					color: var(--c-font-accent-dark);
-					size: var(--l);
+					opacity: 0;
 					position: absolute;
 					top: var(--m);
 					right: calc((-1) * var(--m));
-					opacity: 0;
-					transition: var(--transition);
+					size: var(--l);
 					border: 4px solid var(--c-light);
 					border-radius: 100%;
-					background: var(--c-light);
 					box-shadow:
 						0 1px 2px rgba(0, 0, 0, 0.03),
 						0 2px 4px rgba(0, 0, 0, 0.03),
@@ -156,6 +153,9 @@
 						0 8px 16px rgba(0, 0, 0, 0.03),
 						0 16px 32px rgba(0, 0, 0, 0.03),
 						0 32px 64px rgba(0, 0, 0, 0.03);
+					background: var(--c-light);
+					color: var(--c-font-accent-dark);
+					transition: var(--transition);
 				}
 			}
 		}

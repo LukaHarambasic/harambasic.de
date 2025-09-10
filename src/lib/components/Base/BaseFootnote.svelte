@@ -14,12 +14,12 @@
 
 <style>
 	.footnote {
-		transition: var(--transition);
+		padding: var(--l);
 		border-radius: var(--border-radius);
 		background: var(--c-surface);
-		padding: var(--l);
-		overflow: hidden;
 		color: var(--c-font);
 		text-decoration: none;
+		transition: var(--transition);
+		overflow: hidden;
 	}
 </style>

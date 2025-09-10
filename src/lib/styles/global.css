@@ -2,72 +2,72 @@
 
 .select-button {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-content: stretch;
-	justify-content: space-between;
-	align-items: center;
-	gap: var(--s);
 	border: var(--border);
 	border-radius: var(--border-radius-small);
 	background: var(--c-surface);
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: stretch;
+	gap: var(--s);
 	select {
-		flex: 1 0 auto;
 		margin: 0;
-		border: none;
-		background: var(--c-surface);
 		padding: 0;
 		padding: var(--xs) 0 var(--xs) var(--s);
-		font-weight: 600;
-		font-size: var(--font-m);
+		border: none;
+		background: var(--c-surface);
+		flex: 1 0 auto;
 		font-family: var(--font-family);
+		font-size: var(--font-m);
+		font-weight: 600;
 		letter-spacing: var(--font-letter-spacing-headline);
 	}
 	svg {
-		size: var(--m);
 		margin: 0 var(--s) 0 0;
+		size: var(--m);
 	}
 }
 
 .segmented-buttons {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-content: stretch;
-	justify-content: space-between;
-	align-items: flex-start;
 	border: var(--border);
 	border-radius: var(--border-radius-small);
 	background: var(--c-surface);
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: flex-start;
+	align-content: stretch;
 	overflow: hidden;
-	@media screen and (max-width: 30rem) {
+	@media screen and (width <= 30rem) {
 		width: 100%;
 		flex-direction: column;
 	}
 	.button {
-		transition: var(--transition);
 		margin: 0;
+		padding: var(--xs) var(--s);
 		border: none;
 		border-right: 1px solid var(--c-surface-accent);
 		background: transparent;
-		padding: var(--xs) var(--s);
 		color: var(--c-font);
-		font-weight: 500;
-		font-size: var(--font-m);
-		line-height: 1.2;
 		font-family: var(--font-family);
+		font-size: var(--font-m);
+		font-weight: 500;
+		line-height: 1.2;
 		letter-spacing: var(--font-letter-spacing-headline);
-		text-decoration: none;
 		text-align: center;
+		text-decoration: none;
+		transition: var(--transition);
 		&:hover {
-			cursor: pointer;
-			background: var(--c-surface-accent);
 			border-right: 1px transparent solid;
+			background: var(--c-surface-accent);
+			cursor: pointer;
 		}
 		&:last-child {
 			border-right: none;
 		}
-		@media screen and (max-width: 30rem) {
+		@media screen and (width <= 30rem) {
 			width: 100%;
 			border-right: none;
 			&:not(:last-child) {
@@ -80,8 +80,8 @@
 .rich-text {
 	line-height: 1.75;
 	* {
-		overflow-wrap: break-word;
 		word-wrap: break-word;
+		overflow-wrap: break-word;
 		word-break: break-word;
 		hyphens: auto;
 	}
@@ -92,12 +92,12 @@
 	h2 {
 		margin: var(--xl) 0 var(--m) 0;
 		width: 30ch;
-		font-weight: 900;
-		font-size: var(--font-xl);
-		line-height: 1.2;
 		font-family: var(--font-family);
+		font-size: var(--font-xl);
+		font-weight: 900;
+		line-height: 1.2;
 		letter-spacing: var(--font-letter-spacing-headline);
-		@media screen and (max-width: 28rem) {
+		@media screen and (width <= 28rem) {
 			width: 100%;
 		}
 		&:first-of-type {
@@ -107,15 +107,16 @@
 	h3 {
 		margin: var(--l) 0 var(--m) 0;
 		width: 30ch;
-		font-weight: 900;
-		font-size: var(--font-l);
-		line-height: 1.2;
 		font-family: var(--font-family);
+		font-size: var(--font-l);
+		font-weight: 900;
+		line-height: 1.2;
 		letter-spacing: var(--font-letter-spacing-headline);
-		@media screen and (max-width: 30rem) {
+		@media screen and (width <= 30rem) {
 			width: 100%;
 		}
 	}
+
 	/* If not done specific it overrides other margins */
 	> p,
 	> ul,
@@ -127,11 +128,11 @@
 		}
 	}
 	hr {
-		border: none;
+		margin: var(--l) 0;
 		height: 2px;
+		border: none;
 		border-radius: 10rem;
 		background: var(--c-surface-accent);
-		margin: var(--l) 0;
 	}
 	a {
 		color: var(--c-font);
@@ -149,7 +150,7 @@
 	> ol {
 		margin: var(--l) 0 var(--l) var(--l);
 		width: 50ch;
-		@media screen and (max-width: 50rem) {
+		@media screen and (width <= 50rem) {
 			width: calc(100% - var(--l));
 		}
 		ul,
@@ -167,9 +168,9 @@
 		list-style: decimal;
 	}
 	blockquote {
+		padding: var(--l);
 		border-radius: var(--border-radius);
 		background: var(--c-surface);
-		padding: var(--l);
 		p {
 			&:last-of-type {
 				margin: 0;
@@ -186,17 +187,17 @@
 
 .card {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-content: stretch;
-	justify-content: flex-start;
-	align-items: flex-start;
-	gap: var(--m);
-	border-radius: var(--border-radius);
-	background: var(--c-surface);
 	padding: var(--l);
 	border: var(--border);
-	@media screen and (max-width: 42rem) {
+	border-radius: var(--border-radius);
+	background: var(--c-surface);
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: stretch;
+	gap: var(--m);
+	@media screen and (width <= 42rem) {
 		flex-direction: column;
 	}
 	&.no-spacing {

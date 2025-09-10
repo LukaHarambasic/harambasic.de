@@ -46,22 +46,22 @@
 
 <style lang="postcss">
 	.tags {
-		grid-area: tags;
 		display: flex;
+		border: var(--border);
 		flex-direction: column;
 		flex-wrap: nowrap;
-		align-content: stretch;
 		justify-content: flex-start;
 		align-items: stretch;
+		align-content: stretch;
 		gap: var(--m);
-		border: var(--border);
+		grid-area: tags;
 		ol {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
-			align-content: stretch;
 			justify-content: flex-start;
 			align-items: stretch;
+			align-content: stretch;
 			gap: var(--s);
 		}
 	}

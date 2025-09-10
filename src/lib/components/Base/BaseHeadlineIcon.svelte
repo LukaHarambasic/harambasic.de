@@ -15,15 +15,15 @@
 	h3 {
 		display: flex;
 		flex-wrap: nowrap;
-		align-content: center;
 		justify-content: flex-start;
 		align-items: center;
+		align-content: center;
 		gap: 0.25rem;
 		span {
-			font-weight: 900;
-			font-size: var(--font-m);
-			line-height: 1.2;
 			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 900;
+			line-height: 1.2;
 			letter-spacing: var(--font-letter-spacing-headline);
 		}
 		:global(.icon) {

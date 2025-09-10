@@ -20,16 +20,16 @@
 	.callout {
 		display: flex;
 		strong {
-			flex: 1 0 auto;
 			display: inline-block;
+			padding: var(--s) var(--m);
+			border: var(--border);
 			border-radius: var(--border-radius-small);
 			background: var(--c-surface-accent);
-			padding: var(--s) var(--m);
-			font-weight: 900;
-			font-size: var(--font-m);
+			flex: 1 0 auto;
 			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 900;
 			letter-spacing: var(--font-letter-spacing-headline);
-			border: var(--border);
 		}
 		.content {
 			flex: 0 1 auto;
