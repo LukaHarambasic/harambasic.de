@@ -19,3 +19,8 @@ vite.config.ts.timestamp-*
 # Claude Code sessions (local only)
 .claude/sessions/
 .claude/cache/
+
+# Secret content system - never commit unencrypted secret files
+*.secret.json
+*.secret.md
+.commit
