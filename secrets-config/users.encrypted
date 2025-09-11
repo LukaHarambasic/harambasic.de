@@ -1,0 +1,7 @@
+{
+  "data": "0Ra0B3rZodCEqJLGuY+dEp6OojIEY75YNIZi7UbCTzAxYEKSVjz5KE/b6oN0L0rlH/J1LwmCNLopB3cZx940Sw0VGa/9CNTKswlzFedBzz0wt5el0cb6NUP4G0l+lWanO5hwCNEUx7lki4B7FDQ93Vxc558tPhJsIMyfHlcX/b/RMDzrWlwQPFiowToDee72czT3vRYp8Qhy",
+  "iv": "7v0mdMyjzOCFqcW5",
+  "salt": "nYGcgaTCFPWXU63Td/L84Q==",
+  "algorithm": "AES-GCM",
+  "iterations": 100000
+}
