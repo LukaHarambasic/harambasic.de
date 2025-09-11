@@ -28,7 +28,7 @@ export interface RawEntry {
 	// Optional fields
 	url?: string;
 	status?: ContentStatus;
-	openSource?: boolean;
+	openSource?: boolean | null;
 	tldr?: string;
 	discussion?: string;
 	links?: Link[];

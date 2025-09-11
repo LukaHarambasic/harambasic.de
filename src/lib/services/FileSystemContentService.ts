@@ -4,7 +4,7 @@ import type { EntryType } from '$lib/types/enums';
 import type { RawEntry } from '$lib/types/entry';
 import { processMarkdown } from '$lib/processors/MarkdownProcessor';
 import type { ContentService } from './ContentService';
-import type { ValidationResult } from '$lib/schemas';
+import type { ValidationResult, ValidatedEntryType } from '$lib/schemas';
 import { ContentServiceError } from './ContentService';
 import { getSlug } from '$lib/util/helper';
 
@@ -56,7 +56,7 @@ async function validateSingleFile(
 
 		if (!entry.title) {
 			return {
-				entryType,
+				entryType: entryType as ValidatedEntryType,
 				slug: fileName,
 				isValid: false,
 				message: 'Missing required field: title'
@@ -65,7 +65,7 @@ async function validateSingleFile(
 
 		if (!entry.description) {
 			return {
-				entryType,
+				entryType: entryType as ValidatedEntryType,
 				slug: fileName,
 				isValid: false,
 				message: 'Missing required field: description'
@@ -74,7 +74,7 @@ async function validateSingleFile(
 
 		if (!entry.published) {
 			return {
-				entryType,
+				entryType: entryType as ValidatedEntryType,
 				slug: fileName,
 				isValid: false,
 				message: 'Missing required field: published date'
