@@ -1,20 +1,25 @@
 import { json } from '@sveltejs/kit';
-import { readFile } from 'fs/promises';
-import { join } from 'path';
+import { requireAuth } from '$lib/server/auth';
 import type { RequestHandler } from './$types';
 
-export const prerender = true;
+export const prerender = false; // Must be dynamic for authentication
 
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({ cookies }) => {
+	// Require authentication for this endpoint
+	const authResult = requireAuth(cookies);
+	if (!authResult.success) {
+		return authResult.response;
+	}
+
 	try {
-		// Read the encrypted users file from secrets-config directory
-		const usersPath = join(process.cwd(), 'secrets-config', 'users.encrypted');
-		const encryptedData = await readFile(usersPath, 'utf8');
-		const parsedData = JSON.parse(encryptedData);
-
-		return json(parsedData);
+		// This endpoint no longer exposes raw encrypted data
+		// Instead, it confirms the user is authenticated
+		return json({ 
+			authenticated: true,
+			userIdentifier: authResult.userIdentifier
+		});
 	} catch (error) {
-		console.error('Error loading encrypted users:', error);
-		return json({ error: 'Unable to load user data' }, { status: 500 });
+		console.error('Error in users endpoint:', error);
+		return json({ error: 'SERVER_ERROR' }, { status: 500 });
 	}
 };

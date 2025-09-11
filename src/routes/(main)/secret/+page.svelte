@@ -61,14 +61,20 @@
 	// Session management
 	onMount(async () => {
 		if (browser) {
-			// Load encrypted data first
-			await loadEncryptedData();
-
-			const session = getSession();
-			if (session.valid) {
-				userIdentifier = session.userIdentifier;
-				authState = 'content-list';
-				loadContentList();
+			// Check server-side session via authenticated endpoint
+			try {
+				const response = await fetch('/api/secret/users');
+				if (response.ok) {
+					const result = await response.json();
+					if (result.authenticated) {
+						userIdentifier = result.userIdentifier;
+						authState = 'content-list';
+						await loadContentList();
+					}
+				}
+			} catch (error) {
+				console.error('Session check error:', error);
+				// User not authenticated, stay on login screen
 			}
 		}
 	});
@@ -80,9 +86,9 @@
 		formData.word2.trim() &&
 		formData.word3.trim();
 
-	// Handle authentication
+	// Handle authentication via secure server endpoint
 	async function handleAuthentication() {
-		if (!isFormValid || !encryptedUsers) {
+		if (!isFormValid) {
 			errorMessage = 'Please fill in all fields';
 			return;
 		}
@@ -91,21 +97,24 @@
 		errorMessage = '';
 
 		try {
-			// Validate form data
-			if (!validateAuthForm(formData)) {
-				errorMessage = 'Invalid form data';
-				return;
-			}
+			// Send authentication request to secure server endpoint
+			const response = await fetch('/api/auth', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					identifier: formData.identifier,
+					word1: formData.word1,
+					word2: formData.word2,
+					word3: formData.word3
+				})
+			});
 
-			// For demo purposes, using a fixed master password
-			// In real implementation, this would be securely configured
-			const masterPassword = 'demo-master-password-change-in-production';
-
-			const result = await authenticateUser(encryptedUsers, formData, masterPassword);
+			const result = await response.json();
 
 			if (result.success) {
 				userIdentifier = result.userIdentifier;
-				createSession(userIdentifier);
 				authState = 'content-list';
 				await loadContentList();
 			} else {
@@ -119,9 +128,9 @@
 		}
 	}
 
-	// Load content list
+	// Load content list from secure endpoint
 	async function loadContentList() {
-		if (!userIdentifier || encryptedContents.length === 0) {
+		if (!userIdentifier) {
 			contentList = [];
 			return;
 		}
@@ -130,15 +139,24 @@
 		errorMessage = '';
 
 		try {
-			// Use the user's passphrase as the content decryption key
-			const passphrase = `${formData.word1} ${formData.word2} ${formData.word3}`.toLowerCase();
-
-			const result = await processContentList(encryptedContents, passphrase);
-
-			if (result.success) {
-				contentList = result.data;
+			// Fetch content list from authenticated endpoint
+			const response = await fetch('/api/secret/content');
+			
+			if (response.ok) {
+				const result = await response.json();
+				// Convert simple list to display format
+				contentList = result.map((item: any) => ({
+					slug: item.slug,
+					title: item.slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+					published: new Date(),
+					tags: ['secret']
+				}));
+			} else if (response.status === 401) {
+				// Session expired, redirect to login
+				authState = 'login';
+				userIdentifier = '';
 			} else {
-				errorMessage = getContentErrorMessage(result.error);
+				errorMessage = 'Failed to load content list.';
 				contentList = [];
 			}
 		} catch (error) {
@@ -150,27 +168,36 @@
 		}
 	}
 
-	// Load specific content
+	// Load specific content from secure endpoint
 	async function loadContent(slug: string) {
-		const encryptedContent = encryptedContents.find((c) => c.slug === slug);
-		if (!encryptedContent) {
-			errorMessage = 'Content not found';
-			return;
-		}
-
 		isLoading = true;
 		errorMessage = '';
 
 		try {
-			const passphrase = `${formData.word1} ${formData.word2} ${formData.word3}`.toLowerCase();
+			// Fetch specific content from authenticated endpoint
+			const response = await fetch(`/api/secret/content?slug=${slug}`);
+			
+			if (response.ok) {
+				const result = await response.json();
+				const passphrase = `${formData.word1} ${formData.word2} ${formData.word3}`.toLowerCase();
 
-			const result = await decryptSecretContent(encryptedContent.data, passphrase, slug);
+				// Decrypt content client-side with user's passphrase
+				const decryptResult = await decryptSecretContent(result.data, passphrase, slug);
 
-			if (result.success) {
-				currentContent = result.data;
-				authState = 'content-detail';
+				if (decryptResult.success) {
+					currentContent = decryptResult.data;
+					authState = 'content-detail';
+				} else {
+					errorMessage = getContentErrorMessage(decryptResult.error);
+				}
+			} else if (response.status === 401) {
+				// Session expired, redirect to login
+				authState = 'login';
+				userIdentifier = '';
+			} else if (response.status === 404) {
+				errorMessage = 'Content not found.';
 			} else {
-				errorMessage = getContentErrorMessage(result.error);
+				errorMessage = 'Failed to load content.';
 			}
 		} catch (error) {
 			console.error('Content detail error:', error);
@@ -187,8 +214,17 @@
 		errorMessage = '';
 	}
 
-	function handleLogout() {
-		clearSession();
+	async function handleLogout() {
+		try {
+			// Clear server-side session
+			await fetch('/api/auth', {
+				method: 'DELETE'
+			});
+		} catch (error) {
+			console.error('Logout error:', error);
+		}
+
+		// Clear client-side state
 		authState = 'login';
 		userIdentifier = '';
 		formData = { identifier: '', word1: '', word2: '', word3: '' };

@@ -229,15 +229,46 @@ export function getContentErrorMessage(error: SecretContentError): string {
 }
 
 /**
- * Sanitize content for safe HTML rendering
- * Basic XSS prevention for markdown content
+ * Sanitize content for safe HTML rendering using DOMPurify
+ * Comprehensive XSS prevention for markdown content
  */
 export function sanitizeContent(content: string): string {
-	// Basic HTML tag stripping - in a real implementation,
-	// you might want to use a proper sanitization library
+	// For browser environment
+	if (typeof window !== 'undefined' && window.DOMPurify) {
+		return window.DOMPurify.sanitize(content, {
+			ALLOWED_TAGS: [
+				'p', 'br', 'strong', 'em', 'u', 'i', 'b', 
+				'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+				'ul', 'ol', 'li', 'blockquote',
+				'a', 'code', 'pre'
+			],
+			ALLOWED_ATTR: ['href', 'title', 'class'],
+			FORBID_ATTR: ['onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'onblur'],
+			FORBID_TAGS: ['script', 'iframe', 'object', 'embed', 'form', 'input', 'textarea'],
+			ALLOWED_URI_REGEXP: /^https?:|mailto:|tel:/,
+			KEEP_CONTENT: true
+		});
+	}
+
+	// Fallback sanitization for server-side or when DOMPurify is not available
+	// This is much more comprehensive than the original regex-based approach
 	return content
+		// Remove all script tags and content
 		.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+		// Remove all iframe tags and content
 		.replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+		// Remove dangerous tags
+		.replace(/<(object|embed|form|input|textarea|select|option|button|meta|link|style)[^>]*>.*?<\/\1>/gi, '')
+		.replace(/<(object|embed|form|input|textarea|select|option|button|meta|link|style)[^>]*\/?>/gi, '')
+		// Remove javascript: protocols
 		.replace(/javascript:/gi, '')
-		.replace(/on\w+\s*=/gi, '');
+		// Remove all event handlers
+		.replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
+		.replace(/on\w+\s*=\s*[^\s>]+/gi, '')
+		// Remove data: urls (potential XSS vector)
+		.replace(/data:/gi, '')
+		// Remove vbscript: protocols
+		.replace(/vbscript:/gi, '')
+		// Remove expression() in CSS (IE specific)
+		.replace(/expression\s*\(/gi, '');
 }
