@@ -40,9 +40,31 @@
 	let encryptedUsers: EncryptedData | null = null;
 	let encryptedContents: Array<{ slug: string; data: EncryptedData }> = [];
 
+	// Load encrypted data from API endpoints
+	async function loadEncryptedData() {
+		try {
+			// Load encrypted users
+			const usersResponse = await fetch('/api/secret/users');
+			if (usersResponse.ok) {
+				encryptedUsers = await usersResponse.json();
+			}
+
+			// Load encrypted content
+			const contentResponse = await fetch('/api/secret/content');
+			if (contentResponse.ok) {
+				encryptedContents = await contentResponse.json();
+			}
+		} catch (error) {
+			console.error('Failed to load encrypted data:', error);
+		}
+	}
+
 	// Session management
-	onMount(() => {
+	onMount(async () => {
 		if (browser) {
+			// Load encrypted data first
+			await loadEncryptedData();
+
 			const session = getSession();
 			if (session.valid) {
 				userIdentifier = session.userIdentifier;
@@ -78,7 +100,7 @@
 
 			// For demo purposes, using a fixed master password
 			// In real implementation, this would be securely configured
-			const masterPassword = 'demo-master-password';
+			const masterPassword = 'demo-master-password-change-in-production';
 
 			const result = await authenticateUser(encryptedUsers, formData, masterPassword);
 
