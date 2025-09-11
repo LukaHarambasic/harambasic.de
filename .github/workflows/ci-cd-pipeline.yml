@@ -10,6 +10,9 @@ jobs:
   quality-gate:
     name: Quality Gate
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_PRIME_URL: ${{ secrets.DEPLOY_PRIME_URL }}
+      URL: ${{ secrets.URL }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
