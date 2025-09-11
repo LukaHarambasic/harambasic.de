@@ -34,7 +34,6 @@
 	// Content state
 	let contentList: SecretContentMeta[] = [];
 	let currentContent: SecretContent | null = null;
-	let selectedSlug: string;
 
 	// Mock encrypted data - in real implementation, this would be fetched from server
 	let encryptedUsers: EncryptedData | null = null;
@@ -161,7 +160,6 @@
 
 		isLoading = true;
 		errorMessage = '';
-		selectedSlug = slug;
 
 		try {
 			const passphrase = `${formData.word1} ${formData.word2} ${formData.word3}`.toLowerCase();
@@ -186,7 +184,6 @@
 	function goToContentList() {
 		authState = 'content-list';
 		currentContent = null;
-		selectedSlug = '';
 		errorMessage = '';
 	}
 
@@ -197,7 +194,6 @@
 		formData = { identifier: '', word1: '', word2: '', word3: '' };
 		contentList = [];
 		currentContent = null;
-		selectedSlug = '';
 		errorMessage = '';
 	}
 

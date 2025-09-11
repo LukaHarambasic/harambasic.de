@@ -15,9 +15,6 @@ export const GET: RequestHandler = async () => {
 		return json(parsedData);
 	} catch (error) {
 		console.error('Error loading encrypted users:', error);
-		return json(
-			{ error: 'Unable to load user data' },
-			{ status: 500 }
-		);
+		return json({ error: 'Unable to load user data' }, { status: 500 });
 	}
 };

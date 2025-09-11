@@ -20,7 +20,7 @@ vite.config.ts.timestamp-*
 .claude/sessions/
 .claude/cache/
 
-# Secret content system - never commit unencrypted secret files
-*.secret.json
-*.secret.md
+# Secret content system - temporarily allowing secret files for development
+# *.secret.json
+# *.secret.md
 .commit

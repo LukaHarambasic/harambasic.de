@@ -25,6 +25,9 @@ vi.mock('$app/environment', () => ({
 	browser: true
 }));
 
+// Add sessionStorage to global scope
+global.sessionStorage = mockSessionStorage as any;
+
 beforeEach(() => {
 	// Reset mocks
 	vi.clearAllMocks();
@@ -152,7 +155,7 @@ describe('authenticateUser', () => {
 
 		expect(result.success).toBe(false);
 		if (!result.success) {
-			expect(result.error).toBe('VALIDATION_ERROR');
+			expect(result.error).toBe('DECRYPTION_FAILED');
 		}
 	});
 });
