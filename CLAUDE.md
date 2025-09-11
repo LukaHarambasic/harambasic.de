@@ -37,6 +37,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Git hooks are managed via **Husky** and automatically enforce quality standards.
 
+### CI/CD Pipeline
+
+- **GitHub Actions**: Automated quality gate with lint, test, type-check, and build verification
+- **Claude Code Reviews**: Automated code reviews on pull requests after quality gate passes
+- **Netlify Deployment**: Parallel deployment process independent of review workflow
+
 ## Architecture
 
 ### SvelteKit Static Site
