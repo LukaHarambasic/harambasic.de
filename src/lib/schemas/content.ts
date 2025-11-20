@@ -60,7 +60,7 @@ export const EntryDateSchema = z.object({
 // ===== CONTENT STATUS AND TYPE SCHEMAS =====
 
 export const ContentStatusSchema = z.enum(['active', 'inactive', 'all']);
-export const EntryTypeSchema = z.enum(['post', 'project', 'uses', 'shareable']);
+export const EntryTypeSchema = z.enum(['post', 'project', 'uses', 'shareable', 'snippet']);
 export type ValidatedEntryType = z.infer<typeof EntryTypeSchema>;
 
 // ===== RAW ENTRY SCHEMA (Pre-processing) =====
@@ -208,6 +208,14 @@ export const ShareableSchema = BaseEntrySchema.omit({ image: true }).extend({
 	comment: z.string().min(1, 'Comment is required for shareables')
 });
 
+/**
+ * Snippet Schema - Code snippets
+ */
+export const SnippetSchema = BaseEntrySchema.extend({
+	type: z.literal('snippet'),
+	html: z.string().min(1, 'HTML content is required')
+});
+
 // ===== TYPE INFERENCE (Single Source of Truth) =====
 
 /**
@@ -231,9 +239,10 @@ export type Post = z.infer<typeof PostSchema>;
 export type Project = z.infer<typeof ProjectSchema>;
 export type UsesEntry = z.infer<typeof UsesEntrySchema>;
 export type Shareable = z.infer<typeof ShareableSchema>;
+export type Snippet = z.infer<typeof SnippetSchema>;
 
 // Union type for all processed entries
-export type Entry = Post | Project | UsesEntry | Shareable;
+export type Entry = Post | Project | UsesEntry | Shareable | Snippet;
 
 // ===== SCHEMA MAPPING UTILITIES =====
 
@@ -244,7 +253,8 @@ export const ENTRY_SCHEMAS = {
 	post: PostSchema,
 	project: ProjectSchema,
 	uses: UsesEntrySchema,
-	shareable: ShareableSchema
+	shareable: ShareableSchema,
+	snippet: SnippetSchema
 } as const;
 
 /**

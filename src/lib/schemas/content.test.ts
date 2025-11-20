@@ -370,7 +370,8 @@ describe('Content Schemas', () => {
 			},
 			url: 'https://example.com/tool',
 			status: 'active',
-			openSource: true
+			openSource: true,
+			html: ''
 		};
 
 		test('should validate correct uses entry', () => {

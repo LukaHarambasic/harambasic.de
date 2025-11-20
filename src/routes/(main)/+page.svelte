@@ -57,13 +57,14 @@
 		<div class="content rich-text">
 			<h2>Heyho, I'm Luka!</h2>
 			<p>
-				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). At <a
-					href="https://monta.com/">Monta</a
-				>, I work as a Product Manger (Home Energy Management). Feel free to explore my past
+				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I’m building
+				with the PLG squad at <a href="https://www.electricitymaps.com/">Electricity Maps</a>. Feel
+				free to explore my past
 				<a href="/projects">projects</a>
-				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. If
-				you want to <a href="#contact">chat</a>, just start a conversation about handball,
-				woodworking, cooking, sustainability, or dive into product and tech topics.
+				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. I’m
+				right now incredibly hyped about automation and AI. Whether you want to geek out over that
+				or start a conversation about handball, woodworking, cooking, and sustainability, feel free
+				to <a href="#contact">say hi</a>.
 			</p>
 		</div>
 	</div>

@@ -10,7 +10,8 @@ import {
 	createValidationSuccess,
 	generateValidationSummary
 } from './validation';
-import type { RawEntry, EntryType } from './content';
+import type { RawEntry } from './content';
+import type { EntryType } from '../types/enums';
 
 describe('Validation Utilities', () => {
 	describe('validateRawEntry', () => {
@@ -97,7 +98,8 @@ describe('Validation Utilities', () => {
 				image: '/test-image.jpg',
 				tags: ['test'],
 				published: '2024-01-01T00:00:00.000Z',
-				updated: '2024-01-01T00:00:00.000Z'
+				updated: '2024-01-01T00:00:00.000Z',
+				openSource: false
 			};
 
 			const issues = validateContentQuality(rawEntry);
@@ -118,7 +120,8 @@ describe('Validation Utilities', () => {
 				image: '/test-image.jpg',
 				tags: ['test'],
 				published: '2024-01-01T00:00:00.000Z',
-				updated: '2024-01-01T00:00:00.000Z'
+				updated: '2024-01-01T00:00:00.000Z',
+				openSource: false
 			};
 
 			const issues = validateContentQuality(rawEntry);
@@ -140,7 +143,8 @@ describe('Validation Utilities', () => {
 				image: '/test-image.jpg',
 				tags: ['test', 'duplicate', 'duplicate'],
 				published: '2024-01-01T00:00:00.000Z',
-				updated: '2024-01-01T00:00:00.000Z'
+				updated: '2024-01-01T00:00:00.000Z',
+				openSource: false
 			};
 
 			const issues = validateContentQuality(rawEntry);
@@ -165,7 +169,8 @@ describe('Validation Utilities', () => {
 				tags: ['test'],
 				published: '2024-01-01T00:00:00.000Z',
 				updated: '2024-01-01T00:00:00.000Z',
-				url: 'invalid-url'
+				url: 'invalid-url',
+				openSource: false
 			};
 
 			const issues = validateContentQuality(rawEntry);
