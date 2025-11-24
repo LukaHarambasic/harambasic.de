@@ -48,11 +48,22 @@
 					class="h-feed entry card no-spacing"
 					data-highlighted={index < 3}
 				>
-					<enhanced:img
-						src={getImage(entry.image)}
-						sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-						alt={entry.title}
-					/>
+					<div class="image-wrapper">
+						<div class="blur-bg">
+							<enhanced:img
+								src={getImage(entry.image)}
+								sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+								alt={entry.title}
+							/>
+						</div>
+						<div class="main-img">
+							<enhanced:img
+								src={getImage(entry.image)}
+								sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+								alt={entry.title}
+							/>
+						</div>
+					</div>
 					<div class="content">
 						<strong>{entry.title}</strong>
 						<p>{entry.description}</p>
@@ -96,6 +107,43 @@
 			@media screen and (width <= 62rem) {
 				grid-column: span 1;
 			}
+			.image-wrapper {
+				display: flex;
+				position: relative;
+				justify-content: center;
+				align-items: center;
+				transition: filter var(--transition);
+				overflow: hidden;
+				filter: grayscale(1);
+
+				.blur-bg {
+					position: absolute;
+					inset: 0;
+					z-index: 1;
+					width: 100%;
+					height: 100%;
+
+					:global(picture),
+					:global(img) {
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+						filter: blur(12px) brightness(0.9);
+						transform: scale(1.1);
+					}
+				}
+				.main-img {
+					position: relative;
+					z-index: 2;
+					:global(picture),
+					:global(img) {
+						display: block;
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
+				}
+			}
 			&[data-highlighted='false'] {
 				display: flex;
 				flex-direction: row;
@@ -104,22 +152,50 @@
 				@media screen and (width <= 32rem) {
 					flex-direction: column;
 				}
-				> picture {
+				.image-wrapper {
+					padding: var(--m);
 					width: 12rem;
-					height: 12rem;
+					min-width: 12rem;
+					height: auto;
+					min-height: 12rem;
+					border-radius: var(--border-radius) 0 0 var(--border-radius);
+					align-self: stretch;
+					box-sizing: border-box;
 					@media screen and (width <= 32rem) {
+						padding: 0;
 						width: 100%;
+						min-width: 0;
 						height: auto;
+						min-height: 0;
+						border-radius: var(--border-radius) var(--border-radius) 0 0;
 					}
-					img {
-						opacity: 0.5;
-						width: inherit;
-						height: inherit;
-						border-radius: var(--border-radius) 0 0 var(--border-radius);
+					.main-img {
+						width: 100%;
 						aspect-ratio: 1 / 1;
-						filter: grayscale(1);
+						border-radius: var(--border-radius);
+						box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+						:global(img) {
+							border-radius: var(--border-radius);
+						}
 						@media screen and (width <= 32rem) {
-							border-radius: var(--border-radius) var(--border-radius) 0 0;
+							width: 100%;
+							height: auto;
+							border-radius: 0;
+							box-shadow: none;
+							:global(img) {
+								border-radius: var(--border-radius) var(--border-radius) 0 0;
+							}
+						}
+					}
+					@media screen and (width <= 32rem) {
+						.blur-bg {
+							display: none;
+						}
+						.main-img {
+							width: 100%;
+							:global(img) {
+								border-radius: var(--border-radius) var(--border-radius) 0 0;
+							}
 						}
 					}
 				}
@@ -135,33 +211,38 @@
 			}
 			&[data-highlighted='true'] {
 				grid-column: span 2;
-				> picture {
+
+				.image-wrapper {
 					width: 100%;
-					img {
-						opacity: 0.5;
+					filter: grayscale(1);
+					.blur-bg {
+						display: none;
+					}
+					.main-img {
 						width: 100%;
-						height: inherit;
-						border-radius: var(--border-radius) var(--border-radius) 0 0;
-						aspect-ratio: 1 / 1;
-						filter: grayscale(1);
+						:global(img) {
+							opacity: 0.5;
+							width: 100%;
+							height: inherit;
+							border-radius: var(--border-radius) var(--border-radius) 0 0;
+							aspect-ratio: 1 / 1;
+						}
 					}
 				}
 			}
 			&:hover {
 				transform: scale(0.97);
 				cursor: pointer;
-				> picture {
-					source,
-					img {
-						filter: grayscale(0);
-						opacity: 1;
-					}
+				.image-wrapper {
+					filter: grayscale(0);
+				}
+				.image-wrapper .main-img :global(img) {
+					opacity: 1;
 				}
 				:global(.arrow) {
 					opacity: 1;
 				}
 			}
-
 			> .content {
 				display: flex;
 				padding: var(--l);
