@@ -43,7 +43,7 @@
 		"front-matter": "^4.0.2",
 		"github-slugger": "^2.0.0",
 		"globals": "^15.14.0",
-		"js-yaml": "^4.1.0",
+		"js-yaml": "^4.1.1",
 		"playwright": "^1.49.1",
 		"postcss-cli": "^11.0.1",
 		"postcss-html": "^1.8.0",
