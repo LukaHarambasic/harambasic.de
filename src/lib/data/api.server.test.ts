@@ -34,21 +34,18 @@ class MockContentService implements ContentService {
 		return this.mockData[entryType] || [];
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	async getEntry(_entryType: EntryType, _slug: string): Promise<RawEntry | null> {
 		return null;
 	}
 
 	async getEntryMetadata(
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		_entryType: EntryType,
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 		_slug: string
 	): Promise<Pick<RawEntry, 'title' | 'description' | 'published'> | null> {
 		return null;
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	async validateContent(_entryType: EntryType) {
 		return [];
 	}
@@ -62,7 +59,6 @@ class MockContentService implements ContentService {
 		};
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	async validateEntryWithQuality(_entryType: EntryType, _slug: string) {
 		return null;
 	}

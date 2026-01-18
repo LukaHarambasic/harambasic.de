@@ -65,7 +65,6 @@ class MockContentService implements ContentService {
 		};
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	async validateEntryWithQuality(entryType: EntryType, _slug: string) {
 		// We only validate supported types in the schema
 		if (entryType === 'snippet') {
