@@ -4,7 +4,6 @@ import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { Shareable } from '$lib/types/shareable';
-import type { Snippet } from '$lib/types/snippet';
 import { getContentPath, createBaseEntryFields, transformEntry } from './entryTransformer';
 
 const createMockRawEntry = (overrides: Partial<RawEntry> = {}): RawEntry => ({
@@ -27,10 +26,6 @@ describe('Entry Transformer', () => {
 
 		it('should generate correct path for project type', () => {
 			expect(getContentPath('project', 'test-project')).toBe('/projects/test-project');
-		});
-
-		it('should generate correct path for snippet type', () => {
-			expect(getContentPath('snippet', 'test-snippet')).toBe('/snippets/test-snippet');
 		});
 
 		it('should generate correct path for shareable type', () => {
@@ -333,43 +328,6 @@ describe('Entry Transformer', () => {
 			expect(shareable.comment).toBe('');
 			// Verify image is not present
 			expect('image' in shareable).toBe(false);
-		});
-	});
-
-	describe('transformEntry - Snippet', () => {
-		it('should transform RawEntry to Snippet', () => {
-			const rawEntry = createMockRawEntry({
-				html: '<pre><code>console.log("test");</code></pre>'
-			});
-
-			const snippet = transformEntry<Snippet>(rawEntry, {
-				entryType: 'snippet',
-				transform: (base, raw) => ({
-					...base,
-					html: raw.html || ''
-				})
-			});
-
-			expect(snippet.type).toBe('snippet');
-			expect(snippet.title).toBe('Test Entry');
-			expect(snippet.html).toBe('<pre><code>console.log("test");</code></pre>');
-			expect(snippet.relativePath).toBe('/snippets/test-entry');
-		});
-
-		it('should handle missing html field', () => {
-			const rawEntry = createMockRawEntry({
-				html: ''
-			});
-
-			const snippet = transformEntry<Snippet>(rawEntry, {
-				entryType: 'snippet',
-				transform: (base, raw) => ({
-					...base,
-					html: raw.html || ''
-				})
-			});
-
-			expect(snippet.html).toBe('');
 		});
 	});
 

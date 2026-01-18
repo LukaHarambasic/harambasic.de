@@ -2,7 +2,6 @@ import type { EntryType } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { Snippet } from '$lib/types/snippet';
 import type { Shareable } from '$lib/types/shareable';
 import type { Tag } from '$lib/types/tag';
 import type { RawEntry } from '$lib/types/entry';
@@ -16,7 +15,6 @@ type EntryTypeMap = {
 	post: Post;
 	project: Project;
 	uses: UsesEntry;
-	snippet: Snippet;
 	shareable: Shareable;
 };
 
@@ -29,23 +27,20 @@ async function getEntries<T extends EntryType>(entryType: T): Promise<[EntryType
 	const rawEntries = await contentService.getEntries(entryType);
 	const config = ENTRY_CONFIGS[entryType];
 
-	// Transform entries - handle null returns for posts and snippets
+	// Transform entries - handle null returns for posts
 	const entries = rawEntries
 		.map((raw: RawEntry) => {
 			try {
-				// For posts and snippets, validate basic fields before transformation
-				if (
-					(entryType === 'post' || entryType === 'snippet') &&
-					(!raw || !raw.title || !raw.description)
-				) {
+				// For posts, validate basic fields before transformation
+				if (entryType === 'post' && (!raw || !raw.title || !raw.description)) {
 					console.warn(`Invalid ${entryType} entry:`, raw);
 					return null;
 				}
 
 				return transformEntry(raw, config);
 			} catch (error) {
-				// For posts and snippets, return null on error (will be filtered)
-				if (entryType === 'post' || entryType === 'snippet') {
+				// For posts, return null on error (will be filtered)
+				if (entryType === 'post') {
 					console.error(`Error processing ${entryType} entry:`, raw, error);
 					return null;
 				}
@@ -55,7 +50,7 @@ async function getEntries<T extends EntryType>(entryType: T): Promise<[EntryType
 		})
 		.filter((entry): entry is EntryTypeMap[T] => entry != null);
 
-	const tags = getUniqueTags(entries as Post[] | Project[] | UsesEntry[] | Shareable[] | Snippet[]);
+	const tags = getUniqueTags(entries as Post[] | Project[] | UsesEntry[] | Shareable[]);
 	return [entries, tags];
 }
 
@@ -81,14 +76,6 @@ export async function requestProjects(): Promise<[Project[], Tag[]]> {
  */
 export async function requestUses(): Promise<[UsesEntry[], Tag[]]> {
 	return getEntries('uses');
-}
-
-/**
- * Get snippets with tags.
- * Filters out invalid entries (returns null for invalid snippets).
- */
-export async function requestSnippets(): Promise<[Snippet[], Tag[]]> {
-	return getEntries('snippet');
 }
 
 /**

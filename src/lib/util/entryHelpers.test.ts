@@ -4,7 +4,6 @@ import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { Shareable } from '$lib/types/shareable';
-import type { Snippet } from '$lib/types/snippet';
 import { filterByStatus, sortByProperty, filterAndSort } from './entryHelpers';
 
 const createMockPost = (overrides: Partial<Post> = {}): Post => ({
@@ -73,21 +72,6 @@ const createMockShareable = (overrides: Partial<Shareable> = {}): Shareable => (
 	fullPath: 'https://harambasic.de/shareables/test-shareable',
 	url: '',
 	comment: '',
-	...overrides
-});
-
-const createMockSnippet = (overrides: Partial<Snippet> = {}): Snippet => ({
-	type: 'snippet',
-	title: 'Test Snippet',
-	description: 'A test snippet',
-	image: '',
-	tags: [],
-	published: { raw: new Date('2024-01-01'), display: '2024-01-01' },
-	updated: { raw: new Date('2024-01-01'), display: '2024-01-01' },
-	slug: 'test-snippet',
-	relativePath: '/snippets/test-snippet',
-	fullPath: 'https://harambasic.de/snippets/test-snippet',
-	html: '',
 	...overrides
 });
 
@@ -471,17 +455,53 @@ describe('Entry Helpers', () => {
 				});
 				expect(result).toHaveLength(2);
 				expect(result[0].title).toBe('Alpha Shareable');
+			});
+		});
 
-				const snippets: Snippet[] = [
-					createMockSnippet({ title: 'Alpha Snippet' }),
-					createMockSnippet({ title: 'Beta Snippet' })
+		describe('overloaded function signatures with positional parameters', () => {
+			it('should work with Posts using positional parameters', () => {
+				const result = filterAndSort(mockPosts, 'javascript', 'title', SortDirection.Asc);
+				expect(result).toHaveLength(2);
+				expect(result[0].title).toBe('Alpha Post');
+				expect(result[1].title).toBe('Gamma Post');
+			});
+
+			it('should work with Projects using positional parameters with status filter', () => {
+				const result = filterAndSort(mockProjects, 'all', 'active', 'priority', SortDirection.Asc);
+				expect(result).toHaveLength(2);
+				expect(result.every((p) => p.status === 'active')).toBe(true);
+				expect(result[0].prio).toBe(1);
+				expect(result[1].prio).toBe(3);
+			});
+
+			it('should work with Shareables using positional parameters', () => {
+				const shareables: Shareable[] = [
+					createMockShareable({ title: 'Alpha Shareable' }),
+					createMockShareable({ title: 'Beta Shareable' })
 				];
-				const snippetResult = filterAndSort(snippets, {
-					sortProperty: 'title',
-					sortDirection: SortDirection.Asc
-				});
-				expect(snippetResult).toHaveLength(2);
-				expect(snippetResult[0].title).toBe('Alpha Snippet');
+				const result = filterAndSort(shareables, 'all', 'title', SortDirection.Asc);
+				expect(result).toHaveLength(2);
+				expect(result[0].title).toBe('Alpha Shareable');
+			});
+
+			it('should work with UsesEntries using positional parameters with status filter', () => {
+				const usesEntries: UsesEntry[] = [
+					createMockUsesEntry({ title: 'Active Use', status: 'active' }),
+					createMockUsesEntry({ title: 'Inactive Use', status: 'inactive' }),
+					createMockUsesEntry({ title: 'Another Active', status: 'active' })
+				];
+				const result = filterAndSort(usesEntries, 'all', 'active', 'title', SortDirection.Asc);
+				expect(result).toHaveLength(2);
+				expect(result.every((u) => u.status === 'active')).toBe(true);
+				expect(result[0].title).toBe('Active Use');
+			});
+
+			it('should support priority sorting for projects with positional parameters', () => {
+				const result = filterAndSort(mockProjects, 'all', 'all', 'priority', SortDirection.Desc);
+				expect(result).toHaveLength(3);
+				expect(result[0].prio).toBe(3);
+				expect(result[1].prio).toBe(2);
+				expect(result[2].prio).toBe(1);
 			});
 		});
 	});

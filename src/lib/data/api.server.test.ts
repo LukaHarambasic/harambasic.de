@@ -4,13 +4,7 @@ import type { EntryType } from '$lib/types/enums';
 import type { ContentService } from '$lib/services';
 import { ContentServiceError } from '$lib/services';
 import { setContentService, resetContentService } from '$lib/services/serviceInstance';
-import {
-	requestPosts,
-	requestProjects,
-	requestUses,
-	requestSnippets,
-	requestShareables
-} from './api.server';
+import { requestPosts, requestProjects, requestUses, requestShareables } from './api.server';
 
 /**
  * Mock ContentService implementation for testing
@@ -297,57 +291,6 @@ describe('Generic API Server', () => {
 		});
 	});
 
-	describe('requestSnippets', () => {
-		it('should transform and return snippets with tags', async () => {
-			const mockSnippet = createMockRawEntry({
-				title: 'Test Snippet',
-				description: 'A test snippet',
-				html: '<p>Snippet content</p>'
-			});
-
-			mockService = new MockContentService({ snippet: [mockSnippet] });
-			setContentService(mockService);
-
-			const [snippets, tags] = await requestSnippets();
-
-			expect(snippets).toHaveLength(1);
-			expect(snippets[0].type).toBe('snippet');
-			expect(snippets[0].title).toBe('Test Snippet');
-			expect(snippets[0].html).toBe('<p>Snippet content</p>');
-			expect(snippets[0].slug).toBe('test-snippet');
-			expect(snippets[0].relativePath).toBe('/snippets/test-snippet');
-
-			expect(tags).toHaveLength(3); // 'All' tag + 2 tags
-		});
-
-		it('should filter out invalid snippets (missing title)', async () => {
-			const validSnippet = createMockRawEntry({ title: 'Valid Snippet' });
-			const invalidSnippet = createMockRawEntry({ title: '' });
-
-			mockService = new MockContentService({ snippet: [validSnippet, invalidSnippet] });
-			setContentService(mockService);
-
-			const [snippets] = await requestSnippets();
-
-			expect(snippets).toHaveLength(1);
-			expect(snippets[0].title).toBe('Valid Snippet');
-		});
-
-		it('should handle transformation errors gracefully', async () => {
-			const invalidSnippet = createMockRawEntry({
-				title: 'Invalid Snippet',
-				published: 'invalid-date'
-			});
-
-			mockService = new MockContentService({ snippet: [invalidSnippet] });
-			setContentService(mockService);
-
-			const [snippets] = await requestSnippets();
-
-			expect(snippets).toHaveLength(0);
-		});
-	});
-
 	describe('requestShareables', () => {
 		it('should transform and return shareables with tags', async () => {
 			const mockShareable = createMockRawEntry({
@@ -463,7 +406,6 @@ describe('Generic API Server', () => {
 				post: [],
 				project: [],
 				uses: [],
-				snippet: [],
 				shareable: []
 			});
 			setContentService(mockService);
@@ -471,13 +413,11 @@ describe('Generic API Server', () => {
 			const [posts] = await requestPosts();
 			const [projects] = await requestProjects();
 			const [uses] = await requestUses();
-			const [snippets] = await requestSnippets();
 			const [shareables] = await requestShareables();
 
 			expect(posts).toHaveLength(0);
 			expect(projects).toHaveLength(0);
 			expect(uses).toHaveLength(0);
-			expect(snippets).toHaveLength(0);
 			expect(shareables).toHaveLength(0);
 		});
 

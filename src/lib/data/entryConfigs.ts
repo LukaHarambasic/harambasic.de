@@ -2,7 +2,6 @@ import type { EntryTransformConfig, BaseEntryFields } from '$lib/util/entryTrans
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { Snippet } from '$lib/types/snippet';
 import type { Shareable } from '$lib/types/shareable';
 import type { RawEntry } from '$lib/types/entry';
 import type { ProjectStatus, UsesEntryStatus } from '$lib/types/enums';
@@ -125,15 +124,6 @@ export const ENTRY_CONFIGS = {
 		}),
 		validate: validateUsesEntry
 	} satisfies EntryTransformConfig<UsesEntry>,
-
-	snippet: {
-		entryType: 'snippet' as const,
-		transform: (base: BaseEntryFields, raw: RawEntry): Snippet => ({
-			...base,
-			html: raw.html || ''
-		})
-		// No validate - allows null returns in API layer
-	} satisfies EntryTransformConfig<Snippet>,
 
 	shareable: {
 		entryType: 'shareable' as const,

@@ -4,7 +4,7 @@
 	import EntriesSorter from '$lib/components/Entries/EntriesSorter.svelte';
 	import EntriesTags from '$lib/components/Entries/EntriesTags.svelte';
 	import EntriesSidebar from '$lib/components/Entries/EntriesSidebar.svelte';
-	import { filterAndSort } from '$lib/data/shareable/helper';
+	import { filterAndSort } from '$lib/util/entryHelpers';
 	import { SortDirection, BASE_SORT_PROPERTIES, SORT_DEFAULTS } from '$lib/types/enums';
 	import type { ShareableSortProperty } from '$lib/types/enums';
 	import { isValidShareableSortProperty, isValidSortDirection } from '$lib/util/helper';

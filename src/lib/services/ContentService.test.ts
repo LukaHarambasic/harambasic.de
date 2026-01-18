@@ -42,9 +42,6 @@ class MockContentService implements ContentService {
 	}
 
 	async validateContent(entryType: EntryType): Promise<ValidationResult[]> {
-		if (entryType === 'snippet') {
-			return [];
-		}
 		return [
 			{
 				entryType: entryType as any,
@@ -57,7 +54,7 @@ class MockContentService implements ContentService {
 	async validateAllContent() {
 		return {
 			overall: { total: 1, passed: 1, failed: 0, successRate: 100 },
-			byType: { post: [], project: [], uses: [], shareable: [], snippet: [] } as Record<
+			byType: { post: [], project: [], uses: [], shareable: [] } as Record<
 				EntryType,
 				ValidationResult[]
 			>,
@@ -66,11 +63,6 @@ class MockContentService implements ContentService {
 	}
 
 	async validateEntryWithQuality(entryType: EntryType, _slug: string) {
-		// We only validate supported types in the schema
-		if (entryType === 'snippet') {
-			return null;
-		}
-
 		return {
 			validation: {
 				entryType: entryType as any, // Cast to any to avoid the strict type check for the mock
@@ -128,8 +120,7 @@ describe('ContentService Interface', () => {
 			post: [mockPost],
 			project: [mockProject],
 			uses: [],
-			shareable: [],
-			snippet: []
+			shareable: []
 		});
 	});
 

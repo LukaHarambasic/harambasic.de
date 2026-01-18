@@ -3,7 +3,6 @@ import { generateXml, options } from './rss.server';
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { Snippet } from '$lib/types/snippet';
 import { getDate } from './entries';
 
 function createMockPost(overrides?: Partial<Post>): Post {
@@ -66,23 +65,6 @@ function createMockUsesEntry(overrides?: Partial<UsesEntry>): UsesEntry {
 	};
 }
 
-function createMockSnippet(overrides?: Partial<Snippet>): Snippet {
-	return {
-		type: 'snippet',
-		title: 'Test Snippet',
-		description: 'A test snippet description',
-		image: 'test.jpg',
-		tags: [],
-		published: getDate('2024-01-01'),
-		updated: getDate('2024-01-02'),
-		slug: 'test-snippet',
-		relativePath: '/snippets/test-snippet',
-		fullPath: 'https://harambasic.de/snippets/test-snippet',
-		html: '<p>Content</p>',
-		...overrides
-	};
-}
-
 describe('RSS XML Generation', () => {
 	describe('generateXml', () => {
 		it('should generate valid RSS XML for posts', () => {
@@ -132,20 +114,6 @@ describe('RSS XML Generation', () => {
 			expect(xml).toContain('<guid>https://harambasic.de/uses/my-test-uses</guid>');
 			expect(xml).toContain('<title>My Test Uses</title>');
 			expect(xml).toContain('<link>https://harambasic.de/uses/my-test-uses</link>');
-		});
-
-		it('should generate valid RSS XML for snippets', () => {
-			const snippet = createMockSnippet({
-				title: 'My Test Snippet',
-				description: 'This is a snippet description',
-				slug: 'my-test-snippet'
-			});
-			const xml = generateXml([snippet], 'snippet');
-
-			expect(xml).toContain('<title>Luka Harambasic | Snippets</title>');
-			expect(xml).toContain('<guid>https://harambasic.de/snippets/my-test-snippet</guid>');
-			expect(xml).toContain('<title>My Test Snippet</title>');
-			expect(xml).toContain('<link>https://harambasic.de/snippets/my-test-snippet</link>');
 		});
 
 		it('should handle multiple entries', () => {
@@ -229,10 +197,6 @@ describe('RSS XML Generation', () => {
 			const uses = createMockUsesEntry();
 			const usesXml = generateXml([uses], 'uses');
 			expect(usesXml).toContain('stay up to date with my uses');
-
-			const snippet = createMockSnippet();
-			const snippetXml = generateXml([snippet], 'snippet');
-			expect(snippetXml).toContain('stay up to date with my snippets');
 		});
 	});
 

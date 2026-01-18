@@ -4,8 +4,7 @@ import {
 	requestPosts,
 	requestProjects,
 	requestUses,
-	requestShareables,
-	requestSnippets
+	requestShareables
 } from '$lib/data/api.server';
 
 // For full SSG: https://kit.svelte.dev/docs/adapter-static
@@ -18,8 +17,7 @@ export const load = (async ({ url }) => {
 		posts: await requestPosts(),
 		projects: await requestProjects(),
 		uses: await requestUses(),
-		shareables: await requestShareables(),
-		snippets: await requestSnippets()
+		shareables: await requestShareables()
 		// images: await getImages()
 	};
 }) satisfies LayoutServerLoad;
