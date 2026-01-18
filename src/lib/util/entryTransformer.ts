@@ -67,7 +67,6 @@ export function transformEntry<T extends BaseEntry>(
 	}
 
 	const baseFields = createBaseEntryFields(rawEntry, config.entryType, baseUrl);
-n
+
 	return config.transform(baseFields, rawEntry);
 }
-
