@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Project } from '$lib/types/project';
+	import type { WorkEntry } from '$lib/types/workEntry';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 
 	const pictures = import.meta.glob(
@@ -23,9 +24,10 @@
 
 	interface Props {
 		entry: Project;
+		relatedWork?: WorkEntry[];
 	}
 
-	let { entry }: Props = $props();
+	let { entry, relatedWork = [] }: Props = $props();
 </script>
 
 <article class="h-entry">
@@ -53,6 +55,18 @@
 				</li>
 			{/each}
 		</ul>
+		{#if relatedWork.length > 0}
+			<div class="related-work">
+				<h3>Related Work</h3>
+				<ul>
+					{#each relatedWork as work}
+						<li>
+							<a href={work.relativePath}>{work.title}</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/if}
 	</div>
 </article>
 
@@ -118,6 +132,32 @@
 				align-content: stretch;
 				gap: var(--m);
 				flex-base: 100%;
+			}
+			.related-work {
+				width: 100%;
+				margin-top: var(--m);
+				h3 {
+					margin: 0 0 var(--s) 0;
+					font-family: var(--font-family);
+					font-size: var(--font-m);
+					font-weight: 700;
+					letter-spacing: var(--font-letter-spacing-headline);
+				}
+				ul {
+					list-style: none;
+					padding: 0;
+					margin: 0;
+					li {
+						margin-bottom: var(--xs);
+						a {
+							color: var(--c-font);
+							text-decoration: none;
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+					}
+				}
 			}
 		}
 	}

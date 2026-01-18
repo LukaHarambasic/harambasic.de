@@ -46,7 +46,7 @@ export const TagSchema = z.object({
 	slug: z.string().min(1, 'Tag slug is required'),
 	relativePath: z.string().min(1, 'Tag relative path is required'),
 	count: z.number().int().min(0, 'Tag count cannot be negative'),
-	type: z.enum(['post', 'project', 'uses', 'shareable'])
+	type: z.enum(['post', 'project', 'uses', 'shareable', 'work'])
 });
 
 /**
@@ -60,7 +60,7 @@ export const EntryDateSchema = z.object({
 // ===== CONTENT STATUS AND TYPE SCHEMAS =====
 
 export const ContentStatusSchema = z.enum(['active', 'inactive', 'all']);
-export const EntryTypeSchema = z.enum(['post', 'project', 'uses', 'shareable']);
+export const EntryTypeSchema = z.enum(['post', 'project', 'uses', 'shareable', 'work']);
 export type ValidatedEntryType = z.infer<typeof EntryTypeSchema>;
 
 // ===== RAW ENTRY SCHEMA (Pre-processing) =====
@@ -94,6 +94,9 @@ export const RawEntrySchema = z.object({
 			return val === 'TODO' || val.length > 1;
 		}, 'Image must be a valid path or "TODO" for temporary placeholder'),
 	tags: z.array(z.string().min(1, 'Tag cannot be empty')).min(1, 'At least one tag required'),
+	// Cross-reference fields
+	relatedProjects: z.array(z.string().min(1, 'Project slug cannot be empty')).optional(),
+	relatedWork: z.array(z.string().min(1, 'Work slug cannot be empty')).optional(),
 	published: z.string().refine((val) => {
 		// Support both YYYY-MM-DD and ISO datetime formats
 		const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
@@ -126,7 +129,41 @@ export const RawEntrySchema = z.object({
 	links: z.array(LinkSchema).optional(),
 	prio: z.number().int().min(1).max(1000, 'Priority must be between 1-1000').optional(),
 	imageAlt: z.string().min(5, 'Alt text must be at least 5 characters').optional(),
-	comment: z.string().min(1, 'Comment cannot be empty').optional()
+	comment: z.string().min(1, 'Comment cannot be empty').optional(),
+	// Work entry specific fields
+	location: z.string().min(1, 'Location is required').optional(),
+	employmentType: z.enum(['full-time', 'part-time', 'contract', 'internship']).optional(),
+	positions: z
+		.array(
+			z.object({
+				title: z.string().min(1, 'Position title is required'),
+				startDate: z.string().refine((val) => {
+					const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+					if (dateOnlyRegex.test(val)) {
+						const date = new Date(val);
+						return !isNaN(date.getTime());
+					}
+					return false;
+				}, 'Invalid start date format (expected YYYY-MM-DD)'),
+				endDate: z
+					.string()
+					.nullable()
+					.refine(
+						(val) => {
+							if (val === null) return true;
+							const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+							if (dateOnlyRegex.test(val)) {
+								const date = new Date(val);
+								return !isNaN(date.getTime());
+							}
+							return false;
+						},
+						'Invalid end date format (expected YYYY-MM-DD or null)'
+					),
+				content: z.string().min(1, 'Position content is required')
+			})
+		)
+		.optional()
 });
 
 // ===== BASE ENTRY SCHEMA (Post-processing) =====
@@ -185,7 +222,8 @@ export const ProjectSchema = BaseEntrySchema.extend({
 	prio: z.number().int().min(1).max(1000, 'Priority must be between 1-1000'),
 	status: ContentStatusSchema,
 	html: z.string().min(1, 'HTML content is required'),
-	imageAlt: z.string().min(5, 'Alt text must be descriptive for accessibility')
+	imageAlt: z.string().min(5, 'Alt text must be descriptive for accessibility'),
+	relatedWork: z.array(z.string().min(1, 'Work slug cannot be empty')).optional()
 });
 
 /**
@@ -206,6 +244,49 @@ export const ShareableSchema = BaseEntrySchema.omit({ image: true }).extend({
 	type: z.literal('shareable'),
 	url: z.string().url('Shareable must have a valid URL'),
 	comment: z.string().min(1, 'Comment is required for shareables')
+});
+
+/**
+ * Position Schema - Individual positions within a work entry
+ */
+export const PositionSchema = z.object({
+	title: z.string().min(1, 'Position title is required'),
+	startDate: z.string().refine((val) => {
+		const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+		if (dateOnlyRegex.test(val)) {
+			const date = new Date(val);
+			return !isNaN(date.getTime());
+		}
+		return false;
+	}, 'Invalid start date format (expected YYYY-MM-DD)'),
+	endDate: z
+		.string()
+		.nullable()
+		.refine(
+			(val) => {
+				if (val === null) return true;
+				const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+				if (dateOnlyRegex.test(val)) {
+					const date = new Date(val);
+					return !isNaN(date.getTime());
+				}
+				return false;
+			},
+			'Invalid end date format (expected YYYY-MM-DD or null)'
+		),
+	content: z.string().min(1, 'Position content is required')
+});
+
+/**
+ * Work Entry Schema - CV-style work experience entries
+ */
+export const WorkEntrySchema = BaseEntrySchema.extend({
+	type: z.literal('work'),
+	location: z.string().min(1, 'Location is required'),
+	employmentType: z.enum(['full-time', 'part-time', 'contract', 'internship']),
+	positions: z.array(PositionSchema).min(1, 'At least one position is required'),
+	relatedProjects: z.array(z.string().min(1, 'Project slug cannot be empty')).optional(),
+	html: z.string().default('') // Optional general company information
 });
 
 // ===== TYPE INFERENCE (Single Source of Truth) =====
@@ -230,9 +311,11 @@ export type Post = z.infer<typeof PostSchema>;
 export type Project = z.infer<typeof ProjectSchema>;
 export type UsesEntry = z.infer<typeof UsesEntrySchema>;
 export type Shareable = z.infer<typeof ShareableSchema>;
+export type Position = z.infer<typeof PositionSchema>;
+export type WorkEntry = z.infer<typeof WorkEntrySchema>;
 
 // Union type for all processed entries
-export type Entry = Post | Project | UsesEntry | Shareable;
+export type Entry = Post | Project | UsesEntry | Shareable | WorkEntry;
 
 // ===== SCHEMA MAPPING UTILITIES =====
 
@@ -243,7 +326,8 @@ export const ENTRY_SCHEMAS = {
 	post: PostSchema,
 	project: ProjectSchema,
 	uses: UsesEntrySchema,
-	shareable: ShareableSchema
+	shareable: ShareableSchema,
+	work: WorkEntrySchema
 } as const;
 
 /**

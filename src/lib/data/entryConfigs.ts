@@ -3,11 +3,15 @@ import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { Shareable } from '$lib/types/shareable';
+import type { WorkEntry, Position } from '$lib/types/workEntry';
 import type { RawEntry } from '$lib/types/entry';
 import type { ProjectStatus, UsesEntryStatus } from '$lib/types/enums';
 import { z } from 'zod';
 import { RawEntrySchema } from '$lib/schemas/content';
 import { getSlug } from '$lib/util/helper';
+import { remark } from 'remark';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
 
 /**
  * Validate project entry with strict date requirements using Zod
@@ -88,6 +92,118 @@ function validateUsesEntry(raw: RawEntry): void {
 	}
 }
 
+/**
+ * Validate work entry with required fields
+ */
+function validateWorkEntry(raw: RawEntry): void {
+	const slug = getSlug(raw.title);
+	const title = raw.title || 'untitled';
+
+	// Check for missing published date
+	if (raw.published === undefined || raw.published === null) {
+		throw new Error(
+			`Missing 'published' date in work entry "${slug}" (title: "${title}"). This field is mandatory and must be a valid ISO date string (YYYY-MM-DD).`
+		);
+	}
+
+	// Check for missing updated date
+	if (raw.updated === undefined || raw.updated === null) {
+		throw new Error(
+			`Missing 'updated' date in work entry "${slug}" (title: "${title}"). This field is mandatory and must be a valid ISO date string (YYYY-MM-DD).`
+		);
+	}
+
+	// Validate required work-specific fields
+	if (!raw.location) {
+		throw new Error(`Missing 'location' field in work entry "${slug}" (title: "${title}").`);
+	}
+
+	if (!raw.employmentType) {
+		throw new Error(
+			`Missing 'employmentType' field in work entry "${slug}" (title: "${title}"). Must be one of: full-time, part-time, contract, internship.`
+		);
+	}
+
+	if (!raw.positions || !Array.isArray(raw.positions) || raw.positions.length === 0) {
+		throw new Error(
+			`Missing or empty 'positions' array in work entry "${slug}" (title: "${title}"). At least one position is required.`
+		);
+	}
+
+	// Validate each position
+	raw.positions.forEach((position: any, index: number) => {
+		if (!position.title) {
+			throw new Error(
+				`Position ${index + 1} in work entry "${slug}" is missing required 'title' field.`
+			);
+		}
+		if (!position.startDate) {
+			throw new Error(
+				`Position ${index + 1} in work entry "${slug}" is missing required 'startDate' field.`
+			);
+		}
+		if (position.endDate === undefined) {
+			throw new Error(
+				`Position ${index + 1} in work entry "${slug}" is missing required 'endDate' field (use null for current positions).`
+			);
+		}
+		if (!position.content) {
+			throw new Error(
+				`Position ${index + 1} in work entry "${slug}" is missing required 'content' field.`
+			);
+		}
+	});
+
+	// Validate date formats using Zod schema
+	const DateSchema = z.string().refine(
+		(val) => {
+			const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+			const isoDatetimeRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/;
+			if (dateOnlyRegex.test(val) || isoDatetimeRegex.test(val)) {
+				const date = new Date(val);
+				return !isNaN(date.getTime());
+			}
+			return false;
+		},
+		{
+			message: 'Invalid date format (expected YYYY-MM-DD or ISO datetime)'
+		}
+	);
+
+	// Validate published date
+	const publishedResult = DateSchema.safeParse(raw.published);
+	if (!publishedResult.success) {
+		const errorMsg = publishedResult.error.issues[0]?.message || 'Invalid date format';
+		throw new Error(
+			`Invalid 'published' date in work entry "${slug}" (title: "${title}"): ${errorMsg}`
+		);
+	}
+
+	// Validate updated date
+	const updatedResult = DateSchema.safeParse(raw.updated);
+	if (!updatedResult.success) {
+		const errorMsg = updatedResult.error.issues[0]?.message || 'Invalid date format';
+		throw new Error(
+			`Invalid 'updated' date in work entry "${slug}" (title: "${title}"): ${errorMsg}`
+		);
+	}
+}
+
+/**
+ * Process position content from markdown to HTML
+ */
+function processPositionContent(markdown: string): string {
+	try {
+		const processor = remark().use(remarkRehype).use(rehypeStringify);
+		const result = processor.processSync(markdown);
+		return String(result);
+	} catch (error) {
+		// If processing fails, return the markdown as-is (will be escaped in display)
+		console.warn('Failed to process position content markdown:', error);
+		return markdown;
+	}
+}
+
 export const ENTRY_CONFIGS = {
 	post: {
 		entryType: 'post' as const,
@@ -139,5 +255,28 @@ export const ENTRY_CONFIGS = {
 		}
 		// No validate - shareables handle missing directory at API level
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	} as EntryTransformConfig<any>
+	} as EntryTransformConfig<any>,
+
+	work: {
+		entryType: 'work' as const,
+		transform: (base: BaseEntryFields, raw: RawEntry): WorkEntry => {
+			// Process positions: convert markdown content to HTML
+			const positions: Position[] = (raw.positions || []).map((pos: any) => ({
+				title: pos.title,
+				startDate: pos.startDate,
+				endDate: pos.endDate === null ? null : pos.endDate,
+				content: processPositionContent(pos.content || '')
+			}));
+
+			return {
+				...base,
+				location: raw.location || '',
+				employmentType: (raw.employmentType as WorkEntry['employmentType']) || 'full-time',
+				positions,
+				relatedProjects: raw.relatedProjects || [],
+				html: raw.html || ''
+			};
+		},
+		validate: validateWorkEntry
+	} satisfies EntryTransformConfig<WorkEntry>
 } as const;
