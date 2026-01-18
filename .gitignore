@@ -19,3 +19,5 @@ vite.config.ts.timestamp-*
 # Claude Code sessions (local only)
 .claude/sessions/
 .claude/cache/
+
+.plans
