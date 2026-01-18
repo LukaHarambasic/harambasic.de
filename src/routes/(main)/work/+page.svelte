@@ -32,7 +32,7 @@
 
 	let { data }: Props = $props();
 
-	const [entries] = data.work;
+	const [entries = [], tags = []] = data.work || [[], []];
 
 	let filteredAndSorted = $derived(
 		filterAndSort(entries, 'all', 'all', SORT_DEFAULTS.WORK_ENTRY, SortDirection.Desc)
