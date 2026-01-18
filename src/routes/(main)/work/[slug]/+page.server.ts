@@ -7,9 +7,9 @@ export const load = (async ({ parent, params }) => {
 	const { work } = await parent();
 	const [entries] = work;
 	const entry = entries.find((entry) => entry.slug === params.slug);
-	
+
 	// Load related projects if any
-	let relatedProjects = [];
+	let relatedProjects: Awaited<ReturnType<typeof requestProjects>>[0] = [];
 	if (entry?.relatedProjects && entry.relatedProjects.length > 0) {
 		const [projects] = await requestProjects();
 		relatedProjects = projects.filter((p) => entry.relatedProjects?.includes(p.slug));
@@ -22,4 +22,3 @@ export const load = (async ({ parent, params }) => {
 		relatedProjects
 	};
 }) satisfies PageServerLoad;
-

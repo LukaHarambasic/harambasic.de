@@ -134,8 +134,8 @@
 				flex-base: 100%;
 			}
 			.related-work {
-				width: 100%;
 				margin-top: var(--m);
+				width: 100%;
 				h3 {
 					margin: 0 0 var(--s) 0;
 					font-family: var(--font-family);
@@ -144,9 +144,9 @@
 					letter-spacing: var(--font-letter-spacing-headline);
 				}
 				ul {
-					list-style: none;
-					padding: 0;
 					margin: 0;
+					padding: 0;
+					list-style: none;
 					li {
 						margin-bottom: var(--xs);
 						a {

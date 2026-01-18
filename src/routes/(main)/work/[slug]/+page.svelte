@@ -13,4 +13,3 @@
 {#if entry}
 	<Entry {entry} {relatedProjects} />
 {/if}
-

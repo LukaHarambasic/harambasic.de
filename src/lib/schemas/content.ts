@@ -148,18 +148,15 @@ export const RawEntrySchema = z.object({
 				endDate: z
 					.string()
 					.nullable()
-					.refine(
-						(val) => {
-							if (val === null) return true;
-							const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
-							if (dateOnlyRegex.test(val)) {
-								const date = new Date(val);
-								return !isNaN(date.getTime());
-							}
-							return false;
-						},
-						'Invalid end date format (expected YYYY-MM-DD or null)'
-					),
+					.refine((val) => {
+						if (val === null) return true;
+						const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+						if (dateOnlyRegex.test(val)) {
+							const date = new Date(val);
+							return !isNaN(date.getTime());
+						}
+						return false;
+					}, 'Invalid end date format (expected YYYY-MM-DD or null)'),
 				content: z.string().min(1, 'Position content is required')
 			})
 		)
@@ -262,18 +259,15 @@ export const PositionSchema = z.object({
 	endDate: z
 		.string()
 		.nullable()
-		.refine(
-			(val) => {
-				if (val === null) return true;
-				const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
-				if (dateOnlyRegex.test(val)) {
-					const date = new Date(val);
-					return !isNaN(date.getTime());
-				}
-				return false;
-			},
-			'Invalid end date format (expected YYYY-MM-DD or null)'
-		),
+		.refine((val) => {
+			if (val === null) return true;
+			const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+			if (dateOnlyRegex.test(val)) {
+				const date = new Date(val);
+				return !isNaN(date.getTime());
+			}
+			return false;
+		}, 'Invalid end date format (expected YYYY-MM-DD or null)'),
 	content: z.string().min(1, 'Position content is required')
 });
 

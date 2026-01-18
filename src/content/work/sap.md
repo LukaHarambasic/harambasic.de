@@ -40,4 +40,3 @@ tags:
   - Scrum Master
   - Consulting
 ---
-

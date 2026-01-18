@@ -8,7 +8,10 @@ import { formatDate, getSlug, sortAlphabetical } from './helper';
 import type { Shareable } from '$lib/types/shareable';
 import type { WorkEntry } from '$lib/types/workEntry';
 
-export function findBySlug(entry: Post | Project | UsesEntry | Shareable | WorkEntry, slug: string): boolean {
+export function findBySlug(
+	entry: Post | Project | UsesEntry | Shareable | WorkEntry,
+	slug: string
+): boolean {
 	return entry.slug === slug;
 }
 
@@ -52,7 +55,9 @@ export function filterByTag(
 	return entry.tags.some((tag) => tag.slug === filterTagSlug);
 }
 
-export function getUniqueTags(entries: Project[] | UsesEntry[] | Post[] | Shareable[] | WorkEntry[]): Tag[] {
+export function getUniqueTags(
+	entries: Project[] | UsesEntry[] | Post[] | Shareable[] | WorkEntry[]
+): Tag[] {
 	// Filter out undefined/null entries and ensure tags exist
 	const validEntries = entries.filter((entry) => entry && entry.tags && Array.isArray(entry.tags));
 

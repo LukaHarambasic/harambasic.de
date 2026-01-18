@@ -13,6 +13,8 @@ import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { Shareable } from '$lib/types/shareable';
+import type { WorkEntry } from '$lib/types/workEntry';
+import type { WorkEntrySortProperty } from '$lib/types/enums';
 import { filterByTag } from './entries';
 import { sortAlphabetical } from './helper';
 
@@ -80,6 +82,13 @@ export function filterAndSort(
 	sortProperty: UsesEntrySortProperty,
 	sortDirection: SortDirection
 ): UsesEntry[];
+export function filterAndSort(
+	entries: WorkEntry[],
+	filterTagSlug: string,
+	filterStatus: ContentStatus,
+	sortProperty: WorkEntrySortProperty,
+	sortDirection: SortDirection
+): WorkEntry[];
 // Generic implementation with options object
 export function filterAndSort<T extends BaseEntry>(
 	entries: T[],
@@ -94,12 +103,14 @@ export function filterAndSort<T extends BaseEntry>(
 		| PostSortProperty
 		| ProjectSortProperty
 		| UsesEntrySortProperty
-		| ShareableSortProperty,
+		| ShareableSortProperty
+		| WorkEntrySortProperty,
 	sortPropertyOrSortDirection?:
 		| ProjectSortProperty
 		| UsesEntrySortProperty
 		| PostSortProperty
 		| ShareableSortProperty
+		| WorkEntrySortProperty
 		| SortDirection,
 	sortDirection?: SortDirection
 ): T[] {
@@ -141,7 +152,7 @@ export function filterAndSort<T extends BaseEntry>(
 	if (options.filterTagSlug !== undefined) {
 		filtered = filtered.filter((entry) =>
 			filterByTag(
-				entry as unknown as Post | Project | UsesEntry | Shareable,
+				entry as unknown as Post | Project | UsesEntry | Shareable | WorkEntry,
 				options.filterTagSlug!
 			)
 		);

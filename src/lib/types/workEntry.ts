@@ -14,4 +14,3 @@ export interface WorkEntry extends BaseEntry {
 	relatedProjects?: string[];
 	html: string; // Optional general company information from markdown body
 }
-

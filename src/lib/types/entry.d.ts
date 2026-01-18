@@ -36,6 +36,15 @@ export interface RawEntry {
 	imageAlt?: string;
 	relatedProjects?: string[];
 	relatedWork?: string[];
+	// Work entry specific fields
+	location?: string;
+	employmentType?: 'full-time' | 'part-time' | 'contract' | 'internship';
+	positions?: Array<{
+		title: string;
+		startDate: string;
+		endDate: string | null;
+		content: string;
+	}>;
 }
 
 export interface EntryDate {
