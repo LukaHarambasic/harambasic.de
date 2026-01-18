@@ -37,7 +37,16 @@ export default ts.config(
 			// Disable new stricter rules from eslint-plugin-svelte v3.x for now
 			'svelte/require-each-key': 'off',
 			'svelte/no-navigation-without-resolve': 'off',
-			'@typescript-eslint/no-explicit-any': 'warn'
+			'@typescript-eslint/no-explicit-any': 'warn',
+			'@typescript-eslint/no-unused-vars': [
+				'warn',
+				{
+					argsIgnorePattern: '^_',
+					varsIgnorePattern: '^_',
+					caughtErrorsIgnorePattern: '^_'
+				}
+			],
+			'no-unused-vars': 'off'
 		}
 	}
 );

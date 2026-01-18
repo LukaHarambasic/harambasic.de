@@ -45,7 +45,7 @@ export function sanitizeHtml(html: string, config: SanitizationConfig): string {
 
 	if (config.allowedAttributes.length > 0) {
 		const attributePattern = buildAttributePattern(config);
-		sanitized = sanitized.replace(/<([^>]+)>/g, (match, tagContent) => {
+		sanitized = sanitized.replace(/<([^>]+)>/g, (_match, tagContent) => {
 			return sanitizeTagAttributes(tagContent, attributePattern);
 		});
 	}

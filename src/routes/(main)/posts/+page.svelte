@@ -9,7 +9,7 @@
 	import { SortDirection, BASE_SORT_PROPERTIES, SORT_DEFAULTS } from '$lib/types/enums';
 	import type { PostSortProperty } from '$lib/types/enums';
 	import { isValidPostSortProperty, isValidSortDirection } from '$lib/util/helper';
-	import { filterAndSort } from '$lib/data/posts/helper';
+	import { filterAndSort } from '$lib/util/entryHelpers';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import { onMount } from 'svelte';
 

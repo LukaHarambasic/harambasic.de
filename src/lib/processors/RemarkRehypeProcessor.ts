@@ -45,7 +45,7 @@ function createRemarkRehypeProcessor(config: ProcessorConfig = {}) {
 
 function createProcessedContent(
 	result: any,
-	originalContent: string,
+	_originalContent: string,
 	config: ProcessorConfig
 ): BasicProcessedContent {
 	let html = String(result.value);

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { filterAndSort } from '$lib/data/projects/helper';
+	import { filterAndSort } from '$lib/util/entryHelpers';
 	import { SortDirection, SORT_DEFAULTS } from '$lib/types/enums';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';

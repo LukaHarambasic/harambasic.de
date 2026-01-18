@@ -4,8 +4,7 @@ import type {
 	PostSortProperty,
 	ProjectSortProperty,
 	UsesEntrySortProperty,
-	ShareableSortProperty,
-	SnippetSortProperty
+	ShareableSortProperty
 } from '$lib/types/enums';
 import { BASE_SORT_PROPERTIES, PROJECT_SORT_PROPERTIES, SORT_DIRECTIONS } from '$lib/types/enums';
 import { format } from 'date-fns';
@@ -69,10 +68,6 @@ export function isValidShareableSortProperty(value: string): value is ShareableS
 	return isValidSortProperty(value, BASE_SORT_PROPERTIES);
 }
 
-export function isValidSnippetSortProperty(value: string): value is SnippetSortProperty {
-	return isValidSortProperty(value, BASE_SORT_PROPERTIES);
-}
-
 export function isValidSortDirection(value: string): value is SortDirection {
 	return isValidSortProperty(value, SORT_DIRECTIONS);
 }
@@ -110,9 +105,4 @@ export function setParam(key: string, value: string) {
 	const url = new URL(window.location.toString());
 	url.searchParams.set(key, value);
 	window.history.pushState({}, '', url.href);
-}
-
-export function resetParams() {
-	const url = new URL(window.location.toString());
-	window.history.pushState({}, '', `${url.origin}${url.pathname}`);
 }

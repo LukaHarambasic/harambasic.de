@@ -6,12 +6,8 @@ import type { Project } from '$lib/types/project';
 import type { Tag } from '$lib/types/tag';
 import { formatDate, getSlug, sortAlphabetical } from './helper';
 import type { Shareable } from '$lib/types/shareable';
-import type { Snippet } from '$lib/types/snippet';
 
-export function findBySlug(
-	entry: Post | Project | UsesEntry | Shareable | Snippet,
-	slug: string
-): boolean {
+export function findBySlug(entry: Post | Project | UsesEntry | Shareable, slug: string): boolean {
 	return entry.slug === slug;
 }
 
@@ -48,16 +44,14 @@ export function getDate(rawString: string): EntryDate {
 }
 
 export function filterByTag(
-	entry: Post | Project | UsesEntry | Shareable | Snippet,
+	entry: Post | Project | UsesEntry | Shareable,
 	filterTagSlug: string
 ): boolean {
 	if (filterTagSlug === 'all' || filterTagSlug === '') return true;
 	return entry.tags.some((tag) => tag.slug === filterTagSlug);
 }
 
-export function getUniqueTags(
-	entries: Project[] | UsesEntry[] | Post[] | Shareable[] | Snippet[]
-): Tag[] {
+export function getUniqueTags(entries: Project[] | UsesEntry[] | Post[] | Shareable[]): Tag[] {
 	// Filter out undefined/null entries and ensure tags exist
 	const validEntries = entries.filter((entry) => entry && entry.tags && Array.isArray(entry.tags));
 
