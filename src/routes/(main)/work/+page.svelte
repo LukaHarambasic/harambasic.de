@@ -19,11 +19,14 @@
 	);
 
 	const getImage = (name: string) => {
+		if (!name || name === 'TODO') {
+			return null;
+		}
 		const image = pictures[`../../../assets/img/work/${name}`];
 		if (!image) {
-			return {};
+			return null;
 		}
-		return (image as any).default || {};
+		return (image as any).default || null;
 	};
 
 	interface Props {
@@ -49,20 +52,22 @@
 					data-highlighted={index < 3}
 				>
 					<div class="image-wrapper">
-						<div class="blur-bg">
-							<enhanced:img
-								src={getImage(entry.image)}
-								sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-								alt={entry.title}
-							/>
-						</div>
-						<div class="main-img">
-							<enhanced:img
-								src={getImage(entry.image)}
-								sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-								alt={entry.title}
-							/>
-						</div>
+						{#if getImage(entry.image)}
+							<div class="blur-bg">
+								<enhanced:img
+									src={getImage(entry.image)}
+									sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+									alt={entry.title}
+								/>
+							</div>
+							<div class="main-img">
+								<enhanced:img
+									src={getImage(entry.image)}
+									sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+									alt={entry.title}
+								/>
+							</div>
+						{/if}
 					</div>
 					<div class="content">
 						<strong>{entry.title}</strong>

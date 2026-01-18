@@ -46,7 +46,15 @@ async function getEntries<T extends EntryType>(entryType: T): Promise<[EntryType
 					console.error(`Error processing ${entryType} entry:`, raw, error);
 					return null;
 				}
-				// For projects and uses, let validation errors throw
+				// Log the error with full details before throwing
+				console.error(`Error processing ${entryType} entry:`, {
+					entryType,
+					title: raw?.title,
+					error: error instanceof Error ? error.message : String(error),
+					stack: error instanceof Error ? error.stack : undefined,
+					raw: JSON.stringify(raw, null, 2)
+				});
+				// For projects, uses, and work, let validation errors throw
 				throw error;
 			}
 		})
