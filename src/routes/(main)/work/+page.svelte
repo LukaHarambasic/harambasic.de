@@ -1,9 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { filterAndSort } from '$lib/util/entryHelpers';
-	import { SortDirection, SORT_DEFAULTS } from '$lib/types/enums';
+	import type { WorkEntry } from '$lib/types/workEntry';
+	import type { Position } from '$lib/types/workEntry';
 	import Entries from '$lib/components/Entries/Entries.svelte';
-	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import Icon from '@iconify/svelte';
 
 	// TODO: remove eager and only load images that got randomly selected
@@ -29,275 +28,360 @@
 		return (image as any).default || null;
 	};
 
+	interface PositionEntry {
+		position: Position;
+		location: string;
+		employmentType: string;
+	}
+
+	interface CompanyGroup {
+		companyName: string;
+		companySlug: string;
+		companyImage: string | null;
+		positions: PositionEntry[];
+		earliestDate: Date;
+	}
+
 	interface Props {
 		data: PageData;
 	}
 
 	let { data }: Props = $props();
 
-	const [entries = [], tags = []] = data.work || [[], []];
+	const [entries = []] = data.work || [[]];
 
-	let filteredAndSorted = $derived(
-		filterAndSort(entries, 'all', 'all', SORT_DEFAULTS.WORK_ENTRY, SortDirection.Desc)
-	);
+	// Group work entries by company and sort positions within each company
+	const groupByCompany = (workEntries: WorkEntry[]): CompanyGroup[] => {
+		const companyGroups: CompanyGroup[] = [];
+
+		for (const entry of workEntries) {
+			// Sort positions within this company by startDate (descending)
+			const sortedPositions = [...entry.positions]
+				.map((position) => ({
+					position,
+					location: entry.location,
+					employmentType: entry.employmentType
+				}))
+				.sort((a, b) => {
+					const dateA = new Date(a.position.startDate).getTime();
+					const dateB = new Date(b.position.startDate).getTime();
+					return dateB - dateA; // Descending order
+				});
+
+			// Find earliest date for sorting companies
+			const earliestDate = sortedPositions.reduce((earliest, current) => {
+				const currentDate = new Date(current.position.startDate);
+				return currentDate < earliest ? currentDate : earliest;
+			}, new Date(sortedPositions[0]?.position.startDate || Date.now()));
+
+			companyGroups.push({
+				companyName: entry.title,
+				companySlug: entry.slug,
+				companyImage: entry.image || null,
+				positions: sortedPositions,
+				earliestDate
+			});
+		}
+
+		// Sort companies by earliest position date (descending - most recent first)
+		return companyGroups.sort((a, b) => {
+			return b.earliestDate.getTime() - a.earliestDate.getTime();
+		});
+	};
+
+	// Format date for display
+	const formatDate = (dateString: string): string => {
+		const date = new Date(dateString);
+		return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+	};
+
+	const companyGroups = $derived(groupByCompany(entries));
 </script>
 
 <Entries path={data.url}>
 	{#snippet entries()}
-		<div class="entries">
-			{#each filteredAndSorted as entry, index}
-				<a
-					href={entry.relativePath}
-					class="h-feed entry card no-spacing"
-					data-highlighted={index < 3}
-				>
-					<div class="image-wrapper">
-						{#if getImage(entry.image)}
-							<div class="blur-bg">
-								<enhanced:img
-									src={getImage(entry.image)}
-									sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-									alt={entry.title}
-								/>
-							</div>
-							<div class="main-img">
-								<enhanced:img
-									src={getImage(entry.image)}
-									sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-									alt={entry.title}
-								/>
-							</div>
-						{/if}
-					</div>
-					<div class="content">
-						<strong>{entry.title}</strong>
-						<p>{entry.description}</p>
-						<ul class="tags">
-							{#each entry.tags as tag}
-								<li>
-									<BaseTag {tag} />
-								</li>
+		<div class="timeline-container">
+			<div class="timeline-line"></div>
+			<div class="timeline-entries">
+				{#each companyGroups as companyGroup}
+					<div class="company-group">
+						<div class="company-header">
+							{#if getImage(companyGroup.companyImage)}
+								<div class="company-logo">
+									<enhanced:img
+										src={getImage(companyGroup.companyImage)}
+										sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+										alt={companyGroup.companyName}
+									/>
+								</div>
+							{/if}
+							<h2 class="company-title">{companyGroup.companyName}</h2>
+							<a href="/work/{companyGroup.companySlug}" class="link-icon" aria-label="View details for {companyGroup.companyName}">
+								<Icon icon="ph:link" />
+							</a>
+						</div>
+						<div class="positions-list">
+							{#each companyGroup.positions as positionEntry, positionIndex}
+								<div class="position-entry">
+									<div class="date-marker">
+										<div class="date-dot"></div>
+									</div>
+									<div class="position-content">
+										<div class="position-header">
+											<h3 class="position-title">{positionEntry.position.title}</h3>
+										</div>
+										<div class="entry-meta">
+											<span class="dates">
+												{formatDate(positionEntry.position.startDate)} – {positionEntry.position.endDate ? formatDate(positionEntry.position.endDate) : 'Present'}
+											</span>
+											<span class="separator">•</span>
+											<span class="location">{positionEntry.location}</span>
+											<span class="separator">•</span>
+											<span class="employment-type">{positionEntry.employmentType}</span>
+										</div>
+										<div class="entry-body rich-text">
+											<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+											{@html positionEntry.position.content}
+										</div>
+									</div>
+								</div>
 							{/each}
-						</ul>
+						</div>
 					</div>
-					<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
-				</a>
-			{/each}
+				{/each}
+			</div>
 		</div>
 	{/snippet}
 </Entries>
 
 <style lang="postcss">
-	.entries {
-		display: grid;
-		gap: var(--l);
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-		@media screen and (width <= 62rem) {
-			row-gap: var(--l);
-			column-gap: 0;
-			grid-template-columns: 1fr;
+	.timeline-container {
+		position: relative;
+		width: 100%;
+		max-width: 90ch;
+		margin: 0 auto;
+		padding: var(--l) 0;
+	}
+
+	.timeline-line {
+		position: absolute;
+		left: 1.5rem;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		background: var(--c-font-accent-dark);
+		opacity: 0.6;
+		@media screen and (width <= 48rem) {
+			left: 1rem;
 		}
-		.entry {
-			display: flex;
-			position: relative;
+	}
+
+	.timeline-entries {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: var(--xl);
+	}
+
+	.company-group {
+		position: relative;
+		margin-bottom: var(--xl);
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.company-header {
+		display: flex;
+		align-items: center;
+		gap: var(--m);
+		margin-bottom: var(--l);
+		margin-left: 4rem;
+		flex-wrap: wrap;
+		@media screen and (width <= 48rem) {
+			margin-left: 2.5rem;
+		}
+	}
+
+	.company-title {
+		margin: 0;
+		font-family: var(--font-family);
+		font-size: var(--font-xl);
+		font-weight: 900;
+		line-height: 1.2;
+		letter-spacing: var(--font-letter-spacing-headline);
+		color: var(--c-font);
+		flex: 1;
+	}
+
+	.positions-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--m);
+		margin-left: 4rem;
+		@media screen and (width <= 48rem) {
+			margin-left: 2.5rem;
+		}
+	}
+
+	.position-entry {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		gap: var(--m);
+	}
+
+	.date-marker {
+		position: absolute;
+		left: -4rem;
+		width: 3rem;
+		flex-shrink: 0;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		@media screen and (width <= 48rem) {
+			left: -2.5rem;
+			width: 2rem;
+		}
+	}
+
+	.date-dot {
+		position: relative;
+		top: 0.25rem;
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: 50%;
+		background: var(--c-light);
+		border: 2px solid var(--c-font-accent-dark);
+		opacity: 0.8;
+		z-index: 1;
+		@media screen and (width <= 48rem) {
+			width: 0.625rem;
+			height: 0.625rem;
+		}
+	}
+
+	.position-content {
+		flex: 1;
+	}
+
+	.position-header {
+		margin-bottom: var(--s);
+	}
+
+	.company-logo {
+		width: 3rem;
+		height: 3rem;
+		flex-shrink: 0;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		background: var(--c-light);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		:global(picture),
+		:global(img) {
+			width: 100%;
 			height: 100%;
-			flex-direction: column;
-			flex-wrap: nowrap;
-			justify-content: flex-start;
-			align-items: stretch;
-			align-content: stretch;
+			object-fit: cover;
+		}
+		@media screen and (width <= 48rem) {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+	}
+
+	.header-text {
+		display: flex;
+		align-items: baseline;
+		gap: var(--xs);
+		flex: 1;
+		flex-wrap: wrap;
+	}
+
+	.position-title {
+		margin: 0;
+		font-family: var(--font-family);
+		font-size: var(--font-l);
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: var(--font-letter-spacing-headline);
+		color: var(--c-font);
+	}
+
+	.link-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		color: var(--c-font-accent);
+		text-decoration: none;
+		border-radius: var(--border-radius);
+		transition: var(--transition);
+		flex-shrink: 0;
+		:global(svg) {
+			width: 1.25rem;
+			height: 1.25rem;
+		}
+		&:hover {
+			background: var(--c-light);
 			color: var(--c-font);
-			text-decoration: none;
-			transition: var(--transition);
-			@media screen and (width <= 62rem) {
-				grid-column: span 1;
-			}
-			.image-wrapper {
-				display: flex;
-				position: relative;
-				justify-content: center;
-				align-items: center;
-				transition: filter var(--transition);
-				overflow: hidden;
-				filter: grayscale(1);
+		}
+	}
 
-				.blur-bg {
-					position: absolute;
-					inset: 0;
-					z-index: 1;
-					width: 100%;
-					height: 100%;
+	.entry-meta {
+		display: flex;
+		align-items: center;
+		gap: var(--xs);
+		margin-bottom: var(--m);
+		font-size: var(--font-s);
+		color: var(--c-font-accent);
+		font-style: italic;
+		flex-wrap: wrap;
+	}
 
-					:global(picture),
-					:global(img) {
-						width: 100%;
-						height: 100%;
-						object-fit: cover;
-						filter: blur(12px) brightness(0.9);
-						transform: scale(1.1);
-					}
-				}
-				.main-img {
-					position: relative;
-					z-index: 2;
-					:global(picture),
-					:global(img) {
-						display: block;
-						width: 100%;
-						height: 100%;
-						object-fit: cover;
-					}
-				}
-			}
-			&[data-highlighted='false'] {
-				display: flex;
-				flex-direction: row;
-				gap: 0;
-				grid-column: span 3;
-				@media screen and (width <= 32rem) {
-					flex-direction: column;
-				}
-				.image-wrapper {
-					padding: var(--m);
-					width: 12rem;
-					min-width: 12rem;
-					height: auto;
-					min-height: 12rem;
-					border-radius: var(--border-radius) 0 0 var(--border-radius);
-					align-self: stretch;
-					box-sizing: border-box;
-					@media screen and (width <= 32rem) {
-						padding: 0;
-						width: 100%;
-						min-width: 0;
-						height: auto;
-						min-height: 0;
-						border-radius: var(--border-radius) var(--border-radius) 0 0;
-					}
-					.main-img {
-						width: 100%;
-						aspect-ratio: 1 / 1;
-						border-radius: var(--border-radius);
-						box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-						:global(img) {
-							border-radius: var(--border-radius);
-						}
-						@media screen and (width <= 32rem) {
-							width: 100%;
-							height: auto;
-							border-radius: 0;
-							box-shadow: none;
-							:global(img) {
-								border-radius: var(--border-radius) var(--border-radius) 0 0;
-							}
-						}
-					}
-					@media screen and (width <= 32rem) {
-						.blur-bg {
-							display: none;
-						}
-						.main-img {
-							width: 100%;
-							:global(img) {
-								border-radius: var(--border-radius) var(--border-radius) 0 0;
-							}
-						}
-					}
-				}
-				> .content {
-					display: flex;
-					padding: var(--l);
-					flex-direction: column;
-					flex-wrap: nowrap;
-					justify-content: flex-start;
-					align-items: stretch;
-					align-content: stretch;
-				}
-			}
-			&[data-highlighted='true'] {
-				grid-column: span 2;
+	.separator {
+		color: var(--c-font-accent);
+	}
 
-				.image-wrapper {
-					width: 100%;
-					filter: grayscale(1);
-					.blur-bg {
-						display: none;
-					}
-					.main-img {
-						width: 100%;
-						:global(img) {
-							opacity: 0.5;
-							width: 100%;
-							height: inherit;
-							border-radius: var(--border-radius) var(--border-radius) 0 0;
-							aspect-ratio: 1 / 1;
-						}
-					}
-				}
+	.entry-body {
+		color: var(--c-font);
+		line-height: 1.6;
+		:global(p) {
+			margin: 0 0 var(--m) 0;
+			&:last-child {
+				margin-bottom: 0;
 			}
+		}
+		:global(ul),
+		:global(ol) {
+			margin: 0 0 var(--m) 0;
+			padding-left: var(--l);
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		:global(li) {
+			margin-bottom: var(--xs);
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		:global(strong) {
+			font-weight: 700;
+		}
+		:global(em) {
+			font-style: italic;
+		}
+	}
+
+	.rich-text {
+		:global(a) {
+			color: var(--c-font);
+			text-decoration: underline;
 			&:hover {
-				transform: scale(0.97);
-				cursor: pointer;
-				.image-wrapper {
-					filter: grayscale(0);
-				}
-				.image-wrapper .main-img :global(img) {
-					opacity: 1;
-				}
-				:global(.arrow) {
-					opacity: 1;
-				}
-			}
-			> .content {
-				display: flex;
-				padding: var(--l);
-				flex-direction: column;
-				flex-wrap: nowrap;
-				justify-content: flex-start;
-				align-items: stretch;
-				align-content: flex-start;
-				text-align: left;
-				strong {
-					margin: 0 0 var(--xs) 0;
-					font-family: var(--font-family);
-					font-size: var(--font-m);
-					font-weight: 900;
-					line-height: 1.2;
-					letter-spacing: var(--font-letter-spacing-headline);
-				}
-				p {
-					margin: 0 0 var(--s) 0;
-					font-size: var(--font-m);
-					line-height: 1.5;
-				}
-				.tags {
-					display: flex;
-					flex-direction: row;
-					flex-wrap: wrap;
-					justify-content: flex-start;
-					align-items: flex-start;
-					align-content: flex-start;
-					gap: var(--xs);
-				}
-			}
-			:global(.arrow) {
-				opacity: 0;
-				position: absolute;
-				top: var(--m);
-				right: calc((-1) * var(--m));
-				size: var(--l);
-				border: 4px solid var(--c-light);
-				border-radius: 100%;
-				box-shadow:
-					0 1px 2px rgba(0, 0, 0, 0.03),
-					0 2px 4px rgba(0, 0, 0, 0.03),
-					0 4px 8px rgba(0, 0, 0, 0.03),
-					0 8px 16px rgba(0, 0, 0, 0.03),
-					0 16px 32px rgba(0, 0, 0, 0.03),
-					0 32px 64px rgba(0, 0, 0, 0.03);
-				background: var(--c-light);
-				color: var(--c-font-accent-dark);
-				transition: var(--transition);
+				text-decoration: none;
 			}
 		}
 	}
