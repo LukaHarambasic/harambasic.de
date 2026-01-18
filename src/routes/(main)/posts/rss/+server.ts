@@ -1,12 +1,12 @@
 import { getPost, sortByProperty } from '$lib/data/posts/helper';
 import type { Post } from '$lib/types/post';
-import { getRawEntries } from '$lib/util/converter.server';
+import { getContentService } from '$lib/services';
 import { generateXml, options } from '$lib/util/rss.server';
 
 export const prerender = true;
 
 export async function GET() {
-	const rawEntries = await getRawEntries('post');
+	const rawEntries = await getContentService().getEntries('post');
 	const entries: Post[] = rawEntries
 		.map(getPost)
 		.filter((post): post is Post => post !== null)

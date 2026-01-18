@@ -1,12 +1,12 @@
 import { getSnippet, sortByProperty } from '$lib/data/snippets/helper';
 import type { Snippet } from '$lib/types/snippet';
-import { getRawEntries } from '$lib/util/converter.server';
+import { getContentService } from '$lib/services';
 import { generateXml, options } from '$lib/util/rss.server';
 
 export const prerender = true;
 
 export async function GET() {
-	const rawEntries = await getRawEntries('snippet');
+	const rawEntries = await getContentService().getEntries('snippet');
 	const entries: Snippet[] = rawEntries
 		.map(getSnippet)
 		.filter((snippet): snippet is Snippet => snippet !== null)

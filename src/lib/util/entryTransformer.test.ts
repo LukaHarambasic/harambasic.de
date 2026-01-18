@@ -291,7 +291,7 @@ describe('Entry Transformer', () => {
 			const shareable = transformEntry(rawEntry, {
 				entryType: 'shareable',
 				transform: (base, raw) => {
-					// Shareable extends Omit<BaseEntry, 'image'>, so we need to exclude image
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					const { image, ...baseWithoutImage } = base;
 					return {
 						...baseWithoutImage,
@@ -319,7 +319,7 @@ describe('Entry Transformer', () => {
 			const shareable = transformEntry(rawEntry, {
 				entryType: 'shareable',
 				transform: (base, raw) => {
-					// Shareable extends Omit<BaseEntry, 'image'>, so we need to exclude image
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					const { image, ...baseWithoutImage } = base;
 					return {
 						...baseWithoutImage,
