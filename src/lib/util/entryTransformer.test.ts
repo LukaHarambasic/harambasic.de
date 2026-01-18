@@ -179,7 +179,7 @@ describe('Entry Transformer', () => {
 	describe('transformEntry - Project', () => {
 		it('should transform RawEntry to Project', () => {
 			const rawEntry = createMockRawEntry({
-				links: [{ url: 'https://example.com', label: 'Example' }],
+				links: [{ url: 'https://example.com', title: 'Example' }],
 				prio: 500,
 				status: 'active',
 				imageAlt: 'Test image alt text'
@@ -288,7 +288,7 @@ describe('Entry Transformer', () => {
 				tldr: 'This is a comment'
 			});
 
-			const shareable = transformEntry<Shareable>(rawEntry, {
+			const shareable = transformEntry(rawEntry, {
 				entryType: 'shareable',
 				transform: (base, raw) => {
 					// Shareable extends Omit<BaseEntry, 'image'>, so we need to exclude image
@@ -297,9 +297,9 @@ describe('Entry Transformer', () => {
 						...baseWithoutImage,
 						url: raw.url || '',
 						comment: raw.tldr || ''
-					};
+					} as Shareable;
 				}
-			});
+			} as import('$lib/util/entryTransformer').EntryTransformConfig<any>);
 
 			expect(shareable.type).toBe('shareable');
 			expect(shareable.title).toBe('Test Entry');
@@ -316,7 +316,7 @@ describe('Entry Transformer', () => {
 				tldr: undefined
 			});
 
-			const shareable = transformEntry<Shareable>(rawEntry, {
+			const shareable = transformEntry(rawEntry, {
 				entryType: 'shareable',
 				transform: (base, raw) => {
 					// Shareable extends Omit<BaseEntry, 'image'>, so we need to exclude image
@@ -325,9 +325,9 @@ describe('Entry Transformer', () => {
 						...baseWithoutImage,
 						url: raw.url || '',
 						comment: raw.tldr || ''
-					};
+					} as Shareable;
 				}
-			});
+			} as import('$lib/util/entryTransformer').EntryTransformConfig<any>);
 
 			expect(shareable.url).toBe('');
 			expect(shareable.comment).toBe('');

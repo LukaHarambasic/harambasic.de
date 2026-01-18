@@ -53,7 +53,10 @@ export function filterAndSort<T extends BaseEntry>(
 
 	if (options.filterTagSlug !== undefined) {
 		filtered = filtered.filter((entry) =>
-			filterByTag(entry as unknown as Post | Project | UsesEntry | Shareable | Snippet, options.filterTagSlug!)
+			filterByTag(
+				entry as unknown as Post | Project | UsesEntry | Shareable | Snippet,
+				options.filterTagSlug!
+			)
 		);
 	}
 
