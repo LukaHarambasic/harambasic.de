@@ -28,18 +28,9 @@
 		return (image as any).default || null;
 	};
 
-	interface PositionEntry {
-		position: Position;
-		location: string;
-		employmentType: string;
-	}
-
-	interface CompanyGroup {
-		companyName: string;
-		companySlug: string;
-		companyImage: string | null;
-		positions: PositionEntry[];
-		earliestDate: Date;
+	interface WorkCard {
+		entry: WorkEntry;
+		isCurrent: boolean;
 	}
 
 	interface Props {
@@ -50,339 +41,358 @@
 
 	const [entries = []] = data.work || [[]];
 
-	// Group work entries by company and sort positions within each company
-	const groupByCompany = (workEntries: WorkEntry[]): CompanyGroup[] => {
-		const companyGroups: CompanyGroup[] = [];
-
-		for (const entry of workEntries) {
-			// Sort positions within this company by startDate (descending)
-			const sortedPositions = [...entry.positions]
-				.map((position) => ({
-					position,
-					location: entry.location,
-					employmentType: entry.employmentType
-				}))
-				.sort((a, b) => {
-					const dateA = new Date(a.position.startDate).getTime();
-					const dateB = new Date(b.position.startDate).getTime();
-					return dateB - dateA; // Descending order
-				});
-
-			// Find earliest date for sorting companies
-			const earliestDate = sortedPositions.reduce((earliest, current) => {
-				const currentDate = new Date(current.position.startDate);
-				return currentDate < earliest ? currentDate : earliest;
-			}, new Date(sortedPositions[0]?.position.startDate || Date.now()));
-
-			companyGroups.push({
-				companyName: entry.title,
-				companySlug: entry.slug,
-				companyImage: entry.image || null,
-				positions: sortedPositions,
-				earliestDate
-			});
-		}
-
-		// Sort companies by earliest position date (descending - most recent first)
-		return companyGroups.sort((a, b) => {
-			return b.earliestDate.getTime() - a.earliestDate.getTime();
+	// Separate current and past entries, then sort
+	const organizeEntries = (workEntries: WorkEntry[]): { current: WorkCard | null; past: WorkCard[] } => {
+		const cards: WorkCard[] = workEntries.map((entry) => {
+			// Check if any position has endDate === null (current)
+			const isCurrent = entry.positions.some((position) => position.endDate === null);
+			return { entry, isCurrent };
 		});
+
+		const current = cards.find((card) => card.isCurrent) || null;
+		const past = cards
+			.filter((card) => !card.isCurrent)
+			.sort((a, b) => {
+				// Sort by most recent position start date
+				const aLatest = Math.max(
+					...a.entry.positions.map((p) => new Date(p.startDate).getTime())
+				);
+				const bLatest = Math.max(
+					...b.entry.positions.map((p) => new Date(p.startDate).getTime())
+				);
+				return bLatest - aLatest;
+			});
+
+		return { current, past };
 	};
 
-	// Format date for display
+	// Format date for display (MMM YYYY)
 	const formatDate = (dateString: string): string => {
 		const date = new Date(dateString);
 		return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 	};
 
-	const companyGroups = $derived(groupByCompany(entries));
+	// Truncate description text
+	const truncateDescription = (text: string, maxLength: number = 150): string => {
+		if (text.length <= maxLength) return text;
+		return text.slice(0, maxLength).trim() + '...';
+	};
+
+	// Get sorted positions for display (most recent first)
+	const getSortedPositions = (entry: WorkEntry): Position[] => {
+		return [...entry.positions].sort((a, b) => {
+			const dateA = new Date(a.startDate).getTime();
+			const dateB = new Date(b.startDate).getTime();
+			return dateB - dateA;
+		});
+	};
+
+	const { current, past } = $derived(organizeEntries(entries));
 </script>
 
 <Entries path={data.url}>
 	{#snippet entries()}
-		<div class="timeline-container">
-			<div class="timeline-line"></div>
-			<div class="timeline-entries">
-				{#each companyGroups as companyGroup}
-					<div class="company-group">
-						<div class="company-header">
-							{#if getImage(companyGroup.companyImage)}
-								<div class="company-logo">
-									<enhanced:img
-										src={getImage(companyGroup.companyImage)}
-										sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-										alt={companyGroup.companyName}
-									/>
-								</div>
+		<div class="work-container">
+			{#if current}
+				{@const sortedPositions = getSortedPositions(current.entry)}
+				{@const positionCount = current.entry.positions.length}
+				<div class="work-card current-card">
+					<div class="current-badge">CURRENT</div>
+					<div class="card-header">
+						<h2 class="company-name">{current.entry.title}</h2>
+						<a
+							href="/work/{current.entry.slug}"
+							class="external-link"
+							aria-label="View details for {current.entry.title}"
+						>
+							<Icon icon="ph:arrow-up-right" />
+						</a>
+					</div>
+					<div class="card-positions">
+						{#each sortedPositions as position}
+							<div class="position-row">
+								<span class="position-title">{position.title}</span>
+								<span class="position-separator">·</span>
+								<span class="position-dates">
+									{formatDate(position.startDate)} – {position.endDate ? formatDate(position.endDate) : 'Present'}
+								</span>
+							</div>
+						{/each}
+					</div>
+					<div class="card-location">
+						<Icon icon="ph:map-pin" class="location-icon" />
+						<span>{current.entry.location}</span>
+						{#if positionCount > 1}
+							<span class="role-badge">{positionCount} ROLES</span>
+						{/if}
+					</div>
+					{#if current.entry.description}
+						<p class="card-description">{truncateDescription(current.entry.description)}</p>
+					{/if}
+					<a href="/work/{current.entry.slug}" class="highlights-link">
+						{positionCount} highlight{positionCount !== 1 ? 's' : ''} →
+					</a>
+				</div>
+			{/if}
+
+			{#if past.length > 0}
+				<div class="work-grid">
+					{#each past as card}
+						{@const sortedPositions = getSortedPositions(card.entry)}
+						{@const positionCount = card.entry.positions.length}
+						<div class="work-card past-card">
+							<div class="card-header">
+								<h2 class="company-name">{card.entry.title}</h2>
+								<a
+									href="/work/{card.entry.slug}"
+									class="external-link"
+									aria-label="View details for {card.entry.title}"
+								>
+									<Icon icon="ph:arrow-up-right" />
+								</a>
+							</div>
+							<div class="card-positions">
+								{#each sortedPositions as position}
+									<div class="position-row">
+										<span class="position-title">{position.title}</span>
+										<span class="position-separator">·</span>
+										<span class="position-dates">
+											{formatDate(position.startDate)} – {position.endDate ? formatDate(position.endDate) : 'Present'}
+										</span>
+									</div>
+								{/each}
+							</div>
+							<div class="card-location">
+								<Icon icon="ph:map-pin" class="location-icon" />
+								<span>{card.entry.location}</span>
+								{#if positionCount > 1}
+									<span class="role-badge">{positionCount} ROLES</span>
+								{/if}
+							</div>
+							{#if card.entry.description}
+								<p class="card-description">{truncateDescription(card.entry.description)}</p>
 							{/if}
-							<h2 class="company-title">{companyGroup.companyName}</h2>
-							<a href="/work/{companyGroup.companySlug}" class="link-icon" aria-label="View details for {companyGroup.companyName}">
-								<Icon icon="ph:link" />
+							<a href="/work/{card.entry.slug}" class="highlights-link">
+								{positionCount} highlight{positionCount !== 1 ? 's' : ''} →
 							</a>
 						</div>
-						<div class="positions-list">
-							{#each companyGroup.positions as positionEntry, positionIndex}
-								<div class="position-entry">
-									<div class="date-marker">
-										<div class="date-dot"></div>
-									</div>
-									<div class="position-content">
-										<div class="position-header">
-											<h3 class="position-title">{positionEntry.position.title}</h3>
-										</div>
-										<div class="entry-meta">
-											<span class="dates">
-												{formatDate(positionEntry.position.startDate)} – {positionEntry.position.endDate ? formatDate(positionEntry.position.endDate) : 'Present'}
-											</span>
-											<span class="separator">•</span>
-											<span class="location">{positionEntry.location}</span>
-											<span class="separator">•</span>
-											<span class="employment-type">{positionEntry.employmentType}</span>
-										</div>
-										<div class="entry-body rich-text">
-											<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-											{@html positionEntry.position.content}
-										</div>
-									</div>
-								</div>
-							{/each}
-						</div>
-					</div>
-				{/each}
-			</div>
+					{/each}
+				</div>
+			{/if}
 		</div>
 	{/snippet}
 </Entries>
 
 <style lang="postcss">
-	.timeline-container {
-		position: relative;
+	.work-container {
+		display: flex;
+		flex-direction: column;
+		gap: var(--l);
 		width: 100%;
-		max-width: 90ch;
+		max-width: var(--layout-xl);
 		margin: 0 auto;
 		padding: var(--l) 0;
 	}
 
-	.timeline-line {
-		position: absolute;
-		left: 1.5rem;
-		top: 0;
-		bottom: 0;
-		width: 2px;
-		background: var(--c-font-accent-dark);
-		opacity: 0.6;
-		@media screen and (width <= 48rem) {
-			left: 1rem;
-		}
-	}
-
-	.timeline-entries {
+	.work-card {
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		gap: var(--xl);
+		padding: var(--l);
+		background: var(--c-light);
+		border: 1px solid var(--c-surface-accent);
+		border-radius: var(--border-radius);
+		box-shadow: var(--box-shadow);
+		transition: var(--transition);
 	}
 
-	.company-group {
-		position: relative;
-		margin-bottom: var(--xl);
-		&:last-child {
-			margin-bottom: 0;
+	.current-card {
+		width: 100%;
+		border-width: 2px;
+		border-color: var(--c-font);
+		padding-top: calc(var(--l) + 1.5rem);
+		&:hover {
+			.external-link {
+				transform: translateY(-2px) translateX(2px);
+			}
 		}
 	}
 
-	.company-header {
-		display: flex;
-		align-items: center;
-		gap: var(--m);
-		margin-bottom: var(--l);
-		margin-left: 4rem;
-		flex-wrap: wrap;
-		@media screen and (width <= 48rem) {
-			margin-left: 2.5rem;
+	.past-card {
+		width: 100%;
+		&:hover {
+			box-shadow:
+				0 2px 4px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.05), 0 8px 16px rgba(0, 0, 0, 0.05),
+				0 12px 24px rgba(0, 0, 0, 0.05);
+			.external-link {
+				transform: translateY(-2px) translateX(2px);
+			}
 		}
 	}
 
-	.company-title {
-		margin: 0;
+	.current-badge {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 0.375rem var(--m);
+		background: var(--c-backdrop);
+		color: var(--c-light);
 		font-family: var(--font-family);
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		border-radius: var(--border-radius-small) 0 var(--border-radius-small) 0;
+		z-index: 1;
+	}
+
+	.card-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: var(--l);
+		gap: var(--m);
+	}
+
+	.company-name {
+		margin: 0;
+		font-family: Georgia, 'Times New Roman', serif;
 		font-size: var(--font-xl);
-		font-weight: 900;
+		font-weight: 700;
 		line-height: 1.2;
-		letter-spacing: var(--font-letter-spacing-headline);
 		color: var(--c-font);
 		flex: 1;
 	}
 
-	.positions-list {
-		display: flex;
-		flex-direction: column;
-		gap: var(--m);
-		margin-left: 4rem;
-		@media screen and (width <= 48rem) {
-			margin-left: 2.5rem;
-		}
+	.current-card .company-name {
+		font-size: 1.5rem;
 	}
 
-	.position-entry {
-		position: relative;
-		display: flex;
-		align-items: flex-start;
-		gap: var(--m);
-	}
-
-	.date-marker {
-		position: absolute;
-		left: -4rem;
-		width: 3rem;
-		flex-shrink: 0;
-		display: flex;
-		justify-content: center;
-		align-items: flex-start;
-		@media screen and (width <= 48rem) {
-			left: -2.5rem;
-			width: 2rem;
-		}
-	}
-
-	.date-dot {
-		position: relative;
-		top: 0.25rem;
-		width: 0.75rem;
-		height: 0.75rem;
-		border-radius: 50%;
-		background: var(--c-light);
-		border: 2px solid var(--c-font-accent-dark);
-		opacity: 0.8;
-		z-index: 1;
-		@media screen and (width <= 48rem) {
-			width: 0.625rem;
-			height: 0.625rem;
-		}
-	}
-
-	.position-content {
-		flex: 1;
-	}
-
-	.position-header {
-		margin-bottom: var(--s);
-	}
-
-	.company-logo {
-		width: 3rem;
-		height: 3rem;
-		flex-shrink: 0;
-		border-radius: var(--border-radius);
-		overflow: hidden;
-		background: var(--c-light);
+	.external-link {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		:global(picture),
-		:global(img) {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
+		width: 1.5rem;
+		height: 1.5rem;
+		color: var(--c-font);
+		text-decoration: none;
+		flex-shrink: 0;
+		transition: var(--transition);
+		:global(svg) {
+			width: 1rem;
+			height: 1rem;
+			stroke-width: 1.5;
 		}
-		@media screen and (width <= 48rem) {
-			width: 2.5rem;
-			height: 2.5rem;
+		&:hover {
+			transform: translateY(-2px) translateX(2px);
 		}
 	}
 
-	.header-text {
+	.card-positions {
 		display: flex;
-		align-items: baseline;
-		gap: var(--xs);
-		flex: 1;
-		flex-wrap: wrap;
+		flex-direction: column;
+		gap: 0.25rem;
+		margin-bottom: var(--m);
+	}
+
+	.position-row {
+		display: flex;
+		align-items: center;
+		gap: 0.375rem;
+		font-family: var(--font-family);
+		font-size: var(--font-s);
+		font-weight: 400;
+		color: var(--c-font-accent-dark);
+		line-height: 1.5;
 	}
 
 	.position-title {
-		margin: 0;
-		font-family: var(--font-family);
-		font-size: var(--font-l);
-		font-weight: 700;
-		line-height: 1.2;
-		letter-spacing: var(--font-letter-spacing-headline);
-		color: var(--c-font);
+		font-weight: 400;
 	}
 
-	.link-icon {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 2rem;
-		height: 2rem;
-		color: var(--c-font-accent);
-		text-decoration: none;
-		border-radius: var(--border-radius);
-		transition: var(--transition);
-		flex-shrink: 0;
-		:global(svg) {
-			width: 1.25rem;
-			height: 1.25rem;
-		}
-		&:hover {
-			background: var(--c-light);
-			color: var(--c-font);
-		}
+	.position-separator {
+		color: var(--c-font-accent-dark);
 	}
 
-	.entry-meta {
+	.position-dates {
+		color: var(--c-font-accent-dark);
+	}
+
+	.card-location {
 		display: flex;
 		align-items: center;
-		gap: var(--xs);
+		gap: 0.375rem;
 		margin-bottom: var(--m);
+		font-family: var(--font-family);
 		font-size: var(--font-s);
-		color: var(--c-font-accent);
-		font-style: italic;
+		font-weight: 400;
+		color: var(--c-font-accent-dark);
+		line-height: 1.5;
 		flex-wrap: wrap;
 	}
 
-	.separator {
-		color: var(--c-font-accent);
+	.location-icon {
+		width: 1rem;
+		height: 1rem;
+		color: var(--c-font-accent-dark);
+		flex-shrink: 0;
+		:global(svg) {
+			stroke-width: 1.5;
+		}
 	}
 
-	.entry-body {
+	.role-badge {
+		margin-left: var(--xs);
+		padding: 0.125rem 0.5rem;
+		background: var(--c-surface);
 		color: var(--c-font);
+		font-family: var(--font-family);
+		font-size: 0.75rem;
+		font-weight: 600;
+		border-radius: var(--border-radius-small);
+	}
+
+	.card-description {
+		margin: 0 0 var(--l) 0;
+		padding-bottom: var(--m);
+		border-bottom: 1px solid var(--c-surface-accent);
+		font-family: var(--font-family);
+		font-size: var(--font-m);
+		font-weight: 400;
 		line-height: 1.6;
-		:global(p) {
-			margin: 0 0 var(--m) 0;
-			&:last-child {
-				margin-bottom: 0;
-			}
+		color: var(--c-font-accent-dark);
+	}
+
+	.highlights-link {
+		display: inline-flex;
+		align-items: center;
+		margin-top: auto;
+		font-family: var(--font-family);
+		font-size: var(--font-s);
+		font-weight: 400;
+		color: var(--c-font);
+		text-decoration: none;
+		transition: var(--transition);
+		&:hover {
+			opacity: 0.7;
 		}
-		:global(ul),
-		:global(ol) {
-			margin: 0 0 var(--m) 0;
-			padding-left: var(--l);
-			&:last-child {
-				margin-bottom: 0;
-			}
-		}
-		:global(li) {
-			margin-bottom: var(--xs);
-			&:last-child {
-				margin-bottom: 0;
-			}
-		}
-		:global(strong) {
-			font-weight: 700;
-		}
-		:global(em) {
-			font-style: italic;
+		:global(svg) {
+			stroke-width: 1.5;
 		}
 	}
 
-	.rich-text {
-		:global(a) {
-			color: var(--c-font);
-			text-decoration: underline;
-			&:hover {
-				text-decoration: none;
-			}
+	.work-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--l);
+		@media screen and (width <= 48rem) {
+			grid-template-columns: 1fr;
 		}
+	}
+
+	.work-grid .past-card {
+		display: flex;
+		flex-direction: column;
+		min-height: 100%;
 	}
 </style>
