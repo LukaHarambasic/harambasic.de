@@ -5,11 +5,12 @@ image: sparkle.png
 published: 2021-10-01
 updated: 2022-08-31
 location: Copenhagen, Denmark
-employmentType: full-time
+employmentType: part-time
 positions:
   - title: Co-Founder
     startDate: 2021-10-01
     endDate: 2022-08-31
+    employmentType: part-time
     content: |
       Tried to build a company. Spoiler: We failed.
 

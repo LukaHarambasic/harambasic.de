@@ -132,7 +132,7 @@ export const RawEntrySchema = z.object({
 	comment: z.string().min(1, 'Comment cannot be empty').optional(),
 	// Work entry specific fields
 	location: z.string().min(1, 'Location is required').optional(),
-	employmentType: z.enum(['full-time', 'part-time', 'contract', 'internship']).optional(),
+	employmentType: z.enum(['full-time', 'part-time', 'contract', 'internship']).optional(), // Optional: can be at work or position level
 	positions: z
 		.array(
 			z.object({
@@ -157,7 +157,8 @@ export const RawEntrySchema = z.object({
 						}
 						return false;
 					}, 'Invalid end date format (expected YYYY-MM-DD or null)'),
-				content: z.string().min(1, 'Position content is required')
+				content: z.string().min(1, 'Position content is required'),
+				employmentType: z.enum(['full-time', 'part-time', 'contract', 'internship']).optional()
 			})
 		)
 		.optional()
@@ -268,7 +269,8 @@ export const PositionSchema = z.object({
 			}
 			return false;
 		}, 'Invalid end date format (expected YYYY-MM-DD or null)'),
-	content: z.string().min(1, 'Position content is required')
+	content: z.string().min(1, 'Position content is required'),
+	employmentType: z.enum(['full-time', 'part-time', 'contract', 'internship']).optional()
 });
 
 /**
@@ -277,7 +279,7 @@ export const PositionSchema = z.object({
 export const WorkEntrySchema = BaseEntrySchema.extend({
 	type: z.literal('work'),
 	location: z.string().min(1, 'Location is required'),
-	employmentType: z.enum(['full-time', 'part-time', 'contract', 'internship']),
+	employmentType: z.enum(['full-time', 'part-time', 'contract', 'internship']).optional(),
 	positions: z.array(PositionSchema).min(1, 'At least one position is required'),
 	relatedProjects: z.array(z.string().min(1, 'Project slug cannot be empty')).optional(),
 	html: z.string().default('') // Optional general company information

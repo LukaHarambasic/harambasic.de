@@ -5,11 +5,12 @@ export interface Position {
 	startDate: string;
 	endDate: string | null;
 	content: string; // Markdown content that will be processed to HTML
+	employmentType?: 'full-time' | 'part-time' | 'contract' | 'internship';
 }
 
 export interface WorkEntry extends BaseEntry {
 	location: string;
-	employmentType: 'full-time' | 'part-time' | 'contract' | 'internship';
+	employmentType?: 'full-time' | 'part-time' | 'contract' | 'internship';
 	positions: Position[];
 	relatedProjects?: string[];
 	html: string; // Optional general company information from markdown body

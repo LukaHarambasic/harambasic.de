@@ -118,11 +118,7 @@ function validateWorkEntry(raw: RawEntry): void {
 		throw new Error(`Missing 'location' field in work entry "${slug}" (title: "${title}").`);
 	}
 
-	if (!raw.employmentType) {
-		throw new Error(
-			`Missing 'employmentType' field in work entry "${slug}" (title: "${title}"). Must be one of: full-time, part-time, contract, internship.`
-		);
-	}
+	// employmentType is optional - can be at work level or position level
 
 	if (!raw.positions || !Array.isArray(raw.positions) || raw.positions.length === 0) {
 		throw new Error(
@@ -260,22 +256,23 @@ export const ENTRY_CONFIGS = {
 	work: {
 		entryType: 'work' as const,
 		transform: (base: BaseEntryFields, raw: RawEntry): WorkEntry => {
-			// Process positions: convert markdown content to HTML
-			const positions: Position[] = (raw.positions || []).map((pos: any) => ({
-				title: pos.title,
-				startDate: pos.startDate,
-				endDate: pos.endDate === null ? null : pos.endDate,
-				content: processPositionContent(pos.content || '')
-			}));
+		// Process positions: convert markdown content to HTML
+		const positions: Position[] = (raw.positions || []).map((pos: any) => ({
+			title: pos.title,
+			startDate: pos.startDate,
+			endDate: pos.endDate === null ? null : pos.endDate,
+			content: processPositionContent(pos.content || ''),
+			employmentType: pos.employmentType || raw.employmentType || undefined
+		}));
 
-			return {
-				...base,
-				location: raw.location || '',
-				employmentType: (raw.employmentType as WorkEntry['employmentType']) || 'full-time',
-				positions,
-				relatedProjects: raw.relatedProjects || [],
-				html: raw.html || ''
-			};
+		return {
+			...base,
+			location: raw.location || '',
+			employmentType: raw.employmentType as WorkEntry['employmentType'] | undefined,
+			positions,
+			relatedProjects: raw.relatedProjects || [],
+			html: raw.html || ''
+		};
 		},
 		validate: validateWorkEntry
 	} satisfies EntryTransformConfig<WorkEntry>

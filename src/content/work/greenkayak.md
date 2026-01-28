@@ -10,6 +10,7 @@ positions:
   - title: Product Manager
     startDate: 2022-09-01
     endDate: 2023-04-30
+    employmentType: part-time
     content: |
       I saw a posting for an intern and loved the mission, but I told them I couldn't work part-time without pay. So we found a solution: I did this project as part of my Master's degree. This allowed me to dedicate my "study time" to building a product I actually cared about, while keeping a paying job on the side.
 
