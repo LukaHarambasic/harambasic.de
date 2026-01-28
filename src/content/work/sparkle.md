@@ -1,10 +1,10 @@
 ---
 title: Sparkle
-description: Co-Founder at Sparkle
-image: monta.png
+description: Solar energy startup that pivoted through multiple models, from solar fintech to enabling apartment renters to participate in the green transition.
+image: demo.png
 published: 2021-10-01
 updated: 2022-08-31
-location: Kopenhagen, Hovedstaden, Dänemark
+location: Copenhagen, Denmark
 employmentType: full-time
 positions:
   - title: Co-Founder

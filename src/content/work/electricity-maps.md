@@ -1,10 +1,10 @@
 ---
 title: Electricity Maps
-description: Product Release Manager at Electricity Maps
-image: monta.png
+description: Platform providing real-time and historical electricity data to help organizations make informed decisions about their carbon footprint and energy consumption.
+image: demo.png
 published: 2025-10-01
 updated: 2025-10-01
-location: Copenhagen, Capital Region of Denmark, Denmark
+location: Copenhagen, Denmark
 employmentType: full-time
 positions:
   - title: Product Release Manager

@@ -1,10 +1,10 @@
 ---
 title: GreenKayak
-description: Product Manager at GreenKayak
-image: monta.png
+description: Environmental organization connecting volunteers with free kayaking opportunities in exchange for cleaning waterways and oceans.
+image: demo.png
 published: 2022-09-01
 updated: 2023-04-30
-location: Copenhagen, Capital Region, Denmark
+location: Copenhagen, Denmark
 employmentType: part-time
 positions:
   - title: Product Manager

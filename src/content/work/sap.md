@@ -1,13 +1,13 @@
 ---
 title: SAP
-description: Technology Consultant and Mobile UX Developer at SAP
-image: monta.png
+description: Enterprise software company providing business solutions for finance, HR, supply chain, and customer experience across industries worldwide.
+image: demo.png
 published: 2016-09-01
 updated: 2021-09-30
 location: Walldorf, Germany
 employmentType: full-time
 positions:
-  - title: Technology Consultant - Mobile UX
+  - title: Technology Consultant
     startDate: 2019-10-01
     endDate: 2021-09-30
     content: |
@@ -32,7 +32,7 @@ positions:
       - SuccessFactors (Dev): Developed a SAPUIS Custom Control enabling content creators to structure content matching their Corporate Identity.
       - Global Design (Enablement): Developed an internal "Dribbble-like" platform on WordPress and simplified design processes with SAP Fiori in BUILD.
 relatedProjects:
-  - corona-warn-app
+  - coronawarnapp
 tags:
   - Android
   - Team Lead
