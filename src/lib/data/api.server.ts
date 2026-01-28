@@ -3,6 +3,7 @@ import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { Shareable } from '$lib/types/shareable';
+import type { WorkEntry } from '$lib/types/workEntry';
 import type { Tag } from '$lib/types/tag';
 import type { RawEntry } from '$lib/types/entry';
 import { getContentService } from '$lib/services';
@@ -16,6 +17,7 @@ type EntryTypeMap = {
 	project: Project;
 	uses: UsesEntry;
 	shareable: Shareable;
+	work: WorkEntry;
 };
 
 /**
@@ -44,13 +46,23 @@ async function getEntries<T extends EntryType>(entryType: T): Promise<[EntryType
 					console.error(`Error processing ${entryType} entry:`, raw, error);
 					return null;
 				}
-				// For projects and uses, let validation errors throw
+				// Log the error with full details before throwing
+				console.error(`Error processing ${entryType} entry:`, {
+					entryType,
+					title: raw?.title,
+					error: error instanceof Error ? error.message : String(error),
+					stack: error instanceof Error ? error.stack : undefined,
+					raw: JSON.stringify(raw, null, 2)
+				});
+				// For projects, uses, and work, let validation errors throw
 				throw error;
 			}
 		})
 		.filter((entry): entry is EntryTypeMap[T] => entry != null);
 
-	const tags = getUniqueTags(entries as Post[] | Project[] | UsesEntry[] | Shareable[]);
+	const tags = getUniqueTags(
+		entries as Post[] | Project[] | UsesEntry[] | Shareable[] | WorkEntry[]
+	);
 	return [entries, tags];
 }
 
@@ -90,4 +102,12 @@ export async function requestShareables(): Promise<[Shareable[], Tag[]]> {
 		console.warn('Shareables directory not found, returning empty arrays');
 		return [[], []];
 	}
+}
+
+/**
+ * Get work entries with tags.
+ * Throws on validation errors (strict validation).
+ */
+export async function requestWork(): Promise<[WorkEntry[], Tag[]]> {
+	return getEntries('work');
 }

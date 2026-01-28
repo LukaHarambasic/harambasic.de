@@ -8,4 +8,5 @@ export interface Project extends BaseEntry {
 	status: ProjectStatus;
 	html: string;
 	imageAlt: string;
+	relatedWork?: string[];
 }

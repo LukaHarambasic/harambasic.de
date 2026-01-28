@@ -7,9 +7,9 @@
 	}
 
 	let { data }: Props = $props();
-	const { entry, relatedWork } = data;
+	const { entry, relatedProjects } = data;
 </script>
 
 {#if entry}
-	<Entry {entry} {relatedWork} />
+	<Entry {entry} {relatedProjects} />
 {/if}

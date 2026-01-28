@@ -7,6 +7,10 @@
 			url: '/'
 		},
 		{
+			name: 'Work',
+			url: '/work'
+		},
+		{
 			name: 'Projects',
 			url: '/projects'
 		},

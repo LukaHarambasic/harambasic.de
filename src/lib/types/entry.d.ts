@@ -4,7 +4,8 @@ import type {
 	PostSortProperty,
 	ProjectSortProperty,
 	ShareableSortProperty,
-	UsesEntrySortProperty
+	UsesEntrySortProperty,
+	WorkEntrySortProperty
 } from './enums';
 import type { Tag } from './tag';
 import type { Link } from './generic';
@@ -33,6 +34,17 @@ export interface RawEntry {
 	links?: Link[];
 	prio?: number;
 	imageAlt?: string;
+	relatedProjects?: string[];
+	relatedWork?: string[];
+	// Work entry specific fields
+	location?: string;
+	employmentType?: 'full-time' | 'part-time' | 'contract' | 'internship';
+	positions?: Array<{
+		title: string;
+		startDate: string;
+		endDate: string | null;
+		content: string;
+	}>;
 }
 
 export interface EntryDate {
@@ -78,6 +90,7 @@ export type SortProperty =
 	| PostSortProperty
 	| ProjectSortProperty
 	| UsesEntrySortProperty
-	| ShareableSortProperty;
+	| ShareableSortProperty
+	| WorkEntrySortProperty;
 
 export type StatusFilter = ContentStatus;

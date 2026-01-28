@@ -9,7 +9,8 @@ import { ContentServiceError } from './ContentService';
 import { getSlug } from '$lib/util/helper';
 
 function getContentFolderPath(entryType: EntryType, contentRoot: string): string {
-	const folderName = entryType === 'uses' ? 'uses' : `${entryType}s`;
+	const folderName =
+		entryType === 'uses' ? 'uses' : entryType === 'work' ? 'work' : `${entryType}s`;
 	return join(contentRoot, folderName);
 }
 
@@ -270,7 +271,7 @@ export class FileSystemContentService implements ContentService {
 		byType: Record<EntryType, ValidationResult[]>;
 		errors: ValidationResult[];
 	}> {
-		const entryTypes: EntryType[] = ['post', 'project', 'uses', 'shareable'];
+		const entryTypes: EntryType[] = ['post', 'project', 'uses', 'shareable', 'work'];
 		const byType: Record<EntryType, ValidationResult[]> = {} as Record<
 			EntryType,
 			ValidationResult[]

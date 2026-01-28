@@ -30,6 +30,9 @@ export function getContentPath(entryType: EntryType, slug: string): string {
 	if (entryType === 'uses') {
 		return `/uses/${slug}`;
 	}
+	if (entryType === 'work') {
+		return `/work/${slug}`;
+	}
 	return `/${entryType}s/${slug}`;
 }
 
