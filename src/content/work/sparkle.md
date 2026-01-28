@@ -1,7 +1,7 @@
 ---
 title: Sparkle
 description: Solar energy startup that pivoted through multiple models, from solar fintech to enabling apartment renters to participate in the green transition.
-image: demo.png
+image: sparkle.png
 published: 2021-10-01
 updated: 2022-08-31
 location: Copenhagen, Denmark

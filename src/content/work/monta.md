@@ -1,7 +1,7 @@
 ---
 title: Monta
 description: EV charging platform building the operating system for charge point operators, enabling seamless charging experiences and smart energy management.
-image: demo.png
+image: monta.jpeg
 published: 2022-08-01
 updated: 2025-09-30
 location: Copenhagen, Denmark

@@ -1,7 +1,7 @@
 ---
 title: GreenKayak
 description: Environmental organization connecting volunteers with free kayaking opportunities in exchange for cleaning waterways and oceans.
-image: demo.png
+image: green_kayak.png
 published: 2022-09-01
 updated: 2023-04-30
 location: Copenhagen, Denmark

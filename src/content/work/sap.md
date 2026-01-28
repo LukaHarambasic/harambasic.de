@@ -1,7 +1,7 @@
 ---
 title: SAP
 description: Enterprise software company providing business solutions for finance, HR, supply chain, and customer experience across industries worldwide.
-image: demo.png
+image: sap.png
 published: 2016-09-01
 updated: 2021-09-30
 location: Walldorf, Germany
