@@ -1,7 +1,7 @@
 ---
 title: SAP
 description: Technology Consultant and Mobile UX Developer at SAP
-image: sap.png
+image: monta.png
 published: 2016-09-01
 updated: 2021-09-30
 location: Walldorf, Germany

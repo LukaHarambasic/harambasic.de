@@ -1,7 +1,7 @@
 ---
 title: GreenKayak
 description: Product Manager at GreenKayak
-image: greenkayak.png
+image: monta.png
 published: 2022-09-01
 updated: 2023-04-30
 location: Copenhagen, Capital Region, Denmark

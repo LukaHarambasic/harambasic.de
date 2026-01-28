@@ -1,7 +1,7 @@
 ---
 title: Electricity Maps
 description: Product Release Manager at Electricity Maps
-image: electricity-maps.png
+image: monta.png
 published: 2025-10-01
 updated: 2025-10-01
 location: Copenhagen, Capital Region of Denmark, Denmark

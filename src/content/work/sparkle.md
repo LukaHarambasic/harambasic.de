@@ -1,7 +1,7 @@
 ---
 title: Sparkle
 description: Co-Founder at Sparkle
-image: sparkle.png
+image: monta.png
 published: 2021-10-01
 updated: 2022-08-31
 location: Kopenhagen, Hovedstaden, Dänemark
