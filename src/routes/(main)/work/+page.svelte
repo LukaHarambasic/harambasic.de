@@ -306,6 +306,7 @@
 				0 4px 8px rgba(0, 0, 0, 0.05),
 				0 8px 16px rgba(0, 0, 0, 0.05),
 				0 12px 24px rgba(0, 0, 0, 0.05);
+			transform: scale(1.05);
 			.external-link {
 				transform: translateY(-2px) translateX(2px);
 			}
