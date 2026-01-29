@@ -324,9 +324,8 @@ export class FileSystemContentService implements ContentService {
 			}
 
 			// Import validation functions
-			const { validateRawEntry, validateContentQuality, validateMarkdownStructure } = await import(
-				'$lib/schemas/validation'
-			);
+			const { validateRawEntry, validateContentQuality, validateMarkdownStructure } =
+				await import('$lib/schemas/validation');
 
 			// Validate the entry structure
 			const validation = validateRawEntry(entry, `${entryType}/${slug}.md`);
