@@ -20,7 +20,7 @@ positions:
 
       PS: I might have written a few lines of code myself, but let's not look too closely at those 😊
 relatedProjects:
-  - greenkayak
+  - greenkayak-app
 tags:
   - Product Management
   - UX Design
