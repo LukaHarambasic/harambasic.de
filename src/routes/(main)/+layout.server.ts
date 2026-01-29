@@ -4,7 +4,8 @@ import {
 	requestPosts,
 	requestProjects,
 	requestUses,
-	requestShareables
+	requestShareables,
+	requestWork
 } from '$lib/data/api.server';
 
 // For full SSG: https://kit.svelte.dev/docs/adapter-static
@@ -15,6 +16,7 @@ export const load = (async ({ url }) => {
 		permalink: DEPLOY_PRIME_URL || URL,
 		relativePath: url.pathname,
 		posts: await requestPosts(),
+		work: await requestWork(),
 		projects: await requestProjects(),
 		uses: await requestUses(),
 		shareables: await requestShareables()

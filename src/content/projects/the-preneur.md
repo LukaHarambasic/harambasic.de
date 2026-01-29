@@ -1,5 +1,5 @@
 ---
-title: The Preneur
+title: The Preneur (Podcast)
 description: Podcast around entrepreneurship.
 image: the_preneur.png
 imageAlt: 'Podcast cover saying: The Preneur'

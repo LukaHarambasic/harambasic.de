@@ -107,7 +107,12 @@ export function processMarkdown(markdownContent: string, filePath?: string): Raw
 			links: frontmatter?.links,
 			prio: frontmatter?.prio,
 			imageAlt: frontmatter?.imageAlt,
-			comment: frontmatter?.comment
+			comment: frontmatter?.comment,
+			relatedProjects: frontmatter?.relatedProjects,
+			relatedWork: frontmatter?.relatedWork,
+			location: frontmatter?.location,
+			employmentType: frontmatter?.employmentType,
+			positions: frontmatter?.positions
 		};
 
 		// Validate the processed raw entry
@@ -161,7 +166,12 @@ export function processMarkdownWithValidation(
 			links: frontmatter?.links,
 			prio: frontmatter?.prio,
 			imageAlt: frontmatter?.imageAlt,
-			comment: frontmatter?.comment
+			comment: frontmatter?.comment,
+			relatedProjects: frontmatter?.relatedProjects,
+			relatedWork: frontmatter?.relatedWork,
+			location: frontmatter?.location,
+			employmentType: frontmatter?.employmentType,
+			positions: frontmatter?.positions
 		};
 
 		// Validate the raw entry structure

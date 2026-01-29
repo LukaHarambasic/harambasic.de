@@ -2,14 +2,14 @@
 	import { getSlug } from '$lib/util/helper';
 
 	interface Props {
-		title: string;
+		title?: string;
 		description?: string;
 		permalink?: string;
 	}
 
 	let { title, description = '', permalink = 'https://harambasic.de' }: Props = $props();
 
-	const slug = getSlug(title);
+	const slug = title ? getSlug(title) : '';
 	let fullTitle = $derived(title ? `${title} | Luka Harambasic` : 'Luka Harambasic');
 	let socialImg = $derived(
 		permalink && slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`

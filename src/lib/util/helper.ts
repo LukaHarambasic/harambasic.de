@@ -32,6 +32,19 @@ export function formatDate(date: Date): string {
 	return format(new Date(date), 'yyyy-MM-dd');
 }
 
+export function formatDateDisplay(dateString: string): string {
+	const date = new Date(dateString);
+	return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+}
+
+export function sortPositionsByDate<T extends { startDate: string }>(positions: T[]): T[] {
+	return [...positions].sort((a, b) => {
+		const dateA = new Date(a.startDate).getTime();
+		const dateB = new Date(b.startDate).getTime();
+		return dateB - dateA;
+	});
+}
+
 export function sortAlphabetical(a: string, b: string): number {
 	return a.localeCompare(b);
 }

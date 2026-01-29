@@ -3,8 +3,9 @@
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
 	import { sortDate } from '$lib/util/helper';
+	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
 
-	const pictures = import.meta.glob(
+	const pictures: ImageGlobResult = import.meta.glob(
 		'../../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
@@ -15,17 +16,9 @@
 		}
 	);
 
-	const getImage = (name: string) => {
-		const image = pictures[`../../../assets/img/uses/${name}`];
-		if (!image) {
-			return null;
-		}
-		return (image as any).default || null;
-	};
+	const USES_IMAGE_PATH = '../../../assets/img/uses/';
 
-	const isSvg = (name: string) => {
-		return name.endsWith('.svg');
-	};
+	const getImage = (name: string) => getImageFromGlob(pictures, USES_IMAGE_PATH, name);
 
 	interface Props {
 		data: PageData;
@@ -75,7 +68,7 @@
 								<a href={entry.url}>
 									<div class="logo">
 										{#if entry.image}
-											{#if isSvg(entry.image)}
+											{#if isSvgImage(entry.image)}
 												<img src="/uses/{entry.image}" alt={entry.title} width="64px" />
 											{:else}
 												{@const imageData = getImage(entry.image)}

@@ -21,6 +21,9 @@
 	let { children }: Props = $props();
 
 	let { title, subtitle, description, published, relativePath, permalink } = $derived($page.data);
+	let isWorkDetailPage = $derived(
+		$page.url.pathname.startsWith('/work/') && $page.url.pathname !== '/work'
+	);
 
 	// needs to be here until the following issue in vite is resolved and included in an sveltekit release
 	// https://github.com/sveltejs/kit/issues/5240
@@ -40,7 +43,7 @@
 <LayoutSkipToContent />
 <div class="container">
 	<LayoutHeader />
-	<main id="main">
+	<main id="main" class:work-detail={isWorkDetailPage}>
 		{#if title}
 			<section class="header">
 				<h1>{title}</h1>
@@ -92,6 +95,19 @@
 			align-content: stretch;
 			gap: var(--xl);
 			grid-area: main;
+			&.work-detail {
+				.header {
+					position: absolute;
+					margin: -1px;
+					padding: 0;
+					width: 1px;
+					height: 1px;
+					border-width: 0;
+					white-space: nowrap;
+					overflow: hidden;
+					clip: rect(0, 0, 0, 0);
+				}
+			}
 			.header {
 				display: flex;
 				flex-direction: column;

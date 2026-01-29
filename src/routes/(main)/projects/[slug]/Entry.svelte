@@ -1,8 +1,10 @@
 <script lang="ts">
 	import type { Project } from '$lib/types/project';
+	import type { WorkEntry } from '$lib/types/workEntry';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
+	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 
-	const pictures = import.meta.glob(
+	const pictures: ImageGlobResult = import.meta.glob(
 		'../../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
@@ -13,27 +15,28 @@
 		}
 	);
 
-	const getImage = (name: string) => {
-		const image = pictures[`../../../../assets/img/projects/${name}`];
-		if (!image) {
-			return {};
-		}
-		return (image as any).default || {};
-	};
+	const PROJECT_IMAGE_PATH = '../../../../assets/img/projects/';
+
+	const getImage = (name: string) => getImageFromGlob(pictures, PROJECT_IMAGE_PATH, name);
 
 	interface Props {
 		entry: Project;
+		relatedWork?: WorkEntry[];
 	}
 
-	let { entry }: Props = $props();
+	let { entry, relatedWork = [] }: Props = $props();
+
+	const imageData = $derived(getImage(entry.image));
 </script>
 
 <article class="h-entry">
-	<enhanced:img
-		src={getImage(entry.image)}
-		sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-		alt={entry.title}
-	/>
+	{#if imageData}
+		<enhanced:img
+			src={imageData}
+			sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+			alt={entry.title}
+		/>
+	{/if}
 	<div class="content">
 		<div class="rich-text">
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -53,6 +56,18 @@
 				</li>
 			{/each}
 		</ul>
+		{#if relatedWork.length > 0}
+			<div class="related-work">
+				<h3>Related Work</h3>
+				<ul>
+					{#each relatedWork as work}
+						<li>
+							<a href={work.relativePath}>{work.title}</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/if}
 	</div>
 </article>
 
@@ -118,6 +133,32 @@
 				align-content: stretch;
 				gap: var(--m);
 				flex-base: 100%;
+			}
+			.related-work {
+				margin-top: var(--m);
+				width: 100%;
+				h3 {
+					margin: 0 0 var(--s) 0;
+					font-family: var(--font-family);
+					font-size: var(--font-m);
+					font-weight: 700;
+					letter-spacing: var(--font-letter-spacing-headline);
+				}
+				ul {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+					li {
+						margin-bottom: var(--xs);
+						a {
+							color: var(--c-font);
+							text-decoration: none;
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+					}
+				}
 			}
 		}
 	}

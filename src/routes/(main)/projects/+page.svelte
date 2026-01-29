@@ -5,9 +5,10 @@
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import Icon from '@iconify/svelte';
+	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 
 	// TODO: remove eager and only load images that got randomly selected
-	const pictures = import.meta.glob(
+	const pictures: ImageGlobResult = import.meta.glob(
 		'../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
@@ -18,13 +19,9 @@
 		}
 	);
 
-	const getImage = (name: string) => {
-		const image = pictures[`../../../assets/img/projects/${name}`];
-		if (!image) {
-			return {};
-		}
-		return (image as any).default || {};
-	};
+	const PROJECT_IMAGE_PATH = '../../../assets/img/projects/';
+
+	const getImage = (name: string) => getImageFromGlob(pictures, PROJECT_IMAGE_PATH, name);
 
 	interface Props {
 		data: PageData;
@@ -43,27 +40,30 @@
 	{#snippet entries()}
 		<div class="entries">
 			{#each filteredAndSorted as entry, index}
+				{@const imageData = getImage(entry.image)}
 				<a
 					href={entry.relativePath}
 					class="h-feed entry card no-spacing"
 					data-highlighted={index < 3}
 				>
-					<div class="image-wrapper">
-						<div class="blur-bg">
-							<enhanced:img
-								src={getImage(entry.image)}
-								sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-								alt={entry.title}
-							/>
+					{#if imageData}
+						<div class="image-wrapper">
+							<div class="blur-bg">
+								<enhanced:img
+									src={imageData}
+									sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+									alt={entry.title}
+								/>
+							</div>
+							<div class="main-img">
+								<enhanced:img
+									src={imageData}
+									sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+									alt={entry.title}
+								/>
+							</div>
 						</div>
-						<div class="main-img">
-							<enhanced:img
-								src={getImage(entry.image)}
-								sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-								alt={entry.title}
-							/>
-						</div>
-					</div>
+					{/if}
 					<div class="content">
 						<strong>{entry.title}</strong>
 						<p>{entry.description}</p>
