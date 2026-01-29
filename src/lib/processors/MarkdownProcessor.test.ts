@@ -74,11 +74,14 @@ More content.`;
 
 		expect(result.toc).toHaveLength(2);
 
-		// First main heading with sub-items
+		// First main heading with sub-items (Sub Heading 1 with nested Sub Sub Heading 1, and Sub Heading 2)
 		expect(result.toc[0].value).toBe('Main Heading');
 		expect(result.toc[0].depth).toBe(1);
-		expect(result.toc[0].children).toHaveLength(1);
+		expect(result.toc[0].children).toHaveLength(2);
 		expect(result.toc[0].children![0].value).toBe('Sub Heading 1');
+		expect(result.toc[0].children![0].children).toHaveLength(1);
+		expect(result.toc[0].children![0].children![0].value).toBe('Sub Sub Heading 1');
+		expect(result.toc[0].children![1].value).toBe('Sub Heading 2');
 
 		// Second main heading
 		expect(result.toc[1].value).toBe('Another Main Heading');

@@ -244,38 +244,29 @@ function rehypeEnhanceImage() {
 }
 
 function getNestedToc(markdownHeadings: TocNode[]): TocNode[] {
-	let latestEntry: TocNode | null;
-	let latestParent: TocNode | null;
 	const markdownHeadingCopy = markdownHeadings.map((heading) => ({ ...heading, children: [] }));
 
 	if (markdownHeadingCopy.length <= 1) return markdownHeadingCopy;
 
-	const entryDepth: number = markdownHeadings.reduce((acc: number, item: TocNode) => {
-		return item.depth < acc ? item.depth : acc;
-	}, Number.POSITIVE_INFINITY);
+	const result: TocNode[] = [];
+	const stack: TocNode[] = [];
 
-	return markdownHeadingCopy.reduce((result: TocNode[], entry: TocNode) => {
-		if (latestEntry && !latestEntry.children) {
-			latestEntry.children = [];
+	for (const entry of markdownHeadingCopy) {
+		// Pop items from stack until we find a valid parent (depth < entry.depth)
+		while (stack.length > 0 && stack[stack.length - 1].depth >= entry.depth) {
+			stack.pop();
 		}
 
-		const latestEntryDepth = latestEntry?.depth || 0;
-		const latestEntryChildren = latestEntry?.children || [];
-		const latestParentChildren = latestParent?.children || [];
-
-		if (entry.depth === entryDepth) {
+		const parent = stack[stack.length - 1];
+		if (stack.length === 0 || !parent) {
 			result.push(entry);
-			latestParent = null;
-		} else if (entry.depth === latestEntryDepth + 1) {
-			latestEntryChildren.push(entry);
-			latestParent = latestEntry;
-		} else if (entry.depth === latestEntryDepth) {
-			latestParentChildren.push(entry);
 		} else {
-			console.error('Unexpected Toc behaviour', entry);
+			const siblings = parent.children ?? (parent.children = []);
+			siblings.push(entry);
 		}
 
-		latestEntry = entry;
-		return result;
-	}, []);
+		stack.push(entry);
+	}
+
+	return result;
 }
