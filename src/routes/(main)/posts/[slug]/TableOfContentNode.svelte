@@ -7,7 +7,7 @@
 	}
 
 	let { node }: Props = $props();
-	const anchor = `#${node.slug}`;
+	let anchor = $derived(`#${node.slug}`);
 </script>
 
 <li>

@@ -18,7 +18,8 @@
 	}
 
 	let { data }: Props = $props();
-	const [entries, tags] = data.posts;
+	let entries = $derived(data.posts[0]);
+	let tags = $derived(data.posts[1]);
 
 	let filterTagSlug = $state('all');
 

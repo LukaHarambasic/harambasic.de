@@ -7,7 +7,7 @@
 	}
 
 	let { data }: Props = $props();
-	const entry = data.entry;
+	let entry = $derived(data.entry);
 </script>
 
 {#if entry}

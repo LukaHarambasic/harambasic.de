@@ -77,7 +77,7 @@ describe('Validation Utilities', () => {
 			expect(validateEntryType('post')).toBe(true);
 			expect(validateEntryType('project')).toBe(true);
 			expect(validateEntryType('uses')).toBe(true);
-			expect(validateEntryType('shareable')).toBe(true);
+			expect(validateEntryType('work')).toBe(true);
 		});
 
 		test('should reject invalid entry types', () => {

@@ -3,7 +3,6 @@ import type {
 	EntryType,
 	PostSortProperty,
 	ProjectSortProperty,
-	ShareableSortProperty,
 	UsesEntrySortProperty,
 	WorkEntrySortProperty
 } from './enums';
@@ -59,7 +58,7 @@ export interface EntryDate {
  * with computed fields like slug and paths, and transformed data like parsed dates and tags.
  *
  * @interface BaseEntry
- * @property {EntryType} type - The type of content (post, project, uses, shareable)
+ * @property {EntryType} type - The type of content (post, project, uses, work)
  * @property {string} slug - URL-friendly version of the title
  * @property {string} relativePath - Relative path for routing (e.g., "/posts/my-post")
  * @property {string} fullPath - Complete URL including domain
@@ -90,7 +89,6 @@ export type SortProperty =
 	| PostSortProperty
 	| ProjectSortProperty
 	| UsesEntrySortProperty
-	| ShareableSortProperty
 	| WorkEntrySortProperty;
 
 export type StatusFilter = ContentStatus;

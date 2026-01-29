@@ -3,7 +3,6 @@ import type { RawEntry } from '$lib/types/entry';
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { Shareable } from '$lib/types/shareable';
 import { getContentPath, createBaseEntryFields, transformEntry } from './entryTransformer';
 
 const createMockRawEntry = (overrides: Partial<RawEntry> = {}): RawEntry => ({
@@ -26,10 +25,6 @@ describe('Entry Transformer', () => {
 
 		it('should generate correct path for project type', () => {
 			expect(getContentPath('project', 'test-project')).toBe('/projects/test-project');
-		});
-
-		it('should generate correct path for shareable type', () => {
-			expect(getContentPath('shareable', 'test-shareable')).toBe('/shareables/test-shareable');
 		});
 
 		it('should handle special case for uses type', () => {
@@ -273,61 +268,6 @@ describe('Entry Transformer', () => {
 			expect(usesEntry.url).toBe('');
 			expect(usesEntry.status).toBe('active');
 			expect(usesEntry.openSource).toBe(false);
-		});
-	});
-
-	describe('transformEntry - Shareable', () => {
-		it('should transform RawEntry to Shareable', () => {
-			const rawEntry = createMockRawEntry({
-				url: 'https://example.com/shareable',
-				tldr: 'This is a comment'
-			});
-
-			const shareable = transformEntry(rawEntry, {
-				entryType: 'shareable',
-				transform: (base, raw) => {
-					// eslint-disable-next-line @typescript-eslint/no-unused-vars
-					const { image, ...baseWithoutImage } = base;
-					return {
-						...baseWithoutImage,
-						url: raw.url || '',
-						comment: raw.tldr || ''
-					} as Shareable;
-				}
-			} as import('$lib/util/entryTransformer').EntryTransformConfig<any>);
-
-			expect(shareable.type).toBe('shareable');
-			expect(shareable.title).toBe('Test Entry');
-			expect(shareable.url).toBe('https://example.com/shareable');
-			expect(shareable.comment).toBe('This is a comment');
-			// Shareable extends Omit<BaseEntry, 'image'>, so it should not have image
-			expect('image' in shareable).toBe(false);
-			expect(shareable.relativePath).toBe('/shareables/test-entry');
-		});
-
-		it('should handle missing optional Shareable fields', () => {
-			const rawEntry = createMockRawEntry({
-				url: undefined,
-				tldr: undefined
-			});
-
-			const shareable = transformEntry(rawEntry, {
-				entryType: 'shareable',
-				transform: (base, raw) => {
-					// eslint-disable-next-line @typescript-eslint/no-unused-vars
-					const { image, ...baseWithoutImage } = base;
-					return {
-						...baseWithoutImage,
-						url: raw.url || '',
-						comment: raw.tldr || ''
-					} as Shareable;
-				}
-			} as import('$lib/util/entryTransformer').EntryTransformConfig<any>);
-
-			expect(shareable.url).toBe('');
-			expect(shareable.comment).toBe('');
-			// Verify image is not present
-			expect('image' in shareable).toBe(false);
 		});
 	});
 

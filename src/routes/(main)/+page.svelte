@@ -7,7 +7,6 @@
 	import type { Post } from '$lib/types/post';
 	import type { PageData } from './$types';
 	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
-	// import type { Shareable } from '$lib/types/shareable'
 
 	// TODO: remove eager and only load images that got randomly selected
 	const pictures: ImageGlobResult = import.meta.glob(
@@ -30,17 +29,15 @@
 	}
 
 	let { data }: Props = $props();
-	const [posts] = data.posts;
-	const [projects] = data.projects;
-	const [uses] = data.uses;
-	// const [shareables] = data.shareables
+	let posts = $derived(data.posts[0]);
+	let projects = $derived(data.projects[0]);
+	let uses = $derived(data.uses[0]);
 
-	const priorityProjects = projects.filter((entry) => entry.prio >= 500);
-	const activeUses = uses.filter((entry) => entry.status === 'active');
-	const randomProjects: Project[] = getRandomItems(priorityProjects, 2);
-	const randomUses: UsesEntry[] = getRandomItems(activeUses, 3);
-	const randomPosts: Post[] = getRandomItems(posts, 2);
-	// const randomShareables: Shareable[] = getRandomItems(shareables, 4)
+	let priorityProjects = $derived(projects.filter((entry) => entry.prio >= 500));
+	let activeUses = $derived(uses.filter((entry) => entry.status === 'active'));
+	let randomProjects: Project[] = $derived(getRandomItems(priorityProjects, 2));
+	let randomUses: UsesEntry[] = $derived(getRandomItems(activeUses, 3));
+	let randomPosts: Post[] = $derived(getRandomItems(posts, 2));
 </script>
 
 <section class="heyho">
@@ -131,25 +128,6 @@
 			{/each}
 		</ul>
 	</div>
-	<!-- <div class="shareables group">
-    <h3 class="section-label">
-      <span>Shareables</span>
-      <Icon icon="ph:share-bold" />
-    </h3>
-    <ul>
-      {#each randomShareables as shareable}
-        <li>
-          <a class="card text" href={shareable.url}>
-            <Icon icon="ph:arrow-square-out-bold" />
-            <strong>{shareable.title}</strong>
-            <time class="date dt-published" datetime={shareable?.published?.raw?.toString()}>
-              {shareable.published.display}
-            </time>
-          </a>
-        </li>
-      {/each}
-    </ul>
-  </div> -->
 </section>
 <section class="contact" id="contact">
 	<div class="group">

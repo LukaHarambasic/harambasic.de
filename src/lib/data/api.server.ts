@@ -2,7 +2,6 @@ import type { EntryType } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { Shareable } from '$lib/types/shareable';
 import type { WorkEntry } from '$lib/types/workEntry';
 import type { Tag } from '$lib/types/tag';
 import type { RawEntry } from '$lib/types/entry';
@@ -15,7 +14,6 @@ type EntryTypeMap = {
 	post: Post;
 	project: Project;
 	uses: UsesEntry;
-	shareable: Shareable;
 	work: WorkEntry;
 };
 
@@ -32,7 +30,10 @@ async function getEntries<T extends EntryType>(entryType: T): Promise<[EntryType
 					return null;
 				}
 
-				return transformEntry(raw, config);
+				// Type assertion needed due to generic EntryTransformConfig limitations
+				return transformEntry(raw, config as Parameters<typeof transformEntry>[1]) as
+					| EntryTypeMap[T]
+					| null;
 			} catch (error) {
 				if (entryType === 'post') {
 					console.error(`Error processing ${entryType} entry:`, raw, error);
@@ -48,11 +49,9 @@ async function getEntries<T extends EntryType>(entryType: T): Promise<[EntryType
 				throw error;
 			}
 		})
-		.filter((entry): entry is EntryTypeMap[T] => entry != null);
+		.filter((entry): entry is NonNullable<typeof entry> => entry != null) as EntryTypeMap[T][];
 
-	const tags = getUniqueTags(
-		entries as Post[] | Project[] | UsesEntry[] | Shareable[] | WorkEntry[]
-	);
+	const tags = getUniqueTags(entries as Post[] | Project[] | UsesEntry[] | WorkEntry[]);
 	return [entries, tags];
 }
 export async function requestPosts(): Promise<[Post[], Tag[]]> {
@@ -65,15 +64,6 @@ export async function requestProjects(): Promise<[Project[], Tag[]]> {
 
 export async function requestUses(): Promise<[UsesEntry[], Tag[]]> {
 	return getEntries('uses');
-}
-
-export async function requestShareables(): Promise<[Shareable[], Tag[]]> {
-	try {
-		return await getEntries('shareable');
-	} catch {
-		console.warn('Shareables directory not found, returning empty arrays');
-		return [[], []];
-	}
 }
 
 export async function requestWork(): Promise<[WorkEntry[], Tag[]]> {

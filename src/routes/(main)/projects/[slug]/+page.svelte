@@ -7,7 +7,8 @@
 	}
 
 	let { data }: Props = $props();
-	const { entry, relatedWork } = data;
+	let entry = $derived(data.entry);
+	let relatedWork = $derived(data.relatedWork);
 </script>
 
 {#if entry}

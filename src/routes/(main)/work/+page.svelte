@@ -33,8 +33,8 @@
 
 	let { data }: Props = $props();
 
-	const [entries = []] = data.work || [[]];
-	const workRelatedProjects = data.workRelatedProjects || {};
+	let entries = $derived((data.work || [[]])[0] || []);
+	let workRelatedProjects = $derived(data.workRelatedProjects || {});
 
 	// Helper function to get related projects for an entry
 	const getRelatedProjects = (entry: WorkEntry): Array<{ slug: string; title: string }> => {

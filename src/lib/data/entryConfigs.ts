@@ -2,7 +2,6 @@ import type { EntryTransformConfig, BaseEntryFields } from '$lib/util/entryTrans
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { Shareable } from '$lib/types/shareable';
 import type { WorkEntry, Position } from '$lib/types/workEntry';
 import type { RawEntry } from '$lib/types/entry';
 import type { ProjectStatus, UsesEntryStatus } from '$lib/types/enums';
@@ -244,22 +243,6 @@ export const ENTRY_CONFIGS = {
 		}),
 		validate: validateUsesEntry
 	} satisfies EntryTransformConfig<UsesEntry>,
-
-	shareable: {
-		entryType: 'shareable' as const,
-		transform: (base: BaseEntryFields, raw: RawEntry): Shareable => {
-			// Shareable omits 'image' from BaseEntry
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			const { image, ...baseWithoutImage } = base;
-			return {
-				...baseWithoutImage,
-				url: raw.url || '',
-				comment: raw.tldr || ''
-			};
-		}
-		// No validate - shareables handle missing directory at API level
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	} as EntryTransformConfig<any>,
 
 	work: {
 		entryType: 'work' as const,

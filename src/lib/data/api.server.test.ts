@@ -2,29 +2,20 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import type { RawEntry } from '$lib/types/entry';
 import type { EntryType } from '$lib/types/enums';
 import type { ContentService } from '$lib/services';
-import { ContentServiceError } from '$lib/services';
 import { setContentService, resetContentService } from '$lib/services/serviceInstance';
-import { requestPosts, requestProjects, requestUses, requestShareables } from './api.server';
+import { requestPosts, requestProjects, requestUses } from './api.server';
 
 /**
  * Mock ContentService implementation for testing
  */
 class MockContentService implements ContentService {
 	private mockData: Partial<Record<EntryType, RawEntry[]>>;
-	private shouldThrowError: boolean = false;
 
 	constructor(mockData: Partial<Record<EntryType, RawEntry[]>> = {}) {
 		this.mockData = mockData;
 	}
 
-	setShouldThrowError(value: boolean): void {
-		this.shouldThrowError = value;
-	}
-
 	async getEntries(entryType: EntryType): Promise<RawEntry[]> {
-		if (this.shouldThrowError && entryType === 'shareable') {
-			throw new ContentServiceError('Directory not found', entryType);
-		}
 		return this.mockData[entryType] || [];
 	}
 
@@ -291,69 +282,6 @@ describe('Generic API Server', () => {
 		});
 	});
 
-	describe('requestShareables', () => {
-		it('should transform and return shareables with tags', async () => {
-			const mockShareable = createMockRawEntry({
-				title: 'Test Shareable',
-				description: 'A test shareable',
-				url: 'https://example.com',
-				tldr: 'Comment text'
-			});
-
-			mockService = new MockContentService({ shareable: [mockShareable] });
-			setContentService(mockService);
-
-			const [shareables, tags] = await requestShareables();
-
-			expect(shareables).toHaveLength(1);
-			expect(shareables[0].type).toBe('shareable');
-			expect(shareables[0].title).toBe('Test Shareable');
-			expect(shareables[0].url).toBe('https://example.com');
-			expect(shareables[0].comment).toBe('Comment text');
-			expect(shareables[0].slug).toBe('test-shareable');
-			expect(shareables[0].relativePath).toBe('/shareables/test-shareable');
-			// Shareable should not have image field
-			expect('image' in shareables[0]).toBe(false);
-
-			expect(tags).toHaveLength(3); // 'All' tag + 2 tags
-		});
-
-		it('should return empty arrays when directory is missing', async () => {
-			mockService = new MockContentService();
-			mockService.setShouldThrowError(true);
-			setContentService(mockService);
-
-			const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-
-			const [shareables, tags] = await requestShareables();
-
-			expect(shareables).toHaveLength(0);
-			expect(tags).toHaveLength(0);
-			expect(consoleSpy).toHaveBeenCalledWith(
-				'Shareables directory not found, returning empty arrays'
-			);
-
-			consoleSpy.mockRestore();
-		});
-
-		it('should handle missing optional fields', async () => {
-			const mockShareable = createMockRawEntry({
-				title: 'Test Shareable',
-				description: 'Description',
-				url: undefined,
-				tldr: undefined
-			});
-
-			mockService = new MockContentService({ shareable: [mockShareable] });
-			setContentService(mockService);
-
-			const [shareables] = await requestShareables();
-
-			expect(shareables[0].url).toBe('');
-			expect(shareables[0].comment).toBe('');
-		});
-	});
-
 	describe('Tag generation', () => {
 		it('should generate unique tags across multiple entries', async () => {
 			const post1 = createMockRawEntry({
@@ -405,20 +333,17 @@ describe('Generic API Server', () => {
 			mockService = new MockContentService({
 				post: [],
 				project: [],
-				uses: [],
-				shareable: []
+				uses: []
 			});
 			setContentService(mockService);
 
 			const [posts] = await requestPosts();
 			const [projects] = await requestProjects();
 			const [uses] = await requestUses();
-			const [shareables] = await requestShareables();
 
 			expect(posts).toHaveLength(0);
 			expect(projects).toHaveLength(0);
 			expect(uses).toHaveLength(0);
-			expect(shareables).toHaveLength(0);
 		});
 
 		it('should handle mixed valid and invalid entries', async () => {

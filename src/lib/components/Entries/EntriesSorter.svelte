@@ -20,8 +20,8 @@
 
 	let { propertiesArray, propertiesDefault = 'published' }: Props = $props();
 
-	const properties = sortPropertyToArray(propertiesArray).sort((a, b) =>
-		sortAlphabetical(a.key, b.key)
+	let properties = $derived(
+		sortPropertyToArray(propertiesArray).sort((a, b) => sortAlphabetical(a.key, b.key))
 	);
 
 	let property: SortProperty = $state(propertiesDefault);

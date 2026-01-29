@@ -25,8 +25,9 @@
 	}
 
 	let { data }: Props = $props();
-	const [usesEntries, tags] = data.uses;
-	const path = data.path;
+	let usesEntries = $derived(data.uses[0]);
+	let tags = $derived(data.uses[1]);
+	let path = $derived(data.path);
 
 	interface GroupedEntries {
 		title: string;
@@ -35,25 +36,27 @@
 
 	const groupedEntriesOrder = ['Essentials', 'Hardware', 'Software', 'Development'];
 
-	const activeEntries = usesEntries.filter((entry) => entry.status === 'active');
-	const inactiveEntries = usesEntries.filter((entry) => entry.status === 'inactive');
+	let activeEntries = $derived(usesEntries.filter((entry) => entry.status === 'active'));
+	let inactiveEntries = $derived(usesEntries.filter((entry) => entry.status === 'inactive'));
 
-	const activeGroupedEntries: GroupedEntries[] = tags
-		.map((tag) => ({
-			title: tag.display,
-			entries: activeEntries
-				.filter((entry) => entry.tags.some((entryTag) => entryTag.slug === tag.slug))
-				.sort((a, b) => sortDate(a.published.raw, b.published.raw))
-		}))
-		.filter((group) => group.entries.length > 0)
-		.sort((a, b) => {
-			const indexA = groupedEntriesOrder.indexOf(a.title);
-			const indexB = groupedEntriesOrder.indexOf(b.title);
-			if (indexA === -1 && indexB === -1) return 0;
-			if (indexA === -1) return 1;
-			if (indexB === -1) return -1;
-			return indexA - indexB;
-		});
+	let activeGroupedEntries: GroupedEntries[] = $derived(
+		tags
+			.map((tag) => ({
+				title: tag.display,
+				entries: activeEntries
+					.filter((entry) => entry.tags.some((entryTag) => entryTag.slug === tag.slug))
+					.sort((a, b) => sortDate(a.published.raw, b.published.raw))
+			}))
+			.filter((group) => group.entries.length > 0)
+			.sort((a, b) => {
+				const indexA = groupedEntriesOrder.indexOf(a.title);
+				const indexB = groupedEntriesOrder.indexOf(b.title);
+				if (indexA === -1 && indexB === -1) return 0;
+				if (indexA === -1) return 1;
+				if (indexB === -1) return -1;
+				return indexA - indexB;
+			})
+	);
 </script>
 
 <Entries {path}>

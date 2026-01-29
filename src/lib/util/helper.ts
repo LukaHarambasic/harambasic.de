@@ -3,8 +3,7 @@ import type {
 	SortDirection,
 	PostSortProperty,
 	ProjectSortProperty,
-	UsesEntrySortProperty,
-	ShareableSortProperty
+	UsesEntrySortProperty
 } from '$lib/types/enums';
 import { BASE_SORT_PROPERTIES, PROJECT_SORT_PROPERTIES, SORT_DIRECTIONS } from '$lib/types/enums';
 import { format } from 'date-fns';
@@ -74,10 +73,6 @@ export function isValidProjectSortProperty(value: string): value is ProjectSortP
 }
 
 export function isValidUsesEntrySortProperty(value: string): value is UsesEntrySortProperty {
-	return isValidSortProperty(value, BASE_SORT_PROPERTIES);
-}
-
-export function isValidShareableSortProperty(value: string): value is ShareableSortProperty {
 	return isValidSortProperty(value, BASE_SORT_PROPERTIES);
 }
 

@@ -14,10 +14,6 @@
 			name: 'Projects',
 			url: '/projects'
 		},
-		// {
-		//   name: 'Shareable',
-		//   url: '/shareable'
-		// },
 		{
 			name: 'Uses',
 			url: '/uses'

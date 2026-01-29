@@ -46,7 +46,7 @@ export const TagSchema = z.object({
 	slug: z.string().min(1, 'Tag slug is required'),
 	relativePath: z.string().min(1, 'Tag relative path is required'),
 	count: z.number().int().min(0, 'Tag count cannot be negative'),
-	type: z.enum(['post', 'project', 'uses', 'shareable', 'work'])
+	type: z.enum(['post', 'project', 'uses', 'work'])
 });
 
 /**
@@ -60,7 +60,7 @@ export const EntryDateSchema = z.object({
 // ===== CONTENT STATUS AND TYPE SCHEMAS =====
 
 export const ContentStatusSchema = z.enum(['active', 'inactive', 'all']);
-export const EntryTypeSchema = z.enum(['post', 'project', 'uses', 'shareable', 'work']);
+export const EntryTypeSchema = z.enum(['post', 'project', 'uses', 'work']);
 export type ValidatedEntryType = z.infer<typeof EntryTypeSchema>;
 
 // ===== RAW ENTRY SCHEMA (Pre-processing) =====
@@ -236,15 +236,6 @@ export const UsesEntrySchema = BaseEntrySchema.extend({
 });
 
 /**
- * Shareable Schema - Bookmarks and shared links
- */
-export const ShareableSchema = BaseEntrySchema.omit({ image: true }).extend({
-	type: z.literal('shareable'),
-	url: z.string().url('Shareable must have a valid URL'),
-	comment: z.string().min(1, 'Comment is required for shareables')
-});
-
-/**
  * Position Schema - Individual positions within a work entry
  */
 export const PositionSchema = z.object({
@@ -306,12 +297,11 @@ export type BaseEntry = z.infer<typeof BaseEntrySchema>;
 export type Post = z.infer<typeof PostSchema>;
 export type Project = z.infer<typeof ProjectSchema>;
 export type UsesEntry = z.infer<typeof UsesEntrySchema>;
-export type Shareable = z.infer<typeof ShareableSchema>;
 export type Position = z.infer<typeof PositionSchema>;
 export type WorkEntry = z.infer<typeof WorkEntrySchema>;
 
 // Union type for all processed entries
-export type Entry = Post | Project | UsesEntry | Shareable | WorkEntry;
+export type Entry = Post | Project | UsesEntry | WorkEntry;
 
 // ===== SCHEMA MAPPING UTILITIES =====
 
@@ -322,7 +312,6 @@ export const ENTRY_SCHEMAS = {
 	post: PostSchema,
 	project: ProjectSchema,
 	uses: UsesEntrySchema,
-	shareable: ShareableSchema,
 	work: WorkEntrySchema
 } as const;
 

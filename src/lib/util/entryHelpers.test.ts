@@ -3,7 +3,6 @@ import { SortDirection } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { Shareable } from '$lib/types/shareable';
 import { filterByStatus, sortByProperty, filterAndSort } from './entryHelpers';
 
 const createMockPost = (overrides: Partial<Post> = {}): Post => ({
@@ -57,21 +56,6 @@ const createMockUsesEntry = (overrides: Partial<UsesEntry> = {}): UsesEntry => (
 	url: '',
 	status: 'active',
 	openSource: false,
-	...overrides
-});
-
-const createMockShareable = (overrides: Partial<Shareable> = {}): Shareable => ({
-	type: 'shareable',
-	title: 'Test Shareable',
-	description: 'A test shareable',
-	tags: [],
-	published: { raw: new Date('2024-01-01'), display: '2024-01-01' },
-	updated: { raw: new Date('2024-01-01'), display: '2024-01-01' },
-	slug: 'test-shareable',
-	relativePath: '/shareables/test-shareable',
-	fullPath: 'https://harambasic.de/shareables/test-shareable',
-	url: '',
-	comment: '',
 	...overrides
 });
 
@@ -443,19 +427,6 @@ describe('Entry Helpers', () => {
 				});
 				expect(result).toEqual([]);
 			});
-
-			it('should work with all entry types', () => {
-				const shareables: Shareable[] = [
-					createMockShareable({ title: 'Alpha Shareable' }),
-					createMockShareable({ title: 'Beta Shareable' })
-				];
-				const result = filterAndSort(shareables as any, {
-					sortProperty: 'title',
-					sortDirection: SortDirection.Asc
-				});
-				expect(result).toHaveLength(2);
-				expect(result[0].title).toBe('Alpha Shareable');
-			});
 		});
 
 		describe('overloaded function signatures with positional parameters', () => {
@@ -472,16 +443,6 @@ describe('Entry Helpers', () => {
 				expect(result.every((p) => p.status === 'active')).toBe(true);
 				expect(result[0].prio).toBe(1);
 				expect(result[1].prio).toBe(3);
-			});
-
-			it('should work with Shareables using positional parameters', () => {
-				const shareables: Shareable[] = [
-					createMockShareable({ title: 'Alpha Shareable' }),
-					createMockShareable({ title: 'Beta Shareable' })
-				];
-				const result = filterAndSort(shareables, 'all', 'title', SortDirection.Asc);
-				expect(result).toHaveLength(2);
-				expect(result[0].title).toBe('Alpha Shareable');
 			});
 
 			it('should work with UsesEntries using positional parameters with status filter', () => {

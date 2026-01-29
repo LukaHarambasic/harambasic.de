@@ -5,16 +5,14 @@ import type {
 	PostSortProperty,
 	ProjectSortProperty,
 	UsesEntrySortProperty,
-	ShareableSortProperty,
 	ProjectStatus,
-	UsesEntryStatus
+	UsesEntryStatus,
+	WorkEntrySortProperty
 } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { Shareable } from '$lib/types/shareable';
 import type { WorkEntry } from '$lib/types/workEntry';
-import type { WorkEntrySortProperty } from '$lib/types/enums';
 import { filterByTag } from './entries';
 import { sortAlphabetical } from './helper';
 
@@ -70,12 +68,6 @@ export function filterAndSort(
 	sortDirection: SortDirection
 ): Project[];
 export function filterAndSort(
-	entries: Shareable[],
-	filterTagSlug: string,
-	sortProperty: ShareableSortProperty,
-	sortDirection: SortDirection
-): Shareable[];
-export function filterAndSort(
 	entries: UsesEntry[],
 	filterTagSlug: string,
 	filterStatus: UsesEntryStatus,
@@ -103,13 +95,11 @@ export function filterAndSort<T extends BaseEntry>(
 		| PostSortProperty
 		| ProjectSortProperty
 		| UsesEntrySortProperty
-		| ShareableSortProperty
 		| WorkEntrySortProperty,
 	sortPropertyOrSortDirection?:
 		| ProjectSortProperty
 		| UsesEntrySortProperty
 		| PostSortProperty
-		| ShareableSortProperty
 		| WorkEntrySortProperty
 		| SortDirection,
 	sortDirection?: SortDirection
@@ -128,7 +118,7 @@ export function filterAndSort<T extends BaseEntry>(
 				sortDirection: sortDirection
 			};
 		} else if (sortPropertyOrSortDirection !== undefined) {
-			// Pattern: (entries, filterTagSlug, sortProperty, sortDirection) - Post or Shareable
+			// Pattern: (entries, filterTagSlug, sortProperty, sortDirection) - Post
 			options = {
 				filterTagSlug: optionsOrFilterTagSlug,
 				sortProperty: filterStatusOrSortProperty as 'title' | 'published' | 'updated' | 'priority',
@@ -152,7 +142,7 @@ export function filterAndSort<T extends BaseEntry>(
 	if (options.filterTagSlug !== undefined) {
 		filtered = filtered.filter((entry) =>
 			filterByTag(
-				entry as unknown as Post | Project | UsesEntry | Shareable | WorkEntry,
+				entry as unknown as Post | Project | UsesEntry | WorkEntry,
 				options.filterTagSlug!
 			)
 		);

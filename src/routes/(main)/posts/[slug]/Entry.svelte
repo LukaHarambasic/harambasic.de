@@ -10,7 +10,10 @@
 	}
 
 	let { post }: Props = $props();
-	const { tldr, tags, html, toc } = post;
+	let tldr = $derived(post.tldr);
+	let tags = $derived(post.tags);
+	let html = $derived(post.html);
+	let toc = $derived(post.toc);
 </script>
 
 <article class="h-entry">

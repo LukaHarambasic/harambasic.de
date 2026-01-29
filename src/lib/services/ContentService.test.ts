@@ -54,7 +54,7 @@ class MockContentService implements ContentService {
 	async validateAllContent() {
 		return {
 			overall: { total: 1, passed: 1, failed: 0, successRate: 100 },
-			byType: { post: [], project: [], uses: [], shareable: [], work: [] } as Record<
+			byType: { post: [], project: [], uses: [], work: [] } as Record<
 				EntryType,
 				ValidationResult[]
 			>,
@@ -120,7 +120,6 @@ describe('ContentService Interface', () => {
 			post: [mockPost],
 			project: [mockProject],
 			uses: [],
-			shareable: [],
 			work: []
 		});
 	});

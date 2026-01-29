@@ -1,4 +1,4 @@
-export type EntryType = 'post' | 'project' | 'uses' | 'shareable' | 'work';
+export type EntryType = 'post' | 'project' | 'uses' | 'work';
 
 // Sort direction constants and types
 export const SORT_DIRECTIONS = ['ASC', 'DESC'] as const;
@@ -24,7 +24,6 @@ type BaseSortProperty = 'title' | 'published' | 'updated';
 export type PostSortProperty = BaseSortProperty;
 export type ProjectSortProperty = BaseSortProperty | 'priority';
 export type UsesEntrySortProperty = BaseSortProperty;
-export type ShareableSortProperty = BaseSortProperty;
 export type WorkEntrySortProperty = BaseSortProperty;
 
 // Centralized default configuration
@@ -32,7 +31,6 @@ export const SORT_DEFAULTS = {
 	POST: 'published' as const,
 	PROJECT: 'priority' as const,
 	USES_ENTRY: 'published' as const,
-	SHAREABLE: 'published' as const,
 	WORK_ENTRY: 'published' as const
 } as const;
 

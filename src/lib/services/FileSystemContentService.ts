@@ -4,7 +4,12 @@ import type { EntryType } from '$lib/types/enums';
 import type { RawEntry } from '$lib/types/entry';
 import { processMarkdown } from '$lib/processors/MarkdownProcessor';
 import type { ContentService } from './ContentService';
-import type { ValidationResult, ValidatedEntryType } from '$lib/schemas';
+import type { ValidationResult, ValidatedEntryType, ContentQualityIssue } from '$lib/schemas';
+import {
+	validateRawEntry,
+	validateContentQuality,
+	validateMarkdownStructure
+} from '$lib/schemas/validation';
 import { ContentServiceError } from './ContentService';
 import { getSlug } from '$lib/util/helper';
 
@@ -28,12 +33,6 @@ async function readContentFiles(entryType: EntryType, contentRoot: string): Prom
 			})
 		);
 	} catch (error) {
-		// Handle missing directory for shareables gracefully
-		if ((error as any)?.code === 'ENOENT' && entryType === 'shareable') {
-			console.warn(`Content directory for ${entryType} not found: ${folderPath}`);
-			return [];
-		}
-
 		throw new Error(
 			`Failed to read content files from ${folderPath}: ${error instanceof Error ? error.message : String(error)}`
 		);
@@ -271,7 +270,7 @@ export class FileSystemContentService implements ContentService {
 		byType: Record<EntryType, ValidationResult[]>;
 		errors: ValidationResult[];
 	}> {
-		const entryTypes: EntryType[] = ['post', 'project', 'uses', 'shareable', 'work'];
+		const entryTypes: EntryType[] = ['post', 'project', 'uses', 'work'];
 		const byType: Record<EntryType, ValidationResult[]> = {} as Record<
 			EntryType,
 			ValidationResult[]
@@ -315,17 +314,13 @@ export class FileSystemContentService implements ContentService {
 		slug: string
 	): Promise<{
 		validation: ValidationResult;
-		qualityIssues: import('$lib/schemas').ContentQualityIssue[];
+		qualityIssues: ContentQualityIssue[];
 	} | null> {
 		try {
 			const entry = await this.getEntry(entryType, slug);
 			if (!entry) {
 				return null;
 			}
-
-			// Import validation functions
-			const { validateRawEntry, validateContentQuality, validateMarkdownStructure } =
-				await import('$lib/schemas/validation');
 
 			// Validate the entry structure
 			const validation = validateRawEntry(entry, `${entryType}/${slug}.md`);

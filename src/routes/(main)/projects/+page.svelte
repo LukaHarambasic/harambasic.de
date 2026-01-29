@@ -29,7 +29,7 @@
 
 	let { data }: Props = $props();
 
-	const [entries] = data.projects;
+	let entries = $derived(data.projects[0]);
 
 	let filteredAndSorted = $derived(
 		filterAndSort(entries, 'all', 'all', SORT_DEFAULTS.PROJECT, SortDirection.Desc)

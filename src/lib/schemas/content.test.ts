@@ -4,7 +4,6 @@ import {
 	PostSchema,
 	ProjectSchema,
 	UsesEntrySchema,
-	ShareableSchema,
 	TocNodeSchema,
 	LinkSchema,
 	ContentStatusSchema,
@@ -12,7 +11,7 @@ import {
 	getSchemaForType,
 	ENTRY_SCHEMAS
 } from './content';
-import type { RawEntry, Post, Project, UsesEntry, Shareable, TocNode, Link } from './content';
+import type { RawEntry, Post, Project, UsesEntry, TocNode, Link } from './content';
 
 describe('Content Schemas', () => {
 	describe('TocNodeSchema', () => {
@@ -116,7 +115,7 @@ describe('Content Schemas', () => {
 			expect(EntryTypeSchema.safeParse('post').success).toBe(true);
 			expect(EntryTypeSchema.safeParse('project').success).toBe(true);
 			expect(EntryTypeSchema.safeParse('uses').success).toBe(true);
-			expect(EntryTypeSchema.safeParse('shareable').success).toBe(true);
+			expect(EntryTypeSchema.safeParse('work').success).toBe(true);
 		});
 
 		test('should fail for invalid entry type', () => {
@@ -393,69 +392,11 @@ describe('Content Schemas', () => {
 		});
 	});
 
-	describe('ShareableSchema', () => {
-		const validShareable: Shareable = {
-			type: 'shareable',
-			slug: 'test-shareable',
-			relativePath: '/shareables/test-shareable',
-			fullPath: 'https://example.com/shareables/test-shareable',
-			title: 'Test Shareable',
-			description: 'This is a test shareable description',
-			tags: [
-				{
-					display: 'Article',
-					slug: 'article',
-					relativePath: '/tags/article',
-					count: 1,
-					type: 'shareable'
-				}
-			],
-			published: {
-				raw: new Date('2024-01-01'),
-				display: 'January 1, 2024'
-			},
-			updated: {
-				raw: new Date('2024-01-01'),
-				display: 'January 1, 2024'
-			},
-			url: 'https://example.com/article',
-			comment: 'This is a great article about testing'
-		};
-
-		test('should validate correct shareable', () => {
-			const result = ShareableSchema.safeParse(validShareable);
-
-			expect(result.success).toBe(true);
-			expect(result.data?.type).toBe('shareable');
-		});
-
-		test('should not require image field', () => {
-			// Shareables omit the image field from BaseEntry
-			expect('image' in validShareable).toBe(false);
-
-			const result = ShareableSchema.safeParse(validShareable);
-
-			expect(result.success).toBe(true);
-		});
-
-		test('should fail for empty comment', () => {
-			const invalidShareable = {
-				...validShareable,
-				comment: ''
-			};
-
-			const result = ShareableSchema.safeParse(invalidShareable);
-
-			expect(result.success).toBe(false);
-		});
-	});
-
 	describe('getSchemaForType', () => {
 		test('should return correct schema for each type', () => {
 			expect(getSchemaForType('post')).toBe(PostSchema);
 			expect(getSchemaForType('project')).toBe(ProjectSchema);
 			expect(getSchemaForType('uses')).toBe(UsesEntrySchema);
-			expect(getSchemaForType('shareable')).toBe(ShareableSchema);
 		});
 	});
 
@@ -464,7 +405,6 @@ describe('Content Schemas', () => {
 			expect(ENTRY_SCHEMAS.post).toBe(PostSchema);
 			expect(ENTRY_SCHEMAS.project).toBe(ProjectSchema);
 			expect(ENTRY_SCHEMAS.uses).toBe(UsesEntrySchema);
-			expect(ENTRY_SCHEMAS.shareable).toBe(ShareableSchema);
 		});
 	});
 });
