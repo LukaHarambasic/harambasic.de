@@ -1,5 +1,5 @@
 ---
-title: Techmob Show - Podcast
+title: Techmob Show (Podcast)
 description: Podast where three friends are talking tech.
 image: techmobshow.png
 imageAlt: 'Podcast cover saying: Tech Mob Show by Henry Stoll, Jakob Möller and Luka Harambasic'
