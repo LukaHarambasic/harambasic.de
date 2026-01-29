@@ -8,8 +8,8 @@
 </script>
 
 <section class="hero">
-	<h1 class="hero-title">{title}</h1>
-	<p class="hero-description">{description}</p>
+	<h1 class="title">{title}</h1>
+	<p class="description">{description}</p>
 </section>
 
 <style lang="postcss">
@@ -23,9 +23,7 @@
 		@media screen and (width <= 48rem) {
 			width: 100%;
 		}
-	}
-
-	.hero-title {
+	.title {
 		margin: 0;
 		color: var(--c-font);
 		font-family: var(--font-family);
@@ -34,8 +32,7 @@
 		line-height: 1.15;
 		letter-spacing: var(--font-letter-spacing-headline);
 	}
-
-	.hero-description {
+	.description {
 		margin: 0;
 		max-width: 65ch;
 		color: var(--c-font-accent-dark);
@@ -43,5 +40,6 @@
 		font-size: var(--font-m);
 		font-weight: 400;
 		line-height: 1.5;
+	}
 	}
 </style>
