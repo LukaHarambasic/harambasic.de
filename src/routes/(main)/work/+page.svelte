@@ -100,7 +100,7 @@
 <Entries path={data.url}>
 	{#snippet entries()}
 		<Hero
-			title="Building products that matter for the energy transition"
+			title="Building products that matter for people & the energy transition"
 			description="From Germany's COVID tracing app with 48M+ downloads to scaling Home Energy Management Systems from 0 to 1. I ship products, build automations, and occasionally write code."
 		/>
 		<div class="work-container">
