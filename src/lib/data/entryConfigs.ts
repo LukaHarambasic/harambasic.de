@@ -13,6 +13,14 @@ import { remark } from 'remark';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 
+type RawPosition = {
+	title: string;
+	startDate: string;
+	endDate: string | null;
+	content: string;
+	employmentType?: 'full-time' | 'part-time' | 'contract' | 'internship';
+};
+
 /**
  * Validate project entry with strict date requirements using Zod
  */
@@ -127,7 +135,7 @@ function validateWorkEntry(raw: RawEntry): void {
 	}
 
 	// Validate each position
-	raw.positions.forEach((position: any, index: number) => {
+	raw.positions.forEach((position: RawPosition, index: number) => {
 		if (!position.title) {
 			throw new Error(
 				`Position ${index + 1} in work entry "${slug}" is missing required 'title' field.`
@@ -257,7 +265,7 @@ export const ENTRY_CONFIGS = {
 		entryType: 'work' as const,
 		transform: (base: BaseEntryFields, raw: RawEntry): WorkEntry => {
 			// Process positions: convert markdown content to HTML
-			const positions: Position[] = (raw.positions || []).map((pos: any) => ({
+			const positions: Position[] = (raw.positions || []).map((pos: RawPosition) => ({
 				title: pos.title,
 				startDate: pos.startDate,
 				endDate: pos.endDate === null ? null : pos.endDate,

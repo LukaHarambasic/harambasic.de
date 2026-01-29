@@ -6,10 +6,11 @@
 	import type { UsesEntry } from '$lib/types/usesEntry';
 	import type { Post } from '$lib/types/post';
 	import type { PageData } from './$types';
+	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 	// import type { Shareable } from '$lib/types/shareable'
 
 	// TODO: remove eager and only load images that got randomly selected
-	const pictures = import.meta.glob(
+	const pictures: ImageGlobResult = import.meta.glob(
 		'../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
@@ -20,13 +21,9 @@
 		}
 	);
 
-	const getImage = (name: string) => {
-		const image = pictures[`../../assets/img/projects/${name}`];
-		if (!image) {
-			return {};
-		}
-		return (image as any).default || {};
-	};
+	const PROJECT_IMAGE_PATH = '../../assets/img/projects/';
+
+	const getImage = (name: string) => getImageFromGlob(pictures, PROJECT_IMAGE_PATH, name);
 
 	interface Props {
 		data: PageData;
@@ -114,14 +111,17 @@
 		</h3>
 		<ul>
 			{#each randomProjects as project}
+				{@const imageData = getImage(project.image)}
 				<li>
 					<a class="card no-spacing image" href="/projects?slug={project.slug}">
 						<Icon icon="ph:arrow-circle-right-bold" />
-						<enhanced:img
-							src={getImage(project.image)}
-							sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-							alt={project.title}
-						/>
+						{#if imageData}
+							<enhanced:img
+								src={imageData}
+								sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+								alt={project.title}
+							/>
+						{/if}
 						<div class="content">
 							<strong>{project.title}</strong>
 							<p>{project.description}</p>

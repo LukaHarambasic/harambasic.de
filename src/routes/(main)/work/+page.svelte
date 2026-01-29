@@ -1,12 +1,13 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import type { WorkEntry } from '$lib/types/workEntry';
-	import type { Position } from '$lib/types/workEntry';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import Hero from '$lib/components/Hero/Hero.svelte';
 	import Icon from '@iconify/svelte';
+	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
+	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
 
-	const pictures = import.meta.glob(
+	const pictures: ImageGlobResult = import.meta.glob(
 		'../../../assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
@@ -17,25 +18,9 @@
 		}
 	);
 
-	const getImage = (name: string) => {
-		if (!name || name === 'TODO') {
-			return null;
-		}
-		const imagePath = `../../../assets/img/work/${name}`;
-		const image = pictures[imagePath];
-		if (!image) {
-			return null;
-		}
-		const imageData = (image as any).default;
-		if (!imageData || typeof imageData !== 'object' || Object.keys(imageData).length === 0) {
-			return null;
-		}
-		return imageData;
-	};
+	const WORK_IMAGE_PATH = '../../../assets/img/work/';
 
-	const isSvg = (name: string) => {
-		return name.endsWith('.svg');
-	};
+	const getImage = (name: string) => getImageFromGlob(pictures, WORK_IMAGE_PATH, name);
 
 	interface WorkCard {
 		entry: WorkEntry;
@@ -79,21 +64,6 @@
 		return { current, past };
 	};
 
-	// Format date for display (MMM YYYY)
-	const formatDate = (dateString: string): string => {
-		const date = new Date(dateString);
-		return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-	};
-
-	// Get sorted positions for display (most recent first)
-	const getSortedPositions = (entry: WorkEntry): Position[] => {
-		return [...entry.positions].sort((a, b) => {
-			const dateA = new Date(a.startDate).getTime();
-			const dateB = new Date(b.startDate).getTime();
-			return dateB - dateA;
-		});
-	};
-
 	const { current, past } = $derived(organizeEntries(entries));
 </script>
 
@@ -105,7 +75,7 @@
 		/>
 		<div class="work-container">
 			{#if current}
-				{@const sortedPositions = getSortedPositions(current.entry)}
+				{@const sortedPositions = sortPositionsByDate(current.entry.positions)}
 				{@const relatedProjects = getRelatedProjects(current.entry)}
 				<a
 					href="/work/{current.entry.slug}"
@@ -116,14 +86,13 @@
 						<div class="header-content">
 							<div class="company-header">
 								{#if current.entry.image && current.entry.image !== 'TODO'}
-									{@const imageData = isSvg(current.entry.image)
-										? true
-										: getImage(current.entry.image)}
-									{#if imageData}
+									{@const isSvg = isSvgImage(current.entry.image)}
+									{@const imageData = isSvg ? null : getImage(current.entry.image)}
+									{#if isSvg || imageData}
 										<div class="company-logo">
-											{#if isSvg(current.entry.image)}
+											{#if isSvg}
 												<img src="/work/{current.entry.image}" alt={current.entry.title} />
-											{:else}
+											{:else if imageData}
 												<enhanced:img
 													src={imageData}
 													sizes="(min-width:768px) 64px, 48px"
@@ -149,8 +118,8 @@
 								<div class="position-row">
 									<span class="position-title">{position.title}</span>
 									<span class="position-dates">
-										{formatDate(position.startDate)} – {position.endDate
-											? formatDate(position.endDate)
+										{formatDateDisplay(position.startDate)} – {position.endDate
+											? formatDateDisplay(position.endDate)
 											: 'Present'}
 									</span>
 								</div>
@@ -179,7 +148,7 @@
 			{#if past.length > 0}
 				<div class="work-grid">
 					{#each past as card}
-						{@const sortedPositions = getSortedPositions(card.entry)}
+						{@const sortedPositions = sortPositionsByDate(card.entry.positions)}
 						{@const relatedProjects = getRelatedProjects(card.entry)}
 						<a
 							href="/work/{card.entry.slug}"
@@ -190,14 +159,13 @@
 								<div class="header-content">
 									<div class="company-header">
 										{#if card.entry.image && card.entry.image !== 'TODO'}
-											{@const imageData = isSvg(card.entry.image)
-												? true
-												: getImage(card.entry.image)}
-											{#if imageData}
+											{@const isSvg = isSvgImage(card.entry.image)}
+											{@const imageData = isSvg ? null : getImage(card.entry.image)}
+											{#if isSvg || imageData}
 												<div class="company-logo">
-													{#if isSvg(card.entry.image)}
+													{#if isSvg}
 														<img src="/work/{card.entry.image}" alt={card.entry.title} />
-													{:else}
+													{:else if imageData}
 														<enhanced:img
 															src={imageData}
 															sizes="(min-width:768px) 64px, 48px"
@@ -223,8 +191,8 @@
 										<div class="position-row">
 											<span class="position-title">{position.title}</span>
 											<span class="position-dates">
-												{formatDate(position.startDate)} – {position.endDate
-													? formatDate(position.endDate)
+												{formatDateDisplay(position.startDate)} – {position.endDate
+													? formatDateDisplay(position.endDate)
 													: 'Present'}
 											</span>
 										</div>

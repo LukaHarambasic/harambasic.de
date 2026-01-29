@@ -2,8 +2,9 @@
 	import type { Project } from '$lib/types/project';
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
+	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 
-	const pictures = import.meta.glob(
+	const pictures: ImageGlobResult = import.meta.glob(
 		'../../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
@@ -14,13 +15,9 @@
 		}
 	);
 
-	const getImage = (name: string) => {
-		const image = pictures[`../../../../assets/img/projects/${name}`];
-		if (!image) {
-			return {};
-		}
-		return (image as any).default || {};
-	};
+	const PROJECT_IMAGE_PATH = '../../../../assets/img/projects/';
+
+	const getImage = (name: string) => getImageFromGlob(pictures, PROJECT_IMAGE_PATH, name);
 
 	interface Props {
 		entry: Project;
@@ -28,14 +25,18 @@
 	}
 
 	let { entry, relatedWork = [] }: Props = $props();
+
+	const imageData = $derived(getImage(entry.image));
 </script>
 
 <article class="h-entry">
-	<enhanced:img
-		src={getImage(entry.image)}
-		sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-		alt={entry.title}
-	/>
+	{#if imageData}
+		<enhanced:img
+			src={imageData}
+			sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+			alt={entry.title}
+		/>
+	{/if}
 	<div class="content">
 		<div class="rich-text">
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->

@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { WorkEntry } from '$lib/types/workEntry';
-	import type { Position } from '$lib/types/workEntry';
 	import type { Project } from '$lib/types/project';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import Icon from '@iconify/svelte';
+	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
+	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
 
-	const pictures = import.meta.glob(
+	const pictures: ImageGlobResult = import.meta.glob(
 		'../../../../assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
@@ -16,7 +17,7 @@
 		}
 	);
 
-	const projectPictures = import.meta.glob(
+	const projectPictures: ImageGlobResult = import.meta.glob(
 		'../../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
@@ -27,41 +28,13 @@
 		}
 	);
 
-	const getImage = (name: string) => {
-		if (!name || name === 'TODO') {
-			return null;
-		}
-		const imagePath = `../../../../assets/img/work/${name}`;
-		const image = pictures[imagePath];
-		if (!image) {
-			return null;
-		}
-		const imageData = (image as any).default;
-		if (!imageData || typeof imageData !== 'object' || Object.keys(imageData).length === 0) {
-			return null;
-		}
-		return imageData;
-	};
+	const WORK_IMAGE_PATH = '../../../../assets/img/work/';
+	const PROJECT_IMAGE_PATH = '../../../../assets/img/projects/';
 
-	const getProjectImage = (name: string) => {
-		if (!name || name === 'TODO') {
-			return null;
-		}
-		const imagePath = `../../../../assets/img/projects/${name}`;
-		const image = projectPictures[imagePath];
-		if (!image) {
-			return null;
-		}
-		const imageData = (image as any).default;
-		if (!imageData || typeof imageData !== 'object' || Object.keys(imageData).length === 0) {
-			return null;
-		}
-		return imageData;
-	};
+	const getImage = (name: string) => getImageFromGlob(pictures, WORK_IMAGE_PATH, name);
 
-	const isSvg = (name: string) => {
-		return name.endsWith('.svg');
-	};
+	const getProjectImage = (name: string) =>
+		getImageFromGlob(projectPictures, PROJECT_IMAGE_PATH, name);
 
 	interface Props {
 		entry: WorkEntry;
@@ -70,34 +43,20 @@
 
 	let { entry, relatedProjects = [] }: Props = $props();
 
-	// Format date for display (MMM YYYY)
-	const formatDate = (dateString: string): string => {
-		const date = new Date(dateString);
-		return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-	};
-
-	// Get sorted positions for display (most recent first)
-	const getSortedPositions = (entry: WorkEntry): Position[] => {
-		return [...entry.positions].sort((a, b) => {
-			const dateA = new Date(a.startDate).getTime();
-			const dateB = new Date(b.startDate).getTime();
-			return dateB - dateA;
-		});
-	};
-
-	const sortedPositions = $derived(getSortedPositions(entry));
+	const sortedPositions = $derived(sortPositionsByDate(entry.positions));
 	const firstPosition = $derived(sortedPositions[0] || null);
 </script>
 
 <article class="h-entry work-entry">
 	<header class="company-header">
 		{#if entry.image && entry.image !== 'TODO'}
-			{@const imageData = isSvg(entry.image) ? true : getImage(entry.image)}
-			{#if imageData}
+			{@const isSvg = isSvgImage(entry.image)}
+			{@const imageData = isSvg ? null : getImage(entry.image)}
+			{#if isSvg || imageData}
 				<div class="company-icon">
-					{#if isSvg(entry.image)}
+					{#if isSvg}
 						<img src="/work/{entry.image}" alt={entry.title} />
-					{:else}
+					{:else if imageData}
 						<enhanced:img src={imageData} sizes="(min-width:768px) 64px, 48px" alt={entry.title} />
 					{/if}
 				</div>
@@ -155,9 +114,10 @@
 					{/if}
 				</div>
 				<div class="position-dates">
-					<span>{formatDate(firstPosition.startDate)}</span>
+					<span>{formatDateDisplay(firstPosition.startDate)}</span>
 					<span>–</span>
-					<span>{firstPosition.endDate ? formatDate(firstPosition.endDate) : 'Present'}</span>
+					<span>{firstPosition.endDate ? formatDateDisplay(firstPosition.endDate) : 'Present'}</span
+					>
 				</div>
 			</header>
 			<div class="position-content rich-text">
@@ -179,9 +139,9 @@
 							{/if}
 						</div>
 						<div class="position-dates">
-							<span>{formatDate(position.startDate)}</span>
+							<span>{formatDateDisplay(position.startDate)}</span>
 							<span>–</span>
-							<span>{position.endDate ? formatDate(position.endDate) : 'Present'}</span>
+							<span>{position.endDate ? formatDateDisplay(position.endDate) : 'Present'}</span>
 						</div>
 					</header>
 					<div class="position-content rich-text">

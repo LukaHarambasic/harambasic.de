@@ -4,6 +4,8 @@ import {
 	sortDirectionsToArray,
 	sortPropertyToArray,
 	formatDate,
+	formatDateDisplay,
+	sortPositionsByDate,
 	getSlug,
 	sortAlphabetical,
 	sortDate,
@@ -52,6 +54,26 @@ test('getSlug - string to slug', async () => {
 test('formatDate - date to formatted string', async () => {
 	expect(formatDate(new Date('1996-02-18'))).toBe('1996-02-18');
 	expect(formatDate(new Date('1996-02-18T00:00'))).toBe('1996-02-18');
+});
+
+test('formatDateDisplay - date string to display format (MMM YYYY)', async () => {
+	expect(formatDateDisplay('2024-01-15')).toBe('Jan 2024');
+	expect(formatDateDisplay('2023-12-01')).toBe('Dec 2023');
+	expect(formatDateDisplay('2025-06-30')).toBe('Jun 2025');
+});
+
+test('sortPositionsByDate - sort positions by start date (most recent first)', async () => {
+	const positions = [
+		{ startDate: '2020-01-01', title: 'Old' },
+		{ startDate: '2024-01-01', title: 'Recent' },
+		{ startDate: '2022-06-15', title: 'Middle' }
+	];
+	const sorted = sortPositionsByDate(positions);
+	expect(sorted[0].title).toBe('Recent');
+	expect(sorted[1].title).toBe('Middle');
+	expect(sorted[2].title).toBe('Old');
+	// Verify original array is not mutated
+	expect(positions[0].title).toBe('Old');
 });
 
 test('sortAlphabetical - a to z', async () => {
