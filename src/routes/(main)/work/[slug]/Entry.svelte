@@ -229,7 +229,7 @@
 
 	.company-header {
 		display: flex;
-		margin-bottom: var(--l);
+		margin-bottom: var(--m);
 		align-items: center;
 		gap: var(--m);
 	}
@@ -238,7 +238,6 @@
 		display: flex;
 		width: 4rem;
 		height: 4rem;
-		border-radius: var(--border-radius-small);
 		flex-shrink: 0;
 		flex-direction: row;
 		justify-content: center;
@@ -251,6 +250,7 @@
 			padding: 0;
 			width: 100%;
 			height: 100%;
+			border-radius: var(--border-radius-small);
 			object-fit: contain;
 		}
 	}
