@@ -11,7 +11,6 @@ import { getUniqueTags } from '$lib/util/entries';
 import { transformEntry } from '$lib/util/entryTransformer';
 import { ENTRY_CONFIGS } from './entryConfigs';
 
-// Type map for better type inferenc
 type EntryTypeMap = {
 	post: Post;
 	project: Project;
