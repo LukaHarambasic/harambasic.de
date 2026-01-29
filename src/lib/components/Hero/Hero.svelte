@@ -1,15 +1,13 @@
 <script lang="ts">
 	interface Props {
-		label: string;
 		title: string;
 		description: string;
 	}
 
-	let { label, title, description }: Props = $props();
+	let { title, description }: Props = $props();
 </script>
 
 <section class="hero">
-	<span class="hero-label">{label}</span>
 	<h1 class="hero-title">{title}</h1>
 	<p class="hero-description">{description}</p>
 </section>
@@ -25,17 +23,6 @@
 		@media screen and (width <= 48rem) {
 			width: 100%;
 		}
-	}
-
-	.hero-label {
-		display: block;
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-s);
-		font-weight: 400;
-		line-height: 1.5;
-		letter-spacing: 0.15em;
-		text-transform: uppercase;
 	}
 
 	.hero-title {

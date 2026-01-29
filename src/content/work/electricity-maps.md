@@ -1,6 +1,6 @@
 ---
 title: Electricity Maps
-description: Platform providing real-time and historical electricity data to help organizations make informed decisions about their carbon footprint and energy consumption.
+description: The world’s most comprehensive  electricity data platform. Helping organizations make informed decisions about their energy usage.
 image: electricity_maps.png
 published: 2025-10-01
 updated: 2025-10-01
@@ -11,7 +11,7 @@ positions:
     startDate: 2025-10-01
     endDate: null
     content: |
-      Currently working as Product Release Manager at Electricity Maps.
+      Currently working as Product Release Manager at Electricity Maps. More information will follow soon.
 relatedProjects: []
 tags:
   - Product Management

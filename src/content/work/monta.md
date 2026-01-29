@@ -1,6 +1,6 @@
 ---
 title: Monta
-description: EV charging platform building the operating system for charge point operators, enabling seamless charging experiences and smart energy management.
+description: A software platform to manage and scale EV charging infrastructure for businesses, cities, and operators. It covers charge point management, payments, roaming, and energy management.
 image: monta.jpeg
 published: 2022-08-01
 updated: 2025-09-30

@@ -1,6 +1,6 @@
 ---
 title: GreenKayak
-description: Environmental organization connecting volunteers with free kayaking opportunities in exchange for cleaning waterways and oceans.
+description: GreenKayak is an environmental NGO that engages people in the fight for cleaner oceans. Collect trash and therefore paddle for free.
 image: green_kayak.png
 published: 2022-09-01
 updated: 2023-04-30
