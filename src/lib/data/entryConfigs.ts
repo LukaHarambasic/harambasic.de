@@ -256,23 +256,23 @@ export const ENTRY_CONFIGS = {
 	work: {
 		entryType: 'work' as const,
 		transform: (base: BaseEntryFields, raw: RawEntry): WorkEntry => {
-		// Process positions: convert markdown content to HTML
-		const positions: Position[] = (raw.positions || []).map((pos: any) => ({
-			title: pos.title,
-			startDate: pos.startDate,
-			endDate: pos.endDate === null ? null : pos.endDate,
-			content: processPositionContent(pos.content || ''),
-			employmentType: pos.employmentType || raw.employmentType || undefined
-		}));
+			// Process positions: convert markdown content to HTML
+			const positions: Position[] = (raw.positions || []).map((pos: any) => ({
+				title: pos.title,
+				startDate: pos.startDate,
+				endDate: pos.endDate === null ? null : pos.endDate,
+				content: processPositionContent(pos.content || ''),
+				employmentType: pos.employmentType || raw.employmentType || undefined
+			}));
 
-		return {
-			...base,
-			location: raw.location || '',
-			employmentType: raw.employmentType as WorkEntry['employmentType'] | undefined,
-			positions,
-			relatedProjects: raw.relatedProjects || [],
-			html: raw.html || ''
-		};
+			return {
+				...base,
+				location: raw.location || '',
+				employmentType: raw.employmentType as WorkEntry['employmentType'] | undefined,
+				positions,
+				relatedProjects: raw.relatedProjects || [],
+				html: raw.html || ''
+			};
 		},
 		validate: validateWorkEntry
 	} satisfies EntryTransformConfig<WorkEntry>

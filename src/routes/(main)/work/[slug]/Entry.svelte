@@ -98,11 +98,7 @@
 					{#if isSvg(entry.image)}
 						<img src="/work/{entry.image}" alt={entry.title} />
 					{:else}
-						<enhanced:img
-							src={imageData}
-							sizes="(min-width:768px) 64px, 48px"
-							alt={entry.title}
-						/>
+						<enhanced:img src={imageData} sizes="(min-width:768px) 64px, 48px" alt={entry.title} />
 					{/if}
 				</div>
 			{/if}
@@ -150,7 +146,7 @@
 	{/if}
 
 	{#if firstPosition}
-		<section class="position-section">
+		<section class="position-section first-position">
 			<header class="position-header">
 				<div class="position-title-group">
 					<h2 class="position-title">{firstPosition.title}</h2>
@@ -302,16 +298,20 @@
 		margin-bottom: var(--l);
 		width: 100%;
 		flex-direction: column;
-		gap: var(--xl);
+		gap: var(--l);
 	}
 
 	.position-section {
 		display: flex;
-		margin-bottom: var(--xl);
-		padding-bottom: var(--xl);
+		margin-bottom: var(--l);
+		padding-bottom: var(--l);
 		border-bottom: 1px solid var(--c-surface-accent);
 		flex-direction: column;
 		gap: var(--s);
+		&.first-position {
+			margin-top: var(--l);
+			border-bottom: none;
+		}
 		&:last-child {
 			padding-bottom: 0;
 			border-bottom: none;

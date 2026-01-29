@@ -21,7 +21,9 @@
 	let { children }: Props = $props();
 
 	let { title, subtitle, description, published, relativePath, permalink } = $derived($page.data);
-	let isWorkDetailPage = $derived($page.url.pathname.startsWith('/work/') && $page.url.pathname !== '/work');
+	let isWorkDetailPage = $derived(
+		$page.url.pathname.startsWith('/work/') && $page.url.pathname !== '/work'
+	);
 
 	// needs to be here until the following issue in vite is resolved and included in an sveltekit release
 	// https://github.com/sveltejs/kit/issues/5240
