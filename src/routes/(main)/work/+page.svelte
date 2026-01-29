@@ -3,6 +3,7 @@
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import type { Position } from '$lib/types/workEntry';
 	import Entries from '$lib/components/Entries/Entries.svelte';
+	import Hero from '$lib/components/Hero/Hero.svelte';
 	import Icon from '@iconify/svelte';
 
 	const pictures = import.meta.glob(
@@ -98,6 +99,11 @@
 
 <Entries path={data.url}>
 	{#snippet entries()}
+		<Hero
+			label="Product Manager & Builder"
+			title="Building products that matter for the energy transition"
+			description="From leading Germany's COVID tracing app with 48M+ downloads to scaling Home Energy Management Systems. I ship products, build automations, and occasionally write code I later regret."
+		/>
 		<div class="work-container">
 			{#if current}
 				{@const sortedPositions = getSortedPositions(current.entry)}

@@ -1,5 +1,5 @@
 ---
-title: Corona-Warn-App
+title: Corona-Warn-App App
 description: App to trace infection chains of COVID-19.
 image: coronawarnapp.png
 imageAlt: First screen of the Corona Warn App
