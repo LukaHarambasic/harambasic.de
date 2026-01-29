@@ -37,7 +37,6 @@ export function formatDateDisplay(dateString: string): string {
 	return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 }
 
-
 export function sortPositionsByDate<T extends { startDate: string }>(positions: T[]): T[] {
 	return [...positions].sort((a, b) => {
 		const dateA = new Date(a.startDate).getTime();
