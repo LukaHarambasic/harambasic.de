@@ -23,23 +23,23 @@
 		@media screen and (width <= 48rem) {
 			width: 100%;
 		}
-	.title {
-		margin: 0;
-		color: var(--c-font);
-		font-family: var(--font-family);
-		font-size: clamp(2rem, 5vw, 3.5rem);
-		font-weight: 900;
-		line-height: 1.15;
-		letter-spacing: var(--font-letter-spacing-headline);
-	}
-	.description {
-		margin: 0;
-		max-width: 65ch;
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-m);
-		font-weight: 400;
-		line-height: 1.5;
-	}
+		.title {
+			margin: 0;
+			color: var(--c-font);
+			font-family: var(--font-family);
+			font-size: clamp(2rem, 5vw, 3.5rem);
+			font-weight: 900;
+			line-height: 1.15;
+			letter-spacing: var(--font-letter-spacing-headline);
+		}
+		.description {
+			margin: 0;
+			max-width: 65ch;
+			color: var(--c-font-accent-dark);
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 400;
+			line-height: 1.5;
+		}
 	}
 </style>
