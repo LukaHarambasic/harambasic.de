@@ -2,7 +2,7 @@ import type { EntryType } from '$lib/types/enums';
 import type { Entry } from '$lib/types/entry';
 
 export function generateXml(entries: Entry[], entryType: EntryType) {
-	const folderName = entryType === 'uses' ? 'uses' : `${entryType}s`;
+	const folderName = entryType === 'uses' || entryType === 'work' ? entryType : `${entryType}s`;
 	const type = folderName.charAt(0).toUpperCase() + folderName.slice(1);
 	const body = entries
 		.map(
