@@ -6,32 +6,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Core Development
 
-- `npm run dev` - Start development server
-- `npm run build` - Create production build
-- `npm run preview` - Preview production build
+- `bun run dev` - Start development server
+- `bun run build` - Create production build
+- `bun run preview` - Preview production build
 
 ### Code Quality
 
-- `npm run lint` - Check formatting and linting (Prettier + ESLint + CSS)
-- `npm run lint:fix` - Fix linting issues automatically
-- `npm run lint:css` - Check CSS property ordering and standards
-- `npm run format` - Format code with Prettier and CSS
-- `npm run format:css` - Format CSS files with property ordering
-- `npm run check` - Run Svelte type checking
-- `npm run check:watch` - Run Svelte type checking in watch mode
+- `bun run lint` - Check formatting and linting (Prettier + ESLint + CSS)
+- `bun run lint:fix` - Fix linting issues automatically
+- `bun run lint:css` - Check CSS property ordering and standards
+- `bun run format` - Format code with Prettier and CSS
+- `bun run format:css` - Format CSS files with property ordering
+- `bun run check` - Run Svelte type checking
+- `bun run check:watch` - Run Svelte type checking in watch mode
 
 ### Testing
 
-- `npm run test` - Run Vitest unit tests
-- `npm run test:ui` - Run Playwright end-to-end tests (builds and previews first)
+- `bun run test` - Run Vitest unit tests
+- `bun run test:ui` - Run Playwright end-to-end tests (builds and previews first)
 
 ### Content Management Scripts
 
-- `npm run newPost` - Generate new blog post scaffold
-- `npm run generateFavicons` - Fetch and generate favicon files
-- `npm run socialMedia:auto` - Auto-generate social media previews
-- `npm run socialMedia:manual` - Generate social media previews manually
-- `npm run generateCardImages` - Generate card images (requires .env file)
+- `bun run newPost` - Generate new blog post scaffold
+- `bun run generateFavicons` - Fetch and generate favicon files
+- `bun run socialMedia:auto` - Auto-generate social media previews
+- `bun run socialMedia:manual` - Generate social media previews manually
+- `bun run generateCardImages` - Generate card images (requires .env file)
 
 ### Git Hooks & Quality Assurance
 
@@ -377,9 +377,9 @@ This project enforces standardized CSS property ordering using `postcss-sorting`
 
 ### CSS Linting Commands
 
-- **`npm run format:css`** - Automatically sorts CSS properties according to standards
-- **`npm run lint:css`** - Validates CSS property ordering and reports violations
-- **Integration** - CSS linting is automatically included in `npm run lint` and `npm run format`
+- **`bun run format:css`** - Automatically sorts CSS properties according to standards
+- **`bun run lint:css`** - Validates CSS property ordering and reports violations
+- **Integration** - CSS linting is automatically included in `bun run lint` and `bun run format`
 
 ### Quality Gates
 
@@ -387,7 +387,7 @@ CSS quality is enforced at multiple levels:
 
 1. **Pre-commit Hook** - Automatically formats and validates CSS before commits
 2. **GitHub Actions** - CI/CD pipeline includes CSS linting checks
-3. **Development** - CSS formatting available on-demand via npm scripts
+3. **Development** - CSS formatting available on-demand via bun scripts
 
 #### PostCSS Configuration
 
@@ -415,29 +415,29 @@ This repository uses **Husky** to enforce strict quality standards through autom
 
 #### Required Quality Checks (runs automatically on each commit):
 
-1. **Code Formatting** (`npm run format`)
+1. **Code Formatting** (`bun run format`)
    - Prettier auto-formatting applied to all files
    - CSS property ordering and formatting via PostCSS
    - Modified files automatically staged after formatting
 
-2. **Linting with Auto-Fix** (`npm run lint:fix`)
+2. **Linting with Auto-Fix** (`bun run lint:fix`)
    - ESLint rules applied with automatic fixes
    - Modified files automatically staged after linting
 
-3. **Final Lint Verification** (`npm run lint`)
+3. **Final Lint Verification** (`bun run lint`)
    - Ensures all linting issues are resolved (ESLint + CSS)
    - Validates CSS property ordering standards
    - Fails if unfixable issues remain
 
-4. **Type Checking** (`npm run check`)
+4. **Type Checking** (`bun run check`)
    - Svelte and TypeScript type validation
    - Must pass with zero type errors
 
-5. **Unit Tests** (`npm run test`)
+5. **Unit Tests** (`bun run test`)
    - All Vitest unit tests must pass
    - Zero tolerance for failing tests
 
-6. **Build Verification** (`npm run build`)
+6. **Build Verification** (`bun run build`)
    - Production build must complete successfully
    - Ensures no build-time errors
 
@@ -495,12 +495,12 @@ Git hooks in this repository are **mandatory quality gates** and must NEVER be b
 Run individual quality checks manually:
 
 ```bash
-npm run format      # Fix formatting
-npm run lint:fix    # Fix linting
-npm run lint        # Check linting
-npm run check       # Type checking
-npm run test        # Run tests
-npm run build       # Verify build
+bun run format      # Fix formatting
+bun run lint:fix    # Fix linting
+bun run lint        # Check linting
+bun run check       # Type checking
+bun run test        # Run tests
+bun run build       # Verify build
 ```
 
 #### Husky Hook Files:

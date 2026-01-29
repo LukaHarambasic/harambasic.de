@@ -17,23 +17,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: npm ci || npm install
+        run: bun install
 
       - name: Run linting
-        run: npm run lint
+        run: bun run lint
 
       - name: Run tests
-        run: npm run test
+        run: bun run test
 
       - name: Type checking
-        run: npm run check || echo "Type checking failed - known issue from merge, continuing..."
+        run: bun run check || echo "Type checking failed - known issue from merge, continuing..."
 
       - name: Build verification
-        run: npm run build
+        run: bun run build

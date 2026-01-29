@@ -4,7 +4,7 @@
 if [ -e .commit ]
     then
     rm .commit
-    npm run socialMedia:auto
+    bun run socialMedia:auto
     git add .
     git commit --amend -C HEAD --no-verify
 fi
