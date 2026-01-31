@@ -97,15 +97,12 @@
 		color: var(--c-current-work-text);
 	}
 
-	/* Link icon: top-right, inside small rounded square (match reference: light box on default, dark on featured) */
+	/* Link icon: top-right, no border */
 	.base-card[href] :global(.card-link),
 	.base-card[href] :global(.external-link) {
 		display: flex;
 		width: 1.5rem;
 		height: 1.5rem;
-		border: 1px solid var(--c-surface-accent);
-		border-radius: var(--border-radius-small);
-		background: var(--c-light);
 		flex-shrink: 0;
 		justify-content: center;
 		align-items: center;
@@ -120,8 +117,6 @@
 	}
 	.base-card.featured[href] :global(.card-link),
 	.base-card.featured[href] :global(.external-link) {
-		border-color: rgba(255, 255, 255, 0.25);
-		background: rgba(255, 255, 255, 0.15);
 		color: var(--c-current-work-text);
 	}
 	.base-card.featured[href]:hover :global(.card-link),
@@ -242,14 +237,19 @@
 	}
 	.base-card.withIcon :global(.card-metadata) {
 		margin-bottom: var(--m);
+		width: 100%;
+		min-width: 0;
 	}
 	.base-card.withIcon :global(.card-positions) {
 		display: flex;
+		width: 100%;
+		min-width: 0;
 		flex-direction: column;
 		gap: var(--xs);
 	}
 	.base-card.withIcon :global(.position-row) {
 		display: grid;
+		width: 100%;
 		align-items: baseline;
 		gap: var(--m);
 		grid-template-columns: 1fr auto;
@@ -262,6 +262,7 @@
 		color: rgba(255, 255, 255, 0.8);
 	}
 	.base-card.withIcon :global(.position-title) {
+		min-width: 0;
 		font-weight: 500;
 	}
 	.base-card.withIcon :global(.position-dates) {
@@ -287,8 +288,11 @@
 		color: var(--c-current-work-text);
 	}
 	.base-card.withIcon :global(.card-footer) {
+		display: block;
 		margin-top: auto;
 		padding-top: var(--m);
+		width: 100%;
+		box-sizing: border-box;
 		border-top: 1px solid var(--c-surface-accent);
 		color: var(--c-font-accent-dark);
 		font-family: var(--font-family);
@@ -299,6 +303,10 @@
 	.base-card.featured.withIcon :global(.card-footer) {
 		border-top-color: rgba(255, 255, 255, 0.2);
 		color: var(--c-current-work-text);
+	}
+	.base-card.withIcon :global(.card-footer .project-row) {
+		display: block;
+		width: 100%;
 	}
 	.base-card.withIcon.noSpacing :global(.card-header) {
 		margin: var(--l);
@@ -313,11 +321,13 @@
 		margin-right: var(--l);
 		margin-left: var(--l);
 	}
+
+	/* noSpacing: card has padding 0; footer stays full width with inner padding */
 	.base-card.withIcon.noSpacing :global(.card-footer) {
-		margin-right: var(--l);
-		margin-left: var(--l);
-		padding-right: 0;
-		padding-left: 0;
+		margin-right: 0;
+		margin-left: 0;
+		padding-right: var(--l);
+		padding-left: var(--l);
 	}
 
 	/* --- Layout: withLogo (legacy, same structure as withIcon for migration) — 3rem icon in header */

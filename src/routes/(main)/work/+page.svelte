@@ -133,17 +133,19 @@
 						<p>{current.entry.description}</p>
 					</div>
 					<div class="card-footer">
-						{#if relatedProjects.length > 0}
-							<span class="related-projects">
-								{#each relatedProjects as project, index}
-									<span>{project.title}</span>
-									{#if index < relatedProjects.length - 1},
-									{/if}
-								{/each}
-							</span>
-						{:else}
-							<span class="no-projects">No projects</span>
-						{/if}
+						<div class="project-row">
+							{#if relatedProjects.length > 0}
+								<span class="related-projects">
+									{#each relatedProjects as project, index}
+										<span>{project.title}</span>
+										{#if index < relatedProjects.length - 1},
+										{/if}
+									{/each}
+								</span>
+							{:else}
+								<span class="no-projects">No projects</span>
+							{/if}
+						</div>
 					</div>
 				</BaseCard>
 			{/if}
@@ -208,17 +210,19 @@
 								<p>{card.entry.description}</p>
 							</div>
 							<div class="card-footer">
-								{#if relatedProjects.length > 0}
-									<span class="related-projects">
-										{#each relatedProjects as project, index}
-											<span>{project.title}</span>
-											{#if index < relatedProjects.length - 1},
-											{/if}
-										{/each}
-									</span>
-								{:else}
-									<span class="no-projects">No projects</span>
-								{/if}
+								<div class="project-row">
+									{#if relatedProjects.length > 0}
+										<span class="related-projects">
+											{#each relatedProjects as project, index}
+												<span>{project.title}</span>
+												{#if index < relatedProjects.length - 1},
+												{/if}
+											{/each}
+										</span>
+									{:else}
+										<span class="no-projects">No projects</span>
+									{/if}
+								</div>
 							</div>
 						</BaseCard>
 					{/each}
