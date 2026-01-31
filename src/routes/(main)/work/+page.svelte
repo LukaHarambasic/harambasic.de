@@ -3,6 +3,7 @@
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import Hero from '$lib/components/Hero/Hero.svelte';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
 	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
@@ -77,9 +78,11 @@
 			{#if current}
 				{@const sortedPositions = sortPositionsByDate(current.entry.positions)}
 				{@const relatedProjects = getRelatedProjects(current.entry)}
-				<a
+				<BaseCard
+					element="a"
 					href="/work/{current.entry.slug}"
-					class="work-card current-card"
+					variant="featured"
+					class="withIcon current-card"
 					aria-label="View details for {current.entry.title}"
 				>
 					<div class="card-header">
@@ -142,7 +145,7 @@
 							<span class="no-projects">No projects</span>
 						{/if}
 					</div>
-				</a>
+				</BaseCard>
 			{/if}
 
 			{#if past.length > 0}
@@ -150,9 +153,11 @@
 					{#each past as card}
 						{@const sortedPositions = sortPositionsByDate(card.entry.positions)}
 						{@const relatedProjects = getRelatedProjects(card.entry)}
-						<a
+						<BaseCard
+							element="a"
 							href="/work/{card.entry.slug}"
-							class="work-card past-card"
+							variant="default"
+							class="withIcon past-card"
 							aria-label="View details for {card.entry.title}"
 						>
 							<div class="card-header">
@@ -215,7 +220,7 @@
 									<span class="no-projects">No projects</span>
 								{/if}
 							</div>
-						</a>
+						</BaseCard>
 					{/each}
 				</div>
 			{/if}
@@ -234,36 +239,11 @@
 		gap: var(--xl);
 	}
 
-	.work-card {
-		display: flex;
-		position: relative;
-		padding: var(--l);
-		border: 1px solid var(--c-surface-accent);
-		border-radius: var(--border-radius);
-		box-shadow: var(--box-shadow);
-		background: var(--c-light);
-		flex-direction: column;
-		gap: 0;
-		color: inherit;
-		text-decoration: none;
-		transition: var(--transition);
-		cursor: pointer;
-	}
-
-	.current-card {
+	:global(.current-card) {
 		margin: 0 auto;
 		width: 61.8%;
-		border-width: 2px;
-		border-color: rgba(255, 255, 255, 0.2);
-		background: var(--c-current-work-bg);
 		@media screen and (width <= 48rem) {
 			width: 100%;
-		}
-		&:hover {
-			transform: scale(1.02);
-			.external-link {
-				transform: translateY(-2px) translateX(2px);
-			}
 		}
 		&:focus {
 			outline: 2px solid var(--c-current-work-text);
@@ -271,208 +251,12 @@
 		}
 	}
 
-	.past-card {
+	:global(.past-card) {
 		width: 100%;
-		&:hover {
-			transform: scale(1.02);
-			.external-link {
-				transform: translateY(-2px) translateX(2px);
-			}
-		}
 		&:focus {
 			outline: 2px solid var(--c-font);
 			outline-offset: 2px;
 		}
-	}
-
-	.card-header {
-		display: flex;
-		margin-bottom: var(--m);
-		justify-content: space-between;
-		align-items: flex-start;
-		gap: var(--m);
-	}
-
-	.header-content {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		gap: var(--xs);
-	}
-
-	.company-header {
-		display: flex;
-		align-items: center;
-		gap: var(--m);
-	}
-
-	.company-info {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		gap: 0;
-	}
-
-	.company-logo {
-		display: flex;
-		width: 3rem;
-		height: 3rem;
-		border-radius: var(--border-radius-small);
-		background: var(--c-font-accent-super-light);
-		flex-shrink: 0;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		overflow: hidden;
-		img,
-		:global(enhanced-img) {
-			display: block;
-			margin: 0;
-			padding: 0;
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-		}
-	}
-
-	.current-card .company-logo {
-		background: rgba(255, 255, 255, 0.1);
-	}
-
-	.company-name {
-		margin: 0;
-		color: var(--c-font);
-		font-family: var(--font-family);
-		font-size: var(--font-xl);
-		font-weight: 900;
-		line-height: 1.2;
-		letter-spacing: var(--font-letter-spacing-headline);
-	}
-
-	.current-card .company-name {
-		color: var(--c-current-work-text);
-		font-size: 1.5rem;
-	}
-
-	.external-link {
-		display: flex;
-		width: 1.5rem;
-		height: 1.5rem;
-		flex-shrink: 0;
-		justify-content: center;
-		align-items: center;
-		color: var(--c-font);
-		transition: var(--transition);
-		pointer-events: none;
-		:global(svg) {
-			width: 1rem;
-			height: 1rem;
-		}
-	}
-
-	.current-card .external-link {
-		color: var(--c-current-work-text);
-	}
-
-	.card-metadata {
-		margin-bottom: var(--m);
-	}
-
-	.card-location {
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-s);
-		font-weight: 400;
-		font-style: italic;
-		line-height: 1.5;
-		white-space: nowrap;
-	}
-
-	.current-card .card-location {
-		color: rgba(255, 255, 255, 0.8);
-	}
-
-	.card-positions {
-		display: flex;
-		flex-direction: column;
-		gap: var(--xs);
-	}
-
-	.position-row {
-		display: grid;
-		align-items: baseline;
-		gap: var(--m);
-		grid-template-columns: 1fr auto;
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-s);
-		line-height: 1.5;
-	}
-
-	.current-card .position-row {
-		color: rgba(255, 255, 255, 0.8);
-	}
-
-	.position-title {
-		font-weight: 500;
-	}
-
-	.position-dates {
-		color: var(--c-font-accent-dark);
-		font-weight: 400;
-		white-space: nowrap;
-	}
-
-	.current-card .position-dates {
-		color: rgba(255, 255, 255, 0.8);
-	}
-
-	.card-description {
-		margin-bottom: var(--m);
-		p {
-			margin: 0;
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
-			font-size: var(--font-m);
-			font-weight: 400;
-			line-height: 1.5;
-		}
-	}
-
-	.current-card .card-description p {
-		color: var(--c-current-work-text);
-	}
-
-	.card-footer {
-		margin-top: auto;
-		padding-top: var(--m);
-		border-top: 1px solid var(--c-surface-accent);
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-s);
-		font-weight: 400;
-		line-height: 1.5;
-	}
-
-	.current-card .card-footer {
-		border-top-color: rgba(255, 255, 255, 0.2);
-		color: var(--c-current-work-text);
-	}
-
-	.related-projects {
-		color: var(--c-font-accent-dark);
-	}
-
-	.current-card .related-projects {
-		color: var(--c-current-work-text);
-	}
-
-	.no-projects {
-		color: var(--c-font-accent-dark);
-	}
-
-	.current-card .no-projects {
-		color: var(--c-current-work-text);
 	}
 
 	.work-grid {
@@ -485,7 +269,7 @@
 		}
 	}
 
-	.work-grid .past-card {
+	.work-grid :global(.past-card) {
 		display: flex;
 		min-height: 100%;
 		flex-direction: column;

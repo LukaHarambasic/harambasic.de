@@ -46,10 +46,12 @@
 					<BaseCard
 						element="a"
 						href={entry.relativePath}
-						variant="featured"
+						variant="default"
 						class="image noSpacing {index < 3 ? 'highlighted' : 'compact'}"
 					>
-						<Icon icon="ph:arrow-circle-right-bold" />
+						<div class="external-link">
+							<Icon icon="ph:arrow-up-right-bold" />
+						</div>
 						{#if imageData}
 							<div class="image-wrapper">
 								<div class="blur-bg">

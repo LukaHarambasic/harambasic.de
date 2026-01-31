@@ -71,8 +71,10 @@
 		<ul class="entries">
 			{#each filteredAndSortedEntries as post}
 				<li class="h-feed">
-					<BaseCard element="a" href={post.relativePath} variant="featured" class="row">
-						<Icon icon="ph:arrow-circle-right-bold" />
+					<BaseCard element="a" href={post.relativePath} variant="default" class="row">
+						<div class="external-link">
+							<Icon icon="ph:arrow-up-right-bold" />
+						</div>
 						<div class="column">
 							<strong class="title">
 								{post.title}

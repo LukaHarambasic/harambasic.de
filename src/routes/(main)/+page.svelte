@@ -76,8 +76,10 @@
 		<ul>
 			{#each randomPosts as post}
 				<li>
-					<BaseCard element="a" href={post.relativePath} variant="featured" class="text">
-						<Icon icon="ph:arrow-circle-right-bold" />
+					<BaseCard element="a" href={post.relativePath} variant="default" class="text">
+						<div class="external-link">
+							<Icon icon="ph:arrow-up-right-bold" />
+						</div>
 						<strong>{post.title}</strong>
 						<time class="date dt-published" datetime={post?.published?.raw?.toString()}>
 							{post.published.display}
@@ -95,8 +97,10 @@
 		<ul>
 			{#each randomUses as usesEntry}
 				<li>
-					<BaseCard element="a" href={usesEntry.url} variant="featured" class="text">
-						<Icon icon="ph:arrow-square-out-bold" />
+					<BaseCard element="a" href={usesEntry.url} variant="default" class="text">
+						<div class="external-link">
+							<Icon icon="ph:arrow-up-right-bold" />
+						</div>
 						<strong>{usesEntry.title}</strong>
 						<p>{usesEntry.description}</p>
 					</BaseCard>
@@ -115,12 +119,14 @@
 				<li>
 					<BaseCard
 						element="a"
-						href="/projects?slug={project.slug}"
-						variant="featured"
+						href="/projects/{project.slug}"
+						variant="default"
 						class="image"
 						noSpacing
 					>
-						<Icon icon="ph:arrow-circle-right-bold" />
+						<div class="external-link">
+							<Icon icon="ph:arrow-up-right-bold" />
+						</div>
 						{#if imageData}
 							<enhanced:img
 								src={imageData}

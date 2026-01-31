@@ -1,8 +1,10 @@
 <script lang="ts">
 	import type { Project } from '$lib/types/project';
 	import type { WorkEntry } from '$lib/types/workEntry';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
+	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 
 	const pictures: ImageGlobResult = import.meta.glob(
@@ -62,10 +64,23 @@
 		{#if relatedWork.length > 0}
 			<div class="related-work">
 				<h3>Related Work</h3>
-				<ul>
+				<ul class="related-work-list">
 					{#each relatedWork as work}
 						<li>
-							<a href={work.relativePath}>{work.title}</a>
+							<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
+								<div class="card-header">
+									<div class="header-content">
+										<div class="company-header">
+											<div class="company-info">
+												<h4 class="company-name">{work.title}</h4>
+											</div>
+										</div>
+									</div>
+									<div class="external-link">
+										<Icon icon="ph:arrow-up-right-bold" />
+									</div>
+								</div>
+							</BaseCard>
 						</li>
 					{/each}
 				</ul>
@@ -147,19 +162,15 @@
 					font-weight: 700;
 					letter-spacing: var(--font-letter-spacing-headline);
 				}
-				ul {
+				.related-work-list {
+					display: flex;
 					margin: 0;
 					padding: 0;
+					flex-direction: column;
+					gap: var(--m);
 					list-style: none;
 					li {
-						margin-bottom: var(--xs);
-						a {
-							color: var(--c-font);
-							text-decoration: none;
-							&:hover {
-								text-decoration: underline;
-							}
-						}
+						width: 100%;
 					}
 				}
 			}

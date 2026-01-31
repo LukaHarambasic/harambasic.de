@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import type { Project } from '$lib/types/project';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import Icon from '@iconify/svelte';
@@ -80,26 +81,33 @@
 			<div class="projects-grid" data-count={relatedProjects.length}>
 				{#each relatedProjects as project}
 					{@const projectImageData = getProjectImage(project.image)}
-					<a href={project.relativePath} class="project-card">
-						{#if projectImageData}
-							<div class="project-image">
-								<enhanced:img
-									src={projectImageData}
-									sizes="(min-width:768px) 400px, (min-width:480px) 50vw, 100vw"
-									alt={project.imageAlt || project.title}
-								/>
-							</div>
-						{/if}
-						<div class="project-content">
-							<h4 class="project-title">{project.title}</h4>
-							{#if project.description}
-								<p class="project-description">{project.description}</p>
-							{/if}
-						</div>
+					<BaseCard
+						element="a"
+						href={project.relativePath}
+						variant="default"
+						class="image noSpacing highlighted"
+					>
 						<div class="external-link">
 							<Icon icon="ph:arrow-up-right-bold" />
 						</div>
-					</a>
+						{#if projectImageData}
+							<div class="image-wrapper">
+								<div class="main-img">
+									<enhanced:img
+										src={projectImageData}
+										sizes="(min-width:768px) 400px, (min-width:480px) 50vw, 100vw"
+										alt={project.imageAlt || project.title}
+									/>
+								</div>
+							</div>
+						{/if}
+						<div class="content">
+							<strong>{project.title}</strong>
+							{#if project.description}
+								<p>{project.description}</p>
+							{/if}
+						</div>
+					</BaseCard>
 				{/each}
 			</div>
 		</div>
@@ -373,31 +381,6 @@
 		display: grid;
 		gap: var(--l);
 		grid-template-columns: 1fr;
-		&[data-count='1'] {
-			grid-template-columns: 1fr;
-			.project-card {
-				display: flex;
-				flex-direction: row;
-				align-items: flex-start;
-				@media screen and (width <= 48rem) {
-					flex-direction: column;
-				}
-				.project-image {
-					width: 8rem;
-					min-width: 8rem;
-					aspect-ratio: 1 / 1;
-					@media screen and (width <= 48rem) {
-						width: 100%;
-						min-width: 0;
-						aspect-ratio: 16 / 9;
-					}
-				}
-				.project-content {
-					flex: 1;
-					justify-content: flex-start;
-				}
-			}
-		}
 		@media screen and (width > 48rem) {
 			&[data-count='2'],
 			&[data-count='3'] {
@@ -409,94 +392,6 @@
 				grid-template-columns: repeat(3, 1fr);
 			}
 		}
-	}
-
-	.project-card {
-		display: flex;
-		position: relative;
-		border: 1px solid var(--c-surface-accent);
-		border-radius: var(--border-radius);
-		background: var(--c-surface);
-		flex-direction: column;
-		gap: 0;
-		color: inherit;
-		text-decoration: none;
-		transition: var(--transition);
-		cursor: pointer;
-		overflow: hidden;
-		&:hover {
-			transform: translateY(-2px);
-			.external-link {
-				transform: translateY(-2px) translateX(2px);
-			}
-		}
-		&:focus {
-			outline: 2px solid var(--c-font);
-			outline-offset: 2px;
-		}
-	}
-
-	.project-image {
-		display: flex;
-		position: relative;
-		width: 100%;
-		background: var(--c-surface-accent);
-		overflow: hidden;
-		aspect-ratio: 16 / 9;
-		:global(picture),
-		:global(img) {
-			display: block;
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			transition: transform var(--transition);
-		}
-	}
-
-	.project-content {
-		display: flex;
-		padding: var(--l);
-		flex-direction: column;
-		gap: var(--xs);
-	}
-
-	.external-link {
-		display: flex;
-		position: absolute;
-		top: var(--m);
-		right: var(--m);
-		z-index: 10;
-		width: 1.5rem;
-		height: 1.5rem;
-		flex-shrink: 0;
-		justify-content: center;
-		align-items: center;
-		color: var(--c-font);
-		transition: var(--transition);
-		pointer-events: none;
-		:global(svg) {
-			width: 1rem;
-			height: 1rem;
-		}
-	}
-
-	.project-title {
-		margin: 0;
-		color: var(--c-font);
-		font-family: var(--font-family);
-		font-size: var(--font-m);
-		font-weight: 700;
-		line-height: 1.3;
-		letter-spacing: var(--font-letter-spacing-headline);
-	}
-
-	.project-description {
-		margin: 0;
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-s);
-		font-weight: 400;
-		line-height: 1.5;
 	}
 
 	:global(.rich-text) {

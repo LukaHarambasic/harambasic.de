@@ -69,32 +69,38 @@
 					<ul class="entries">
 						{#each group.entries as entry}
 							<li class="h-feed">
-								<BaseCard element="a" href={entry.url} variant="featured" class="withLogo">
-									<div class="logo">
-										{#if entry.image}
-											{#if isSvgImage(entry.image)}
-												<img src="/uses/{entry.image}" alt={entry.title} width="64px" />
-											{:else}
-												{@const imageData = getImage(entry.image)}
-												{#if imageData}
-													<enhanced:img
-														src={imageData}
-														sizes="(min-width:768px) 400px"
-														alt={entry.title}
-													/>
+								<BaseCard element="a" href={entry.url} variant="default" class="withIcon">
+									<div class="card-header">
+										<div class="header-content">
+											<div class="company-header">
+												{#if entry.image}
+													<div class="company-logo">
+														{#if isSvgImage(entry.image)}
+															<img src="/uses/{entry.image}" alt={entry.title} />
+														{:else}
+															{@const imageData = getImage(entry.image)}
+															{#if imageData}
+																<enhanced:img
+																	src={imageData}
+																	sizes="(min-width:768px) 64px, 48px"
+																	alt={entry.title}
+																/>
+															{/if}
+														{/if}
+													</div>
 												{/if}
-											{/if}
-										{/if}
-									</div>
-									<div class="content">
-										<div class="title">
-											<strong>
-												{entry.title}
-											</strong>
+												<div class="company-info">
+													<h2 class="company-name">{entry.title}</h2>
+												</div>
+											</div>
 										</div>
+										<div class="external-link">
+											<Icon icon="ph:arrow-up-right-bold" />
+										</div>
+									</div>
+									<div class="card-description">
 										<p>{entry.description}</p>
 									</div>
-									<Icon icon="ph:arrow-square-out-bold" />
 								</BaseCard>
 							</li>
 						{/each}
@@ -106,7 +112,7 @@
 				<ul class="entries">
 					{#each inactiveEntries as entry}
 						<li class="h-feed">
-							<BaseCard element="a" href={entry.url} variant="featured" class="contentOnly">
+							<BaseCard element="a" href={entry.url} variant="default" class="contentOnly">
 								<div class="content">
 									<div class="title">
 										<strong>
@@ -115,7 +121,9 @@
 									</div>
 									<p>{entry.description}</p>
 								</div>
-								<Icon icon="ph:arrow-square-out-bold" />
+								<div class="external-link">
+									<Icon icon="ph:arrow-up-right-bold" />
+								</div>
 							</BaseCard>
 						</li>
 					{/each}
