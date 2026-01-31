@@ -10,6 +10,7 @@
 	import type { PostSortProperty } from '$lib/types/enums';
 	import { isValidPostSortProperty, isValidSortDirection } from '$lib/util/helper';
 	import { filterAndSort } from '$lib/util/entryHelpers';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import { onMount } from 'svelte';
 
@@ -70,7 +71,8 @@
 		<ul class="entries">
 			{#each filteredAndSortedEntries as post}
 				<li class="h-feed">
-					<a href={post.relativePath}>
+					<BaseCard element="a" href={post.relativePath} variant="featured" class="row">
+						<Icon icon="ph:arrow-circle-right-bold" />
 						<div class="column">
 							<strong class="title">
 								{post.title}
@@ -86,8 +88,7 @@
 						<time class="date dt-published" datetime={post?.published?.raw?.toString()}>
 							{post.published.display}
 						</time>
-						<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
-					</a>
+					</BaseCard>
 				</li>
 			{/each}
 		</ul>
@@ -103,96 +104,5 @@
 		align-items: stretch;
 		align-content: stretch;
 		gap: var(--l);
-		> li {
-			> a {
-				display: flex;
-				position: relative;
-				padding: var(--l);
-				border: var(--border);
-				border-radius: var(--border-radius);
-				background: var(--c-surface);
-				flex-direction: row;
-				flex-wrap: nowrap;
-				justify-content: space-between;
-				align-items: flex-start;
-				align-content: stretch;
-				gap: var(--l);
-				color: var(--c-font);
-				text-decoration: none;
-				transition: var(--transition);
-				@media screen and (width <= 50rem) {
-					flex-direction: column-reverse;
-				}
-				&:hover {
-					transform: scale(0.97);
-					cursor: pointer;
-					:global(svg) {
-						opacity: 1;
-					}
-				}
-				.column {
-					display: flex;
-					flex-direction: column;
-					flex-wrap: nowrap;
-					justify-content: flex-start;
-					align-items: stretch;
-					align-content: stretch;
-					gap: var(--xs);
-				}
-				.title {
-					display: inline-block;
-					font-family: var(--font-family);
-					font-size: var(--font-m);
-					font-weight: 900;
-					line-height: 1.2;
-					letter-spacing: var(--font-letter-spacing-headline);
-				}
-				.tags {
-					display: flex;
-					flex-grow: 1;
-					flex-direction: row;
-					flex-wrap: wrap;
-					justify-content: flex-start;
-					align-items: flex-start;
-					align-content: stretch;
-					gap: var(--xs);
-					flex-base: 100%;
-				}
-				.date {
-					display: inline-block;
-					margin: 0 0 var(--xs) 0;
-					flex-shrink: 0;
-					color: var(--c-font);
-					font-size: var(--font-m);
-					font-weight: 400;
-					font-style: italic;
-					text-align: right;
-					text-decoration: none;
-					@media screen and (width <= 50rem) {
-						margin: 0 0 calc(-1 * var(--m));
-						flex-shrink: 1;
-					}
-				}
-				:global(.arrow) {
-					opacity: 0;
-					position: absolute;
-					top: var(--m);
-					right: calc((-1) * var(--m));
-					size: var(--l);
-					border: 4px solid var(--c-light);
-					border-radius: 100%;
-					box-shadow:
-						0 1px 2px rgba(0, 0, 0, 0.03),
-						0 2px 4px rgba(0, 0, 0, 0.03),
-						0 4px 8px rgba(0, 0, 0, 0.03),
-						0 8px 16px rgba(0, 0, 0, 0.03),
-						0 16px 32px rgba(0, 0, 0, 0.03),
-						0 32px 64px rgba(0, 0, 0, 0.03);
-					background: var(--c-light);
-					color: var(--c-font-accent-dark);
-					transition: var(--transition);
-				}
-			}
-		}
 	}
 </style>

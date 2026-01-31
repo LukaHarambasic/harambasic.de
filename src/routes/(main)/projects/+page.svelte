@@ -3,6 +3,7 @@
 	import { filterAndSort } from '$lib/util/entryHelpers';
 	import { SortDirection, SORT_DEFAULTS } from '$lib/types/enums';
 	import Entries from '$lib/components/Entries/Entries.svelte';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
@@ -41,38 +42,45 @@
 		<div class="entries">
 			{#each filteredAndSorted as entry, index}
 				{@const imageData = getImage(entry.image)}
-				<a href={entry.relativePath} class="h-feed entry" data-highlighted={index < 3}>
-					{#if imageData}
-						<div class="image-wrapper">
-							<div class="blur-bg">
-								<enhanced:img
-									src={imageData}
-									sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-									alt={entry.title}
-								/>
+				<div class="entry-wrapper" data-highlighted={index < 3}>
+					<BaseCard
+						element="a"
+						href={entry.relativePath}
+						variant="featured"
+						class="image noSpacing {index < 3 ? 'highlighted' : 'compact'}"
+					>
+						<Icon icon="ph:arrow-circle-right-bold" />
+						{#if imageData}
+							<div class="image-wrapper">
+								<div class="blur-bg">
+									<enhanced:img
+										src={imageData}
+										sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+										alt={entry.title}
+									/>
+								</div>
+								<div class="main-img">
+									<enhanced:img
+										src={imageData}
+										sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+										alt={entry.title}
+									/>
+								</div>
 							</div>
-							<div class="main-img">
-								<enhanced:img
-									src={imageData}
-									sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-									alt={entry.title}
-								/>
-							</div>
+						{/if}
+						<div class="content">
+							<strong>{entry.title}</strong>
+							<p>{entry.description}</p>
+							<ul class="tags">
+								{#each entry.tags as tag}
+									<li>
+										<BaseTag {tag} />
+									</li>
+								{/each}
+							</ul>
 						</div>
-					{/if}
-					<div class="content">
-						<strong>{entry.title}</strong>
-						<p>{entry.description}</p>
-						<ul class="tags">
-							{#each entry.tags as tag}
-								<li>
-									<BaseTag {tag} />
-								</li>
-							{/each}
-						</ul>
-					</div>
-					<Icon class="arrow" icon="ph:arrow-circle-right-bold" />
-				</a>
+					</BaseCard>
+				</div>
 			{/each}
 		</div>
 	{/snippet}
@@ -88,213 +96,16 @@
 			column-gap: 0;
 			grid-template-columns: 1fr;
 		}
-		.entry {
-			display: flex;
-			position: relative;
-			padding: 0;
+		.entry-wrapper {
 			height: 100%;
-			border: var(--border);
-			border-radius: var(--border-radius);
-			background: var(--c-surface);
-			flex-direction: column;
-			flex-wrap: nowrap;
-			justify-content: flex-start;
-			align-items: stretch;
-			align-content: stretch;
-			gap: 0;
-			color: var(--c-font);
-			text-decoration: none;
-			transition: var(--transition);
-			@media screen and (width <= 42rem) {
-				flex-direction: column;
-			}
 			@media screen and (width <= 62rem) {
 				grid-column: span 1;
 			}
-			.image-wrapper {
-				display: flex;
-				position: relative;
-				justify-content: center;
-				align-items: center;
-				transition: filter var(--transition);
-				overflow: hidden;
-				filter: grayscale(1);
-				.blur-bg {
-					position: absolute;
-					inset: 0;
-					z-index: 1;
-					width: 100%;
-					height: 100%;
-					:global(picture),
-					:global(img) {
-						width: 100%;
-						height: 100%;
-						object-fit: cover;
-						filter: blur(12px) brightness(0.9);
-						transform: scale(1.1);
-					}
-				}
-				.main-img {
-					position: relative;
-					z-index: 2;
-					:global(picture),
-					:global(img) {
-						display: block;
-						width: 100%;
-						height: 100%;
-						object-fit: cover;
-					}
-				}
-			}
-			&[data-highlighted='false'] {
-				display: flex;
-				flex-direction: row;
-				gap: 0;
-				grid-column: span 3;
-				@media screen and (width <= 32rem) {
-					flex-direction: column;
-				}
-				.image-wrapper {
-					padding: var(--m);
-					width: 12rem;
-					min-width: 12rem;
-					height: auto;
-					min-height: 12rem;
-					border-radius: var(--border-radius) 0 0 var(--border-radius);
-					align-self: stretch;
-					box-sizing: border-box;
-					@media screen and (width <= 32rem) {
-						padding: 0;
-						width: 100%;
-						min-width: 0;
-						height: auto;
-						min-height: 0;
-						border-radius: var(--border-radius) var(--border-radius) 0 0;
-					}
-					.main-img {
-						width: 100%;
-						aspect-ratio: 1 / 1;
-						border-radius: var(--border-radius);
-						box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-						:global(img) {
-							border-radius: var(--border-radius);
-						}
-						@media screen and (width <= 32rem) {
-							width: 100%;
-							height: auto;
-							border-radius: 0;
-							box-shadow: none;
-							:global(img) {
-								border-radius: var(--border-radius) var(--border-radius) 0 0;
-							}
-						}
-					}
-					@media screen and (width <= 32rem) {
-						.blur-bg {
-							display: none;
-						}
-						.main-img {
-							width: 100%;
-							:global(img) {
-								border-radius: var(--border-radius) var(--border-radius) 0 0;
-							}
-						}
-					}
-				}
-				> .content {
-					display: flex;
-					padding: var(--l);
-					flex-direction: column;
-					flex-wrap: nowrap;
-					justify-content: flex-start;
-					align-items: stretch;
-					align-content: stretch;
-				}
-			}
 			&[data-highlighted='true'] {
 				grid-column: span 2;
-
-				.image-wrapper {
-					width: 100%;
-					filter: grayscale(1);
-					.blur-bg {
-						display: none;
-					}
-					.main-img {
-						width: 100%;
-						:global(img) {
-							opacity: 0.5;
-							width: 100%;
-							height: inherit;
-							border-radius: var(--border-radius) var(--border-radius) 0 0;
-							aspect-ratio: 1 / 1;
-						}
-					}
-				}
 			}
-			&:hover {
-				transform: scale(0.97);
-				cursor: pointer;
-				.image-wrapper {
-					filter: grayscale(0);
-				}
-				.image-wrapper .main-img :global(img) {
-					opacity: 1;
-				}
-				:global(.arrow) {
-					opacity: 1;
-				}
-			}
-			> .content {
-				display: flex;
-				padding: var(--l);
-				flex-direction: column;
-				flex-wrap: nowrap;
-				justify-content: flex-start;
-				align-items: stretch;
-				align-content: flex-start;
-				text-align: left;
-				strong {
-					margin: 0 0 var(--xs) 0;
-					font-family: var(--font-family);
-					font-size: var(--font-m);
-					font-weight: 900;
-					line-height: 1.2;
-					letter-spacing: var(--font-letter-spacing-headline);
-				}
-				p {
-					margin: 0 0 var(--s) 0;
-					font-size: var(--font-m);
-					line-height: 1.5;
-				}
-				.tags {
-					display: flex;
-					flex-direction: row;
-					flex-wrap: wrap;
-					justify-content: flex-start;
-					align-items: flex-start;
-					align-content: flex-start;
-					gap: var(--xs);
-				}
-			}
-			:global(.arrow) {
-				opacity: 0;
-				position: absolute;
-				top: var(--m);
-				right: calc((-1) * var(--m));
-				size: var(--l);
-				border: 4px solid var(--c-light);
-				border-radius: 100%;
-				box-shadow:
-					0 1px 2px rgba(0, 0, 0, 0.03),
-					0 2px 4px rgba(0, 0, 0, 0.03),
-					0 4px 8px rgba(0, 0, 0, 0.03),
-					0 8px 16px rgba(0, 0, 0, 0.03),
-					0 16px 32px rgba(0, 0, 0, 0.03),
-					0 32px 64px rgba(0, 0, 0, 0.03);
-				background: var(--c-light);
-				color: var(--c-font-accent-dark);
-				transition: var(--transition);
+			&[data-highlighted='false'] {
+				grid-column: span 3;
 			}
 		}
 	}

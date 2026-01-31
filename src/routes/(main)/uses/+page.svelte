@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Entries from '$lib/components/Entries/Entries.svelte';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
 	import { sortDate } from '$lib/util/helper';
@@ -68,7 +69,7 @@
 					<ul class="entries">
 						{#each group.entries as entry}
 							<li class="h-feed">
-								<a href={entry.url}>
+								<BaseCard element="a" href={entry.url} variant="featured" class="withLogo">
 									<div class="logo">
 										{#if entry.image}
 											{#if isSvgImage(entry.image)}
@@ -93,8 +94,8 @@
 										</div>
 										<p>{entry.description}</p>
 									</div>
-									<Icon class="arrow" icon="ph:arrow-square-out-bold" />
-								</a>
+									<Icon icon="ph:arrow-square-out-bold" />
+								</BaseCard>
 							</li>
 						{/each}
 					</ul>
@@ -105,7 +106,7 @@
 				<ul class="entries">
 					{#each inactiveEntries as entry}
 						<li class="h-feed">
-							<a href={entry.url}>
+							<BaseCard element="a" href={entry.url} variant="featured" class="contentOnly">
 								<div class="content">
 									<div class="title">
 										<strong>
@@ -114,8 +115,8 @@
 									</div>
 									<p>{entry.description}</p>
 								</div>
-								<Icon class="arrow" icon="ph:arrow-square-out-bold" />
-							</a>
+								<Icon icon="ph:arrow-square-out-bold" />
+							</BaseCard>
 						</li>
 					{/each}
 				</ul>
@@ -145,18 +146,10 @@
 				line-height: 1.2;
 				letter-spacing: var(--font-letter-spacing-headline);
 			}
-			&.archive {
-				.entries {
-					grid-template-columns: repeat(3, minmax(0, 1fr));
-					@media screen and (width <= 62rem) {
-						grid-template-columns: 1fr;
-					}
-					> li {
-						> a {
-							grid-template-areas: 'content';
-							grid-template-columns: 1fr;
-						}
-					}
+			&.archive .entries {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				@media screen and (width <= 62rem) {
+					grid-template-columns: 1fr;
 				}
 			}
 		}
@@ -171,84 +164,6 @@
 		}
 		> li {
 			width: 100%;
-			> a {
-				display: grid;
-				height: 100%;
-				border-radius: var(--border-radius);
-				background: var(--c-surface);
-				row-gap: var(--xl);
-				grid-template-areas: 'logo content';
-				grid-template-rows: auto;
-				grid-template-columns: 8rem 1fr;
-				color: var(--c-font);
-				text-decoration: none;
-				transition: var(--transition);
-				&:hover {
-					transform: scale(0.97);
-					cursor: pointer;
-					:global(svg) {
-						opacity: 1;
-					}
-				}
-				.logo {
-					display: flex;
-					padding: 0 var(--l);
-					border-radius: var(--border-radius) 0 0 var(--border-radius);
-					background: var(--c-font-accent-super-light);
-					justify-content: center;
-					align-items: center;
-					grid-area: logo;
-					img {
-						width: 100%;
-						height: 4rem;
-						object-fit: contain;
-					}
-				}
-				.content {
-					display: flex;
-					padding: var(--l);
-					flex-direction: column;
-					flex-wrap: nowrap;
-					justify-content: flex-start;
-					align-items: stretch;
-					align-content: stretch;
-					gap: var(--xs);
-					grid-area: content;
-					.title {
-						strong {
-							display: inline;
-							font-family: var(--font-family);
-							font-size: var(--font-m);
-							font-weight: 900;
-							line-height: 1.2;
-							letter-spacing: var(--font-letter-spacing-headline);
-						}
-					}
-					p {
-						font-size: var(--font-m);
-						line-height: 1.2;
-					}
-				}
-				:global(.arrow) {
-					opacity: 0;
-					position: absolute;
-					top: var(--m);
-					right: calc((-1) * var(--m));
-					size: var(--l);
-					border: 4px solid var(--c-light);
-					border-radius: 100%;
-					box-shadow:
-						0 1px 2px rgba(0, 0, 0, 0.03),
-						0 2px 4px rgba(0, 0, 0, 0.03),
-						0 4px 8px rgba(0, 0, 0, 0.03),
-						0 8px 16px rgba(0, 0, 0, 0.03),
-						0 16px 32px rgba(0, 0, 0, 0.03),
-						0 32px 64px rgba(0, 0, 0, 0.03);
-					background: var(--c-light);
-					color: var(--c-font-accent-dark);
-					transition: var(--transition);
-				}
-			}
 		}
 	}
 </style>
