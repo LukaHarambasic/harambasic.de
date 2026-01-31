@@ -99,7 +99,10 @@
 			grid-template-columns: 1fr;
 		}
 		.entry-wrapper {
+			display: flex;
 			height: 100%;
+			min-height: 0;
+			flex-direction: column;
 			@media screen and (width <= 62rem) {
 				grid-column: span 1;
 			}
@@ -108,6 +111,10 @@
 			}
 			&[data-highlighted='false'] {
 				grid-column: span 3;
+			}
+			> :global(.base-card) {
+				min-height: 0;
+				flex: 1 1 auto;
 			}
 		}
 	}

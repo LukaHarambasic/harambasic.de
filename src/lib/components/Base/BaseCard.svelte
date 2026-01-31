@@ -147,7 +147,7 @@
 		z-index: 10;
 	}
 	.base-card.withIcon.noSpacing[href] :global(.external-link) {
-		top: var(--m);
+		top: var(--l);
 		right: var(--m);
 	}
 	.base-card.withIcon :global(.card-header) {
@@ -401,7 +401,7 @@
 	}
 	.base-card.text :global(.external-link) {
 		position: absolute;
-		top: var(--m);
+		top: var(--l);
 		right: var(--m);
 		z-index: 10;
 	}
@@ -439,7 +439,7 @@
 	}
 	.base-card.row :global(.external-link) {
 		position: absolute;
-		top: var(--m);
+		top: var(--l);
 		right: var(--m);
 		z-index: 10;
 	}
