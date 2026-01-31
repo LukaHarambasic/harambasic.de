@@ -43,7 +43,7 @@
 		border: 1px solid var(--c-surface-accent);
 		border-radius: var(--border-radius);
 		box-shadow: var(--box-shadow);
-		background: var(--c-light);
+		background: color-mix(in srgb, var(--c-light) 75%, var(--c-surface));
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
@@ -238,7 +238,6 @@
 		color: rgba(255, 255, 255, 0.8);
 	}
 	.base-card.withIcon :global(.card-metadata) {
-		margin-bottom: var(--m);
 		width: 100%;
 		min-width: 0;
 	}
