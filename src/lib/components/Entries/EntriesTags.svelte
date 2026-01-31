@@ -28,7 +28,7 @@
 	});
 </script>
 
-<BaseCard class="tags">
+<BaseCard class="tag-filter">
 	<BaseHeadlineIcon title="Tags" icon="ph:hash-bold" />
 	<ol>
 		{#each tags as tag}
@@ -46,7 +46,7 @@
 </BaseCard>
 
 <style lang="postcss">
-	:global(.tags) {
+	:global(.tag-filter) {
 		display: flex;
 		border: var(--border);
 		flex-direction: column;
