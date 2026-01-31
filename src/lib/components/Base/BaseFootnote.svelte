@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import { hasSnippet } from '$lib/util/snippet';
 
 	interface Props {
@@ -10,13 +11,13 @@
 	let { children, class: className, id }: Props = $props();
 </script>
 
-<section class="footnote rich-text" class:className {id}>
+<BaseRichText element="section" class={className ? `footnote ${className}` : 'footnote'} {id}>
 	<p>
 		{#if hasSnippet(children)}
 			{@render children()}
 		{/if}
 	</p>
-</section>
+</BaseRichText>
 
 <style>
 	.footnote {

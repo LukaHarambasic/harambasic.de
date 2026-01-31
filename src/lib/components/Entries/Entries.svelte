@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import { hasSnippet } from '$lib/util/snippet';
 
 	interface Props {
@@ -28,11 +29,11 @@
 			{@render sidebar()}
 		{/if}
 	</div>
-	<div class="rss rich-text">
+	<BaseRichText class="rss">
 		<p>
 			<a href={rssPath}>RSS Feed</a>
 		</p>
-	</div>
+	</BaseRichText>
 </section>
 
 <style lang="postcss">
