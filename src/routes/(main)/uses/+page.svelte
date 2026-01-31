@@ -3,7 +3,7 @@
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
-	import { sortDate } from '$lib/util/helper';
+	import { isExternalUrl, sortDate } from '$lib/util/helper';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
 
 	const pictures: ImageGlobResult = import.meta.glob(
@@ -69,37 +69,43 @@
 					<ul class="entries">
 						{#each group.entries as entry}
 							<li class="h-feed">
-								<BaseCard element="a" href={entry.url} variant="default" class="withIcon">
-									<div class="card-header">
-										<div class="header-content">
-											<div class="company-header">
-												{#if entry.image}
-													<div class="company-logo">
-														{#if isSvgImage(entry.image)}
-															<img src="/uses/{entry.image}" alt={entry.title} />
-														{:else}
-															{@const imageData = getImage(entry.image)}
-															{#if imageData}
-																<enhanced:img
-																	src={imageData}
-																	sizes="(min-width:768px) 64px, 48px"
-																	alt={entry.title}
-																/>
-															{/if}
-														{/if}
-													</div>
+								<BaseCard element="a" href={entry.url} variant="default" class="withImageSpan">
+									{#if entry.image}
+										<div class="card-image-span">
+											<div class="card-image-span-inner">
+												{#if isSvgImage(entry.image)}
+													<img src="/uses/{entry.image}" alt={entry.title} />
+												{:else}
+													{@const imageData = getImage(entry.image)}
+													{#if imageData}
+														<enhanced:img
+															src={imageData}
+															sizes="(min-width:768px) 64px, 48px"
+															alt={entry.title}
+														/>
+													{/if}
 												{/if}
+											</div>
+										</div>
+									{/if}
+									<div class="card-image-span-content">
+										<div class="card-header">
+											<div class="header-content">
 												<div class="company-info">
 													<h2 class="company-name">{entry.title}</h2>
 												</div>
 											</div>
+											<div class="external-link">
+												<Icon
+													icon={isExternalUrl(entry.url)
+														? 'ph:arrow-square-out-bold'
+														: 'ph:arrow-up-right-bold'}
+												/>
+											</div>
 										</div>
-										<div class="external-link">
-											<Icon icon="ph:arrow-up-right-bold" />
+										<div class="card-description">
+											<p>{entry.description}</p>
 										</div>
-									</div>
-									<div class="card-description">
-										<p>{entry.description}</p>
 									</div>
 								</BaseCard>
 							</li>
@@ -122,7 +128,11 @@
 									<p>{entry.description}</p>
 								</div>
 								<div class="external-link">
-									<Icon icon="ph:arrow-up-right-bold" />
+									<Icon
+										icon={isExternalUrl(entry.url)
+											? 'ph:arrow-square-out-bold'
+											: 'ph:arrow-up-right-bold'}
+									/>
 								</div>
 							</BaseCard>
 						</li>

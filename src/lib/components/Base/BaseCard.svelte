@@ -484,14 +484,15 @@
 	.base-card.contentOnly {
 		display: flex;
 		position: relative;
+		padding: var(--m);
 		flex-direction: column;
 		grid-template-areas: unset;
 		grid-template-columns: unset;
 	}
 	.base-card.contentOnly :global(.content) {
 		display: flex;
-		padding: var(--l);
-		padding-right: calc(var(--l) + 1.5rem + var(--xs));
+		padding: 0;
+		padding-right: calc(1.5rem + var(--xs));
 		flex-direction: column;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
@@ -501,8 +502,8 @@
 	}
 	.base-card.contentOnly :global(.external-link) {
 		position: absolute;
-		top: var(--l);
-		right: var(--l);
+		top: var(--m);
+		right: var(--m);
 	}
 	.base-card.contentOnly :global(.content .title strong) {
 		display: inline;
@@ -515,6 +516,96 @@
 	.base-card.contentOnly :global(.content p) {
 		font-size: var(--font-m);
 		line-height: 1.2;
+	}
+
+	/* --- Layout: withImageSpan (uses) — 4rem×4rem image in normal flow, top-aligned, normal card padding, no grey background */
+	.base-card.withImageSpan {
+		display: flex;
+		position: relative;
+		padding: var(--l);
+		flex-direction: row;
+		align-items: flex-start;
+		gap: var(--m);
+		@media screen and (width <= 42rem) {
+			flex-direction: column;
+		}
+	}
+	.base-card.withImageSpan[href] :global(.external-link) {
+		position: absolute;
+		top: var(--l);
+		right: var(--l);
+		z-index: 10;
+	}
+	.base-card.withImageSpan :global(.card-image-span) {
+		display: flex;
+		width: 3rem;
+		flex-shrink: 0;
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-start;
+	}
+	.base-card.withImageSpan :global(.card-image-span-inner) {
+		display: block;
+		width: 3rem;
+		border-radius: var(--border-radius-small);
+		flex-shrink: 0;
+		overflow: hidden;
+	}
+	.base-card.withImageSpan :global(.card-image-span-inner img),
+	.base-card.withImageSpan :global(.card-image-span-inner enhanced-img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		vertical-align: top;
+	}
+	.base-card.withImageSpan :global(.card-image-span-content) {
+		display: flex;
+		min-width: 0;
+		flex: 1;
+		flex-direction: column;
+		gap: 0;
+	}
+	.base-card.withImageSpan :global(.card-header) {
+		display: flex;
+		margin: 0;
+		margin-bottom: var(--m);
+		padding-right: calc(1.5rem + var(--xs));
+		justify-content: flex-start;
+		align-items: flex-start;
+		gap: var(--m);
+	}
+	.base-card.withImageSpan :global(.header-content) {
+		display: flex;
+		min-width: 0;
+		flex: 1;
+		flex-direction: column;
+		gap: var(--xs);
+	}
+	.base-card.withImageSpan :global(.company-info) {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 0;
+	}
+	.base-card.withImageSpan :global(.company-name) {
+		margin: 0;
+		color: var(--c-font);
+		font-family: var(--font-family);
+		font-size: var(--font-xl);
+		font-weight: 900;
+		line-height: 1.2;
+		letter-spacing: var(--font-letter-spacing-headline);
+	}
+	.base-card.withImageSpan :global(.card-description) {
+		margin: 0;
+	}
+	.base-card.withImageSpan :global(.card-description p) {
+		margin: 0;
+		color: var(--c-font-accent-dark);
+		font-family: var(--font-family);
+		font-size: var(--font-m);
+		font-weight: 400;
+		line-height: 1.5;
 	}
 
 	/* --- Layout: withImage (projects) — image area + content */
