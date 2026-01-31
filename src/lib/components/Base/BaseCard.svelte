@@ -24,7 +24,7 @@
 
 <svelte:element
 	this={element}
-	class="base-card card {className ?? ''}"
+	class="base-card {className ?? ''}"
 	class:noSpacing
 	class:featured={variant === 'featured'}
 	href={element === 'a' ? href : undefined}
@@ -42,6 +42,7 @@
 		padding: var(--l);
 		border: var(--border);
 		border-radius: var(--border-radius);
+		box-shadow: var(--box-shadow);
 		background: var(--c-surface);
 		flex-direction: row;
 		flex-wrap: nowrap;
@@ -63,6 +64,19 @@
 		position: relative;
 		height: 100%;
 		transition: var(--transition);
+	}
+	.base-card.featured[href] {
+		color: var(--c-font);
+		text-decoration: none;
+	}
+	.base-card.featured :global(strong),
+	.base-card.featured :global(time),
+	.base-card.featured :global(p) {
+		text-decoration: none;
+	}
+	.base-card.featured :global(time),
+	.base-card.featured :global(p) {
+		color: var(--c-font-accent-dark);
 	}
 	.base-card.featured:hover {
 		transform: scale(0.97);
@@ -97,12 +111,16 @@
 		font-size: var(--font-s);
 		font-weight: 400;
 		font-style: italic;
-		text-decoration: none;
 	}
 	.base-card.featured :global(p) {
 		margin: var(--xs) 0 0 0;
 		font-size: var(--font-m);
 		line-height: 1.5;
+	}
+
+	/* Featured text sub-variant: stack title and date/description */
+	.base-card.featured.text {
+		flex-direction: column;
 	}
 
 	/* Featured image sub-variant */
@@ -143,6 +161,8 @@
 	.base-card.featured.image :global(.content) {
 		display: flex;
 		padding: var(--l);
+		min-width: 0;
+		flex: 1;
 		flex-direction: column;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
