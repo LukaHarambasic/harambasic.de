@@ -220,10 +220,12 @@
 		}
 	}
 
-	/* Featured withLogo sub-variant: uses list (logo + content) */
+	/* Featured withLogo sub-variant: uses list (logo + content), same as /projects – no card padding */
 	.base-card.featured.withLogo {
 		display: grid;
-		row-gap: var(--xl);
+		padding: 0;
+		row-gap: 0;
+		column-gap: var(--l);
 		grid-template-areas: 'logo content';
 		grid-template-rows: auto;
 		grid-template-columns: 8rem 1fr;
@@ -241,12 +243,25 @@
 	}
 	.base-card.featured.withLogo :global(.logo img) {
 		width: 100%;
+		max-width: 100%;
+		height: 4rem;
+		object-fit: contain;
+	}
+	.base-card.featured.withLogo :global(.logo picture) {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+	}
+	.base-card.featured.withLogo :global(.logo picture img) {
+		width: 100%;
+		max-width: 100%;
 		height: 4rem;
 		object-fit: contain;
 	}
 	.base-card.featured.withLogo :global(.content) {
 		display: flex;
-		padding: var(--l);
+		margin: var(--l);
+		padding: 0;
 		flex-direction: column;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
