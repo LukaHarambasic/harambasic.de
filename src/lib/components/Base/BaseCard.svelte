@@ -555,6 +555,21 @@
 		align-items: stretch;
 		align-content: stretch;
 	}
+	.base-card.image :global(.content strong) {
+		margin: 0 0 var(--xs) 0;
+		font-family: var(--font-family);
+		font-size: var(--font-m);
+		font-weight: 900;
+		line-height: 1.2;
+		letter-spacing: var(--font-letter-spacing-headline);
+	}
+	.base-card.image :global(.content p) {
+		margin: 0;
+		color: var(--c-font-accent-dark);
+		font-size: var(--font-m);
+		font-weight: 400;
+		line-height: 1.5;
+	}
 
 	/* withImage: generic (picture + .content) */
 	.base-card.image :global(picture) {
@@ -568,12 +583,15 @@
 		}
 	}
 	.base-card.image :global(picture img) {
-		opacity: 0.85;
+		opacity: 0.9;
 		width: inherit;
 		height: inherit;
 		border-radius: var(--border-radius) 0 0 var(--border-radius);
 		aspect-ratio: 1 / 1;
-		filter: grayscale(0.2);
+		filter: grayscale(1);
+		transition:
+			filter var(--transition),
+			opacity var(--transition);
 	}
 	@media screen and (width <= 32rem) {
 		.base-card.image :global(picture img) {
@@ -597,7 +615,7 @@
 		align-self: stretch;
 		transition: filter var(--transition);
 		overflow: hidden;
-		filter: grayscale(0.15);
+		filter: grayscale(1);
 	}
 	.base-card.image.highlighted :global(.image-wrapper .blur-bg) {
 		display: none;
@@ -626,7 +644,10 @@
 		border-radius: var(--border-radius) var(--border-radius) 0 0;
 		object-fit: cover;
 		object-position: center;
-		filter: grayscale(0.1);
+		filter: grayscale(1);
+		transition:
+			filter var(--transition),
+			opacity var(--transition);
 	}
 	.base-card.image.highlighted:hover :global(.image-wrapper) {
 		filter: grayscale(0);
@@ -676,7 +697,7 @@
 		transition: filter var(--transition);
 		overflow: hidden;
 		box-sizing: border-box;
-		filter: grayscale(0.15);
+		filter: grayscale(1);
 	}
 	@media screen and (width <= 32rem) {
 		.base-card.image.compact :global(.image-wrapper) {

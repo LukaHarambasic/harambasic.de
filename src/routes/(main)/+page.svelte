@@ -302,7 +302,14 @@
 					flex-wrap: wrap;
 				}
 				> li {
+					display: flex;
+					min-height: 0;
 					flex: 1 1 auto;
+					flex-direction: column;
+					> :global(.base-card) {
+						min-height: 0;
+						flex: 1 1 auto;
+					}
 					&:first-child:nth-last-child(1),
 					&:first-child:nth-last-child(1) ~ li {
 						width: 100%;
