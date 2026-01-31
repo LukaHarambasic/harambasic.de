@@ -175,13 +175,21 @@
 	.entries {
 		display: grid;
 		width: 100%;
+		align-items: stretch;
 		gap: var(--l);
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		@media screen and (width <= 62rem) {
 			grid-template-columns: 1fr;
 		}
 		> li {
+			display: flex;
 			width: 100%;
+			min-height: 0;
+		}
+		> li :global(.base-card) {
+			min-width: 0;
+			min-height: 0;
+			flex: 1;
 		}
 	}
 </style>
