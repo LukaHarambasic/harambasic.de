@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import type { Project } from '$lib/types/project';
+	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
@@ -120,10 +121,10 @@
 					>
 				</div>
 			</header>
-			<div class="position-content rich-text">
+			<BaseRichText class="position-content">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html firstPosition.content}
-			</div>
+			</BaseRichText>
 		</section>
 	{/if}
 
@@ -144,20 +145,20 @@
 							<span>{position.endDate ? formatDateDisplay(position.endDate) : 'Present'}</span>
 						</div>
 					</header>
-					<div class="position-content rich-text">
+					<BaseRichText class="position-content">
 						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						{@html position.content}
-					</div>
+					</BaseRichText>
 				</section>
 			{/each}
 		</div>
 	{/if}
 
 	{#if entry.html}
-		<div class="company-content rich-text">
+		<BaseRichText class="company-content">
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html entry.html}
-		</div>
+		</BaseRichText>
 	{/if}
 
 	{#if entry.tags && entry.tags.length > 0}
@@ -498,7 +499,7 @@
 		line-height: 1.5;
 	}
 
-	.rich-text {
+	:global(.rich-text) {
 		margin: 0;
 		:global(p) {
 			margin: 0 0 var(--m) 0;

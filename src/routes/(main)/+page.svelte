@@ -1,5 +1,8 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
+	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
+	import BaseSegmentedButtons from '$lib/components/Base/BaseSegmentedButtons.svelte';
 	import BaseToClipboardButton from '$lib/components/Base/BaseToClipboardButton.svelte';
 	import { getRandomItems } from '$lib/util/helper';
 	import type { Project } from '$lib/types/project';
@@ -48,7 +51,7 @@
 			alt="Profile of Luka Harambasic"
 			class="profile"
 		/>
-		<div class="content rich-text">
+		<BaseRichText class="content">
 			<h2>Heyho, I'm Luka!</h2>
 			<p>
 				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I’m building
@@ -60,7 +63,7 @@
 				or start a conversation about handball, woodworking, cooking, and sustainability, feel free
 				to <a href="#contact">say hi</a>.
 			</p>
-		</div>
+		</BaseRichText>
 	</div>
 </section>
 <section class="featured">
@@ -73,13 +76,13 @@
 		<ul>
 			{#each randomPosts as post}
 				<li>
-					<a class="card text" href={post.relativePath}>
+					<BaseCard element="a" href={post.relativePath} variant="featured" class="text">
 						<Icon icon="ph:arrow-circle-right-bold" />
 						<strong>{post.title}</strong>
 						<time class="date dt-published" datetime={post?.published?.raw?.toString()}>
 							{post.published.display}
 						</time>
-					</a>
+					</BaseCard>
 				</li>
 			{/each}
 		</ul>
@@ -92,11 +95,11 @@
 		<ul>
 			{#each randomUses as usesEntry}
 				<li>
-					<a class="card text" href={usesEntry.url}>
+					<BaseCard element="a" href={usesEntry.url} variant="featured" class="text">
 						<Icon icon="ph:arrow-square-out-bold" />
 						<strong>{usesEntry.title}</strong>
 						<p>{usesEntry.description}</p>
-					</a>
+					</BaseCard>
 				</li>
 			{/each}
 		</ul>
@@ -110,7 +113,13 @@
 			{#each randomProjects as project}
 				{@const imageData = getImage(project.image)}
 				<li>
-					<a class="card no-spacing image" href="/projects?slug={project.slug}">
+					<BaseCard
+						element="a"
+						href="/projects?slug={project.slug}"
+						variant="featured"
+						class="image"
+						noSpacing
+					>
 						<Icon icon="ph:arrow-circle-right-bold" />
 						{#if imageData}
 							<enhanced:img
@@ -123,7 +132,7 @@
 							<strong>{project.title}</strong>
 							<p>{project.description}</p>
 						</div>
-					</a>
+					</BaseCard>
 				</li>
 			{/each}
 		</ul>
@@ -135,34 +144,34 @@
 			<strong>E-Mail</strong>
 			<small>luka@harambasic.de</small>
 		</div>
-		<div class="segmented-buttons">
-			<a href="mailto:luka@harambasic.de" class="button">Write</a>
+		<BaseSegmentedButtons>
+			<a href="mailto:luka@harambasic.de">Write</a>
 			<BaseToClipboardButton toClipboard="luka@harambasic.de">Copy</BaseToClipboardButton>
-		</div>
+		</BaseSegmentedButtons>
 	</div>
 	<div class="group">
 		<div class="meta">
 			<strong>Socials</strong>
 			<small>Get in touch!</small>
 		</div>
-		<div class="segmented-buttons">
+		<BaseSegmentedButtons>
 			<a
 				href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B"
-				class="button">Signal</a
+				>Signal</a
 			>
-			<a href="https://www.linkedin.com/in/harambasic/" class="button">LinkedIn</a>
-			<a href="https://bsky.app/profile/harambasic.de" class="button">BlueSky</a>
-			<a href="https://github.com/LukaHarambasic" class="button">GitHub</a>
-		</div>
+			<a href="https://www.linkedin.com/in/harambasic/">LinkedIn</a>
+			<a href="https://bsky.app/profile/harambasic.de">BlueSky</a>
+			<a href="https://github.com/LukaHarambasic">GitHub</a>
+		</BaseSegmentedButtons>
 	</div>
 	<div class="group">
 		<div class="meta">
 			<strong>Book a time</strong>
 			<small>Wanna talk?</small>
 		</div>
-		<div class="segmented-buttons">
-			<a href="https://cal.com/luhara/1" class="button">Book</a>
-		</div>
+		<BaseSegmentedButtons>
+			<a href="https://cal.com/luhara/1">Book</a>
+		</BaseSegmentedButtons>
 	</div>
 </section>
 
@@ -311,110 +320,6 @@
 						width: calc(100% / 4);
 						@media screen and (width <= 60rem) {
 							width: 100%;
-						}
-					}
-					.card {
-						display: block;
-						position: relative;
-						height: 100%;
-						border-radius: var(--border-radius);
-						background: var(--c-surface);
-						color: var(--c-font);
-						text-decoration: none;
-						transition: var(--transition);
-						&:hover {
-							transform: scale(0.97);
-							cursor: pointer;
-							:global(svg) {
-								opacity: 1;
-							}
-						}
-						:global(svg) {
-							opacity: 0;
-							position: absolute;
-							top: var(--m);
-							right: calc((-1) * var(--m));
-							z-index: 1000;
-							size: var(--l);
-							border: 4px solid var(--c-light);
-							border-radius: 100%;
-							background: var(--c-light);
-							transition: var(--transition);
-						}
-						&.text {
-							padding: var(--l);
-						}
-						&.image {
-							display: flex;
-							flex-direction: row;
-							flex-wrap: nowrap;
-							justify-content: flex-start;
-							align-items: stretch;
-							align-content: stretch;
-							gap: 0;
-							@media screen and (width <= 32rem) {
-								flex-direction: column;
-							}
-							&:hover {
-								> picture {
-									source,
-									img {
-										filter: grayscale(0);
-										opacity: 1;
-									}
-								}
-							}
-							> picture {
-								width: 12rem;
-								height: 12rem;
-								@media screen and (width <= 32rem) {
-									width: 100%;
-									height: auto;
-								}
-								img {
-									opacity: 0.5;
-									width: inherit;
-									height: inherit;
-									border-radius: var(--border-radius) 0 0 var(--border-radius);
-									aspect-ratio: 1 / 1;
-									filter: grayscale(1);
-									@media screen and (width <= 32rem) {
-										border-radius: var(--border-radius) var(--border-radius) 0 0;
-									}
-								}
-							}
-							> .content {
-								display: flex;
-								padding: var(--l);
-								flex-direction: column;
-								flex-wrap: nowrap;
-								justify-content: flex-start;
-								align-items: stretch;
-								align-content: stretch;
-							}
-						}
-					}
-					> a {
-						strong {
-							display: block;
-							font-family: var(--font-family);
-							font-size: var(--font-m);
-							font-weight: 900;
-							line-height: 1.2;
-							letter-spacing: var(--font-letter-spacing-headline);
-						}
-						time {
-							display: inline-block;
-							margin: 0 0 var(--xs) 0;
-							font-size: var(--font-s);
-							font-weight: 400;
-							font-style: italic;
-							text-decoration: none;
-						}
-						p {
-							margin: var(--xs) 0 0 0;
-							font-size: var(--font-m);
-							line-height: 1.5;
 						}
 					}
 				}

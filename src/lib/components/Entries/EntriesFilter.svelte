@@ -3,6 +3,7 @@
 	import type { StatusFilter } from '$lib/types/entry';
 	import { statusFilterToArray, setParam } from '$lib/util/helper';
 	import { createEventDispatcher, onMount } from 'svelte';
+	import BaseCard from '../Base/BaseCard.svelte';
 	import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte';
 
 	const dispatch = createEventDispatcher();
@@ -19,7 +20,7 @@
 	});
 </script>
 
-<div class="filter card">
+<BaseCard class="filter">
 	<BaseHeadlineIcon title="Filter" icon="ph:faders-bold" />
 	<div class="selects">
 		<div class="wrapper">
@@ -31,10 +32,10 @@
 			</select>
 		</div>
 	</div>
-</div>
+</BaseCard>
 
 <style lang="postcss">
-	.filter {
+	:global(.filter) {
 		display: flex;
 		border: var(--border);
 		flex-direction: column;

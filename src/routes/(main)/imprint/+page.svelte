@@ -1,4 +1,8 @@
-<section class="rich-text">
+<script lang="ts">
+	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
+</script>
+
+<BaseRichText element="section">
 	<p>Information in accordance with Section 5 TMG</p>
 	<h3>Address</h3>
 	<ul>
@@ -51,4 +55,4 @@
 	</p>
 	<h4>Source</h4>
 	<a href="http://www.translate-24h.de" target="_blank"> Englisch-Übersetzung translate-24h.de </a>
-</section>
+</BaseRichText>

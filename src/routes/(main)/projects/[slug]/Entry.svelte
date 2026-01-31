@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Project } from '$lib/types/project';
 	import type { WorkEntry } from '$lib/types/workEntry';
+	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 
@@ -38,10 +39,10 @@
 		/>
 	{/if}
 	<div class="content">
-		<div class="rich-text">
+		<BaseRichText>
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html entry.html}
-		</div>
+		</BaseRichText>
 		<ul class="tags">
 			{#each entry.tags as tag}
 				<li>
@@ -49,13 +50,15 @@
 				</li>
 			{/each}
 		</ul>
-		<ul class="links rich-text">
-			{#each entry.links as link}
-				<li>
-					<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
-				</li>
-			{/each}
-		</ul>
+		<BaseRichText class="links">
+			<ul>
+				{#each entry.links as link}
+					<li>
+						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+					</li>
+				{/each}
+			</ul>
+		</BaseRichText>
 		{#if relatedWork.length > 0}
 			<div class="related-work">
 				<h3>Related Work</h3>
@@ -120,7 +123,7 @@
 				align-items: flex-start;
 				gap: var(--xs);
 			}
-			.rich-text {
+			:global(.rich-text) {
 				margin: 0 0 var(--m) 0;
 			}
 			.links {

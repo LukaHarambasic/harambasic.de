@@ -3,7 +3,8 @@
 	import type { Tag } from '$lib/types/tag';
 	import { setParam } from '$lib/util/helper';
 	import { createEventDispatcher, onMount } from 'svelte';
-	import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte';
+	import BaseCard from '../Base/BaseCard.svelte';
+	import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 
 	const dispatch = createEventDispatcher();
@@ -27,7 +28,7 @@
 	});
 </script>
 
-<div class="tags card">
+<BaseCard class="tags">
 	<BaseHeadlineIcon title="Tags" icon="ph:hash-bold" />
 	<ol>
 		{#each tags as tag}
@@ -42,10 +43,10 @@
 			</li>
 		{/each}
 	</ol>
-</div>
+</BaseCard>
 
 <style lang="postcss">
-	.tags {
+	:global(.tags) {
 		display: flex;
 		border: var(--border);
 		flex-direction: column;

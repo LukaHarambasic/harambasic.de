@@ -4,7 +4,6 @@
 	import '$lib/styles/fonts.css';
 	import '$lib/styles/variables.css';
 	import '$lib/styles/base.css';
-	import '$lib/styles/global.css';
 	import '$lib/styles/highlight.css';
 	import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte';
 	import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte';

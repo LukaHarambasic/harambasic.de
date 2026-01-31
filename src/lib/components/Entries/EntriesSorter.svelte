@@ -9,6 +9,7 @@
 		sortAlphabetical
 	} from '$lib/util/helper';
 	import { createEventDispatcher, onMount } from 'svelte';
+	import BaseCard from '../Base/BaseCard.svelte';
 	import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte';
 
 	const dispatch = createEventDispatcher();
@@ -43,7 +44,7 @@
 	});
 </script>
 
-<div class="sort card">
+<BaseCard class="sort">
 	<BaseHeadlineIcon title="Sort" icon="ph:sort-ascending-bold" />
 	<div class="selects">
 		<div class="wrapper">
@@ -63,10 +64,10 @@
 			</select>
 		</div>
 	</div>
-</div>
+</BaseCard>
 
 <style lang="postcss">
-	.sort {
+	:global(.sort) {
 		display: flex;
 		border: var(--border);
 		flex-direction: column;

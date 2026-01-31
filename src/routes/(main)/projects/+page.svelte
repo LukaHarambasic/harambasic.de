@@ -41,11 +41,7 @@
 		<div class="entries">
 			{#each filteredAndSorted as entry, index}
 				{@const imageData = getImage(entry.image)}
-				<a
-					href={entry.relativePath}
-					class="h-feed entry card no-spacing"
-					data-highlighted={index < 3}
-				>
+				<a href={entry.relativePath} class="h-feed entry" data-highlighted={index < 3}>
 					{#if imageData}
 						<div class="image-wrapper">
 							<div class="blur-bg">
@@ -95,15 +91,23 @@
 		.entry {
 			display: flex;
 			position: relative;
+			padding: 0;
 			height: 100%;
+			border: var(--border);
+			border-radius: var(--border-radius);
+			background: var(--c-surface);
 			flex-direction: column;
 			flex-wrap: nowrap;
 			justify-content: flex-start;
 			align-items: stretch;
 			align-content: stretch;
+			gap: 0;
 			color: var(--c-font);
 			text-decoration: none;
 			transition: var(--transition);
+			@media screen and (width <= 42rem) {
+				flex-direction: column;
+			}
 			@media screen and (width <= 62rem) {
 				grid-column: span 1;
 			}
@@ -115,14 +119,12 @@
 				transition: filter var(--transition);
 				overflow: hidden;
 				filter: grayscale(1);
-
 				.blur-bg {
 					position: absolute;
 					inset: 0;
 					z-index: 1;
 					width: 100%;
 					height: 100%;
-
 					:global(picture),
 					:global(img) {
 						width: 100%;

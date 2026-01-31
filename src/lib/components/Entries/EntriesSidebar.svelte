@@ -39,7 +39,7 @@
 
 <aside class:className {id}>
 	<details open={isDesktop} bind:this={detailsElement} ontoggle={handleToggle}>
-		<summary class="card hoverable" bind:this={summaryElement}>
+		<summary class="hoverable" bind:this={summaryElement}>
 			<span>Filter & Sort</span>
 			{#if isOpen}
 				<Icon icon="ph:x-circle-bold" />
@@ -66,15 +66,16 @@
 			summary {
 				display: none;
 				margin: 0 0 var(--l) 0;
-				padding: var(--m);
+				padding: var(--l);
 				border: var(--border);
 				border-radius: var(--border-radius);
-				background: var(--c-font);
+				background: var(--c-surface);
 				flex-direction: row;
 				flex-wrap: nowrap;
 				justify-content: space-between;
 				align-items: center;
 				align-content: center;
+				gap: var(--m);
 				color: var(--c-light);
 				transition: var(--transition);
 				&:hover {
@@ -85,8 +86,13 @@
 				&::-webkit-details-marker {
 					display: none;
 				}
+				@media screen and (width <= 42rem) {
+					flex-direction: column;
+				}
 				@media screen and (width <= 50rem) {
 					display: flex;
+					padding: var(--m);
+					background: var(--c-font);
 				}
 				span {
 					font-family: var(--font-family);
