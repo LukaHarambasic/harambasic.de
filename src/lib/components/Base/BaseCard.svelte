@@ -67,6 +67,8 @@
 	}
 	.base-card[href]:hover {
 		text-decoration: none;
+		transform: scale(1.02) translateY(-4px);
+		cursor: pointer;
 	}
 
 	/* Featured variant: dark Electricity Maps style */
@@ -82,7 +84,7 @@
 		text-decoration: none;
 	}
 	.base-card.featured[href]:hover {
-		transform: scale(1.02);
+		transform: scale(1.02) translateY(-4px);
 		cursor: pointer;
 	}
 	.base-card.featured :global(strong),
