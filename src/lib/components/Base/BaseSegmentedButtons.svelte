@@ -6,14 +6,14 @@
 	let { children }: Props = $props();
 </script>
 
-<div class="segmented-buttons">
+<div class="buttons">
 	{#if children}
 		{@render children()}
 	{/if}
 </div>
 
 <style lang="postcss">
-	.segmented-buttons {
+	.buttons {
 		display: flex;
 		border: var(--border);
 		border-radius: var(--border-radius-small);

@@ -68,13 +68,9 @@
 					{#each relatedWork as work}
 						<li>
 							<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
-								<div class="card-header">
-									<div class="header-content">
-										<div class="company-header">
-											<div class="company-info">
-												<h4 class="company-name">{work.title}</h4>
-											</div>
-										</div>
+								<div class="header">
+									<div class="info">
+										<h4 class="name">{work.title}</h4>
 									</div>
 									<div class="external-link">
 										<Icon icon="ph:arrow-up-right-bold" />

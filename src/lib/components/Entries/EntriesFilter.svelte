@@ -20,22 +20,27 @@
 	});
 </script>
 
-<BaseCard class="filter">
-	<BaseHeadlineIcon title="Filter" icon="ph:faders-bold" />
-	<div class="selects">
-		<div class="wrapper">
-			<label for="property">Status</label>
-			<select bind:value={status} onchange={onStatusChange} name="property">
-				{#each statuses as item}
-					<option value={item.key}>{item.display}</option>
-				{/each}
-			</select>
+<div class="entries-filter">
+	<BaseCard class="filter">
+		<BaseHeadlineIcon title="Filter" icon="ph:faders-bold" />
+		<div class="selects">
+			<div class="wrapper">
+				<label for="property">Status</label>
+				<select bind:value={status} onchange={onStatusChange} name="property">
+					{#each statuses as item}
+						<option value={item.key}>{item.display}</option>
+					{/each}
+				</select>
+			</div>
 		</div>
-	</div>
-</BaseCard>
+	</BaseCard>
+</div>
 
 <style lang="postcss">
-	:global(.filter) {
+	.entries-filter {
+		display: block;
+	}
+	:global(.entries-filter .filter) {
 		display: flex;
 		border: var(--border);
 		flex-direction: column;

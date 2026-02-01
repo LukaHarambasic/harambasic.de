@@ -71,8 +71,8 @@
 							<li class="h-feed">
 								<BaseCard element="a" href={entry.url} variant="default" class="withImageSpan">
 									{#if entry.image}
-										<div class="card-image-span">
-											<div class="card-image-span-inner">
+										<div class="thumb">
+											<div class="inner">
 												{#if isSvgImage(entry.image)}
 													<img src="/uses/{entry.image}" alt={entry.title} />
 												{:else}
@@ -88,12 +88,10 @@
 											</div>
 										</div>
 									{/if}
-									<div class="card-image-span-content">
-										<div class="card-header">
-											<div class="header-content">
-												<div class="company-info">
-													<h2 class="company-name">{entry.title}</h2>
-												</div>
+									<div class="content">
+										<div class="header">
+											<div class="info">
+												<h2 class="name">{entry.title}</h2>
 											</div>
 											<div class="external-link">
 												<Icon
@@ -103,7 +101,7 @@
 												/>
 											</div>
 										</div>
-										<div class="card-description">
+										<div class="description">
 											<p>{entry.description}</p>
 										</div>
 									</div>
@@ -171,25 +169,147 @@
 				}
 			}
 		}
-	}
-	.entries {
-		display: grid;
-		width: 100%;
-		align-items: stretch;
-		gap: var(--l);
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		@media screen and (width <= 62rem) {
-			grid-template-columns: 1fr;
-		}
-		> li {
+
+		/* contentOnly (archive) — usage-specific, moved from BaseCard */
+		:global(.base-card.contentOnly) {
 			display: flex;
-			width: 100%;
-			min-height: 0;
+			position: relative;
+			padding: var(--m);
+			flex-direction: column;
+			grid-template-areas: unset;
+			grid-template-columns: unset;
 		}
-		> li :global(.base-card) {
+		:global(.base-card.contentOnly .content) {
+			display: flex;
+			padding: 0;
+			padding-right: calc(1.5rem + var(--xs));
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: stretch;
+			align-content: stretch;
+			gap: var(--xs);
+		}
+		:global(.base-card.contentOnly .external-link) {
+			position: absolute;
+			top: var(--m);
+			right: var(--m);
+		}
+		:global(.base-card.contentOnly .content .title strong) {
+			display: inline;
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 900;
+			line-height: 1.2;
+			letter-spacing: var(--font-letter-spacing-headline);
+		}
+		:global(.base-card.contentOnly .content p) {
+			font-size: var(--font-m);
+			line-height: 1.2;
+		}
+
+		/* withImageSpan (main list) — usage-specific, moved from BaseCard */
+		:global(.base-card.withImageSpan) {
+			display: flex;
+			position: relative;
+			padding: var(--l);
+			flex-direction: row;
+			align-items: flex-start;
+			gap: var(--m);
+			@media screen and (width <= 42rem) {
+				flex-direction: column;
+			}
+		}
+		:global(.base-card.withImageSpan[href] .external-link) {
+			position: absolute;
+			top: var(--l);
+			right: var(--l);
+			z-index: 10;
+		}
+		:global(.base-card.withImageSpan .thumb) {
+			display: flex;
+			width: 3rem;
+			flex-shrink: 0;
+			flex-direction: row;
+			justify-content: center;
+			align-items: flex-start;
+		}
+		:global(.base-card.withImageSpan .inner) {
+			display: block;
+			width: 3rem;
+			border-radius: var(--border-radius-small);
+			flex-shrink: 0;
+			overflow: hidden;
+		}
+		:global(.base-card.withImageSpan .inner img),
+		:global(.base-card.withImageSpan .inner enhanced-img) {
+			display: block;
+			width: 100%;
+			height: auto;
+			vertical-align: top;
+		}
+		:global(.base-card.withImageSpan .content) {
+			display: flex;
 			min-width: 0;
-			min-height: 0;
 			flex: 1;
+			flex-direction: column;
+			gap: 0;
+		}
+		:global(.base-card.withImageSpan .header) {
+			display: flex;
+			margin: 0;
+			margin-bottom: var(--m);
+			padding-right: calc(1.5rem + var(--xs));
+			justify-content: flex-start;
+			align-items: flex-start;
+			gap: var(--m);
+		}
+		:global(.base-card.withImageSpan .info) {
+			display: flex;
+			min-width: 0;
+			flex: 1;
+			flex-direction: column;
+			gap: 0;
+		}
+		:global(.base-card.withImageSpan .name) {
+			margin: 0;
+			color: var(--c-font);
+			font-family: var(--font-family);
+			font-size: var(--font-xl);
+			font-weight: 900;
+			line-height: 1.2;
+			letter-spacing: var(--font-letter-spacing-headline);
+		}
+		:global(.base-card.withImageSpan .description) {
+			margin: 0;
+		}
+		:global(.base-card.withImageSpan .description p) {
+			margin: 0;
+			color: var(--c-font-accent-dark);
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 400;
+			line-height: 1.5;
+		}
+		.entries {
+			display: grid;
+			width: 100%;
+			align-items: stretch;
+			gap: var(--l);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			@media screen and (width <= 62rem) {
+				grid-template-columns: 1fr;
+			}
+			> li {
+				display: flex;
+				width: 100%;
+				min-height: 0;
+			}
+			> li :global(.base-card) {
+				min-width: 0;
+				min-height: 0;
+				flex: 1;
+			}
 		}
 	}
 </style>

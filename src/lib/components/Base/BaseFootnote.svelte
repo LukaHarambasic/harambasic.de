@@ -19,7 +19,7 @@
 	</p>
 </BaseRichText>
 
-<style>
+<style lang="postcss">
 	.footnote {
 		padding: var(--l);
 		border-radius: var(--border-radius);

@@ -242,6 +242,39 @@
 		align-items: stretch;
 		align-content: stretch;
 		gap: var(--l);
+
+		/* text layout (posts/uses teasers) — usage-specific, moved from BaseCard */
+		:global(.base-card.text) {
+			position: relative;
+			flex-direction: column;
+		}
+		:global(.base-card.text .external-link) {
+			position: absolute;
+			top: var(--l);
+			right: var(--m);
+			z-index: 10;
+		}
+		:global(.base-card.text strong) {
+			display: block;
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 900;
+			line-height: 1.2;
+			letter-spacing: var(--font-letter-spacing-headline);
+		}
+		:global(.base-card.text time) {
+			display: inline-block;
+			margin: 0 0 var(--xs) 0;
+			font-size: var(--font-s);
+			font-weight: 400;
+			font-style: italic;
+		}
+		:global(.base-card.text p) {
+			margin: var(--xs) 0 0 0;
+			font-size: var(--font-m);
+			line-height: 1.5;
+		}
+
 		h2 {
 			margin: var(--xl) 0 var(--m) 0;
 			font-family: var(--font-family);

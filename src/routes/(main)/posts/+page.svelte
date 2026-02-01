@@ -31,25 +31,18 @@
 							class="withIcon post-card"
 							aria-label="View post: {post.title}"
 						>
-							<div class="card-header">
-								<div class="header-content">
-									<div class="company-header">
-										<div class="company-info">
-											<h2 class="company-name">{post.title}</h2>
-										</div>
-									</div>
+							<div class="header">
+								<div class="info">
+									<h2 class="name">{post.title}</h2>
 								</div>
 								<div class="external-link">
 									<Icon icon="ph:arrow-up-right-bold" />
 								</div>
 							</div>
-							<div class="card-metadata">
-								<div class="card-positions">
-									<div class="position-row">
-										<time
-											class="position-dates dt-published"
-											datetime={post.published.raw?.toISOString()}
-										>
+							<div class="metadata">
+								<div class="positions">
+									<div class="row">
+										<time class="dates dt-published" datetime={post.published.raw?.toISOString()}>
 											{formatDateDisplay(post.published.display)}
 										</time>
 									</div>
@@ -69,26 +62,25 @@
 		margin-left: auto;
 		width: 100%;
 		max-width: calc(var(--layout-xl) * 0.618);
-	}
-	.entries {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		align-items: stretch;
-		align-content: stretch;
-		gap: var(--l);
-	}
-	:global(.post-card) {
-		padding-bottom: var(--m);
-		border-color: color-mix(in srgb, var(--c-surface-accent) 40%, var(--c-font));
-		background: color-mix(in srgb, var(--c-light) 50%, var(--c-surface));
-	}
-	:global(.base-card.post-card .company-name) {
-		font-size: var(--font-m);
-	}
-	:global(.post-card .position-row) {
-		display: block;
-		text-align: left;
+		.entries {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: stretch;
+			align-content: stretch;
+			gap: var(--l);
+		}
+		:global(.post-card) {
+			border-color: var(--c-surface-accent);
+			background: color-mix(in srgb, var(--c-light) 75%, var(--c-surface));
+			& :global(.name) {
+				font-size: var(--font-m);
+			}
+			& :global(.row) {
+				display: block;
+				text-align: left;
+			}
+		}
 	}
 </style>

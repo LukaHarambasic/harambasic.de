@@ -13,19 +13,24 @@
 	let { prefix, children, class: className, id }: Props = $props();
 </script>
 
-<BaseCard class={className ? `callout ${className}` : 'callout'} {id}>
-	{#if prefix}
-		<strong>{prefix}</strong>
-	{/if}
-	<BaseRichText class="content">
-		{#if hasSnippet(children)}
-			{@render children()}
+<div class="callout-wrapper">
+	<BaseCard class={className ? `callout ${className}` : 'callout'} {id}>
+		{#if prefix}
+			<strong>{prefix}</strong>
 		{/if}
-	</BaseRichText>
-</BaseCard>
+		<BaseRichText class="content">
+			{#if hasSnippet(children)}
+				{@render children()}
+			{/if}
+		</BaseRichText>
+	</BaseCard>
+</div>
 
 <style lang="postcss">
-	:global(.callout) {
+	.callout-wrapper {
+		display: block;
+	}
+	:global(.callout-wrapper .callout) {
 		display: flex;
 		strong {
 			display: inline-block;
@@ -39,7 +44,7 @@
 			font-weight: 900;
 			letter-spacing: var(--font-letter-spacing-headline);
 		}
-		.content {
+		:global(.content) {
 			flex: 0 1 auto;
 		}
 	}
