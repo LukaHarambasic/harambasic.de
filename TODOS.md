@@ -10,3 +10,4 @@
 - rss feed update indidivual ones, more ocntent, create combined one
 - universal feed
 - imrpove code block styling
+- remove tags and sorting and everythign like that form everywhere
