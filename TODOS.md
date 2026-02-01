@@ -1,0 +1,14 @@
+- x card background not white
+- x all card styling in card component
+- refactor cards compoennt and styles on pages
+- align layout to be only width of golden ratio
+- css: make sure all css is nested
+- hero headers on pages
+- align copy of projects
+- add monta project
+- update uses
+- optimise image import
+- rss feed update indidivual ones, more ocntent, create combined one
+- universal feed
+- imrpove code block styling
+- remove tags and sorting and everythign like that form everywhere

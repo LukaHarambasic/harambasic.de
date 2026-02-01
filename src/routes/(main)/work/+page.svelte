@@ -3,6 +3,7 @@
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import Hero from '$lib/components/Hero/Hero.svelte';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
 	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
@@ -70,54 +71,52 @@
 <Entries path={data.url}>
 	{#snippet entries()}
 		<Hero
-			title="Building products that matter for people & the energy transition"
+			title="Building products that matter for people & the planet"
 			description="From Germany's COVID tracing app with 48M+ downloads to scaling Home Energy Management Systems from 0 to 1. I ship products, build automations, and occasionally write code."
 		/>
 		<div class="work-container">
 			{#if current}
 				{@const sortedPositions = sortPositionsByDate(current.entry.positions)}
 				{@const relatedProjects = getRelatedProjects(current.entry)}
-				<a
+				<BaseCard
+					element="a"
 					href="/work/{current.entry.slug}"
-					class="work-card current-card"
+					variant="featured"
+					class="withIcon current-card"
 					aria-label="View details for {current.entry.title}"
 				>
-					<div class="card-header">
-						<div class="header-content">
-							<div class="company-header">
-								{#if current.entry.image && current.entry.image !== 'TODO'}
-									{@const isSvg = isSvgImage(current.entry.image)}
-									{@const imageData = isSvg ? null : getImage(current.entry.image)}
-									{#if isSvg || imageData}
-										<div class="company-logo">
-											{#if isSvg}
-												<img src="/work/{current.entry.image}" alt={current.entry.title} />
-											{:else if imageData}
-												<enhanced:img
-													src={imageData}
-													sizes="(min-width:768px) 64px, 48px"
-													alt={current.entry.title}
-												/>
-											{/if}
-										</div>
+					<div class="header">
+						{#if current.entry.image && current.entry.image !== 'TODO'}
+							{@const isSvg = isSvgImage(current.entry.image)}
+							{@const imageData = isSvg ? null : getImage(current.entry.image)}
+							{#if isSvg || imageData}
+								<div class="logo">
+									{#if isSvg}
+										<img src="/work/{current.entry.image}" alt={current.entry.title} />
+									{:else if imageData}
+										<enhanced:img
+											src={imageData}
+											sizes="(min-width:768px) 64px, 48px"
+											alt={current.entry.title}
+										/>
 									{/if}
-								{/if}
-								<div class="company-info">
-									<h2 class="company-name">{current.entry.title}</h2>
-									<div class="card-location">{current.entry.location}</div>
 								</div>
-							</div>
+							{/if}
+						{/if}
+						<div class="info">
+							<h2 class="name">{current.entry.title}</h2>
+							<div class="location">{current.entry.location}</div>
 						</div>
 						<div class="external-link">
 							<Icon icon="ph:arrow-up-right-bold" />
 						</div>
 					</div>
-					<div class="card-metadata">
-						<div class="card-positions">
+					<div class="metadata">
+						<div class="positions">
 							{#each sortedPositions as position}
-								<div class="position-row">
-									<span class="position-title">{position.title}</span>
-									<span class="position-dates">
+								<div class="row">
+									<span class="title">{position.title}</span>
+									<span class="dates">
 										{formatDateDisplay(position.startDate)} – {position.endDate
 											? formatDateDisplay(position.endDate)
 											: 'Present'}
@@ -126,23 +125,25 @@
 							{/each}
 						</div>
 					</div>
-					<div class="card-description">
+					<div class="description">
 						<p>{current.entry.description}</p>
 					</div>
-					<div class="card-footer">
-						{#if relatedProjects.length > 0}
-							<span class="related-projects">
-								{#each relatedProjects as project, index}
-									<span>{project.title}</span>
-									{#if index < relatedProjects.length - 1},
-									{/if}
-								{/each}
-							</span>
-						{:else}
-							<span class="no-projects">No projects</span>
-						{/if}
+					<div class="footer">
+						<div class="row">
+							{#if relatedProjects.length > 0}
+								<span class="related-projects">
+									{#each relatedProjects as project, index}
+										<span>{project.title}</span>
+										{#if index < relatedProjects.length - 1},
+										{/if}
+									{/each}
+								</span>
+							{:else}
+								<span class="no-projects">No projects</span>
+							{/if}
+						</div>
 					</div>
-				</a>
+				</BaseCard>
 			{/if}
 
 			{#if past.length > 0}
@@ -150,47 +151,45 @@
 					{#each past as card}
 						{@const sortedPositions = sortPositionsByDate(card.entry.positions)}
 						{@const relatedProjects = getRelatedProjects(card.entry)}
-						<a
+						<BaseCard
+							element="a"
 							href="/work/{card.entry.slug}"
-							class="work-card past-card"
+							variant="default"
+							class="withIcon past-card"
 							aria-label="View details for {card.entry.title}"
 						>
-							<div class="card-header">
-								<div class="header-content">
-									<div class="company-header">
-										{#if card.entry.image && card.entry.image !== 'TODO'}
-											{@const isSvg = isSvgImage(card.entry.image)}
-											{@const imageData = isSvg ? null : getImage(card.entry.image)}
-											{#if isSvg || imageData}
-												<div class="company-logo">
-													{#if isSvg}
-														<img src="/work/{card.entry.image}" alt={card.entry.title} />
-													{:else if imageData}
-														<enhanced:img
-															src={imageData}
-															sizes="(min-width:768px) 64px, 48px"
-															alt={card.entry.title}
-														/>
-													{/if}
-												</div>
+							<div class="header">
+								{#if card.entry.image && card.entry.image !== 'TODO'}
+									{@const isSvg = isSvgImage(card.entry.image)}
+									{@const imageData = isSvg ? null : getImage(card.entry.image)}
+									{#if isSvg || imageData}
+										<div class="logo">
+											{#if isSvg}
+												<img src="/work/{card.entry.image}" alt={card.entry.title} />
+											{:else if imageData}
+												<enhanced:img
+													src={imageData}
+													sizes="(min-width:768px) 64px, 48px"
+													alt={card.entry.title}
+												/>
 											{/if}
-										{/if}
-										<div class="company-info">
-											<h2 class="company-name">{card.entry.title}</h2>
-											<div class="card-location">{card.entry.location}</div>
 										</div>
-									</div>
+									{/if}
+								{/if}
+								<div class="info">
+									<h2 class="name">{card.entry.title}</h2>
+									<div class="location">{card.entry.location}</div>
 								</div>
 								<div class="external-link">
 									<Icon icon="ph:arrow-up-right-bold" />
 								</div>
 							</div>
-							<div class="card-metadata">
-								<div class="card-positions">
+							<div class="metadata">
+								<div class="positions">
 									{#each sortedPositions as position}
-										<div class="position-row">
-											<span class="position-title">{position.title}</span>
-											<span class="position-dates">
+										<div class="row">
+											<span class="title">{position.title}</span>
+											<span class="dates">
 												{formatDateDisplay(position.startDate)} – {position.endDate
 													? formatDateDisplay(position.endDate)
 													: 'Present'}
@@ -199,23 +198,25 @@
 									{/each}
 								</div>
 							</div>
-							<div class="card-description">
+							<div class="description">
 								<p>{card.entry.description}</p>
 							</div>
-							<div class="card-footer">
-								{#if relatedProjects.length > 0}
-									<span class="related-projects">
-										{#each relatedProjects as project, index}
-											<span>{project.title}</span>
-											{#if index < relatedProjects.length - 1},
-											{/if}
-										{/each}
-									</span>
-								{:else}
-									<span class="no-projects">No projects</span>
-								{/if}
+							<div class="footer">
+								<div class="row">
+									{#if relatedProjects.length > 0}
+										<span class="related-projects">
+											{#each relatedProjects as project, index}
+												<span>{project.title}</span>
+												{#if index < relatedProjects.length - 1},
+												{/if}
+											{/each}
+										</span>
+									{:else}
+										<span class="no-projects">No projects</span>
+									{/if}
+								</div>
 							</div>
-						</a>
+						</BaseCard>
 					{/each}
 				</div>
 			{/if}
@@ -232,262 +233,95 @@
 		max-width: var(--layout-xl);
 		flex-direction: column;
 		gap: var(--xl);
-	}
 
-	.work-card {
-		display: flex;
-		position: relative;
-		padding: var(--l);
-		border: 1px solid var(--c-surface-accent);
-		border-radius: var(--border-radius);
-		box-shadow: var(--box-shadow);
-		background: var(--c-light);
-		flex-direction: column;
-		gap: 0;
-		color: inherit;
-		text-decoration: none;
-		transition: var(--transition);
-		cursor: pointer;
-	}
-
-	.current-card {
-		margin: 0 auto;
-		width: 61.8%;
-		border-width: 2px;
-		border-color: rgba(255, 255, 255, 0.2);
-		background: var(--c-current-work-bg);
-		@media screen and (width <= 48rem) {
-			width: 100%;
-		}
-		&:hover {
-			transform: scale(1.02);
-			.external-link {
-				transform: translateY(-2px) translateX(2px);
-			}
-		}
-		&:focus {
-			outline: 2px solid var(--c-current-work-text);
-			outline-offset: 2px;
-		}
-	}
-
-	.past-card {
-		width: 100%;
-		&:hover {
-			transform: scale(1.02);
-			.external-link {
-				transform: translateY(-2px) translateX(2px);
-			}
-		}
-		&:focus {
-			outline: 2px solid var(--c-font);
-			outline-offset: 2px;
-		}
-	}
-
-	.card-header {
-		display: flex;
-		margin-bottom: var(--m);
-		justify-content: space-between;
-		align-items: flex-start;
-		gap: var(--m);
-	}
-
-	.header-content {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		gap: var(--xs);
-	}
-
-	.company-header {
-		display: flex;
-		align-items: center;
-		gap: var(--m);
-	}
-
-	.company-info {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		gap: 0;
-	}
-
-	.company-logo {
-		display: flex;
-		width: 3rem;
-		height: 3rem;
-		border-radius: var(--border-radius-small);
-		background: var(--c-font-accent-super-light);
-		flex-shrink: 0;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		overflow: hidden;
-		img,
-		:global(enhanced-img) {
-			display: block;
-			margin: 0;
-			padding: 0;
-			width: 100%;
+		/* current-card: higher specificity so text colors beat BaseCard's var(--c-font) */
+		:global(.base-card.current-card) {
+			position: relative;
+			margin: 0 auto;
+			width: 61.8%;
 			height: 100%;
-			object-fit: contain;
+			border-color: rgba(255, 255, 255, 0.2);
+			background: var(--c-current-work-bg);
+			color: #fff;
+			@media screen and (width <= 48rem) {
+				width: 100%;
+			}
+			&:focus {
+				outline: 2px solid #fff;
+				outline-offset: 2px;
+			}
+			&[href] {
+				color: inherit;
+				text-decoration: none;
+			}
+			&[href]:hover {
+				transform: scale(1.02) translateY(-4px);
+				cursor: pointer;
+			}
 		}
-	}
-
-	.current-card .company-logo {
-		background: rgba(255, 255, 255, 0.1);
-	}
-
-	.company-name {
-		margin: 0;
-		color: var(--c-font);
-		font-family: var(--font-family);
-		font-size: var(--font-xl);
-		font-weight: 900;
-		line-height: 1.2;
-		letter-spacing: var(--font-letter-spacing-headline);
-	}
-
-	.current-card .company-name {
-		color: var(--c-current-work-text);
-		font-size: 1.5rem;
-	}
-
-	.external-link {
-		display: flex;
-		width: 1.5rem;
-		height: 1.5rem;
-		flex-shrink: 0;
-		justify-content: center;
-		align-items: center;
-		color: var(--c-font);
-		transition: var(--transition);
-		pointer-events: none;
-		:global(svg) {
-			width: 1rem;
-			height: 1rem;
+		:global(.past-card) {
+			width: 100%;
+			&:focus {
+				outline: 2px solid var(--c-font);
+				outline-offset: 2px;
+			}
 		}
-	}
 
-	.current-card .external-link {
-		color: var(--c-current-work-text);
-	}
-
-	.card-metadata {
-		margin-bottom: var(--m);
-	}
-
-	.card-location {
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-s);
-		font-weight: 400;
-		font-style: italic;
-		line-height: 1.5;
-		white-space: nowrap;
-	}
-
-	.current-card .card-location {
-		color: rgba(255, 255, 255, 0.8);
-	}
-
-	.card-positions {
-		display: flex;
-		flex-direction: column;
-		gap: var(--xs);
-	}
-
-	.position-row {
-		display: grid;
-		align-items: baseline;
-		gap: var(--m);
-		grid-template-columns: 1fr auto;
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-s);
-		line-height: 1.5;
-	}
-
-	.current-card .position-row {
-		color: rgba(255, 255, 255, 0.8);
-	}
-
-	.position-title {
-		font-weight: 500;
-	}
-
-	.position-dates {
-		color: var(--c-font-accent-dark);
-		font-weight: 400;
-		white-space: nowrap;
-	}
-
-	.current-card .position-dates {
-		color: rgba(255, 255, 255, 0.8);
-	}
-
-	.card-description {
-		margin-bottom: var(--m);
-		p {
-			margin: 0;
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
-			font-size: var(--font-m);
-			font-weight: 400;
-			line-height: 1.5;
-		}
-	}
-
-	.current-card .card-description p {
-		color: var(--c-current-work-text);
-	}
-
-	.card-footer {
-		margin-top: auto;
-		padding-top: var(--m);
-		border-top: 1px solid var(--c-surface-accent);
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-s);
-		font-weight: 400;
-		line-height: 1.5;
-	}
-
-	.current-card .card-footer {
-		border-top-color: rgba(255, 255, 255, 0.2);
-		color: var(--c-current-work-text);
-	}
-
-	.related-projects {
-		color: var(--c-font-accent-dark);
-	}
-
-	.current-card .related-projects {
-		color: var(--c-current-work-text);
-	}
-
-	.no-projects {
-		color: var(--c-font-accent-dark);
-	}
-
-	.current-card .no-projects {
-		color: var(--c-current-work-text);
-	}
-
-	.work-grid {
-		display: grid;
-		gap: var(--l);
-		grid-template-columns: repeat(2, 1fr);
-		@media screen and (width <= 48rem) {
+		.work-grid {
+			display: grid;
 			gap: var(--l);
-			grid-template-columns: 1fr;
+			grid-template-columns: repeat(2, 1fr);
+			@media screen and (width <= 48rem) {
+				gap: var(--l);
+				grid-template-columns: 1fr;
+			}
+			:global(.past-card) {
+				display: flex;
+				min-height: 100%;
+				flex-direction: column;
+			}
 		}
-	}
 
-	.work-grid .past-card {
-		display: flex;
-		min-height: 100%;
-		flex-direction: column;
+		/* current-card descendants: light text so readable on dark background */
+		:global(.base-card.current-card strong),
+		:global(.base-card.current-card time),
+		:global(.base-card.current-card p) {
+			color: inherit;
+			text-decoration: none;
+		}
+		:global(.base-card.current-card time),
+		:global(.base-card.current-card p) {
+			opacity: 0.9;
+			color: #fff;
+		}
+		:global(.base-card.current-card[href] .external-link) {
+			color: #fff;
+		}
+		:global(.base-card.current-card[href]:hover .external-link) {
+			transform: translateY(-2px) translateX(2px);
+		}
+		:global(.base-card.current-card .logo) {
+			background: rgba(255, 255, 255, 0.1);
+		}
+		:global(.base-card.current-card .name) {
+			color: #fff;
+			font-size: 1.5rem;
+		}
+		:global(.base-card.current-card .location) {
+			color: rgba(255, 255, 255, 0.8);
+		}
+		:global(.base-card.current-card .row) {
+			color: rgba(255, 255, 255, 0.8);
+		}
+		:global(.base-card.current-card .dates) {
+			color: rgba(255, 255, 255, 0.8);
+		}
+		:global(.base-card.current-card .description p) {
+			color: #fff;
+		}
+		:global(.base-card.current-card .footer) {
+			border-top-color: rgba(255, 255, 255, 0.2);
+			color: #fff;
+		}
 	}
 </style>

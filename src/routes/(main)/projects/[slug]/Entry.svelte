@@ -1,7 +1,10 @@
 <script lang="ts">
 	import type { Project } from '$lib/types/project';
 	import type { WorkEntry } from '$lib/types/workEntry';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
+	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
+	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 
 	const pictures: ImageGlobResult = import.meta.glob(
@@ -38,10 +41,10 @@
 		/>
 	{/if}
 	<div class="content">
-		<div class="rich-text">
+		<BaseRichText>
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html entry.html}
-		</div>
+		</BaseRichText>
 		<ul class="tags">
 			{#each entry.tags as tag}
 				<li>
@@ -49,20 +52,31 @@
 				</li>
 			{/each}
 		</ul>
-		<ul class="links rich-text">
-			{#each entry.links as link}
-				<li>
-					<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
-				</li>
-			{/each}
-		</ul>
+		<BaseRichText class="links">
+			<ul>
+				{#each entry.links as link}
+					<li>
+						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+					</li>
+				{/each}
+			</ul>
+		</BaseRichText>
 		{#if relatedWork.length > 0}
 			<div class="related-work">
 				<h3>Related Work</h3>
-				<ul>
+				<ul class="related-work-list">
 					{#each relatedWork as work}
 						<li>
-							<a href={work.relativePath}>{work.title}</a>
+							<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
+								<div class="header">
+									<div class="info">
+										<h4 class="name">{work.title}</h4>
+									</div>
+									<div class="external-link">
+										<Icon icon="ph:arrow-up-right-bold" />
+									</div>
+								</div>
+							</BaseCard>
 						</li>
 					{/each}
 				</ul>
@@ -120,7 +134,7 @@
 				align-items: flex-start;
 				gap: var(--xs);
 			}
-			.rich-text {
+			:global(.rich-text) {
 				margin: 0 0 var(--m) 0;
 			}
 			.links {
@@ -144,19 +158,15 @@
 					font-weight: 700;
 					letter-spacing: var(--font-letter-spacing-headline);
 				}
-				ul {
+				.related-work-list {
+					display: flex;
 					margin: 0;
 					padding: 0;
+					flex-direction: column;
+					gap: var(--m);
 					list-style: none;
 					li {
-						margin-bottom: var(--xs);
-						a {
-							color: var(--c-font);
-							text-decoration: none;
-							&:hover {
-								text-decoration: underline;
-							}
-						}
+						width: 100%;
 					}
 				}
 			}

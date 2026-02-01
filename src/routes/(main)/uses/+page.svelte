@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Entries from '$lib/components/Entries/Entries.svelte';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
-	import { sortDate } from '$lib/util/helper';
+	import { isExternalUrl, sortDate } from '$lib/util/helper';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
 
 	const pictures: ImageGlobResult = import.meta.glob(
@@ -68,33 +69,43 @@
 					<ul class="entries">
 						{#each group.entries as entry}
 							<li class="h-feed">
-								<a href={entry.url}>
-									<div class="logo">
-										{#if entry.image}
-											{#if isSvgImage(entry.image)}
-												<img src="/uses/{entry.image}" alt={entry.title} width="64px" />
-											{:else}
-												{@const imageData = getImage(entry.image)}
-												{#if imageData}
-													<enhanced:img
-														src={imageData}
-														sizes="(min-width:768px) 400px"
-														alt={entry.title}
-													/>
+								<BaseCard element="a" href={entry.url} variant="default" class="withImageSpan">
+									{#if entry.image}
+										<div class="thumb">
+											<div class="inner">
+												{#if isSvgImage(entry.image)}
+													<img src="/uses/{entry.image}" alt={entry.title} />
+												{:else}
+													{@const imageData = getImage(entry.image)}
+													{#if imageData}
+														<enhanced:img
+															src={imageData}
+															sizes="(min-width:768px) 64px, 48px"
+															alt={entry.title}
+														/>
+													{/if}
 												{/if}
-											{/if}
-										{/if}
-									</div>
-									<div class="content">
-										<div class="title">
-											<strong>
-												{entry.title}
-											</strong>
+											</div>
 										</div>
-										<p>{entry.description}</p>
+									{/if}
+									<div class="content">
+										<div class="header">
+											<div class="info">
+												<h2 class="name">{entry.title}</h2>
+											</div>
+											<div class="external-link">
+												<Icon
+													icon={isExternalUrl(entry.url)
+														? 'ph:arrow-square-out-bold'
+														: 'ph:arrow-up-right-bold'}
+												/>
+											</div>
+										</div>
+										<div class="description">
+											<p>{entry.description}</p>
+										</div>
 									</div>
-									<Icon class="arrow" icon="ph:arrow-square-out-bold" />
-								</a>
+								</BaseCard>
 							</li>
 						{/each}
 					</ul>
@@ -105,7 +116,7 @@
 				<ul class="entries">
 					{#each inactiveEntries as entry}
 						<li class="h-feed">
-							<a href={entry.url}>
+							<BaseCard element="a" href={entry.url} variant="default" class="contentOnly">
 								<div class="content">
 									<div class="title">
 										<strong>
@@ -114,8 +125,14 @@
 									</div>
 									<p>{entry.description}</p>
 								</div>
-								<Icon class="arrow" icon="ph:arrow-square-out-bold" />
-							</a>
+								<div class="external-link">
+									<Icon
+										icon={isExternalUrl(entry.url)
+											? 'ph:arrow-square-out-bold'
+											: 'ph:arrow-up-right-bold'}
+									/>
+								</div>
+							</BaseCard>
 						</li>
 					{/each}
 				</ul>
@@ -145,109 +162,153 @@
 				line-height: 1.2;
 				letter-spacing: var(--font-letter-spacing-headline);
 			}
-			&.archive {
-				.entries {
-					grid-template-columns: repeat(3, minmax(0, 1fr));
-					@media screen and (width <= 62rem) {
-						grid-template-columns: 1fr;
-					}
-					> li {
-						> a {
-							grid-template-areas: 'content';
-							grid-template-columns: 1fr;
-						}
-					}
+			&.archive .entries {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				@media screen and (width <= 62rem) {
+					grid-template-columns: 1fr;
 				}
 			}
 		}
-	}
-	.entries {
-		display: grid;
-		width: 100%;
-		gap: var(--l);
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		@media screen and (width <= 62rem) {
-			grid-template-columns: 1fr;
+
+		/* contentOnly (archive) — usage-specific, moved from BaseCard */
+		:global(.base-card.contentOnly) {
+			display: flex;
+			position: relative;
+			padding: var(--m);
+			flex-direction: column;
+			grid-template-areas: unset;
+			grid-template-columns: unset;
 		}
-		> li {
+		:global(.base-card.contentOnly .content) {
+			display: flex;
+			padding: 0;
+			padding-right: calc(1.5rem + var(--xs));
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: stretch;
+			align-content: stretch;
+			gap: var(--xs);
+		}
+		:global(.base-card.contentOnly .external-link) {
+			position: absolute;
+			top: var(--m);
+			right: var(--m);
+		}
+		:global(.base-card.contentOnly .content .title strong) {
+			display: inline;
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 900;
+			line-height: 1.2;
+			letter-spacing: var(--font-letter-spacing-headline);
+		}
+		:global(.base-card.contentOnly .content p) {
+			font-size: var(--font-m);
+			line-height: 1.2;
+		}
+
+		/* withImageSpan (main list) — usage-specific, moved from BaseCard */
+		:global(.base-card.withImageSpan) {
+			display: flex;
+			position: relative;
+			padding: var(--l);
+			flex-direction: row;
+			align-items: flex-start;
+			gap: var(--m);
+			@media screen and (width <= 42rem) {
+				flex-direction: column;
+			}
+		}
+		:global(.base-card.withImageSpan[href] .external-link) {
+			position: absolute;
+			top: var(--l);
+			right: var(--l);
+			z-index: 10;
+		}
+		:global(.base-card.withImageSpan .thumb) {
+			display: flex;
+			width: 3rem;
+			flex-shrink: 0;
+			flex-direction: row;
+			justify-content: center;
+			align-items: flex-start;
+		}
+		:global(.base-card.withImageSpan .inner) {
+			display: block;
+			width: 3rem;
+			border-radius: var(--border-radius-small);
+			flex-shrink: 0;
+			overflow: hidden;
+		}
+		:global(.base-card.withImageSpan .inner img),
+		:global(.base-card.withImageSpan .inner enhanced-img) {
+			display: block;
 			width: 100%;
-			> a {
-				display: grid;
-				height: 100%;
-				border-radius: var(--border-radius);
-				background: var(--c-surface);
-				row-gap: var(--xl);
-				grid-template-areas: 'logo content';
-				grid-template-rows: auto;
-				grid-template-columns: 8rem 1fr;
-				color: var(--c-font);
-				text-decoration: none;
-				transition: var(--transition);
-				&:hover {
-					transform: scale(0.97);
-					cursor: pointer;
-					:global(svg) {
-						opacity: 1;
-					}
-				}
-				.logo {
-					display: flex;
-					padding: 0 var(--l);
-					border-radius: var(--border-radius) 0 0 var(--border-radius);
-					background: var(--c-font-accent-super-light);
-					justify-content: center;
-					align-items: center;
-					grid-area: logo;
-					img {
-						width: 100%;
-						height: 4rem;
-						object-fit: contain;
-					}
-				}
-				.content {
-					display: flex;
-					padding: var(--l);
-					flex-direction: column;
-					flex-wrap: nowrap;
-					justify-content: flex-start;
-					align-items: stretch;
-					align-content: stretch;
-					gap: var(--xs);
-					grid-area: content;
-					.title {
-						strong {
-							display: inline;
-							font-family: var(--font-family);
-							font-size: var(--font-m);
-							font-weight: 900;
-							line-height: 1.2;
-							letter-spacing: var(--font-letter-spacing-headline);
-						}
-					}
-					p {
-						font-size: var(--font-m);
-						line-height: 1.2;
-					}
-				}
-				:global(.arrow) {
-					opacity: 0;
-					position: absolute;
-					top: var(--m);
-					right: calc((-1) * var(--m));
-					size: var(--l);
-					border: 4px solid var(--c-light);
-					border-radius: 100%;
-					box-shadow:
-						0 1px 2px rgba(0, 0, 0, 0.03),
-						0 2px 4px rgba(0, 0, 0, 0.03),
-						0 4px 8px rgba(0, 0, 0, 0.03),
-						0 8px 16px rgba(0, 0, 0, 0.03),
-						0 16px 32px rgba(0, 0, 0, 0.03),
-						0 32px 64px rgba(0, 0, 0, 0.03);
-					background: var(--c-light);
-					color: var(--c-font-accent-dark);
-					transition: var(--transition);
-				}
+			height: auto;
+			vertical-align: top;
+		}
+		:global(.base-card.withImageSpan .content) {
+			display: flex;
+			min-width: 0;
+			flex: 1;
+			flex-direction: column;
+			gap: 0;
+		}
+		:global(.base-card.withImageSpan .header) {
+			display: flex;
+			margin: 0;
+			margin-bottom: var(--m);
+			padding-right: calc(1.5rem + var(--xs));
+			justify-content: flex-start;
+			align-items: flex-start;
+			gap: var(--m);
+		}
+		:global(.base-card.withImageSpan .info) {
+			display: flex;
+			min-width: 0;
+			flex: 1;
+			flex-direction: column;
+			gap: 0;
+		}
+		:global(.base-card.withImageSpan .name) {
+			margin: 0;
+			color: var(--c-font);
+			font-family: var(--font-family);
+			font-size: var(--font-xl);
+			font-weight: 900;
+			line-height: 1.2;
+			letter-spacing: var(--font-letter-spacing-headline);
+		}
+		:global(.base-card.withImageSpan .description) {
+			margin: 0;
+		}
+		:global(.base-card.withImageSpan .description p) {
+			margin: 0;
+			color: var(--c-font-accent-dark);
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 400;
+			line-height: 1.5;
+		}
+		.entries {
+			display: grid;
+			width: 100%;
+			align-items: stretch;
+			gap: var(--l);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			@media screen and (width <= 62rem) {
+				grid-template-columns: 1fr;
+			}
+			> li {
+				display: flex;
+				width: 100%;
+				min-height: 0;
+			}
+			> li :global(.base-card) {
+				min-width: 0;
+				min-height: 0;
+				flex: 1;
 			}
 		}
 	}

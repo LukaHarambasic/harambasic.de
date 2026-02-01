@@ -114,3 +114,10 @@ export function setParam(key: string, value: string) {
 	url.searchParams.set(key, value);
 	window.history.pushState({}, '', url.href);
 }
+
+/** True when href is an absolute URL (http/https); false for relative paths or empty. */
+export function isExternalUrl(href: string): boolean {
+	if (!href || typeof href !== 'string') return false;
+	const trimmed = href.trim();
+	return trimmed.startsWith('http:') || trimmed.startsWith('https:');
+}

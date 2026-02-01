@@ -1,5 +1,7 @@
 <script lang="ts">
 	import BaseCallout from '$lib/components/Base/BaseCallout.svelte';
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
+	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import PostsTableOfContent from './TableOfContent.svelte';
 	import type { Post } from '$lib/types/post';
 	import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte';
@@ -18,17 +20,17 @@
 
 <article class="h-entry">
 	<section class="post">
-		<div class="content rich-text e-content">
+		<BaseRichText class="content e-content">
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html html}
-		</div>
+		</BaseRichText>
 	</section>
 	<aside class="sidebar">
-		<div class="author card">
+		<BaseCard class="author">
 			<BaseHeadlineIcon title="Author" icon="ph:pencil-bold" />
 			<a href="https://harambasic.de" rel="author" class="p-author h-card">Luka Harambasic</a>
-		</div>
-		<div class="tags card">
+		</BaseCard>
+		<BaseCard class="tags">
 			<BaseHeadlineIcon title="Tags" icon="ph:hash-bold" />
 			<ul>
 				{#each tags as tag}
@@ -37,10 +39,10 @@
 					</li>
 				{/each}
 			</ul>
-		</div>
-		<div class="toc card">
+		</BaseCard>
+		<BaseCard class="toc">
 			<PostsTableOfContent nodes={toc} />
-		</div>
+		</BaseCard>
 	</aside>
 	<div class="tldr">
 		<BaseCallout prefix="TL;DR">
@@ -48,12 +50,12 @@
 			{@html tldr}
 		</BaseCallout>
 	</div>
-	<div class="placeholder card"></div>
-	<footer class="rich-text">
-		<div class="rss rich-text">
+	<BaseCard class="placeholder"></BaseCard>
+	<BaseRichText element="footer">
+		<BaseRichText class="rss">
 			<a href="/posts/rss">RSS Feed</a>
-		</div>
-	</footer>
+		</BaseRichText>
+	</BaseRichText>
 </article>
 
 <style lang="postcss">
@@ -90,41 +92,41 @@
 			flex-wrap: nowrap;
 			gap: var(--l);
 			grid-area: sidebar;
-			.author {
+			:global(.author) {
 				display: flex;
 				flex-direction: column;
 				flex-wrap: nowrap;
-				a {
-					color: var(--c-font);
-					font-family: var(--font-family);
-					font-size: var(--font-m);
-					letter-spacing: var(--font-letter-spacing-headline);
-					text-decoration: none;
-					&:hover {
-						text-decoration: underline;
-						text-decoration-thickness: var(--underline-thickness);
-					}
-				}
 			}
-			.tags {
+			:global(.author a) {
+				color: var(--c-font);
+				font-family: var(--font-family);
+				font-size: var(--font-m);
+				letter-spacing: var(--font-letter-spacing-headline);
+				text-decoration: none;
+			}
+			:global(.author a:hover) {
+				text-decoration: underline;
+				text-decoration-thickness: var(--underline-thickness);
+			}
+			:global(.tags) {
 				display: flex;
 				flex-direction: column;
 				flex-wrap: nowrap;
 				justify-content: flex-start;
 				align-items: stretch;
 				align-content: stretch;
-				ul {
-					display: flex;
-					position: relative;
-					flex-direction: row;
-					flex-wrap: wrap;
-					justify-content: flex-start;
-					align-items: flex-start;
-					align-content: stretch;
-					gap: var(--xs);
-				}
 			}
-			.toc {
+			:global(.tags ul) {
+				display: flex;
+				position: relative;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: flex-start;
+				align-items: flex-start;
+				align-content: stretch;
+				gap: var(--xs);
+			}
+			:global(.toc) {
 				position: sticky;
 				top: var(--l);
 			}

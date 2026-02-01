@@ -1,4 +1,6 @@
 <script lang="ts">
+	import BaseCard from '$lib/components/Base/BaseCard.svelte';
+	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import { hasSnippet } from '$lib/util/snippet';
 
 	interface Props {
@@ -11,19 +13,24 @@
 	let { prefix, children, class: className, id }: Props = $props();
 </script>
 
-<div class="callout card" class:className {id}>
-	{#if prefix}
-		<strong>{prefix}</strong>
-	{/if}
-	<div class="content rich-text">
-		{#if hasSnippet(children)}
-			{@render children()}
+<div class="callout-wrapper">
+	<BaseCard class={className ? `callout ${className}` : 'callout'} {id}>
+		{#if prefix}
+			<strong>{prefix}</strong>
 		{/if}
-	</div>
+		<BaseRichText class="content">
+			{#if hasSnippet(children)}
+				{@render children()}
+			{/if}
+		</BaseRichText>
+	</BaseCard>
 </div>
 
 <style lang="postcss">
-	.callout {
+	.callout-wrapper {
+		display: block;
+	}
+	:global(.callout-wrapper .callout) {
 		display: flex;
 		strong {
 			display: inline-block;
@@ -37,7 +44,7 @@
 			font-weight: 900;
 			letter-spacing: var(--font-letter-spacing-headline);
 		}
-		.content {
+		:global(.content) {
 			flex: 0 1 auto;
 		}
 	}

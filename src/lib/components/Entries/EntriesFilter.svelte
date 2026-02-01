@@ -3,6 +3,7 @@
 	import type { StatusFilter } from '$lib/types/entry';
 	import { statusFilterToArray, setParam } from '$lib/util/helper';
 	import { createEventDispatcher, onMount } from 'svelte';
+	import BaseCard from '../Base/BaseCard.svelte';
 	import BaseHeadlineIcon from '../Base/BaseHeadlineIcon.svelte';
 
 	const dispatch = createEventDispatcher();
@@ -19,22 +20,27 @@
 	});
 </script>
 
-<div class="filter card">
-	<BaseHeadlineIcon title="Filter" icon="ph:faders-bold" />
-	<div class="selects">
-		<div class="wrapper">
-			<label for="property">Status</label>
-			<select bind:value={status} onchange={onStatusChange} name="property">
-				{#each statuses as item}
-					<option value={item.key}>{item.display}</option>
-				{/each}
-			</select>
+<div class="entries-filter">
+	<BaseCard class="filter">
+		<BaseHeadlineIcon title="Filter" icon="ph:faders-bold" />
+		<div class="selects">
+			<div class="wrapper">
+				<label for="property">Status</label>
+				<select bind:value={status} onchange={onStatusChange} name="property">
+					{#each statuses as item}
+						<option value={item.key}>{item.display}</option>
+					{/each}
+				</select>
+			</div>
 		</div>
-	</div>
+	</BaseCard>
 </div>
 
 <style lang="postcss">
-	.filter {
+	.entries-filter {
+		display: block;
+	}
+	:global(.entries-filter .filter) {
 		display: flex;
 		border: var(--border);
 		flex-direction: column;
