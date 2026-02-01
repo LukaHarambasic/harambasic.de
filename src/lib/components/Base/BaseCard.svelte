@@ -275,6 +275,7 @@
 		color: rgba(255, 255, 255, 0.8);
 	}
 	.base-card.withIcon :global(.card-description) {
+		margin-top: var(--m);
 		margin-bottom: var(--m);
 	}
 	.base-card.withIcon :global(.card-description p) {

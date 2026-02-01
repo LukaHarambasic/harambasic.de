@@ -1,7 +1,8 @@
-- card background not white
-- all card styling in card component / refactor it
+- x card background not white
+- x all card styling in card component
+- refactor cards compoennt and styles on pages
 - align layout to be only width of golden ratio
-- make sure all css is nested
+- css: make sure all css is nested
 - hero headers on pages
 - align copy of projects
 - add monta project
