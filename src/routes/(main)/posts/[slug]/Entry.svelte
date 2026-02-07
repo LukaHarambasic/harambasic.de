@@ -2,7 +2,6 @@
 	import { page } from '$app/stores';
 	import Icon from '@iconify/svelte';
 	import BaseCallout from '$lib/components/Base/BaseCallout.svelte';
-	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import PostsTableOfContent from './TableOfContent.svelte';
@@ -34,18 +33,20 @@
 
 <article class="h-entry">
 	<EntryHeader title={post.title} meta={authorDateMeta} />
+	<div class="sep" aria-hidden="true"></div>
 
 	{#if tldr}
 		<div class="tldr">
-			<BaseCallout prefix="TL;DR">
+			<BaseCallout prefix="TL;DR" noCard>
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html tldr}
 			</BaseCallout>
 		</div>
+		<div class="sep" aria-hidden="true"></div>
 	{/if}
 
 	{#if toc.length > 0}
-		<BaseCard class="toc-card" noSpacing>
+		<div class="toc-wrapper">
 			<details class="toc-details" bind:open={tocOpen}>
 				<summary class="toc-summary">
 					<span class="toc-icon" class:open={tocOpen}>
@@ -57,7 +58,8 @@
 					<PostsTableOfContent nodes={toc} />
 				</div>
 			</details>
-		</BaseCard>
+		</div>
+		<div class="sep" aria-hidden="true"></div>
 	{/if}
 
 	<section class="post">
@@ -80,15 +82,22 @@
 			font-style: normal;
 			text-decoration: none;
 		}
+		.sep {
+			margin: 0;
+			width: 100%;
+			height: 0;
+			border: none;
+			border-bottom: 1px solid var(--c-surface-accent);
+		}
 		.tldr {
 			order: 0;
 		}
-		:global(.toc-card) {
+		.toc-wrapper {
 			display: block;
 		}
 		.toc-details {
 			margin: 0;
-			padding: var(--l);
+			padding: 0;
 			.toc-summary {
 				display: flex;
 				margin: 0;

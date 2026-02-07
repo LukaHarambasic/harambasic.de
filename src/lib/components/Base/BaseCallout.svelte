@@ -8,30 +8,50 @@
 		children?: import('svelte').Snippet;
 		class?: string;
 		id?: string;
+		/** When true, render without outer BaseCard (inner label + content only) */
+		noCard?: boolean;
 	}
 
-	let { prefix, children, class: className, id }: Props = $props();
+	let { prefix, children, class: className, id, noCard = false }: Props = $props();
 </script>
 
-<div class="callout-wrapper">
-	<BaseCard class={className ? `callout ${className}` : 'callout'} {id}>
-		{#if prefix}
-			<strong>{prefix}</strong>
-		{/if}
-		<BaseRichText class="content">
-			{#if hasSnippet(children)}
-				{@render children()}
+<div class="callout-wrapper" class:noCard>
+	{#if noCard}
+		<div class="callout" {id}>
+			{#if prefix}
+				<strong>{prefix}</strong>
 			{/if}
-		</BaseRichText>
-	</BaseCard>
+			<BaseRichText class="content">
+				{#if hasSnippet(children)}
+					{@render children()}
+				{/if}
+			</BaseRichText>
+		</div>
+	{:else}
+		<BaseCard class={className ? `callout ${className}` : 'callout'} {id}>
+			{#if prefix}
+				<strong>{prefix}</strong>
+			{/if}
+			<BaseRichText class="content">
+				{#if hasSnippet(children)}
+					{@render children()}
+				{/if}
+			</BaseRichText>
+		</BaseCard>
+	{/if}
 </div>
 
 <style lang="postcss">
 	.callout-wrapper {
 		display: block;
+		&.noCard {
+			width: fit-content;
+		}
 	}
 	:global(.callout-wrapper .callout) {
 		display: flex;
+		align-items: flex-start;
+		gap: var(--m);
 		strong {
 			display: inline-block;
 			padding: var(--s) var(--m);

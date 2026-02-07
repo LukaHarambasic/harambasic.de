@@ -12,6 +12,7 @@ interface BaseCalloutProps {
 	children?: import('svelte').Snippet;
 	class?: string;
 	id?: string;
+	noCard?: boolean;
 }
 
 describe('BaseCallout', () => {
