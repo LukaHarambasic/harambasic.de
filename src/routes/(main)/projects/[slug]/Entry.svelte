@@ -43,54 +43,103 @@
 	{/if}
 {/snippet}
 
-<EntryHeader title={entry.title} leading={imageData ? leadingImage : undefined} />
-<article class="h-entry">
-	<div class="content">
-		<BaseRichText>
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-			{@html entry.html}
-		</BaseRichText>
-		<ul class="tags">
-			{#each entry.tags as tag}
-				<li>
-					<BaseTag {tag} />
-				</li>
-			{/each}
-		</ul>
-		<BaseRichText class="links">
-			<ul>
-				{#each entry.links as link}
+<div class="project-entry" class:with-image={!!imageData}>
+	<EntryHeader
+		title={entry.title}
+		leading={imageData ? leadingImage : undefined}
+		leadingPosition="inline"
+	/>
+	<article class="h-entry content-column">
+		<div class="content">
+			<BaseRichText>
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+				{@html entry.html}
+			</BaseRichText>
+			<ul class="tags">
+				{#each entry.tags as tag}
 					<li>
-						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+						<BaseTag {tag} />
 					</li>
 				{/each}
 			</ul>
-		</BaseRichText>
-		{#if relatedWork.length > 0}
-			<div class="related-work">
-				<h3>Related Work</h3>
-				<ul class="related-work-list">
-					{#each relatedWork as work}
+			<BaseRichText class="links">
+				<ul>
+					{#each entry.links as link}
 						<li>
-							<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
-								<div class="header">
-									<div class="info">
-										<h4 class="name">{work.title}</h4>
-									</div>
-									<div class="external-link">
-										<Icon icon="ph:arrow-up-right-bold" />
-									</div>
-								</div>
-							</BaseCard>
+							<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
 						</li>
 					{/each}
 				</ul>
-			</div>
-		{/if}
-	</div>
-</article>
+			</BaseRichText>
+			{#if relatedWork.length > 0}
+				<div class="related-work">
+					<h3>Related Work</h3>
+					<ul class="related-work-list">
+						{#each relatedWork as work}
+							<li>
+								<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
+									<div class="header">
+										<div class="info">
+											<h4 class="name">{work.title}</h4>
+										</div>
+										<div class="external-link">
+											<Icon icon="ph:arrow-up-right-bold" />
+										</div>
+									</div>
+								</BaseCard>
+							</li>
+						{/each}
+					</ul>
+				</div>
+			{/if}
+		</div>
+	</article>
+</div>
 
 <style lang="postcss">
+	.project-entry {
+		--project-leading-width: calc(var(--layout-l) * 0.382);
+
+		display: grid;
+		width: 100%;
+		align-items: start;
+		gap: var(--m);
+		grid-template-columns: var(--project-leading-width) 1fr;
+		:global(.entry-header.inline) {
+			display: grid;
+			grid-template-columns: subgrid;
+			grid-column: 1 / -1;
+		}
+		:global(.entry-header.inline:not(:has(.leading)) .title-meta) {
+			grid-column: 1 / -1;
+		}
+		:global(.entry-header.inline .leading) {
+			width: 100%;
+			min-width: 0;
+			max-width: 100%;
+			overflow: hidden;
+		}
+		:global(.entry-header.inline .leading img),
+		:global(.entry-header.inline .leading picture),
+		:global(.entry-header.inline .leading enhanced-img) {
+			display: block;
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+		}
+		:global(.entry-header.inline .leading picture img) {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+		}
+		&:not(.with-image) .content-column {
+			grid-column: 1 / -1;
+		}
+		.content-column {
+			min-width: 0;
+			grid-column: 2;
+		}
+	}
 	article {
 		> .content {
 			display: flex;

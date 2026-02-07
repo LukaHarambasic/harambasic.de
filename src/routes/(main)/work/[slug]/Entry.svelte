@@ -75,6 +75,7 @@
 		title={entry.title}
 		leading={hasLeadingContent ? leadingIcon : undefined}
 		meta={entry.location}
+		leadingPosition="inline"
 	/>
 
 	{#if entry.description}

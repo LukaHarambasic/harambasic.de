@@ -24,18 +24,22 @@
 
 <style lang="postcss">
 	.table-of-content {
+		display: flex;
 		margin: 0;
 		padding-left: var(--m);
+		flex-direction: column;
+		gap: var(--s);
 		list-style-type: none;
 		:global(.table-of-content) {
-			margin: var(--xs) 0 0 var(--m);
+			margin: var(--s) 0 0 var(--m);
 			padding-left: var(--m);
+			gap: var(--s);
 		}
 		.toc-node {
 			a {
 				color: var(--c-font);
 				font-family: var(--font-family);
-				font-size: var(--font-s);
+				font-size: var(--font-m);
 				text-decoration: none;
 			}
 			a:hover {
