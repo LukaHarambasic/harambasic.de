@@ -4,6 +4,7 @@
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
+	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
 	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
@@ -47,28 +48,34 @@
 
 	const sortedPositions = $derived(sortPositionsByDate(entry.positions));
 	const firstPosition = $derived(sortedPositions[0] || null);
+
+	const hasLeadingContent = $derived(
+		Boolean(
+			entry.image && entry.image !== 'TODO' && (isSvgImage(entry.image) || getImage(entry.image))
+		)
+	);
 </script>
 
-<article class="h-entry work-entry">
-	<header class="header">
-		{#if entry.image && entry.image !== 'TODO'}
-			{@const isSvg = isSvgImage(entry.image)}
-			{@const imageData = isSvg ? null : getImage(entry.image)}
-			{#if isSvg || imageData}
-				<div class="icon">
-					{#if isSvg}
-						<img src="/work/{entry.image}" alt={entry.title} />
-					{:else if imageData}
-						<enhanced:img src={imageData} sizes="(min-width:768px) 64px, 48px" alt={entry.title} />
-					{/if}
-				</div>
+{#snippet leadingIcon()}
+	{@const isSvg = entry.image && isSvgImage(entry.image)}
+	{@const imageData = !isSvg && entry.image ? getImage(entry.image) : null}
+	{#if isSvg || imageData}
+		<div class="icon">
+			{#if isSvg}
+				<img src="/work/{entry.image}" alt={entry.title} />
+			{:else if imageData}
+				<enhanced:img src={imageData} sizes="(min-width:768px) 64px, 48px" alt={entry.title} />
 			{/if}
-		{/if}
-		<div class="info">
-			<div class="name">{entry.title}</div>
-			<div class="location">{entry.location}</div>
 		</div>
-	</header>
+	{/if}
+{/snippet}
+
+<article class="h-entry work-entry">
+	<EntryHeader
+		title={entry.title}
+		leading={hasLeadingContent ? leadingIcon : undefined}
+		meta={entry.location}
+	/>
 
 	{#if entry.description}
 		<div class="description">
@@ -188,18 +195,8 @@
 		margin: 0 auto;
 		padding: var(--xl) 0;
 		width: 100%;
-		max-width: calc(var(--layout-xl) * 0.618);
 		flex-direction: column;
 		align-items: flex-start;
-		@media screen and (width <= 48rem) {
-			max-width: 100%;
-		}
-		.header {
-			display: flex;
-			margin-bottom: var(--m);
-			align-items: center;
-			gap: var(--m);
-		}
 		.icon {
 			display: flex;
 			width: 4rem;
@@ -219,29 +216,6 @@
 				border-radius: var(--border-radius-small);
 				object-fit: contain;
 			}
-		}
-		.info {
-			display: flex;
-			flex: 1;
-			flex-direction: column;
-			gap: var(--xs);
-		}
-		.name {
-			margin: 0;
-			color: var(--c-font);
-			font-family: var(--font-family);
-			font-size: var(--font-xl);
-			font-weight: 900;
-			line-height: 1.2;
-			letter-spacing: var(--font-letter-spacing-headline);
-		}
-		.location {
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
-			font-size: var(--font-s);
-			font-weight: 400;
-			font-style: italic;
-			line-height: 1.5;
 		}
 		.description {
 			margin-bottom: var(--l);

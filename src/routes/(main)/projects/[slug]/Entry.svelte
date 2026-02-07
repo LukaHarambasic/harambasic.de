@@ -4,6 +4,7 @@
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import BaseTag from '$lib/components/Base/BaseTag.svelte';
+	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 
@@ -32,7 +33,7 @@
 	const imageData = $derived(getImage(entry.image));
 </script>
 
-<article class="h-entry">
+{#snippet leadingImage()}
 	{#if imageData}
 		<enhanced:img
 			src={imageData}
@@ -40,6 +41,10 @@
 			alt={entry.title}
 		/>
 	{/if}
+{/snippet}
+
+<EntryHeader title={entry.title} leading={imageData ? leadingImage : undefined} />
+<article class="h-entry">
 	<div class="content">
 		<BaseRichText>
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -87,36 +92,6 @@
 
 <style lang="postcss">
 	article {
-		display: flex;
-		width: 90ch;
-		flex-direction: row;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		align-items: stretch;
-		align-content: stretch;
-		gap: var(--l);
-		@media screen and (width <= 64rem) {
-			width: 100%;
-		}
-		@media screen and (width <= 48rem) {
-			flex-direction: column;
-		}
-		> picture {
-			size: 20rem;
-			@media screen and (width <= 64rem) {
-				size: 15rem;
-			}
-			@media screen and (width <= 48rem) {
-				width: 100%;
-				height: auto;
-			}
-			img {
-				width: inherit;
-				height: inherit;
-				border-radius: var(--border-radius);
-				aspect-ratio: 1 / 1;
-			}
-		}
 		> .content {
 			display: flex;
 			flex-direction: column;
@@ -137,7 +112,7 @@
 			:global(.rich-text) {
 				margin: 0 0 var(--m) 0;
 			}
-			.links {
+			:global(.links) {
 				display: flex;
 				flex-grow: 1;
 				flex-direction: row;

@@ -1,11 +1,11 @@
 - x card background not white
 - x all card styling in card component
-- refactor cards compoennt and styles on pages
+- x refactor cards compoennt and styles on pages
 - align layout to be only width of golden ratio
-- css: make sure all css is nested
 - hero headers on pages
 - align copy of projects
 - add monta project
+- css: make sure all css is nested
 - update uses
 - optimise image import
 - rss feed update indidivual ones, more ocntent, create combined one
