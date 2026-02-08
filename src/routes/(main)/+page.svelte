@@ -52,7 +52,7 @@
 			class="profile"
 		/>
 		<BaseRichText class="content">
-			<h2>Heyho, I'm Luka!</h2>
+			<h1>Heyho, I'm Luka!</h1>
 			<p>
 				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I’m building
 				with the PLG squad at <a href="https://www.electricitymaps.com/">Electricity Maps</a>. Feel
@@ -216,7 +216,7 @@
 				}
 			}
 			.content {
-				h2 {
+				h1 {
 					margin: 0 0 0.5rem;
 					font-family: var(--font-family);
 					font-size: var(--font-l);

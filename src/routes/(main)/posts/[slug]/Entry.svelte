@@ -1,131 +1,149 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import Icon from '@iconify/svelte';
 	import BaseCallout from '$lib/components/Base/BaseCallout.svelte';
-	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
+	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import PostsTableOfContent from './TableOfContent.svelte';
 	import type { Post } from '$lib/types/post';
-	import BaseHeadlineIcon from '$lib/components/Base/BaseHeadlineIcon.svelte';
-	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 
 	interface Props {
 		post: Post;
 	}
 
 	let { post }: Props = $props();
+	let tocOpen = $state(false);
 	let tldr = $derived(post.tldr);
-	let tags = $derived(post.tags);
 	let html = $derived(post.html);
 	let toc = $derived(post.toc);
+	let publishedIso = $derived(post.published.raw?.toISOString());
+	let publishedDisplay = $derived(post.published.display);
+	let authorUrl = $derived($page.data.permalink ?? 'https://harambasic.de');
 </script>
 
+{#snippet authorDateMeta()}
+	<span class="p-author h-card">
+		<a class="author-link" href={authorUrl} rel="author">Luka Harambasic</a>
+	</span>
+	{#if publishedIso}
+		<span class="meta-sep" aria-hidden="true"> · </span>
+		<time class="dt-published" datetime={publishedIso}>{publishedDisplay}</time>
+	{/if}
+{/snippet}
+
 <article class="h-entry">
+	<EntryHeader title={post.title} meta={authorDateMeta} />
+	<div class="sep" aria-hidden="true"></div>
+
+	{#if tldr}
+		<div class="tldr">
+			<BaseCallout prefix="TL;DR" noCard>
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+				{@html tldr}
+			</BaseCallout>
+		</div>
+		<div class="sep" aria-hidden="true"></div>
+	{/if}
+
+	{#if toc.length > 0}
+		<div class="toc-wrapper">
+			<details class="toc-details" bind:open={tocOpen}>
+				<summary class="toc-summary">
+					<span class="toc-icon" class:open={tocOpen}>
+						<Icon icon="ph:caret-down-bold" />
+					</span>
+					<span>Table of contents</span>
+				</summary>
+				<div class="toc-body">
+					<PostsTableOfContent nodes={toc} />
+				</div>
+			</details>
+		</div>
+		<div class="sep" aria-hidden="true"></div>
+	{/if}
+
 	<section class="post">
 		<BaseRichText class="content e-content">
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html html}
 		</BaseRichText>
 	</section>
-	<aside class="sidebar">
-		<BaseCard class="author">
-			<BaseHeadlineIcon title="Author" icon="ph:pencil-bold" />
-			<a href="https://harambasic.de" rel="author" class="p-author h-card">Luka Harambasic</a>
-		</BaseCard>
-		<BaseCard class="tags">
-			<BaseHeadlineIcon title="Tags" icon="ph:hash-bold" />
-			<ul>
-				{#each tags as tag}
-					<li>
-						<BaseTag {tag} />
-					</li>
-				{/each}
-			</ul>
-		</BaseCard>
-		<BaseCard class="toc">
-			<PostsTableOfContent nodes={toc} />
-		</BaseCard>
-	</aside>
-	<div class="tldr">
-		<BaseCallout prefix="TL;DR">
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-			{@html tldr}
-		</BaseCallout>
-	</div>
-	<BaseCard class="placeholder"></BaseCard>
 </article>
 
 <style lang="postcss">
 	article {
-		display: grid;
+		display: flex;
+		margin: 0;
 		width: 100%;
+		flex-direction: column;
 		gap: var(--l);
-		grid:
-			'tldr placeholder' auto
-			'post sidebar' 1fr
-			/ calc(70% - var(--l)) 30%;
-		@media screen and (width <= 74rem) {
-			grid:
-				'tldr' auto
-				'sidebar' auto
-				'post' auto
-				/ 100%;
+		:global(.entry-header .meta .author-link) {
+			color: var(--c-font);
+			font-style: normal;
+			text-decoration: none;
+		}
+		.sep {
+			margin: 0;
+			width: 100%;
+			height: 0;
+			border: none;
+			border-bottom: 1px solid var(--c-surface-accent);
 		}
 		.tldr {
-			grid-area: tldr;
+			order: 0;
 		}
-		.placeholder {
-			opacity: 0.5;
-			grid-area: placeholder;
-			@media screen and (width <= 74rem) {
-				display: none;
-			}
+		.toc-wrapper {
+			display: block;
 		}
-		.sidebar {
-			display: flex;
-			flex-direction: column;
-			flex-wrap: nowrap;
-			gap: var(--l);
-			grid-area: sidebar;
-			:global(.author) {
+		.toc-details {
+			margin: 0;
+			padding: 0;
+			.toc-summary {
 				display: flex;
-				flex-direction: column;
+				margin: 0;
+				padding: 0;
+				flex-direction: row;
 				flex-wrap: nowrap;
-			}
-			:global(.author a) {
+				align-items: center;
+				gap: var(--s);
 				color: var(--c-font);
 				font-family: var(--font-family);
 				font-size: var(--font-m);
-				letter-spacing: var(--font-letter-spacing-headline);
-				text-decoration: none;
+				font-weight: 600;
+				list-style: none;
+				cursor: pointer;
+				&::-webkit-details-marker {
+					display: none;
+				}
+				&::marker {
+					content: none;
+				}
 			}
-			:global(.author a:hover) {
-				text-decoration: underline;
-				text-decoration-thickness: var(--underline-thickness);
+			&[open] .toc-summary {
+				margin-bottom: var(--m);
 			}
-			:global(.tags) {
-				display: flex;
-				flex-direction: column;
-				flex-wrap: nowrap;
-				justify-content: flex-start;
-				align-items: stretch;
-				align-content: stretch;
+			.toc-icon {
+				display: inline-flex;
+				width: 1.25rem;
+				height: 1.25rem;
+				flex-shrink: 0;
+				justify-content: center;
+				align-items: center;
+				transition: transform var(--transition);
+				&.open {
+					transform: rotate(180deg);
+				}
 			}
-			:global(.tags ul) {
-				display: flex;
-				position: relative;
-				flex-direction: row;
-				flex-wrap: wrap;
-				justify-content: flex-start;
-				align-items: flex-start;
-				align-content: stretch;
-				gap: var(--xs);
+			.toc-icon :global(svg) {
+				width: 1.25rem;
+				height: 1.25rem;
 			}
-			:global(.toc) {
-				position: sticky;
-				top: var(--l);
+			.toc-body {
+				padding: 0;
 			}
 		}
 		.post {
-			grid-area: post;
+			order: 1;
 		}
 	}
 </style>

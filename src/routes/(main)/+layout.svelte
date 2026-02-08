@@ -5,6 +5,7 @@
 	import '$lib/styles/variables.css';
 	import '$lib/styles/base.css';
 	import '$lib/styles/highlight.css';
+	import Hero from '$lib/components/Hero/Hero.svelte';
 	import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte';
 	import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte';
 	import LayoutHead from '$lib/components/Layout/LayoutHead.svelte';
@@ -19,11 +20,17 @@
 
 	let { children }: Props = $props();
 
-	let { title, subtitle, description, published, relativePath, permalink } = $derived($page.data);
-	let isWorkDetailPage = $derived(
-		$page.url.pathname.startsWith('/work/') && $page.url.pathname !== '/work'
-	);
-	let showLayoutHeader = $derived(title && $page.url.pathname !== '/feeds');
+	let { title, description, permalink } = $derived($page.data);
+	const listPaths = ['/work', '/posts', '/projects', '/uses'] as const;
+	let isListPage = $derived(listPaths.includes($page.url.pathname as (typeof listPaths)[number]));
+	let showHero = $derived(isListPage && $page.url.pathname !== '/feeds');
+	let isDetailPage = $derived.by(() => {
+		const segments = $page.url.pathname.split('/').filter(Boolean);
+		return (
+			segments.length === 2 &&
+			(segments[0] === 'work' || segments[0] === 'posts' || segments[0] === 'projects')
+		);
+	});
 
 	// needs to be here until the following issue in vite is resolved and included in an sveltekit release
 	// https://github.com/sveltejs/kit/issues/5240
@@ -43,22 +50,16 @@
 <LayoutSkipToContent />
 <div class="container">
 	<LayoutHeader />
-	<main id="main" class:work-detail={isWorkDetailPage}>
-		{#if showLayoutHeader}
-			<section class="header">
-				<h1>{title}</h1>
-				{#if subtitle}
-					<strong class="subtitle">{subtitle}</strong>
-				{/if}
-				{#if published && relativePath}
-					<time class="date dt-published" datetime={published?.raw?.toString()}>
-						<a href={relativePath} class="u-url">{published.display}</a>
-					</time>
-				{/if}
-			</section>
+	<main id="main">
+		{#if showHero}
+			<Hero title={$page.data.title ?? ''} description={$page.data.description ?? ''} />
 		{/if}
 		{#if hasSnippet(children)}
-			{@render children()}
+			{#if isDetailPage}
+				<div class="golden-ratio">{@render children()}</div>
+			{:else}
+				{@render children()}
+			{/if}
 		{/if}
 	</main>
 	<LayoutFooter />
@@ -80,7 +81,7 @@
 		}
 		@media screen and (width <= 32rem) {
 			padding: var(--l) 0;
-			row-gap: var(-l);
+			row-gap: var(--l);
 			grid-template-columns: 2rem minmax(0, 1fr) 2rem;
 		}
 		:global(> header) {
@@ -95,55 +96,12 @@
 			align-content: stretch;
 			gap: var(--xl);
 			grid-area: main;
-			&.work-detail {
-				.header {
-					position: absolute;
-					margin: -1px;
-					padding: 0;
-					width: 1px;
-					height: 1px;
-					border-width: 0;
-					white-space: nowrap;
-					overflow: hidden;
-					clip: rect(0, 0, 0, 0);
-				}
-			}
-			.header {
-				display: flex;
-				flex-direction: column;
-				flex-wrap: nowrap;
-				justify-content: flex-start;
-				align-items: center;
-				align-content: stretch;
-				gap: var(--s);
-				h1 {
-					width: 30ch;
-					font-family: var(--font-family);
-					font-size: var(--font-xl);
-					font-weight: 900;
-					line-height: 1.2;
-					letter-spacing: var(--font-letter-spacing-headline);
-					text-align: center;
-					@media screen and (width <= 42rem) {
-						width: 100%;
-					}
-				}
-				.subtitle {
-					margin: calc(-1 * var(--xs)) 0 0;
-					color: var(--c-font-accent-dark);
-					font-size: var(--font-m);
-					font-weight: normal;
-					font-style: italic;
-					text-align: center;
-				}
-				.date {
-					a {
-						color: var(--c-font);
-						font-size: var(--font-m);
-						font-weight: 400;
-						font-style: italic;
-						text-decoration: none;
-					}
+			.golden-ratio {
+				margin: 0 auto;
+				width: 100%;
+				max-width: calc(var(--layout-xl) * 0.618);
+				@media screen and (width <= 48rem) {
+					width: 100%;
 				}
 			}
 		}

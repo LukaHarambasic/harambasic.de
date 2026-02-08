@@ -2,7 +2,6 @@
 	import type { PageData } from './$types';
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import Entries from '$lib/components/Entries/Entries.svelte';
-	import Hero from '$lib/components/Hero/Hero.svelte';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
@@ -70,10 +69,6 @@
 
 <Entries>
 	{#snippet entries()}
-		<Hero
-			title="Building products that matter for people & the planet"
-			description="From Germany's COVID tracing app with 48M+ downloads to scaling Home Energy Management Systems from 0 to 1. I ship products, build automations, and occasionally write code."
-		/>
 		<div class="work-container">
 			{#if current}
 				{@const sortedPositions = sortPositionsByDate(current.entry.positions)}

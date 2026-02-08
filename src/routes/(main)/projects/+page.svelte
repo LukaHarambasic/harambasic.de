@@ -4,7 +4,6 @@
 	import { SortDirection, SORT_DEFAULTS } from '$lib/types/enums';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
-	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 
@@ -73,13 +72,6 @@
 						<div class="content">
 							<strong>{entry.title}</strong>
 							<p>{entry.description}</p>
-							<ul class="tags">
-								{#each entry.tags as tag}
-									<li>
-										<BaseTag {tag} />
-									</li>
-								{/each}
-							</ul>
 						</div>
 					</BaseCard>
 				</div>
@@ -232,15 +224,6 @@
 		}
 		:global(.base-card.image.compact .content p) {
 			margin: 0 0 var(--s) 0;
-		}
-		:global(.base-card.image.compact .content .tags) {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: flex-start;
-			align-items: flex-start;
-			align-content: flex-start;
-			gap: var(--xs);
 		}
 	}
 </style>

@@ -22,6 +22,7 @@ export const load = (async ({ parent, url }) => {
 	}
 
 	return {
+		title: 'Building products that matter for people & the planet',
 		description:
 			"My professional journey across different companies and roles. Each entry represents a company where I've worked, with multiple positions and experiences.",
 		url: url.pathname,
