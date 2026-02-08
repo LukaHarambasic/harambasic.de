@@ -31,6 +31,7 @@
 			font-weight: 900;
 			line-height: 1.15;
 			letter-spacing: var(--font-letter-spacing-headline);
+			hyphens: none;
 		}
 		.description {
 			margin: 0;

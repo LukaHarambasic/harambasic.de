@@ -3,7 +3,7 @@
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
-	import BaseTag from '$lib/components/Base/BaseTag.svelte';
+	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
 
@@ -32,7 +32,7 @@
 	const imageData = $derived(getImage(entry.image));
 </script>
 
-<article class="h-entry">
+{#snippet leadingImage()}
 	{#if imageData}
 		<enhanced:img
 			src={imageData}
@@ -40,83 +40,96 @@
 			alt={entry.title}
 		/>
 	{/if}
-	<div class="content">
-		<BaseRichText>
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-			{@html entry.html}
-		</BaseRichText>
-		<ul class="tags">
-			{#each entry.tags as tag}
-				<li>
-					<BaseTag {tag} />
-				</li>
-			{/each}
-		</ul>
-		<BaseRichText class="links">
-			<ul>
-				{#each entry.links as link}
-					<li>
-						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
-					</li>
-				{/each}
-			</ul>
-		</BaseRichText>
-		{#if relatedWork.length > 0}
-			<div class="related-work">
-				<h3>Related Work</h3>
-				<ul class="related-work-list">
-					{#each relatedWork as work}
-						<li>
-							<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
-								<div class="header">
-									<div class="info">
-										<h4 class="name">{work.title}</h4>
-									</div>
-									<div class="external-link">
-										<Icon icon="ph:arrow-up-right-bold" />
-									</div>
-								</div>
-							</BaseCard>
-						</li>
-					{/each}
-				</ul>
+{/snippet}
+
+<div class="project-entry" class:with-image={!!imageData}>
+	<EntryHeader title={entry.title} />
+	<div class="project-body">
+		{#if imageData}
+			<div class="image-block">
+				{@render leadingImage()}
 			</div>
 		{/if}
+		<article class="h-entry content-column">
+			<div class="content">
+				<BaseRichText>
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+					{@html entry.html}
+				</BaseRichText>
+				<div class="sep" aria-hidden="true"></div>
+				<nav class="links" aria-label="Project links">
+					{#each entry.links as link}
+						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+					{/each}
+				</nav>
+				{#if relatedWork.length > 0}
+					<div class="related-work">
+						<h3>Related Work</h3>
+						<ul class="related-work-list">
+							{#each relatedWork as work}
+								<li>
+									<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
+										<div class="header">
+											<div class="info">
+												<h4 class="name">{work.title}</h4>
+											</div>
+											<div class="external-link">
+												<Icon icon="ph:arrow-up-right-bold" />
+											</div>
+										</div>
+									</BaseCard>
+								</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
+			</div>
+		</article>
 	</div>
-</article>
+</div>
 
 <style lang="postcss">
-	article {
+	.project-entry {
 		display: flex;
-		width: 90ch;
-		flex-direction: row;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
+		width: 100%;
+		flex-direction: column;
 		align-items: stretch;
-		align-content: stretch;
-		gap: var(--l);
-		@media screen and (width <= 64rem) {
+		gap: var(--m);
+
+		.project-body {
+			display: grid;
 			width: 100%;
-		}
-		@media screen and (width <= 48rem) {
-			flex-direction: column;
-		}
-		> picture {
-			size: 20rem;
-			@media screen and (width <= 64rem) {
-				size: 15rem;
-			}
+			align-items: start;
+			gap: var(--m);
+			grid-template-columns: 0.382fr 0.618fr;
 			@media screen and (width <= 48rem) {
-				width: 100%;
-				height: auto;
+				grid-template-columns: 1fr;
 			}
-			img {
-				width: inherit;
-				height: inherit;
+			.image-block {
+				min-width: 0;
 				border-radius: var(--border-radius);
-				aspect-ratio: 1 / 1;
+				overflow: hidden;
+				:global(picture),
+				:global(picture img) {
+					display: block;
+					max-width: 100%;
+					height: auto;
+					border-radius: var(--border-radius);
+				}
+			}
+			.content-column {
+				min-width: 0;
 			}
 		}
+
+		&:not(.with-image) .project-body {
+			grid-template-columns: 1fr;
+			.content-column {
+				grid-column: 1;
+			}
+		}
+	}
+	article {
 		> .content {
 			display: flex;
 			flex-direction: column;
@@ -124,29 +137,28 @@
 			justify-content: flex-start;
 			align-items: flex-start;
 			align-content: flex-start;
-			.tags {
-				display: flex;
-				margin: 0 0 var(--m) 0;
-				flex-grow: 1;
-				flex-direction: row;
-				flex-wrap: wrap;
-				justify-content: flex-start;
-				align-items: flex-start;
-				gap: var(--xs);
-			}
 			:global(.rich-text) {
-				margin: 0 0 var(--m) 0;
+				margin: 0;
+			}
+			.sep {
+				margin: var(--l) 0;
+				width: 100%;
+				height: 0;
+				border: none;
+				border-bottom: 1px solid var(--c-surface-accent);
 			}
 			.links {
 				display: flex;
-				flex-grow: 1;
-				flex-direction: row;
 				flex-wrap: wrap;
-				justify-content: flex-start;
-				align-items: flex-start;
-				align-content: stretch;
 				gap: var(--m);
-				flex-base: 100%;
+				a {
+					color: var(--c-font);
+					font-size: var(--font-s);
+					text-decoration: none;
+				}
+				a:hover {
+					text-decoration: underline;
+				}
 			}
 			.related-work {
 				margin-top: var(--m);

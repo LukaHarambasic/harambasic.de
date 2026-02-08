@@ -3,7 +3,7 @@
 	import type { Project } from '$lib/types/project';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
-	import BaseTag from '$lib/components/Base/BaseTag.svelte';
+	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
 	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
@@ -47,28 +47,35 @@
 
 	const sortedPositions = $derived(sortPositionsByDate(entry.positions));
 	const firstPosition = $derived(sortedPositions[0] || null);
+
+	const hasLeadingContent = $derived(
+		Boolean(
+			entry.image && entry.image !== 'TODO' && (isSvgImage(entry.image) || getImage(entry.image))
+		)
+	);
 </script>
 
-<article class="h-entry work-entry">
-	<header class="header">
-		{#if entry.image && entry.image !== 'TODO'}
-			{@const isSvg = isSvgImage(entry.image)}
-			{@const imageData = isSvg ? null : getImage(entry.image)}
-			{#if isSvg || imageData}
-				<div class="icon">
-					{#if isSvg}
-						<img src="/work/{entry.image}" alt={entry.title} />
-					{:else if imageData}
-						<enhanced:img src={imageData} sizes="(min-width:768px) 64px, 48px" alt={entry.title} />
-					{/if}
-				</div>
+{#snippet leadingIcon()}
+	{@const isSvg = entry.image && isSvgImage(entry.image)}
+	{@const imageData = !isSvg && entry.image ? getImage(entry.image) : null}
+	{#if isSvg || imageData}
+		<div class="icon">
+			{#if isSvg}
+				<img src="/work/{entry.image}" alt={entry.title} />
+			{:else if imageData}
+				<enhanced:img src={imageData} sizes="(min-width:768px) 64px, 48px" alt={entry.title} />
 			{/if}
-		{/if}
-		<div class="info">
-			<div class="name">{entry.title}</div>
-			<div class="location">{entry.location}</div>
 		</div>
-	</header>
+	{/if}
+{/snippet}
+
+<article class="h-entry work-entry">
+	<EntryHeader
+		title={entry.title}
+		leading={hasLeadingContent ? leadingIcon : undefined}
+		meta={entry.location}
+		leadingPosition="inline"
+	/>
 
 	{#if entry.description}
 		<div class="description">
@@ -85,7 +92,7 @@
 						element="a"
 						href={project.relativePath}
 						variant="default"
-						class="image noSpacing highlighted"
+						class="image noSpacing compact"
 					>
 						<div class="external-link">
 							<Icon icon="ph:arrow-up-right-bold" />
@@ -168,18 +175,6 @@
 			{@html entry.html}
 		</BaseRichText>
 	{/if}
-
-	{#if entry.tags && entry.tags.length > 0}
-		<div class="tags-section">
-			<ul class="tags">
-				{#each entry.tags as tag}
-					<li>
-						<BaseTag {tag} />
-					</li>
-				{/each}
-			</ul>
-		</div>
-	{/if}
 </article>
 
 <style lang="postcss">
@@ -188,18 +183,8 @@
 		margin: 0 auto;
 		padding: var(--xl) 0;
 		width: 100%;
-		max-width: calc(var(--layout-xl) * 0.618);
 		flex-direction: column;
 		align-items: flex-start;
-		@media screen and (width <= 48rem) {
-			max-width: 100%;
-		}
-		.header {
-			display: flex;
-			margin-bottom: var(--m);
-			align-items: center;
-			gap: var(--m);
-		}
 		.icon {
 			display: flex;
 			width: 4rem;
@@ -219,29 +204,6 @@
 				border-radius: var(--border-radius-small);
 				object-fit: contain;
 			}
-		}
-		.info {
-			display: flex;
-			flex: 1;
-			flex-direction: column;
-			gap: var(--xs);
-		}
-		.name {
-			margin: 0;
-			color: var(--c-font);
-			font-family: var(--font-family);
-			font-size: var(--font-xl);
-			font-weight: 900;
-			line-height: 1.2;
-			letter-spacing: var(--font-letter-spacing-headline);
-		}
-		.location {
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
-			font-size: var(--font-s);
-			font-weight: 400;
-			font-style: italic;
-			line-height: 1.5;
 		}
 		.description {
 			margin-bottom: var(--l);
@@ -340,19 +302,6 @@
 			font-size: var(--font-m);
 			line-height: 1.6;
 		}
-		.tags-section {
-			margin-bottom: var(--l);
-		}
-		.tags {
-			display: flex;
-			margin: 0;
-			flex-grow: 1;
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: flex-start;
-			align-items: flex-start;
-			gap: var(--xs);
-		}
 		.related-projects {
 			margin-bottom: var(--xl);
 			width: 100%;
@@ -372,6 +321,104 @@
 					grid-template-columns: repeat(3, 1fr);
 				}
 			}
+		}
+
+		/* Related project cards: image left, content right (same as projects index) */
+		.related-projects :global(.base-card.image.compact) {
+			flex-direction: row;
+			align-items: stretch;
+			overflow: hidden;
+			@media screen and (width <= 32rem) {
+				flex-direction: column;
+			}
+		}
+		.related-projects :global(.base-card.image.compact .image-wrapper) {
+			display: block;
+			position: relative;
+			margin: 0;
+			padding: 0;
+			width: 12rem;
+			min-width: 12rem;
+			min-height: 12rem;
+			border-radius: var(--border-radius) 0 0 var(--border-radius);
+			align-self: stretch;
+			transition: filter var(--transition);
+			overflow: hidden;
+			box-sizing: border-box;
+			filter: grayscale(1);
+		}
+		@media screen and (width <= 32rem) {
+			.related-projects :global(.base-card.image.compact .image-wrapper) {
+				width: 100%;
+				min-width: 0;
+				min-height: 0;
+				aspect-ratio: 16 / 10;
+				border-radius: var(--border-radius) var(--border-radius) 0 0;
+			}
+		}
+		.related-projects :global(.base-card.image.compact .image-wrapper .main-img) {
+			position: absolute;
+			z-index: 2;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: var(--border-radius) 0 0 var(--border-radius);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			inset: 0;
+		}
+		.related-projects :global(.base-card.image.compact .image-wrapper .main-img picture) {
+			display: block;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.related-projects :global(.base-card.image.compact .image-wrapper .main-img img) {
+			display: block;
+			margin: 0;
+			padding: 0;
+			width: 100% !important;
+			max-width: 100%;
+			height: 100% !important;
+			border-radius: var(--border-radius) 0 0 var(--border-radius);
+			object-fit: cover;
+			object-position: center;
+			filter: grayscale(1);
+			transition:
+				filter var(--transition),
+				opacity var(--transition);
+		}
+		@media screen and (width <= 32rem) {
+			.related-projects :global(.base-card.image.compact .image-wrapper .main-img) {
+				width: 100%;
+				height: auto;
+				min-height: 0;
+				border-radius: 0;
+				box-shadow: none;
+				aspect-ratio: 16 / 10;
+			}
+			.related-projects :global(.base-card.image.compact .image-wrapper .main-img img) {
+				height: 100%;
+				min-height: 0;
+				border-radius: var(--border-radius) var(--border-radius) 0 0;
+				object-fit: cover;
+			}
+		}
+		.related-projects :global(.base-card.image.compact:hover .image-wrapper) {
+			filter: grayscale(0);
+		}
+		.related-projects :global(.base-card.image.compact:hover .image-wrapper .main-img img) {
+			opacity: 1;
+		}
+		.related-projects :global(.base-card.image.compact .content) {
+			text-align: left;
+		}
+		.related-projects :global(.base-card.image.compact .content strong) {
+			margin: 0 0 var(--xs) 0;
+		}
+		.related-projects :global(.base-card.image.compact .content p) {
+			margin: 0 0 var(--s) 0;
 		}
 		:global(.rich-text) {
 			margin: 0;

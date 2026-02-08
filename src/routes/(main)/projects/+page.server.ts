@@ -2,10 +2,10 @@ import type { PageServerLoad } from './$types';
 
 export const load = (async ({ url }) => {
 	return {
-		title: 'Projects',
+		title: "Things I've built and shipped",
 		subtitle: 'Stuff I do',
 		description:
-			"Check out all the projects I've worked on over the years! Get a glimpse of my diverse range of skills and interests.",
+			"A collection of projects I've built, shipped, or contributed to over the years. Each entry is a real product or experiment, side projects, open source, client work. You'll find a mix of skills and domains I've worked in.",
 		url: url.pathname
 	};
 }) satisfies PageServerLoad;
