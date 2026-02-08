@@ -107,8 +107,8 @@
 			}
 			.image-block {
 				min-width: 0;
-				overflow: hidden;
 				border-radius: var(--border-radius);
+				overflow: hidden;
 				:global(picture),
 				:global(picture img) {
 					display: block;

@@ -93,7 +93,7 @@
 						element="a"
 						href={project.relativePath}
 						variant="default"
-						class="image noSpacing highlighted"
+						class="image noSpacing compact"
 					>
 						<div class="external-link">
 							<Icon icon="ph:arrow-up-right-bold" />
@@ -347,6 +347,104 @@
 					grid-template-columns: repeat(3, 1fr);
 				}
 			}
+		}
+
+		/* Related project cards: image left, content right (same as projects index) */
+		.related-projects :global(.base-card.image.compact) {
+			flex-direction: row;
+			align-items: stretch;
+			overflow: hidden;
+			@media screen and (width <= 32rem) {
+				flex-direction: column;
+			}
+		}
+		.related-projects :global(.base-card.image.compact .image-wrapper) {
+			display: block;
+			position: relative;
+			margin: 0;
+			padding: 0;
+			width: 12rem;
+			min-width: 12rem;
+			min-height: 12rem;
+			border-radius: var(--border-radius) 0 0 var(--border-radius);
+			align-self: stretch;
+			transition: filter var(--transition);
+			overflow: hidden;
+			box-sizing: border-box;
+			filter: grayscale(1);
+		}
+		@media screen and (width <= 32rem) {
+			.related-projects :global(.base-card.image.compact .image-wrapper) {
+				width: 100%;
+				min-width: 0;
+				min-height: 0;
+				aspect-ratio: 16 / 10;
+				border-radius: var(--border-radius) var(--border-radius) 0 0;
+			}
+		}
+		.related-projects :global(.base-card.image.compact .image-wrapper .main-img) {
+			position: absolute;
+			z-index: 2;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: var(--border-radius) 0 0 var(--border-radius);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			inset: 0;
+		}
+		.related-projects :global(.base-card.image.compact .image-wrapper .main-img picture) {
+			display: block;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.related-projects :global(.base-card.image.compact .image-wrapper .main-img img) {
+			display: block;
+			margin: 0;
+			padding: 0;
+			width: 100% !important;
+			max-width: 100%;
+			height: 100% !important;
+			border-radius: var(--border-radius) 0 0 var(--border-radius);
+			object-fit: cover;
+			object-position: center;
+			filter: grayscale(1);
+			transition:
+				filter var(--transition),
+				opacity var(--transition);
+		}
+		@media screen and (width <= 32rem) {
+			.related-projects :global(.base-card.image.compact .image-wrapper .main-img) {
+				width: 100%;
+				height: auto;
+				min-height: 0;
+				border-radius: 0;
+				box-shadow: none;
+				aspect-ratio: 16 / 10;
+			}
+			.related-projects :global(.base-card.image.compact .image-wrapper .main-img img) {
+				height: 100%;
+				min-height: 0;
+				border-radius: var(--border-radius) var(--border-radius) 0 0;
+				object-fit: cover;
+			}
+		}
+		.related-projects :global(.base-card.image.compact:hover .image-wrapper) {
+			filter: grayscale(0);
+		}
+		.related-projects :global(.base-card.image.compact:hover .image-wrapper .main-img img) {
+			opacity: 1;
+		}
+		.related-projects :global(.base-card.image.compact .content) {
+			text-align: left;
+		}
+		.related-projects :global(.base-card.image.compact .content strong) {
+			margin: 0 0 var(--xs) 0;
+		}
+		.related-projects :global(.base-card.image.compact .content p) {
+			margin: 0 0 var(--s) 0;
 		}
 		:global(.rich-text) {
 			margin: 0;
