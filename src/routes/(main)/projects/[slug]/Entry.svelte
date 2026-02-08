@@ -3,7 +3,6 @@
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
-	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
@@ -44,100 +43,90 @@
 {/snippet}
 
 <div class="project-entry" class:with-image={!!imageData}>
-	<EntryHeader
-		title={entry.title}
-		leading={imageData ? leadingImage : undefined}
-		leadingPosition="inline"
-	/>
-	<article class="h-entry content-column">
-		<div class="content">
-			<BaseRichText>
-				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html entry.html}
-			</BaseRichText>
-			<ul class="tags">
-				{#each entry.tags as tag}
-					<li>
-						<BaseTag {tag} />
-					</li>
-				{/each}
-			</ul>
-			<BaseRichText class="links">
-				<ul>
+	<EntryHeader title={entry.title} />
+	<div class="project-body">
+		{#if imageData}
+			<div class="image-block">
+				{@render leadingImage()}
+			</div>
+		{/if}
+		<article class="h-entry content-column">
+			<div class="content">
+				<BaseRichText>
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+					{@html entry.html}
+				</BaseRichText>
+				<div class="sep" aria-hidden="true"></div>
+				<nav class="links" aria-label="Project links">
 					{#each entry.links as link}
-						<li>
-							<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
-						</li>
+						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
 					{/each}
-				</ul>
-			</BaseRichText>
-			{#if relatedWork.length > 0}
-				<div class="related-work">
-					<h3>Related Work</h3>
-					<ul class="related-work-list">
-						{#each relatedWork as work}
-							<li>
-								<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
-									<div class="header">
-										<div class="info">
-											<h4 class="name">{work.title}</h4>
+				</nav>
+				{#if relatedWork.length > 0}
+					<div class="related-work">
+						<h3>Related Work</h3>
+						<ul class="related-work-list">
+							{#each relatedWork as work}
+								<li>
+									<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
+										<div class="header">
+											<div class="info">
+												<h4 class="name">{work.title}</h4>
+											</div>
+											<div class="external-link">
+												<Icon icon="ph:arrow-up-right-bold" />
+											</div>
 										</div>
-										<div class="external-link">
-											<Icon icon="ph:arrow-up-right-bold" />
-										</div>
-									</div>
-								</BaseCard>
-							</li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
-		</div>
-	</article>
+									</BaseCard>
+								</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
+			</div>
+		</article>
+	</div>
 </div>
 
 <style lang="postcss">
 	.project-entry {
-		--project-leading-width: calc(var(--layout-l) * 0.382);
-
-		display: grid;
+		display: flex;
 		width: 100%;
-		align-items: start;
+		flex-direction: column;
+		align-items: stretch;
 		gap: var(--m);
-		grid-template-columns: var(--project-leading-width) 1fr;
-		:global(.entry-header.inline) {
+
+		.project-body {
 			display: grid;
-			grid-template-columns: subgrid;
-			grid-column: 1 / -1;
-		}
-		:global(.entry-header.inline:not(:has(.leading)) .title-meta) {
-			grid-column: 1 / -1;
-		}
-		:global(.entry-header.inline .leading) {
 			width: 100%;
-			min-width: 0;
-			max-width: 100%;
-			overflow: hidden;
+			align-items: start;
+			gap: var(--m);
+			grid-template-columns: 0.382fr 0.618fr;
+			@media screen and (width <= 48rem) {
+				grid-template-columns: 1fr;
+			}
+			.image-block {
+				min-width: 0;
+				overflow: hidden;
+				border-radius: var(--border-radius);
+				:global(picture),
+				:global(picture img) {
+					display: block;
+					max-width: 100%;
+					height: auto;
+					border-radius: var(--border-radius);
+				}
+			}
+			.content-column {
+				min-width: 0;
+			}
 		}
-		:global(.entry-header.inline .leading img),
-		:global(.entry-header.inline .leading picture),
-		:global(.entry-header.inline .leading enhanced-img) {
-			display: block;
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-		}
-		:global(.entry-header.inline .leading picture img) {
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-		}
-		&:not(.with-image) .content-column {
-			grid-column: 1 / -1;
-		}
-		.content-column {
-			min-width: 0;
-			grid-column: 2;
+
+		&:not(.with-image) .project-body {
+			grid-template-columns: 1fr;
+			.content-column {
+				grid-column: 1;
+			}
 		}
 	}
 	article {
@@ -148,29 +137,28 @@
 			justify-content: flex-start;
 			align-items: flex-start;
 			align-content: flex-start;
-			.tags {
-				display: flex;
-				margin: 0 0 var(--m) 0;
-				flex-grow: 1;
-				flex-direction: row;
-				flex-wrap: wrap;
-				justify-content: flex-start;
-				align-items: flex-start;
-				gap: var(--xs);
-			}
 			:global(.rich-text) {
-				margin: 0 0 var(--m) 0;
+				margin: 0;
 			}
-			:global(.links) {
+			.sep {
+				margin: var(--l) 0;
+				width: 100%;
+				height: 0;
+				border: none;
+				border-bottom: 1px solid var(--c-surface-accent);
+			}
+			.links {
 				display: flex;
-				flex-grow: 1;
-				flex-direction: row;
 				flex-wrap: wrap;
-				justify-content: flex-start;
-				align-items: flex-start;
-				align-content: stretch;
 				gap: var(--m);
-				flex-base: 100%;
+				a {
+					color: var(--c-font);
+					font-size: var(--font-s);
+					text-decoration: none;
+				}
+				a:hover {
+					text-decoration: underline;
+				}
 			}
 			.related-work {
 				margin-top: var(--m);
