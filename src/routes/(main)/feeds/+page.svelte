@@ -4,10 +4,10 @@
 
 	const feeds: Array<{ path: string; description: string }> = [
 		{ path: '/rss', description: 'All content: posts, projects, uses, and work.' },
-		{ path: '/posts/rss', description: 'Blog posts only.' },
+		{ path: '/work/rss', description: 'Work experience and positions.' },
 		{ path: '/projects/rss', description: 'Portfolio projects.' },
 		{ path: '/uses/rss', description: 'Tools and software I use.' },
-		{ path: '/work/rss', description: 'Work experience and positions.' }
+		{ path: '/posts/rss', description: 'Blog posts only.' }
 	];
 </script>
 
