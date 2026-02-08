@@ -1,6 +1,7 @@
 import { requestPosts, requestProjects, requestUses, requestWork } from '$lib/data/api.server';
 import type { MergedRssEntry } from '$lib/util/rss.server';
 import { generateMergedXml, options } from '$lib/util/rss.server';
+import { workEntryToFullHtml } from '$lib/util/workEntry';
 
 export const prerender = true;
 
@@ -37,7 +38,7 @@ export async function GET() {
 		...postsResult[0].map((e) => toMergedEntry(e, 'Posts')),
 		...projectsResult[0].map((e) => toMergedEntry(e, 'Projects')),
 		...usesResult[0].map((e) => toMergedEntry(e, 'Uses')),
-		...workResult[0].map((e) => toMergedEntry(e, 'Work'))
+		...workResult[0].map((e) => toMergedEntry({ ...e, html: workEntryToFullHtml(e) }, 'Work'))
 	];
 
 	merged.sort((a, b) => b.published.raw.getTime() - a.published.raw.getTime());
