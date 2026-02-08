@@ -37,7 +37,7 @@
 	);
 </script>
 
-<Entries path={data.url}>
+<Entries>
 	{#snippet entries()}
 		<div class="entries">
 			{#each filteredAndSorted as entry, index}

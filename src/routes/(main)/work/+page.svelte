@@ -68,7 +68,7 @@
 	const { current, past } = $derived(organizeEntries(entries));
 </script>
 
-<Entries path={data.url}>
+<Entries>
 	{#snippet entries()}
 		<Hero
 			title="Building products that matter for people & the planet"

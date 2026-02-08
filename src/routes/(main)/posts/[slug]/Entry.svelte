@@ -51,11 +51,6 @@
 		</BaseCallout>
 	</div>
 	<BaseCard class="placeholder"></BaseCard>
-	<BaseRichText element="footer">
-		<BaseRichText class="rss">
-			<a href="/posts/rss">RSS Feed</a>
-		</BaseRichText>
-	</BaseRichText>
 </article>
 
 <style lang="postcss">
@@ -66,14 +61,12 @@
 		grid:
 			'tldr placeholder' auto
 			'post sidebar' 1fr
-			'footer footer' auto
 			/ calc(70% - var(--l)) 30%;
 		@media screen and (width <= 74rem) {
 			grid:
 				'tldr' auto
 				'sidebar' auto
 				'post' auto
-				'footer' auto
 				/ 100%;
 		}
 		.tldr {
@@ -133,11 +126,6 @@
 		}
 		.post {
 			grid-area: post;
-		}
-		footer {
-			margin: var(--l) 0 0 0;
-			grid-area: footer;
-			text-align: center;
 		}
 	}
 </style>

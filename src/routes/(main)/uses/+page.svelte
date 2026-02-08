@@ -28,8 +28,6 @@
 	let { data }: Props = $props();
 	let usesEntries = $derived(data.uses[0]);
 	let tags = $derived(data.uses[1]);
-	let path = $derived(data.path);
-
 	interface GroupedEntries {
 		title: string;
 		entries: typeof usesEntries;
@@ -60,7 +58,7 @@
 	);
 </script>
 
-<Entries {path}>
+<Entries>
 	{#snippet entries()}
 		<div class="wrapper">
 			{#each activeGroupedEntries as group}

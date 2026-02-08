@@ -23,6 +23,7 @@
 	let isWorkDetailPage = $derived(
 		$page.url.pathname.startsWith('/work/') && $page.url.pathname !== '/work'
 	);
+	let showLayoutHeader = $derived(title && $page.url.pathname !== '/feeds');
 
 	// needs to be here until the following issue in vite is resolved and included in an sveltekit release
 	// https://github.com/sveltejs/kit/issues/5240
@@ -43,7 +44,7 @@
 <div class="container">
 	<LayoutHeader />
 	<main id="main" class:work-detail={isWorkDetailPage}>
-		{#if title}
+		{#if showLayoutHeader}
 			<section class="header">
 				<h1>{title}</h1>
 				{#if subtitle}

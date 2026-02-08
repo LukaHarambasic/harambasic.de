@@ -19,7 +19,7 @@
 </script>
 
 <div class="posts-container">
-	<Entries path="/posts">
+	<Entries>
 		{#snippet entries()}
 			<ul class="entries">
 				{#each filteredAndSortedEntries as post}
