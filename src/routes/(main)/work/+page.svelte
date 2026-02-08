@@ -67,7 +67,7 @@
 	const { current, past } = $derived(organizeEntries(entries));
 </script>
 
-<Entries path={data.url}>
+<Entries>
 	{#snippet entries()}
 		<div class="work-container">
 			{#if current}

@@ -23,6 +23,7 @@
 	let { title, description, permalink } = $derived($page.data);
 	const listPaths = ['/work', '/posts', '/projects', '/uses'] as const;
 	let isListPage = $derived(listPaths.includes($page.url.pathname as (typeof listPaths)[number]));
+	let showHero = $derived(isListPage && $page.url.pathname !== '/feeds');
 	let isDetailPage = $derived.by(() => {
 		const segments = $page.url.pathname.split('/').filter(Boolean);
 		return (
@@ -50,7 +51,7 @@
 <div class="container">
 	<LayoutHeader />
 	<main id="main">
-		{#if isListPage}
+		{#if showHero}
 			<Hero title={$page.data.title ?? ''} description={$page.data.description ?? ''} />
 		{/if}
 		{#if hasSnippet(children)}

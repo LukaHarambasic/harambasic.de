@@ -1,18 +1,15 @@
 <script lang="ts">
-	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import { hasSnippet } from '$lib/util/snippet';
 
 	interface Props {
-		path?: string;
 		entries?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
 		sidebar?: import('svelte').Snippet;
 		class?: string;
 	}
 
-	let { path = '', entries, sidebar, children, class: className }: Props = $props();
+	let { entries, sidebar, children, class: className }: Props = $props();
 
-	let rssPath = $derived(`${path}/rss`);
 	let hasSidebar = $derived(hasSnippet(sidebar));
 </script>
 
@@ -29,11 +26,6 @@
 			{@render sidebar()}
 		{/if}
 	</div>
-	<BaseRichText class="rss">
-		<p>
-			<a href={rssPath}>RSS Feed</a>
-		</p>
-	</BaseRichText>
 </section>
 
 <style lang="postcss">
@@ -42,7 +34,7 @@
 		width: 100%;
 		row-gap: var(--l);
 		column-gap: var(--l);
-		grid-template-rows: auto auto auto;
+		grid-template-rows: auto auto;
 		grid-template-columns: 70ch 1fr;
 		&.no-sidebar {
 			width: 100%;
@@ -68,15 +60,6 @@
 			@media screen and (width <= 50rem) {
 				order: 0;
 				grid-template-columns: 1fr;
-			}
-		}
-		.rss {
-			margin: var(--l) 0 0 0;
-			grid-column: 1 / -1;
-			text-align: center;
-			@media screen and (width <= 50rem) {
-				order: 2;
-				grid-column: 1 / 1;
 			}
 		}
 	}
