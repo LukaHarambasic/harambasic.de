@@ -13,7 +13,7 @@
 {#if entry}
 	<Entry post={entry} />
 	<footer class="page-footer">
-		<a href="/posts/rss">RSS Feed</a>
+		<a href="/posts/rss" data-sveltekit-reload>RSS Feed</a>
 	</footer>
 {/if}
 

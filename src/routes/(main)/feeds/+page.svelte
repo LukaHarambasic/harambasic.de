@@ -21,7 +21,7 @@
 			<ul class="list">
 				{#each feeds as { path, description }}
 					<li class="item">
-						<a href={path} class="path">{path}</a>
+						<a href={path} class="path" data-sveltekit-reload>{path}</a>
 						<p class="description">{description}</p>
 					</li>
 				{/each}
@@ -47,7 +47,7 @@
 			padding: 0;
 			flex-direction: column;
 			flex-wrap: nowrap;
-			gap: var(--m);
+			gap: var(--l);
 			list-style: none;
 		}
 		.item {
