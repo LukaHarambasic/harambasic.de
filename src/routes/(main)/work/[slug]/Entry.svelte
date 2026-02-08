@@ -3,7 +3,6 @@
 	import type { Project } from '$lib/types/project';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
-	import BaseTag from '$lib/components/Base/BaseTag.svelte';
 	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
@@ -176,18 +175,6 @@
 			{@html entry.html}
 		</BaseRichText>
 	{/if}
-
-	{#if entry.tags && entry.tags.length > 0}
-		<div class="tags-section">
-			<ul class="tags">
-				{#each entry.tags as tag}
-					<li>
-						<BaseTag {tag} />
-					</li>
-				{/each}
-			</ul>
-		</div>
-	{/if}
 </article>
 
 <style lang="postcss">
@@ -314,19 +301,6 @@
 			font-family: var(--font-family);
 			font-size: var(--font-m);
 			line-height: 1.6;
-		}
-		.tags-section {
-			margin-bottom: var(--l);
-		}
-		.tags {
-			display: flex;
-			margin: 0;
-			flex-grow: 1;
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: flex-start;
-			align-items: flex-start;
-			gap: var(--xs);
 		}
 		.related-projects {
 			margin-bottom: var(--xl);
