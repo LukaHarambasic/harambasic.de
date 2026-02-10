@@ -189,11 +189,7 @@
 		}
 		.item:hover,
 		.archive-item:hover {
-			background: color-mix(
-				in srgb,
-				var(--c-surface-accent) 40%,
-				transparent
-			);
+			background: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
 		}
 		.item:hover .external-link,
 		.archive-item:hover .external-link {
@@ -357,6 +353,33 @@
 			> li:nth-child(odd) .archive-item {
 				border-right: 1px solid var(--uses-border);
 			}
+
+			/* Outer corners: top row */
+			> li:first-child .item,
+			> li:first-child .archive-item {
+				border-top-left-radius: var(--border-radius);
+			}
+			> li:nth-child(2) .item,
+			> li:nth-child(2) .archive-item {
+				border-top-right-radius: var(--border-radius);
+			}
+
+			/* Outer corners: last row (even count = 2 items) */
+			&:has(> :first-child:nth-last-child(even)) > li:nth-last-child(2) .item,
+			&:has(> :first-child:nth-last-child(even)) > li:nth-last-child(2) .archive-item {
+				border-bottom-left-radius: var(--border-radius);
+			}
+			&:has(> :first-child:nth-last-child(even)) > li:last-child .item,
+			&:has(> :first-child:nth-last-child(even)) > li:last-child .archive-item {
+				border-bottom-right-radius: var(--border-radius);
+			}
+
+			/* Outer corners: last row (odd count = 1 item) */
+			&:has(> :first-child:nth-last-child(odd)) > li:last-child .item,
+			&:has(> :first-child:nth-last-child(odd)) > li:last-child .archive-item {
+				border-bottom-left-radius: var(--border-radius);
+			}
+
 			@media screen and (width <= 62rem) {
 				> li:nth-last-child(-n + 2) {
 					border-bottom: 1px solid var(--uses-border);
@@ -367,6 +390,35 @@
 				> li:nth-child(odd) .item,
 				> li:nth-child(odd) .archive-item {
 					border-right: none;
+				}
+
+				/* 1 column: first item both top corners, last item both bottom corners */
+				> li:first-child .item,
+				> li:first-child .archive-item {
+					border-top-right-radius: var(--border-radius);
+				}
+				> li:nth-child(2) .item,
+				> li:nth-child(2) .archive-item {
+					border-top-right-radius: 0;
+				}
+				&:has(> :first-child:nth-last-child(even)) > li:nth-last-child(2) .item,
+				&:has(> :first-child:nth-last-child(even)) > li:nth-last-child(2) .archive-item {
+					border-bottom-left-radius: 0;
+				}
+				&:has(> :first-child:nth-last-child(even)) > li:last-child .item,
+				&:has(> :first-child:nth-last-child(even)) > li:last-child .archive-item {
+					border-bottom-right-radius: var(--border-radius);
+				}
+				&:has(> :first-child:nth-last-child(odd)) > li:last-child .item,
+				&:has(> :first-child:nth-last-child(odd)) > li:last-child .archive-item {
+					border-bottom-left-radius: var(--border-radius);
+				}
+
+				/* 1 column: last item has both bottom corners */
+				> li:last-child .item,
+				> li:last-child .archive-item {
+					border-bottom-left-radius: var(--border-radius);
+					border-bottom-right-radius: var(--border-radius);
 				}
 			}
 		}
@@ -386,6 +438,42 @@
 		.group.archive .entries > li:nth-child(3n + 2) .archive-item {
 			border-right: 1px solid var(--uses-border);
 		}
+
+		/* Archive: outer corners (3 columns) */
+		.group.archive .entries > li:first-child .archive-item {
+			border-top-left-radius: var(--border-radius);
+		}
+		.group.archive .entries > li:nth-child(3) .archive-item {
+			border-top-right-radius: var(--border-radius);
+		}
+		.group.archive
+			.entries:has(> :first-child:nth-last-child(3n))
+			> li:nth-last-child(3)
+			.archive-item {
+			border-bottom-left-radius: var(--border-radius);
+		}
+		.group.archive .entries:has(> :first-child:nth-last-child(3n)) > li:last-child .archive-item {
+			border-bottom-right-radius: var(--border-radius);
+		}
+		.group.archive
+			.entries:has(> :first-child:nth-last-child(3n + 1))
+			> li:last-child
+			.archive-item {
+			border-bottom-left-radius: var(--border-radius);
+		}
+		.group.archive
+			.entries:has(> :first-child:nth-last-child(3n + 2))
+			> li:nth-last-child(2)
+			.archive-item {
+			border-bottom-left-radius: var(--border-radius);
+		}
+		.group.archive
+			.entries:has(> :first-child:nth-last-child(3n + 2))
+			> li:last-child
+			.archive-item {
+			border-bottom-right-radius: var(--border-radius);
+		}
+
 		@media screen and (width <= 62rem) {
 			.group.archive .entries > li:nth-last-child(-n + 3) {
 				border-bottom: 1px solid var(--uses-border);
@@ -396,6 +484,18 @@
 			.group.archive .entries > li:nth-child(3n + 1) .archive-item,
 			.group.archive .entries > li:nth-child(3n + 2) .archive-item {
 				border-right: none;
+			}
+
+			/* Archive 1 column: first both top, last both bottom */
+			.group.archive .entries > li:first-child .archive-item {
+				border-top-right-radius: var(--border-radius);
+			}
+			.group.archive .entries > li:nth-child(3) .archive-item {
+				border-top-right-radius: 0;
+			}
+			.group.archive .entries > li:last-child .archive-item {
+				border-bottom-left-radius: var(--border-radius);
+				border-bottom-right-radius: var(--border-radius);
 			}
 		}
 	}
