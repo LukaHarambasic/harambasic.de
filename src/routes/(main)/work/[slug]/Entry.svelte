@@ -409,6 +409,7 @@
 			filter: grayscale(0);
 		}
 		.related-projects :global(.base-card.image.compact:hover .image-wrapper .main-img img) {
+			filter: grayscale(0);
 			opacity: 1;
 		}
 		.related-projects :global(.base-card.image.compact .content) {
