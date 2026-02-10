@@ -151,7 +151,7 @@
 		width: 90ch;
 		flex-direction: column;
 		gap: var(--xl);
-		@media screen and (width <= 62rem) {
+		@media screen and (width <= 68.75rem) {
 			width: 100%;
 		}
 		.group {
@@ -167,7 +167,7 @@
 			}
 			&.archive .entries {
 				grid-template-columns: repeat(3, minmax(0, 1fr));
-				@media screen and (width <= 62rem) {
+				@media screen and (width <= 68.75rem) {
 					grid-template-columns: 1fr;
 				}
 			}
@@ -332,7 +332,7 @@
 			align-items: stretch;
 			gap: 0;
 			grid-template-columns: repeat(2, minmax(0, 1fr));
-			@media screen and (width <= 62rem) {
+			@media screen and (width <= 68.75rem) {
 				grid-template-columns: 1fr;
 			}
 			> li {
@@ -349,9 +349,11 @@
 			&:has(> :first-child:nth-last-child(odd)) > li:nth-last-child(2) {
 				border-bottom: 1px solid var(--uses-border);
 			}
-			> li:nth-child(odd) .item,
-			> li:nth-child(odd) .archive-item {
-				border-right: 1px solid var(--uses-border);
+			@media screen and (width > 68.75rem) {
+				> li:nth-child(odd) .item,
+				> li:nth-child(odd) .archive-item {
+					border-right: 1px solid var(--uses-border);
+				}
 			}
 
 			/* Outer corners: top row */
@@ -380,16 +382,12 @@
 				border-bottom-left-radius: var(--border-radius);
 			}
 
-			@media screen and (width <= 62rem) {
+			@media screen and (width <= 68.75rem) {
 				> li:nth-last-child(-n + 2) {
 					border-bottom: 1px solid var(--uses-border);
 				}
 				> li:last-child {
 					border-bottom: none;
-				}
-				> li:nth-child(odd) .item,
-				> li:nth-child(odd) .archive-item {
-					border-right: none;
 				}
 
 				/* 1 column: first item both top corners, last item both bottom corners */
@@ -434,9 +432,11 @@
 		.group.archive .entries:has(> :first-child:nth-last-child(3n + 2)) > li:nth-last-child(3) {
 			border-bottom: 1px solid var(--uses-border);
 		}
-		.group.archive .entries > li:nth-child(3n + 1) .archive-item,
-		.group.archive .entries > li:nth-child(3n + 2) .archive-item {
-			border-right: 1px solid var(--uses-border);
+		@media screen and (width > 68.75rem) {
+			.group.archive .entries > li:nth-child(3n + 1) .archive-item,
+			.group.archive .entries > li:nth-child(3n + 2) .archive-item {
+				border-right: 1px solid var(--uses-border);
+			}
 		}
 
 		/* Archive: outer corners (3 columns) */
@@ -474,16 +474,12 @@
 			border-bottom-right-radius: var(--border-radius);
 		}
 
-		@media screen and (width <= 62rem) {
+		@media screen and (width <= 68.75rem) {
 			.group.archive .entries > li:nth-last-child(-n + 3) {
 				border-bottom: 1px solid var(--uses-border);
 			}
 			.group.archive .entries > li:last-child {
 				border-bottom: none;
-			}
-			.group.archive .entries > li:nth-child(3n + 1) .archive-item,
-			.group.archive .entries > li:nth-child(3n + 2) .archive-item {
-				border-right: none;
 			}
 
 			/* Archive 1 column: first both top, last both bottom */
