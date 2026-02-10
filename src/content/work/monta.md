@@ -38,7 +38,7 @@ positions:
 
       Full transparency: I extended the end date on this experience so LinkedIn groups it nicely with my return in 2023. In reality, I worked in this position from Aug 2022 to Feb 2023 and took a break for a semester abroad in California.
 relatedProjects:
-  - monta-energy-management
+  - monta-charge-hems
 tags:
   - Product Management
   - Energy Management

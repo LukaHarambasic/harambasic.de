@@ -42,50 +42,48 @@
 	{/if}
 {/snippet}
 
-<div class="project-entry" class:with-image={!!imageData}>
+<div class="project-entry">
 	<EntryHeader title={entry.title} />
-	<div class="project-body">
-		{#if imageData}
-			<div class="image-block">
-				{@render leadingImage()}
-			</div>
-		{/if}
-		<article class="h-entry content-column">
-			<div class="content">
-				<BaseRichText>
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-					{@html entry.html}
-				</BaseRichText>
-				<div class="sep" aria-hidden="true"></div>
-				<nav class="links" aria-label="Project links">
-					{#each entry.links as link}
-						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
-					{/each}
-				</nav>
-				{#if relatedWork.length > 0}
-					<div class="related-work">
-						<h3>Related Work</h3>
-						<ul class="related-work-list">
-							{#each relatedWork as work}
-								<li>
-									<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
-										<div class="header">
-											<div class="info">
-												<h4 class="name">{work.title}</h4>
-											</div>
-											<div class="external-link">
-												<Icon icon="ph:arrow-up-right-bold" />
-											</div>
+	{#if imageData}
+		<div class="image-block">
+			{@render leadingImage()}
+		</div>
+	{/if}
+	<article class="h-entry content-column">
+		<div class="content">
+			<BaseRichText>
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+				{@html entry.html}
+			</BaseRichText>
+			<div class="sep" aria-hidden="true"></div>
+			<nav class="links" aria-label="Project links">
+				{#each entry.links as link}
+					<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+				{/each}
+			</nav>
+			{#if relatedWork.length > 0}
+				<div class="related-work">
+					<h3>Related Work</h3>
+					<ul class="related-work-list">
+						{#each relatedWork as work}
+							<li>
+								<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
+									<div class="header">
+										<div class="info">
+											<h4 class="name">{work.title}</h4>
 										</div>
-									</BaseCard>
-								</li>
-							{/each}
-						</ul>
-					</div>
-				{/if}
-			</div>
-		</article>
-	</div>
+										<div class="external-link">
+											<Icon icon="ph:arrow-up-right-bold" />
+										</div>
+									</div>
+								</BaseCard>
+							</li>
+						{/each}
+					</ul>
+				</div>
+			{/if}
+		</div>
+	</article>
 </div>
 
 <style lang="postcss">
@@ -96,37 +94,22 @@
 		align-items: stretch;
 		gap: var(--m);
 
-		.project-body {
-			display: grid;
-			width: 100%;
-			align-items: start;
-			gap: var(--m);
-			grid-template-columns: 0.382fr 0.618fr;
-			@media screen and (width <= 48rem) {
-				grid-template-columns: 1fr;
-			}
-			.image-block {
-				min-width: 0;
+		.image-block {
+			width: 50%;
+			min-width: 0;
+			border-radius: var(--border-radius);
+			overflow: hidden;
+			:global(picture),
+			:global(picture img) {
+				display: block;
+				max-width: 100%;
+				height: auto;
 				border-radius: var(--border-radius);
-				overflow: hidden;
-				:global(picture),
-				:global(picture img) {
-					display: block;
-					max-width: 100%;
-					height: auto;
-					border-radius: var(--border-radius);
-				}
-			}
-			.content-column {
-				min-width: 0;
 			}
 		}
-
-		&:not(.with-image) .project-body {
-			grid-template-columns: 1fr;
-			.content-column {
-				grid-column: 1;
-			}
+		.content-column {
+			width: 100%;
+			min-width: 0;
 		}
 	}
 	article {
