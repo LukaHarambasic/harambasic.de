@@ -37,7 +37,8 @@ positions:
       I got my hands dirty early on, even coding fully functional internal tools that eventually got productized. This was way before the "vibe coding" era, so I actually had to write the code myself, including a beautiful daylight time shift (or however you call this) bug that took me forever to debug 😊.
 
       Full transparency: I extended the end date on this experience so LinkedIn groups it nicely with my return in 2023. In reality, I worked in this position from Aug 2022 to Feb 2023 and took a break for a semester abroad in California.
-relatedProjects: []
+relatedProjects:
+  - monta-energy-management
 tags:
   - Product Management
   - Energy Management
