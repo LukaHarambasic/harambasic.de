@@ -5,7 +5,6 @@
 	import { SortDirection, SORT_DEFAULTS } from '$lib/types/enums';
 	import { filterAndSort } from '$lib/util/entryHelpers';
 	import { formatDateDisplay } from '$lib/util/helper';
-	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 
 	interface Props {
 		data: PageData;
@@ -23,32 +22,18 @@
 		{#snippet entries()}
 			<ul class="entries">
 				{#each filteredAndSortedEntries as post}
-					<li class="h-feed">
-						<BaseCard
-							element="a"
-							href={post.relativePath}
-							variant="default"
-							class="withIcon post-card"
-							aria-label="View post: {post.title}"
-						>
-							<div class="header">
-								<div class="info">
-									<h2 class="name">{post.title}</h2>
-								</div>
-								<div class="external-link">
-									<Icon icon="ph:arrow-up-right-bold" />
-								</div>
-							</div>
-							<div class="metadata">
-								<div class="positions">
-									<div class="row">
-										<time class="dates dt-published" datetime={post.published.raw?.toISOString()}>
-											{formatDateDisplay(post.published.display)}
-										</time>
-									</div>
-								</div>
-							</div>
-						</BaseCard>
+					<li class="post-row h-feed">
+						<a href={post.relativePath} class="row-link" aria-label="View post: {post.title}">
+							<span class="info">
+								<h2 class="name">{post.title}</h2>
+								<time class="dates dt-published" datetime={post.published.raw?.toISOString()}>
+									{formatDateDisplay(post.published.display)}
+								</time>
+							</span>
+							<span class="external-link">
+								<Icon icon="ph:arrow-up-right-bold" />
+							</span>
+						</a>
 					</li>
 				{/each}
 			</ul>
@@ -64,23 +49,76 @@
 		max-width: calc(var(--layout-xl) * 0.618);
 		.entries {
 			display: flex;
+			margin: 0;
+			padding: 0;
 			flex-direction: column;
 			flex-wrap: nowrap;
 			justify-content: flex-start;
 			align-items: stretch;
 			align-content: stretch;
-			gap: var(--l);
+			gap: 0;
+			list-style: none;
 		}
-		:global(.post-card) {
-			border-color: var(--c-surface-accent);
-			background: color-mix(in srgb, var(--c-light) 75%, var(--c-surface));
-			& :global(.name) {
-				font-size: var(--font-m);
+		.post-row {
+			border-bottom: 1px solid var(--c-surface-accent);
+			&:last-child {
+				border-bottom: none;
 			}
-			& :global(.row) {
-				display: block;
-				text-align: left;
-			}
+		}
+		.row-link {
+			display: flex;
+			padding: var(--l) 0;
+			width: 100%;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-items: center;
+			gap: var(--m);
+			color: inherit;
+			text-decoration: none;
+		}
+		.info {
+			display: flex;
+			min-width: 0;
+			flex: 1;
+			flex-direction: column;
+			gap: var(--xs);
+		}
+		.name {
+			margin: 0;
+			color: var(--c-font);
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 900;
+			line-height: 1.2;
+			letter-spacing: var(--font-letter-spacing-headline);
+		}
+		.dates {
+			color: var(--c-font-accent-dark);
+			font-family: var(--font-family);
+			font-size: var(--font-s);
+			font-weight: 400;
+			line-height: 1.5;
+			white-space: nowrap;
+		}
+		.external-link {
+			display: flex;
+			width: 1.5rem;
+			height: 1.5rem;
+			flex-shrink: 0;
+			justify-content: center;
+			align-items: center;
+			color: var(--c-font-accent-super-light);
+			transition: var(--transition);
+			pointer-events: none;
+		}
+		.external-link :global(svg) {
+			width: 1rem;
+			height: 1rem;
+		}
+		.row-link:hover .external-link {
+			color: var(--c-font);
+			transform: translateY(-2px) translateX(2px);
 		}
 	}
 </style>
