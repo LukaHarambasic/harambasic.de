@@ -76,7 +76,7 @@
 			flex-shrink: 0;
 			justify-content: center;
 			align-items: center;
-			color: var(--c-font);
+			color: var(--c-font-accent-super-light);
 			transition: var(--transition);
 			pointer-events: none;
 		}
@@ -85,6 +85,7 @@
 			height: 1rem;
 		}
 		&[href]:hover :global(.external-link) {
+			color: var(--c-font);
 			transform: translateY(-2px) translateX(2px);
 		}
 
