@@ -171,6 +171,14 @@
 					grid-template-columns: 1fr;
 				}
 			}
+			&:not(.archive) .entries {
+				@media screen and (width > 68.75rem) {
+					> li:nth-child(odd) .item,
+					> li:nth-child(odd) .archive-item {
+						border-right: 1px solid var(--uses-border);
+					}
+				}
+			}
 		}
 
 		.item,
@@ -341,18 +349,14 @@
 				min-height: 0;
 				border-bottom: 1px solid var(--uses-border);
 			}
-			> li:nth-last-child(-n + 2) {
-				border-bottom: none;
-			}
 
-			/* Odd count: last row has 1 item; restore bottom border on 2nd-to-last */
-			&:has(> :first-child:nth-last-child(odd)) > li:nth-last-child(2) {
-				border-bottom: 1px solid var(--uses-border);
-			}
+			/* Desktop 2-col: no bottom border on last row (2 items); restore when odd count */
 			@media screen and (width > 68.75rem) {
-				> li:nth-child(odd) .item,
-				> li:nth-child(odd) .archive-item {
-					border-right: 1px solid var(--uses-border);
+				> li:nth-last-child(-n + 2) {
+					border-bottom: none;
+				}
+				&:has(> :first-child:nth-last-child(odd)) > li:nth-last-child(2) {
+					border-bottom: 1px solid var(--uses-border);
 				}
 			}
 
@@ -383,7 +387,7 @@
 			}
 
 			@media screen and (width <= 68.75rem) {
-				> li:nth-last-child(-n + 2) {
+				> li:not(:last-child) {
 					border-bottom: 1px solid var(--uses-border);
 				}
 				> li:last-child {
