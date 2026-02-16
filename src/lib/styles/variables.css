@@ -24,7 +24,8 @@
 	--box-shadow:
 		0 1px 2px rgba(0, 0, 0, 0.01), 0 2px 4px rgba(0, 0, 0, 0.01), 0 4px 8px rgba(0, 0, 0, 0.01),
 		0 6px 12px rgba(0, 0, 0, 0.01);
-	--border: 1px solid var(--c-surface-accent);
+	--c-border: rgba(1, 3, 15, 0.03);
+	--border: 1px solid var(--c-border);
 	--xxs: 0.25rem;
 	--xs: 0.5rem;
 	--s: 0.75rem;
@@ -40,6 +41,7 @@
 	:root {
 		--c-surface: hsla(0, 0%, 100%, 0.2);
 		--c-surface-accent: hsla(0, 0%, 100%, 0.06);
+		--c-border: hsla(0, 0%, 100%, 0.06);
 		--c-light: #01030f;
 		--c-font: #fff;
 		--c-font-accent-dark: hsla(0, 0%, 100%, 0.8);
