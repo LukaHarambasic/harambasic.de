@@ -420,19 +420,19 @@
 				}
 			}
 		}
-		.group.archive .entries > li:nth-last-child(-n + 3) {
-			border-bottom: none;
-		}
-
-		/* Odd count mod 3: restore bottom border so only last row is borderless */
-		.group.archive .entries:has(> :first-child:nth-last-child(3n + 1)) > li:nth-last-child(2),
-		.group.archive .entries:has(> :first-child:nth-last-child(3n + 1)) > li:nth-last-child(3) {
-			border-bottom: 1px solid var(--uses-border);
-		}
-		.group.archive .entries:has(> :first-child:nth-last-child(3n + 2)) > li:nth-last-child(3) {
-			border-bottom: 1px solid var(--uses-border);
-		}
 		@media screen and (width > 68.75rem) {
+			.group.archive .entries > li:nth-last-child(-n + 3) {
+				border-bottom: none;
+			}
+
+			/* Odd count mod 3: restore bottom border so only last row is borderless */
+			.group.archive .entries:has(> :first-child:nth-last-child(3n + 1)) > li:nth-last-child(2),
+			.group.archive .entries:has(> :first-child:nth-last-child(3n + 1)) > li:nth-last-child(3) {
+				border-bottom: 1px solid var(--uses-border);
+			}
+			.group.archive .entries:has(> :first-child:nth-last-child(3n + 2)) > li:nth-last-child(3) {
+				border-bottom: 1px solid var(--uses-border);
+			}
 			.group.archive .entries > li:nth-child(3n + 1) .archive-item,
 			.group.archive .entries > li:nth-child(3n + 2) .archive-item {
 				border-right: 1px solid var(--uses-border);
@@ -475,9 +475,6 @@
 		}
 
 		@media screen and (width <= 68.75rem) {
-			.group.archive .entries > li:nth-last-child(-n + 3) {
-				border-bottom: 1px solid var(--uses-border);
-			}
 			.group.archive .entries > li:last-child {
 				border-bottom: none;
 			}
