@@ -1,27 +1,12 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { PageData } from './$types';
 	import { filterAndSort } from '$lib/util/entryHelpers';
 	import { SortDirection, SORT_DEFAULTS } from '$lib/types/enums';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import Icon from '@iconify/svelte';
-	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
-
-	// TODO: remove eager and only load images that got randomly selected
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const PROJECT_IMAGE_PATH = '../../../assets/img/projects/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, PROJECT_IMAGE_PATH, name);
+	import { getProjectImage } from '$lib/util/enhancedImages';
 
 	interface Props {
 		data: PageData;
@@ -29,7 +14,7 @@
 
 	let { data }: Props = $props();
 
-	let entries = $derived(data.projects[0]);
+	let entries = $derived(data.projects[0] ?? []);
 
 	let filteredAndSorted = $derived(
 		filterAndSort(entries, 'all', 'all', SORT_DEFAULTS.PROJECT, SortDirection.Desc)
@@ -39,12 +24,12 @@
 <Entries>
 	{#snippet entries()}
 		<div class="entries">
-			{#each filteredAndSorted as entry, index}
-				{@const imageData = getImage(entry.image)}
+			{#each filteredAndSorted as entry, index (entry.slug)}
+				{@const imageData = getProjectImage(entry.image)}
 				<div class="entry-wrapper" data-highlighted={index < 3}>
 					<BaseCard
 						element="a"
-						href={entry.relativePath}
+						href={resolvePath(entry.relativePath)}
 						variant="default"
 						class="image noSpacing {index < 3 ? 'highlighted' : 'compact'}"
 					>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import Icon from '@iconify/svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import type { PageData } from './$types';
@@ -9,49 +10,8 @@
 		getInitialVisibleCount,
 		type MergedFeedEntry
 	} from '$lib/util/mergedFeed';
-	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
-
-	const projectPictures: ImageGlobResult = import.meta.glob(
-		'../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const usesPictures: ImageGlobResult = import.meta.glob(
-		'../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const workPictures: ImageGlobResult = import.meta.glob(
-		'../../assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const PROJECT_IMAGE_PATH = '../../assets/img/projects/';
-	const USES_IMAGE_PATH = '../../assets/img/uses/';
-	const WORK_IMAGE_PATH = '../../assets/img/work/';
-
-	const getProjectImage = (name: string) =>
-		getImageFromGlob(projectPictures, PROJECT_IMAGE_PATH, name);
-	const getUsesImage = (name: string) => getImageFromGlob(usesPictures, USES_IMAGE_PATH, name);
-	const getWorkImage = (name: string) => getImageFromGlob(workPictures, WORK_IMAGE_PATH, name);
+	import { getProjectImage, getUsesImage, getWorkImage } from '$lib/util/enhancedImages';
+	import { isSvgImage } from '$lib/util/images';
 
 	const SVG_PATH_PREFIX: Record<string, string> = {
 		Projects: '/projects/',
@@ -85,10 +45,10 @@
 
 	const INITIAL_TARGET = 6;
 
-	let posts = $derived(data.posts[0]);
-	let projects = $derived(data.projects[0]);
-	let uses = $derived(data.uses[0]);
-	let work = $derived((data.work || [[]])[0] || []);
+	let posts = $derived(data.posts[0] ?? []);
+	let projects = $derived(data.projects[0] ?? []);
+	let uses = $derived(data.uses[0] ?? []);
+	let work = $derived(data.work?.[0] ?? []);
 
 	let mergedEntries = $derived(getMergedFeedEntries(posts, projects, uses, work));
 	let layoutOrdered = $derived(getLayoutOrderedEntries(mergedEntries));
@@ -104,9 +64,14 @@
 		let i = 0;
 		while (i < entries.length) {
 			const entry = entries[i];
+			const nextEntry = entries[i + 1];
+			if (entry === undefined) {
+				i++;
+				continue;
+			}
 			const isHalf = entry.category === 'Uses';
-			if (isHalf && i + 1 < entries.length && entries[i + 1].category === 'Uses') {
-				rows.push([entry, entries[i + 1]]);
+			if (isHalf && nextEntry !== undefined && nextEntry.category === 'Uses') {
+				rows.push([entry, nextEntry]);
 				i += 2;
 			} else {
 				rows.push([entry]);
@@ -133,19 +98,22 @@
 			alt="Profile of Luka Harambasic"
 			class="profile"
 		/>
-		<BaseRichText class="content">
-			<h1>Heyho, I'm Luka!</h1>
-			<p>
-				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I'm building
-				with the PLG squad at <a href="https://www.electricitymaps.com/">Electricity Maps</a>. Feel
-				free to explore my past
-				<a href="/projects">projects</a>
-				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. I'm
-				right now incredibly hyped about automation and AI. Whether you want to geek out over that
-				or start a conversation about handball, woodworking, cooking, and sustainability, feel free
-				to <a href="#contact">say hi</a>.
-			</p>
-		</BaseRichText>
+		<div class="content">
+			<BaseRichText>
+				<h1>Heyho, I'm Luka!</h1>
+				<p>
+					I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I'm
+					building with the PLG squad at <a href="https://www.electricitymaps.com/"
+						>Electricity Maps</a
+					>. Feel free to explore my past
+					<a href={resolvePath('/projects')}>projects</a>
+					or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>.
+					I'm right now incredibly hyped about automation and AI. Whether you want to geek out over
+					that or start a conversation about handball, woodworking, cooking, and sustainability,
+					feel free to <a href="#contact">say hi</a>.
+				</p>
+			</BaseRichText>
+		</div>
 	</div>
 </section>
 <section class="featured">
@@ -153,11 +121,16 @@
 	<div class="feed">
 		<table class="feed-table">
 			<tbody>
-				{#each feedRows as row}
+				{#each feedRows as row (row.map((e) => e.slug).join(','))}
 					<tr>
-						{#each row as entry}
+						{#each row as entry (entry.slug)}
 							<td colspan={row.length === 1 ? 2 : 1}>
-								<a href={entry.href} class="link" aria-label="View {entry.title}">
+								<a
+									href={entry.href.startsWith('http') ? entry.href : resolvePath(entry.href)}
+									rel={entry.href.startsWith('http') ? 'external' : undefined}
+									class="link"
+									aria-label="View {entry.title}"
+								>
 									<div class="thumb">
 										<div class="inner">
 											{#if entry.category === 'Posts'}
@@ -362,38 +335,43 @@
 							flex-direction: row;
 							justify-content: center;
 							align-items: flex-start;
-						}
-						.thumb .inner {
-							display: flex;
-							width: 3rem;
-							min-height: 3rem;
-							border-radius: var(--border-radius-small);
-							flex-shrink: 0;
-							flex-direction: row;
-							justify-content: center;
-							align-items: center;
-							overflow: hidden;
-						}
-						.thumb .inner img,
-						.thumb .inner :global(enhanced-img) {
-							display: block;
-							width: 100%;
-							height: auto;
-							vertical-align: top;
-						}
-						.thumb .inner :global(.thumb-icon) {
-							display: flex;
-							width: 100%;
-							height: 100%;
-							min-height: 3rem;
-							flex-shrink: 0;
-							justify-content: center;
-							align-items: center;
-							color: var(--c-font-accent-dark);
-						}
-						.thumb .inner :global(.thumb-icon svg) {
-							width: 1.5rem;
-							height: 1.5rem;
+							.inner {
+								display: flex;
+								width: 3rem;
+								min-height: 3rem;
+								border-radius: var(--border-radius-small);
+								flex-shrink: 0;
+								flex-direction: row;
+								justify-content: center;
+								align-items: center;
+								overflow: hidden;
+								img {
+									display: block;
+									width: 100%;
+									height: auto;
+									vertical-align: top;
+								}
+								:global(enhanced-img) {
+									display: block;
+									width: 100%;
+									height: auto;
+									vertical-align: top;
+								}
+								:global(.thumb-icon) {
+									display: flex;
+									width: 100%;
+									height: 100%;
+									min-height: 3rem;
+									flex-shrink: 0;
+									justify-content: center;
+									align-items: center;
+									color: var(--c-font-accent-dark);
+								}
+								:global(.thumb-icon svg) {
+									width: 1.5rem;
+									height: 1.5rem;
+								}
+							}
 						}
 						.content {
 							display: flex;
@@ -471,10 +449,9 @@
 			font-weight: 600;
 			transition: var(--transition);
 			cursor: pointer;
-		}
-
-		.btn:hover {
-			background: color-mix(in srgb, var(--c-surface-accent) 80%, transparent);
+			&:hover {
+				background: color-mix(in srgb, var(--c-surface-accent) 80%, transparent);
+			}
 		}
 	}
 </style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import Hero from '$lib/components/Hero/Hero.svelte';
 
@@ -19,9 +20,9 @@
 		/>
 		<div class="feeds-list">
 			<ul class="list">
-				{#each feeds as { path, description }}
+				{#each feeds as { path, description } (path)}
 					<li class="item">
-						<a href={path} class="path" data-sveltekit-reload>{path}</a>
+						<a href={resolvePath(path)} class="path" data-sveltekit-reload>{path}</a>
 						<p class="description">{description}</p>
 					</li>
 				{/each}
@@ -56,9 +57,9 @@
 				font-family: var(--font-family-code);
 				font-size: var(--font-m);
 				text-decoration: none;
-			}
-			.path:hover {
-				text-decoration: underline;
+				&:hover {
+					text-decoration: underline;
+				}
 			}
 			.description {
 				margin: var(--s) 0 0;

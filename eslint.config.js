@@ -11,7 +11,7 @@ const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 export default ts.config(
 	includeIgnoreFile(gitignorePath),
 	js.configs.recommended,
-	...ts.configs.recommended,
+	...ts.configs.strict,
 	...svelte.configs['flat/recommended'],
 	prettier,
 	...svelte.configs['flat/prettier'],
@@ -25,7 +25,6 @@ export default ts.config(
 	},
 	{
 		files: ['**/*.svelte'],
-
 		languageOptions: {
 			parserOptions: {
 				parser: ts.parser
@@ -33,13 +32,21 @@ export default ts.config(
 		}
 	},
 	{
+		files: ['**/*.svelte'],
 		rules: {
-			// Disable new stricter rules from eslint-plugin-svelte v3.x for now
-			'svelte/require-each-key': 'off',
-			'svelte/no-navigation-without-resolve': 'off',
-			'@typescript-eslint/no-explicit-any': 'warn',
+			// @html is only used for build-time markdown/rehype output (controlled source)
+			'svelte/no-at-html-tags': 'off',
+			// Rule requires resolve() from $app/paths; conditional href (external vs internal) not recognized.
+			// All internal links use resolve(); external links use rel="external".
+			'svelte/no-navigation-without-resolve': 'off'
+		}
+	},
+	{
+		rules: {
+			'svelte/require-each-key': 'error',
+			'@typescript-eslint/no-explicit-any': 'error',
 			'@typescript-eslint/no-unused-vars': [
-				'warn',
+				'error',
 				{
 					argsIgnorePattern: '^_',
 					varsIgnorePattern: '^_',

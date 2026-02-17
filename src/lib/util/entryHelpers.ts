@@ -139,19 +139,18 @@ export function filterAndSort<T extends BaseEntry>(
 
 	let filtered = entries;
 
-	if (options.filterTagSlug !== undefined) {
+	const filterTagSlug = options.filterTagSlug;
+	if (filterTagSlug !== undefined) {
 		filtered = filtered.filter((entry) =>
-			filterByTag(
-				entry as unknown as Post | Project | UsesEntry | WorkEntry,
-				options.filterTagSlug!
-			)
+			filterByTag(entry as unknown as Post | Project | UsesEntry | WorkEntry, filterTagSlug)
 		);
 	}
 
-	if (options.filterStatus !== undefined) {
+	const filterStatus = options.filterStatus;
+	if (filterStatus !== undefined) {
 		filtered = filtered.filter((entry) => {
 			if ('status' in entry) {
-				return filterByStatus(entry as T & { status?: ContentStatus }, options.filterStatus!);
+				return filterByStatus(entry as T & { status?: ContentStatus }, filterStatus);
 			}
 			return true;
 		});

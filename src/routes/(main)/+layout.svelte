@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolvePath } from '$lib/util/paths';
 	import { page } from '$app/stores';
 	import '$lib/styles/reset.css';
 	import '$lib/styles/fonts.css';
@@ -15,7 +16,7 @@
 	import { hasSnippet } from '$lib/util/snippet';
 
 	function clearHash() {
-		goto($page.url.pathname, { replaceState: true, noScroll: true });
+		goto(resolvePath($page.url.pathname), { replaceState: true, noScroll: true });
 	}
 
 	interface Props {

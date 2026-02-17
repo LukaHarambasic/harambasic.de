@@ -1,6 +1,6 @@
 ---
 title: AltTab
-description: 'A better and customizable version of CMD + Tab on Mavc.'
+description: 'A better and customizable version of CMD + Tab on Mac.'
 tags:
   - Software
 url: https://alt-tab-macos.netlify.app/

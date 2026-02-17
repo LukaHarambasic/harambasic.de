@@ -1,26 +1,12 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { Project } from '$lib/types/project';
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
-	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
-
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const PROJECT_IMAGE_PATH = '../../../../assets/img/projects/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, PROJECT_IMAGE_PATH, name);
+	import { getProjectImage } from '$lib/util/enhancedImages';
 
 	interface Props {
 		entry: Project;
@@ -29,7 +15,7 @@
 
 	let { entry, relatedWork = [] }: Props = $props();
 
-	const imageData = $derived(getImage(entry.image));
+	const imageData = $derived(getProjectImage(entry.image));
 </script>
 
 {#snippet leadingImage()}
@@ -53,22 +39,26 @@
 		<article class="h-entry content-column">
 			<div class="content">
 				<BaseRichText>
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html entry.html}
 				</BaseRichText>
 				<div class="sep" aria-hidden="true"></div>
 				<nav class="links" aria-label="Project links">
-					{#each entry.links as link}
-						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+					{#each entry.links as link (link.url)}
+						<a href={link.url} target="_blank" rel="noopener noreferrer external">{link.title}</a>
 					{/each}
 				</nav>
 				{#if relatedWork.length > 0}
 					<div class="related-work">
 						<h3>Related Work</h3>
 						<ul class="related-work-list">
-							{#each relatedWork as work}
+							{#each relatedWork as work (work.slug)}
 								<li>
-									<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
+									<BaseCard
+										element="a"
+										href={resolvePath(work.relativePath)}
+										variant="default"
+										class="withIcon"
+									>
 										<div class="header">
 											<div class="info">
 												<h4 class="name">{work.title}</h4>
@@ -122,63 +112,65 @@
 			}
 		}
 
-		&:not(.with-image) .project-body {
-			grid-template-columns: 1fr;
-			.content-column {
-				grid-column: 1;
+		&:not(.with-image) {
+			.project-body {
+				grid-template-columns: 1fr;
+				.content-column {
+					grid-column: 1;
+				}
 			}
 		}
-	}
-	article {
-		> .content {
-			display: flex;
-			flex-direction: column;
-			flex-wrap: nowrap;
-			justify-content: flex-start;
-			align-items: flex-start;
-			align-content: flex-start;
-			:global(.rich-text) {
-				margin: 0;
-			}
-			.sep {
-				margin: var(--l) 0;
-				width: 100%;
-				height: 0;
-				border: none;
-				border-bottom: 1px solid var(--c-surface-accent);
-			}
-			.links {
+		article {
+			> .content {
 				display: flex;
-				flex-wrap: wrap;
-				gap: var(--m);
-				a {
-					color: var(--c-font);
-					font-size: var(--font-s);
-					text-decoration: none;
-				}
-				a:hover {
-					text-decoration: underline;
-				}
-			}
-			.related-work {
-				margin-top: var(--m);
-				width: 100%;
-				h3 {
-					margin: 0 0 var(--s) 0;
-					font-family: var(--font-family);
-					font-size: var(--font-m);
-					font-weight: 700;
-					letter-spacing: var(--font-letter-spacing-headline);
-				}
-				.related-work-list {
-					display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-items: flex-start;
+				align-content: flex-start;
+				:global(.rich-text) {
 					margin: 0;
-					padding: 0;
-					flex-direction: column;
+				}
+				.sep {
+					margin: var(--l) 0;
+					width: 100%;
+					height: 0;
+					border: none;
+					border-bottom: 1px solid var(--c-surface-accent);
+				}
+				.links {
+					display: flex;
+					flex-wrap: wrap;
 					gap: var(--m);
-					list-style: none;
-					li {
-						width: 100%;
+					a {
+						color: var(--c-font);
+						font-size: var(--font-s);
+						text-decoration: none;
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+				.related-work {
+					margin-top: var(--m);
+					width: 100%;
+					h3 {
+						margin: 0 0 var(--s) 0;
+						font-family: var(--font-family);
+						font-size: var(--font-m);
+						font-weight: 700;
+						letter-spacing: var(--font-letter-spacing-headline);
+					}
+					.related-work-list {
+						display: flex;
+						margin: 0;
+						padding: 0;
+						flex-direction: column;
+						gap: var(--m);
+						list-style: none;
+						li {
+							width: 100%;
+						}
 					}
 				}
 			}

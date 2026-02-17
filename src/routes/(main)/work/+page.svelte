@@ -1,26 +1,13 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { PageData } from './$types';
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import Icon from '@iconify/svelte';
-	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
+	import { getWorkImage } from '$lib/util/enhancedImages';
+	import { isSvgImage } from '$lib/util/images';
 	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
-
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const WORK_IMAGE_PATH = '../../../assets/img/work/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, WORK_IMAGE_PATH, name);
 
 	interface WorkCard {
 		entry: WorkEntry;
@@ -33,7 +20,7 @@
 
 	let { data }: Props = $props();
 
-	let entries = $derived((data.work || [[]])[0] || []);
+	let entries = $derived(data.work?.[0] ?? []);
 	let workRelatedProjects = $derived(data.workRelatedProjects || {});
 
 	// Helper function to get related projects for an entry
@@ -75,7 +62,7 @@
 				{@const relatedProjects = getRelatedProjects(current.entry)}
 				<BaseCard
 					element="a"
-					href="/work/{current.entry.slug}"
+					href={resolvePath(`/work/${current.entry.slug}`)}
 					variant="featured"
 					class="withIcon current-card"
 					aria-label="View details for {current.entry.title}"
@@ -83,7 +70,7 @@
 					<div class="header">
 						{#if current.entry.image && current.entry.image !== 'TODO'}
 							{@const isSvg = isSvgImage(current.entry.image)}
-							{@const imageData = isSvg ? null : getImage(current.entry.image)}
+							{@const imageData = isSvg ? null : getWorkImage(current.entry.image)}
 							{#if isSvg || imageData}
 								<div class="logo">
 									{#if isSvg}
@@ -108,7 +95,7 @@
 					</div>
 					<div class="metadata">
 						<div class="positions">
-							{#each sortedPositions as position}
+							{#each sortedPositions as position (position.title + position.startDate)}
 								<div class="row">
 									<span class="title">{position.title}</span>
 									<span class="dates">
@@ -127,9 +114,9 @@
 						<div class="row">
 							{#if relatedProjects.length > 0}
 								<span class="related-projects">
-									{#each relatedProjects as project, index}
+									{#each relatedProjects as project (project.slug)}
 										<span>{project.title}</span>
-										{#if index < relatedProjects.length - 1},
+										{#if project !== relatedProjects.at(-1)},
 										{/if}
 									{/each}
 								</span>
@@ -143,12 +130,12 @@
 
 			{#if past.length > 0}
 				<div class="work-grid">
-					{#each past as card}
+					{#each past as card (card.entry.slug)}
 						{@const sortedPositions = sortPositionsByDate(card.entry.positions)}
 						{@const relatedProjects = getRelatedProjects(card.entry)}
 						<BaseCard
 							element="a"
-							href="/work/{card.entry.slug}"
+							href={resolvePath(`/work/${card.entry.slug}`)}
 							variant="default"
 							class="withIcon past-card"
 							aria-label="View details for {card.entry.title}"
@@ -156,7 +143,7 @@
 							<div class="header">
 								{#if card.entry.image && card.entry.image !== 'TODO'}
 									{@const isSvg = isSvgImage(card.entry.image)}
-									{@const imageData = isSvg ? null : getImage(card.entry.image)}
+									{@const imageData = isSvg ? null : getWorkImage(card.entry.image)}
 									{#if isSvg || imageData}
 										<div class="logo">
 											{#if isSvg}
@@ -181,7 +168,7 @@
 							</div>
 							<div class="metadata">
 								<div class="positions">
-									{#each sortedPositions as position}
+									{#each sortedPositions as position (position.title + position.startDate)}
 										<div class="row">
 											<span class="title">{position.title}</span>
 											<span class="dates">
@@ -200,9 +187,9 @@
 								<div class="row">
 									{#if relatedProjects.length > 0}
 										<span class="related-projects">
-											{#each relatedProjects as project, index}
+											{#each relatedProjects as project (project.slug)}
 												<span>{project.title}</span>
-												{#if index < relatedProjects.length - 1},
+												{#if project !== relatedProjects.at(-1)},
 												{/if}
 											{/each}
 										</span>
@@ -237,7 +224,8 @@
 			height: 100%;
 			border-color: rgba(255, 255, 255, 0.2);
 			background: var(--c-current-work-bg);
-			color: #fff;
+			color: inherit;
+			text-decoration: none;
 			@media screen and (width <= 48rem) {
 				width: 100%;
 			}
@@ -245,11 +233,7 @@
 				outline: 2px solid #fff;
 				outline-offset: 2px;
 			}
-			&[href] {
-				color: inherit;
-				text-decoration: none;
-			}
-			&[href]:hover {
+			&:hover {
 				transform: scale(1.02) translateY(-4px);
 				cursor: pointer;
 			}

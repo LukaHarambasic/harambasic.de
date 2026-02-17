@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { PageData } from './$types';
 	import Entry from './Entry.svelte';
 
@@ -13,7 +14,7 @@
 {#if entry}
 	<Entry post={entry} />
 	<footer class="page-footer">
-		<a href="/posts/rss" data-sveltekit-reload>RSS Feed</a>
+		<a href={resolvePath('/posts/rss')} data-sveltekit-reload>RSS Feed</a>
 	</footer>
 {/if}
 
@@ -27,10 +28,10 @@
 			font-size: var(--font-m);
 			font-weight: 600;
 			text-decoration: none;
-		}
-		a:hover {
-			text-decoration: underline;
-			text-decoration-thickness: var(--underline-thickness);
+			&:hover {
+				text-decoration: underline;
+				text-decoration-thickness: var(--underline-thickness);
+			}
 		}
 	}
 </style>

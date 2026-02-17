@@ -72,7 +72,9 @@ function buildNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 
 	for (const heading of headingsCopy) {
 		// Remove all headings from stack that are not parents of current heading
-		while (stack.length > 0 && stack[stack.length - 1].depth >= heading.depth) {
+		while (stack.length > 0) {
+			const top = stack.at(-1);
+			if (top === undefined || top.depth < heading.depth) break;
 			stack.pop();
 		}
 
@@ -81,9 +83,11 @@ function buildNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 			result.push(heading);
 		} else {
 			// This is a child of the last heading in the stack
-			const parent = stack[stack.length - 1];
-			if (!parent.children) parent.children = [];
-			parent.children.push(heading);
+			const parent = stack.at(-1);
+			if (parent) {
+				if (!parent.children) parent.children = [];
+				parent.children.push(heading);
+			}
 		}
 
 		stack.push(heading);

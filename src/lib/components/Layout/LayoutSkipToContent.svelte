@@ -5,9 +5,9 @@
 	#skip-link {
 		position: absolute;
 		transform: translateX(-100%);
-	}
-	#skip-link:focus {
-		position: unset;
-		transform: unset;
+		&:focus {
+			position: unset;
+			transform: unset;
+		}
 	}
 </style>

@@ -44,13 +44,14 @@ function createRemarkRehypeProcessor(config: ProcessorConfig = {}) {
 }
 
 function createProcessedContent(
-	result: any,
+	result: { value: unknown; data?: unknown },
 	_originalContent: string,
 	config: ProcessorConfig
 ): BasicProcessedContent {
 	let html = String(result.value);
-	const frontmatter = (result.data.frontmatter || {}) as Record<string, unknown>;
-	const toc = (result.data.toc || []) as TocNode[];
+	const data = (result.data ?? {}) as Record<string, unknown>;
+	const frontmatter = (data.frontmatter ?? {}) as Record<string, unknown>;
+	const toc = (data.toc ?? []) as TocNode[];
 
 	const sanitizationConfig = config.sanitization
 		? { ...DEFAULT_SANITIZATION_CONFIG, ...config.sanitization }

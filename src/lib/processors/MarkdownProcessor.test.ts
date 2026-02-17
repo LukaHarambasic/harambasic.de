@@ -1,6 +1,12 @@
 import { expect, test, describe } from 'vitest';
 import { processMarkdown, processMarkdownBatch } from './MarkdownProcessor';
 
+function at<T>(arr: T[], i: number): T {
+	const x = arr[i];
+	if (x === undefined) throw new Error(`Expected element at index ${i}`);
+	return x;
+}
+
 describe('MarkdownProcessor', () => {
 	test('should process simple markdown with frontmatter', () => {
 		const markdown = `---
@@ -34,10 +40,11 @@ Another paragraph here.`;
 		expect(result.html).toContain('<strong>bold text</strong>');
 		expect(result.html).toContain('<em>italic text</em>');
 		expect(result.toc).toHaveLength(1);
-		expect(result.toc[0].value).toBe('Test Heading');
-		expect(result.toc[0].depth).toBe(1);
-		expect(result.toc[0].children).toHaveLength(1);
-		expect(result.toc[0].children![0].value).toBe('Sub Heading');
+		const toc0 = at(result.toc, 0);
+		expect(toc0.value).toBe('Test Heading');
+		expect(toc0.depth).toBe(1);
+		expect(toc0.children).toHaveLength(1);
+		expect(at(toc0.children ?? [], 0).value).toBe('Sub Heading');
 	});
 
 	test('should generate table of contents correctly', () => {
@@ -75,17 +82,19 @@ More content.`;
 		expect(result.toc).toHaveLength(2);
 
 		// First main heading with sub-items (Sub Heading 1 with nested Sub Sub Heading 1, and Sub Heading 2)
-		expect(result.toc[0].value).toBe('Main Heading');
-		expect(result.toc[0].depth).toBe(1);
-		expect(result.toc[0].children).toHaveLength(2);
-		expect(result.toc[0].children![0].value).toBe('Sub Heading 1');
-		expect(result.toc[0].children![0].children).toHaveLength(1);
-		expect(result.toc[0].children![0].children![0].value).toBe('Sub Sub Heading 1');
-		expect(result.toc[0].children![1].value).toBe('Sub Heading 2');
+		const toc0 = at(result.toc, 0);
+		expect(toc0.value).toBe('Main Heading');
+		expect(toc0.depth).toBe(1);
+		expect(toc0.children).toHaveLength(2);
+		const sub0 = at(toc0.children ?? [], 0);
+		expect(sub0.value).toBe('Sub Heading 1');
+		expect(sub0.children).toHaveLength(1);
+		expect(at(sub0.children ?? [], 0).value).toBe('Sub Sub Heading 1');
+		expect(at(toc0.children ?? [], 1).value).toBe('Sub Heading 2');
 
 		// Second main heading
-		expect(result.toc[1].value).toBe('Another Main Heading');
-		expect(result.toc[1].depth).toBe(1);
+		expect(at(result.toc, 1).value).toBe('Another Main Heading');
+		expect(at(result.toc, 1).depth).toBe(1);
 	});
 
 	test('should handle markdown without headings', () => {
@@ -190,10 +199,10 @@ tags: [second]
 		const results = await processMarkdownBatch(markdowns);
 
 		expect(results).toHaveLength(2);
-		expect(results[0].title).toBe('First');
-		expect(results[1].title).toBe('Second');
-		expect(results[0].html).toContain('First Post');
-		expect(results[1].html).toContain('Second Post');
+		expect(at(results, 0).title).toBe('First');
+		expect(at(results, 1).title).toBe('Second');
+		expect(at(results, 0).html).toContain('First Post');
+		expect(at(results, 1).html).toContain('Second Post');
 	});
 
 	test('should handle empty markdown gracefully', () => {

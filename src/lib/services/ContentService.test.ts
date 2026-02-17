@@ -44,7 +44,7 @@ class MockContentService implements ContentService {
 	async validateContent(entryType: EntryType): Promise<ValidationResult[]> {
 		return [
 			{
-				entryType: entryType as any,
+				entryType,
 				isValid: true,
 				message: 'Mock validation passed'
 			}
@@ -65,7 +65,7 @@ class MockContentService implements ContentService {
 	async validateEntryWithQuality(entryType: EntryType, _slug: string) {
 		return {
 			validation: {
-				entryType: entryType as any, // Cast to any to avoid the strict type check for the mock
+				entryType,
 				isValid: true,
 				message: 'Mock validation'
 			},
@@ -171,8 +171,12 @@ describe('ContentService Interface', () => {
 	test('validateContent - should return validation results', async () => {
 		const results = await mockService.validateContent('post');
 		expect(results).toHaveLength(1);
-		expect(results[0].isValid).toBe(true);
-		expect(results[0].entryType).toBe('post');
+		const r = results[0];
+		expect(r).toBeDefined();
+		if (r) {
+			expect(r.isValid).toBe(true);
+			expect(r.entryType).toBe('post');
+		}
 	});
 });
 

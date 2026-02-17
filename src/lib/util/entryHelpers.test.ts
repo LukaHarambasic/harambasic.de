@@ -152,7 +152,9 @@ describe('Entry Helpers', () => {
 		it('should return 0 for invalid property', () => {
 			const postA = createMockPost();
 			const postB = createMockPost();
-			expect(sortByProperty(postA, postB, 'invalid' as any)).toBe(0);
+			expect(
+				sortByProperty(postA, postB, 'invalid' as 'title' | 'published' | 'updated' | 'priority')
+			).toBe(0);
 		});
 	});
 
@@ -327,9 +329,10 @@ describe('Entry Helpers', () => {
 					sortProperty: 'title',
 					sortDirection: SortDirection.Asc
 				});
-				expect(result[0].title).toBe('Alpha Post');
-				expect(result[1].title).toBe('Beta Post');
-				expect(result[2].title).toBe('Gamma Post');
+				expect(result).toHaveLength(3);
+				expect(result[0]?.title).toBe('Alpha Post');
+				expect(result[1]?.title).toBe('Beta Post');
+				expect(result[2]?.title).toBe('Gamma Post');
 			});
 
 			it('should sort by title in descending order', () => {
@@ -337,9 +340,10 @@ describe('Entry Helpers', () => {
 					sortProperty: 'title',
 					sortDirection: SortDirection.Desc
 				});
-				expect(result[0].title).toBe('Gamma Post');
-				expect(result[1].title).toBe('Beta Post');
-				expect(result[2].title).toBe('Alpha Post');
+				expect(result).toHaveLength(3);
+				expect(result[0]?.title).toBe('Gamma Post');
+				expect(result[1]?.title).toBe('Beta Post');
+				expect(result[2]?.title).toBe('Alpha Post');
 			});
 
 			it('should sort by published date in ascending order', () => {
@@ -347,9 +351,10 @@ describe('Entry Helpers', () => {
 					sortProperty: 'published',
 					sortDirection: SortDirection.Asc
 				});
-				expect(result[0].title).toBe('Alpha Post');
-				expect(result[1].title).toBe('Beta Post');
-				expect(result[2].title).toBe('Gamma Post');
+				expect(result).toHaveLength(3);
+				expect(result[0]?.title).toBe('Alpha Post');
+				expect(result[1]?.title).toBe('Beta Post');
+				expect(result[2]?.title).toBe('Gamma Post');
 			});
 
 			it('should sort by published date in descending order', () => {
@@ -357,9 +362,10 @@ describe('Entry Helpers', () => {
 					sortProperty: 'published',
 					sortDirection: SortDirection.Desc
 				});
-				expect(result[0].title).toBe('Gamma Post');
-				expect(result[1].title).toBe('Beta Post');
-				expect(result[2].title).toBe('Alpha Post');
+				expect(result).toHaveLength(3);
+				expect(result[0]?.title).toBe('Gamma Post');
+				expect(result[1]?.title).toBe('Beta Post');
+				expect(result[2]?.title).toBe('Alpha Post');
 			});
 
 			it('should sort by priority in ascending order', () => {
@@ -367,9 +373,10 @@ describe('Entry Helpers', () => {
 					sortProperty: 'priority',
 					sortDirection: SortDirection.Asc
 				});
-				expect(result[0].prio).toBe(1);
-				expect(result[1].prio).toBe(2);
-				expect(result[2].prio).toBe(3);
+				expect(result).toHaveLength(3);
+				expect(result[0]?.prio).toBe(1);
+				expect(result[1]?.prio).toBe(2);
+				expect(result[2]?.prio).toBe(3);
 			});
 
 			it('should sort by priority in descending order', () => {
@@ -377,9 +384,10 @@ describe('Entry Helpers', () => {
 					sortProperty: 'priority',
 					sortDirection: SortDirection.Desc
 				});
-				expect(result[0].prio).toBe(3);
-				expect(result[1].prio).toBe(2);
-				expect(result[2].prio).toBe(1);
+				expect(result).toHaveLength(3);
+				expect(result[0]?.prio).toBe(3);
+				expect(result[1]?.prio).toBe(2);
+				expect(result[2]?.prio).toBe(1);
 			});
 		});
 
@@ -391,8 +399,8 @@ describe('Entry Helpers', () => {
 					sortDirection: SortDirection.Asc
 				});
 				expect(result).toHaveLength(2);
-				expect(result[0].title).toBe('Alpha Post');
-				expect(result[1].title).toBe('Gamma Post');
+				expect(result[0]?.title).toBe('Alpha Post');
+				expect(result[1]?.title).toBe('Gamma Post');
 			});
 
 			it('should combine status filter and sorting', () => {
@@ -402,8 +410,8 @@ describe('Entry Helpers', () => {
 					sortDirection: SortDirection.Asc
 				});
 				expect(result).toHaveLength(2);
-				expect(result[0].prio).toBe(1);
-				expect(result[1].prio).toBe(3);
+				expect(result[0]?.prio).toBe(1);
+				expect(result[1]?.prio).toBe(3);
 			});
 
 			it('should combine tag filter, status filter, and sorting', () => {
@@ -433,16 +441,16 @@ describe('Entry Helpers', () => {
 			it('should work with Posts using positional parameters', () => {
 				const result = filterAndSort(mockPosts, 'javascript', 'title', SortDirection.Asc);
 				expect(result).toHaveLength(2);
-				expect(result[0].title).toBe('Alpha Post');
-				expect(result[1].title).toBe('Gamma Post');
+				expect(result[0]?.title).toBe('Alpha Post');
+				expect(result[1]?.title).toBe('Gamma Post');
 			});
 
 			it('should work with Projects using positional parameters with status filter', () => {
 				const result = filterAndSort(mockProjects, 'all', 'active', 'priority', SortDirection.Asc);
 				expect(result).toHaveLength(2);
 				expect(result.every((p) => p.status === 'active')).toBe(true);
-				expect(result[0].prio).toBe(1);
-				expect(result[1].prio).toBe(3);
+				expect(result[0]?.prio).toBe(1);
+				expect(result[1]?.prio).toBe(3);
 			});
 
 			it('should work with UsesEntries using positional parameters with status filter', () => {
@@ -454,15 +462,15 @@ describe('Entry Helpers', () => {
 				const result = filterAndSort(usesEntries, 'all', 'active', 'title', SortDirection.Asc);
 				expect(result).toHaveLength(2);
 				expect(result.every((u) => u.status === 'active')).toBe(true);
-				expect(result[0].title).toBe('Active Use');
+				expect(result[0]?.title).toBe('Active Use');
 			});
 
 			it('should support priority sorting for projects with positional parameters', () => {
 				const result = filterAndSort(mockProjects, 'all', 'all', 'priority', SortDirection.Desc);
 				expect(result).toHaveLength(3);
-				expect(result[0].prio).toBe(3);
-				expect(result[1].prio).toBe(2);
-				expect(result[2].prio).toBe(1);
+				expect(result[0]?.prio).toBe(3);
+				expect(result[1]?.prio).toBe(2);
+				expect(result[2]?.prio).toBe(1);
 			});
 		});
 	});

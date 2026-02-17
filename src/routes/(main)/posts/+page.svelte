@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { PageData } from '../$types';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import Icon from '@iconify/svelte';
@@ -11,7 +12,7 @@
 	}
 
 	let { data }: Props = $props();
-	let entries = $derived(data.posts[0]);
+	let entries = $derived(data.posts[0] ?? []);
 	let filteredAndSortedEntries = $derived(
 		filterAndSort(entries, 'all', SORT_DEFAULTS.POST, SortDirection.Desc)
 	);
@@ -21,9 +22,13 @@
 	<Entries>
 		{#snippet entries()}
 			<ul class="entries">
-				{#each filteredAndSortedEntries as post}
+				{#each filteredAndSortedEntries as post (post.slug)}
 					<li class="post-row h-feed">
-						<a href={post.relativePath} class="row-link" aria-label="View post: {post.title}">
+						<a
+							href={resolvePath(post.relativePath)}
+							class="row-link"
+							aria-label="View post: {post.title}"
+						>
 							<span class="info">
 								<h2 class="name">{post.title}</h2>
 								<time class="dates dt-published" datetime={post.published.raw?.toISOString()}>
@@ -58,67 +63,69 @@
 			align-content: stretch;
 			gap: 0;
 			list-style: none;
-		}
-		.post-row {
-			border-bottom: 1px solid var(--c-surface-accent);
-			&:last-child {
-				border-bottom: none;
+			.post-row {
+				border-bottom: 1px solid var(--c-surface-accent);
+				&:last-child {
+					border-bottom: none;
+				}
+				.row-link {
+					display: flex;
+					padding: var(--l) 0;
+					width: 100%;
+					flex-direction: row;
+					flex-wrap: nowrap;
+					justify-content: space-between;
+					align-items: center;
+					gap: var(--m);
+					color: inherit;
+					text-decoration: none;
+					&:hover {
+						.external-link {
+							color: var(--c-font);
+							transform: translateY(-2px) translateX(2px);
+						}
+					}
+					.info {
+						display: flex;
+						min-width: 0;
+						flex: 1;
+						flex-direction: column;
+						gap: var(--xs);
+						.name {
+							margin: 0;
+							color: var(--c-font);
+							font-family: var(--font-family);
+							font-size: var(--font-m);
+							font-weight: 900;
+							line-height: 1.2;
+							letter-spacing: var(--font-letter-spacing-headline);
+						}
+						.dates {
+							color: var(--c-font-accent-dark);
+							font-family: var(--font-family);
+							font-size: var(--font-s);
+							font-weight: 400;
+							line-height: 1.5;
+							white-space: nowrap;
+						}
+					}
+					.external-link {
+						display: flex;
+						width: 1.5rem;
+						height: 1.5rem;
+						flex-shrink: 0;
+						justify-content: center;
+						align-items: center;
+						color: var(--c-font-accent-super-light);
+						transition: var(--transition);
+						pointer-events: none;
+						:global(svg) {
+							width: 1rem;
+							height: 1rem;
+						}
+					}
+				}
 			}
-		}
-		.row-link {
-			display: flex;
-			padding: var(--l) 0;
-			width: 100%;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			justify-content: space-between;
-			align-items: center;
-			gap: var(--m);
-			color: inherit;
-			text-decoration: none;
-		}
-		.info {
-			display: flex;
-			min-width: 0;
-			flex: 1;
-			flex-direction: column;
-			gap: var(--xs);
-		}
-		.name {
-			margin: 0;
-			color: var(--c-font);
-			font-family: var(--font-family);
-			font-size: var(--font-m);
-			font-weight: 900;
-			line-height: 1.2;
-			letter-spacing: var(--font-letter-spacing-headline);
-		}
-		.dates {
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
-			font-size: var(--font-s);
-			font-weight: 400;
-			line-height: 1.5;
-			white-space: nowrap;
-		}
-		.external-link {
-			display: flex;
-			width: 1.5rem;
-			height: 1.5rem;
-			flex-shrink: 0;
-			justify-content: center;
-			align-items: center;
-			color: var(--c-font-accent-super-light);
-			transition: var(--transition);
-			pointer-events: none;
-		}
-		.external-link :global(svg) {
-			width: 1rem;
-			height: 1rem;
-		}
-		.row-link:hover .external-link {
-			color: var(--c-font);
-			transform: translateY(-2px) translateX(2px);
 		}
 	}
 </style>

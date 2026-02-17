@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import type { RawEntry } from '$lib/types/entry';
 import type { EntryType } from '$lib/types/enums';
+import type { ValidationResult } from '$lib/schemas';
 import type { ContentService } from '$lib/services';
 import { setContentService, resetContentService } from '$lib/services/serviceInstance';
 import { requestPosts, requestProjects, requestUses } from './api.server';
@@ -38,8 +39,7 @@ class MockContentService implements ContentService {
 	async validateAllContent() {
 		return {
 			overall: { total: 0, passed: 0, failed: 0, successRate: 100 },
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			byType: {} as Record<EntryType, any[]>,
+			byType: {} as Record<EntryType, ValidationResult[]>,
 			errors: []
 		};
 	}
@@ -47,6 +47,14 @@ class MockContentService implements ContentService {
 	async validateEntryWithQuality(_entryType: EntryType, _slug: string) {
 		return null;
 	}
+}
+
+/** Assert that an array has exactly one element and return it */
+function expectSingle<T>(arr: T[], label: string): T {
+	expect(arr).toHaveLength(1);
+	const item = arr[0];
+	if (item === undefined) throw new Error(`Expected single ${label}`);
+	return item;
 }
 
 const createMockRawEntry = (overrides: Partial<RawEntry> = {}): RawEntry => ({
@@ -88,19 +96,20 @@ describe('Generic API Server', () => {
 
 			const [posts, tags] = await requestPosts();
 
-			expect(posts).toHaveLength(1);
-			expect(posts[0].type).toBe('post');
-			expect(posts[0].title).toBe('Test Post');
-			expect(posts[0].tldr).toBe('TLDR text');
-			expect(posts[0].discussion).toBe('Discussion link');
-			expect(posts[0].html).toBe('<p>Test content</p>');
-			expect(posts[0].slug).toBe('test-post');
-			expect(posts[0].relativePath).toBe('/posts/test-post');
-			expect(posts[0].fullPath).toBe('https://harambasic.de/posts/test-post');
+			const post = expectSingle(posts, 'post');
+			expect(post.type).toBe('post');
+			expect(post.title).toBe('Test Post');
+			expect(post.tldr).toBe('TLDR text');
+			expect(post.discussion).toBe('Discussion link');
+			expect(post.html).toBe('<p>Test content</p>');
+			expect(post.slug).toBe('test-post');
+			expect(post.relativePath).toBe('/posts/test-post');
+			expect(post.fullPath).toBe('https://harambasic.de/posts/test-post');
 
 			expect(tags).toHaveLength(3); // 'All' tag + 2 tags
-			expect(tags[0].display).toBe('All');
-			expect(tags[0].count).toBe(1);
+			const firstTag = expectSingle(tags.slice(0, 1), 'tag');
+			expect(firstTag.display).toBe('All');
+			expect(firstTag.count).toBe(1);
 		});
 
 		it('should filter out invalid posts (missing title)', async () => {
@@ -112,8 +121,7 @@ describe('Generic API Server', () => {
 
 			const [posts] = await requestPosts();
 
-			expect(posts).toHaveLength(1);
-			expect(posts[0].title).toBe('Valid Post');
+			expect(expectSingle(posts, 'post').title).toBe('Valid Post');
 		});
 
 		it('should filter out invalid posts (missing description)', async () => {
@@ -125,8 +133,7 @@ describe('Generic API Server', () => {
 
 			const [posts] = await requestPosts();
 
-			expect(posts).toHaveLength(1);
-			expect(posts[0].title).toBe('Valid Post');
+			expect(expectSingle(posts, 'post').title).toBe('Valid Post');
 		});
 
 		it('should handle transformation errors gracefully', async () => {
@@ -151,7 +158,7 @@ describe('Generic API Server', () => {
 
 			expect(posts).toHaveLength(0);
 			expect(tags).toHaveLength(1); // 'All' tag
-			expect(tags[0].display).toBe('All');
+			expect(expectSingle(tags, 'tag').display).toBe('All');
 		});
 	});
 
@@ -171,25 +178,28 @@ describe('Generic API Server', () => {
 
 			const [projects, tags] = await requestProjects();
 
-			expect(projects).toHaveLength(1);
-			expect(projects[0].type).toBe('project');
-			expect(projects[0].title).toBe('Test Project');
-			expect(projects[0].links).toHaveLength(1);
-			expect(projects[0].prio).toBe(5);
-			expect(projects[0].status).toBe('active');
-			expect(projects[0].imageAlt).toBe('Alt text');
-			expect(projects[0].slug).toBe('test-project');
-			expect(projects[0].relativePath).toBe('/projects/test-project');
+			const project = expectSingle(projects, 'project');
+			expect(project.type).toBe('project');
+			expect(project.title).toBe('Test Project');
+			expect(project.links).toHaveLength(1);
+			expect(project.prio).toBe(5);
+			expect(project.status).toBe('active');
+			expect(project.imageAlt).toBe('Alt text');
+			expect(project.slug).toBe('test-project');
+			expect(project.relativePath).toBe('/projects/test-project');
 
 			expect(tags).toHaveLength(3); // 'All' tag + 2 tags
 		});
 
 		it('should throw error on missing published date', async () => {
+			type RawEntryWithOptionalDates = Omit<RawEntry, 'published' | 'updated'> & {
+				published?: string;
+				updated?: string;
+			};
 			const invalidProject = createMockRawEntry({
 				title: 'Invalid Project',
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				published: undefined as any
-			});
+				published: undefined
+			} as RawEntryWithOptionalDates);
 
 			mockService = new MockContentService({ project: [invalidProject] });
 			setContentService(mockService);
@@ -198,11 +208,14 @@ describe('Generic API Server', () => {
 		});
 
 		it('should throw error on missing updated date', async () => {
+			type RawEntryWithOptionalDates = Omit<RawEntry, 'published' | 'updated'> & {
+				published?: string;
+				updated?: string;
+			};
 			const invalidProject = createMockRawEntry({
 				title: 'Invalid Project',
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				updated: undefined as any
-			});
+				updated: undefined
+			} as RawEntryWithOptionalDates);
 
 			mockService = new MockContentService({ project: [invalidProject] });
 			setContentService(mockService);
@@ -238,14 +251,14 @@ describe('Generic API Server', () => {
 
 			const [uses, tags] = await requestUses();
 
-			expect(uses).toHaveLength(1);
-			expect(uses[0].type).toBe('uses');
-			expect(uses[0].title).toBe('Test Tool');
-			expect(uses[0].url).toBe('https://example.com');
-			expect(uses[0].status).toBe('active');
-			expect(uses[0].openSource).toBe(true);
-			expect(uses[0].slug).toBe('test-tool');
-			expect(uses[0].relativePath).toBe('/uses/test-tool');
+			const usesEntry = expectSingle(uses, 'uses entry');
+			expect(usesEntry.type).toBe('uses');
+			expect(usesEntry.title).toBe('Test Tool');
+			expect(usesEntry.url).toBe('https://example.com');
+			expect(usesEntry.status).toBe('active');
+			expect(usesEntry.openSource).toBe(true);
+			expect(usesEntry.slug).toBe('test-tool');
+			expect(usesEntry.relativePath).toBe('/uses/test-tool');
 
 			expect(tags).toHaveLength(3); // 'All' tag + 2 tags
 		});
@@ -276,9 +289,10 @@ describe('Generic API Server', () => {
 
 			const [uses] = await requestUses();
 
-			expect(uses[0].url).toBe('');
-			expect(uses[0].status).toBe('active');
-			expect(uses[0].openSource).toBe(false);
+			const usesEntry = expectSingle(uses, 'uses entry');
+			expect(usesEntry.url).toBe('');
+			expect(usesEntry.status).toBe('active');
+			expect(usesEntry.openSource).toBe(false);
 		});
 	});
 
@@ -308,7 +322,8 @@ describe('Generic API Server', () => {
 
 			// JavaScript tag should have count of 2
 			const jsTag = tags.find((t) => t.display === 'javascript');
-			expect(jsTag?.count).toBe(2);
+			expect(jsTag).toBeDefined();
+			if (jsTag) expect(jsTag.count).toBe(2);
 		});
 
 		it('should handle entries with no tags', async () => {
@@ -323,8 +338,9 @@ describe('Generic API Server', () => {
 			const [, tags] = await requestPosts();
 
 			expect(tags).toHaveLength(1); // Only 'All' tag
-			expect(tags[0].display).toBe('All');
-			expect(tags[0].count).toBe(1);
+			const allTag = expectSingle(tags, 'tag');
+			expect(allTag.display).toBe('All');
+			expect(allTag.count).toBe(1);
 		});
 	});
 
@@ -356,8 +372,7 @@ describe('Generic API Server', () => {
 
 			const [posts] = await requestPosts();
 
-			expect(posts).toHaveLength(1);
-			expect(posts[0].title).toBe('Valid Post');
+			expect(expectSingle(posts, 'post').title).toBe('Valid Post');
 		});
 	});
 });

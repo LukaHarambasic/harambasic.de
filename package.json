@@ -10,6 +10,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --compiler-warnings \"css_unused_selector:ignore\"",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch --compiler-warnings \"css_unused_selector:ignore\"",
 		"lint": "prettier --check . && eslint . && bun run lint:css",
+		"validate": "bun run format && bun run check && bun run lint && bun run test && bun run build",
 		"lint:fix": "prettier --check . && eslint . --fix && bun run format:css",
 		"lint:css": "stylelint \"src/**/*.{css,svelte}\"",
 		"format": "prettier --write . && bun run format:css",

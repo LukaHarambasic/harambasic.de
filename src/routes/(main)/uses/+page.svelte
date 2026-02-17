@@ -1,32 +1,19 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
 	import { isExternalUrl, sortDate } from '$lib/util/helper';
-	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
-
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const USES_IMAGE_PATH = '../../../assets/img/uses/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, USES_IMAGE_PATH, name);
+	import { getUsesImage } from '$lib/util/enhancedImages';
+	import { isSvgImage } from '$lib/util/images';
 
 	interface Props {
 		data: PageData;
 	}
 
 	let { data }: Props = $props();
-	let usesEntries = $derived(data.uses[0]);
-	let tags = $derived(data.uses[1]);
+	let usesEntries = $derived(data.uses[0] ?? []);
+	let tags = $derived(data.uses[1] ?? []);
 	interface GroupedEntries {
 		title: string;
 		entries: typeof usesEntries;
@@ -60,20 +47,24 @@
 <Entries>
 	{#snippet entries()}
 		<div class="wrapper">
-			{#each activeGroupedEntries as group}
+			{#each activeGroupedEntries as group (group.title)}
 				<div class="group">
 					<h2>{group.title}</h2>
 					<ul class="entries">
-						{#each group.entries as entry}
+						{#each group.entries as entry (entry.slug)}
 							<li class="h-feed">
-								<a href={entry.url} class="item">
+								<a
+									href={entry.url.startsWith('http') ? entry.url : resolvePath(entry.url)}
+									rel={entry.url.startsWith('http') ? 'external' : undefined}
+									class="item"
+								>
 									{#if entry.image}
 										<div class="thumb">
 											<div class="inner">
 												{#if isSvgImage(entry.image)}
 													<img src="/uses/{entry.image}" alt={entry.title} />
 												{:else}
-													{@const imageData = getImage(entry.image)}
+													{@const imageData = getUsesImage(entry.image)}
 													{#if imageData}
 														<enhanced:img
 															src={imageData}
@@ -111,9 +102,13 @@
 			<div class="group archive">
 				<h2>Archive</h2>
 				<ul class="entries">
-					{#each inactiveEntries as entry}
+					{#each inactiveEntries as entry (entry.slug)}
 						<li class="h-feed">
-							<a href={entry.url} class="archive-item">
+							<a
+								href={entry.url.startsWith('http') ? entry.url : resolvePath(entry.url)}
+								rel={entry.url.startsWith('http') ? 'external' : undefined}
+								class="archive-item"
+							>
 								<div class="content">
 									<div class="title">
 										<strong>
@@ -500,20 +495,25 @@
 				flex-direction: row;
 				justify-content: center;
 				align-items: flex-start;
-			}
-			.inner {
-				display: block;
-				width: 3rem;
-				border-radius: var(--border-radius-small);
-				flex-shrink: 0;
-				overflow: hidden;
-			}
-			.inner img,
-			.inner :global(enhanced-img) {
-				display: block;
-				width: 100%;
-				height: auto;
-				vertical-align: top;
+				.inner {
+					display: block;
+					width: 3rem;
+					border-radius: var(--border-radius-small);
+					flex-shrink: 0;
+					overflow: hidden;
+					img {
+						display: block;
+						width: 100%;
+						height: auto;
+						vertical-align: top;
+					}
+					:global(enhanced-img) {
+						display: block;
+						width: 100%;
+						height: auto;
+						vertical-align: top;
+					}
+				}
 			}
 			.content {
 				display: flex;
@@ -549,14 +549,14 @@
 			}
 			.description {
 				margin: 0;
-			}
-			.description p {
-				margin: 0;
-				color: var(--c-font-accent-dark);
-				font-family: var(--font-family);
-				font-size: var(--font-m);
-				font-weight: 400;
-				line-height: 1.5;
+				p {
+					margin: 0;
+					color: var(--c-font-accent-dark);
+					font-family: var(--font-family);
+					font-size: var(--font-m);
+					font-weight: 400;
+					line-height: 1.5;
+				}
 			}
 		}
 
@@ -610,18 +610,20 @@
 				align-items: stretch;
 				align-content: stretch;
 				gap: var(--xs);
-			}
-			.content .title strong {
-				display: inline;
-				font-family: var(--font-family);
-				font-size: var(--font-m);
-				font-weight: 900;
-				line-height: 1.2;
-				letter-spacing: var(--font-letter-spacing-headline);
-			}
-			.content p {
-				font-size: var(--font-m);
-				line-height: 1.2;
+				.title {
+					strong {
+						display: inline;
+						font-family: var(--font-family);
+						font-size: var(--font-m);
+						font-weight: 900;
+						line-height: 1.2;
+						letter-spacing: var(--font-letter-spacing-headline);
+					}
+				}
+				p {
+					font-size: var(--font-m);
+					line-height: 1.2;
+				}
 			}
 		}
 	}

@@ -1,42 +1,14 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import type { Project } from '$lib/types/project';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
-	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
+	import { getProjectImage, getWorkImage } from '$lib/util/enhancedImages';
+	import { isSvgImage } from '$lib/util/images';
 	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
-
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../../assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const projectPictures: ImageGlobResult = import.meta.glob(
-		'../../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const WORK_IMAGE_PATH = '../../../../assets/img/work/';
-	const PROJECT_IMAGE_PATH = '../../../../assets/img/projects/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, WORK_IMAGE_PATH, name);
-
-	const getProjectImage = (name: string) =>
-		getImageFromGlob(projectPictures, PROJECT_IMAGE_PATH, name);
 
 	interface Props {
 		entry: WorkEntry;
@@ -50,14 +22,16 @@
 
 	const hasLeadingContent = $derived(
 		Boolean(
-			entry.image && entry.image !== 'TODO' && (isSvgImage(entry.image) || getImage(entry.image))
+			entry.image &&
+			entry.image !== 'TODO' &&
+			(isSvgImage(entry.image) || getWorkImage(entry.image))
 		)
 	);
 </script>
 
 {#snippet leadingIcon()}
 	{@const isSvg = entry.image && isSvgImage(entry.image)}
-	{@const imageData = !isSvg && entry.image ? getImage(entry.image) : null}
+	{@const imageData = !isSvg && entry.image ? getWorkImage(entry.image) : null}
 	{#if isSvg || imageData}
 		<div class="icon">
 			{#if isSvg}
@@ -86,11 +60,11 @@
 	{#if relatedProjects.length > 0}
 		<div class="related-projects">
 			<div class="projects-grid" data-count={relatedProjects.length}>
-				{#each relatedProjects as project}
+				{#each relatedProjects as project (project.slug)}
 					{@const projectImageData = getProjectImage(project.image)}
 					<BaseCard
 						element="a"
-						href={project.relativePath}
+						href={resolvePath(project.relativePath)}
 						variant="default"
 						class="image noSpacing compact"
 					>
@@ -136,16 +110,17 @@
 					>
 				</div>
 			</header>
-			<BaseRichText class="position-content">
-				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html firstPosition.content}
-			</BaseRichText>
+			<div class="position-content">
+				<BaseRichText>
+					{@html firstPosition.content}
+				</BaseRichText>
+			</div>
 		</section>
 	{/if}
 
 	{#if sortedPositions.length > 1}
 		<div class="positions-content">
-			{#each sortedPositions.slice(1) as position}
+			{#each sortedPositions.slice(1) as position (position.title + position.startDate)}
 				<section class="position-section">
 					<header class="position-header">
 						<div class="position-title-group">
@@ -160,10 +135,11 @@
 							<span>{position.endDate ? formatDateDisplay(position.endDate) : 'Present'}</span>
 						</div>
 					</header>
-					<BaseRichText class="position-content">
-						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-						{@html position.content}
-					</BaseRichText>
+					<div class="position-content">
+						<BaseRichText>
+							{@html position.content}
+						</BaseRichText>
+					</div>
 				</section>
 			{/each}
 		</div>
@@ -171,7 +147,6 @@
 
 	{#if entry.html}
 		<BaseRichText class="content">
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html entry.html}
 		</BaseRichText>
 	{/if}

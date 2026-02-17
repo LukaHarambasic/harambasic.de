@@ -190,8 +190,8 @@ describe('RSS XML Generation', () => {
 			const pubDateMatch = xml.match(/<pubDate>(.*?)<\/pubDate>/);
 			expect(pubDateMatch).toBeTruthy();
 			if (pubDateMatch) {
-				const date = new Date(pubDateMatch[1]);
-				expect(date.getTime()).toBeGreaterThan(0);
+				const dateStr = pubDateMatch[1];
+				if (dateStr) expect(new Date(dateStr).getTime()).toBeGreaterThan(0);
 			}
 		});
 
@@ -219,7 +219,8 @@ describe('RSS XML Generation', () => {
 			const match = xml.match(/<lastBuildDate>(.*?)<\/lastBuildDate>/);
 			expect(match).toBeTruthy();
 			if (match) {
-				expect(new Date(match[1]).getTime()).toBeGreaterThan(0);
+				const dateStr = match[1];
+				if (dateStr) expect(new Date(dateStr).getTime()).toBeGreaterThan(0);
 			}
 		});
 
@@ -311,7 +312,8 @@ describe('RSS XML Generation', () => {
 			const match = xml.match(/<lastBuildDate>(.*?)<\/lastBuildDate>/);
 			expect(match).toBeTruthy();
 			if (match) {
-				expect(new Date(match[1]).getTime()).toBeGreaterThan(0);
+				const dateStr = match[1];
+				if (dateStr) expect(new Date(dateStr).getTime()).toBeGreaterThan(0);
 			}
 		});
 

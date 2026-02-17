@@ -105,9 +105,13 @@ describe('Validation Utilities', () => {
 			const issues = validateContentQuality(rawEntry);
 
 			expect(issues).toHaveLength(1);
-			expect(issues[0].type).toBe('warning');
-			expect(issues[0].field).toBe('description');
-			expect(issues[0].message).toContain('shorter than recommended');
+			const issue = issues[0];
+			expect(issue).toBeDefined();
+			if (issue) {
+				expect(issue.type).toBe('warning');
+				expect(issue.field).toBe('description');
+				expect(issue.message).toContain('shorter than recommended');
+			}
 		});
 
 		test('should warn about long descriptions', () => {
@@ -191,9 +195,13 @@ describe('Validation Utilities', () => {
 			const issues = validateMarkdownStructure('');
 
 			expect(issues).toHaveLength(1);
-			expect(issues[0].type).toBe('error');
-			expect(issues[0].field).toBe('html');
-			expect(issues[0].message).toBe('Content is empty');
+			const issue = issues[0];
+			expect(issue).toBeDefined();
+			if (issue) {
+				expect(issue.type).toBe('error');
+				expect(issue.field).toBe('html');
+				expect(issue.message).toBe('Content is empty');
+			}
 		});
 
 		test('should warn about very short content', () => {
@@ -315,7 +323,9 @@ describe('Validation Utilities', () => {
 			expect(summary.failed).toBe(1);
 			expect(summary.successRate).toBe(75);
 			expect(summary.errors).toHaveLength(1);
-			expect(summary.errors[0].message).toBe('Error 1');
+			const err = summary.errors[0];
+			expect(err).toBeDefined();
+			if (err) expect(err.message).toBe('Error 1');
 		});
 
 		test('should handle empty results', () => {

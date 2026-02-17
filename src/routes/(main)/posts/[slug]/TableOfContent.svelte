@@ -41,9 +41,9 @@
 				font-family: var(--font-family);
 				font-size: var(--font-m);
 				text-decoration: none;
-			}
-			a:hover {
-				text-decoration: underline;
+				&:hover {
+					text-decoration: underline;
+				}
 			}
 		}
 	}

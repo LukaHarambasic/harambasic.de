@@ -26,7 +26,7 @@ export type ProcessedContent = {
 	/** Generated HTML content */
 	html: string;
 	/** Extracted frontmatter data */
-	frontmatter: Record<string, any>;
+	frontmatter: Record<string, unknown>;
 	/** Generated table of contents */
 	tableOfContents: TocNode[];
 	/** Validation result */
@@ -58,10 +58,10 @@ export function createMarkdownProcessingError(
 	const error = new Error(message);
 	error.name = 'MarkdownProcessingError';
 	if (cause) {
-		(error as any).cause = cause;
+		(error as Error & { cause?: Error }).cause = cause;
 	}
 	if (content) {
-		(error as any).content = content;
+		(error as Error & { content?: string }).content = content;
 	}
 	return error;
 }
@@ -88,7 +88,7 @@ const processor = createRemarkProcessor();
 export function processMarkdown(markdownContent: string, filePath?: string): RawEntry {
 	try {
 		const output = processor.processSync(markdownContent);
-		const frontmatter = output.data.frontmatter as any;
+		const frontmatter = (output.data.frontmatter ?? {}) as Record<string, unknown>;
 
 		const rawEntry = {
 			html: String(output.value),
@@ -126,7 +126,9 @@ export function processMarkdown(markdownContent: string, filePath?: string): Raw
 			);
 		}
 
-		return validationResult.data!;
+		const data = validationResult.data;
+		if (!data) throw new Error('Validation result missing data');
+		return data;
 	} catch (error) {
 		throw createMarkdownProcessingError(
 			`Failed to process markdown content: ${error instanceof Error ? error.message : String(error)}`,
@@ -145,7 +147,7 @@ export function processMarkdownWithValidation(
 ): ProcessedContent {
 	try {
 		const output = processor.processSync(markdownContent);
-		const frontmatter = output.data.frontmatter as any;
+		const frontmatter = (output.data.frontmatter ?? {}) as Record<string, unknown>;
 		const html = String(output.value);
 		const toc = (output.data.toc as TocNode[]) || [];
 
@@ -253,11 +255,13 @@ function getNestedToc(markdownHeadings: TocNode[]): TocNode[] {
 
 	for (const entry of markdownHeadingCopy) {
 		// Pop items from stack until we find a valid parent (depth < entry.depth)
-		while (stack.length > 0 && stack[stack.length - 1].depth >= entry.depth) {
+		while (stack.length > 0) {
+			const top = stack.at(-1);
+			if (top === undefined || top.depth < entry.depth) break;
 			stack.pop();
 		}
 
-		const parent = stack[stack.length - 1];
+		const parent = stack.at(-1);
 		if (stack.length === 0 || !parent) {
 			result.push(entry);
 		} else {
