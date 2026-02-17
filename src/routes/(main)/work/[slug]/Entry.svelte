@@ -136,10 +136,12 @@
 					>
 				</div>
 			</header>
-			<BaseRichText class="position-content">
-				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html firstPosition.content}
-			</BaseRichText>
+			<div class="position-content">
+				<BaseRichText>
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+					{@html firstPosition.content}
+				</BaseRichText>
+			</div>
 		</section>
 	{/if}
 
@@ -160,10 +162,12 @@
 							<span>{position.endDate ? formatDateDisplay(position.endDate) : 'Present'}</span>
 						</div>
 					</header>
-					<BaseRichText class="position-content">
-						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-						{@html position.content}
-					</BaseRichText>
+					<div class="position-content">
+						<BaseRichText>
+							<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+							{@html position.content}
+						</BaseRichText>
+					</div>
 				</section>
 			{/each}
 		</div>

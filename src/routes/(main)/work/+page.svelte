@@ -237,7 +237,8 @@
 			height: 100%;
 			border-color: rgba(255, 255, 255, 0.2);
 			background: var(--c-current-work-bg);
-			color: #fff;
+			color: inherit;
+			text-decoration: none;
 			@media screen and (width <= 48rem) {
 				width: 100%;
 			}
@@ -245,11 +246,7 @@
 				outline: 2px solid #fff;
 				outline-offset: 2px;
 			}
-			&[href] {
-				color: inherit;
-				text-decoration: none;
-			}
-			&[href]:hover {
+			&:hover {
 				transform: scale(1.02) translateY(-4px);
 				cursor: pointer;
 			}

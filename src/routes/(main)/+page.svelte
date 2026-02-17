@@ -133,19 +133,21 @@
 			alt="Profile of Luka Harambasic"
 			class="profile"
 		/>
-		<BaseRichText class="content">
-			<h1>Heyho, I'm Luka!</h1>
-			<p>
-				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I'm building
-				with the PLG squad at <a href="https://www.electricitymaps.com/">Electricity Maps</a>. Feel
-				free to explore my past
-				<a href="/projects">projects</a>
-				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. I'm
-				right now incredibly hyped about automation and AI. Whether you want to geek out over that
-				or start a conversation about handball, woodworking, cooking, and sustainability, feel free
-				to <a href="#contact">say hi</a>.
-			</p>
-		</BaseRichText>
+		<div class="content">
+			<BaseRichText>
+				<h1>Heyho, I'm Luka!</h1>
+				<p>
+					I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I'm building
+					with the PLG squad at <a href="https://www.electricitymaps.com/">Electricity Maps</a>. Feel
+					free to explore my past
+					<a href="/projects">projects</a>
+					or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. I'm
+					right now incredibly hyped about automation and AI. Whether you want to geek out over that
+					or start a conversation about handball, woodworking, cooking, and sustainability, feel free
+					to <a href="#contact">say hi</a>.
+				</p>
+			</BaseRichText>
+		</div>
 	</div>
 </section>
 <section class="featured">
