@@ -1,16 +1,22 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import '$lib/styles/reset.css';
 	import '$lib/styles/fonts.css';
 	import '$lib/styles/variables.css';
 	import '$lib/styles/base.css';
 	import '$lib/styles/highlight.css';
+	import ContactModal from '$lib/components/Contact/ContactModal.svelte';
 	import Hero from '$lib/components/Hero/Hero.svelte';
 	import LayoutFooter from '$lib/components/Layout/LayoutFooter.svelte';
 	import LayoutHeader from '$lib/components/Layout/LayoutHeader.svelte';
 	import LayoutHead from '$lib/components/Layout/LayoutHead.svelte';
 	import LayoutSkipToContent from '$lib/components/Layout/LayoutSkipToContent.svelte';
 	import { hasSnippet } from '$lib/util/snippet';
+
+	function clearHash() {
+		goto($page.url.pathname, { replaceState: true, noScroll: true });
+	}
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -64,6 +70,9 @@
 	</main>
 	<LayoutFooter />
 </div>
+{#if $page.url.hash === '#contact'}
+	<ContactModal onClose={clearHash} />
+{/if}
 
 <style lang="postcss">
 	.container {

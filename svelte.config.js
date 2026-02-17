@@ -30,7 +30,9 @@ const config = {
 				}
 				// otherwise fail the build
 				throw new Error(message);
-			}
+			},
+			// #contact opens a modal; no element with id="contact" on the page
+			handleMissingId: 'ignore'
 		}
 	}
 };
