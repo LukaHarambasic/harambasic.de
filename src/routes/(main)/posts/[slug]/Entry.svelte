@@ -122,8 +122,10 @@
 					content: none;
 				}
 			}
-			&[open] .toc-summary {
-				margin-bottom: var(--m);
+			&[open] {
+				.toc-summary {
+					margin-bottom: var(--m);
+				}
 			}
 			.toc-icon {
 				display: inline-flex;

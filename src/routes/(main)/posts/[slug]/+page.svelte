@@ -28,10 +28,10 @@
 			font-size: var(--font-m);
 			font-weight: 600;
 			text-decoration: none;
-		}
-		a:hover {
-			text-decoration: underline;
-			text-decoration-thickness: var(--underline-thickness);
+			&:hover {
+				text-decoration: underline;
+				text-decoration-thickness: var(--underline-thickness);
+			}
 		}
 	}
 </style>

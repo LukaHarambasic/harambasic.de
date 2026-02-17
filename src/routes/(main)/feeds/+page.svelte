@@ -57,9 +57,9 @@
 				font-family: var(--font-family-code);
 				font-size: var(--font-m);
 				text-decoration: none;
-			}
-			.path:hover {
-				text-decoration: underline;
+				&:hover {
+					text-decoration: underline;
+				}
 			}
 			.description {
 				margin: var(--s) 0 0;

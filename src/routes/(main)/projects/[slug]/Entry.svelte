@@ -112,63 +112,65 @@
 			}
 		}
 
-		&:not(.with-image) .project-body {
-			grid-template-columns: 1fr;
-			.content-column {
-				grid-column: 1;
+		&:not(.with-image) {
+			.project-body {
+				grid-template-columns: 1fr;
+				.content-column {
+					grid-column: 1;
+				}
 			}
 		}
-	}
-	article {
-		> .content {
-			display: flex;
-			flex-direction: column;
-			flex-wrap: nowrap;
-			justify-content: flex-start;
-			align-items: flex-start;
-			align-content: flex-start;
-			:global(.rich-text) {
-				margin: 0;
-			}
-			.sep {
-				margin: var(--l) 0;
-				width: 100%;
-				height: 0;
-				border: none;
-				border-bottom: 1px solid var(--c-surface-accent);
-			}
-			.links {
+		article {
+			> .content {
 				display: flex;
-				flex-wrap: wrap;
-				gap: var(--m);
-				a {
-					color: var(--c-font);
-					font-size: var(--font-s);
-					text-decoration: none;
-				}
-				a:hover {
-					text-decoration: underline;
-				}
-			}
-			.related-work {
-				margin-top: var(--m);
-				width: 100%;
-				h3 {
-					margin: 0 0 var(--s) 0;
-					font-family: var(--font-family);
-					font-size: var(--font-m);
-					font-weight: 700;
-					letter-spacing: var(--font-letter-spacing-headline);
-				}
-				.related-work-list {
-					display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-items: flex-start;
+				align-content: flex-start;
+				:global(.rich-text) {
 					margin: 0;
-					padding: 0;
-					flex-direction: column;
+				}
+				.sep {
+					margin: var(--l) 0;
+					width: 100%;
+					height: 0;
+					border: none;
+					border-bottom: 1px solid var(--c-surface-accent);
+				}
+				.links {
+					display: flex;
+					flex-wrap: wrap;
 					gap: var(--m);
-					list-style: none;
-					li {
-						width: 100%;
+					a {
+						color: var(--c-font);
+						font-size: var(--font-s);
+						text-decoration: none;
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+				.related-work {
+					margin-top: var(--m);
+					width: 100%;
+					h3 {
+						margin: 0 0 var(--s) 0;
+						font-family: var(--font-family);
+						font-size: var(--font-m);
+						font-weight: 700;
+						letter-spacing: var(--font-letter-spacing-headline);
+					}
+					.related-work-list {
+						display: flex;
+						margin: 0;
+						padding: 0;
+						flex-direction: column;
+						gap: var(--m);
+						list-style: none;
+						li {
+							width: 100%;
+						}
 					}
 				}
 			}

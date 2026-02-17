@@ -335,38 +335,43 @@
 							flex-direction: row;
 							justify-content: center;
 							align-items: flex-start;
-						}
-						.thumb .inner {
-							display: flex;
-							width: 3rem;
-							min-height: 3rem;
-							border-radius: var(--border-radius-small);
-							flex-shrink: 0;
-							flex-direction: row;
-							justify-content: center;
-							align-items: center;
-							overflow: hidden;
-						}
-						.thumb .inner img,
-						.thumb .inner :global(enhanced-img) {
-							display: block;
-							width: 100%;
-							height: auto;
-							vertical-align: top;
-						}
-						.thumb .inner :global(.thumb-icon) {
-							display: flex;
-							width: 100%;
-							height: 100%;
-							min-height: 3rem;
-							flex-shrink: 0;
-							justify-content: center;
-							align-items: center;
-							color: var(--c-font-accent-dark);
-						}
-						.thumb .inner :global(.thumb-icon svg) {
-							width: 1.5rem;
-							height: 1.5rem;
+							.inner {
+								display: flex;
+								width: 3rem;
+								min-height: 3rem;
+								border-radius: var(--border-radius-small);
+								flex-shrink: 0;
+								flex-direction: row;
+								justify-content: center;
+								align-items: center;
+								overflow: hidden;
+								img {
+									display: block;
+									width: 100%;
+									height: auto;
+									vertical-align: top;
+								}
+								:global(enhanced-img) {
+									display: block;
+									width: 100%;
+									height: auto;
+									vertical-align: top;
+								}
+								:global(.thumb-icon) {
+									display: flex;
+									width: 100%;
+									height: 100%;
+									min-height: 3rem;
+									flex-shrink: 0;
+									justify-content: center;
+									align-items: center;
+									color: var(--c-font-accent-dark);
+								}
+								:global(.thumb-icon svg) {
+									width: 1.5rem;
+									height: 1.5rem;
+								}
+							}
 						}
 						.content {
 							display: flex;
@@ -444,10 +449,9 @@
 			font-weight: 600;
 			transition: var(--transition);
 			cursor: pointer;
-		}
-
-		.btn:hover {
-			background: color-mix(in srgb, var(--c-surface-accent) 80%, transparent);
+			&:hover {
+				background: color-mix(in srgb, var(--c-surface-accent) 80%, transparent);
+			}
 		}
 	}
 </style>
