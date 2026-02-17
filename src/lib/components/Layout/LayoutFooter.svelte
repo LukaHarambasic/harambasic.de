@@ -8,7 +8,7 @@
 		<li><a href="/feeds">RSS</a></li>
 		<li><a href="/imprint">Imprint</a></li>
 		<li><a href="/data-privacy">Data Privacy</a></li>
-		<li><a href="/#contact">Contact</a></li>
+		<li><a href="#contact">Contact</a></li>
 	</ul>
 </footer>
 

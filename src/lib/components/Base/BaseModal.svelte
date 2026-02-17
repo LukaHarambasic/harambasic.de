@@ -16,15 +16,25 @@
 	export function openModal() {
 		dialog?.showModal();
 	}
+
+	function handleDialogClick(event: MouseEvent) {
+		if (event.target === dialog) {
+			dialog?.close();
+		}
+	}
+
+	function handleDialogClose() {
+		onClose?.();
+	}
 </script>
 
-<dialog bind:this={dialog}>
+<dialog bind:this={dialog} onclick={handleDialogClick} onclose={handleDialogClose}>
 	<div class="content">
 		{#if hasSnippet(children)}
 			{@render children()}
 		{/if}
 		<form method="dialog">
-			<button class="close" onclick={onClose}><Icon icon="ph:x-circle-bold" /></button>
+			<button class="close"><Icon icon="ph:x-circle-bold" /></button>
 		</form>
 	</div>
 </dialog>
@@ -52,30 +62,33 @@
 			.close {
 				--icon-size: 1.5rem;
 				--icon-padding: 0.5rem;
-				--icon-border: 2.5px;
 
+				display: flex;
 				position: absolute;
 				top: var(--l);
 				right: var(--l);
 				z-index: 3000;
 				padding: var(--icon-padding);
-				size: calc(var(--icon-size) + var(--icon-border) + var(--icon-padding) * 2);
-				border: var(--icon-border) solid var(--c-surface-accent);
+				size: calc(var(--icon-size) + var(--icon-padding) * 2);
+				border: none;
 				border-radius: 50%;
-				background: var(--c-font);
-				color: var(--c-light);
+				background: transparent;
+				flex-shrink: 0;
+				justify-content: center;
+				align-items: center;
+				color: var(--c-font);
 				font-size: var(--icon-size);
-				font-weight: bold;
-				line-height: 1rem;
-				vertical-align: 1rem;
+				transition: var(--transition);
+				cursor: pointer;
 				:global(svg) {
-					margin: -1px 0 0 -1px;
+					width: var(--icon-size);
+					height: var(--icon-size);
+					transition: var(--transition);
 				}
 				&:hover {
-					border-color: var(--c-font);
-					background: var(--c-light);
-					color: var(--c-font);
-					cursor: pointer;
+					:global(svg) {
+						transform: scale(1.2);
+					}
 				}
 				@media screen and (width <= 48rem) {
 					top: var(--m);

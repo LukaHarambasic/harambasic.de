@@ -2,8 +2,6 @@
 	import Icon from '@iconify/svelte';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
-	import BaseSegmentedButtons from '$lib/components/Base/BaseSegmentedButtons.svelte';
-	import BaseToClipboardButton from '$lib/components/Base/BaseToClipboardButton.svelte';
 	import { getRandomItems } from '$lib/util/helper';
 	import type { Project } from '$lib/types/project';
 	import type { UsesEntry } from '$lib/types/usesEntry';
@@ -142,42 +140,6 @@
 				</li>
 			{/each}
 		</ul>
-	</div>
-</section>
-<section class="contact" id="contact">
-	<div class="group">
-		<div class="meta">
-			<strong>E-Mail</strong>
-			<small>luka@harambasic.de</small>
-		</div>
-		<BaseSegmentedButtons>
-			<a href="mailto:luka@harambasic.de">Write</a>
-			<BaseToClipboardButton toClipboard="luka@harambasic.de">Copy</BaseToClipboardButton>
-		</BaseSegmentedButtons>
-	</div>
-	<div class="group">
-		<div class="meta">
-			<strong>Socials</strong>
-			<small>Get in touch!</small>
-		</div>
-		<BaseSegmentedButtons>
-			<a
-				href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B"
-				>Signal</a
-			>
-			<a href="https://www.linkedin.com/in/harambasic/">LinkedIn</a>
-			<a href="https://bsky.app/profile/harambasic.de">BlueSky</a>
-			<a href="https://github.com/LukaHarambasic">GitHub</a>
-		</BaseSegmentedButtons>
-	</div>
-	<div class="group">
-		<div class="meta">
-			<strong>Book a time</strong>
-			<small>Wanna talk?</small>
-		</div>
-		<BaseSegmentedButtons>
-			<a href="https://cal.com/luhara/1">Book</a>
-		</BaseSegmentedButtons>
 	</div>
 </section>
 
@@ -368,52 +330,6 @@
 							width: 100%;
 						}
 					}
-				}
-			}
-		}
-	}
-	.contact {
-		display: flex;
-		margin: var(--xl) 0;
-		width: var(--layout-m);
-		flex-direction: column;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		align-items: stretch;
-		align-content: stretch;
-		@media screen and (width <= 46rem) {
-			width: 100%;
-		}
-		.group {
-			display: flex;
-			padding: var(--l);
-			border-bottom: 1px solid var(--c-surface);
-			flex-direction: row;
-			flex-wrap: nowrap;
-			justify-content: space-between;
-			align-items: flex-start;
-			align-content: stretch;
-			@media screen and (width <= 40rem) {
-				flex-direction: column;
-				gap: var(--l);
-			}
-			.meta {
-				display: flex;
-				flex-direction: column;
-				flex-wrap: nowrap;
-				justify-content: flex-start;
-				align-items: stretch;
-				align-content: stretch;
-				strong {
-					margin: 0 0 var(--xs) 0;
-					font-family: var(--font-family);
-					font-size: var(--font-m);
-					font-weight: 900;
-					line-height: 1.2;
-					letter-spacing: var(--font-letter-spacing-headline);
-				}
-				small {
-					font-size: var(--font-s);
 				}
 			}
 		}
