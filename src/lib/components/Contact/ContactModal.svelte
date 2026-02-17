@@ -21,8 +21,8 @@
 	<div class="contact-modal">
 		<h2 class="header">Get in touch</h2>
 		<p class="intro">
-			I'm always open to new conversations, whether it's about projects, ideas, or just saying hello.
-			Reach out however you prefer.
+			I'm always open to new conversations, whether it's about projects, ideas, or just saying
+			hello. Reach out however you prefer.
 		</p>
 		<div class="contact">
 			<div class="group">
