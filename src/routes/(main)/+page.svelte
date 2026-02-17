@@ -6,7 +6,8 @@
 		getMergedFeedEntries,
 		getLayoutOrderedEntries,
 		getTargetVisibleCount,
-		getInitialVisibleCount
+		getInitialVisibleCount,
+		type MergedFeedEntry
 	} from '$lib/util/mergedFeed';
 	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
 
@@ -73,6 +74,24 @@
 	let effectiveVisibleCount = $derived(visibleCount ?? initialCount);
 	let visibleEntries = $derived(layoutOrdered.slice(0, effectiveVisibleCount));
 
+	let feedRows = $derived.by(() => {
+		const entries = visibleEntries;
+		const rows: MergedFeedEntry[][] = [];
+		let i = 0;
+		while (i < entries.length) {
+			const entry = entries[i];
+			const isHalf = entry.category === 'Uses';
+			if (isHalf && i + 1 < entries.length && entries[i + 1].category === 'Uses') {
+				rows.push([entry, entries[i + 1]]);
+				i += 2;
+			} else {
+				rows.push([entry]);
+				i += 1;
+			}
+		}
+		return rows;
+	});
+
 	function showMore() {
 		visibleCount = getTargetVisibleCount(layoutOrdered, effectiveVisibleCount, 6);
 	}
@@ -108,77 +127,81 @@
 <section class="featured">
 	<h2>Explore</h2>
 	<div class="feed">
-		<ul class="entries">
-			{#each visibleEntries as entry}
-				<li
-					class="item"
-					class:full={entry.category !== 'Uses'}
-					class:half={entry.category === 'Uses'}
-				>
-					<a href={entry.href} class="link" aria-label="View {entry.title}">
-						{#if entry.image && entry.category !== 'Posts'}
-							<div class="thumb">
-								<div class="inner">
-									{#if isSvgImage(entry.image)}
-										{#if entry.category === 'Uses'}
-											<img src="/uses/{entry.image}" alt={entry.title} />
-										{:else if entry.category === 'Projects'}
-											<img src="/projects/{entry.image}" alt={entry.title} />
-										{:else if entry.category === 'Work'}
-											<img src="/work/{entry.image}" alt={entry.title} />
-										{/if}
-									{:else if entry.category === 'Projects'}
-										{@const imageData = getProjectImage(entry.image)}
-										{#if imageData}
-											<enhanced:img
-												src={imageData}
-												sizes="(min-width:768px) 64px, 48px"
-												alt={entry.title}
-											/>
-										{/if}
-									{:else if entry.category === 'Uses'}
-										{@const imageData = getUsesImage(entry.image)}
-										{#if imageData}
-											<enhanced:img
-												src={imageData}
-												sizes="(min-width:768px) 64px, 48px"
-												alt={entry.title}
-											/>
-										{/if}
-									{:else if entry.category === 'Work'}
-										{@const imageData = getWorkImage(entry.image)}
-										{#if imageData}
-											<enhanced:img
-												src={imageData}
-												sizes="(min-width:768px) 64px, 48px"
-												alt={entry.title}
-											/>
-										{/if}
+		<table class="feed-table">
+			<tbody>
+				{#each feedRows as row}
+					<tr>
+						{#each row as entry}
+							<td colspan={row.length === 1 ? 2 : 1}>
+								<a href={entry.href} class="link" aria-label="View {entry.title}">
+									{#if entry.image && entry.category !== 'Posts'}
+										<div class="thumb">
+											<div class="inner">
+												{#if isSvgImage(entry.image)}
+													{#if entry.category === 'Uses'}
+														<img src="/uses/{entry.image}" alt={entry.title} />
+													{:else if entry.category === 'Projects'}
+														<img src="/projects/{entry.image}" alt={entry.title} />
+													{:else if entry.category === 'Work'}
+														<img src="/work/{entry.image}" alt={entry.title} />
+													{/if}
+												{:else if entry.category === 'Projects'}
+													{@const imageData = getProjectImage(entry.image)}
+													{#if imageData}
+														<enhanced:img
+															src={imageData}
+															sizes="(min-width:768px) 64px, 48px"
+															alt={entry.title}
+														/>
+													{/if}
+												{:else if entry.category === 'Uses'}
+													{@const imageData = getUsesImage(entry.image)}
+													{#if imageData}
+														<enhanced:img
+															src={imageData}
+															sizes="(min-width:768px) 64px, 48px"
+															alt={entry.title}
+														/>
+													{/if}
+												{:else if entry.category === 'Work'}
+													{@const imageData = getWorkImage(entry.image)}
+													{#if imageData}
+														<enhanced:img
+															src={imageData}
+															sizes="(min-width:768px) 64px, 48px"
+															alt={entry.title}
+														/>
+													{/if}
+												{/if}
+											</div>
+										</div>
 									{/if}
-								</div>
-							</div>
-						{/if}
-						<div class="content">
-							<span class="label">{entry.category}</span>
-							<strong class="title">{entry.title}</strong>
-							{#if entry.updated?.display}
-								<time class="date" datetime={entry.updated?.raw?.toString()}>
-									{entry.updated.display}
-								</time>
-							{/if}
-							{#if entry.description}
-								<p class="description">{entry.description}</p>
-							{/if}
-						</div>
-						<div class="external-link">
-							<Icon
-								icon={entry.isExternal ? 'ph:arrow-square-out-bold' : 'ph:arrow-up-right-bold'}
-							/>
-						</div>
-					</a>
-				</li>
-			{/each}
-		</ul>
+									<div class="content">
+										<span class="label">{entry.category}</span>
+										<strong class="title">{entry.title}</strong>
+										{#if entry.updated?.display}
+											<time class="date" datetime={entry.updated?.raw?.toString()}>
+												{entry.updated.display}
+											</time>
+										{/if}
+										{#if entry.description}
+											<p class="description">{entry.description}</p>
+										{/if}
+									</div>
+									<div class="external-link">
+										<Icon
+											icon={entry.isExternal
+												? 'ph:arrow-square-out-bold'
+												: 'ph:arrow-up-right-bold'}
+										/>
+									</div>
+								</a>
+							</td>
+						{/each}
+					</tr>
+				{/each}
+			</tbody>
+		</table>
 		<div class="actions">
 			{#if effectiveVisibleCount < layoutOrdered.length}
 				<button type="button" class="btn" onclick={showMore}>Show more</button>
@@ -271,167 +294,141 @@
 			gap: var(--m);
 		}
 
-		.entries {
-			display: grid;
-			margin: 0;
-			padding: 0;
+		.feed-table {
 			width: 100%;
-			align-items: stretch;
-			gap: 0;
-			grid-template-columns: 1fr;
-			list-style: none;
-			@media screen and (width > 68.75rem) {
-				grid-template-columns: repeat(2, 1fr);
+			table-layout: fixed;
+			border-collapse: collapse;
+			@media screen and (width <= 68.75rem) {
+				display: block;
 			}
-
-			.item {
-				display: flex;
-				width: 100%;
-				min-height: 0;
-				border-bottom: 1px solid var(--feed-border);
+			tbody {
 				@media screen and (width <= 68.75rem) {
+					display: block;
+				}
+				tr {
+					@media screen and (width <= 68.75rem) {
+						display: block;
+					}
 					&:last-child {
-						border-bottom: none;
+						td {
+							border-bottom: none;
+						}
+					}
+					td {
+						border-bottom: 1px solid var(--feed-border);
+						vertical-align: top;
+						@media screen and (width > 68.75rem) {
+							&:first-child:not(:only-child) {
+								border-right: 1px solid var(--feed-border);
+							}
+						}
+						@media screen and (width <= 68.75rem) {
+							display: block;
+							width: 100%;
+						}
+						.link {
+							display: flex;
+							position: relative;
+							padding: var(--l);
+							width: 100%;
+							min-width: 0;
+							min-height: 0;
+							flex: 1;
+							flex-direction: row;
+							align-items: flex-start;
+							gap: var(--m);
+							color: inherit;
+							text-decoration: none;
+							transition: background var(--transition);
+							box-sizing: border-box;
+							@media screen and (width <= 42rem) {
+								flex-direction: column;
+							}
+							&:hover {
+								background: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
+								.external-link {
+									color: var(--c-font);
+								}
+							}
+						}
+						.thumb {
+							display: flex;
+							width: 3rem;
+							flex-shrink: 0;
+							flex-direction: row;
+							justify-content: center;
+							align-items: flex-start;
+						}
+						.thumb .inner {
+							display: block;
+							width: 3rem;
+							border-radius: var(--border-radius-small);
+							flex-shrink: 0;
+							overflow: hidden;
+						}
+						.thumb .inner img,
+						.thumb .inner :global(enhanced-img) {
+							display: block;
+							width: 100%;
+							height: auto;
+							vertical-align: top;
+						}
+						.content {
+							display: flex;
+							min-width: 0;
+							flex: 1;
+							flex-direction: column;
+							gap: var(--xs);
+						}
+						.label {
+							color: var(--c-font-accent-dark);
+							font-size: var(--font-s);
+							font-weight: 600;
+							letter-spacing: 0.05em;
+							text-transform: uppercase;
+						}
+						.title {
+							display: block;
+							font-family: var(--font-family);
+							font-size: var(--font-m);
+							font-weight: 900;
+							line-height: 1.2;
+							letter-spacing: var(--font-letter-spacing-headline);
+						}
+						.date {
+							color: var(--c-font-accent-dark);
+							font-size: var(--font-s);
+							font-weight: 400;
+							font-style: italic;
+						}
+						.description {
+							margin: 0;
+							color: var(--c-font-accent-dark);
+							font-size: var(--font-m);
+							line-height: 1.5;
+						}
+						.external-link {
+							display: flex;
+							position: absolute;
+							top: var(--l);
+							right: var(--l);
+							z-index: 10;
+							width: 1.5rem;
+							height: 1.5rem;
+							flex-shrink: 0;
+							justify-content: center;
+							align-items: center;
+							color: var(--c-font-accent-super-light);
+							transition: var(--transition);
+							pointer-events: none;
+						}
+						.external-link :global(svg) {
+							width: 1rem;
+							height: 1rem;
+						}
 					}
 				}
 			}
-
-			.item.full {
-				@media screen and (width > 68.75rem) {
-					grid-column: span 2;
-				}
-			}
-
-			.item.half {
-				@media screen and (width > 68.75rem) {
-					grid-column: span 1;
-				}
-			}
-
-			@media screen and (width > 68.75rem) {
-				.item {
-					&:nth-last-child(-n + 2) {
-						border-bottom: none;
-					}
-				}
-				.item.half + .item.half {
-					.link {
-						border-left: 1px solid var(--feed-border);
-					}
-				}
-			}
-		}
-
-		.link {
-			display: flex;
-			position: relative;
-			padding: var(--l);
-			width: 100%;
-			min-width: 0;
-			min-height: 0;
-			flex: 1;
-			flex-direction: row;
-			align-items: flex-start;
-			gap: var(--m);
-			color: inherit;
-			text-decoration: none;
-			transition: background var(--transition);
-			box-sizing: border-box;
-			@media screen and (width <= 42rem) {
-				flex-direction: column;
-			}
-
-			&:hover {
-				background: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
-				.external-link {
-					color: var(--c-font);
-				}
-			}
-		}
-
-		.thumb {
-			display: flex;
-			width: 3rem;
-			flex-shrink: 0;
-			flex-direction: row;
-			justify-content: center;
-			align-items: flex-start;
-		}
-
-		.thumb .inner {
-			display: block;
-			width: 3rem;
-			border-radius: var(--border-radius-small);
-			flex-shrink: 0;
-			overflow: hidden;
-		}
-
-		.thumb .inner img,
-		.thumb .inner :global(enhanced-img) {
-			display: block;
-			width: 100%;
-			height: auto;
-			vertical-align: top;
-		}
-
-		.content {
-			display: flex;
-			min-width: 0;
-			flex: 1;
-			flex-direction: column;
-			gap: var(--xs);
-		}
-
-		.label {
-			color: var(--c-font-accent-dark);
-			font-size: var(--font-s);
-			font-weight: 600;
-			letter-spacing: 0.05em;
-			text-transform: uppercase;
-		}
-
-		.title {
-			display: block;
-			font-family: var(--font-family);
-			font-size: var(--font-m);
-			font-weight: 900;
-			line-height: 1.2;
-			letter-spacing: var(--font-letter-spacing-headline);
-		}
-
-		.date {
-			color: var(--c-font-accent-dark);
-			font-size: var(--font-s);
-			font-weight: 400;
-			font-style: italic;
-		}
-
-		.description {
-			margin: 0;
-			color: var(--c-font-accent-dark);
-			font-size: var(--font-m);
-			line-height: 1.5;
-		}
-
-		.external-link {
-			display: flex;
-			position: absolute;
-			top: var(--l);
-			right: var(--l);
-			z-index: 10;
-			width: 1.5rem;
-			height: 1.5rem;
-			flex-shrink: 0;
-			justify-content: center;
-			align-items: center;
-			color: var(--c-font-accent-super-light);
-			transition: var(--transition);
-			pointer-events: none;
-		}
-
-		.external-link :global(svg) {
-			width: 1rem;
-			height: 1rem;
 		}
 
 		.actions {

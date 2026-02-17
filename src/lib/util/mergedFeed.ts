@@ -75,8 +75,7 @@ export function getLayoutOrderedEntries(entries: MergedFeedEntry[]): MergedFeedE
 		if (isFullWidth(entry)) {
 			const firstUseAfter = byDate.slice(i + 1).find((e) => !isFullWidth(e));
 			const fullIsNewerThanBuffer =
-				halfBuffer.length === 0 ||
-				getSortTime(entry) >= getSortTime(halfBuffer[0]);
+				halfBuffer.length === 0 || getSortTime(entry) >= getSortTime(halfBuffer[0]);
 			const fullIsNewerThanUsesAfter =
 				!firstUseAfter || getSortTime(entry) >= getSortTime(firstUseAfter);
 			// Only reorder for layout when 1–2 Uses before and Uses after (e.g. Use, Work, Use)
