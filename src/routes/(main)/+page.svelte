@@ -53,6 +53,30 @@
 	const getUsesImage = (name: string) => getImageFromGlob(usesPictures, USES_IMAGE_PATH, name);
 	const getWorkImage = (name: string) => getImageFromGlob(workPictures, WORK_IMAGE_PATH, name);
 
+	const SVG_PATH_PREFIX: Record<string, string> = {
+		Projects: '/projects/',
+		Uses: '/uses/',
+		Work: '/work/'
+	};
+
+	function getSvgSrc(category: string, imageName: string): string {
+		const prefix = SVG_PATH_PREFIX[category];
+		return prefix ? `${prefix}${imageName}` : '';
+	}
+
+	function getEntryImage(entry: { category: string; image: string }) {
+		switch (entry.category) {
+			case 'Projects':
+				return getProjectImage(entry.image);
+			case 'Uses':
+				return getUsesImage(entry.image);
+			case 'Work':
+				return getWorkImage(entry.image);
+			default:
+				return null;
+		}
+	}
+
 	interface Props {
 		data: PageData;
 	}
@@ -138,33 +162,9 @@
 										<div class="thumb">
 											<div class="inner">
 												{#if isSvgImage(entry.image)}
-													{#if entry.category === 'Uses'}
-														<img src="/uses/{entry.image}" alt={entry.title} />
-													{:else if entry.category === 'Projects'}
-														<img src="/projects/{entry.image}" alt={entry.title} />
-													{:else if entry.category === 'Work'}
-														<img src="/work/{entry.image}" alt={entry.title} />
-													{/if}
-												{:else if entry.category === 'Projects'}
-													{@const imageData = getProjectImage(entry.image)}
-													{#if imageData}
-														<enhanced:img
-															src={imageData}
-															sizes="(min-width:768px) 64px, 48px"
-															alt={entry.title}
-														/>
-													{/if}
-												{:else if entry.category === 'Uses'}
-													{@const imageData = getUsesImage(entry.image)}
-													{#if imageData}
-														<enhanced:img
-															src={imageData}
-															sizes="(min-width:768px) 64px, 48px"
-															alt={entry.title}
-														/>
-													{/if}
-												{:else if entry.category === 'Work'}
-													{@const imageData = getWorkImage(entry.image)}
+													<img src={getSvgSrc(entry.category, entry.image)} alt={entry.title} />
+												{:else}
+													{@const imageData = getEntryImage(entry)}
 													{#if imageData}
 														<enhanced:img
 															src={imageData}
