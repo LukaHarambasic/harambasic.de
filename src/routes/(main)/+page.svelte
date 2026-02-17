@@ -367,11 +367,11 @@
 							display: flex;
 							width: 3rem;
 							min-height: 3rem;
+							border-radius: var(--border-radius-small);
 							flex-shrink: 0;
 							flex-direction: row;
 							justify-content: center;
 							align-items: center;
-							border-radius: var(--border-radius-small);
 							overflow: hidden;
 						}
 						.thumb .inner img,
