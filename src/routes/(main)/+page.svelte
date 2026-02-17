@@ -158,24 +158,28 @@
 						{#each row as entry}
 							<td colspan={row.length === 1 ? 2 : 1}>
 								<a href={entry.href} class="link" aria-label="View {entry.title}">
-									{#if entry.image && entry.category !== 'Posts'}
-										<div class="thumb">
-											<div class="inner">
-												{#if isSvgImage(entry.image)}
-													<img src={getSvgSrc(entry.category, entry.image)} alt={entry.title} />
+									<div class="thumb">
+										<div class="inner">
+											{#if entry.category === 'Posts'}
+												<Icon icon="ph:file-text-duotone" class="thumb-icon" />
+											{:else if entry.image && isSvgImage(entry.image)}
+												<img src={getSvgSrc(entry.category, entry.image)} alt={entry.title} />
+											{:else if entry.image}
+												{@const imageData = getEntryImage(entry)}
+												{#if imageData}
+													<enhanced:img
+														src={imageData}
+														sizes="(min-width:768px) 64px, 48px"
+														alt={entry.title}
+													/>
 												{:else}
-													{@const imageData = getEntryImage(entry)}
-													{#if imageData}
-														<enhanced:img
-															src={imageData}
-															sizes="(min-width:768px) 64px, 48px"
-															alt={entry.title}
-														/>
-													{/if}
+													<Icon icon="ph:empty-duotone" class="thumb-icon" />
 												{/if}
-											</div>
+											{:else}
+												<Icon icon="ph:empty-duotone" class="thumb-icon" />
+											{/if}
 										</div>
-									{/if}
+									</div>
 									<div class="content">
 										<span class="label">{entry.category}</span>
 										<strong class="title">{entry.title}</strong>
@@ -360,10 +364,14 @@
 							align-items: flex-start;
 						}
 						.thumb .inner {
-							display: block;
+							display: flex;
 							width: 3rem;
-							border-radius: var(--border-radius-small);
+							min-height: 3rem;
 							flex-shrink: 0;
+							flex-direction: row;
+							justify-content: center;
+							align-items: center;
+							border-radius: var(--border-radius-small);
 							overflow: hidden;
 						}
 						.thumb .inner img,
@@ -372,6 +380,20 @@
 							width: 100%;
 							height: auto;
 							vertical-align: top;
+						}
+						.thumb .inner :global(.thumb-icon) {
+							display: flex;
+							width: 100%;
+							height: 100%;
+							min-height: 3rem;
+							flex-shrink: 0;
+							justify-content: center;
+							align-items: center;
+							color: var(--c-font-accent-dark);
+						}
+						.thumb .inner :global(.thumb-icon svg) {
+							width: 1.5rem;
+							height: 1.5rem;
 						}
 						.content {
 							display: flex;
