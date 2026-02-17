@@ -6,22 +6,7 @@
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
-	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
-
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const PROJECT_IMAGE_PATH = '../../../../assets/img/projects/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, PROJECT_IMAGE_PATH, name);
+	import { getProjectImage } from '$lib/util/enhancedImages';
 
 	interface Props {
 		entry: Project;
@@ -30,7 +15,7 @@
 
 	let { entry, relatedWork = [] }: Props = $props();
 
-	const imageData = $derived(getImage(entry.image));
+	const imageData = $derived(getProjectImage(entry.image));
 </script>
 
 {#snippet leadingImage()}

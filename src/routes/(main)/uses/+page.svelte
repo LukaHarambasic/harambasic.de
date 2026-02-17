@@ -4,22 +4,8 @@
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
 	import { isExternalUrl, sortDate } from '$lib/util/helper';
-	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
-
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const USES_IMAGE_PATH = '../../../assets/img/uses/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, USES_IMAGE_PATH, name);
+	import { getUsesImage } from '$lib/util/enhancedImages';
+	import { isSvgImage } from '$lib/util/images';
 
 	interface Props {
 		data: PageData;
@@ -78,7 +64,7 @@
 												{#if isSvgImage(entry.image)}
 													<img src="/uses/{entry.image}" alt={entry.title} />
 												{:else}
-													{@const imageData = getImage(entry.image)}
+													{@const imageData = getUsesImage(entry.image)}
 													{#if imageData}
 														<enhanced:img
 															src={imageData}

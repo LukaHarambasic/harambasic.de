@@ -6,23 +6,7 @@
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import Icon from '@iconify/svelte';
-	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
-
-	// TODO: remove eager and only load images that got randomly selected
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const PROJECT_IMAGE_PATH = '../../../assets/img/projects/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, PROJECT_IMAGE_PATH, name);
+	import { getProjectImage } from '$lib/util/enhancedImages';
 
 	interface Props {
 		data: PageData;
@@ -41,7 +25,7 @@
 	{#snippet entries()}
 		<div class="entries">
 			{#each filteredAndSorted as entry, index (entry.slug)}
-				{@const imageData = getImage(entry.image)}
+				{@const imageData = getProjectImage(entry.image)}
 				<div class="entry-wrapper" data-highlighted={index < 3}>
 					<BaseCard
 						element="a"

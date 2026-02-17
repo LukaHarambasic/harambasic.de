@@ -10,49 +10,8 @@
 		getInitialVisibleCount,
 		type MergedFeedEntry
 	} from '$lib/util/mergedFeed';
-	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
-
-	const projectPictures: ImageGlobResult = import.meta.glob(
-		'../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const usesPictures: ImageGlobResult = import.meta.glob(
-		'../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const workPictures: ImageGlobResult = import.meta.glob(
-		'../../assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const PROJECT_IMAGE_PATH = '../../assets/img/projects/';
-	const USES_IMAGE_PATH = '../../assets/img/uses/';
-	const WORK_IMAGE_PATH = '../../assets/img/work/';
-
-	const getProjectImage = (name: string) =>
-		getImageFromGlob(projectPictures, PROJECT_IMAGE_PATH, name);
-	const getUsesImage = (name: string) => getImageFromGlob(usesPictures, USES_IMAGE_PATH, name);
-	const getWorkImage = (name: string) => getImageFromGlob(workPictures, WORK_IMAGE_PATH, name);
+	import { getProjectImage, getUsesImage, getWorkImage } from '$lib/util/enhancedImages';
+	import { isSvgImage } from '$lib/util/images';
 
 	const SVG_PATH_PREFIX: Record<string, string> = {
 		Projects: '/projects/',

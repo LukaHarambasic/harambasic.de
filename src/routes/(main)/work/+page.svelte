@@ -5,23 +5,9 @@
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import Icon from '@iconify/svelte';
-	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
+	import { getWorkImage } from '$lib/util/enhancedImages';
+	import { isSvgImage } from '$lib/util/images';
 	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
-
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const WORK_IMAGE_PATH = '../../../assets/img/work/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, WORK_IMAGE_PATH, name);
 
 	interface WorkCard {
 		entry: WorkEntry;
@@ -84,7 +70,7 @@
 					<div class="header">
 						{#if current.entry.image && current.entry.image !== 'TODO'}
 							{@const isSvg = isSvgImage(current.entry.image)}
-							{@const imageData = isSvg ? null : getImage(current.entry.image)}
+							{@const imageData = isSvg ? null : getWorkImage(current.entry.image)}
 							{#if isSvg || imageData}
 								<div class="logo">
 									{#if isSvg}
@@ -157,7 +143,7 @@
 							<div class="header">
 								{#if card.entry.image && card.entry.image !== 'TODO'}
 									{@const isSvg = isSvgImage(card.entry.image)}
-									{@const imageData = isSvg ? null : getImage(card.entry.image)}
+									{@const imageData = isSvg ? null : getWorkImage(card.entry.image)}
 									{#if isSvg || imageData}
 										<div class="logo">
 											{#if isSvg}

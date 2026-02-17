@@ -6,38 +6,9 @@
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import EntryHeader from '$lib/components/EntryHeader/EntryHeader.svelte';
 	import Icon from '@iconify/svelte';
-	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
+	import { getProjectImage, getWorkImage } from '$lib/util/enhancedImages';
+	import { isSvgImage } from '$lib/util/images';
 	import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
-
-	const pictures: ImageGlobResult = import.meta.glob(
-		'../../../../assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const projectPictures: ImageGlobResult = import.meta.glob(
-		'../../../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: '1280;640;400'
-			}
-		}
-	);
-
-	const WORK_IMAGE_PATH = '../../../../assets/img/work/';
-	const PROJECT_IMAGE_PATH = '../../../../assets/img/projects/';
-
-	const getImage = (name: string) => getImageFromGlob(pictures, WORK_IMAGE_PATH, name);
-
-	const getProjectImage = (name: string) =>
-		getImageFromGlob(projectPictures, PROJECT_IMAGE_PATH, name);
 
 	interface Props {
 		entry: WorkEntry;
@@ -51,14 +22,16 @@
 
 	const hasLeadingContent = $derived(
 		Boolean(
-			entry.image && entry.image !== 'TODO' && (isSvgImage(entry.image) || getImage(entry.image))
+			entry.image &&
+			entry.image !== 'TODO' &&
+			(isSvgImage(entry.image) || getWorkImage(entry.image))
 		)
 	);
 </script>
 
 {#snippet leadingIcon()}
 	{@const isSvg = entry.image && isSvgImage(entry.image)}
-	{@const imageData = !isSvg && entry.image ? getImage(entry.image) : null}
+	{@const imageData = !isSvg && entry.image ? getWorkImage(entry.image) : null}
 	{#if isSvg || imageData}
 		<div class="icon">
 			{#if isSvg}
