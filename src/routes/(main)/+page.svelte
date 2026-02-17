@@ -117,7 +117,11 @@
 	</div>
 </section>
 <section class="featured">
-	<h2>Explore</h2>
+	<h2>Feed</h2>
+	<p class="feed-intro">
+		A combined feed of everything on this site: posts, projects, uses, and work. Ordered by last
+		updated, so sometimes old entries might appear at the top.
+	</p>
 	<div class="feed">
 		<table class="feed-table">
 			<tbody>
@@ -264,6 +268,16 @@
 			text-align: center;
 		}
 
+		.feed-intro {
+			margin: 0 0 var(--l);
+			max-width: 36rem;
+			text-align: center;
+			align-self: center;
+			color: var(--c-font-accent-dark);
+			font-size: var(--font-m);
+			line-height: 1.5;
+		}
+
 		.feed {
 			display: flex;
 			width: 100%;
@@ -287,8 +301,15 @@
 						display: block;
 					}
 					&:last-child {
-						td {
-							border-bottom: none;
+						@media screen and (width > 68.75rem) {
+							td {
+								border-bottom: none;
+							}
+						}
+						@media screen and (width <= 68.75rem) {
+							td:last-child {
+								border-bottom: none;
+							}
 						}
 					}
 					td {
