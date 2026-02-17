@@ -100,27 +100,27 @@ describe('getMergedFeedEntries', () => {
 		const result = getMergedFeedEntries(posts, projects, uses, work);
 
 		expect(result).toHaveLength(4);
-		expect(result[0].category).toBe('Uses');
-		expect(result[0].title).toBe('Uses C');
-		expect(result[1].category).toBe('Projects');
-		expect(result[2].category).toBe('Posts');
-		expect(result[3].category).toBe('Work');
+		expect(result[0]?.category).toBe('Uses');
+		expect(result[0]?.title).toBe('Uses C');
+		expect(result[1]?.category).toBe('Projects');
+		expect(result[2]?.category).toBe('Posts');
+		expect(result[3]?.category).toBe('Work');
 	});
 
 	it('should set href and isExternal correctly for Uses with external url', () => {
 		const uses = [createUses({ url: 'https://github.com/repo' })];
 		const result = getMergedFeedEntries([], [], uses, []);
 
-		expect(result[0].href).toBe('https://github.com/repo');
-		expect(result[0].isExternal).toBe(true);
+		expect(result[0]?.href).toBe('https://github.com/repo');
+		expect(result[0]?.isExternal).toBe(true);
 	});
 
 	it('should set href and isExternal correctly for Uses with relative path', () => {
 		const uses = [createUses({ url: '/uses/some-tool' })];
 		const result = getMergedFeedEntries([], [], uses, []);
 
-		expect(result[0].href).toBe('/uses/some-tool');
-		expect(result[0].isExternal).toBe(false);
+		expect(result[0]?.href).toBe('/uses/some-tool');
+		expect(result[0]?.isExternal).toBe(false);
 	});
 
 	it('should set isExternal to false for Posts, Projects, Work', () => {
@@ -141,7 +141,7 @@ describe('getMergedFeedEntries', () => {
 		});
 		const result = getMergedFeedEntries([post], [], [], []);
 
-		expect(result[0].updated.raw.getTime()).toBe(0);
+		expect(result[0]?.updated.raw.getTime()).toBe(0);
 	});
 });
 

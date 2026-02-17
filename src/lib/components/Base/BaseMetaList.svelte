@@ -9,7 +9,7 @@
 
 <ul class="meta-list">
 	<li><strong>{preText}</strong></li>
-	{#each items as item}
+	{#each items as item, index (index)}
 		<li>{item}</li>
 	{/each}
 </ul>

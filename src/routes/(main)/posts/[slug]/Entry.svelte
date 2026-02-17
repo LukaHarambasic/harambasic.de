@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import { page } from '$app/stores';
 	import Icon from '@iconify/svelte';
 	import BaseCallout from '$lib/components/Base/BaseCallout.svelte';
@@ -23,7 +24,11 @@
 
 {#snippet authorDateMeta()}
 	<span class="p-author h-card">
-		<a class="author-link" href={authorUrl} rel="author">Luka Harambasic</a>
+		<a
+			class="author-link"
+			href={authorUrl.startsWith('http') ? authorUrl : resolvePath(authorUrl)}
+			rel={authorUrl.startsWith('http') ? 'author external' : 'author'}>Luka Harambasic</a
+		>
 	</span>
 	{#if publishedIso}
 		<span class="meta-sep" aria-hidden="true"> · </span>
@@ -38,7 +43,6 @@
 	{#if tldr}
 		<div class="tldr">
 			<BaseCallout prefix="TL;DR" noCard>
-				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html tldr}
 			</BaseCallout>
 		</div>
@@ -64,7 +68,6 @@
 
 	<section class="post">
 		<BaseRichText class="content e-content">
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html html}
 		</BaseRichText>
 	</section>

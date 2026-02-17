@@ -27,7 +27,7 @@
 			<div class="wrapper">
 				<label for="property">Status</label>
 				<select bind:value={status} onchange={onStatusChange} name="property">
-					{#each statuses as item}
+					{#each statuses as item (item.key)}
 						<option value={item.key}>{item.display}</option>
 					{/each}
 				</select>

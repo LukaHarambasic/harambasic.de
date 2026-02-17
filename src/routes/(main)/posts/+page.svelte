@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { PageData } from '../$types';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import Icon from '@iconify/svelte';
@@ -11,7 +12,7 @@
 	}
 
 	let { data }: Props = $props();
-	let entries = $derived(data.posts[0]);
+	let entries = $derived(data.posts[0] ?? []);
 	let filteredAndSortedEntries = $derived(
 		filterAndSort(entries, 'all', SORT_DEFAULTS.POST, SortDirection.Desc)
 	);
@@ -21,9 +22,13 @@
 	<Entries>
 		{#snippet entries()}
 			<ul class="entries">
-				{#each filteredAndSortedEntries as post}
+				{#each filteredAndSortedEntries as post (post.slug)}
 					<li class="post-row h-feed">
-						<a href={post.relativePath} class="row-link" aria-label="View post: {post.title}">
+						<a
+							href={resolvePath(post.relativePath)}
+							class="row-link"
+							aria-label="View post: {post.title}"
+						>
 							<span class="info">
 								<h2 class="name">{post.title}</h2>
 								<time class="dates dt-published" datetime={post.published.raw?.toISOString()}>

@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { remark } from 'remark';
 import { createTocPlugin } from './TocPlugin';
+import type { TocNode } from '$lib/types/post';
 
 describe('TocPlugin', () => {
 	describe('Basic TOC Generation', () => {
@@ -13,15 +14,15 @@ describe('TocPlugin', () => {
 ### Level 3`;
 
 			const result = processor.processSync(markdown);
-			const toc = result.data.toc as any[];
+			const toc: TocNode[] = (result.data?.toc ?? []) as TocNode[];
 
 			expect(toc).toHaveLength(1);
-			expect(toc[0].value).toBe('Level 1');
-			expect(toc[0].depth).toBe(1);
-			expect(toc[0].children).toHaveLength(1);
-			expect(toc[0].children[0].value).toBe('Level 2');
-			expect(toc[0].children[0].children).toHaveLength(1);
-			expect(toc[0].children[0].children[0].value).toBe('Level 3');
+			expect(toc[0]?.value).toBe('Level 1');
+			expect(toc[0]?.depth).toBe(1);
+			expect(toc[0]?.children ?? []).toHaveLength(1);
+			expect(toc[0]?.children?.[0]?.value).toBe('Level 2');
+			expect(toc[0]?.children?.[0]?.children ?? []).toHaveLength(1);
+			expect(toc[0]?.children?.[0]?.children?.[0]?.value).toBe('Level 3');
 		});
 
 		it('should handle multiple top-level headings', () => {
@@ -34,13 +35,13 @@ describe('TocPlugin', () => {
 ## Another sub heading`;
 
 			const result = processor.processSync(markdown);
-			const toc = result.data.toc as any[];
+			const toc: TocNode[] = (result.data?.toc ?? []) as TocNode[];
 
 			expect(toc).toHaveLength(2);
-			expect(toc[0].value).toBe('First Heading');
-			expect(toc[1].value).toBe('Second Heading');
-			expect(toc[0].children).toHaveLength(1);
-			expect(toc[1].children).toHaveLength(1);
+			expect(toc[0]?.value).toBe('First Heading');
+			expect(toc[1]?.value).toBe('Second Heading');
+			expect(toc[0]?.children).toHaveLength(1);
+			expect(toc[1]?.children).toHaveLength(1);
 		});
 	});
 
@@ -55,12 +56,12 @@ describe('TocPlugin', () => {
 #### H4`;
 
 			const result = processor.processSync(markdown);
-			const toc = result.data.toc as any[];
+			const toc: TocNode[] = (result.data?.toc ?? []) as TocNode[];
 
 			// Should only include H1 and H2, excluding H3 and H4
 			expect(toc).toHaveLength(1);
-			expect(toc[0].children).toHaveLength(1);
-			expect(toc[0].children[0].depth).toBe(2);
+			expect(toc[0]?.children ?? []).toHaveLength(1);
+			expect(toc[0]?.children?.[0]?.depth).toBe(2);
 		});
 
 		it('should respect minDepth configuration', () => {
@@ -72,12 +73,12 @@ describe('TocPlugin', () => {
 ### H3`;
 
 			const result = processor.processSync(markdown);
-			const toc = result.data.toc as any[];
+			const toc: TocNode[] = (result.data?.toc ?? []) as TocNode[];
 
 			// Should only include H2 as the root, excluding H1
 			expect(toc).toHaveLength(1);
-			expect(toc[0].depth).toBe(2);
-			expect(toc[0].value).toBe('H2');
+			expect(toc[0]?.depth).toBe(2);
+			expect(toc[0]?.value).toBe('H2');
 		});
 	});
 
@@ -87,7 +88,7 @@ describe('TocPlugin', () => {
 			const processor = remark().use(plugin);
 
 			const result = processor.processSync('');
-			const toc = result.data.toc as any[];
+			const toc: TocNode[] = (result.data?.toc ?? []) as TocNode[];
 
 			expect(toc).toEqual([]);
 		});
@@ -100,7 +101,7 @@ describe('TocPlugin', () => {
 And more content.`;
 
 			const result = processor.processSync(markdown);
-			const toc = result.data.toc as any[];
+			const toc: TocNode[] = (result.data?.toc ?? []) as TocNode[];
 
 			expect(toc).toEqual([]);
 		});
@@ -113,11 +114,11 @@ And more content.`;
 Some content.`;
 
 			const result = processor.processSync(markdown);
-			const toc = result.data.toc as any[];
+			const toc: TocNode[] = (result.data?.toc ?? []) as TocNode[];
 
 			expect(toc).toHaveLength(1);
-			expect(toc[0].value).toBe('Single Heading');
-			expect(toc[0].children).toBeDefined();
+			expect(toc[0]?.value).toBe('Single Heading');
+			expect(toc[0]?.children).toBeDefined();
 		});
 	});
 
@@ -131,11 +132,11 @@ Some content.`;
 ### Multiple   Spaces`;
 
 			const result = processor.processSync(markdown);
-			const toc = result.data.toc as any[];
+			const toc: TocNode[] = (result.data?.toc ?? []) as TocNode[];
 
-			expect(toc[0].slug).toBe('hello-world');
-			expect(toc[0].children[0].slug).toBe('special-characters--symbols');
-			expect(toc[0].children[0].children[0].slug).toBe('multiple---spaces');
+			expect(toc[0]?.slug).toBe('hello-world');
+			expect(toc[0]?.children?.[0]?.slug).toBe('special-characters--symbols');
+			expect(toc[0]?.children?.[0]?.children?.[0]?.slug).toBe('multiple---spaces');
 		});
 	});
 });

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import Icon from '@iconify/svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
 	import type { PageData } from './$types';
@@ -85,10 +86,10 @@
 
 	const INITIAL_TARGET = 6;
 
-	let posts = $derived(data.posts[0]);
-	let projects = $derived(data.projects[0]);
-	let uses = $derived(data.uses[0]);
-	let work = $derived((data.work || [[]])[0] || []);
+	let posts = $derived(data.posts[0] ?? []);
+	let projects = $derived(data.projects[0] ?? []);
+	let uses = $derived(data.uses[0] ?? []);
+	let work = $derived(data.work?.[0] ?? []);
 
 	let mergedEntries = $derived(getMergedFeedEntries(posts, projects, uses, work));
 	let layoutOrdered = $derived(getLayoutOrderedEntries(mergedEntries));
@@ -104,9 +105,14 @@
 		let i = 0;
 		while (i < entries.length) {
 			const entry = entries[i];
+			const nextEntry = entries[i + 1];
+			if (entry === undefined) {
+				i++;
+				continue;
+			}
 			const isHalf = entry.category === 'Uses';
-			if (isHalf && i + 1 < entries.length && entries[i + 1].category === 'Uses') {
-				rows.push([entry, entries[i + 1]]);
+			if (isHalf && nextEntry !== undefined && nextEntry.category === 'Uses') {
+				rows.push([entry, nextEntry]);
 				i += 2;
 			} else {
 				rows.push([entry]);
@@ -137,14 +143,15 @@
 			<BaseRichText>
 				<h1>Heyho, I'm Luka!</h1>
 				<p>
-					I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I'm building
-					with the PLG squad at <a href="https://www.electricitymaps.com/">Electricity Maps</a>. Feel
-					free to explore my past
-					<a href="/projects">projects</a>
-					or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. I'm
-					right now incredibly hyped about automation and AI. Whether you want to geek out over that
-					or start a conversation about handball, woodworking, cooking, and sustainability, feel free
-					to <a href="#contact">say hi</a>.
+					I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I'm
+					building with the PLG squad at <a href="https://www.electricitymaps.com/"
+						>Electricity Maps</a
+					>. Feel free to explore my past
+					<a href={resolvePath('/projects')}>projects</a>
+					or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>.
+					I'm right now incredibly hyped about automation and AI. Whether you want to geek out over
+					that or start a conversation about handball, woodworking, cooking, and sustainability,
+					feel free to <a href="#contact">say hi</a>.
 				</p>
 			</BaseRichText>
 		</div>
@@ -155,11 +162,16 @@
 	<div class="feed">
 		<table class="feed-table">
 			<tbody>
-				{#each feedRows as row}
+				{#each feedRows as row (row.map((e) => e.slug).join(','))}
 					<tr>
-						{#each row as entry}
+						{#each row as entry (entry.slug)}
 							<td colspan={row.length === 1 ? 2 : 1}>
-								<a href={entry.href} class="link" aria-label="View {entry.title}">
+								<a
+									href={entry.href.startsWith('http') ? entry.href : resolvePath(entry.href)}
+									rel={entry.href.startsWith('http') ? 'external' : undefined}
+									class="link"
+									aria-label="View {entry.title}"
+								>
 									<div class="thumb">
 										<div class="inner">
 											{#if entry.category === 'Posts'}

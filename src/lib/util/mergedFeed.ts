@@ -72,12 +72,18 @@ export function getLayoutOrderedEntries(entries: MergedFeedEntry[]): MergedFeedE
 
 	while (i < byDate.length) {
 		const entry = byDate[i];
+		if (entry === undefined) {
+			i++;
+			continue;
+		}
 		if (isFullWidth(entry)) {
 			const firstUseAfter = byDate.slice(i + 1).find((e) => !isFullWidth(e));
+			const halfFirst = halfBuffer[0];
 			const fullIsNewerThanBuffer =
-				halfBuffer.length === 0 || getSortTime(entry) >= getSortTime(halfBuffer[0]);
+				halfBuffer.length === 0 ||
+				(halfFirst !== undefined && getSortTime(entry) >= getSortTime(halfFirst));
 			const fullIsNewerThanUsesAfter =
-				!firstUseAfter || getSortTime(entry) >= getSortTime(firstUseAfter);
+				firstUseAfter === undefined || getSortTime(entry) >= getSortTime(firstUseAfter);
 			// Only reorder for layout when 1–2 Uses before and Uses after (e.g. Use, Work, Use)
 			const fullIsSandwiched =
 				halfBuffer.length > 0 &&
@@ -106,7 +112,8 @@ export function getLayoutOrderedEntries(entries: MergedFeedEntry[]): MergedFeedE
 function endsWithOrphan(layoutOrdered: MergedFeedEntry[], count: number): boolean {
 	let col = 0;
 	for (let i = 0; i < count && i < layoutOrdered.length; i++) {
-		const span = isFullWidth(layoutOrdered[i]) ? 2 : 1;
+		const item = layoutOrdered[i];
+		const span = item !== undefined && isFullWidth(item) ? 2 : 1;
 		col += span;
 		if (col >= 2) col = 0;
 	}

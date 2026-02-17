@@ -49,8 +49,12 @@ describe('Entry Transformer', () => {
 			expect(result.description).toBe('A test entry for unit testing purposes');
 			expect(result.image).toBe('test-image.jpg');
 			expect(result.tags).toHaveLength(2);
-			expect(result.tags[0].display).toBe('javascript');
-			expect(result.tags[0].type).toBe('post');
+			const tag0 = result.tags[0];
+			expect(tag0).toBeDefined();
+			if (tag0) {
+				expect(tag0.display).toBe('javascript');
+				expect(tag0.type).toBe('post');
+			}
 			expect(result.published.raw).toBeInstanceOf(Date);
 			expect(result.updated.raw).toBeInstanceOf(Date);
 		});

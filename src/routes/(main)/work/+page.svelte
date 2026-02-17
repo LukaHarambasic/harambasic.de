@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { PageData } from './$types';
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import Entries from '$lib/components/Entries/Entries.svelte';
@@ -33,7 +34,7 @@
 
 	let { data }: Props = $props();
 
-	let entries = $derived((data.work || [[]])[0] || []);
+	let entries = $derived(data.work?.[0] ?? []);
 	let workRelatedProjects = $derived(data.workRelatedProjects || {});
 
 	// Helper function to get related projects for an entry
@@ -75,7 +76,7 @@
 				{@const relatedProjects = getRelatedProjects(current.entry)}
 				<BaseCard
 					element="a"
-					href="/work/{current.entry.slug}"
+					href={resolvePath(`/work/${current.entry.slug}`)}
 					variant="featured"
 					class="withIcon current-card"
 					aria-label="View details for {current.entry.title}"
@@ -108,7 +109,7 @@
 					</div>
 					<div class="metadata">
 						<div class="positions">
-							{#each sortedPositions as position}
+							{#each sortedPositions as position (position.title + position.startDate)}
 								<div class="row">
 									<span class="title">{position.title}</span>
 									<span class="dates">
@@ -127,9 +128,9 @@
 						<div class="row">
 							{#if relatedProjects.length > 0}
 								<span class="related-projects">
-									{#each relatedProjects as project, index}
+									{#each relatedProjects as project (project.slug)}
 										<span>{project.title}</span>
-										{#if index < relatedProjects.length - 1},
+										{#if project !== relatedProjects.at(-1)},
 										{/if}
 									{/each}
 								</span>
@@ -143,12 +144,12 @@
 
 			{#if past.length > 0}
 				<div class="work-grid">
-					{#each past as card}
+					{#each past as card (card.entry.slug)}
 						{@const sortedPositions = sortPositionsByDate(card.entry.positions)}
 						{@const relatedProjects = getRelatedProjects(card.entry)}
 						<BaseCard
 							element="a"
-							href="/work/{card.entry.slug}"
+							href={resolvePath(`/work/${card.entry.slug}`)}
 							variant="default"
 							class="withIcon past-card"
 							aria-label="View details for {card.entry.title}"
@@ -181,7 +182,7 @@
 							</div>
 							<div class="metadata">
 								<div class="positions">
-									{#each sortedPositions as position}
+									{#each sortedPositions as position (position.title + position.startDate)}
 										<div class="row">
 											<span class="title">{position.title}</span>
 											<span class="dates">
@@ -200,9 +201,9 @@
 								<div class="row">
 									{#if relatedProjects.length > 0}
 										<span class="related-projects">
-											{#each relatedProjects as project, index}
+											{#each relatedProjects as project (project.slug)}
 												<span>{project.title}</span>
-												{#if index < relatedProjects.length - 1},
+												{#if project !== relatedProjects.at(-1)},
 												{/if}
 											{/each}
 										</span>

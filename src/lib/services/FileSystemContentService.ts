@@ -284,14 +284,13 @@ export class FileSystemContentService implements ContentService {
 				byType[entryType] = results;
 				allResults = allResults.concat(results);
 			} catch (error) {
-				byType[entryType] = [
-					{
-						entryType,
-						isValid: false,
-						message: `Failed to validate ${entryType}: ${error instanceof Error ? error.message : String(error)}`
-					}
-				];
-				allResults.push(byType[entryType][0]);
+				const errorResult = {
+					entryType,
+					isValid: false,
+					message: `Failed to validate ${entryType}: ${error instanceof Error ? error.message : String(error)}`
+				};
+				byType[entryType] = [errorResult];
+				allResults.push(errorResult);
 			}
 		}
 

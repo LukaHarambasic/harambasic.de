@@ -21,7 +21,7 @@ describe('snippet utilities', () => {
 		});
 
 		it('should return false for null', () => {
-			expect(hasSnippet(null as any)).toBe(false);
+			expect(hasSnippet(null as unknown as import('svelte').Snippet)).toBe(false);
 		});
 	});
 });

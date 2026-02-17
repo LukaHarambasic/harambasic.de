@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { PageData } from './$types';
 	import { filterAndSort } from '$lib/util/entryHelpers';
 	import { SortDirection, SORT_DEFAULTS } from '$lib/types/enums';
@@ -29,7 +30,7 @@
 
 	let { data }: Props = $props();
 
-	let entries = $derived(data.projects[0]);
+	let entries = $derived(data.projects[0] ?? []);
 
 	let filteredAndSorted = $derived(
 		filterAndSort(entries, 'all', 'all', SORT_DEFAULTS.PROJECT, SortDirection.Desc)
@@ -39,12 +40,12 @@
 <Entries>
 	{#snippet entries()}
 		<div class="entries">
-			{#each filteredAndSorted as entry, index}
+			{#each filteredAndSorted as entry, index (entry.slug)}
 				{@const imageData = getImage(entry.image)}
 				<div class="entry-wrapper" data-highlighted={index < 3}>
 					<BaseCard
 						element="a"
-						href={entry.relativePath}
+						href={resolvePath(entry.relativePath)}
 						variant="default"
 						class="image noSpacing {index < 3 ? 'highlighted' : 'compact'}"
 					>

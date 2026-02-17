@@ -1,13 +1,17 @@
+<script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
+</script>
+
 <footer>
 	<ul>
-		<li><a href="https://www.linkedin.com/in/harambasic/">LinkedIn</a></li>
-		<li><a href="https://github.com/LukaHarambasic">GitHub</a></li>
-		<li><a href="https://bsky.app/profile/harambasic.de">BlueSky</a></li>
+		<li><a href="https://www.linkedin.com/in/harambasic/" rel="external">LinkedIn</a></li>
+		<li><a href="https://github.com/LukaHarambasic" rel="external">GitHub</a></li>
+		<li><a href="https://bsky.app/profile/harambasic.de" rel="external">BlueSky</a></li>
 	</ul>
 	<ul>
-		<li><a href="/feeds">RSS</a></li>
-		<li><a href="/imprint">Imprint</a></li>
-		<li><a href="/data-privacy">Data Privacy</a></li>
+		<li><a href={resolvePath('/feeds')}>RSS</a></li>
+		<li><a href={resolvePath('/imprint')}>Imprint</a></li>
+		<li><a href={resolvePath('/data-privacy')}>Data Privacy</a></li>
 		<li><a href="#contact">Contact</a></li>
 	</ul>
 </footer>

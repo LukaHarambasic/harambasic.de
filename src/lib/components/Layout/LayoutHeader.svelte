@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import { page } from '$app/stores';
 
 	const links = [
@@ -37,12 +38,12 @@
 
 <header>
 	<div class="logo">
-		<a href="/">Luka Harambasic</a>
+		<a href={resolvePath('/')}>Luka Harambasic</a>
 	</div>
 	<nav>
 		<ul>
-			{#each links as { name, url }}
-				<li><a href={url} class:is-active={isActiveRoute(url)}>{name}</a></li>
+			{#each links as { name, url } (url)}
+				<li><a href={resolvePath(url)} class:is-active={isActiveRoute(url)}>{name}</a></li>
 			{/each}
 		</ul>
 	</nav>

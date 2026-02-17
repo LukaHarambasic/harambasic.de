@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { Project } from '$lib/types/project';
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
@@ -53,22 +54,26 @@
 		<article class="h-entry content-column">
 			<div class="content">
 				<BaseRichText>
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html entry.html}
 				</BaseRichText>
 				<div class="sep" aria-hidden="true"></div>
 				<nav class="links" aria-label="Project links">
-					{#each entry.links as link}
-						<a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+					{#each entry.links as link (link.url)}
+						<a href={link.url} target="_blank" rel="noopener noreferrer external">{link.title}</a>
 					{/each}
 				</nav>
 				{#if relatedWork.length > 0}
 					<div class="related-work">
 						<h3>Related Work</h3>
 						<ul class="related-work-list">
-							{#each relatedWork as work}
+							{#each relatedWork as work (work.slug)}
 								<li>
-									<BaseCard element="a" href={work.relativePath} variant="default" class="withIcon">
+									<BaseCard
+										element="a"
+										href={resolvePath(work.relativePath)}
+										variant="default"
+										class="withIcon"
+									>
 										<div class="header">
 											<div class="info">
 												<h4 class="name">{work.title}</h4>

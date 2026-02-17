@@ -95,7 +95,8 @@ function validateUsesEntry(raw: RawEntry): void {
 	if (!result.success) {
 		const title = raw.title || 'untitled';
 		const firstError = result.error.issues[0];
-		throw new Error(`Missing required fields in uses entry "${title}": ${firstError.message}`);
+		const message = firstError?.message ?? 'Unknown validation error';
+		throw new Error(`Missing required fields in uses entry "${title}": ${message}`);
 	}
 }
 

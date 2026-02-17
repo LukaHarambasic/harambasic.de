@@ -69,7 +69,8 @@ export function getUniqueTags(entries: Project[] | UsesEntry[] | Post[] | WorkEn
 			const tagIndex = unique.findIndex((u) => item.slug === u.slug);
 			const isItemInUnique = tagIndex >= 0;
 			if (isItemInUnique) {
-				unique[tagIndex].count++;
+				const existing = unique[tagIndex];
+				if (existing) existing.count++;
 			} else {
 				unique.push({
 					...item,
@@ -81,7 +82,9 @@ export function getUniqueTags(entries: Project[] | UsesEntry[] | Post[] | WorkEn
 		.sort((a: Tag, b: Tag) => sortAlphabetical(a.display, b.display));
 
 	// Get type from first valid entry if no unique tags exist
-	const type = uniqueTags.length > 0 ? uniqueTags[0].type : validEntries[0].type;
+	const firstUnique = uniqueTags[0];
+	const firstValid = validEntries[0];
+	const type = firstUnique?.type ?? firstValid?.type ?? 'post';
 	const allTag = getTag('All', type, validEntries.length);
 	return [allTag, ...uniqueTags];
 }

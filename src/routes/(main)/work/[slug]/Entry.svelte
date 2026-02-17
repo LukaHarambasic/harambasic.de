@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import type { WorkEntry } from '$lib/types/workEntry';
 	import type { Project } from '$lib/types/project';
 	import BaseCard from '$lib/components/Base/BaseCard.svelte';
@@ -86,11 +87,11 @@
 	{#if relatedProjects.length > 0}
 		<div class="related-projects">
 			<div class="projects-grid" data-count={relatedProjects.length}>
-				{#each relatedProjects as project}
+				{#each relatedProjects as project (project.slug)}
 					{@const projectImageData = getProjectImage(project.image)}
 					<BaseCard
 						element="a"
-						href={project.relativePath}
+						href={resolvePath(project.relativePath)}
 						variant="default"
 						class="image noSpacing compact"
 					>
@@ -138,7 +139,6 @@
 			</header>
 			<div class="position-content">
 				<BaseRichText>
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html firstPosition.content}
 				</BaseRichText>
 			</div>
@@ -147,7 +147,7 @@
 
 	{#if sortedPositions.length > 1}
 		<div class="positions-content">
-			{#each sortedPositions.slice(1) as position}
+			{#each sortedPositions.slice(1) as position (position.title + position.startDate)}
 				<section class="position-section">
 					<header class="position-header">
 						<div class="position-title-group">
@@ -164,7 +164,6 @@
 					</header>
 					<div class="position-content">
 						<BaseRichText>
-							<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 							{@html position.content}
 						</BaseRichText>
 					</div>
@@ -175,7 +174,6 @@
 
 	{#if entry.html}
 		<BaseRichText class="content">
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html entry.html}
 		</BaseRichText>
 	{/if}

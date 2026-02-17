@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolvePath } from '$lib/util/paths';
 	import Entries from '$lib/components/Entries/Entries.svelte';
 	import type { PageData } from './$types';
 	import Icon from '@iconify/svelte';
@@ -25,8 +26,8 @@
 	}
 
 	let { data }: Props = $props();
-	let usesEntries = $derived(data.uses[0]);
-	let tags = $derived(data.uses[1]);
+	let usesEntries = $derived(data.uses[0] ?? []);
+	let tags = $derived(data.uses[1] ?? []);
 	interface GroupedEntries {
 		title: string;
 		entries: typeof usesEntries;
@@ -60,13 +61,17 @@
 <Entries>
 	{#snippet entries()}
 		<div class="wrapper">
-			{#each activeGroupedEntries as group}
+			{#each activeGroupedEntries as group (group.title)}
 				<div class="group">
 					<h2>{group.title}</h2>
 					<ul class="entries">
-						{#each group.entries as entry}
+						{#each group.entries as entry (entry.slug)}
 							<li class="h-feed">
-								<a href={entry.url} class="item">
+								<a
+									href={entry.url.startsWith('http') ? entry.url : resolvePath(entry.url)}
+									rel={entry.url.startsWith('http') ? 'external' : undefined}
+									class="item"
+								>
 									{#if entry.image}
 										<div class="thumb">
 											<div class="inner">
@@ -111,9 +116,13 @@
 			<div class="group archive">
 				<h2>Archive</h2>
 				<ul class="entries">
-					{#each inactiveEntries as entry}
+					{#each inactiveEntries as entry (entry.slug)}
 						<li class="h-feed">
-							<a href={entry.url} class="archive-item">
+							<a
+								href={entry.url.startsWith('http') ? entry.url : resolvePath(entry.url)}
+								rel={entry.url.startsWith('http') ? 'external' : undefined}
+								class="archive-item"
+							>
 								<div class="content">
 									<div class="title">
 										<strong>

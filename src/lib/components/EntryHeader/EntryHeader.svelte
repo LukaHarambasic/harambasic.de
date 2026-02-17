@@ -20,9 +20,9 @@
 
 <header class="entry-header" class:inline={leadingPosition === 'inline'}>
 	{#if leadingPosition === 'inline'}
-		{#if hasLeading}
+		{#if hasLeading && leading}
 			<div class="leading">
-				{@render leading!()}
+				{@render leading()}
 			</div>
 		{/if}
 		<div class="title-meta">
@@ -38,9 +38,9 @@
 			{/if}
 		</div>
 	{:else}
-		{#if hasLeading}
+		{#if hasLeading && leading}
 			<div class="leading">
-				{@render leading!()}
+				{@render leading()}
 			</div>
 		{/if}
 		<h1 class="title">{title}</h1>

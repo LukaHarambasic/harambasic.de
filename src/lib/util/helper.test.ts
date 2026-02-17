@@ -69,11 +69,11 @@ test('sortPositionsByDate - sort positions by start date (most recent first)', a
 		{ startDate: '2022-06-15', title: 'Middle' }
 	];
 	const sorted = sortPositionsByDate(positions);
-	expect(sorted[0].title).toBe('Recent');
-	expect(sorted[1].title).toBe('Middle');
-	expect(sorted[2].title).toBe('Old');
+	expect(sorted[0]?.title).toBe('Recent');
+	expect(sorted[1]?.title).toBe('Middle');
+	expect(sorted[2]?.title).toBe('Old');
 	// Verify original array is not mutated
-	expect(positions[0].title).toBe('Old');
+	expect(positions[0]?.title).toBe('Old');
 });
 
 test('sortAlphabetical - a to z', async () => {
