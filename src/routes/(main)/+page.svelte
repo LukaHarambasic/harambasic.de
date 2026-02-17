@@ -1,16 +1,17 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import BaseCard from '$lib/components/Base/BaseCard.svelte';
 	import BaseRichText from '$lib/components/Base/BaseRichText.svelte';
-	import { getRandomItems } from '$lib/util/helper';
-	import type { Project } from '$lib/types/project';
-	import type { UsesEntry } from '$lib/types/usesEntry';
-	import type { Post } from '$lib/types/post';
 	import type { PageData } from './$types';
-	import { getImageFromGlob, type ImageGlobResult } from '$lib/util/images';
+	import {
+		getMergedFeedEntries,
+		getLayoutOrderedEntries,
+		getTargetVisibleCount,
+		getInitialVisibleCount,
+		type MergedFeedEntry
+	} from '$lib/util/mergedFeed';
+	import { getImageFromGlob, isSvgImage, type ImageGlobResult } from '$lib/util/images';
 
-	// TODO: remove eager and only load images that got randomly selected
-	const pictures: ImageGlobResult = import.meta.glob(
+	const projectPictures: ImageGlobResult = import.meta.glob(
 		'../../assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
@@ -21,24 +22,107 @@
 		}
 	);
 
-	const PROJECT_IMAGE_PATH = '../../assets/img/projects/';
+	const usesPictures: ImageGlobResult = import.meta.glob(
+		'../../assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
+		{
+			eager: true,
+			query: {
+				enhanced: true,
+				w: '1280;640;400'
+			}
+		}
+	);
 
-	const getImage = (name: string) => getImageFromGlob(pictures, PROJECT_IMAGE_PATH, name);
+	const workPictures: ImageGlobResult = import.meta.glob(
+		'../../assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
+		{
+			eager: true,
+			query: {
+				enhanced: true,
+				w: '1280;640;400'
+			}
+		}
+	);
+
+	const PROJECT_IMAGE_PATH = '../../assets/img/projects/';
+	const USES_IMAGE_PATH = '../../assets/img/uses/';
+	const WORK_IMAGE_PATH = '../../assets/img/work/';
+
+	const getProjectImage = (name: string) =>
+		getImageFromGlob(projectPictures, PROJECT_IMAGE_PATH, name);
+	const getUsesImage = (name: string) => getImageFromGlob(usesPictures, USES_IMAGE_PATH, name);
+	const getWorkImage = (name: string) => getImageFromGlob(workPictures, WORK_IMAGE_PATH, name);
+
+	const SVG_PATH_PREFIX: Record<string, string> = {
+		Projects: '/projects/',
+		Uses: '/uses/',
+		Work: '/work/'
+	};
+
+	function getSvgSrc(category: string, imageName: string): string {
+		const prefix = SVG_PATH_PREFIX[category];
+		return prefix ? `${prefix}${imageName}` : '';
+	}
+
+	function getEntryImage(entry: { category: string; image: string }) {
+		switch (entry.category) {
+			case 'Projects':
+				return getProjectImage(entry.image);
+			case 'Uses':
+				return getUsesImage(entry.image);
+			case 'Work':
+				return getWorkImage(entry.image);
+			default:
+				return null;
+		}
+	}
 
 	interface Props {
 		data: PageData;
 	}
 
 	let { data }: Props = $props();
+
+	const INITIAL_TARGET = 6;
+
 	let posts = $derived(data.posts[0]);
 	let projects = $derived(data.projects[0]);
 	let uses = $derived(data.uses[0]);
+	let work = $derived((data.work || [[]])[0] || []);
 
-	let priorityProjects = $derived(projects.filter((entry) => entry.prio >= 500));
-	let activeUses = $derived(uses.filter((entry) => entry.status === 'active'));
-	let randomProjects: Project[] = $derived(getRandomItems(priorityProjects, 2));
-	let randomUses: UsesEntry[] = $derived(getRandomItems(activeUses, 3));
-	let randomPosts: Post[] = $derived(getRandomItems(posts, 2));
+	let mergedEntries = $derived(getMergedFeedEntries(posts, projects, uses, work));
+	let layoutOrdered = $derived(getLayoutOrderedEntries(mergedEntries));
+	let initialCount = $derived(getInitialVisibleCount(layoutOrdered, INITIAL_TARGET));
+
+	let visibleCount = $state<number | null>(null);
+	let effectiveVisibleCount = $derived(visibleCount ?? initialCount);
+	let visibleEntries = $derived(layoutOrdered.slice(0, effectiveVisibleCount));
+
+	let feedRows = $derived.by(() => {
+		const entries = visibleEntries;
+		const rows: MergedFeedEntry[][] = [];
+		let i = 0;
+		while (i < entries.length) {
+			const entry = entries[i];
+			const isHalf = entry.category === 'Uses';
+			if (isHalf && i + 1 < entries.length && entries[i + 1].category === 'Uses') {
+				rows.push([entry, entries[i + 1]]);
+				i += 2;
+			} else {
+				rows.push([entry]);
+				i += 1;
+			}
+		}
+		return rows;
+	});
+
+	function showMore() {
+		visibleCount = getTargetVisibleCount(layoutOrdered, effectiveVisibleCount, 6);
+	}
+
+	function collapse() {
+		visibleCount = null;
+	}
 </script>
 
 <section class="heyho">
@@ -52,11 +136,11 @@
 		<BaseRichText class="content">
 			<h1>Heyho, I'm Luka!</h1>
 			<p>
-				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I’m building
+				I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I'm building
 				with the PLG squad at <a href="https://www.electricitymaps.com/">Electricity Maps</a>. Feel
 				free to explore my past
 				<a href="/projects">projects</a>
-				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. I’m
+				or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>. I'm
 				right now incredibly hyped about automation and AI. Whether you want to geek out over that
 				or start a conversation about handball, woodworking, cooking, and sustainability, feel free
 				to <a href="#contact">say hi</a>.
@@ -66,80 +150,70 @@
 </section>
 <section class="featured">
 	<h2>Explore</h2>
-	<div class="posts group">
-		<h3 class="section-label">
-			<span>Posts</span>
-			<Icon icon="ph:files-bold" />
-		</h3>
-		<ul>
-			{#each randomPosts as post}
-				<li>
-					<BaseCard element="a" href={post.relativePath} variant="default" class="text">
-						<div class="external-link">
-							<Icon icon="ph:arrow-up-right-bold" />
-						</div>
-						<strong>{post.title}</strong>
-						<time class="date dt-published" datetime={post?.published?.raw?.toString()}>
-							{post.published.display}
-						</time>
-					</BaseCard>
-				</li>
-			{/each}
-		</ul>
-	</div>
-	<div class="lists group">
-		<h3 class="section-label">
-			<span>Uses</span>
-			<Icon icon="ph:clipboard-text-bold" />
-		</h3>
-		<ul>
-			{#each randomUses as usesEntry}
-				<li>
-					<BaseCard element="a" href={usesEntry.url} variant="default" class="text">
-						<div class="external-link">
-							<Icon icon="ph:arrow-up-right-bold" />
-						</div>
-						<strong>{usesEntry.title}</strong>
-						<p>{usesEntry.description}</p>
-					</BaseCard>
-				</li>
-			{/each}
-		</ul>
-	</div>
-	<div class="project group">
-		<h3 class="section-label">
-			<span>Projects</span>
-			<Icon icon="ph:projector-screen-chart-bold" />
-		</h3>
-		<ul>
-			{#each randomProjects as project}
-				{@const imageData = getImage(project.image)}
-				<li>
-					<BaseCard
-						element="a"
-						href="/projects/{project.slug}"
-						variant="default"
-						class="image"
-						noSpacing
-					>
-						<div class="external-link">
-							<Icon icon="ph:arrow-up-right-bold" />
-						</div>
-						{#if imageData}
-							<enhanced:img
-								src={imageData}
-								sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-								alt={project.title}
-							/>
-						{/if}
-						<div class="content">
-							<strong>{project.title}</strong>
-							<p>{project.description}</p>
-						</div>
-					</BaseCard>
-				</li>
-			{/each}
-		</ul>
+	<div class="feed">
+		<table class="feed-table">
+			<tbody>
+				{#each feedRows as row}
+					<tr>
+						{#each row as entry}
+							<td colspan={row.length === 1 ? 2 : 1}>
+								<a href={entry.href} class="link" aria-label="View {entry.title}">
+									<div class="thumb">
+										<div class="inner">
+											{#if entry.category === 'Posts'}
+												<Icon icon="ph:file-text-duotone" class="thumb-icon" />
+											{:else if entry.image && isSvgImage(entry.image)}
+												<img src={getSvgSrc(entry.category, entry.image)} alt={entry.title} />
+											{:else if entry.image}
+												{@const imageData = getEntryImage(entry)}
+												{#if imageData}
+													<enhanced:img
+														src={imageData}
+														sizes="(min-width:768px) 64px, 48px"
+														alt={entry.title}
+													/>
+												{:else}
+													<Icon icon="ph:empty-duotone" class="thumb-icon" />
+												{/if}
+											{:else}
+												<Icon icon="ph:empty-duotone" class="thumb-icon" />
+											{/if}
+										</div>
+									</div>
+									<div class="content">
+										<span class="label">{entry.category}</span>
+										<strong class="title">{entry.title}</strong>
+										{#if entry.updated?.display}
+											<time class="date" datetime={entry.updated?.raw?.toString()}>
+												{entry.updated.display}
+											</time>
+										{/if}
+										{#if entry.description}
+											<p class="description">{entry.description}</p>
+										{/if}
+									</div>
+									<div class="external-link">
+										<Icon
+											icon={entry.isExternal
+												? 'ph:arrow-square-out-bold'
+												: 'ph:arrow-up-right-bold'}
+										/>
+									</div>
+								</a>
+							</td>
+						{/each}
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+		<div class="actions">
+			{#if effectiveVisibleCount < layoutOrdered.length}
+				<button type="button" class="btn" onclick={showMore}>Show more</button>
+			{/if}
+			{#if visibleCount !== null}
+				<button type="button" class="btn" onclick={collapse}>Show less</button>
+			{/if}
+		</div>
 	</div>
 </section>
 
@@ -196,6 +270,8 @@
 		}
 	}
 	.featured {
+		--feed-border: color-mix(in srgb, var(--c-border) 80%, var(--c-font-accent-super-light));
+
 		display: flex;
 		width: 100%;
 		flex-direction: column;
@@ -204,38 +280,6 @@
 		align-items: stretch;
 		align-content: stretch;
 		gap: var(--l);
-
-		/* text layout (posts/uses teasers) — usage-specific, moved from BaseCard */
-		:global(.base-card.text) {
-			position: relative;
-			flex-direction: column;
-		}
-		:global(.base-card.text .external-link) {
-			position: absolute;
-			top: var(--l);
-			right: var(--m);
-			z-index: 10;
-		}
-		:global(.base-card.text strong) {
-			display: block;
-			font-family: var(--font-family);
-			font-size: var(--font-m);
-			font-weight: 900;
-			line-height: 1.2;
-			letter-spacing: var(--font-letter-spacing-headline);
-		}
-		:global(.base-card.text time) {
-			display: inline-block;
-			margin: 0 0 var(--xs) 0;
-			font-size: var(--font-s);
-			font-weight: 400;
-			font-style: italic;
-		}
-		:global(.base-card.text p) {
-			margin: var(--xs) 0 0 0;
-			font-size: var(--font-m);
-			line-height: 1.5;
-		}
 
 		h2 {
 			margin: var(--xl) 0 var(--m) 0;
@@ -246,92 +290,191 @@
 			letter-spacing: var(--font-letter-spacing-headline);
 			text-align: center;
 		}
-		.group {
-			position: relative;
-			@media screen and (width <= 86rem) {
-				position: static;
+
+		.feed {
+			display: flex;
+			width: 100%;
+			flex-direction: column;
+			gap: var(--m);
+		}
+
+		.feed-table {
+			width: 100%;
+			table-layout: fixed;
+			border-collapse: collapse;
+			@media screen and (width <= 68.75rem) {
+				display: block;
 			}
-			h3 {
-				display: flex;
-				position: absolute;
-				top: 1.8rem;
-				left: -11rem;
-				width: 10rem;
-				height: 1.5rem;
-				flex-wrap: nowrap;
-				justify-content: flex-end;
-				align-items: center;
-				align-content: center;
-				gap: 0.25rem;
-				font-family: var(--font-family);
-				font-size: var(--font-m);
-				font-weight: 600;
-				letter-spacing: var(--font-letter-spacing-headline);
-				text-align: right;
-				@media screen and (width <= 86rem) {
-					position: static;
-					top: auto;
-					left: auto;
-					margin: 0 0 var(--m) var(--xs);
-					width: 100%;
-					height: auto;
-					justify-content: flex-start;
-					text-align: center;
+			tbody {
+				@media screen and (width <= 68.75rem) {
+					display: block;
 				}
-				span {
-					line-height: 1;
-				}
-				:global(svg) {
-					size: 1.5rem;
-				}
-			}
-			> ul {
-				display: flex;
-				flex-direction: row;
-				flex-wrap: nowrap;
-				justify-content: flex-start;
-				align-items: stretch;
-				align-content: stretch;
-				gap: var(--l);
-				@media screen and (width <= 68rem) {
-					flex-wrap: wrap;
-				}
-				> li {
-					display: flex;
-					min-height: 0;
-					flex: 1 1 auto;
-					flex-direction: column;
-					> :global(.base-card) {
-						min-height: 0;
-						flex: 1 1 auto;
+				tr {
+					@media screen and (width <= 68.75rem) {
+						display: block;
 					}
-					&:first-child:nth-last-child(1),
-					&:first-child:nth-last-child(1) ~ li {
-						width: 100%;
-					}
-					&:first-child:nth-last-child(2),
-					&:first-child:nth-last-child(2) ~ li {
-						width: calc(100% / 2);
-						@media screen and (width <= 68rem) {
-							width: 100%;
+					&:last-child {
+						td {
+							border-bottom: none;
 						}
 					}
-					&:first-child:nth-last-child(3),
-					&:first-child:nth-last-child(3) ~ li {
-						width: calc(100% / 3);
-						@media screen and (width <= 60rem) {
+					td {
+						border-bottom: 1px solid var(--feed-border);
+						vertical-align: top;
+						@media screen and (width > 68.75rem) {
+							&:first-child:not(:only-child) {
+								border-right: 1px solid var(--feed-border);
+							}
+						}
+						@media screen and (width <= 68.75rem) {
+							display: block;
 							width: 100%;
 						}
-					}
-					&:first-child:nth-last-child(4),
-					&:first-child:nth-last-child(4) ~ li {
-						width: calc(100% / 4);
-						@media screen and (width <= 60rem) {
+						.link {
+							display: flex;
+							position: relative;
+							padding: var(--l);
 							width: 100%;
+							min-width: 0;
+							min-height: 0;
+							flex: 1;
+							flex-direction: row;
+							align-items: flex-start;
+							gap: var(--m);
+							color: inherit;
+							text-decoration: none;
+							transition: background var(--transition);
+							box-sizing: border-box;
+							@media screen and (width <= 42rem) {
+								flex-direction: column;
+							}
+							&:hover {
+								background: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
+								.external-link {
+									color: var(--c-font);
+								}
+							}
+						}
+						.thumb {
+							display: flex;
+							width: 3rem;
+							flex-shrink: 0;
+							flex-direction: row;
+							justify-content: center;
+							align-items: flex-start;
+						}
+						.thumb .inner {
+							display: flex;
+							width: 3rem;
+							min-height: 3rem;
+							border-radius: var(--border-radius-small);
+							flex-shrink: 0;
+							flex-direction: row;
+							justify-content: center;
+							align-items: center;
+							overflow: hidden;
+						}
+						.thumb .inner img,
+						.thumb .inner :global(enhanced-img) {
+							display: block;
+							width: 100%;
+							height: auto;
+							vertical-align: top;
+						}
+						.thumb .inner :global(.thumb-icon) {
+							display: flex;
+							width: 100%;
+							height: 100%;
+							min-height: 3rem;
+							flex-shrink: 0;
+							justify-content: center;
+							align-items: center;
+							color: var(--c-font-accent-dark);
+						}
+						.thumb .inner :global(.thumb-icon svg) {
+							width: 1.5rem;
+							height: 1.5rem;
+						}
+						.content {
+							display: flex;
+							min-width: 0;
+							flex: 1;
+							flex-direction: column;
+							gap: var(--xs);
+						}
+						.label {
+							color: var(--c-font-accent-dark);
+							font-size: var(--font-s);
+							font-weight: 600;
+							letter-spacing: 0.05em;
+							text-transform: uppercase;
+						}
+						.title {
+							display: block;
+							font-family: var(--font-family);
+							font-size: var(--font-m);
+							font-weight: 900;
+							line-height: 1.2;
+							letter-spacing: var(--font-letter-spacing-headline);
+						}
+						.date {
+							color: var(--c-font-accent-dark);
+							font-size: var(--font-s);
+							font-weight: 400;
+							font-style: italic;
+						}
+						.description {
+							margin: 0;
+							color: var(--c-font-accent-dark);
+							font-size: var(--font-m);
+							line-height: 1.5;
+						}
+						.external-link {
+							display: flex;
+							position: absolute;
+							top: var(--l);
+							right: var(--l);
+							z-index: 10;
+							width: 1.5rem;
+							height: 1.5rem;
+							flex-shrink: 0;
+							justify-content: center;
+							align-items: center;
+							color: var(--c-font-accent-super-light);
+							transition: var(--transition);
+							pointer-events: none;
+						}
+						.external-link :global(svg) {
+							width: 1rem;
+							height: 1rem;
 						}
 					}
 				}
 			}
+		}
+
+		.actions {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: var(--m);
+		}
+
+		.btn {
+			padding: var(--s) var(--m);
+			border: 1px solid var(--c-border);
+			border-radius: var(--border-radius);
+			background: color-mix(in srgb, var(--c-surface-accent) 60%, transparent);
+			color: var(--c-font);
+			font-family: var(--font-family);
+			font-size: var(--font-s);
+			font-weight: 600;
+			transition: var(--transition);
+			cursor: pointer;
+		}
+
+		.btn:hover {
+			background: color-mix(in srgb, var(--c-surface-accent) 80%, transparent);
 		}
 	}
 </style>
