@@ -37,6 +37,12 @@
 		}
 	}
 
+	type FeedImageEntry = Pick<MergedFeedEntry, 'category' | 'slug'>;
+
+	function getFeedImageKey(entry: FeedImageEntry): string {
+		return `${entry.category}:${entry.slug}`;
+	}
+
 	interface Props {
 		data: PageData;
 	}
@@ -57,6 +63,7 @@
 	let visibleCount = $state<number | null>(null);
 	let effectiveVisibleCount = $derived(visibleCount ?? initialCount);
 	let visibleEntries = $derived(layoutOrdered.slice(0, effectiveVisibleCount));
+	let loadedFeedImages = $state<Record<string, boolean>>({});
 
 	let feedRows = $derived.by(() => {
 		const entries = visibleEntries;
@@ -81,53 +88,66 @@
 		return rows;
 	});
 
-	function trackFeedImageLoad(node: HTMLElement) {
+	function markFeedImageLoaded(entry: FeedImageEntry): void {
+		const key = getFeedImageKey(entry);
+		if (loadedFeedImages[key]) {
+			return;
+		}
+		loadedFeedImages[key] = true;
+	}
+
+	function isFeedImageLoaded(entry: FeedImageEntry): boolean {
+		return loadedFeedImages[getFeedImageKey(entry)] === true;
+	}
+
+	function trackFeedImageLoad(node: HTMLElement, entry: FeedImageEntry) {
+		let trackedEntry = entry;
 		let trackedImage: HTMLImageElement | null = null;
-		let trackedObserver: MutationObserver | null = null;
+		let isResolved = false;
 
-		const cleanup = () => {
-			if (trackedImage !== null) {
-				trackedImage.removeEventListener('load', markLoaded);
-				trackedImage.removeEventListener('error', markLoaded);
-				trackedImage = null;
+		const handleDone = () => {
+			if (isResolved) {
+				return;
 			}
-			if (trackedObserver !== null) {
-				trackedObserver.disconnect();
-				trackedObserver = null;
-			}
-		};
-
-		const markLoaded = () => {
-			node.classList.add('loaded');
+			isResolved = true;
+			markFeedImageLoaded(trackedEntry);
 			cleanup();
 		};
 
-		const connectToImage = (): boolean => {
-			const image = node.querySelector('img');
-			if (image === null) {
-				return false;
+		const cleanup = () => {
+			if (trackedImage === null) {
+				return;
 			}
-			trackedImage = image;
-			if (trackedImage.complete) {
-				markLoaded();
-				return true;
-			}
-			trackedImage.addEventListener('load', markLoaded, { once: true });
-			trackedImage.addEventListener('error', markLoaded, { once: true });
-			return true;
+			trackedImage.removeEventListener('load', handleDone);
+			trackedImage.removeEventListener('error', handleDone);
 		};
 
-		if (!connectToImage()) {
-			trackedObserver = new MutationObserver(() => {
-				if (connectToImage()) {
-					trackedObserver?.disconnect();
-					trackedObserver = null;
-				}
-			});
-			trackedObserver.observe(node, { childList: true, subtree: true });
-		}
+		const setup = () => {
+			cleanup();
+			isResolved = false;
+			trackedImage = node.querySelector('img');
+			if (trackedImage === null) {
+				handleDone();
+				return;
+			}
+			if (trackedImage.complete) {
+				handleDone();
+				return;
+			}
+			trackedImage.addEventListener('load', handleDone, { once: true });
+			trackedImage.addEventListener('error', handleDone, { once: true });
+		};
+
+		setup();
 
 		return {
+			update(nextEntry: FeedImageEntry) {
+				trackedEntry = nextEntry;
+				if (isFeedImageLoaded(trackedEntry)) {
+					return;
+				}
+				setup();
+			},
 			destroy() {
 				cleanup();
 			}
@@ -193,21 +213,35 @@
 											{#if entry.category === 'Posts'}
 												<Icon icon="ph:file-text-duotone" class="thumb-icon" />
 											{:else if entry.image && isSvgImage(entry.image)}
-												<div class="thumb-media" use:trackFeedImageLoad>
+												{@const thumbLoaded = isFeedImageLoaded(entry)}
+												{#if !thumbLoaded}
+													<span class="thumb-loader" aria-hidden="true"></span>
+												{/if}
+												<div
+													class="thumb-media"
+													class:loaded={thumbLoaded}
+													use:trackFeedImageLoad={entry}
+												>
 													<img src={getSvgSrc(entry.category, entry.image)} alt={entry.title} />
 												</div>
-												<span class="thumb-loader" aria-hidden="true"></span>
 											{:else if entry.image}
 												{@const imageData = getEntryImage(entry)}
 												{#if imageData}
-													<div class="thumb-media" use:trackFeedImageLoad>
+													{@const thumbLoaded = isFeedImageLoaded(entry)}
+													{#if !thumbLoaded}
+														<span class="thumb-loader" aria-hidden="true"></span>
+													{/if}
+													<div
+														class="thumb-media"
+														class:loaded={thumbLoaded}
+														use:trackFeedImageLoad={entry}
+													>
 														<enhanced:img
 															src={imageData}
 															sizes="(min-width:768px) 64px, 48px"
 															alt={entry.title}
 														/>
 													</div>
-													<span class="thumb-loader" aria-hidden="true"></span>
 												{:else}
 													<Icon icon="ph:empty-duotone" class="thumb-icon" />
 												{/if}
@@ -428,7 +462,6 @@
 								overflow: hidden;
 								.thumb-loader {
 									display: block;
-									opacity: 1;
 									position: absolute;
 									top: 50%;
 									left: 50%;
@@ -437,7 +470,6 @@
 									height: 0.75rem;
 									border-radius: 50%;
 									background: color-mix(in srgb, var(--c-font-accent-super-light) 65%, transparent);
-									transition: opacity 180ms ease-out;
 									animation: feed-thumb-pulse 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 									transform: translate(-50%, -50%);
 									transform-origin: center;
@@ -454,10 +486,6 @@
 									transition: opacity 220ms ease-out;
 									&.loaded {
 										opacity: 1;
-										~ .thumb-loader {
-											opacity: 0;
-											animation: none;
-										}
 									}
 									img {
 										display: block;
