@@ -37,6 +37,12 @@
 		}
 	}
 
+	type FeedImageEntry = Pick<MergedFeedEntry, 'category' | 'slug'>;
+
+	function getFeedImageKey(entry: FeedImageEntry): string {
+		return `${entry.category}:${entry.slug}`;
+	}
+
 	interface Props {
 		data: PageData;
 	}
@@ -57,6 +63,7 @@
 	let visibleCount = $state<number | null>(null);
 	let effectiveVisibleCount = $derived(visibleCount ?? initialCount);
 	let visibleEntries = $derived(layoutOrdered.slice(0, effectiveVisibleCount));
+	let loadedFeedImages = $state<Record<string, boolean>>({});
 
 	let feedRows = $derived.by(() => {
 		const entries = visibleEntries;
@@ -80,6 +87,72 @@
 		}
 		return rows;
 	});
+
+	function markFeedImageLoaded(entry: FeedImageEntry): void {
+		const key = getFeedImageKey(entry);
+		if (loadedFeedImages[key]) {
+			return;
+		}
+		loadedFeedImages[key] = true;
+	}
+
+	function isFeedImageLoaded(entry: FeedImageEntry): boolean {
+		return loadedFeedImages[getFeedImageKey(entry)] === true;
+	}
+
+	function trackFeedImageLoad(node: HTMLElement, entry: FeedImageEntry) {
+		let trackedEntry = entry;
+		let trackedImage: HTMLImageElement | null = null;
+		let isResolved = false;
+
+		const handleDone = () => {
+			if (isResolved) {
+				return;
+			}
+			isResolved = true;
+			markFeedImageLoaded(trackedEntry);
+			cleanup();
+		};
+
+		const cleanup = () => {
+			if (trackedImage === null) {
+				return;
+			}
+			trackedImage.removeEventListener('load', handleDone);
+			trackedImage.removeEventListener('error', handleDone);
+		};
+
+		const setup = () => {
+			cleanup();
+			isResolved = false;
+			trackedImage = node.querySelector('img');
+			if (trackedImage === null) {
+				handleDone();
+				return;
+			}
+			if (trackedImage.complete) {
+				handleDone();
+				return;
+			}
+			trackedImage.addEventListener('load', handleDone, { once: true });
+			trackedImage.addEventListener('error', handleDone, { once: true });
+		};
+
+		setup();
+
+		return {
+			update(nextEntry: FeedImageEntry) {
+				trackedEntry = nextEntry;
+				if (isFeedImageLoaded(trackedEntry)) {
+					return;
+				}
+				setup();
+			},
+			destroy() {
+				cleanup();
+			}
+		};
+	}
 
 	function showMore() {
 		visibleCount = getTargetVisibleCount(layoutOrdered, effectiveVisibleCount, 6);
@@ -140,15 +213,35 @@
 											{#if entry.category === 'Posts'}
 												<Icon icon="ph:file-text-duotone" class="thumb-icon" />
 											{:else if entry.image && isSvgImage(entry.image)}
-												<img src={getSvgSrc(entry.category, entry.image)} alt={entry.title} />
+												{@const thumbLoaded = isFeedImageLoaded(entry)}
+												{#if !thumbLoaded}
+													<span class="thumb-loader" aria-hidden="true"></span>
+												{/if}
+												<div
+													class="thumb-media"
+													class:loaded={thumbLoaded}
+													use:trackFeedImageLoad={entry}
+												>
+													<img src={getSvgSrc(entry.category, entry.image)} alt={entry.title} />
+												</div>
 											{:else if entry.image}
 												{@const imageData = getEntryImage(entry)}
 												{#if imageData}
-													<enhanced:img
-														src={imageData}
-														sizes="(min-width:768px) 64px, 48px"
-														alt={entry.title}
-													/>
+													{@const thumbLoaded = isFeedImageLoaded(entry)}
+													{#if !thumbLoaded}
+														<span class="thumb-loader" aria-hidden="true"></span>
+													{/if}
+													<div
+														class="thumb-media"
+														class:loaded={thumbLoaded}
+														use:trackFeedImageLoad={entry}
+													>
+														<enhanced:img
+															src={imageData}
+															sizes="(min-width:768px) 64px, 48px"
+															alt={entry.title}
+														/>
+													</div>
 												{:else}
 													<Icon icon="ph:empty-duotone" class="thumb-icon" />
 												{/if}
@@ -271,11 +364,11 @@
 		.feed-intro {
 			margin: 0 0 var(--l);
 			max-width: 36rem;
-			text-align: center;
 			align-self: center;
 			color: var(--c-font-accent-dark);
 			font-size: var(--font-m);
 			line-height: 1.5;
+			text-align: center;
 		}
 
 		.feed {
@@ -358,6 +451,7 @@
 							align-items: flex-start;
 							.inner {
 								display: flex;
+								position: relative;
 								width: 3rem;
 								min-height: 3rem;
 								border-radius: var(--border-radius-small);
@@ -366,17 +460,45 @@
 								justify-content: center;
 								align-items: center;
 								overflow: hidden;
-								img {
+								.thumb-loader {
 									display: block;
-									width: 100%;
-									height: auto;
-									vertical-align: top;
+									position: absolute;
+									top: 50%;
+									left: 50%;
+									z-index: 1;
+									width: 0.75rem;
+									height: 0.75rem;
+									border-radius: 50%;
+									background: color-mix(in srgb, var(--c-font-accent-super-light) 65%, transparent);
+									animation: feed-thumb-pulse 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+									transform: translate(-50%, -50%);
+									transform-origin: center;
+									will-change: transform, opacity;
 								}
-								:global(enhanced-img) {
-									display: block;
+								.thumb-media {
+									display: flex;
+									opacity: 0;
+									position: relative;
+									z-index: 2;
 									width: 100%;
-									height: auto;
-									vertical-align: top;
+									justify-content: center;
+									align-items: center;
+									transition: opacity 220ms ease-out;
+									&.loaded {
+										opacity: 1;
+									}
+									img {
+										display: block;
+										width: 100%;
+										height: auto;
+										vertical-align: top;
+									}
+									:global(enhanced-img) {
+										display: block;
+										width: 100%;
+										height: auto;
+										vertical-align: top;
+									}
 								}
 								:global(.thumb-icon) {
 									display: flex;
@@ -473,6 +595,25 @@
 			&:hover {
 				background: color-mix(in srgb, var(--c-surface-accent) 80%, transparent);
 			}
+		}
+	}
+
+	@keyframes feed-thumb-pulse {
+		0% {
+			opacity: 0.3;
+			transform: translate(-50%, -50%) scale(0.75);
+		}
+		35% {
+			opacity: 0.6;
+			transform: translate(-50%, -50%) scale(1);
+		}
+		70% {
+			opacity: 0.42;
+			transform: translate(-50%, -50%) scale(1.2);
+		}
+		100% {
+			opacity: 0.3;
+			transform: translate(-50%, -50%) scale(0.75);
 		}
 	}
 </style>
