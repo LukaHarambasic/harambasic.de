@@ -129,13 +129,12 @@
 					<tr>
 						{#each row as entry (entry.slug)}
 							<td colspan={row.length === 1 ? 2 : 1}>
-								<div class="cell-inner">
-									<a
-										href={entry.href.startsWith('http') ? entry.href : resolvePath(entry.href)}
-										rel={entry.href.startsWith('http') ? 'external' : undefined}
-										class="link"
-										aria-label="View {entry.title}"
-									>
+								<a
+									href={entry.href.startsWith('http') ? entry.href : resolvePath(entry.href)}
+									rel={entry.href.startsWith('http') ? 'external' : undefined}
+									class="link"
+									aria-label="View {entry.title}"
+								>
 									<div class="thumb">
 										<div class="inner">
 											{#if entry.category === 'Posts'}
@@ -177,8 +176,7 @@
 												: 'ph:arrow-up-right-bold'}
 										/>
 									</div>
-									</a>
-								</div>
+								</a>
 							</td>
 						{/each}
 					</tr>
@@ -289,8 +287,10 @@
 
 		.feed-table {
 			width: 100%;
+			border-radius: var(--border-radius);
 			table-layout: fixed;
 			border-collapse: collapse;
+			overflow: hidden;
 			@media screen and (width <= 68.75rem) {
 				display: block;
 			}
@@ -342,13 +342,14 @@
 						@media screen and (width <= 68.75rem) {
 							display: block;
 							width: 100%;
-						}
-						.cell-inner {
-							display: flex;
-							height: 100%;
-							flex-direction: column;
-							@media screen and (width <= 68.75rem) {
+							.link {
 								height: auto;
+							}
+						}
+						&:hover {
+							background: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
+							.external-link {
+								color: var(--c-font);
 							}
 						}
 						.link {
@@ -357,6 +358,7 @@
 							padding: var(--l);
 							width: 100%;
 							min-width: 0;
+							height: 100%;
 							min-height: 0;
 							flex: 1 1 auto;
 							flex-direction: row;
@@ -368,12 +370,6 @@
 							box-sizing: border-box;
 							@media screen and (width <= 42rem) {
 								flex-direction: column;
-							}
-							&:hover {
-								background: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
-								.external-link {
-									color: var(--c-font);
-								}
 							}
 						}
 						.thumb {

@@ -356,6 +356,13 @@ When updating existing code:
 - Prerender error handling for 404s
 - **Deployment**: Netlify via standard integration (automatic builds from Git)
 
+## HTML & DOM
+
+- **Semantic HTML** – Always use semantic elements when possible (e.g. `header`, `nav`, `main`, `article`, `section`, `aside`, `footer`, `figure`, `figcaption`).
+- **Minimal nesting** – Prefer the smallest indentation depth; less nesting is better.
+- **No filler elements** – Don’t add elements just for structure. Use classes and CSS (flex, grid, etc.) on existing elements to achieve layout and styling.
+- **Flat DOM** – Keep the DOM as flat as possible; avoid extra wrappers when layout can be done with CSS on the parent.
+
 ## CSS Quality Standards
 
 ### Automated CSS Property Ordering
