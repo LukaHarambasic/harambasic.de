@@ -58,7 +58,7 @@
 		justify-content: space-between;
 		align-items: flex-start;
 		align-content: stretch;
-		@media screen and (width <= 32rem) {
+		@media screen and (width <= 48rem) {
 			flex-direction: column;
 			align-items: center;
 			gap: var(--l);
@@ -79,7 +79,7 @@
 			font-weight: 900;
 			letter-spacing: var(--font-letter-spacing-headline);
 			text-decoration: none;
-			@media screen and (width <= 26rem) {
+			@media screen and (width <= 48rem) {
 				text-align: center;
 			}
 			&:hover {
@@ -97,7 +97,7 @@
 			align-items: flex-start;
 			align-content: stretch;
 			gap: var(--m);
-			@media screen and (width <= 26rem) {
+			@media screen and (width <= 48rem) {
 				flex-wrap: wrap;
 				justify-content: center;
 			}
