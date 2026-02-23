@@ -90,8 +90,38 @@
 			&[data-highlighted='true'] {
 				grid-column: span 2;
 
-				/* Highlighted-only: row layout and hover at 62rem */
+				/* Highlighted-only: desktop = column (image on top), tablet = row, small = column */
 				:global(.base-card.image.highlighted) {
+					@media screen and (width > 62rem) {
+						flex-direction: column;
+						align-items: stretch;
+						overflow: hidden;
+
+						:global(.image-wrapper) {
+							width: 100%;
+							min-width: 0;
+							min-height: 0;
+							border-radius: var(--border-radius) var(--border-radius) 0 0;
+							aspect-ratio: 16 / 10;
+						}
+
+						:global(.main-img) {
+							width: 100%;
+							height: auto;
+							min-height: 0;
+							border-radius: 0;
+							box-shadow: none;
+							aspect-ratio: 16 / 10;
+						}
+
+						:global(.main-img img) {
+							height: 100%;
+							min-height: 0;
+							border-radius: var(--border-radius) var(--border-radius) 0 0;
+							object-fit: cover;
+						}
+					}
+
 					@media screen and (width <= 62rem) {
 						flex-direction: row;
 						align-items: stretch;
@@ -103,6 +133,16 @@
 					}
 
 					&:hover {
+						@media screen and (width > 62rem) {
+							:global(.image-wrapper) {
+								filter: grayscale(0);
+							}
+
+							:global(.main-img img) {
+								opacity: 1;
+							}
+						}
+
 						@media screen and (width <= 62rem) {
 							:global(.image-wrapper) {
 								filter: grayscale(0);
