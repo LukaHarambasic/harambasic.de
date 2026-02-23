@@ -382,6 +382,89 @@ This project enforces standardized CSS property ordering using `postcss-sorting`
 9. **Animations** - `transition`, `animation`, `transform`
 10. **Miscellaneous** - `cursor`, `user-select`, `overflow`
 
+### Media Query Colocation
+
+**Put media queries where the affected class is defined.** Do not group all breakpoint overrides in one large `@media` block that redefines many classes. Repeat the same media query at each class that changes at that breakpoint.
+
+- **Colocate** – Each selector’s responsive overrides live inside that selector’s block, as nested `@media` blocks.
+- **One breakpoint per place** – If both `62rem` and `32rem` affect a class, that class block contains both `@media (width <= 62rem) { ... }` and `@media (width <= 32rem) { ... }`.
+- **No “redo” blocks** – Avoid a single top-level media query that restates multiple selectors; move those overrides into the respective class blocks.
+
+**Avoid (one big media block redefining multiple classes):**
+
+```css
+.entries {
+	@media screen and (width <= 62rem) {
+		.entry-wrapper {
+			&[data-highlighted='true'] {
+				:global(.base-card.image.highlighted) {
+					flex-direction: row;
+					:global(.image-wrapper) { width: 12rem; /* ... */ }
+					:global(.main-img) { /* ... */ }
+				}
+			}
+		}
+	}
+	@media screen and (width <= 32rem) {
+		.entry-wrapper {
+			&[data-highlighted='true'] {
+				:global(.base-card.image.highlighted) {
+					flex-direction: column;
+					:global(.image-wrapper) { width: 100%; /* ... */ }
+					:global(.main-img) { /* ... */ }
+				}
+			}
+		}
+	}
+	.entry-wrapper { /* base styles */ }
+}
+```
+
+**Prefer (media queries next to each class):**
+
+```css
+.entries {
+	.entry-wrapper {
+		/* base styles */
+
+		&[data-highlighted='true'] {
+			:global(.base-card.image.highlighted) {
+				@media screen and (width <= 62rem) {
+					flex-direction: row;
+					align-items: stretch;
+					overflow: hidden;
+				}
+				@media screen and (width <= 32rem) {
+					flex-direction: column;
+				}
+
+				:global(.image-wrapper) {
+					@media screen and (width <= 62rem) {
+						width: 12rem;
+						/* ... */
+					}
+					@media screen and (width <= 32rem) {
+						width: 100%;
+						min-width: 0;
+						/* ... */
+					}
+				}
+
+				:global(.main-img) {
+					@media screen and (width <= 32rem) {
+						width: 100%;
+						height: auto;
+						/* ... */
+					}
+				}
+			}
+		}
+	}
+}
+```
+
+Apply this pattern everywhere: new responsive styles and when refactoring existing `@media` blocks.
+
 ### CSS Linting Commands
 
 - **`bun run format:css`** - Automatically sorts CSS properties according to standards
