@@ -65,12 +65,25 @@
 			list-style: none;
 			.post-row {
 				border-bottom: 1px solid var(--c-surface-accent);
+				&:first-child {
+					.row-link {
+						border-radius: var(--border-radius) var(--border-radius) 0 0;
+					}
+				}
 				&:last-child {
 					border-bottom: none;
+					.row-link {
+						border-radius: 0 0 var(--border-radius) var(--border-radius);
+					}
+				}
+				&:only-child {
+					.row-link {
+						border-radius: var(--border-radius);
+					}
 				}
 				.row-link {
 					display: flex;
-					padding: var(--l) 0;
+					padding: var(--l);
 					width: 100%;
 					flex-direction: row;
 					flex-wrap: nowrap;
@@ -79,7 +92,9 @@
 					gap: var(--m);
 					color: inherit;
 					text-decoration: none;
+					transition: background var(--transition);
 					&:hover {
+						background: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
 						.external-link {
 							color: var(--c-font);
 							transform: translateY(-2px) translateX(2px);

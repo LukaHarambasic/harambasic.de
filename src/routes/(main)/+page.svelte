@@ -129,12 +129,13 @@
 					<tr>
 						{#each row as entry (entry.slug)}
 							<td colspan={row.length === 1 ? 2 : 1}>
-								<a
-									href={entry.href.startsWith('http') ? entry.href : resolvePath(entry.href)}
-									rel={entry.href.startsWith('http') ? 'external' : undefined}
-									class="link"
-									aria-label="View {entry.title}"
-								>
+								<div class="cell-inner">
+									<a
+										href={entry.href.startsWith('http') ? entry.href : resolvePath(entry.href)}
+										rel={entry.href.startsWith('http') ? 'external' : undefined}
+										class="link"
+										aria-label="View {entry.title}"
+									>
 									<div class="thumb">
 										<div class="inner">
 											{#if entry.category === 'Posts'}
@@ -176,7 +177,8 @@
 												: 'ph:arrow-up-right-bold'}
 										/>
 									</div>
-								</a>
+									</a>
+								</div>
 							</td>
 						{/each}
 					</tr>
@@ -271,11 +273,11 @@
 		.feed-intro {
 			margin: 0 0 var(--l);
 			max-width: 36rem;
-			text-align: center;
 			align-self: center;
 			color: var(--c-font-accent-dark);
 			font-size: var(--font-m);
 			line-height: 1.5;
+			text-align: center;
 		}
 
 		.feed {
@@ -311,6 +313,23 @@
 								border-bottom: none;
 							}
 						}
+						td {
+							&:first-child {
+								.link {
+									border-radius: 0 0 0 var(--border-radius);
+								}
+							}
+							&:last-child {
+								.link {
+									border-radius: 0 0 var(--border-radius) 0;
+								}
+							}
+							&:only-child {
+								.link {
+									border-radius: 0 0 var(--border-radius) var(--border-radius);
+								}
+							}
+						}
 					}
 					td {
 						border-bottom: 1px solid var(--feed-border);
@@ -324,6 +343,14 @@
 							display: block;
 							width: 100%;
 						}
+						.cell-inner {
+							display: flex;
+							height: 100%;
+							flex-direction: column;
+							@media screen and (width <= 68.75rem) {
+								height: auto;
+							}
+						}
 						.link {
 							display: flex;
 							position: relative;
@@ -331,7 +358,7 @@
 							width: 100%;
 							min-width: 0;
 							min-height: 0;
-							flex: 1;
+							flex: 1 1 auto;
 							flex-direction: row;
 							align-items: flex-start;
 							gap: var(--m);
@@ -446,6 +473,34 @@
 						.external-link :global(svg) {
 							width: 1rem;
 							height: 1rem;
+						}
+					}
+					&:first-child {
+						td {
+							&:first-child {
+								.link {
+									border-radius: var(--border-radius) 0 0 0;
+								}
+							}
+							&:last-child {
+								.link {
+									border-radius: 0 var(--border-radius) 0 0;
+								}
+							}
+							&:only-child {
+								.link {
+									border-radius: var(--border-radius) var(--border-radius) 0 0;
+								}
+							}
+						}
+					}
+					&:only-child {
+						td {
+							&:only-child {
+								.link {
+									border-radius: var(--border-radius);
+								}
+							}
 						}
 					}
 				}
