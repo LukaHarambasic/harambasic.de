@@ -119,6 +119,7 @@
 							min-height: 0;
 							border-radius: var(--border-radius) var(--border-radius) 0 0;
 							object-fit: cover;
+							object-position: top;
 						}
 					}
 
@@ -262,7 +263,7 @@
 						height: 100% !important;
 						border-radius: var(--border-radius) 0 0 var(--border-radius);
 						object-fit: cover;
-						object-position: center;
+						object-position: top;
 					}
 
 					@media screen and (width <= 32rem) {
@@ -271,6 +272,7 @@
 							min-height: 0;
 							border-radius: var(--border-radius) var(--border-radius) 0 0;
 							object-fit: cover;
+							object-position: top;
 						}
 					}
 				}
