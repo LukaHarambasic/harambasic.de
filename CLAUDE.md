@@ -399,8 +399,12 @@ This project enforces standardized CSS property ordering using `postcss-sorting`
 			&[data-highlighted='true'] {
 				:global(.base-card.image.highlighted) {
 					flex-direction: row;
-					:global(.image-wrapper) { width: 12rem; /* ... */ }
-					:global(.main-img) { /* ... */ }
+					:global(.image-wrapper) {
+						width: 12rem; /* ... */
+					}
+					:global(.main-img) {
+						/* ... */
+					}
 				}
 			}
 		}
@@ -410,13 +414,19 @@ This project enforces standardized CSS property ordering using `postcss-sorting`
 			&[data-highlighted='true'] {
 				:global(.base-card.image.highlighted) {
 					flex-direction: column;
-					:global(.image-wrapper) { width: 100%; /* ... */ }
-					:global(.main-img) { /* ... */ }
+					:global(.image-wrapper) {
+						width: 100%; /* ... */
+					}
+					:global(.main-img) {
+						/* ... */
+					}
 				}
 			}
 		}
 	}
-	.entry-wrapper { /* base styles */ }
+	.entry-wrapper {
+		/* base styles */
+	}
 }
 ```
 

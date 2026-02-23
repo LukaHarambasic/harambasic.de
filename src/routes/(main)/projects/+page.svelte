@@ -90,6 +90,7 @@
 			&[data-highlighted='true'] {
 				grid-column: span 2;
 
+				/* Highlighted-only: row layout and hover at 62rem */
 				:global(.base-card.image.highlighted) {
 					@media screen and (width <= 62rem) {
 						flex-direction: row;
@@ -99,105 +100,6 @@
 
 					@media screen and (width <= 32rem) {
 						flex-direction: column;
-					}
-
-					:global(.image-wrapper) {
-						@media screen and (width <= 62rem) {
-							display: block;
-							position: relative;
-							margin: 0;
-							padding: 0;
-							width: 12rem;
-							min-width: 12rem;
-							min-height: 12rem;
-							border-radius: var(--border-radius) 0 0 var(--border-radius);
-							align-self: stretch;
-							transition: filter var(--transition);
-							overflow: hidden;
-							box-sizing: border-box;
-							filter: grayscale(1);
-
-							:global(.blur-bg) {
-								position: absolute;
-								z-index: 1;
-								margin: 0;
-								padding: 0;
-								width: 100%;
-								height: 100%;
-								inset: 0;
-
-								:global(picture),
-								:global(img) {
-									margin: 0;
-									padding: 0;
-									width: 100%;
-									height: 100%;
-									object-fit: cover;
-									transform: scale(1.1);
-									filter: blur(12px) brightness(0.9);
-								}
-							}
-
-							:global(.main-img) {
-								position: absolute;
-								z-index: 2;
-								margin: 0;
-								padding: 0;
-								width: 100%;
-								height: 100%;
-								border-radius: var(--border-radius) 0 0 var(--border-radius);
-								box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-								inset: 0;
-
-								:global(picture) {
-									display: block;
-									margin: 0;
-									padding: 0;
-									width: 100%;
-									height: 100%;
-								}
-
-								:global(img) {
-									display: block;
-									margin: 0;
-									padding: 0;
-									width: 100% !important;
-									max-width: 100%;
-									height: 100% !important;
-									border-radius: var(--border-radius) 0 0 var(--border-radius);
-									object-fit: cover;
-									object-position: center;
-								}
-							}
-						}
-
-						@media screen and (width <= 32rem) {
-							width: 100%;
-							min-width: 0;
-							min-height: 0;
-							border-radius: var(--border-radius) var(--border-radius) 0 0;
-							aspect-ratio: 16 / 10;
-						}
-					}
-
-					:global(.main-img) {
-						@media screen and (width <= 32rem) {
-							width: 100%;
-							height: auto;
-							min-height: 0;
-							border-radius: 0;
-							box-shadow: none;
-							aspect-ratio: 16 / 10;
-						}
-
-						:global(img) {
-							@media screen and (width <= 32rem) {
-								height: 100%;
-								min-height: 0;
-								border-radius: var(--border-radius) var(--border-radius) 0 0;
-								object-fit: cover;
-							}
-						}
 					}
 
 					&:hover {
@@ -224,7 +126,8 @@
 			}
 		}
 
-		/* image.compact (non-highlighted cards) — usage-specific, moved from BaseCard */
+		/* Shared: image card layout and image styling (highlighted + compact), usage-specific */
+		:global(.base-card.image.highlighted),
 		:global(.base-card.image.compact) {
 			flex-direction: row;
 			align-items: stretch;
@@ -276,8 +179,8 @@
 						padding: 0;
 						width: 100%;
 						height: 100%;
-						transform: scale(1.1);
 						object-fit: cover;
+						transform: scale(1.1);
 						filter: blur(12px) brightness(0.9);
 					}
 				}
@@ -333,16 +236,6 @@
 				}
 			}
 
-			&:hover {
-				:global(.image-wrapper) {
-					filter: grayscale(0);
-
-					:global(.main-img img) {
-						opacity: 1;
-					}
-				}
-			}
-
 			:global(.content) {
 				text-align: left;
 
@@ -352,6 +245,19 @@
 
 				:global(p) {
 					margin: 0 0 var(--s) 0;
+				}
+			}
+		}
+
+		/* Compact only: hover at all viewports */
+		:global(.base-card.image.compact) {
+			&:hover {
+				:global(.image-wrapper) {
+					filter: grayscale(0);
+				}
+
+				:global(.main-img img) {
+					opacity: 1;
 				}
 			}
 		}
