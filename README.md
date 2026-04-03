@@ -27,3 +27,7 @@ Run this before pushing. Fix any failures before opening a PR.
 ## Deploy
 
 Netlify builds automatically on merge to `main`. Build command: `bun run build`, output: `build/`.
+
+---
+
+_Last updated: 2026-04-03_
