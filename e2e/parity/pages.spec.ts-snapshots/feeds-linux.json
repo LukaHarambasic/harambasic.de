@@ -1,0 +1,31 @@
+{
+  "url": "/feeds",
+  "status": 200,
+  "title": "Feeds | Luka Harambasic",
+  "description": "I want to expose my data in an open format that can be consumed by everyone who is interested. Either the full feed or just subsets of it.",
+  "ogImage": "https://harambasic.de/social/feeds.png",
+  "h1": "Feeds",
+  "landmarks": {
+    "header": 1,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

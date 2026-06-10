@@ -1,0 +1,19 @@
+/*
+ * Code-block container styling — replaces the retired highlight.css.
+ *
+ * Token colors AND the background come from Shiki's `one-dark-pro` theme, applied
+ * inline on the `<pre class="astro-code">` element (background #282c34, matching
+ * the old One Dark highlight.css). This file only restores the *container* styling
+ * highlight.css used to provide around the block (the `.hljs` rule): spacing,
+ * radius, font, horizontal scroll. Code blocks stay always-dark.
+ */
+
+.astro-code {
+	display: block;
+	margin: 0 0 var(--l) 0;
+	padding: var(--m);
+	border-radius: var(--border-radius);
+	font-family: var(--font-family-code);
+	font-size: var(--font-m);
+	overflow-x: auto;
+}

@@ -1,0 +1,260 @@
+---
+import '../styles/reset.css';
+import '../styles/fonts.css';
+import '../styles/variables.css';
+import '../styles/base.css';
+import '../styles/code.css';
+import { ClientRouter, fade } from 'astro:transitions';
+import LayoutHeader from '../components/LayoutHeader.astro';
+import LayoutFooter from '../components/LayoutFooter.astro';
+import ContactDialog from '../components/ContactDialog.astro';
+import { getSlug } from '$lib/util/helper';
+import { getPermalink } from '$lib/permalink';
+
+interface Props {
+	title?: string;
+	description: string;
+	isDetailPage?: boolean;
+}
+
+const { title = '', description, isDetailPage = false } = Astro.props;
+
+const permalink = getPermalink();
+const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic';
+const slug = title ? getSlug(title) : '';
+// og:image falls back to default.png unless the title-slug preview actually
+// exists, so it can never 404. Lazy glob: only the keys are read at build time,
+// nothing from public/ is imported or processed.
+const socialImages = import.meta.glob('/public/social/*.png');
+const socialImg =
+	slug && `/public/social/${slug}.png` in socialImages
+		? `${permalink}/social/${slug}.png`
+		: `${permalink}/social/default.png`;
+const socialImgAlt = fullTitle;
+---
+
+<!doctype html>
+<html lang="en" transition:animate={fade({ duration: '0.08s' })}>
+	<head>
+		<meta charset="utf-8" />
+		<ClientRouter />
+		<script
+			data-goatcounter="https://luha.goatcounter.com/count"
+			async
+			src="//gc.zgo.at/count.js"
+			is:inline></script>
+		<!-- Global Metadata -->
+		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="#e2ebf0" />
+		<meta name="HandheldFriendly" content="True" />
+		<link rel="icon" href="/favicon.svg" />
+		<!-- Primary Meta Tags -->
+		<title>{fullTitle}</title>
+		<meta name="title" content={fullTitle} />
+		<meta name="description" content={description} />
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Luka Harambasic" />
+		<meta property="og:url" content={permalink} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={socialImg} />
+		<meta property="og:image:alt" content={socialImgAlt} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<!-- Twitter -->
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@luka_harambasic" />
+		<meta name="twitter:url" content={permalink} />
+		<meta name="twitter:image" content={socialImg} />
+		<meta name="twitter:image:alt" content={socialImgAlt} />
+	</head>
+	<body>
+		<a id="skip-link" href="#main">Skip to main content</a>
+		<div class="container">
+			<LayoutHeader />
+			<main id="main">
+				<slot name="hero" />
+				{
+					isDetailPage ? (
+						<div class="golden-ratio">
+							<slot />
+						</div>
+					) : (
+						<slot />
+					)
+				}
+			</main>
+			<LayoutFooter />
+		</div>
+		<ContactDialog />
+	</body>
+</html>
+
+<script>
+	// All interactivity lives here so a single astro:page-load handler re-binds it
+	// after each View Transition. Per-element dataset guards keep init idempotent.
+
+	function openContactIfHash() {
+		const dialog = document.getElementById('contact-dialog') as HTMLDialogElement | null;
+		if (dialog && location.hash === '#contact' && !dialog.open) dialog.showModal();
+	}
+
+	function bindContactDialog() {
+		const dialog = document.getElementById('contact-dialog') as HTMLDialogElement | null;
+		if (!dialog || dialog.dataset.init === 'true') return;
+		dialog.dataset.init = 'true';
+		dialog.addEventListener('click', (e) => {
+			if (e.target === dialog) dialog.close();
+		});
+		dialog.addEventListener('close', () => {
+			if (location.hash === '#contact') {
+				history.replaceState(null, '', location.pathname + location.search);
+			}
+		});
+	}
+
+	// Clipboard buttons: copy once (matches the old `once` semantics).
+	function bindClipboard() {
+		document.querySelectorAll<HTMLElement>('[data-clipboard]').forEach((btn) => {
+			if (btn.dataset.init === 'true') return;
+			btn.dataset.init = 'true';
+			btn.addEventListener(
+				'click',
+				() => {
+					if (btn.dataset.clipboard) navigator.clipboard.writeText(btn.dataset.clipboard);
+				},
+				{ once: true }
+			);
+		});
+	}
+
+	// Home feed: precomputed visible-row steps drive Show more / Show less.
+	function bindFeed() {
+		document.querySelectorAll<HTMLElement>('[data-row-steps]').forEach((el) => {
+			if (el.dataset.feedInit === 'true') return;
+			el.dataset.feedInit = 'true';
+			const steps: number[] = JSON.parse(el.dataset.rowSteps || '[]');
+			const rows = Array.from(el.querySelectorAll<HTMLElement>('tr[data-row]'));
+			const moreBtn = el.querySelector<HTMLButtonElement>('[data-feed-more]');
+			const lessBtn = el.querySelector<HTMLButtonElement>('[data-feed-less]');
+			if (!moreBtn || !lessBtn || steps.length === 0) return;
+			let stepIndex = 0;
+			const apply = () => {
+				const visibleRows = steps[stepIndex];
+				rows.forEach((row, i) => {
+					row.hidden = i >= visibleRows;
+				});
+				moreBtn.hidden = stepIndex >= steps.length - 1;
+				lessBtn.hidden = stepIndex === 0;
+			};
+			moreBtn.addEventListener('click', () => {
+				if (stepIndex < steps.length - 1) {
+					stepIndex++;
+					apply();
+				}
+			});
+			lessBtn.addEventListener('click', () => {
+				stepIndex = 0;
+				apply();
+			});
+			apply();
+		});
+	}
+
+	// Feed thumbnails: fade in on image load, hiding the pulse placeholder.
+	function bindFeedImages() {
+		document.querySelectorAll<HTMLElement>('.thumb-media').forEach((media) => {
+			if (media.dataset.imgInit === 'true') return;
+			media.dataset.imgInit = 'true';
+			const img = media.querySelector('img');
+			const loader = media.parentElement?.querySelector<HTMLElement>('.thumb-loader');
+			const done = () => {
+				media.classList.add('loaded');
+				if (loader) loader.hidden = true;
+			};
+			if (!img || img.complete) {
+				done();
+				return;
+			}
+			img.addEventListener('load', done, { once: true });
+			img.addEventListener('error', done, { once: true });
+		});
+	}
+
+	// Global listeners — the module runs once even with the client router.
+	window.addEventListener('hashchange', openContactIfHash);
+
+	let firstPageLoad = true;
+	document.addEventListener('astro:page-load', () => {
+		bindContactDialog();
+		bindClipboard();
+		bindFeed();
+		bindFeedImages();
+		openContactIfHash();
+		// GoatCounter auto-counts the initial load; count SPA navigations manually.
+		if (firstPageLoad) {
+			firstPageLoad = false;
+			return;
+		}
+		const gc = (window as unknown as { goatcounter?: { count?: (opts?: unknown) => void } })
+			.goatcounter;
+		if (gc?.count) gc.count({ path: location.pathname + location.search });
+	});
+</script>
+
+<style>
+	#skip-link {
+		position: absolute;
+		transform: translateX(-100%);
+		&:focus {
+			position: unset;
+			transform: unset;
+		}
+	}
+	.container {
+		display: grid;
+		padding: var(--xl) 0;
+		width: 100%;
+		height: auto;
+		min-height: 100vh;
+		row-gap: var(--xl);
+		grid-template-areas: '. header .' '. main .' '. footer .';
+		grid-template-rows: auto 1fr auto;
+		grid-template-columns: 1fr var(--layout-xl) 1fr;
+		@media screen and (width <= 86rem) {
+			grid-template-columns: 4rem minmax(0, 1fr) 4rem;
+		}
+		@media screen and (width <= 32rem) {
+			padding: var(--l) 0;
+			row-gap: var(--l);
+			grid-template-columns: 2rem minmax(0, 1fr) 2rem;
+		}
+		> :global(header) {
+			grid-area: header;
+		}
+		> main {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: center;
+			align-content: stretch;
+			gap: var(--xl);
+			grid-area: main;
+			.golden-ratio {
+				margin: 0 auto;
+				width: 100%;
+				max-width: calc(var(--layout-xl) * 0.618);
+				@media screen and (width <= 48rem) {
+					width: 100%;
+				}
+			}
+		}
+		> :global(footer) {
+			grid-area: footer;
+		}
+	}
+</style>

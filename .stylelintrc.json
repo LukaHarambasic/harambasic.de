@@ -1,9 +1,9 @@
 {
-	"extends": ["stylelint-config-standard", "stylelint-config-html/svelte"],
+	"extends": ["stylelint-config-standard"],
 	"plugins": ["stylelint-order"],
 	"overrides": [
 		{
-			"files": ["**/*.svelte"],
+			"files": ["**/*.astro"],
 			"customSyntax": "postcss-html"
 		},
 		{

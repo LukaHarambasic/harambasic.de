@@ -1,0 +1,31 @@
+{
+  "url": "/posts/docker-compose-for-nextcloud-with-traefik-2-ssl",
+  "status": 200,
+  "title": "Docker Compose for NextCloud with Traefik 2 (SSL) | Luka Harambasic",
+  "description": "I faced some problems to set up NextCloud with Traefik and that's why I share my docker-compose.yml.",
+  "ogImage": "https://harambasic.de/social/docker-compose-for-nextcloud-with-traefik-2-ssl.png",
+  "h1": "Docker Compose for NextCloud with Traefik 2 (SSL)",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

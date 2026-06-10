@@ -1,0 +1,49 @@
+---
+import type { TocNode } from '$lib/toc';
+
+interface Props {
+	nodes: TocNode[];
+}
+
+const { nodes } = Astro.props;
+---
+
+{
+	nodes.length > 0 && (
+		<ol class="table-of-content">
+			{nodes.map((node) => (
+				<li class="toc-node">
+					<a href={`#${node.slug}`}>{node.value}</a>
+					{node.children.length > 0 && <Astro.self nodes={node.children} />}
+				</li>
+			))}
+		</ol>
+	)
+}
+
+<style>
+	.table-of-content {
+		display: flex;
+		margin: 0;
+		padding-left: var(--m);
+		flex-direction: column;
+		gap: var(--s);
+		list-style-type: none;
+		:global(.table-of-content) {
+			margin: var(--s) 0 0 var(--m);
+			padding-left: var(--m);
+			gap: var(--s);
+		}
+		.toc-node {
+			a {
+				color: var(--c-font);
+				font-family: var(--font-family);
+				font-size: var(--font-m);
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+</style>

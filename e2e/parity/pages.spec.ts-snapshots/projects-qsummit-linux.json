@@ -1,0 +1,31 @@
+{
+  "url": "/projects/qsummit",
+  "status": 200,
+  "title": "Q-Summit | Luka Harambasic",
+  "description": "Germany’s largest conference for entrepreneurship organized by students.",
+  "ogImage": "https://harambasic.de/social/qsummit.png",
+  "h1": "Q-Summit",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

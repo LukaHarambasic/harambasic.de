@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /cards/
+
+Sitemap: https://harambasic.de/sitemap-index.xml

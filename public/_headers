@@ -1,0 +1,12 @@
+/rss
+  Content-Type: application/xml; charset=UTF-8
+/feeds/rss
+  Content-Type: application/xml; charset=UTF-8
+/posts/rss
+  Content-Type: application/xml; charset=UTF-8
+/projects/rss
+  Content-Type: application/xml; charset=UTF-8
+/uses/rss
+  Content-Type: application/xml; charset=UTF-8
+/work/rss
+  Content-Type: application/xml; charset=UTF-8

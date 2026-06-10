@@ -10,11 +10,11 @@ import path from 'path';
 import { readdirSync } from 'fs';
 
 export const ROOT_PATH = process.cwd();
-export const SOCIAL_PATH = `${ROOT_PATH}/static/social`;
+export const SOCIAL_PATH = `${ROOT_PATH}/public/social`;
 
 export const doesImageAlreadyExist = (slug) => {
 	const files = readdirSync(SOCIAL_PATH);
-	return files.find((file) => file.startsWith(slug));
+	return files.includes(`${slug}.png`);
 };
 
 export const generateImage = async (page, title, slug) => {
@@ -31,13 +31,4 @@ export const generateImage = async (page, title, slug) => {
 		type: 'png',
 		path: SCREENSHOT_PATH
 	});
-};
-
-export const fileToMeta = (name, basePath) => {
-	return {
-		name,
-		path: `${basePath}/${name}`,
-		slug: name.split('.')[0],
-		type: name.split('.')[1]
-	};
 };

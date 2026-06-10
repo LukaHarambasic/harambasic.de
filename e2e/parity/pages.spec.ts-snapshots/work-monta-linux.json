@@ -1,0 +1,31 @@
+{
+  "url": "/work/monta",
+  "status": 200,
+  "title": "Monta | Luka Harambasic",
+  "description": "A software platform to manage and scale EV charging infrastructure for businesses, cities, and operators. It covers charge point management, payments, roaming, and energy management.",
+  "ogImage": "https://harambasic.de/social/monta.png",
+  "h1": "Monta",
+  "landmarks": {
+    "header": 4,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

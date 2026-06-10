@@ -17,8 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `bun run lint:css` - Check CSS property ordering and standards
 - `bun run format` - Format code with Prettier and CSS
 - `bun run format:css` - Format CSS files with property ordering
-- `bun run check` - Run Svelte type checking
-- `bun run check:watch` - Run Svelte type checking in watch mode
+- `bun run check` - Run Astro type checking (`astro check`)
 
 ### Testing
 
@@ -27,11 +26,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Content Management Scripts
 
-- `bun run newPost` - Generate new blog post scaffold
-- `bun run generateFavicons` - Fetch and generate favicon files
-- `bun run socialMedia:auto` - Auto-generate social media previews
+- `bun run newPost` - Generate new blog post scaffold (creates `public/posts/<slug>/`)
+- `bun run socialMedia:auto` - Auto-generate social media previews (into `public/social/`)
 - `bun run socialMedia:manual` - Generate social media previews manually
-- `bun run generateCardImages` - Generate card images (requires .env file)
+- `bun run audit:slugs` - Verify slug / cross-reference / social-image integrity
 
 ### Git Hooks & Quality Assurance
 
@@ -45,13 +43,15 @@ Git hooks are managed via **Husky** and automatically enforce quality standards.
 
 ## Architecture
 
-### SvelteKit Static Site
+### Astro Static Site
 
-- **Framework**: SvelteKit 5 with static adapter
-- **Build Tool**: Vite
+- **Framework**: Astro 5 with static output (`output: 'static'`, no adapter)
+- **Build Tool**: Vite (bundled with Astro)
 - **Language**: TypeScript
 - **Styling**: PostCSS with nested syntax, autoprefixer, cssnano, and CSS property ordering
-- **Images**: Enhanced image processing via @sveltejs/enhanced-img
+- **Images**: `astro:assets` (`<Image>` / `<Picture>`) with responsive widths + avif/webp
+- **Icons**: `astro-icon` + `@iconify-json/ph` (build-time inline SVG, zero client JS)
+- **Code highlighting**: Shiki `one-dark-pro` (always dark)
 - **CSS Quality**: Automated property ordering and linting with postcss-sorting
 
 ### Content System
@@ -237,13 +237,20 @@ When implementing new features, choose based on:
 #### ✅ Current Good Structure
 
 ```
-src/lib/
-├── types/           # Type definitions (union types, interfaces)
-├── util/            # Pure utility functions
-├── data/            # Data transformation functions
-├── processors/      # Pure content transformation
-├── services/        # Simple service interfaces
-└── components/      # Svelte components (functional)
+src/
+├── content.config.ts   # Astro content collections + Zod schemas
+├── lib/
+│   ├── types/          # Type definitions (union types, interfaces)
+│   ├── util/           # Pure utility functions (+ tests)
+│   ├── content.ts      # Typed accessors over getCollection()
+│   ├── images.ts       # astro:assets glob helpers
+│   ├── markdown.ts     # renderPositionContent / renderEntryHtml
+│   ├── toc.ts          # buildNestedToc
+│   └── rssFeed.ts      # RSS item builders for @astrojs/rss (astro:content)
+├── components/         # Astro components (.astro)
+├── layouts/            # Layout.astro
+├── pages/              # File-based routes + RSS endpoints
+└── styles/             # Global CSS (reset, variables, fonts, base, code)
 ```
 
 #### Function Organization
@@ -334,27 +341,26 @@ When updating existing code:
 
 ### Directory Structure
 
-- `src/lib/components/` - Reusable Svelte components
-- `src/lib/data/` - Data processing utilities
-- `src/lib/util/` - Utility functions
-- `src/lib/styles/` - Global styles and CSS utilities
-- `src/routes/` - SvelteKit file-based routing
+- `src/components/` - Reusable Astro components (`.astro`)
+- `src/layouts/` - `Layout.astro` (head, header, footer, container grid)
+- `src/lib/` - Pure utilities, typed content accessors, RSS/markdown/image helpers
+- `src/styles/` - Global styles and CSS utilities
+- `src/pages/` - Astro file-based routing + RSS endpoints
 - `scripts/` - Node.js build and content generation scripts
 
 ### Testing Setup
 
-- **Unit Tests**: Vitest configuration
-- **E2E Tests**: Playwright (configured to build and preview before testing)
-- Note: Test directory is configured as `e2e/` but may not exist yet
+- **Unit Tests**: Vitest (`vitest.config.ts`, scoped to `src/**/*.test.ts`)
+- **E2E Tests**: Playwright parity suite in `e2e/` (builds + previews on port 4173)
+- Parity snapshots (`e2e/parity/*-snapshots/`) are byte-stable — never reformat them; RSS feeds are validated structurally (no fixtures)
 
 ### Build & Deployment
 
-- Static site generation via `@sveltejs/adapter-static`
+- Static site generation via Astro (`output: 'static'`, `dist/`)
 - PostCSS processing with nested syntax and optimization
 - CSS property ordering and linting enforcement
-- Image optimization and processing
-- Prerender error handling for 404s
-- **Deployment**: Netlify via standard integration (automatic builds from Git)
+- Image optimization via `astro:assets`
+- **Deployment**: Netlify (`bun run build` -> publish `dist/`)
 
 ## HTML & DOM
 
@@ -530,7 +536,7 @@ This repository uses **Husky** to enforce strict quality standards through autom
    - Fails if unfixable issues remain
 
 4. **Type Checking** (`bun run check`)
-   - Svelte and TypeScript type validation
+   - Astro and TypeScript type validation
    - Must pass with zero type errors
 
 5. **Unit Tests** (`bun run test`)
@@ -547,7 +553,7 @@ This repository uses **Husky** to enforce strict quality standards through autom
 
 - All formatting checks (Prettier)
 - All linting rules (ESLint)
-- Type checking (svelte-check)
+- Type checking (astro check)
 - Unit tests (Vitest)
 - Build verification
 
@@ -585,7 +591,7 @@ Git hooks in this repository are **mandatory quality gates** and must NEVER be b
 #### Common Issues:
 
 1. **Formatting/Linting Failures**: Usually auto-fixed. If not, fix manually and retry commit.
-2. **Type Errors**: Fix TypeScript/Svelte type issues manually.
+2. **Type Errors**: Fix TypeScript/Astro type issues manually.
 3. **Test Failures**: Fix failing tests before committing.
 4. **Build Failures**: Resolve build errors, often related to imports or syntax.
 5. **Social Media Generation**: Post-commit hook automatically generates previews and amends the commit.

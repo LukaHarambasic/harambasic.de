@@ -1,0 +1,195 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseSegmentedButtons from './BaseSegmentedButtons.astro';
+---
+
+<dialog id="contact-dialog">
+	<div class="content">
+		<div class="contact-modal">
+			<h2 class="header">Get in touch</h2>
+			<p class="intro">
+				I'm always open to new conversations, whether it's about projects, ideas, or just saying
+				hello. Reach out however you prefer.
+			</p>
+			<div class="contact">
+				<div class="group">
+					<div class="meta">
+						<strong>E-Mail</strong>
+						<small>luka@harambasic.de</small>
+					</div>
+					<BaseSegmentedButtons>
+						<a href="mailto:luka@harambasic.de">Write</a>
+						<button class="button" type="button" data-clipboard="luka@harambasic.de">Copy</button>
+					</BaseSegmentedButtons>
+				</div>
+				<div class="group">
+					<div class="meta">
+						<strong>Socials</strong>
+						<small>Get in touch!</small>
+					</div>
+					<BaseSegmentedButtons>
+						<a
+							href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B"
+							>Signal</a
+						>
+						<a href="https://www.linkedin.com/in/harambasic/">LinkedIn</a>
+						<a href="https://bsky.app/profile/harambasic.de">BlueSky</a>
+						<a href="https://github.com/LukaHarambasic">GitHub</a>
+					</BaseSegmentedButtons>
+				</div>
+				<div class="group">
+					<div class="meta">
+						<strong>Book a time</strong>
+						<small>Wanna talk?</small>
+					</div>
+					<BaseSegmentedButtons>
+						<a href="https://cal.com/luhara/1">Book</a>
+					</BaseSegmentedButtons>
+				</div>
+			</div>
+		</div>
+		<form method="dialog">
+			<button class="close" aria-label="Close"><Icon name="ph:x-circle-bold" /></button>
+		</form>
+	</div>
+</dialog>
+
+<style>
+	dialog {
+		margin: auto;
+		width: 54em;
+		border: var(--border);
+		border-radius: var(--border-radius);
+		box-shadow: var(--shadow);
+		background: var(--c-light);
+		color: var(--c-font);
+		&::backdrop {
+			background: rgba(1, 3, 15, 0.6);
+			@media (prefers-color-scheme: dark) {
+				background: rgba(255, 255, 255, 0.4);
+			}
+		}
+		.content {
+			padding: var(--xl);
+			@media screen and (width <= 64rem) {
+				padding: var(--l);
+			}
+			.close {
+				--icon-size: 1.5rem;
+				--icon-padding: 0.5rem;
+
+				display: flex;
+				position: absolute;
+				top: var(--l);
+				right: var(--l);
+				z-index: 3000;
+				padding: var(--icon-padding);
+				size: calc(var(--icon-size) + var(--icon-padding) * 2);
+				border: none;
+				border-radius: 50%;
+				background: transparent;
+				flex-shrink: 0;
+				justify-content: center;
+				align-items: center;
+				color: var(--c-font);
+				font-size: var(--icon-size);
+				transition: var(--transition);
+				cursor: pointer;
+				:global(svg) {
+					width: var(--icon-size);
+					height: var(--icon-size);
+					transition: var(--transition);
+				}
+				&:hover {
+					:global(svg) {
+						transform: scale(1.2);
+					}
+				}
+				@media screen and (width <= 48rem) {
+					top: var(--m);
+					right: var(--m);
+				}
+			}
+		}
+		&[open] {
+			animation: zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+		}
+		&[open]::backdrop {
+			animation: fade 0.2s ease-out;
+		}
+	}
+	@keyframes zoom {
+		from {
+			transform: scale(0.95);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+	@keyframes fade {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	.contact-modal {
+		.header {
+			margin: 0 0 var(--m) 0;
+			font-family: var(--font-family);
+			font-size: var(--font-l);
+			font-weight: 900;
+			line-height: 1.2;
+			letter-spacing: var(--font-letter-spacing-headline);
+		}
+		.intro {
+			margin: 0 0 var(--m) 0;
+			font-size: var(--font-m);
+			line-height: 1.4;
+		}
+		.contact {
+			display: flex;
+			width: 100%;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: stretch;
+			align-content: stretch;
+			.group {
+				display: flex;
+				padding: var(--l);
+				border-bottom: 1px solid var(--c-surface);
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: space-between;
+				align-items: flex-start;
+				align-content: stretch;
+				@media screen and (width <= 40rem) {
+					flex-direction: column;
+					gap: var(--l);
+				}
+				.meta {
+					display: flex;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					justify-content: flex-start;
+					align-items: stretch;
+					align-content: stretch;
+					strong {
+						margin: 0 0 var(--xs) 0;
+						font-family: var(--font-family);
+						font-size: var(--font-m);
+						font-weight: 900;
+						line-height: 1.2;
+						letter-spacing: var(--font-letter-spacing-headline);
+					}
+					small {
+						font-size: var(--font-s);
+					}
+				}
+			}
+		}
+	}
+</style>

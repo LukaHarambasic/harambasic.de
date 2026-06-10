@@ -1,0 +1,33 @@
+---
+import type { Tag } from '$lib/types/tag';
+
+interface Props {
+	tag: Tag;
+	selected?: boolean;
+}
+
+const { tag, selected = false } = Astro.props;
+---
+
+<a class:list={['tag', { selected }]} href={tag.relativePath} title={tag.display}>#{tag.display}</a>
+
+<style>
+	.tag {
+		display: inline-block;
+		border: none;
+		background: none;
+		color: var(--c-font-accent-dark);
+		font-size: var(--font-s);
+		font-weight: 400;
+		font-style: italic;
+		text-align: center;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		&.selected {
+			font-weight: bold;
+		}
+	}
+</style>

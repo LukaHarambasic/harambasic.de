@@ -1,15 +1,13 @@
 .DS_Store
 node_modules
-/build
-/.svelte-kit
+/dist
+/.astro
 /package
 .env
 .env.*
 !.env.example
 .vercel
 .output
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
 
 # Claude Code
 .claude/sessions/
@@ -21,3 +19,8 @@ vite.config.ts.timestamp-*
 .claude/cache/
 
 .plans
+
+# Playwright
+/test-results
+/playwright-report
+/blob-report

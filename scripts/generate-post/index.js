@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 const ROOT_PATH = process.cwd();
 const TEMPLATE_PATH = `${ROOT_PATH}/scripts/generate-post/template.md`;
 const POSTS_PATH = `${ROOT_PATH}/src/content/posts`;
-const IMAGES_PATH = `${ROOT_PATH}/static/posts`;
+const IMAGES_PATH = `${ROOT_PATH}/public/posts`;
 
 const generatePost = (title) => {
 	const template = readFileSync(TEMPLATE_PATH, 'utf8');

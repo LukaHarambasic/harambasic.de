@@ -1,0 +1,96 @@
+---
+import { Picture } from 'astro:assets';
+import BaseCard from './BaseCard.astro';
+import { Icon } from 'astro-icon/components';
+import type { WorkEntry } from '$lib/types/workEntry';
+import { getWorkImage, isSvgImage, IMAGE_WIDTHS, IMAGE_FORMATS } from '$lib/images';
+import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
+
+interface Props {
+	entry: WorkEntry;
+	relatedProjects: Array<{ slug: string; title: string }>;
+	variant: 'default' | 'featured';
+	extraClass: string;
+}
+
+const { entry, relatedProjects, variant, extraClass } = Astro.props;
+const sortedPositions = sortPositionsByDate(entry.positions);
+const hasImage = entry.image && entry.image !== 'TODO';
+const isSvg = hasImage ? isSvgImage(entry.image) : false;
+const imageData = hasImage && !isSvg ? getWorkImage(entry.image) : null;
+---
+
+<BaseCard
+	element="a"
+	href={`/work/${entry.slug}`}
+	variant={variant}
+	class={`withIcon ${extraClass}`}
+	aria-label={`View details for ${entry.title}`}
+>
+	<div class="header">
+		{
+			(isSvg || imageData) && (
+				<div class="logo">
+					{isSvg ? (
+						<img src={`/work/${entry.image}`} alt={entry.title} />
+					) : (
+						imageData && (
+							<Picture
+								src={imageData}
+								widths={IMAGE_WIDTHS}
+								formats={IMAGE_FORMATS}
+								sizes="(min-width:768px) 64px, 48px"
+								alt={entry.title}
+								loading="lazy"
+								decoding="async"
+							/>
+						)
+					)}
+				</div>
+			)
+		}
+		<div class="info">
+			<h2 class="name">{entry.title}</h2>
+			<div class="location">{entry.location}</div>
+		</div>
+		<div class="external-link">
+			<Icon name="ph:arrow-up-right-bold" />
+		</div>
+	</div>
+	<div class="metadata">
+		<div class="positions">
+			{
+				sortedPositions.map((position) => (
+					<div class="row">
+						<span class="title">{position.title}</span>
+						<span class="dates">
+							{formatDateDisplay(position.startDate)} –{' '}
+							{position.endDate ? formatDateDisplay(position.endDate) : 'Present'}
+						</span>
+					</div>
+				))
+			}
+		</div>
+	</div>
+	<div class="description">
+		<p>{entry.description}</p>
+	</div>
+	<div class="footer">
+		<div class="row">
+			{
+				relatedProjects.length > 0 ? (
+					<span class="related-projects">
+						{relatedProjects.map((project, i) => (
+							<>
+								<span>{project.title}</span>
+								{i < relatedProjects.length - 1 ? ', ' : ''}
+							</>
+						))}
+					</span>
+				) : (
+					<span class="no-projects">No projects</span>
+				)
+			}
+		</div>
+	</div>
+</BaseCard>

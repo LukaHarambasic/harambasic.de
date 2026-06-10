@@ -1,0 +1,27 @@
+---
+import BaseRichText from './BaseRichText.astro';
+
+interface Props {
+	class?: string;
+	id?: string;
+}
+
+const { class: className, id } = Astro.props;
+---
+
+<BaseRichText element="section" class={className ? `footnote ${className}` : 'footnote'} id={id}>
+	<p><slot /></p>
+</BaseRichText>
+
+<style>
+	/* `.footnote` lands on BaseRichText's <section>, a child component's root, so :global. */
+	:global(.footnote) {
+		padding: var(--l);
+		border-radius: var(--border-radius);
+		background: var(--c-surface);
+		color: var(--c-font);
+		text-decoration: none;
+		transition: var(--transition);
+		overflow: hidden;
+	}
+</style>
