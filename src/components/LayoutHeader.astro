@@ -20,7 +20,7 @@ function isActiveRoute(url: string): boolean {
 	<div class="logo">
 		<a href="/">
 			<img src="/logo.svg" alt="" width="32" height="32" class="mark" />
-			Luka Harambasic
+			<span class="wordmark"><span>Luka</span><span>Harambasic</span></span>
 		</a>
 	</div>
 	<nav>
@@ -69,6 +69,7 @@ function isActiveRoute(url: string): boolean {
 			font-family: var(--font-family);
 			font-size: var(--font-m);
 			font-weight: 700;
+			line-height: 1.2;
 			text-decoration: none;
 			@media screen and (width <= 48rem) {
 				text-align: center;
@@ -78,10 +79,14 @@ function isActiveRoute(url: string): boolean {
 				text-decoration-thickness: var(--underline-thickness);
 			}
 		}
+		.wordmark {
+			display: flex;
+			flex-direction: column;
+		}
 		.mark {
 			display: block;
-			width: 1.4em;
-			height: 1.4em;
+			width: 2.4em;
+			height: 2.4em;
 			flex-shrink: 0;
 		}
 	}
