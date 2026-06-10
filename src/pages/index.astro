@@ -206,63 +206,6 @@ const initialRows = rowSteps[0] ?? allRows.length;
 	</section>
 </Layout>
 
-<script>
-	function initFeed() {
-		document.querySelectorAll('[data-row-steps]').forEach((feed) => {
-			const el = feed as HTMLElement;
-			if (el.dataset.feedInit === 'true') return;
-			el.dataset.feedInit = 'true';
-			const steps: number[] = JSON.parse(el.dataset.rowSteps || '[]');
-			const rows = Array.from(el.querySelectorAll<HTMLElement>('tr[data-row]'));
-			const moreBtn = el.querySelector<HTMLButtonElement>('[data-feed-more]');
-			const lessBtn = el.querySelector<HTMLButtonElement>('[data-feed-less]');
-			if (!moreBtn || !lessBtn || steps.length === 0) return;
-			let stepIndex = 0;
-			const apply = () => {
-				const visibleRows = steps[stepIndex];
-				rows.forEach((row, i) => {
-					row.hidden = i >= visibleRows;
-				});
-				moreBtn.hidden = stepIndex >= steps.length - 1;
-				lessBtn.hidden = stepIndex === 0;
-			};
-			moreBtn.addEventListener('click', () => {
-				if (stepIndex < steps.length - 1) {
-					stepIndex++;
-					apply();
-				}
-			});
-			lessBtn.addEventListener('click', () => {
-				stepIndex = 0;
-				apply();
-			});
-			apply();
-		});
-	}
-
-	function initFeedImages() {
-		document.querySelectorAll<HTMLElement>('.thumb-media').forEach((media) => {
-			if (media.dataset.imgInit === 'true') return;
-			media.dataset.imgInit = 'true';
-			const img = media.querySelector('img');
-			const loader = media.parentElement?.querySelector<HTMLElement>('.thumb-loader');
-			const done = () => {
-				media.classList.add('loaded');
-				if (loader) loader.hidden = true;
-			};
-			if (!img || img.complete) {
-				done();
-				return;
-			}
-			img.addEventListener('load', done, { once: true });
-			img.addEventListener('error', done, { once: true });
-		});
-	}
-
-	initFeed();
-	initFeedImages();
-</script>
-
 <style>
 	.heyho {
 		display: flex;

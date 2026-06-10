@@ -4,6 +4,7 @@ import '../styles/fonts.css';
 import '../styles/variables.css';
 import '../styles/base.css';
 import '../styles/code.css';
+import { ClientRouter } from 'astro:transitions';
 import LayoutHeader from '../components/LayoutHeader.astro';
 import LayoutFooter from '../components/LayoutFooter.astro';
 import ContactDialog from '../components/ContactDialog.astro';
@@ -29,6 +30,7 @@ const socialImgAlt = fullTitle;
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<ClientRouter />
 		<script
 			data-goatcounter="https://luha.goatcounter.com/count"
 			async
@@ -85,16 +87,18 @@ const socialImgAlt = fullTitle;
 </html>
 
 <script>
-	// Contact dialog: open on #contact hash from any page; clear hash on close.
-	function initContact() {
+	// All interactivity lives here so a single astro:page-load handler re-binds it
+	// after each View Transition. Per-element dataset guards keep init idempotent.
+
+	function openContactIfHash() {
+		const dialog = document.getElementById('contact-dialog') as HTMLDialogElement | null;
+		if (dialog && location.hash === '#contact' && !dialog.open) dialog.showModal();
+	}
+
+	function bindContactDialog() {
 		const dialog = document.getElementById('contact-dialog') as HTMLDialogElement | null;
 		if (!dialog || dialog.dataset.init === 'true') return;
 		dialog.dataset.init = 'true';
-		const openIfHash = () => {
-			if (location.hash === '#contact' && !dialog.open) dialog.showModal();
-		};
-		openIfHash();
-		window.addEventListener('hashchange', openIfHash);
 		dialog.addEventListener('click', (e) => {
 			if (e.target === dialog) dialog.close();
 		});
@@ -106,7 +110,7 @@ const socialImgAlt = fullTitle;
 	}
 
 	// Clipboard buttons: copy once (matches the old `once` semantics).
-	function initClipboard() {
+	function bindClipboard() {
 		document.querySelectorAll<HTMLElement>('[data-clipboard]').forEach((btn) => {
 			if (btn.dataset.init === 'true') return;
 			btn.dataset.init = 'true';
@@ -120,8 +124,78 @@ const socialImgAlt = fullTitle;
 		});
 	}
 
-	initContact();
-	initClipboard();
+	// Home feed: precomputed visible-row steps drive Show more / Show less.
+	function bindFeed() {
+		document.querySelectorAll<HTMLElement>('[data-row-steps]').forEach((el) => {
+			if (el.dataset.feedInit === 'true') return;
+			el.dataset.feedInit = 'true';
+			const steps: number[] = JSON.parse(el.dataset.rowSteps || '[]');
+			const rows = Array.from(el.querySelectorAll<HTMLElement>('tr[data-row]'));
+			const moreBtn = el.querySelector<HTMLButtonElement>('[data-feed-more]');
+			const lessBtn = el.querySelector<HTMLButtonElement>('[data-feed-less]');
+			if (!moreBtn || !lessBtn || steps.length === 0) return;
+			let stepIndex = 0;
+			const apply = () => {
+				const visibleRows = steps[stepIndex];
+				rows.forEach((row, i) => {
+					row.hidden = i >= visibleRows;
+				});
+				moreBtn.hidden = stepIndex >= steps.length - 1;
+				lessBtn.hidden = stepIndex === 0;
+			};
+			moreBtn.addEventListener('click', () => {
+				if (stepIndex < steps.length - 1) {
+					stepIndex++;
+					apply();
+				}
+			});
+			lessBtn.addEventListener('click', () => {
+				stepIndex = 0;
+				apply();
+			});
+			apply();
+		});
+	}
+
+	// Feed thumbnails: fade in on image load, hiding the pulse placeholder.
+	function bindFeedImages() {
+		document.querySelectorAll<HTMLElement>('.thumb-media').forEach((media) => {
+			if (media.dataset.imgInit === 'true') return;
+			media.dataset.imgInit = 'true';
+			const img = media.querySelector('img');
+			const loader = media.parentElement?.querySelector<HTMLElement>('.thumb-loader');
+			const done = () => {
+				media.classList.add('loaded');
+				if (loader) loader.hidden = true;
+			};
+			if (!img || img.complete) {
+				done();
+				return;
+			}
+			img.addEventListener('load', done, { once: true });
+			img.addEventListener('error', done, { once: true });
+		});
+	}
+
+	// Global listeners — the module runs once even with the client router.
+	window.addEventListener('hashchange', openContactIfHash);
+
+	let firstPageLoad = true;
+	document.addEventListener('astro:page-load', () => {
+		bindContactDialog();
+		bindClipboard();
+		bindFeed();
+		bindFeedImages();
+		openContactIfHash();
+		// GoatCounter auto-counts the initial load; count SPA navigations manually.
+		if (firstPageLoad) {
+			firstPageLoad = false;
+			return;
+		}
+		const gc = (window as unknown as { goatcounter?: { count?: (opts?: unknown) => void } })
+			.goatcounter;
+		if (gc?.count) gc.count({ path: location.pathname + location.search });
+	});
 </script>
 
 <style>

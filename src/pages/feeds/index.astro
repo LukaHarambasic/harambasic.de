@@ -24,7 +24,7 @@ const feeds: Array<{ path: string; description: string }> = [
 				{
 					feeds.map(({ path, description }) => (
 						<li class="item">
-							<a href={path} class="path">
+							<a href={path} class="path" data-astro-reload>
 								{path}
 							</a>
 							<p class="description">{description}</p>

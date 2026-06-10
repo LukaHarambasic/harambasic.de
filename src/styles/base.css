@@ -21,3 +21,21 @@ body {
 	hyphens: auto;
 	scroll-margin: var(--xl);
 }
+
+/*
+ * Reduced-motion: a single blanket guard (documented here, the one consistent
+ * approach for this project). Near-zeroes every animation/transition and disables
+ * smooth scrolling so motion-sensitive users get a calm experience. Covers the
+ * dialog zoom/fade, card hover transforms, the feed-thumb pulse, the TOC caret,
+ * and anchor scrolling; Astro's View Transitions fall back to instant natively.
+ */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
