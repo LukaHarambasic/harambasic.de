@@ -1,4 +1,7 @@
 :root {
+	/* Color roles — every surface/text/divider on the site resolves to these.
+	   bg: --c-light · surface: --c-surface · ink: --c-font · ink-muted: --c-font-accent-dark
+	   tint: --c-tint · inverted: --c-inverted (+ --c-inverted-text) · line: --c-line */
 	--c-surface: #fde6f4;
 	--c-surface-accent: #fbdcef;
 	--c-light: #ffedf9;
@@ -6,13 +9,17 @@
 	--c-font-accent-dark: #54424f;
 	--c-font-accent-super-light: #dbc1d8;
 	--c-backdrop: rgba(45, 10, 46, 0.7);
-	--c-current-work-bg: #2d0a2e;
-	--c-current-work-text: #ffedf9;
+	--c-tint: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
+	--c-inverted: #2d0a2e;
+	--c-inverted-text: #ffedf9;
+	--c-inverted-text-muted: rgba(255, 237, 249, 0.8);
+	--c-inverted-line: rgba(255, 237, 249, 0.18);
 	--c-accent-honey: #e0a24a;
 	--c-accent-italic: #653366;
 	--font-family: 'Hanken Grotesk', -apple-system, 'Segoe UI', helvetica, arial, sans-serif;
 	--font-family-serif: 'Newsreader', 'Iowan Old Style', georgia, serif;
 	--font-family-code: 'IBM Plex Mono', ui-monospace, 'SF Mono', menlo, consolas, monospace;
+	--font-xs: 0.75rem;
 	--font-s: 0.875rem;
 	--font-m: 1rem;
 	--font-l: 1.25rem;
@@ -35,7 +42,8 @@
 	--box-shadow: 0 2px 8px rgba(45, 10, 46, 0.06), 0 1px 2px rgba(45, 10, 46, 0.04);
 	--shadow-md: 0 6px 24px rgba(45, 10, 46, 0.09), 0 2px 6px rgba(45, 10, 46, 0.05);
 	--ring-hairline: inset 0 0 0 1px rgba(45, 10, 46, 0.08);
-	--c-border: rgba(45, 10, 46, 0.1);
+	--c-line: rgba(45, 10, 46, 0.12);
+	--c-border: var(--c-line);
 	--border: 1px solid var(--c-border);
 	--xxs: 0.25rem;
 	--xs: 0.5rem;
@@ -52,13 +60,16 @@
 	:root {
 		--c-surface: #3c133d;
 		--c-surface-accent: #4f1f50;
-		--c-border: rgba(255, 237, 249, 0.12);
+		--c-line: rgba(255, 237, 249, 0.12);
 		--c-light: #2d0a2e;
 		--c-font: #ffedf9;
 		--c-font-accent-dark: #c9a6c4;
 		--c-font-accent-super-light: #653366;
 		--c-backdrop: rgba(22, 4, 26, 0.85);
-		--c-current-work-bg: #16041a;
+		--c-inverted: #16041a;
+		--c-inverted-text: #ffedf9;
+		--c-inverted-text-muted: rgba(255, 237, 249, 0.8);
+		--c-inverted-line: rgba(255, 237, 249, 0.18);
 		--c-accent-italic: #e8b366;
 		--box-shadow: 0 2px 8px rgba(22, 4, 26, 0.25), 0 1px 2px rgba(22, 4, 26, 0.2);
 		--shadow-md: 0 6px 24px rgba(22, 4, 26, 0.35), 0 2px 6px rgba(22, 4, 26, 0.25);

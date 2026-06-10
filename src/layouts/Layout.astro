@@ -132,21 +132,21 @@ const socialImgAlt = fullTitle;
 		});
 	}
 
-	// Home feed: precomputed visible-row steps drive Show more / Show less.
+	// Home feed: precomputed visible-item steps drive Show more / Show less.
 	function bindFeed() {
-		document.querySelectorAll<HTMLElement>('[data-row-steps]').forEach((el) => {
+		document.querySelectorAll<HTMLElement>('[data-feed-steps]').forEach((el) => {
 			if (el.dataset.feedInit === 'true') return;
 			el.dataset.feedInit = 'true';
-			const steps: number[] = JSON.parse(el.dataset.rowSteps || '[]');
-			const rows = Array.from(el.querySelectorAll<HTMLElement>('tr[data-row]'));
+			const steps: number[] = JSON.parse(el.dataset.feedSteps || '[]');
+			const items = Array.from(el.querySelectorAll<HTMLElement>('li[data-feed-item]'));
 			const moreBtn = el.querySelector<HTMLButtonElement>('[data-feed-more]');
 			const lessBtn = el.querySelector<HTMLButtonElement>('[data-feed-less]');
 			if (!moreBtn || !lessBtn || steps.length === 0) return;
 			let stepIndex = 0;
 			const apply = () => {
-				const visibleRows = steps[stepIndex];
-				rows.forEach((row, i) => {
-					row.hidden = i >= visibleRows;
+				const visible = steps[stepIndex];
+				items.forEach((item, i) => {
+					item.hidden = i >= visible;
 				});
 				moreBtn.hidden = stepIndex >= steps.length - 1;
 				lessBtn.hidden = stepIndex === 0;
@@ -165,26 +165,6 @@ const socialImgAlt = fullTitle;
 		});
 	}
 
-	// Feed thumbnails: fade in on image load, hiding the pulse placeholder.
-	function bindFeedImages() {
-		document.querySelectorAll<HTMLElement>('.thumb-media').forEach((media) => {
-			if (media.dataset.imgInit === 'true') return;
-			media.dataset.imgInit = 'true';
-			const img = media.querySelector('img');
-			const loader = media.parentElement?.querySelector<HTMLElement>('.thumb-loader');
-			const done = () => {
-				media.classList.add('loaded');
-				if (loader) loader.hidden = true;
-			};
-			if (!img || img.complete) {
-				done();
-				return;
-			}
-			img.addEventListener('load', done, { once: true });
-			img.addEventListener('error', done, { once: true });
-		});
-	}
-
 	// Global listeners — the module runs once even with the client router.
 	window.addEventListener('hashchange', openContactIfHash);
 
@@ -193,7 +173,6 @@ const socialImgAlt = fullTitle;
 		bindContactDialog();
 		bindClipboard();
 		bindFeed();
-		bindFeedImages();
 		openContactIfHash();
 		// GoatCounter auto-counts the initial load; count SPA navigations manually.
 		if (firstPageLoad) {

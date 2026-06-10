@@ -25,7 +25,7 @@ test('getTag - generate a tag based on display text and type maybe with an initi
 test('getDate - generate date based on string', async () => {
 	const resultDate: EntryDate = {
 		raw: new Date('1996-02-18'),
-		display: '1996-02-18'
+		display: 'Feb 1996'
 	};
 	expect(getDate('1996-02-18')).toStrictEqual(resultDate);
 });

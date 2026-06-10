@@ -2,10 +2,11 @@
 import { getCollection, render } from 'astro:content';
 import { Picture } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
-import BaseCard from '../../components/BaseCard.astro';
 import BaseRichText from '../../components/BaseRichText.astro';
+import DetailLayout from '../../components/DetailLayout.astro';
+import Entry from '../../components/Entry.astro';
 import EntryHeader from '../../components/EntryHeader.astro';
-import { Icon } from 'astro-icon/components';
+import EntryList from '../../components/EntryList.astro';
 import type { Project } from '$lib/types/project';
 import { getProjects } from '$lib/content';
 import {
@@ -37,8 +38,6 @@ const sortedPositions = await Promise.all(
 		content: await renderPositionContent(position.content)
 	}))
 );
-const firstPosition = sortedPositions[0] ?? null;
-const restPositions = sortedPositions.slice(1);
 
 const image = data.image;
 const isSvg = !!image && image !== 'TODO' && isSvgImage(image);
@@ -51,10 +50,11 @@ if (relatedSlugs.length > 0) {
 	const projects = await getProjects();
 	relatedProjects = projects.filter((p) => relatedSlugs.includes(p.slug));
 }
+const relatedColumns = relatedProjects.length >= 3 ? 3 : relatedProjects.length === 2 ? 2 : 1;
 ---
 
 <Layout title={data.title} description={data.description} isDetailPage>
-	<article class="h-entry work-entry">
+	<DetailLayout class="h-entry work-entry">
 		<EntryHeader title={data.title} leadingPosition="inline">
 			{
 				hasLeadingContent && (
@@ -80,88 +80,46 @@ if (relatedSlugs.length > 0) {
 			<Fragment slot="meta">{data.location}</Fragment>
 		</EntryHeader>
 
-		{
-			data.description && (
-				<div class="description">
-					<p>{data.description}</p>
-				</div>
-			)
-		}
+		{data.description && <p class="description">{data.description}</p>}
 
 		{
 			relatedProjects.length > 0 && (
-				<div class="related-projects">
-					<div class="projects-grid" data-count={relatedProjects.length}>
-						{relatedProjects.map((project) => {
-							const projectImageData = getProjectImage(project.image);
-							return (
-								<BaseCard
-									element="a"
+				<EntryList columns={relatedColumns} class="related-projects">
+					{relatedProjects.map((project) => {
+						const projectImageData = getProjectImage(project.image);
+						return (
+							<li>
+								<Entry
+									variant="gallery"
 									href={project.relativePath}
-									variant="default"
-									class="image noSpacing compact"
+									title={project.title}
+									titleTag="h3"
+									excerpt={project.description}
 								>
-									<div class="external-link">
-										<Icon name="ph:arrow-up-right-bold" />
-									</div>
 									{projectImageData && (
-										<div class="image-wrapper">
-											<div class="main-img">
-												<Picture
-													src={projectImageData}
-													widths={IMAGE_WIDTHS}
-													formats={IMAGE_FORMATS}
-													sizes="(min-width:768px) 400px, (min-width:480px) 50vw, 100vw"
-													alt={project.imageAlt || project.title}
-													loading="lazy"
-													decoding="async"
-												/>
-											</div>
-										</div>
+										<Picture
+											slot="media"
+											src={projectImageData}
+											widths={IMAGE_WIDTHS}
+											formats={IMAGE_FORMATS}
+											sizes="(min-width:768px) 400px, (min-width:480px) 50vw, 100vw"
+											alt={project.imageAlt || project.title}
+											loading="lazy"
+											decoding="async"
+										/>
 									)}
-									<div class="content">
-										<strong>{project.title}</strong>
-										{project.description && <p>{project.description}</p>}
-									</div>
-								</BaseCard>
-							);
-						})}
-					</div>
-				</div>
+								</Entry>
+							</li>
+						);
+					})}
+				</EntryList>
 			)
 		}
 
 		{
-			firstPosition && (
-				<section class="position-section first-position">
-					<header class="position-header">
-						<div class="position-title-group">
-							<h2 class="position-title">{firstPosition.title}</h2>
-							{firstPosition.employmentType && (
-								<div class="employment-type">{firstPosition.employmentType}</div>
-							)}
-						</div>
-						<div class="position-dates">
-							<span>{formatDateDisplay(firstPosition.startDate)}</span>
-							<span>–</span>
-							<span>
-								{firstPosition.endDate ? formatDateDisplay(firstPosition.endDate) : 'Present'}
-							</span>
-						</div>
-					</header>
-					<div class="position-content">
-						<BaseRichText>
-							<Fragment set:html={firstPosition.content} />
-						</BaseRichText>
-					</div>
-				</section>
-			)
-		}
-
-		{
-			restPositions.length > 0 && (
-				<div class="positions-content">
-					{restPositions.map((position) => (
+			sortedPositions.length > 0 && (
+				<div class="positions">
+					{sortedPositions.map((position) => (
 						<section class="position-section">
 							<header class="position-header">
 								<div class="position-title-group">
@@ -171,9 +129,8 @@ if (relatedSlugs.length > 0) {
 									)}
 								</div>
 								<div class="position-dates">
-									<span>{formatDateDisplay(position.startDate)}</span>
-									<span>–</span>
-									<span>{position.endDate ? formatDateDisplay(position.endDate) : 'Present'}</span>
+									{formatDateDisplay(position.startDate)} –{' '}
+									{position.endDate ? formatDateDisplay(position.endDate) : 'Present'}
 								</div>
 							</header>
 							<div class="position-content">
@@ -194,344 +151,111 @@ if (relatedSlugs.length > 0) {
 				</BaseRichText>
 			)
 		}
-	</article>
+	</DetailLayout>
 </Layout>
 
 <style>
-	article {
+	.icon {
 		display: flex;
-		margin: 0 auto;
-		padding: var(--xl) 0;
+		width: 4rem;
+		height: 4rem;
+		flex-shrink: 0;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		img,
+		:global(picture) {
+			display: block;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: var(--border-radius-small);
+			object-fit: contain;
+		}
+	}
+	.description {
+		margin: 0;
+		color: var(--c-font-accent-dark);
+		font-family: var(--font-family);
+		font-size: var(--font-m);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+	.positions {
+		display: flex;
 		width: 100%;
 		flex-direction: column;
+		gap: var(--l);
+	}
+	.position-section {
+		display: flex;
+		padding-bottom: var(--l);
+		border-bottom: 1px solid var(--c-line);
+		flex-direction: column;
+		gap: var(--s);
+		&:last-child {
+			padding-bottom: 0;
+			border-bottom: none;
+		}
+	}
+	.position-header {
+		display: flex;
+		justify-content: space-between;
 		align-items: flex-start;
-		.icon {
-			display: flex;
-			width: 4rem;
-			height: 4rem;
-			flex-shrink: 0;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
-			overflow: hidden;
-			img,
-			:global(picture) {
-				display: block;
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				height: 100%;
-				border-radius: var(--border-radius-small);
-				object-fit: contain;
-			}
-		}
-		.description {
-			margin-bottom: var(--l);
-			p {
-				margin: 0;
-				color: var(--c-font-accent-dark);
-				font-family: var(--font-family);
-				font-size: var(--font-m);
-				font-weight: 400;
-				line-height: 1.6;
-			}
-		}
-		.positions-content {
-			display: flex;
-			margin-bottom: var(--l);
-			width: 100%;
-			flex-direction: column;
-			gap: var(--l);
-		}
-		.position-section {
-			display: flex;
-			margin-bottom: var(--l);
-			padding-bottom: var(--l);
-			border-bottom: 1px solid var(--c-surface-accent);
-			flex-direction: column;
-			gap: var(--s);
-			&.first-position {
-				margin-top: var(--l);
-				border-bottom: none;
-			}
-			&:last-child {
-				padding-bottom: 0;
-				border-bottom: none;
-			}
-		}
-		.position-header {
-			display: flex;
-			margin-bottom: var(--s);
-			justify-content: space-between;
-			align-items: flex-start;
-			gap: var(--m);
-			@media screen and (width <= 48rem) {
-				flex-direction: column;
-				align-items: flex-start;
-				gap: var(--xs);
-			}
-		}
-		.position-title-group {
-			display: flex;
-			flex: 1;
+		gap: var(--m);
+		@media screen and (width <= 48rem) {
 			flex-direction: column;
 			align-items: flex-start;
 			gap: var(--xs);
 		}
-		.position-title {
-			margin: 0;
-			color: var(--c-font);
-			font-family: var(--font-family-serif);
-			font-size: var(--fs-h3);
-			font-weight: 500;
-			letter-spacing: var(--tracking-heading);
-		}
-		.employment-type {
-			margin: 0;
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
-			font-size: var(--font-s);
-			font-weight: 400;
-			font-style: italic;
-			line-height: 1.5;
-			text-transform: capitalize;
-		}
-		.position-dates {
-			display: flex;
-			flex-shrink: 0;
-			gap: var(--xs);
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
-			font-size: var(--font-s);
-			font-weight: 400;
-			line-height: 1.5;
-			white-space: nowrap;
-		}
-		.position-content {
-			margin-top: var(--s);
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
-			font-size: var(--font-m);
-			line-height: 1.6;
-		}
-		.content {
-			margin-bottom: var(--l);
-			width: 100%;
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
-			font-size: var(--font-m);
-			line-height: 1.6;
-		}
-		.projects-grid {
-			display: grid;
-			gap: var(--l);
-			grid-template-columns: 1fr;
-			@media screen and (width > 48rem) {
-				&[data-count='2'],
-				&[data-count='3'] {
-					grid-template-columns: repeat(2, 1fr);
-				}
-			}
-			@media screen and (width > 62rem) {
-				&[data-count='3'] {
-					grid-template-columns: repeat(3, 1fr);
-				}
-			}
-		}
-
-		/* Related project cards: image left, content right (same as projects index) */
-		.related-projects {
-			margin-bottom: var(--xl);
-			width: 100%;
-
-			:global(.base-card.image.compact) {
-				flex-direction: row;
-				align-items: stretch;
-				overflow: hidden;
-
-				@media screen and (width <= 32rem) {
-					flex-direction: column;
-				}
-
-				:global(.image-wrapper) {
-					display: block;
-					position: relative;
-					margin: 0;
-					padding: 0;
-					width: 12rem;
-					min-width: 12rem;
-					min-height: 12rem;
-					border-radius: var(--border-radius) 0 0 var(--border-radius);
-					align-self: stretch;
-					transition: filter var(--transition);
-					overflow: hidden;
-					box-sizing: border-box;
-					filter: grayscale(1);
-
-					@media screen and (width <= 32rem) {
-						width: 100%;
-						min-width: 0;
-						min-height: 0;
-						aspect-ratio: 16 / 10;
-						border-radius: var(--border-radius) var(--border-radius) 0 0;
-					}
-
-					:global(.main-img) {
-						position: absolute;
-						z-index: 2;
-						margin: 0;
-						padding: 0;
-						width: 100%;
-						height: 100%;
-						border-radius: var(--border-radius) 0 0 var(--border-radius);
-						inset: 0;
-
-						@media screen and (width <= 32rem) {
-							width: 100%;
-							height: auto;
-							min-height: 0;
-							border-radius: 0;
-							box-shadow: none;
-							aspect-ratio: 16 / 10;
-						}
-
-						:global(picture) {
-							display: block;
-							margin: 0;
-							padding: 0;
-							width: 100%;
-							height: 100%;
-						}
-
-						:global(img) {
-							display: block;
-							margin: 0;
-							padding: 0;
-							width: 100% !important;
-							max-width: 100%;
-							height: 100% !important;
-							border-radius: var(--border-radius) 0 0 var(--border-radius);
-							object-fit: cover;
-							object-position: center;
-							filter: grayscale(1);
-							transition:
-								filter var(--transition),
-								opacity var(--transition);
-						}
-
-						@media screen and (width <= 32rem) {
-							:global(img) {
-								height: 100%;
-								min-height: 0;
-								border-radius: var(--border-radius) var(--border-radius) 0 0;
-								object-fit: cover;
-							}
-						}
-					}
-				}
-
-				&:hover {
-					:global(.image-wrapper) {
-						filter: grayscale(0);
-					}
-
-					:global(.main-img img) {
-						filter: grayscale(0);
-						opacity: 1;
-					}
-				}
-
-				:global(.content) {
-					text-align: left;
-
-					:global(strong) {
-						margin: 0 0 var(--xs) 0;
-					}
-
-					:global(p) {
-						margin: 0 0 var(--s) 0;
-					}
-				}
-			}
-		}
-		:global(.rich-text) {
-			margin: 0;
-			:global(p) {
-				margin: 0 0 var(--m) 0;
-			}
-			:global(p:last-child) {
-				margin-bottom: 0;
-			}
-			:global(ul),
-			:global(ol) {
-				margin: 0 0 var(--m) 0;
-				padding-left: var(--l);
-			}
-			:global(ul:last-child),
-			:global(ol:last-child) {
-				margin-bottom: 0;
-			}
-			:global(li) {
-				margin-bottom: var(--xs);
-			}
-			:global(li:last-child) {
-				margin-bottom: 0;
-			}
-			:global(h1),
-			:global(h2),
-			:global(h3),
-			:global(h4),
-			:global(h5),
-			:global(h6) {
-				margin: var(--l) 0 var(--m) 0;
-				font-family: var(--font-family-serif);
-				font-weight: 500;
-				letter-spacing: var(--tracking-heading);
-			}
-			:global(h1:first-child),
-			:global(h2:first-child),
-			:global(h3:first-child),
-			:global(h4:first-child),
-			:global(h5:first-child),
-			:global(h6:first-child) {
-				margin-top: 0;
-			}
-			:global(h2) {
-				font-size: var(--font-l);
-			}
-			:global(h3) {
-				font-size: var(--font-m);
-			}
-			:global(a) {
-				color: var(--c-font);
-				text-decoration: underline;
-			}
-			:global(a:hover) {
-				text-decoration: none;
-			}
-			:global(strong) {
-				font-weight: 700;
-			}
-			:global(em) {
-				font-style: italic;
-			}
-			:global(code) {
-				padding: var(--xxs) var(--xs);
-				border-radius: var(--border-radius-small);
-				background: var(--c-surface-accent);
-				font-family: var(--font-family-code);
-				font-size: 0.9em;
-			}
-			:global(pre) {
-				padding: var(--m);
-				border-radius: var(--border-radius);
-				background: var(--c-surface-accent);
-				overflow-x: auto;
-			}
-			:global(pre code) {
-				padding: 0;
-				background: none;
-			}
-		}
+	}
+	.position-title-group {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--xs);
+	}
+	.position-title {
+		margin: 0;
+		color: var(--c-font);
+		font-family: var(--font-family-serif);
+		font-size: var(--fs-h3);
+		font-weight: 500;
+		letter-spacing: var(--tracking-heading);
+	}
+	.employment-type {
+		margin: 0;
+		color: var(--c-font-accent-dark);
+		font-family: var(--font-family);
+		font-size: var(--font-s);
+		font-weight: 400;
+		font-style: italic;
+		line-height: 1.5;
+		text-transform: capitalize;
+	}
+	.position-dates {
+		flex-shrink: 0;
+		color: var(--c-font-accent-dark);
+		font-family: var(--font-family);
+		font-size: var(--font-s);
+		font-weight: 400;
+		line-height: 1.5;
+		white-space: nowrap;
+	}
+	.position-content {
+		color: var(--c-font-accent-dark);
+		font-family: var(--font-family);
+		font-size: var(--font-m);
+		line-height: 1.6;
+	}
+	.content {
+		width: 100%;
+		color: var(--c-font-accent-dark);
+		font-family: var(--font-family);
+		font-size: var(--font-m);
+		line-height: 1.6;
 	}
 </style>

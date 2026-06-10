@@ -18,11 +18,11 @@ body {
 :any-link {
 	text-decoration-thickness: var(--underline-thickness);
 }
+
+/* Body text is left-ragged everywhere: no justification, no hyphenation. */
 * {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	word-break: break-word;
-	hyphens: auto;
 	scroll-margin: var(--xl);
 }
 

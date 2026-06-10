@@ -2,16 +2,12 @@
 import { Image, Picture } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import BaseRichText from '../components/BaseRichText.astro';
+import Entry from '../components/Entry.astro';
+import EntryList from '../components/EntryList.astro';
 import { Icon } from 'astro-icon/components';
 import profileImg from '../assets/img/profile.jpeg';
 import { getPosts, getProjects, getUses, getWork } from '$lib/content';
-import {
-	getMergedFeedEntries,
-	getLayoutOrderedEntries,
-	getInitialVisibleCount,
-	getTargetVisibleCount,
-	type MergedFeedEntry
-} from '$lib/util/mergedFeed';
+import { getMergedFeedEntries, type MergedFeedEntry } from '$lib/util/mergedFeed';
 import {
 	getProjectImage,
 	getUsesImage,
@@ -45,43 +41,25 @@ const [posts, projects, uses, work] = await Promise.all([
 	getWork()
 ]);
 
-const INITIAL_TARGET = 6;
-const layoutOrdered = getLayoutOrderedEntries(getMergedFeedEntries(posts, projects, uses, work));
-const initialCount = getInitialVisibleCount(layoutOrdered, INITIAL_TARGET);
+// One stream, sorted by last update; the newest entry is the featured card,
+// the rest render as calm single-column rows.
+const merged = getMergedFeedEntries(posts, projects, uses, work);
+const [latest, ...rows] = merged;
 
-// Group into table rows (Uses come in pairs; everything else is full-width).
-function buildRows(entries: MergedFeedEntry[]): MergedFeedEntry[][] {
-	const rows: MergedFeedEntry[][] = [];
-	let i = 0;
-	while (i < entries.length) {
-		const entry = entries[i];
-		const next = entries[i + 1];
-		if (entry.category === 'Uses' && next !== undefined && next.category === 'Uses') {
-			rows.push([entry, next]);
-			i += 2;
-		} else {
-			rows.push([entry]);
-			i += 1;
-		}
-	}
-	return rows;
+const INITIAL_ROWS = 6;
+const STEP = 6;
+const steps: number[] = [];
+for (let n = Math.min(INITIAL_ROWS, rows.length); ; n += STEP) {
+	n = Math.min(n, rows.length);
+	steps.push(n);
+	if (n >= rows.length) break;
 }
 
-const allRows = buildRows(layoutOrdered);
-// Cumulative entry count covered through each row.
-let cumulative = 0;
-const rowEntryEnd = allRows.map((row) => (cumulative += row.length));
-
-// Precompute the show-more entry-count steps, then map to visible-row counts so the
-// orphan-avoidance math (tested TS) stays out of the client script.
-const entrySteps: number[] = [initialCount];
-let c = initialCount;
-while (c < layoutOrdered.length) {
-	c = getTargetVisibleCount(layoutOrdered, c, 6);
-	entrySteps.push(c);
-}
-const rowSteps = entrySteps.map((s) => rowEntryEnd.filter((end) => end <= s).length);
-const initialRows = rowSteps[0] ?? allRows.length;
+const rowMedia = (entry: MergedFeedEntry) => ({
+	isPost: entry.category === 'Posts',
+	isSvg: !!entry.image && isSvgImage(entry.image),
+	imageData: entry.image ? getEntryImage(entry) : null
+});
 ---
 
 <Layout description={description}>
@@ -125,86 +103,72 @@ const initialRows = rowSteps[0] ?? allRows.length;
 			A combined feed of everything on this site: posts, projects, uses, and work. Ordered by last
 			updated, so sometimes old entries might appear at the top.
 		</p>
-		<div class="feed" data-row-steps={JSON.stringify(rowSteps)}>
-			<table class="feed-table">
-				<tbody>
-					{
-						allRows.map((row, rowIndex) => (
-							<tr data-row={rowIndex} hidden={rowIndex >= initialRows}>
-								{row.map((entry) => {
-									const imageData = getEntryImage(entry);
-									return (
-										<td colspan={row.length === 1 ? 2 : 1}>
-											<a
-												href={entry.href}
-												rel={entry.href.startsWith('http') ? 'external' : undefined}
-												class="link"
-												aria-label={`View ${entry.title}`}
-											>
-												<div class="thumb">
-													<div class="inner">
-														{entry.category === 'Posts' ? (
-															<Icon name="ph:file-text-duotone" class="thumb-icon" />
-														) : entry.image && isSvgImage(entry.image) ? (
-															<>
-																<span class="thumb-loader" aria-hidden="true" />
-																<div class="thumb-media">
-																	<img
-																		src={getSvgSrc(entry.category, entry.image)}
-																		alt={entry.title}
-																	/>
-																</div>
-															</>
-														) : entry.image && imageData ? (
-															<>
-																<span class="thumb-loader" aria-hidden="true" />
-																<div class="thumb-media">
-																	<Picture
-																		src={imageData}
-																		widths={IMAGE_WIDTHS}
-																		formats={IMAGE_FORMATS}
-																		sizes="(min-width:768px) 64px, 48px"
-																		alt={entry.title}
-																		loading="lazy"
-																		decoding="async"
-																	/>
-																</div>
-															</>
-														) : (
-															<Icon name="ph:empty-duotone" class="thumb-icon" />
-														)}
-													</div>
-												</div>
-												<div class="content">
-													<span class="label">{entry.category}</span>
-													<strong class="title">{entry.title}</strong>
-													{entry.updated?.display && (
-														<time class="date" datetime={entry.updated?.raw?.toString()}>
-															{entry.updated.display}
-														</time>
-													)}
-													{entry.description && <p class="description">{entry.description}</p>}
-												</div>
-												<div class="external-link">
-													<Icon
-														name={
-															entry.isExternal
-																? 'ph:arrow-square-out-bold'
-																: 'ph:arrow-up-right-bold'
-														}
-													/>
-												</div>
-											</a>
-										</td>
-									);
-								})}
-							</tr>
-						))
-					}
-				</tbody>
-			</table>
+		<div class="feed" data-feed-steps={JSON.stringify(steps)}>
+			{
+				latest && (
+					<Entry
+						variant="card"
+						featured
+						href={latest.href}
+						title={latest.title}
+						titleTag="h3"
+						eyebrow={latest.category}
+						meta={latest.updated.display}
+						metaDatetime={latest.updated.raw.toISOString()}
+						excerpt={latest.description}
+						external={latest.isExternal}
+						aria-label={`View ${latest.title}`}
+					/>
+				)
+			}
+			<EntryList>
+				{
+					rows.map((entry, index) => {
+						const media = rowMedia(entry);
+						return (
+							<li data-feed-item hidden={index >= INITIAL_ROWS}>
+								<Entry
+									href={entry.href}
+									title={entry.title}
+									titleTag="h3"
+									eyebrow={entry.category}
+									meta={entry.updated.display}
+									metaDatetime={entry.updated.raw.toISOString()}
+									excerpt={entry.description}
+									external={entry.isExternal}
+									aria-label={`View ${entry.title}`}
+								>
+									{media.isPost ? (
+										<Icon slot="media" name="ph:file-text-duotone" class="thumb-icon" />
+									) : media.isSvg ? (
+										<img
+											slot="media"
+											src={getSvgSrc(entry.category, entry.image)}
+											alt={entry.title}
+											loading="lazy"
+										/>
+									) : media.imageData ? (
+										<Picture
+											slot="media"
+											src={media.imageData}
+											widths={IMAGE_WIDTHS}
+											formats={IMAGE_FORMATS}
+											sizes="(min-width:768px) 64px, 48px"
+											alt={entry.title}
+											loading="lazy"
+											decoding="async"
+										/>
+									) : (
+										<Icon slot="media" name="ph:empty-duotone" class="thumb-icon" />
+									)}
+								</Entry>
+							</li>
+						);
+					})
+				}
+			</EntryList>
 			<div class="actions">
-				<button type="button" class="btn" data-feed-more hidden={rowSteps.length <= 1}
+				<button type="button" class="btn" data-feed-more hidden={steps.length <= 1}
 					>Show more</button
 				>
 				<button type="button" class="btn" data-feed-less hidden>Show less</button>
@@ -266,10 +230,10 @@ const initialRows = rowSteps[0] ?? allRows.length;
 		}
 	}
 	.featured {
-		--feed-border: color-mix(in srgb, var(--c-border) 80%, var(--c-font-accent-super-light));
-
 		display: flex;
+		margin: 0 auto;
 		width: 100%;
+		max-width: calc(var(--layout-xl) * 0.618);
 		flex-direction: column;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
@@ -286,13 +250,13 @@ const initialRows = rowSteps[0] ?? allRows.length;
 			letter-spacing: var(--tracking-heading);
 			text-align: center;
 			&::after {
-				content: '';
 				display: block;
 				margin: var(--s) auto 0;
 				width: 3.5rem;
 				height: 2px;
 				border-radius: 1px;
 				background: var(--c-font);
+				content: '';
 			}
 		}
 
@@ -310,208 +274,14 @@ const initialRows = rowSteps[0] ?? allRows.length;
 			display: flex;
 			width: 100%;
 			flex-direction: column;
-			gap: var(--m);
-		}
-
-		.feed-table {
-			width: 100%;
-			border-radius: var(--border-radius);
-			table-layout: fixed;
-			border-collapse: collapse;
-			overflow: hidden;
-			@media screen and (width <= 68.75rem) {
+			gap: var(--l);
+			:global(.thumb-icon) {
 				display: block;
-			}
-			tbody {
-				@media screen and (width <= 68.75rem) {
-					display: block;
-				}
-				tr {
-					@media screen and (width <= 68.75rem) {
-						display: block;
-					}
-					&:last-child {
-						@media screen and (width > 68.75rem) {
-							td {
-								border-bottom: none;
-							}
-						}
-						@media screen and (width <= 68.75rem) {
-							td:last-child {
-								border-bottom: none;
-							}
-						}
-					}
-					td {
-						border-bottom: 1px solid var(--feed-border);
-						vertical-align: top;
-						@media screen and (width > 68.75rem) {
-							&:first-child:not(:only-child) {
-								border-right: 1px solid var(--feed-border);
-							}
-						}
-						@media screen and (width <= 68.75rem) {
-							display: block;
-							width: 100%;
-							.link {
-								height: auto;
-							}
-						}
-						&:hover {
-							background: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
-							.external-link {
-								color: var(--c-font);
-							}
-						}
-						.link {
-							display: flex;
-							position: relative;
-							padding: var(--l);
-							width: 100%;
-							min-width: 0;
-							height: 100%;
-							min-height: 0;
-							flex: 1 1 auto;
-							flex-direction: row;
-							align-items: flex-start;
-							gap: var(--m);
-							color: inherit;
-							text-decoration: none;
-							transition: background var(--transition);
-							box-sizing: border-box;
-							@media screen and (width <= 42rem) {
-								flex-direction: column;
-							}
-						}
-						.thumb {
-							display: flex;
-							width: 3rem;
-							flex-shrink: 0;
-							flex-direction: row;
-							justify-content: center;
-							align-items: flex-start;
-							.inner {
-								display: flex;
-								position: relative;
-								width: 3rem;
-								min-height: 3rem;
-								border-radius: var(--border-radius-small);
-								flex-shrink: 0;
-								flex-direction: row;
-								justify-content: center;
-								align-items: center;
-								overflow: hidden;
-								.thumb-loader {
-									display: block;
-									position: absolute;
-									top: 50%;
-									left: 50%;
-									z-index: 1;
-									width: 0.75rem;
-									height: 0.75rem;
-									border-radius: 50%;
-									background: color-mix(in srgb, var(--c-font-accent-super-light) 65%, transparent);
-									animation: feed-thumb-pulse 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-									transform: translate(-50%, -50%);
-									transform-origin: center;
-									will-change: transform, opacity;
-								}
-								.thumb-media {
-									display: flex;
-									opacity: 0;
-									position: relative;
-									z-index: 2;
-									width: 100%;
-									justify-content: center;
-									align-items: center;
-									transition: opacity 220ms ease-out;
-									&.loaded {
-										opacity: 1;
-									}
-									img {
-										display: block;
-										width: 100%;
-										height: auto;
-										vertical-align: top;
-									}
-									:global(picture) {
-										display: block;
-										width: 100%;
-										height: auto;
-										vertical-align: top;
-									}
-								}
-								:global(.thumb-icon) {
-									display: flex;
-									width: 100%;
-									height: 100%;
-									min-height: 3rem;
-									flex-shrink: 0;
-									justify-content: center;
-									align-items: center;
-									color: var(--c-font-accent-dark);
-								}
-								:global(.thumb-icon svg) {
-									width: 1.5rem;
-									height: 1.5rem;
-								}
-							}
-						}
-						.content {
-							display: flex;
-							min-width: 0;
-							flex: 1;
-							flex-direction: column;
-							gap: var(--xs);
-						}
-						.label {
-							color: var(--c-font-accent-dark);
-							font-size: var(--font-s);
-							font-weight: 600;
-							letter-spacing: 0.05em;
-							text-transform: uppercase;
-						}
-						.title {
-							display: block;
-							font-family: var(--font-family-serif);
-							font-size: var(--fs-h3);
-							font-weight: 500;
-							line-height: 1.2;
-							letter-spacing: var(--tracking-heading);
-						}
-						.date {
-							color: var(--c-font-accent-dark);
-							font-size: var(--font-s);
-							font-weight: 400;
-							font-style: italic;
-						}
-						.description {
-							margin: 0;
-							color: var(--c-font-accent-dark);
-							font-size: var(--font-m);
-							line-height: 1.5;
-						}
-						.external-link {
-							display: flex;
-							position: absolute;
-							top: var(--l);
-							right: var(--l);
-							z-index: 10;
-							width: 1.5rem;
-							height: 1.5rem;
-							flex-shrink: 0;
-							justify-content: center;
-							align-items: center;
-							color: var(--c-font-accent-super-light);
-							transition: var(--transition);
-							pointer-events: none;
-						}
-						.external-link :global(svg) {
-							width: 1rem;
-							height: 1rem;
-						}
-					}
-				}
+				padding: var(--s);
+				width: 100%;
+				height: auto;
+				min-height: 3rem;
+				color: var(--c-font-accent-dark);
 			}
 		}
 
@@ -524,9 +294,9 @@ const initialRows = rowSteps[0] ?? allRows.length;
 
 		.btn {
 			padding: var(--s) var(--m);
-			border: 1px solid var(--c-border);
+			border: 1px solid var(--c-line);
 			border-radius: var(--border-radius);
-			background: color-mix(in srgb, var(--c-surface-accent) 60%, transparent);
+			background: var(--c-tint);
 			color: var(--c-font);
 			font-family: var(--font-family);
 			font-size: var(--font-s);
@@ -536,25 +306,6 @@ const initialRows = rowSteps[0] ?? allRows.length;
 			&:hover {
 				background: color-mix(in srgb, var(--c-surface-accent) 80%, transparent);
 			}
-		}
-	}
-
-	@keyframes feed-thumb-pulse {
-		0% {
-			opacity: 0.3;
-			transform: translate(-50%, -50%) scale(0.75);
-		}
-		35% {
-			opacity: 0.6;
-			transform: translate(-50%, -50%) scale(1);
-		}
-		70% {
-			opacity: 0.42;
-			transform: translate(-50%, -50%) scale(1.2);
-		}
-		100% {
-			opacity: 0.3;
-			transform: translate(-50%, -50%) scale(0.75);
 		}
 	}
 </style>

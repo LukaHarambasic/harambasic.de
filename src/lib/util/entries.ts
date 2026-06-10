@@ -4,7 +4,7 @@ import type { EntryType } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
 import type { Project } from '$lib/types/project';
 import type { Tag } from '$lib/types/tag';
-import { formatDate, getSlug, sortAlphabetical } from './helper';
+import { formatDateDisplay, getSlug, sortAlphabetical } from './helper';
 import type { WorkEntry } from '$lib/types/workEntry';
 
 export function findBySlug(entry: Post | Project | UsesEntry | WorkEntry, slug: string): boolean {
@@ -39,7 +39,7 @@ export function getDate(rawString: string | Date): EntryDate {
 
 	return {
 		raw,
-		display: formatDate(raw)
+		display: formatDateDisplay(raw)
 	};
 }
 

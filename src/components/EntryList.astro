@@ -1,0 +1,63 @@
+---
+/**
+ * Layout shell for Entry items. Callers render `<li>` children:
+ * columns=1 → rule-separated rows (one --c-line hairline between items),
+ * columns=2/3 → card/gallery grid with the shared gutter.
+ */
+interface Props {
+	columns?: 1 | 2 | 3;
+	class?: string;
+}
+
+const { columns = 1, class: className } = Astro.props;
+---
+
+<ul class:list={['entry-list', className]} data-columns={columns}>
+	<slot />
+</ul>
+
+<style>
+	.entry-list {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		list-style: none;
+
+		&[data-columns='1'] {
+			display: flex;
+			flex-direction: column;
+			> :global(li:not(:last-child)) {
+				border-bottom: 1px solid var(--c-line);
+			}
+		}
+
+		&[data-columns='2'],
+		&[data-columns='3'] {
+			display: grid;
+			align-items: stretch;
+			gap: var(--l);
+			> :global(li) {
+				display: flex;
+				min-width: 0;
+			}
+			> :global(li > .entry) {
+				flex: 1;
+			}
+		}
+		&[data-columns='2'] {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			@media screen and (width <= 48rem) {
+				grid-template-columns: 1fr;
+			}
+		}
+		&[data-columns='3'] {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			@media screen and (width <= 62rem) {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+			@media screen and (width <= 48rem) {
+				grid-template-columns: 1fr;
+			}
+		}
+	}
+</style>

@@ -1,0 +1,26 @@
+---
+/**
+ * The one detail skeleton: every detail view stacks its blocks
+ * (header → meta → media → body → links) inside the same frame with the
+ * same rhythm. Pages render only the blocks they need.
+ */
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<article class:list={['detail', className]}>
+	<slot />
+</article>
+
+<style>
+	.detail {
+		display: flex;
+		margin: 0;
+		width: 100%;
+		flex-direction: column;
+		gap: var(--l);
+	}
+</style>

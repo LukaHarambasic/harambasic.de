@@ -6,7 +6,6 @@ import type {
 	UsesEntrySortProperty
 } from '$lib/types/enums';
 import { BASE_SORT_PROPERTIES, PROJECT_SORT_PROPERTIES, SORT_DIRECTIONS } from '$lib/types/enums';
-import { format } from 'date-fns';
 
 // solution inspired by https://www.designcise.com/web/tutorial/how-to-fix-replaceall-is-not-a-function-javascript-error
 // implementation inspired by https://futurestud.io/tutorials/node-js-string-replace-all-appearances
@@ -27,13 +26,12 @@ export function getRandomItems<T>(items: T[], amount: number): T[] {
 	return items.sort(() => 0.5 - Math.random()).slice(0, amount);
 }
 
-export function formatDate(date: Date): string {
-	return format(new Date(date), 'yyyy-MM-dd');
-}
-
-export function formatDateDisplay(dateString: string): string {
-	const date = new Date(dateString);
-	return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+/**
+ * The one display format for dates, site-wide: "Apr 2024". Raw ISO stays in the
+ * machine layer only (datetime attributes, RSS pubDate).
+ */
+export function formatDateDisplay(date: string | Date): string {
+	return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 }
 
 export function sortPositionsByDate<T extends { startDate: string }>(positions: T[]): T[] {

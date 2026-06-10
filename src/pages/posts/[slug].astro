@@ -3,11 +3,12 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BaseCallout from '../../components/BaseCallout.astro';
 import BaseRichText from '../../components/BaseRichText.astro';
+import DetailLayout from '../../components/DetailLayout.astro';
 import EntryHeader from '../../components/EntryHeader.astro';
 import TableOfContent from '../../components/TableOfContent.astro';
 import { Icon } from 'astro-icon/components';
 import { buildNestedToc } from '$lib/toc';
-import { getSlug, formatDate } from '$lib/util/helper';
+import { getSlug, formatDateDisplay } from '$lib/util/helper';
 import { getPermalink } from '$lib/permalink';
 
 export async function getStaticPaths() {
@@ -24,12 +25,12 @@ const toc = buildNestedToc(headings);
 
 const authorUrl = getPermalink();
 const publishedIso = entry.data.published.toISOString();
-const publishedDisplay = formatDate(entry.data.published);
+const publishedDisplay = formatDateDisplay(entry.data.published);
 const tldr = entry.data.tldr;
 ---
 
 <Layout title={entry.data.title} description={entry.data.description} isDetailPage>
-	<article class="h-entry">
+	<DetailLayout class="h-entry post-entry">
 		<EntryHeader title={entry.data.title}>
 			<Fragment slot="meta">
 				<span class="p-author h-card">
@@ -60,7 +61,7 @@ const tldr = entry.data.tldr;
 			tldr && (
 				<>
 					<div class="tldr">
-						<BaseCallout prefix="TL;DR" noCard>
+						<BaseCallout prefix="TL;DR">
 							<Fragment set:html={tldr} />
 						</BaseCallout>
 					</div>
@@ -72,19 +73,17 @@ const tldr = entry.data.tldr;
 		{
 			toc.length > 0 && (
 				<>
-					<div class="toc-wrapper">
-						<details class="toc-details">
-							<summary class="toc-summary">
-								<span class="toc-icon">
-									<Icon name="ph:caret-down-bold" />
-								</span>
-								<span>Table of contents</span>
-							</summary>
-							<div class="toc-body">
-								<TableOfContent nodes={toc} />
-							</div>
-						</details>
-					</div>
+					<details class="toc-details">
+						<summary class="toc-summary">
+							<span class="toc-icon">
+								<Icon name="ph:caret-down-bold" />
+							</span>
+							<span>Table of contents</span>
+						</summary>
+						<div class="toc-body">
+							<TableOfContent nodes={toc} />
+						</div>
+					</details>
 					<div class="sep" aria-hidden="true" />
 				</>
 			)
@@ -95,88 +94,72 @@ const tldr = entry.data.tldr;
 				<Content />
 			</BaseRichText>
 		</section>
-	</article>
+	</DetailLayout>
 	<footer class="page-footer">
 		<a href="/posts/rss">RSS Feed</a>
 	</footer>
 </Layout>
 
 <style>
-	article {
-		display: flex;
+	:global(.post-entry .entry-header .meta .author-link) {
+		color: var(--c-font);
+		font-style: normal;
+		text-decoration: none;
+	}
+	.sep {
 		margin: 0;
 		width: 100%;
-		flex-direction: column;
-		gap: var(--l);
-		:global(.entry-header .meta .author-link) {
-			color: var(--c-font);
-			font-style: normal;
-			text-decoration: none;
-		}
-		.sep {
-			margin: 0;
-			width: 100%;
-			height: 0;
-			border: none;
-			border-bottom: 1px solid var(--c-surface-accent);
-		}
-		.tldr {
-			order: 0;
-		}
-		.toc-wrapper {
-			display: block;
-		}
-		.toc-details {
+		height: 0;
+		border: none;
+		border-bottom: 1px solid var(--c-line);
+	}
+	.toc-details {
+		margin: 0;
+		padding: 0;
+		.toc-summary {
+			display: flex;
 			margin: 0;
 			padding: 0;
-			.toc-summary {
-				display: flex;
-				margin: 0;
-				padding: 0;
-				flex-direction: row;
-				flex-wrap: nowrap;
-				align-items: center;
-				gap: var(--s);
-				color: var(--c-font);
-				font-family: var(--font-family);
-				font-size: var(--font-m);
-				font-weight: 600;
-				list-style: none;
-				cursor: pointer;
-				&::-webkit-details-marker {
-					display: none;
-				}
-				&::marker {
-					content: none;
-				}
+			flex-direction: row;
+			flex-wrap: nowrap;
+			align-items: center;
+			gap: var(--s);
+			color: var(--c-font);
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 600;
+			list-style: none;
+			cursor: pointer;
+			&::-webkit-details-marker {
+				display: none;
 			}
-			&[open] {
-				.toc-summary {
-					margin-bottom: var(--m);
-				}
-				.toc-icon {
-					transform: rotate(180deg);
-				}
-			}
-			.toc-icon {
-				display: inline-flex;
-				width: 1.25rem;
-				height: 1.25rem;
-				flex-shrink: 0;
-				justify-content: center;
-				align-items: center;
-				transition: transform var(--transition);
-			}
-			.toc-icon :global(svg) {
-				width: 1.25rem;
-				height: 1.25rem;
-			}
-			.toc-body {
-				padding: 0;
+			&::marker {
+				content: none;
 			}
 		}
-		.post {
-			order: 1;
+		&[open] {
+			.toc-summary {
+				margin-bottom: var(--m);
+			}
+			.toc-icon {
+				transform: rotate(180deg);
+			}
+		}
+		.toc-icon {
+			display: inline-flex;
+			width: 1.25rem;
+			height: 1.25rem;
+			flex-shrink: 0;
+			justify-content: center;
+			align-items: center;
+			transition: transform var(--transition);
+		}
+		.toc-icon :global(svg) {
+			width: 1.25rem;
+			height: 1.25rem;
+		}
+		.toc-body {
+			padding: 0;
 		}
 	}
 	.page-footer {

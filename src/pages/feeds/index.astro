@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Hero from '../../components/Hero.astro';
-import Entries from '../../components/Entries.astro';
 
 const title = 'Feeds';
 const description =
@@ -17,23 +16,21 @@ const feeds: Array<{ path: string; description: string }> = [
 ---
 
 <Layout title={title} description={description}>
-	<Entries>
-		<Hero title="Feeds" description={description} />
-		<div class="feeds-list">
-			<ul class="list">
-				{
-					feeds.map(({ path, description }) => (
-						<li class="item">
-							<a href={path} class="path" data-astro-reload>
-								{path}
-							</a>
-							<p class="description">{description}</p>
-						</li>
-					))
-				}
-			</ul>
-		</div>
-	</Entries>
+	<Hero title="Feeds" description={description} />
+	<div class="feeds-list">
+		<ul class="list">
+			{
+				feeds.map(({ path, description }) => (
+					<li class="item">
+						<a href={path} class="path" data-astro-reload>
+							{path}
+						</a>
+						<p class="description">{description}</p>
+					</li>
+				))
+			}
+		</ul>
+	</div>
 </Layout>
 
 <style>

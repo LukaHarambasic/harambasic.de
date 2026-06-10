@@ -2,9 +2,8 @@
 import { Picture } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Hero from '../../components/Hero.astro';
-import Entries from '../../components/Entries.astro';
-import BaseCard from '../../components/BaseCard.astro';
-import { Icon } from 'astro-icon/components';
+import Entry from '../../components/Entry.astro';
+import EntryList from '../../components/EntryList.astro';
 import { getProjects } from '$lib/content';
 import { SortDirection, SORT_DEFAULTS } from '$lib/types/enums';
 import { filterAndSort } from '$lib/util/entryHelpers';
@@ -23,302 +22,41 @@ const filteredAndSorted = filterAndSort(
 	SortDirection.Desc
 );
 
-const sizes = '(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px';
+const sizes = '(min-width:1080px) 400px, (min-width:768px) 50vw, 100vw';
 ---
 
 <Layout title={title} description={description}>
 	<Hero slot="hero" title={title} description={description} />
-	<Entries>
-		<div class="entries">
-			{
-				filteredAndSorted.map((entry, index) => {
-					const imageData = getProjectImage(entry.image);
-					return (
-						<div class="entry-wrapper" data-highlighted={index < 3}>
-							<BaseCard
-								element="a"
-								href={entry.relativePath}
-								variant="default"
-								class={`image noSpacing ${index < 3 ? 'highlighted' : 'compact'}`}
-							>
-								<div class="external-link">
-									<Icon name="ph:arrow-up-right-bold" />
-								</div>
-								{imageData && (
-									<div class="image-wrapper">
-										<div class="blur-bg">
-											<Picture
-												src={imageData}
-												widths={IMAGE_WIDTHS}
-												formats={IMAGE_FORMATS}
-												sizes={sizes}
-												alt={entry.title}
-												loading="lazy"
-												decoding="async"
-											/>
-										</div>
-										<div class="main-img">
-											<Picture
-												src={imageData}
-												widths={IMAGE_WIDTHS}
-												formats={IMAGE_FORMATS}
-												sizes={sizes}
-												alt={entry.title}
-												loading="lazy"
-												decoding="async"
-											/>
-										</div>
-									</div>
-								)}
-								<div class="content">
-									<strong>{entry.title}</strong>
-									<p>{entry.description}</p>
-								</div>
-							</BaseCard>
-						</div>
-					);
-				})
-			}
-		</div>
-	</Entries>
+	<EntryList columns={3}>
+		{
+			filteredAndSorted.map((entry, index) => {
+				const imageData = getProjectImage(entry.image);
+				return (
+					<li>
+						<Entry
+							variant="gallery"
+							featured={index === 0}
+							href={entry.relativePath}
+							title={entry.title}
+							excerpt={entry.description}
+							aria-label={`View ${entry.title}`}
+						>
+							{imageData && (
+								<Picture
+									slot="media"
+									src={imageData}
+									widths={IMAGE_WIDTHS}
+									formats={IMAGE_FORMATS}
+									sizes={sizes}
+									alt={entry.imageAlt || entry.title}
+									loading="lazy"
+									decoding="async"
+								/>
+							)}
+						</Entry>
+					</li>
+				);
+			})
+		}
+	</EntryList>
 </Layout>
-
-<style>
-	.entries {
-		display: grid;
-		gap: var(--l);
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-
-		@media screen and (width <= 62rem) {
-			row-gap: var(--l);
-			column-gap: 0;
-			grid-template-columns: 1fr;
-		}
-
-		.entry-wrapper {
-			display: flex;
-			height: 100%;
-			min-height: 0;
-			flex-direction: column;
-
-			@media screen and (width <= 62rem) {
-				grid-column: span 1;
-			}
-
-			&[data-highlighted='true'] {
-				grid-column: span 2;
-
-				/* Highlighted-only: desktop = column (image on top), tablet = row, small = column */
-				:global(.base-card.image.highlighted) {
-					@media screen and (width > 62rem) {
-						flex-direction: column;
-						align-items: stretch;
-						overflow: hidden;
-
-						:global(.image-wrapper) {
-							width: 100%;
-							min-width: 0;
-							min-height: 0;
-							border-radius: var(--border-radius) var(--border-radius) 0 0;
-							aspect-ratio: 16 / 10;
-						}
-
-						:global(.main-img) {
-							width: 100%;
-							height: auto;
-							min-height: 0;
-							border-radius: 0;
-							box-shadow: none;
-							aspect-ratio: 16 / 10;
-						}
-
-						:global(.main-img img) {
-							height: 100%;
-							min-height: 0;
-							border-radius: var(--border-radius) var(--border-radius) 0 0;
-							object-fit: cover;
-							object-position: top;
-						}
-					}
-
-					@media screen and (width <= 62rem) {
-						flex-direction: row;
-						align-items: stretch;
-						overflow: hidden;
-					}
-
-					@media screen and (width <= 32rem) {
-						flex-direction: column;
-					}
-
-					&:hover {
-						@media screen and (width > 62rem) {
-							:global(.image-wrapper) {
-								filter: grayscale(0);
-							}
-
-							:global(.main-img img) {
-								opacity: 1;
-							}
-						}
-
-						@media screen and (width <= 62rem) {
-							:global(.image-wrapper) {
-								filter: grayscale(0);
-							}
-
-							:global(.main-img img) {
-								opacity: 1;
-							}
-						}
-					}
-				}
-			}
-
-			&[data-highlighted='false'] {
-				grid-column: span 3;
-			}
-
-			> :global(.base-card) {
-				min-height: 0;
-				flex: 1 1 auto;
-			}
-		}
-
-		/* Shared: image card layout and image styling (highlighted + compact), usage-specific */
-		:global(.base-card.image.highlighted),
-		:global(.base-card.image.compact) {
-			flex-direction: row;
-			align-items: stretch;
-			overflow: hidden;
-
-			@media screen and (width <= 32rem) {
-				flex-direction: column;
-			}
-
-			:global(.image-wrapper) {
-				display: block;
-				position: relative;
-				margin: 0;
-				padding: 0;
-				width: 12rem;
-				min-width: 12rem;
-				min-height: 12rem;
-				border-radius: var(--border-radius) 0 0 var(--border-radius);
-				align-self: stretch;
-				transition: filter var(--transition);
-				overflow: hidden;
-				box-sizing: border-box;
-				filter: grayscale(1);
-
-				@media screen and (width <= 32rem) {
-					width: 100%;
-					min-width: 0;
-					min-height: 0;
-					aspect-ratio: 16 / 10;
-					border-radius: var(--border-radius) var(--border-radius) 0 0;
-				}
-
-				:global(.blur-bg) {
-					position: absolute;
-					z-index: 1;
-					margin: 0;
-					padding: 0;
-					width: 100%;
-					height: 100%;
-					inset: 0;
-
-					@media screen and (width <= 32rem) {
-						display: none;
-					}
-
-					:global(picture),
-					:global(img) {
-						margin: 0;
-						padding: 0;
-						width: 100%;
-						height: 100%;
-						object-fit: cover;
-						transform: scale(1.1);
-						filter: blur(12px) brightness(0.9);
-					}
-				}
-
-				:global(.main-img) {
-					position: absolute;
-					z-index: 2;
-					margin: 0;
-					padding: 0;
-					width: 100%;
-					height: 100%;
-					border-radius: var(--border-radius) 0 0 var(--border-radius);
-					inset: 0;
-
-					@media screen and (width <= 32rem) {
-						width: 100%;
-						height: auto;
-						min-height: 0;
-						border-radius: 0;
-						box-shadow: none;
-						aspect-ratio: 16 / 10;
-					}
-
-					:global(picture) {
-						display: block;
-						margin: 0;
-						padding: 0;
-						width: 100%;
-						height: 100%;
-					}
-
-					:global(img) {
-						display: block;
-						margin: 0;
-						padding: 0;
-						width: 100% !important;
-						max-width: 100%;
-						height: 100% !important;
-						border-radius: var(--border-radius) 0 0 var(--border-radius);
-						object-fit: cover;
-						object-position: top;
-					}
-
-					@media screen and (width <= 32rem) {
-						:global(img) {
-							height: 100%;
-							min-height: 0;
-							border-radius: var(--border-radius) var(--border-radius) 0 0;
-							object-fit: cover;
-							object-position: top;
-						}
-					}
-				}
-			}
-
-			:global(.content) {
-				text-align: left;
-
-				:global(strong) {
-					margin: 0 0 var(--xs) 0;
-				}
-
-				:global(p) {
-					margin: 0 0 var(--s) 0;
-				}
-			}
-		}
-
-		/* Compact only: hover at all viewports */
-		:global(.base-card.image.compact) {
-			&:hover {
-				:global(.image-wrapper) {
-					filter: grayscale(0);
-				}
-
-				:global(.main-img img) {
-					opacity: 1;
-				}
-			}
-		}
-	}
-</style>

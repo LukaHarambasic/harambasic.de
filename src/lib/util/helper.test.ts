@@ -3,7 +3,6 @@ import {
 	statusFilterToArray,
 	sortDirectionsToArray,
 	sortPropertyToArray,
-	formatDate,
 	formatDateDisplay,
 	sortPositionsByDate,
 	getSlug,
@@ -51,15 +50,11 @@ test('getSlug - string to slug', async () => {
 	});
 });
 
-test('formatDate - date to formatted string', async () => {
-	expect(formatDate(new Date('1996-02-18'))).toBe('1996-02-18');
-	expect(formatDate(new Date('1996-02-18T00:00'))).toBe('1996-02-18');
-});
-
-test('formatDateDisplay - date string to display format (MMM YYYY)', async () => {
+test('formatDateDisplay - date string or Date to display format (MMM YYYY)', async () => {
 	expect(formatDateDisplay('2024-01-15')).toBe('Jan 2024');
 	expect(formatDateDisplay('2023-12-01')).toBe('Dec 2023');
 	expect(formatDateDisplay('2025-06-30')).toBe('Jun 2025');
+	expect(formatDateDisplay(new Date('1996-02-18'))).toBe('Feb 1996');
 });
 
 test('sortPositionsByDate - sort positions by start date (most recent first)', async () => {

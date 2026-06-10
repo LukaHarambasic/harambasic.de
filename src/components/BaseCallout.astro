@@ -1,47 +1,25 @@
 ---
-import BaseCard from './BaseCard.astro';
 import BaseRichText from './BaseRichText.astro';
 
 interface Props {
 	prefix: string;
-	class?: string;
 	id?: string;
-	/** When true, render without outer BaseCard (inner label + content only) */
-	noCard?: boolean;
 }
 
-const { prefix, class: className, id, noCard = false } = Astro.props;
+const { prefix, id } = Astro.props;
 ---
 
-<div class:list={['callout-wrapper', { noCard }]}>
-	{
-		noCard ? (
-			<div class="callout" id={id}>
-				{prefix && <strong>{prefix}</strong>}
-				<BaseRichText class="content">
-					<slot />
-				</BaseRichText>
-			</div>
-		) : (
-			<BaseCard class={className ? `callout ${className}` : 'callout'} id={id}>
-				{prefix && <strong>{prefix}</strong>}
-				<BaseRichText class="content">
-					<slot />
-				</BaseRichText>
-			</BaseCard>
-		)
-	}
+<div class="callout" id={id}>
+	{prefix && <strong>{prefix}</strong>}
+	<BaseRichText class="content">
+		<slot />
+	</BaseRichText>
 </div>
 
 <style>
-	.callout-wrapper {
-		display: block;
-		&.noCard {
-			width: fit-content;
-		}
-	}
-	:global(.callout-wrapper .callout) {
+	.callout {
 		display: flex;
+		width: fit-content;
 		align-items: flex-start;
 		gap: var(--m);
 		strong {

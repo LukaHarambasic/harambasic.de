@@ -34,13 +34,13 @@ const { title, description } = Astro.props;
 			text-wrap: balance;
 			hyphens: none;
 			&::after {
-				content: '';
 				display: block;
 				margin-top: var(--m);
 				width: 3.5rem;
 				height: 2px;
 				border-radius: 1px;
 				background: var(--c-font);
+				content: '';
 			}
 		}
 		.description {
