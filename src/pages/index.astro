@@ -87,12 +87,19 @@ const initialRows = rowSteps[0] ?? allRows.length;
 <Layout description={description}>
 	<section class="heyho">
 		<div class="inner">
+			{
+				/* LCP element: load eagerly at high priority, sized to its real display width
+			    (14.5rem desktop, full container width below 32rem) instead of the shared
+			    detail-page widths — the old sizes pulled the 1280w variant for a ~350px slot. */
+			}
 			<Image
 				src={profileImg}
 				alt="Profile of Luka Harambasic"
 				class="profile"
-				widths={IMAGE_WIDTHS}
-				sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+				widths={[232, 464, 696]}
+				sizes="(max-width: 32rem) calc(100vw - 4rem), 14.5rem"
+				loading="eager"
+				fetchpriority="high"
 			/>
 			<div class="content">
 				<BaseRichText>

@@ -33,7 +33,7 @@ function getSlug(str) {
 }
 
 const CONTENT = join(process.cwd(), 'src', 'content');
-const SOCIAL = join(process.cwd(), 'static', 'social');
+const SOCIAL = join(process.cwd(), 'public', 'social');
 const TYPES = ['posts', 'projects', 'uses', 'work'];
 
 function loadEntries(type) {
@@ -106,7 +106,7 @@ for (const type of ['posts', 'uses']) {
 	for (const e of all[type]) {
 		const png = join(SOCIAL, `${e.slug}.png`);
 		if (!existsSync(png)) {
-			console.warn(`WARN  missing social image: static/social/${e.slug}.png (${type}/${e.file})`);
+			console.warn(`WARN  missing social image: public/social/${e.slug}.png (${type}/${e.file})`);
 			warn++;
 		}
 	}
