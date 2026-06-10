@@ -250,10 +250,10 @@ const initialRows = rowSteps[0] ?? allRows.length;
 			.content {
 				h1 {
 					margin: 0 0 0.5rem;
-					font-family: var(--font-family);
+					font-family: var(--font-family-serif);
 					font-size: var(--font-l);
-					font-weight: 900;
-					letter-spacing: var(--font-letter-spacing-headline);
+					font-weight: 500;
+					letter-spacing: var(--tracking-heading);
 				}
 				p {
 					font-weight: normal;
@@ -279,11 +279,11 @@ const initialRows = rowSteps[0] ?? allRows.length;
 
 		h2 {
 			margin: var(--xl) 0 var(--m) 0;
-			font-family: var(--font-family);
+			font-family: var(--font-family-serif);
 			font-size: var(--font-xl);
-			font-weight: 900;
+			font-weight: 500;
 			line-height: 1.2;
-			letter-spacing: var(--font-letter-spacing-headline);
+			letter-spacing: var(--tracking-heading);
 			text-align: center;
 		}
 
@@ -466,9 +466,8 @@ const initialRows = rowSteps[0] ?? allRows.length;
 							display: block;
 							font-family: var(--font-family);
 							font-size: var(--font-m);
-							font-weight: 900;
+							font-weight: 700;
 							line-height: 1.2;
-							letter-spacing: var(--font-letter-spacing-headline);
 						}
 						.date {
 							color: var(--c-font-accent-dark);

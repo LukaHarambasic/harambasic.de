@@ -8,6 +8,10 @@ body {
 	font-size: 125%;
 	-webkit-font-smoothing: antialiased;
 }
+::selection {
+	background: #efc88c;
+	color: #16041a;
+}
 :-moz-any-link {
 	text-decoration-thickness: var(--underline-thickness);
 }

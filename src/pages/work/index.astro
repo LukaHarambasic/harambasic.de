@@ -87,7 +87,7 @@ const past = cards
 			margin: 0 auto;
 			width: 61.8%;
 			height: 100%;
-			border-color: rgba(255, 255, 255, 0.2);
+			border-color: rgba(255, 237, 249, 0.18);
 			background: var(--c-current-work-bg);
 			color: inherit;
 			text-decoration: none;
@@ -95,7 +95,7 @@ const past = cards
 				width: 100%;
 			}
 			&:focus {
-				outline: 2px solid #fff;
+				outline: 2px solid var(--c-accent-honey);
 				outline-offset: 2px;
 			}
 			&:hover {
@@ -136,36 +136,36 @@ const past = cards
 		:global(.base-card.current-card time),
 		:global(.base-card.current-card p) {
 			opacity: 0.9;
-			color: #fff;
+			color: var(--c-current-work-text);
 		}
 		:global(.base-card.current-card[href] .external-link) {
-			color: #fff;
+			color: var(--c-current-work-text);
 		}
 		:global(.base-card.current-card[href]:hover .external-link) {
 			transform: translateY(-2px) translateX(2px);
 		}
 		:global(.base-card.current-card .logo) {
-			background: rgba(255, 255, 255, 0.1);
+			background: rgba(255, 237, 249, 0.1);
 		}
 		:global(.base-card.current-card .name) {
-			color: #fff;
+			color: var(--c-current-work-text);
 			font-size: 1.5rem;
 		}
 		:global(.base-card.current-card .location) {
-			color: rgba(255, 255, 255, 0.8);
+			color: rgba(255, 237, 249, 0.8);
 		}
 		:global(.base-card.current-card .row) {
-			color: rgba(255, 255, 255, 0.8);
+			color: rgba(255, 237, 249, 0.8);
 		}
 		:global(.base-card.current-card .dates) {
-			color: rgba(255, 255, 255, 0.8);
+			color: rgba(255, 237, 249, 0.8);
 		}
 		:global(.base-card.current-card .description p) {
-			color: #fff;
+			color: var(--c-current-work-text);
 		}
 		:global(.base-card.current-card .footer) {
-			border-top-color: rgba(255, 255, 255, 0.2);
-			color: #fff;
+			border-top-color: rgba(255, 237, 249, 0.18);
+			color: var(--c-current-work-text);
 		}
 	}
 </style>

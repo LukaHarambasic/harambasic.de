@@ -1,0 +1,229 @@
+/* ============================================================
+   Harambasic Consulting — design tokens (flattened, self-contained)
+   Reference document for the harambasic-design skill.
+   Two brand colours, derived from the portrait mark:
+     Aubergine ink  #2d0a2e   (the line, the type, the depth)
+     Pink ground    #ffedf9   (the surface it lives on)
+   ============================================================ */
+
+:root {
+	/* ---- Aubergine / mauve (primary brand scale) ---------- */
+	--aub-950: #16041a;
+	--aub-900: #2d0a2e; /* BRAND INK */
+	--aub-800: #3c133d;
+	--aub-700: #4f1f50;
+	--aub-600: #653366;
+	--aub-500: #7e4a7d; /* mauve mid — matches the logo's midtones */
+	--aub-400: #9a6a98;
+	--aub-300: #bb95b9;
+	--aub-200: #dbc1d8;
+	--aub-100: #eedfec;
+	--aub-50: #f9f1f7;
+
+	/* ---- Rose / pink ground -------------------------------- */
+	--rose-50: #fff8fc;
+	--rose-100: #ffedf9; /* BRAND GROUND */
+	--rose-200: #fbdcef;
+	--rose-300: #f3c4e0;
+	--rose-400: #e79fc9;
+
+	/* ---- Warm neutrals (faintly mauve, paper-like) --------- */
+	--warm-0: #ffffff;
+	--warm-50: #faf6f4;
+	--warm-100: #f1eae6;
+	--warm-200: #e3d8d2;
+	--warm-300: #cabbb4;
+	--warm-400: #a8978f;
+	--warm-500: #82706a;
+	--warm-600: #5f4f4b;
+	--warm-700: #423734;
+
+	/* ---- Honey (primary warm accent) ----------------------- */
+	--honey-100: #f9ecd5;
+	--honey-300: #efc88c;
+	--honey-400: #e8b366;
+	--honey-500: #e0a24a; /* ACCENT — honey */
+	--honey-600: #c9883a;
+	--honey-700: #a66c2c;
+
+	/* ---- Clay / terracotta (secondary warm accent) --------- */
+	--clay-100: #f6e2d9;
+	--clay-300: #e0a892;
+	--clay-400: #d4866c;
+	--clay-500: #c76b4e; /* ACCENT — clay */
+	--clay-600: #aa5439;
+
+	/* ---- Semantic hues (tuned warm to fit the family) ------ */
+	--green-500: #4e8a6b;
+	--green-100: #dcecdf;
+	--amber-500: #d98a2b;
+	--amber-100: #f7e6c8;
+	--red-500: #c24a4a;
+	--red-100: #f6dada;
+
+	/* ---- Semantic aliases — use these, not raw scales ------ */
+
+	/* Text */
+	--text-strong: var(--aub-900);
+	--text-body: #3a2438;
+	--text-muted: #6f5a6c;
+	--text-subtle: #8f7c8c;
+	--text-on-ink: var(--rose-100); /* pink type on aubergine — on-brand */
+	--text-on-ink-muted: #c9a6c4;
+	--text-link: var(--aub-700);
+
+	/* Surfaces */
+	--surface-page: #fff9fc; /* barely-pink paper */
+	--surface-paper: var(--warm-50); /* warm white alt ground */
+	--surface-card: var(--warm-0);
+	--surface-sunken: var(--rose-50);
+	--surface-pink: var(--rose-100); /* brand pink ground */
+	--surface-ink: var(--aub-900); /* dark sections */
+	--surface-ink-soft: var(--aub-800);
+
+	/* Borders & rules */
+	--border-subtle: rgba(45, 10, 46, 0.1);
+	--border-default: rgba(45, 10, 46, 0.16);
+	--border-strong: rgba(45, 10, 46, 0.28);
+	--hairline: rgba(45, 10, 46, 0.14); /* fine editorial rules */
+	--border-on-ink: rgba(255, 237, 249, 0.18);
+
+	/* Primary action — aubergine with pink type */
+	--accent: var(--aub-900);
+	--accent-hover: var(--aub-800);
+	--accent-press: var(--aub-950);
+	--on-accent: var(--rose-100);
+
+	/* Accent roles */
+	--accent-honey: var(--honey-500);
+	--accent-clay: var(--clay-500);
+
+	/* Focus */
+	--focus-ring: var(--honey-500);
+	--focus-ring-offset: var(--surface-page);
+
+	/* Semantic roles */
+	--success: var(--green-500);
+	--success-surface: var(--green-100);
+	--warning: var(--amber-500);
+	--warning-surface: var(--amber-100);
+	--danger: var(--red-500);
+	--danger-surface: var(--red-100);
+	--info: var(--aub-500);
+	--info-surface: var(--aub-100);
+
+	/* Selection */
+	--selection-bg: var(--honey-300);
+	--selection-fg: var(--aub-950);
+
+	/* ---- Type families ------------------------------------- */
+	--font-serif: 'Newsreader', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+	--font-sans:
+		'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+	/* ---- Weights ------------------------------------------- */
+	--fw-regular: 400;
+	--fw-medium: 500;
+	--fw-semibold: 600;
+	--fw-bold: 700;
+
+	/* ---- Type scale (editorial) ----------------------------- */
+	--fs-display: 4.5rem; /* 72 — hero serif */
+	--fs-h1: 3rem; /* 48 */
+	--fs-h2: 2.25rem; /* 36 */
+	--fs-h3: 1.5rem; /* 24 */
+	--fs-h4: 1.25rem; /* 20 */
+	--fs-body-lg: 1.1875rem; /* 19 — lead paragraphs */
+	--fs-body: 1.0625rem; /* 17 — default body */
+	--fs-body-sm: 0.9375rem; /* 15 */
+	--fs-caption: 0.8125rem; /* 13 */
+	--fs-eyebrow: 0.75rem; /* 12 — mono uppercase label */
+
+	/* ---- Line heights --------------------------------------- */
+	--lh-display: 1.04;
+	--lh-tight: 1.12;
+	--lh-snug: 1.22;
+	--lh-normal: 1.55;
+	--lh-relaxed: 1.68;
+
+	/* ---- Letter spacing -------------------------------------- */
+	--tracking-display: -0.022em;
+	--tracking-heading: -0.012em;
+	--tracking-normal: 0;
+	--tracking-wide: 0.04em;
+	--tracking-eyebrow: 0.2em;
+
+	/* ---- Spacing (4px grid) ---------------------------------- */
+	--sp-0: 0;
+	--sp-1: 0.25rem; /* 4 */
+	--sp-2: 0.5rem; /* 8 */
+	--sp-3: 0.75rem; /* 12 */
+	--sp-4: 1rem; /* 16 */
+	--sp-5: 1.5rem; /* 24 */
+	--sp-6: 2rem; /* 32 */
+	--sp-7: 3rem; /* 48 */
+	--sp-8: 4rem; /* 64 */
+	--sp-9: 6rem; /* 96 */
+	--sp-10: 8rem; /* 128 */
+
+	/* ---- Layout measures -------------------------------------- */
+	--measure-prose: 68ch;
+	--measure-narrow: 46ch;
+	--container-page: 1180px;
+	--container-doc: 820px;
+	--gutter: var(--sp-6);
+
+	/* ---- Corner radii ------------------------------------------ */
+	--radius-xs: 4px;
+	--radius-sm: 8px;
+	--radius-md: 12px;
+	--radius-lg: 18px;
+	--radius-xl: 28px; /* echoes the logo card */
+	--radius-pill: 999px;
+
+	/* ---- Border widths ------------------------------------------ */
+	--bw-hairline: 1px;
+	--bw-regular: 1.5px;
+	--bw-bold: 2px;
+
+	/* ---- Shadows — low, soft, aubergine-tinted ------------------- */
+	--shadow-xs: 0 1px 2px rgba(45, 10, 46, 0.06);
+	--shadow-sm: 0 2px 8px rgba(45, 10, 46, 0.06), 0 1px 2px rgba(45, 10, 46, 0.04);
+	--shadow-md: 0 6px 24px rgba(45, 10, 46, 0.09), 0 2px 6px rgba(45, 10, 46, 0.05);
+	--shadow-lg: 0 18px 48px rgba(45, 10, 46, 0.13), 0 6px 16px rgba(45, 10, 46, 0.07);
+	--shadow-xl: 0 36px 80px rgba(45, 10, 46, 0.18), 0 12px 28px rgba(45, 10, 46, 0.09);
+
+	/* Honey focus glow */
+	--ring-focus: 0 0 0 3px rgba(224, 162, 74, 0.45);
+	/* Inset hairline for cards on pink */
+	--ring-hairline: inset 0 0 0 1px rgba(45, 10, 46, 0.08);
+
+	/* ---- Motion --------------------------------------------------- */
+	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+	--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+	--dur-fast: 120ms;
+	--dur-base: 220ms;
+	--dur-slow: 420ms;
+}
+
+/* ============================================================
+   Dark theme — site extension (not part of the original system).
+   Derived from the ink surfaces; all text pairs are WCAG AAA
+   on #2d0a2e (see SKILL.md for the contrast table).
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--text-strong: var(--rose-100);
+		--text-body: var(--rose-100);
+		--text-muted: var(--text-on-ink-muted);
+		--text-link: var(--honey-400);
+		--surface-page: var(--aub-900);
+		--surface-card: var(--aub-800);
+		--surface-ink: var(--aub-950);
+		--border-subtle: rgba(255, 237, 249, 0.12);
+		--hairline: rgba(255, 237, 249, 0.14);
+		--shadow-sm: 0 2px 8px rgba(22, 4, 26, 0.25), 0 1px 2px rgba(22, 4, 26, 0.2);
+		--shadow-md: 0 6px 24px rgba(22, 4, 26, 0.35), 0 2px 6px rgba(22, 4, 26, 0.25);
+	}
+}

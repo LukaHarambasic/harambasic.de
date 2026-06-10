@@ -57,6 +57,7 @@ const Element = element;
 			text-decoration: none;
 		}
 		&[href]:hover {
+			box-shadow: var(--shadow-md);
 			text-decoration: none;
 			transform: scale(1.02) translateY(-4px);
 			cursor: pointer;
@@ -140,11 +141,11 @@ const Element = element;
 			:global(.name) {
 				margin: 0;
 				color: var(--c-font);
-				font-family: var(--font-family);
+				font-family: var(--font-family-serif);
 				font-size: var(--font-xl);
-				font-weight: 900;
+				font-weight: 500;
 				line-height: 1.2;
-				letter-spacing: var(--font-letter-spacing-headline);
+				letter-spacing: var(--tracking-heading);
 			}
 			:global(.location) {
 				color: var(--c-font-accent-dark);
@@ -285,9 +286,8 @@ const Element = element;
 				display: inline;
 				font-family: var(--font-family);
 				font-size: var(--font-m);
-				font-weight: 900;
+				font-weight: 700;
 				line-height: 1.2;
-				letter-spacing: var(--font-letter-spacing-headline);
 			}
 			:global(.content p) {
 				margin: 0;
@@ -325,9 +325,8 @@ const Element = element;
 				display: inline-block;
 				font-family: var(--font-family);
 				font-size: var(--font-m);
-				font-weight: 900;
+				font-weight: 700;
 				line-height: 1.2;
-				letter-spacing: var(--font-letter-spacing-headline);
 			}
 			:global(.column .tags) {
 				display: flex;
@@ -391,9 +390,8 @@ const Element = element;
 				margin: 0 0 var(--xs) 0;
 				font-family: var(--font-family);
 				font-size: var(--font-m);
-				font-weight: 900;
+				font-weight: 700;
 				line-height: 1.2;
-				letter-spacing: var(--font-letter-spacing-headline);
 			}
 			:global(.content p) {
 				margin: 0;

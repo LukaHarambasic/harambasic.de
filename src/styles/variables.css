@@ -1,30 +1,37 @@
 :root {
-	--c-surface: #f7f7f7;
-	--c-surface-accent: rgba(1, 3, 15, 0.03);
-	--c-light: #fff;
-	--c-font: #01030f;
-	--c-font-accent-dark: rgba(1, 3, 15, 0.8);
-	--c-font-accent-super-light: rgba(1, 3, 15, 0.2);
-	--c-backdrop: #01030f;
-	--c-current-work-bg: #01030f;
-	--c-current-work-text: #fff;
-	--font-family: 'Source Sans 3', arial, helvetica, sans-serif;
-	--font-family-code: 'JetBrains Mono', arial, helvetica, sans-serif;
-	--font-s: 0.833rem;
+	--c-surface: #ffedf9;
+	--c-surface-accent: rgba(45, 10, 46, 0.06);
+	--c-light: #fff9fc;
+	--c-font: #2d0a2e;
+	--c-font-accent-dark: #6f5a6c;
+	--c-font-accent-super-light: rgba(45, 10, 46, 0.12);
+	--c-backdrop: rgba(45, 10, 46, 0.7);
+	--c-current-work-bg: #2d0a2e;
+	--c-current-work-text: #ffedf9;
+	--c-accent-honey: #e0a24a;
+	--c-accent-italic: #653366;
+	--font-family: 'Hanken Grotesk', -apple-system, 'Segoe UI', helvetica, arial, sans-serif;
+	--font-family-serif: 'Newsreader', 'Iowan Old Style', georgia, serif;
+	--font-family-code: 'IBM Plex Mono', ui-monospace, 'SF Mono', menlo, consolas, monospace;
+	--font-s: 0.875rem;
 	--font-m: 1rem;
-	--font-l: 1.2rem;
-	--font-xl: 1.44rem;
-	--font-letter-spacing-headline: 0.2px;
+	--font-l: 1.25rem;
+	--font-xl: 1.5rem;
+	--font-letter-spacing-headline: 0;
+	--tracking-display: -0.022em;
+	--tracking-heading: -0.012em;
+	--tracking-eyebrow: 0.2em;
 	--underline-thickness: 0.15rem;
 	--transition-time: 0.15s;
-	--transition-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+	--transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
 	--transition: all var(--transition-time) var(--transition-ease);
-	--border-radius: 1rem;
-	--border-radius-small: 0.5rem;
-	--box-shadow:
-		0 1px 2px rgba(0, 0, 0, 0.01), 0 2px 4px rgba(0, 0, 0, 0.01), 0 4px 8px rgba(0, 0, 0, 0.01),
-		0 6px 12px rgba(0, 0, 0, 0.01);
-	--c-border: rgba(1, 3, 15, 0.03);
+	--border-radius: 12px;
+	--border-radius-small: 8px;
+	--border-radius-pill: 999px;
+	--box-shadow: 0 2px 8px rgba(45, 10, 46, 0.06), 0 1px 2px rgba(45, 10, 46, 0.04);
+	--shadow-md: 0 6px 24px rgba(45, 10, 46, 0.09), 0 2px 6px rgba(45, 10, 46, 0.05);
+	--ring-hairline: inset 0 0 0 1px rgba(45, 10, 46, 0.08);
+	--c-border: rgba(45, 10, 46, 0.1);
 	--border: 1px solid var(--c-border);
 	--xxs: 0.25rem;
 	--xs: 0.5rem;
@@ -39,13 +46,18 @@
 }
 @media (prefers-color-scheme: dark) {
 	:root {
-		--c-surface: hsla(0, 0%, 100%, 0.2);
-		--c-surface-accent: hsla(0, 0%, 100%, 0.06);
-		--c-border: hsla(0, 0%, 100%, 0.06);
-		--c-light: #01030f;
-		--c-font: #fff;
-		--c-font-accent-dark: hsla(0, 0%, 100%, 0.8);
-		--c-font-accent-super-light: hsla(0, 0%, 100%, 0.04);
-		--c-backdrop: #fff;
+		--c-surface: #3c133d;
+		--c-surface-accent: rgba(255, 237, 249, 0.08);
+		--c-border: rgba(255, 237, 249, 0.12);
+		--c-light: #2d0a2e;
+		--c-font: #ffedf9;
+		--c-font-accent-dark: #c9a6c4;
+		--c-font-accent-super-light: rgba(255, 237, 249, 0.15);
+		--c-backdrop: rgba(22, 4, 26, 0.85);
+		--c-current-work-bg: #16041a;
+		--c-accent-italic: #e8b366;
+		--box-shadow: 0 2px 8px rgba(22, 4, 26, 0.25), 0 1px 2px rgba(22, 4, 26, 0.2);
+		--shadow-md: 0 6px 24px rgba(22, 4, 26, 0.35), 0 2px 6px rgba(22, 4, 26, 0.25);
+		--ring-hairline: inset 0 0 0 1px rgba(255, 237, 249, 0.1);
 	}
 }

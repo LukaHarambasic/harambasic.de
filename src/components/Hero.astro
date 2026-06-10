@@ -26,11 +26,12 @@ const { title, description } = Astro.props;
 		.title {
 			margin: 0;
 			color: var(--c-font);
-			font-family: var(--font-family);
+			font-family: var(--font-family-serif);
 			font-size: clamp(2rem, 5vw, 3.5rem);
-			font-weight: 900;
-			line-height: 1.15;
-			letter-spacing: var(--font-letter-spacing-headline);
+			font-weight: 500;
+			line-height: 1.04;
+			letter-spacing: var(--tracking-display);
+			text-wrap: balance;
 			hyphens: none;
 		}
 		.description {

@@ -281,10 +281,10 @@ if (relatedSlugs.length > 0) {
 		.position-title {
 			margin: 0;
 			color: var(--c-font);
-			font-family: var(--font-family);
+			font-family: var(--font-family-serif);
 			font-size: var(--font-l);
-			font-weight: 900;
-			letter-spacing: var(--font-letter-spacing-headline);
+			font-weight: 500;
+			letter-spacing: var(--tracking-heading);
 		}
 		.employment-type {
 			margin: 0;
@@ -384,7 +384,7 @@ if (relatedSlugs.length > 0) {
 						width: 100%;
 						height: 100%;
 						border-radius: var(--border-radius) 0 0 var(--border-radius);
-						box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+						box-shadow: var(--shadow-md);
 						inset: 0;
 
 						@media screen and (width <= 32rem) {
@@ -485,9 +485,9 @@ if (relatedSlugs.length > 0) {
 			:global(h5),
 			:global(h6) {
 				margin: var(--l) 0 var(--m) 0;
-				font-family: var(--font-family);
-				font-weight: 900;
-				letter-spacing: var(--font-letter-spacing-headline);
+				font-family: var(--font-family-serif);
+				font-weight: 500;
+				letter-spacing: var(--tracking-heading);
 			}
 			:global(h1:first-child),
 			:global(h2:first-child),
