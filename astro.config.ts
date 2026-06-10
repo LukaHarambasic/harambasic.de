@@ -11,6 +11,8 @@ export default defineConfig({
 	trailingSlash: 'never',
 	// Exclude the extensionless RSS endpoints from the sitemap (HTML pages only).
 	integrations: [icon(), sitemap({ filter: (page) => !page.endsWith('/rss') })],
+	// Allow access via Tailscale Serve (tailnet-only reverse proxy, see /dev CLAUDE.md).
+	vite: { server: { allowedHosts: ['.hornbill-atlas.ts.net'] } },
 	markdown: {
 		// Shiki one-dark-pro replaces rehype-highlight + highlight.css (always dark).
 		// rehype-slug + rehype-autolink-headings (both with default options) reproduce
