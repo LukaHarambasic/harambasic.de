@@ -246,8 +246,7 @@ src/
 │   ├── images.ts       # astro:assets glob helpers
 │   ├── markdown.ts     # renderPositionContent / renderEntryHtml
 │   ├── toc.ts          # buildNestedToc
-│   ├── rss.ts          # pure RSS XML generators
-│   └── rssFeed.ts      # RSS data builders (astro:content)
+│   └── rssFeed.ts      # RSS item builders for @astrojs/rss (astro:content)
 ├── components/         # Astro components (.astro)
 ├── layouts/            # Layout.astro
 ├── pages/              # File-based routes + RSS endpoints
@@ -353,7 +352,7 @@ When updating existing code:
 
 - **Unit Tests**: Vitest (`vitest.config.ts`, scoped to `src/**/*.test.ts`)
 - **E2E Tests**: Playwright parity suite in `e2e/` (builds + previews on port 4173)
-- Parity fixtures (`e2e/fixtures/rss/`, `e2e/parity/*-snapshots/`) are byte-stable — never reformat them
+- Parity snapshots (`e2e/parity/*-snapshots/`) are byte-stable — never reformat them; RSS feeds are validated structurally (no fixtures)
 
 ### Build & Deployment
 

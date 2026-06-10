@@ -1,8 +1,13 @@
-import type { APIRoute } from 'astro';
-import { generateXml, options } from '$lib/rss';
-import { buildUsesFeed } from '$lib/rssFeed';
+import rss from '@astrojs/rss';
+import type { APIContext } from 'astro';
+import { buildUsesItems, sectionChannel, selfLink } from '$lib/rssFeed';
 
-export const GET: APIRoute = async () => {
-	const xml = generateXml(await buildUsesFeed(), 'uses');
-	return new Response(xml, { headers: options.headers });
-};
+export async function GET(context: APIContext) {
+	return rss({
+		...sectionChannel('uses'),
+		...selfLink('/uses/rss'),
+		site: context.site ?? 'https://harambasic.de',
+		items: await buildUsesItems(),
+		trailingSlash: false
+	});
+}
