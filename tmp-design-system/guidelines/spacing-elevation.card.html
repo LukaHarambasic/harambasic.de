@@ -1,0 +1,35 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Radii & elevation" subtitle="Restrained corners; soft, aubergine-tinted shadows" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-mono); }
+  .wrap { padding: var(--sp-6); display: grid; gap: var(--sp-6); }
+  .strip { display: flex; align-items: flex-end; gap: var(--sp-5); }
+  .r { width: 64px; height: 48px; background: var(--surface-card); box-shadow: var(--ring-hairline); display: flex; align-items: flex-end; justify-content: center; }
+  .cap { font-size: 10px; color: var(--text-subtle); text-align: center; margin-top: 6px; }
+  .e { width: 96px; height: 56px; background: var(--surface-card); border-radius: var(--radius-md); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="strip">
+      <div><div class="r" style="border-radius:var(--radius-xs);"></div><div class="cap">xs · 4</div></div>
+      <div><div class="r" style="border-radius:var(--radius-sm);"></div><div class="cap">sm · 8</div></div>
+      <div><div class="r" style="border-radius:var(--radius-md);"></div><div class="cap">md · 12</div></div>
+      <div><div class="r" style="border-radius:var(--radius-lg);"></div><div class="cap">lg · 18</div></div>
+      <div><div class="r" style="border-radius:var(--radius-xl);"></div><div class="cap">xl · 28</div></div>
+      <div><div class="r" style="border-radius:var(--radius-pill);width:48px;"></div><div class="cap">pill</div></div>
+    </div>
+    <div class="strip">
+      <div><div class="e" style="box-shadow:var(--shadow-xs);"></div><div class="cap">xs</div></div>
+      <div><div class="e" style="box-shadow:var(--shadow-sm);"></div><div class="cap">sm</div></div>
+      <div><div class="e" style="box-shadow:var(--shadow-md);"></div><div class="cap">md</div></div>
+      <div><div class="e" style="box-shadow:var(--shadow-lg);"></div><div class="cap">lg</div></div>
+      <div><div class="e" style="box-shadow:var(--shadow-xl);"></div><div class="cap">xl</div></div>
+    </div>
+  </div>
+</body>
+</html>

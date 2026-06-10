@@ -1,0 +1,26 @@
+<!-- @dsCard group="Type" viewport="700x300" name="Heading & body scale" subtitle="Serif headings step down into humanist sans body" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); }
+  .wrap { padding: var(--sp-6) var(--sp-7); display: grid; gap: var(--sp-4); }
+  .line { display: grid; grid-template-columns: 78px 1fr; align-items: baseline; gap: var(--sp-5); }
+  .tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-subtle); letter-spacing: 0.04em; }
+  .h1 { font-family: var(--font-serif); font-size: 48px; line-height: 1.12; letter-spacing: -0.012em; font-weight: 500; color: var(--text-strong); }
+  .h2 { font-family: var(--font-serif); font-size: 36px; line-height: 1.18; font-weight: 500; color: var(--text-strong); }
+  .h3 { font-family: var(--font-serif); font-size: 24px; font-weight: 600; color: var(--text-strong); }
+  .body { font-family: var(--font-sans); font-size: 17px; line-height: 1.55; color: var(--text-body); max-width: 52ch; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="line"><span class="tag">H1 · 48</span><span class="h1">Automations that earn their keep</span></div>
+    <div class="line"><span class="tag">H2 · 36</span><span class="h2">Internal tools, built around you</span></div>
+    <div class="line"><span class="tag">H3 · 24</span><span class="h3">Where I start every engagement</span></div>
+    <div class="line"><span class="tag">Body · 17</span><span class="body">I work directly with founders to find the few processes worth automating, then build the tooling that makes them stick. No team to manage — just me, and the work.</span></div>
+  </div>
+</body>
+</html>

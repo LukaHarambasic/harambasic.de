@@ -1,0 +1,31 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Warm neutrals" subtitle="Paper-like greys, faintly mauve so they belong to the family" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-mono); }
+  .ramp { display: grid; grid-template-columns: repeat(9, 1fr); gap: var(--sp-2); padding: var(--sp-5); }
+  .cell { height: 70px; border-radius: var(--radius-sm); box-shadow: var(--ring-hairline); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; font-size: 10px; }
+  .lab { display: block; text-align: center; font-size: 10px; color: var(--text-subtle); margin-top: 6px; }
+  .row { padding: 0 var(--sp-5) var(--sp-4); display: grid; grid-template-columns: repeat(9, 1fr); gap: var(--sp-2); }
+</style>
+</head>
+<body>
+  <div class="ramp">
+    <div class="cell" style="background:var(--warm-0);"></div>
+    <div class="cell" style="background:var(--warm-50);"></div>
+    <div class="cell" style="background:var(--warm-100);"></div>
+    <div class="cell" style="background:var(--warm-200);"></div>
+    <div class="cell" style="background:var(--warm-300);"></div>
+    <div class="cell" style="background:var(--warm-400);color:#fff;"></div>
+    <div class="cell" style="background:var(--warm-500);color:#fff;"></div>
+    <div class="cell" style="background:var(--warm-600);color:#fff;"></div>
+    <div class="cell" style="background:var(--warm-700);color:#fff;"></div>
+  </div>
+  <div class="row">
+    <span class="lab">0</span><span class="lab">50</span><span class="lab">100</span><span class="lab">200</span><span class="lab">300</span><span class="lab">400</span><span class="lab">500</span><span class="lab">600</span><span class="lab">700</span>
+  </div>
+</body>
+</html>

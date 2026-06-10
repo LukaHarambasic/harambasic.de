@@ -1,0 +1,37 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Lockup" subtitle="Mark + wordmark — the horizontal signature" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); }
+  .wrap { padding: var(--sp-7); display: grid; gap: var(--sp-6); }
+  .lockup { display: flex; align-items: center; gap: var(--sp-4); }
+  .lockup img { height: 64px; width: auto; }
+  .word { display: grid; }
+  .name { font-family: var(--font-serif); font-size: 32px; font-weight: 500; letter-spacing: -0.01em; color: var(--text-strong); line-height: 1; }
+  .sub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-muted); margin-top: 7px; }
+  .divider { border: 0; border-top: 1px solid var(--hairline); margin: 0; }
+  .stack { display: flex; align-items: center; gap: var(--sp-3); }
+  .stack img { height: 40px; }
+  .stack .name { font-size: 22px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="lockup">
+      <img src="../assets/logo-mark-transparent.png" alt="Harambasic mark" />
+      <div class="word">
+        <span class="name">Harambasic</span>
+        <span class="sub">AI · Automation · Product</span>
+      </div>
+    </div>
+    <hr class="divider" />
+    <div class="stack">
+      <img src="../assets/logo-mark-transparent.png" alt="Harambasic mark small" />
+      <span class="name">Harambasic Consulting</span>
+    </div>
+  </div>
+</body>
+</html>

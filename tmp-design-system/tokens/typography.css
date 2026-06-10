@@ -1,0 +1,120 @@
+/* ============================================================
+   Harambasic Consulting — Typography
+   Editorial contrast: a warm serif for voice, a clean
+   humanist sans for clarity, a quiet mono for technical labels.
+   ============================================================ */
+
+:root {
+  /* ---- Families ----------------------------------------- */
+  --font-serif: 'Newsreader', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-sans:  'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-mono:  'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ---- Weights ------------------------------------------ */
+  --fw-regular:  400;   /* @kind font */
+  --fw-medium:   500;   /* @kind font */
+  --fw-semibold: 600;   /* @kind font */
+  --fw-bold:     700;   /* @kind font */
+
+  /* ---- Type scale (editorial, 1.5rem = 24px base context) */
+  --fs-display:  4.5rem;    /* 72 — hero serif */
+  --fs-h1:       3rem;      /* 48 */
+  --fs-h2:       2.25rem;   /* 36 */
+  --fs-h3:       1.5rem;    /* 24 */
+  --fs-h4:       1.25rem;   /* 20 */
+  --fs-body-lg:  1.1875rem; /* 19 — lead paragraphs */
+  --fs-body:     1.0625rem; /* 17 — default body */
+  --fs-body-sm:  0.9375rem; /* 15 */
+  --fs-caption:  0.8125rem; /* 13 */
+  --fs-eyebrow:  0.75rem;   /* 12 — mono uppercase label */
+
+  /* ---- Line heights ------------------------------------- */
+  --lh-display:  1.04;   /* @kind font */
+  --lh-tight:    1.12;   /* @kind font */
+  --lh-snug:     1.22;   /* @kind font */
+  --lh-normal:   1.55;   /* @kind font */
+  --lh-relaxed:  1.68;   /* @kind font */
+
+  /* ---- Letter spacing ----------------------------------- */
+  --tracking-display: -0.022em;  /* @kind font */
+  --tracking-heading: -0.012em;  /* @kind font */
+  --tracking-normal:  0;          /* @kind font */
+  --tracking-wide:    0.04em;     /* @kind font */
+  --tracking-eyebrow: 0.2em;      /* @kind font */
+}
+
+/* ---- Optional helper classes (components may use tokens
+        directly instead of these) --------------------------- */
+.t-display {
+  font-family: var(--font-serif);
+  font-size: var(--fs-display);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--text-strong);
+}
+.t-h1 {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-heading);
+  color: var(--text-strong);
+}
+.t-h2 {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-heading);
+  color: var(--text-strong);
+}
+.t-h3 {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  color: var(--text-strong);
+}
+.t-h4 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  color: var(--text-strong);
+}
+.t-lead {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--text-body);
+}
+.t-body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--text-body);
+}
+.t-small {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-normal);
+  color: var(--text-muted);
+}
+.t-caption {
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-normal);
+  color: var(--text-muted);
+}
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

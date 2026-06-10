@@ -1,0 +1,35 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Aubergine scale" subtitle="Primary brand ramp — ink through mauve to a pale wash" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-mono); }
+  .ramp { display: grid; grid-template-columns: repeat(11, 1fr); gap: 0; padding: var(--sp-5); }
+  .cell { height: 78px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; font-size: 10px; }
+  .cell:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+  .cell:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+  .lab { display: block; text-align: center; font-size: 10px; color: var(--text-subtle); margin-top: 6px; }
+  .row { padding: 0 var(--sp-5) var(--sp-4); display: grid; grid-template-columns: repeat(11, 1fr); }
+</style>
+</head>
+<body>
+  <div class="ramp">
+    <div class="cell" style="background:var(--aub-950);"></div>
+    <div class="cell" style="background:var(--aub-900);color:#ffedf9;">●</div>
+    <div class="cell" style="background:var(--aub-800);"></div>
+    <div class="cell" style="background:var(--aub-700);"></div>
+    <div class="cell" style="background:var(--aub-600);"></div>
+    <div class="cell" style="background:var(--aub-500);"></div>
+    <div class="cell" style="background:var(--aub-400);"></div>
+    <div class="cell" style="background:var(--aub-300);"></div>
+    <div class="cell" style="background:var(--aub-200);"></div>
+    <div class="cell" style="background:var(--aub-100);"></div>
+    <div class="cell" style="background:var(--aub-50);"></div>
+  </div>
+  <div class="row">
+    <span class="lab">950</span><span class="lab">900</span><span class="lab">800</span><span class="lab">700</span><span class="lab">600</span><span class="lab">500</span><span class="lab">400</span><span class="lab">300</span><span class="lab">200</span><span class="lab">100</span><span class="lab">50</span>
+  </div>
+</body>
+</html>

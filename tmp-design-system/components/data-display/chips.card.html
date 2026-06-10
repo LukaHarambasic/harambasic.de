@@ -1,0 +1,53 @@
+<!-- @dsCard group="Components" viewport="700x260" name="Badge · Tag · Avatar" subtitle="Status markers, metadata chips, and the portrait avatar" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); }
+  .wrap { padding: var(--sp-6) var(--sp-7); display: grid; gap: var(--sp-5); }
+  .row { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+  .label { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--text-subtle); width: 64px; flex: 0 0 auto; }
+</style>
+</head>
+<body>
+  <div id="root" class="wrap"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script type="text/babel">
+    const { Badge, Tag, Avatar } = window.HarambasicConsultingDesignSystem_26b27b;
+    function Demo() {
+      return (
+        <React.Fragment>
+          <div className="row">
+            <span className="label">Badge</span>
+            <Badge variant="success" dot>Live</Badge>
+            <Badge variant="honey">In progress</Badge>
+            <Badge variant="ink">AI adoption</Badge>
+            <Badge variant="info">Scoping</Badge>
+            <Badge variant="danger" dot>Blocked</Badge>
+          </div>
+          <div className="row">
+            <span className="label">Tag</span>
+            <Tag>Automation</Tag>
+            <Tag variant="solid">Internal tooling</Tag>
+            <Tag variant="honey">Product</Tag>
+            <Tag onRemove={() => {}}>Removable</Tag>
+          </div>
+          <div className="row">
+            <span className="label">Avatar</span>
+            <Avatar src="../../assets/logo-mark-transparent.png" name="Harambasic" size="sm" />
+            <Avatar src="../../assets/logo-mark-transparent.png" name="Harambasic" size="md" />
+            <Avatar src="../../assets/logo-mark-transparent.png" name="Harambasic" size="lg" ring />
+            <Avatar name="Luka Harambasic" size="lg" shape="circle" />
+          </div>
+        </React.Fragment>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>

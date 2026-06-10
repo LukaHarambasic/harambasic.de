@@ -1,0 +1,38 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Semantic colors" subtitle="Success, warning, danger, info — warmed to fit" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); padding: var(--sp-5); }
+  .item { border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--ring-hairline); }
+  .dot { height: 52px; display: flex; align-items: center; gap: 8px; padding: 0 var(--sp-4); color: #fff; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); }
+  .foot { padding: var(--sp-3) var(--sp-4); display: flex; align-items: center; justify-content: space-between; }
+  .foot b { font-size: var(--fs-caption); color: var(--text-strong); }
+  .swatch-sm { width: 18px; height: 18px; border-radius: 5px; box-shadow: var(--ring-hairline); }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="item">
+      <div class="dot" style="background:var(--success);">Success</div>
+      <div class="foot" style="background:var(--success-surface);"><b>Surface</b><span class="hex">#4e8a6b</span></div>
+    </div>
+    <div class="item">
+      <div class="dot" style="background:var(--warning);">Warning</div>
+      <div class="foot" style="background:var(--warning-surface);"><b>Surface</b><span class="hex">#d98a2b</span></div>
+    </div>
+    <div class="item">
+      <div class="dot" style="background:var(--danger);">Danger</div>
+      <div class="foot" style="background:var(--danger-surface);"><b>Surface</b><span class="hex">#c24a4a</span></div>
+    </div>
+    <div class="item">
+      <div class="dot" style="background:var(--info);">Info</div>
+      <div class="foot" style="background:var(--info-surface);"><b>Surface</b><span class="hex">#7e4a7d</span></div>
+    </div>
+  </div>
+</body>
+</html>

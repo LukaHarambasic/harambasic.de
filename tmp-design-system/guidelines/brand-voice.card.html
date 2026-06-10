@@ -1,0 +1,34 @@
+<!-- @dsCard group="Brand" viewport="700x230" name="Voice" subtitle="First person, plain-spoken, specific — it's me talking" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); }
+  .wrap { padding: var(--sp-6) var(--sp-7); display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); }
+  .col { display: grid; gap: var(--sp-3); align-content: start; }
+  .head { font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+  .yes { color: var(--success); }
+  .no { color: var(--danger); }
+  .mark { width: 18px; height: 18px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; }
+  .quote { font-family: var(--font-serif); font-size: 19px; line-height: 1.4; color: var(--text-strong); font-style: italic; }
+  .plain { font-family: var(--font-sans); font-size: 15px; line-height: 1.5; color: var(--text-muted); }
+  .strike { text-decoration: line-through; text-decoration-color: var(--danger); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="col">
+      <div class="head yes"><span class="mark" style="background:var(--success);">✓</span> Sounds like me</div>
+      <p class="quote">"I'll find the two workflows worth automating, then build the tooling so they actually stick."</p>
+      <p class="plain">Direct. First person. Concrete nouns. A promise I can keep.</p>
+    </div>
+    <div class="col">
+      <div class="head no"><span class="mark" style="background:var(--danger);">✕</span> Not me</div>
+      <p class="quote strike" style="color:var(--text-subtle);">"We leverage best-in-class AI solutions to drive synergistic transformation."</p>
+      <p class="plain">No "we". No buzzwords. No promises a solo consultant can't own.</p>
+    </div>
+  </div>
+</body>
+</html>

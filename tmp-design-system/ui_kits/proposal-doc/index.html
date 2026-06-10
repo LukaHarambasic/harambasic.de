@@ -1,0 +1,215 @@
+<!-- @startingPoint section="Documents" subtitle="Client proposal — cover, letter, phases, investment" viewport="860x1100" -->
+<!-- @dsCard group="Documents" viewport="860x1100" name="Client proposal" subtitle="A printable, first-person proposal template" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Proposal — Harambasic Consulting</title>
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; background: var(--warm-100); color: var(--text-body); }
+  .doc { max-width: 860px; margin: 0 auto; }
+  .page {
+    position: relative; background: var(--surface-card); overflow: hidden;
+    padding: 72px 76px; box-shadow: var(--shadow-md); margin: 28px auto;
+  }
+  .page__grain { display: none; }
+  .page > * { position: relative; }
+
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase; color: var(--text-muted); }
+  .rule { border: 0; border-top: 1px solid var(--hairline); margin: 28px 0; }
+  .rule--ink { border-top: 2px solid var(--aub-900); width: 54px; margin: 0 0 28px; }
+
+  /* ---- Cover ---- */
+  .cover { background: var(--rose-100); }
+  .cover__top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover__mark { width: 92px; height: 92px; }
+  .cover__title { font-family: var(--font-serif); font-weight: 500; font-size: 60px; line-height: 1.02;
+    letter-spacing: var(--tracking-display); color: var(--text-strong); margin: 96px 0 0; max-width: 14ch; }
+  .cover__title em { font-style: italic; color: var(--aub-600); }
+  .cover__lead { font-size: var(--fs-body-lg); color: var(--text-body); max-width: 46ch; margin: 24px 0 0; line-height: var(--lh-relaxed); }
+  .cover__meta { display: grid; grid-template-columns: repeat(3, auto); gap: 56px; margin-top: 112px; }
+  .cover__meta dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .cover__meta dd { margin: 0; font-size: var(--fs-body); color: var(--text-strong); font-weight: var(--fw-medium); }
+
+  /* ---- Letter ---- */
+  h2.section { font-family: var(--font-serif); font-weight: 500; font-size: 32px; letter-spacing: -0.01em;
+    color: var(--text-strong); margin: 0 0 20px; }
+  .letter p { font-size: var(--fs-body-lg); line-height: var(--lh-relaxed); color: var(--text-body); max-width: 60ch; }
+  .sign { display: flex; align-items: center; gap: 16px; margin-top: 36px; }
+  .sign__name { font-family: var(--font-serif); font-size: 22px; color: var(--text-strong); }
+  .sign__role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+  .sign img { width: 52px; height: 52px; border-radius: 26%; }
+
+  /* ---- Phases ---- */
+  .phases { display: grid; gap: 18px; }
+  .phase { display: grid; grid-template-columns: 56px 1fr auto; gap: 22px; align-items: start;
+    padding: 24px; border-radius: var(--radius-md); background: var(--aub-50); box-shadow: var(--ring-hairline); }
+  .phase__no { font-family: var(--font-serif); font-size: 34px; color: var(--aub-400); line-height: 1; }
+  .phase__title { font-family: var(--font-sans); font-weight: var(--fw-semibold); font-size: var(--fs-h4); color: var(--text-strong); margin: 0 0 6px; }
+  .phase__body { font-size: var(--fs-body-sm); color: var(--text-muted); line-height: var(--lh-normal); margin: 0; max-width: 52ch; }
+  .badge { display: inline-flex; align-items: center; font-family: var(--font-sans); font-weight: var(--fw-semibold);
+    font-size: var(--fs-caption); padding: 0.34em 0.7em; border-radius: var(--radius-pill); background: var(--aub-900); color: var(--rose-100); white-space: nowrap; }
+
+  /* ---- Deliverables ---- */
+  .deliv { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 40px; margin: 0; padding: 0; list-style: none; }
+  .deliv li { display: flex; gap: 12px; align-items: flex-start; font-size: var(--fs-body); color: var(--text-body); }
+  .deliv svg { width: 20px; height: 20px; flex: 0 0 auto; color: var(--success); margin-top: 2px; }
+
+  /* ---- Investment ---- */
+  .invoice { width: 100%; border-collapse: collapse; }
+  .invoice th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-muted); font-weight: var(--fw-medium); padding: 0 0 12px; border-bottom: 1px solid var(--hairline); }
+  .invoice th:last-child, .invoice td:last-child { text-align: right; }
+  .invoice td { padding: 16px 0; border-bottom: 1px solid var(--hairline); font-size: var(--fs-body); color: var(--text-body); vertical-align: top; }
+  .invoice td b { color: var(--text-strong); font-weight: var(--fw-semibold); display: block; }
+  .invoice td span { font-size: var(--fs-caption); color: var(--text-muted); }
+  .invoice .total td { border-bottom: 0; padding-top: 22px; font-size: var(--fs-h4); }
+  .invoice .total b { font-family: var(--font-serif); font-weight: 500; }
+  .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+  /* ---- Next ---- */
+  .next { background: var(--aub-900); color: var(--text-on-ink); }
+  .next h2 { color: var(--rose-100); }
+  .next p { color: var(--text-on-ink-muted); font-size: var(--fs-body-lg); line-height: var(--lh-relaxed); max-width: 50ch; }
+  .next .eyebrow { color: var(--honey-400); }
+  .next__cta { display: inline-flex; align-items: center; gap: 0.55em; margin-top: 28px; white-space: nowrap;
+    background: var(--honey-500); color: var(--aub-950); font-family: var(--font-sans); font-weight: var(--fw-semibold);
+    font-size: var(--fs-body); padding: 0.8rem 1.5rem; border-radius: var(--radius-pill); text-decoration: none; }
+  .next__contact { display: flex; gap: 28px; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border-on-ink); font-family: var(--font-mono); font-size: 12px; color: var(--text-on-ink-muted); }
+  .next__contact b { color: var(--rose-100); font-weight: var(--fw-medium); }
+
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; margin: 0; page-break-after: always; }
+  }
+  @media (max-width: 880px) {
+    .page { padding: 44px 32px; }
+    .cover__title { font-size: 42px; }
+    .cover__meta { grid-template-columns: 1fr; gap: 22px; }
+    .deliv { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="doc">
+
+    <!-- Cover -->
+    <section class="page cover" data-screen-label="Proposal · Cover">
+      <div class="page__grain"></div>
+      <div class="cover__top">
+        <span class="eyebrow">Proposal · 2026</span>
+        <img class="cover__mark" src="../../assets/logo-mark-transparent.png" alt="Harambasic" />
+      </div>
+      <h1 class="cover__title">Putting AI <em>to work</em> at Northwind</h1>
+      <p class="cover__lead">A focused engagement to find the workflows worth automating — and build the internal tooling that makes them stick.</p>
+      <dl class="cover__meta">
+        <div><dt>Prepared for</dt><dd>Northwind Labs</dd></div>
+        <div><dt>Prepared by</dt><dd>Luka Harambasic</dd></div>
+        <div><dt>Date</dt><dd>8 June 2026</dd></div>
+      </dl>
+    </section>
+
+    <!-- Letter -->
+    <section class="page" data-screen-label="Proposal · Letter">
+      <div class="page__grain"></div>
+      <span class="eyebrow">A short note</span>
+      <hr class="rule" />
+      <div class="letter">
+        <h2 class="section">Hi Maya,</h2>
+        <p>Thanks for the call last week. You've got a small team doing careful work, and too much of their week is going to things a machine should be doing. That's a good problem — it means the fix is close.</p>
+        <p>Here's how I'd approach it. I'll spend the first two weeks mapping where the hours actually go, pick the two or three workflows worth automating, and build a working prototype of the most valuable one. No big platform, no team to manage — just me, close to your people, shipping something you can use.</p>
+        <p>If it's useful, we keep going. If it isn't, you've lost two weeks and gained a clear map. Either way, you own everything I build.</p>
+      </div>
+      <div class="sign">
+        <img src="../../assets/logo-mark-transparent.png" alt="Luka" />
+        <div>
+          <div class="sign__name">Luka Harambasic</div>
+          <div class="sign__role">Independent · AI, Automation &amp; Product</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engagement -->
+    <section class="page" data-screen-label="Proposal · Engagement">
+      <div class="page__grain"></div>
+      <span class="eyebrow">The engagement</span>
+      <hr class="rule--ink" style="margin-top:14px;" />
+      <h2 class="section">Three phases, six weeks</h2>
+      <div class="phases">
+        <div class="phase">
+          <span class="phase__no">01</span>
+          <div>
+            <p class="phase__title">Discovery &amp; mapping</p>
+            <p class="phase__body">I sit with your team, trace the real workflows, and find where the time leaks. You get a clear map and a shortlist of what's worth automating.</p>
+          </div>
+          <span class="badge">2 weeks</span>
+        </div>
+        <div class="phase">
+          <span class="phase__no">02</span>
+          <div>
+            <p class="phase__title">Build the first tool</p>
+            <p class="phase__body">I build a working internal tool for the highest-value workflow — the real thing, in your stack, used by real people, not a slide.</p>
+          </div>
+          <span class="badge">3 weeks</span>
+        </div>
+        <div class="phase">
+          <span class="phase__no">03</span>
+          <div>
+            <p class="phase__title">Handover &amp; runway</p>
+            <p class="phase__body">Documentation, a short Loom walkthrough, and a prioritised backlog so your team can carry it forward without me.</p>
+          </div>
+          <span class="badge">1 week</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deliverables -->
+    <section class="page" data-screen-label="Proposal · Deliverables">
+      <div class="page__grain"></div>
+      <span class="eyebrow">What you get</span>
+      <hr class="rule" />
+      <h2 class="section">Deliverables</h2>
+      <ul class="deliv">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A workflow map of where your team's hours go</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One production-ready internal tool</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A prioritised automation backlog</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Plain-English documentation</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A recorded walkthrough for your team</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Full ownership of the code &amp; accounts</li>
+      </ul>
+      <hr class="rule" />
+      <span class="eyebrow">Investment</span>
+      <h2 class="section" style="margin-top:20px;">What it costs</h2>
+      <table class="invoice">
+        <thead><tr><th>Phase</th><th>Timeline</th><th>Fee</th></tr></thead>
+        <tbody>
+          <tr><td><b>Discovery &amp; mapping</b><span>Workflow audit, shortlist</span></td><td>2 weeks</td><td class="num">€6,000</td></tr>
+          <tr><td><b>Build the first tool</b><span>Design, build, ship</span></td><td>3 weeks</td><td class="num">€13,500</td></tr>
+          <tr><td><b>Handover &amp; runway</b><span>Docs, walkthrough, backlog</span></td><td>1 week</td><td class="num">€3,500</td></tr>
+          <tr class="total"><td><b>Total</b></td><td></td><td class="num"><b>€23,000</b></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Next steps -->
+    <section class="page next" data-screen-label="Proposal · Next steps">
+      <span class="eyebrow">Next steps</span>
+      <hr class="rule" style="border-color: var(--border-on-ink); margin-top:14px;" />
+      <h2 class="section">If this feels right, we start with a call.</h2>
+      <p>Reply to this proposal, or grab a 30-minute slot. I'll confirm scope, we agree a start date, and Phase 01 begins the following Monday.</p>
+      <a class="next__cta" href="#">Book a 30-minute call
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <div class="next__contact">
+        <span><b>Luka Harambasic</b> · Independent consultant</span>
+        <span>hi@harambasic.de</span>
+        <span>harambasic.de</span>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

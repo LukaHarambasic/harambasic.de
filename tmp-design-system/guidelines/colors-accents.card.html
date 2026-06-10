@@ -1,0 +1,44 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Warm accents" subtitle="Honey and clay — used sparingly for warmth and emphasis" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-mono); }
+  .wrap { padding: var(--sp-5); display: grid; gap: var(--sp-4); }
+  .group { display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: var(--sp-4); }
+  .label { font-family: var(--font-sans); }
+  .label b { display: block; color: var(--text-strong); font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); }
+  .label span { font-size: var(--fs-caption); color: var(--text-muted); }
+  .ramp { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--sp-2); }
+  .cell { height: 44px; border-radius: var(--radius-sm); display: flex; align-items: flex-end; padding: 4px 6px; font-size: 9px; color: rgba(255,255,255,0.8); box-shadow: var(--ring-hairline); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="group">
+      <div class="label"><b>Honey</b><span>--honey-500 · #e0a24a</span></div>
+      <div class="ramp">
+        <div class="cell" style="background:var(--honey-100);color:#a66c2c;">100</div>
+        <div class="cell" style="background:var(--honey-300);color:#7a4f1f;">300</div>
+        <div class="cell" style="background:var(--honey-400);color:#7a4f1f;">400</div>
+        <div class="cell" style="background:var(--honey-500);">500</div>
+        <div class="cell" style="background:var(--honey-600);">600</div>
+        <div class="cell" style="background:var(--honey-700);">700</div>
+      </div>
+    </div>
+    <div class="group">
+      <div class="label"><b>Clay</b><span>--clay-500 · #c76b4e</span></div>
+      <div class="ramp">
+        <div class="cell" style="background:var(--clay-100);color:#aa5439;">100</div>
+        <div class="cell" style="background:var(--clay-300);color:#7a3522;">300</div>
+        <div class="cell" style="background:var(--clay-400);">400</div>
+        <div class="cell" style="background:var(--clay-500);">500</div>
+        <div class="cell" style="background:var(--clay-600);">600</div>
+        <div class="cell" style="background:var(--aub-500);">mauve</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
