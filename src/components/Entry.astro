@@ -226,6 +226,7 @@ const rel = external ? 'external' : undefined;
 			}
 			.media {
 				display: flex;
+				padding: var(--xxs);
 				width: 3rem;
 				height: 3rem;
 				border-radius: var(--border-radius-small);
@@ -234,6 +235,7 @@ const rel = external ? 'external' : undefined;
 				justify-content: center;
 				align-items: center;
 				overflow: hidden;
+				box-sizing: border-box;
 				:global(img),
 				:global(picture) {
 					display: block;
