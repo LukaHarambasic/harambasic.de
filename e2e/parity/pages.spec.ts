@@ -15,6 +15,9 @@ for (const url of htmlUrlInventory()) {
 
 		const meta = (name: string) =>
 			page.locator(`head > meta[name="${name}"]`).first().getAttribute('content');
+		// Open Graph tags use property= (per the OG spec), unlike name=-based metas.
+		const metaProperty = (property: string) =>
+			page.locator(`head > meta[property="${property}"]`).first().getAttribute('content');
 
 		const h1Loc = page.locator('main#main h1').first();
 		const h1 = (await h1Loc.count()) ? ((await h1Loc.textContent())?.trim() ?? null) : null;
@@ -24,7 +27,7 @@ for (const url of htmlUrlInventory()) {
 			status: response?.status() ?? null,
 			title: await page.title(),
 			description: await meta('description'),
-			ogImage: await meta('og:image'),
+			ogImage: await metaProperty('og:image'),
 			h1,
 			landmarks: {
 				header: await page.locator('header').count(),
