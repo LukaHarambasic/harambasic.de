@@ -1,8 +1,13 @@
-import type { APIRoute } from 'astro';
-import { generateMergedXml, options } from '$lib/rss';
-import { buildMergedEntries } from '$lib/rssFeed';
+import rss from '@astrojs/rss';
+import type { APIContext } from 'astro';
+import { buildMergedItems, mergedChannel, selfLink } from '$lib/rssFeed';
 
-export const GET: APIRoute = async () => {
-	const xml = generateMergedXml(await buildMergedEntries());
-	return new Response(xml, { headers: options.headers });
-};
+export async function GET(context: APIContext) {
+	return rss({
+		...mergedChannel,
+		...selfLink('/rss'),
+		site: context.site ?? 'https://harambasic.de',
+		items: await buildMergedItems(),
+		trailingSlash: false
+	});
+}

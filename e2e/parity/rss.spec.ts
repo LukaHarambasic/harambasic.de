@@ -1,47 +1,69 @@
 import { test, expect } from '@playwright/test';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { RSS_FEEDS, rssKey } from './helpers';
-
-const FIXTURE_DIR = join(process.cwd(), 'e2e', 'fixtures', 'rss');
-
-/** Remove the per-build timestamp so fixtures stay stable across builds. */
-function stripLastBuildDate(xml: string): string {
-	return xml.replace(
-		/<lastBuildDate>.*?<\/lastBuildDate>/g,
-		'<lastBuildDate>STRIPPED</lastBuildDate>'
-	);
-}
+import { RSS_FEEDS, slugsFor } from './helpers';
 
 /**
- * Code-block markup inside <content:encoded> intentionally differs between the
- * SvelteKit build (rehype-highlight, .hljs) and the Astro build (Shiki,
- * .astro-code). Normalize <pre>…</pre> internals so the comparison covers
- * everything else (item order, guids, links, categories, structure).
+ * Structural RSS validation. The feeds moved from a hand-rolled XML generator
+ * to @astrojs/rss, so byte-parity with the old SvelteKit fixtures is gone by
+ * design. Instead, assert what subscribers depend on: every content entry is
+ * present exactly once with the right canonical link, and full-content feeds
+ * carry <content:encoded>.
  */
-function normalizeCodeBlocks(xml: string): string {
-	return xml.replace(/<pre[\s\S]*?<\/pre>/g, '<pre>CODE</pre>');
-}
 
-function normalize(xml: string): string {
-	return normalizeCodeBlocks(stripLastBuildDate(xml));
+const SECTION_FOR_FEED: Record<string, 'posts' | 'projects' | 'uses' | 'work'> = {
+	'/posts/rss': 'posts',
+	'/projects/rss': 'projects',
+	'/uses/rss': 'uses',
+	'/work/rss': 'work'
+};
+
+const FULL_CONTENT_FEEDS = new Set(['/posts/rss', '/projects/rss', '/work/rss']);
+const MERGED_FEEDS = new Set(['/rss', '/feeds/rss']);
+
+function countOccurrences(haystack: string, needle: string): number {
+	return haystack.split(needle).length - 1;
 }
 
 for (const feed of RSS_FEEDS) {
-	test(`rss parity: ${feed}`, async ({ request }) => {
+	test(`rss structure: ${feed}`, async ({ request }) => {
 		const res = await request.get(feed);
 		expect(res.status(), `status for ${feed}`).toBe(200);
+		// Content-Type for the extensionless feed files is set by Netlify via
+		// public/_headers; `astro preview` doesn't apply it, so assert the body.
+		const body = await res.text();
+		expect(body.startsWith('<?xml')).toBe(true);
+		expect(body).toContain('<rss');
+		expect(body).toContain('<channel>');
 
-		const body = normalize(await res.text());
-		const fixturePath = join(FIXTURE_DIR, `${rssKey(feed)}.xml`);
+		const itemCount = countOccurrences(body, '<item>');
 
-		if (process.env.UPDATE_FIXTURES || !existsSync(fixturePath)) {
-			mkdirSync(FIXTURE_DIR, { recursive: true });
-			writeFileSync(fixturePath, body);
-			test.info().annotations.push({ type: 'fixture-written', description: fixturePath });
+		if (MERGED_FEEDS.has(feed)) {
+			const total =
+				slugsFor('posts').length +
+				slugsFor('projects').length +
+				slugsFor('uses').length +
+				slugsFor('work').length;
+			expect(itemCount, `merged feed item count`).toBe(total);
+			// Every section is represented as a <category>.
+			for (const category of ['Posts', 'Projects', 'Uses', 'Work']) {
+				expect(body).toContain(`<category>${category}</category>`);
+			}
 			return;
 		}
 
-		expect(body).toBe(readFileSync(fixturePath, 'utf-8'));
+		const section = SECTION_FOR_FEED[feed];
+		const slugs = slugsFor(section);
+		expect(itemCount, `item count for ${feed}`).toBe(slugs.length);
+		for (const slug of slugs) {
+			const link = `https://harambasic.de/${section}/${slug}`;
+			expect(body, `link for ${section}/${slug}`).toContain(`<link>${link}</link>`);
+			expect(body, `guid for ${section}/${slug}`).toContain(
+				`<guid isPermaLink="true">${link}</guid>`
+			);
+		}
+		if (FULL_CONTENT_FEEDS.has(feed)) {
+			expect(countOccurrences(body, '<content:encoded>'), `content:encoded in ${feed}`).toBe(
+				slugs.length
+			);
+		}
 	});
 }

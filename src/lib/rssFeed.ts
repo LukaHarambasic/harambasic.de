@@ -1,14 +1,55 @@
 import { getCollection } from 'astro:content';
+import type { RSSFeedItem } from '@astrojs/rss';
 import { getPosts, getProjects, getUses, getWork } from '$lib/content';
 import { renderEntryHtml } from '$lib/markdown';
 import { workEntryToFullHtml } from '$lib/util/workEntry';
-import { sortByProperty } from '$lib/util/entryHelpers';
 import { getSlug } from '$lib/util/helper';
-import type { MergedRssEntry } from '$lib/rss';
-import type { Post } from '$lib/types/post';
-import type { Project } from '$lib/types/project';
-import type { UsesEntry } from '$lib/types/usesEntry';
-import type { WorkEntry } from '$lib/types/workEntry';
+
+/**
+ * RSS item builders for the @astrojs/rss endpoints. All file access goes
+ * through Astro content collections; this module only maps view models to
+ * RSSFeedItem and renders `content:encoded` HTML where a body exists.
+ * Every feed is sorted published DESC (newest first).
+ */
+
+export type FeedSection = 'posts' | 'projects' | 'uses' | 'work';
+
+const CHANNEL_DESCRIPTION_BASE =
+	'My private playground, publishing my thoughts and ideas. Showing of what I did and playing around with new technologies.';
+
+export function sectionChannel(section: FeedSection): { title: string; description: string } {
+	const label = section.charAt(0).toUpperCase() + section.slice(1);
+	return {
+		title: `Luka Harambasic | ${label}`,
+		description: `${CHANNEL_DESCRIPTION_BASE} In this feed you will stay up to date with my ${section}.`
+	};
+}
+
+export const mergedChannel = {
+	title: 'Luka Harambasic | All',
+	description: 'All posts, projects, uses, and work in one feed, ordered by date.'
+};
+
+type FeedEntry = {
+	title: string;
+	description: string;
+	relativePath: string;
+	published: { raw: Date };
+};
+
+function toItem(entry: FeedEntry, extra: Partial<RSSFeedItem> = {}): RSSFeedItem {
+	return {
+		title: entry.title,
+		description: entry.description,
+		link: entry.relativePath,
+		pubDate: entry.published.raw,
+		...extra
+	};
+}
+
+function byPubDateDesc(a: RSSFeedItem, b: RSSFeedItem): number {
+	return (b.pubDate?.getTime() ?? 0) - (a.pubDate?.getTime() ?? 0);
+}
 
 // Map title-slug -> raw markdown body so we can render content:encoded HTML.
 async function bodyMap(collection: 'posts' | 'projects'): Promise<Map<string, string>> {
@@ -18,85 +59,60 @@ async function bodyMap(collection: 'posts' | 'projects'): Promise<Map<string, st
 	return map;
 }
 
-async function postsWithHtml(): Promise<Post[]> {
-	const bodies = await bodyMap('posts');
-	const posts = await getPosts();
-	return Promise.all(
-		posts.map(async (post) => ({
-			...post,
-			html: await renderEntryHtml(bodies.get(post.slug) ?? '')
-		}))
+export async function buildPostsItems(): Promise<RSSFeedItem[]> {
+	const [bodies, posts] = await Promise.all([bodyMap('posts'), getPosts()]);
+	const items = await Promise.all(
+		posts.map(async (post) =>
+			toItem(post, { content: await renderEntryHtml(bodies.get(post.slug) ?? '') })
+		)
 	);
+	return items.sort(byPubDateDesc);
 }
 
-async function projectsWithHtml(): Promise<Project[]> {
-	const bodies = await bodyMap('projects');
-	const projects = await getProjects();
-	return Promise.all(
-		projects.map(async (project) => ({
-			...project,
-			html: await renderEntryHtml(bodies.get(project.slug) ?? '')
-		}))
+export async function buildProjectsItems(): Promise<RSSFeedItem[]> {
+	const [bodies, projects] = await Promise.all([bodyMap('projects'), getProjects()]);
+	const items = await Promise.all(
+		projects.map(async (project) =>
+			toItem(project, { content: await renderEntryHtml(bodies.get(project.slug) ?? '') })
+		)
 	);
+	return items.sort(byPubDateDesc);
 }
 
-function toMerged<
-	E extends {
-		relativePath: string;
-		published: { raw: Date; display: string };
-		title: string;
-		description: string;
-		slug: string;
-		html?: string;
-	}
->(entry: E, category: MergedRssEntry['category']): MergedRssEntry {
-	return {
-		title: entry.title,
-		description: entry.description,
-		slug: entry.slug,
-		published: entry.published,
-		relativePath: entry.relativePath,
-		category,
-		html: 'html' in entry ? entry.html : undefined
-	};
+export async function buildUsesItems(): Promise<RSSFeedItem[]> {
+	const uses = await getUses();
+	return uses.map((entry) => toItem(entry)).sort(byPubDateDesc);
 }
 
-/** Merged feed: posts + projects + uses + work, sorted published DESC. */
-export async function buildMergedEntries(): Promise<MergedRssEntry[]> {
-	const [posts, projects, uses, work] = await Promise.all([
-		postsWithHtml(),
-		projectsWithHtml(),
-		getUses(),
-		getWork()
-	]);
-
-	const merged: MergedRssEntry[] = [
-		...posts.map((e) => toMerged(e, 'Posts')),
-		...projects.map((e) => toMerged(e, 'Projects')),
-		...uses.map((e) => toMerged(e, 'Uses')),
-		...work.map((e) => toMerged({ ...e, html: workEntryToFullHtml(e) }, 'Work'))
-	];
-
-	merged.sort((a, b) => b.published.raw.getTime() - a.published.raw.getTime());
-	return merged;
-}
-
-// Section feeds: sorted published ASC (sortByProperty ascending). Preserve this quirk.
-export async function buildPostsFeed(): Promise<Post[]> {
-	return (await postsWithHtml()).sort((a, b) => sortByProperty(a, b, 'published'));
-}
-
-export async function buildProjectsFeed(): Promise<Project[]> {
-	return (await projectsWithHtml()).sort((a, b) => sortByProperty(a, b, 'published'));
-}
-
-export async function buildUsesFeed(): Promise<UsesEntry[]> {
-	return (await getUses()).sort((a, b) => sortByProperty(a, b, 'published'));
-}
-
-export async function buildWorkFeed(): Promise<Array<WorkEntry & { html: string }>> {
+export async function buildWorkItems(): Promise<RSSFeedItem[]> {
 	const work = await getWork();
 	return work
-		.map((e) => ({ ...e, html: workEntryToFullHtml(e) }))
-		.sort((a, b) => sortByProperty(a, b, 'published'));
+		.map((entry) => toItem(entry, { content: workEntryToFullHtml(entry) }))
+		.sort(byPubDateDesc);
+}
+
+/** Merged feed: posts + projects + uses + work, each item tagged with its section. */
+export async function buildMergedItems(): Promise<RSSFeedItem[]> {
+	const [posts, projects, uses, work] = await Promise.all([
+		buildPostsItems(),
+		buildProjectsItems(),
+		buildUsesItems(),
+		buildWorkItems()
+	]);
+	const withCategory = (items: RSSFeedItem[], category: string) =>
+		items.map((item) => ({ ...item, categories: [category] }));
+	return [
+		...withCategory(posts, 'Posts'),
+		...withCategory(projects, 'Projects'),
+		...withCategory(uses, 'Uses'),
+		...withCategory(work, 'Work')
+	].sort(byPubDateDesc);
+}
+
+/** atom:link rel="self" — @astrojs/rss doesn't emit it; validators expect it. */
+export function selfLink(path: string): { xmlns: Record<string, string>; customData: string } {
+	return {
+		xmlns: { atom: 'http://www.w3.org/2005/Atom' },
+		customData: `<atom:link href="https://harambasic.de${path}" rel="self" type="application/rss+xml"/>`
+	};
 }
