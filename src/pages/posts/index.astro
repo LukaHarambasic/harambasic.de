@@ -18,11 +18,12 @@ const sorted = filterAndSort(posts, 'all', SORT_DEFAULTS.POST, SortDirection.Des
 <Layout title={title} description={description}>
 	<Hero slot="hero" title={title} description={description} />
 	<div class="posts-container">
-		<EntryList>
+		<EntryList divided={false}>
 			{
 				sorted.map((post) => (
 					<li class="h-feed">
 						<Entry
+							variant="card"
 							href={post.relativePath}
 							title={post.title}
 							meta={post.published.display}

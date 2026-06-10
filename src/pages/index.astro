@@ -109,6 +109,7 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 						return (
 							<li data-feed-item hidden={index >= INITIAL_ROWS}>
 								<Entry
+									variant={entry.category === 'Uses' ? 'card' : 'row'}
 									href={entry.href}
 									title={entry.title}
 									titleTag="h3"

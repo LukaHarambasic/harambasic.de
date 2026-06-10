@@ -1,18 +1,23 @@
 ---
 /**
  * Layout shell for Entry items. Callers render `<li>` children:
- * columns=1 → rule-separated rows (one --c-line hairline between items),
+ * columns=1 → stacked items, rule-separated (divided) or gap-separated,
  * columns=2/3/4 → grid with the shared gutter.
  */
 interface Props {
 	columns?: 1 | 2 | 3 | 4;
+	divided?: boolean;
 	class?: string;
 }
 
-const { columns = 1, class: className } = Astro.props;
+const { columns = 1, divided = true, class: className } = Astro.props;
 ---
 
-<ul class:list={['entry-list', className]} data-columns={columns}>
+<ul
+	class:list={['entry-list', className]}
+	data-columns={columns}
+	data-divided={columns === 1 && divided ? 'true' : 'false'}
+>
 	<slot />
 </ul>
 
@@ -30,13 +35,18 @@ const { columns = 1, class: className } = Astro.props;
 		&[data-columns='1'] {
 			display: flex;
 			flex-direction: column;
-			/* Minimal air between the hover fill and the divider hairline. */
-			> :global(li:not(:last-child)) {
-				padding-bottom: var(--xs);
-				border-bottom: 1px solid var(--c-line);
+			&[data-divided='false'] {
+				gap: var(--l);
 			}
-			> :global(li:not(:first-child)) {
-				padding-top: var(--xs);
+			/* Minimal air between the hover fill and the divider hairline. */
+			&[data-divided='true'] {
+				> :global(li:not(:last-child)) {
+					padding-bottom: var(--xs);
+					border-bottom: 1px solid var(--c-line);
+				}
+				> :global(li:not(:first-child)) {
+					padding-top: var(--xs);
+				}
 			}
 		}
 
