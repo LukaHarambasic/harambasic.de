@@ -19,6 +19,8 @@
 <style>
 	footer {
 		display: flex;
+		padding-top: var(--l);
+		border-top: 2px solid var(--c-font);
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: space-between;
@@ -46,9 +48,18 @@
 			}
 			li {
 				a {
+					display: block;
+					padding: var(--xxs) var(--s);
+					border-radius: var(--border-radius-pill);
 					color: var(--c-font);
 					font-size: var(--font-m);
+					font-weight: 500;
 					text-decoration: none;
+					transition: var(--transition);
+					&:hover {
+						background: var(--c-font);
+						color: var(--c-light);
+					}
 				}
 			}
 		}

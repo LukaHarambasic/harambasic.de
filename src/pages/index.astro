@@ -249,10 +249,10 @@ const initialRows = rowSteps[0] ?? allRows.length;
 			}
 			.content {
 				h1 {
-					margin: 0 0 0.5rem;
+					margin: 0 0 var(--s);
 					font-family: var(--font-family-serif);
-					font-size: var(--font-l);
-					font-weight: 500;
+					font-size: var(--fs-h1);
+					font-weight: 600;
 					letter-spacing: var(--tracking-heading);
 				}
 				p {
@@ -280,11 +280,20 @@ const initialRows = rowSteps[0] ?? allRows.length;
 		h2 {
 			margin: var(--xl) 0 var(--m) 0;
 			font-family: var(--font-family-serif);
-			font-size: var(--font-xl);
+			font-size: var(--fs-h2);
 			font-weight: 500;
 			line-height: 1.2;
 			letter-spacing: var(--tracking-heading);
 			text-align: center;
+			&::after {
+				content: '';
+				display: block;
+				margin: var(--s) auto 0;
+				width: 3.5rem;
+				height: 2px;
+				border-radius: 1px;
+				background: var(--c-font);
+			}
 		}
 
 		.feed-intro {
@@ -464,10 +473,11 @@ const initialRows = rowSteps[0] ?? allRows.length;
 						}
 						.title {
 							display: block;
-							font-family: var(--font-family);
-							font-size: var(--font-m);
-							font-weight: 700;
+							font-family: var(--font-family-serif);
+							font-size: var(--fs-h3);
+							font-weight: 500;
 							line-height: 1.2;
+							letter-spacing: var(--tracking-heading);
 						}
 						.date {
 							color: var(--c-font-accent-dark);

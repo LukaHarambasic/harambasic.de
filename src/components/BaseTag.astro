@@ -14,20 +14,24 @@ const { tag, selected = false } = Astro.props;
 <style>
 	.tag {
 		display: inline-block;
+		padding: 0.1rem var(--s);
 		border: none;
-		background: none;
-		color: var(--c-font-accent-dark);
+		border-radius: var(--border-radius-pill);
+		background: var(--c-surface-accent);
+		color: var(--c-font);
 		font-size: var(--font-s);
-		font-weight: 400;
-		font-style: italic;
+		font-weight: 500;
 		text-align: center;
 		text-decoration: none;
+		transition: var(--transition);
 		&:hover {
-			text-decoration: underline;
+			background: var(--c-font);
+			color: var(--c-light);
 			cursor: pointer;
 		}
 		&.selected {
-			font-weight: bold;
+			background: var(--c-font);
+			color: var(--c-light);
 		}
 	}
 </style>

@@ -80,8 +80,8 @@ function isActiveRoute(url: string): boolean {
 		}
 		.mark {
 			display: block;
-			width: 2rem;
-			height: 2rem;
+			width: 1.4em;
+			height: 1.4em;
 			flex-shrink: 0;
 		}
 	}
@@ -100,6 +100,9 @@ function isActiveRoute(url: string): boolean {
 			}
 			li {
 				a {
+					display: block;
+					padding: var(--xxs) var(--s);
+					border-radius: var(--border-radius-pill);
 					color: var(--c-font);
 					font-family: var(--font-family);
 					font-size: var(--font-m);
@@ -107,15 +110,14 @@ function isActiveRoute(url: string): boolean {
 					text-decoration: none;
 					transition: var(--transition);
 					&:hover {
-						text-decoration: underline;
-						text-decoration-thickness: var(--underline-thickness);
+						background: var(--c-surface-accent);
 					}
 				}
 				.is-active {
-					text-decoration: underline;
-					text-decoration-thickness: var(--underline-thickness);
+					background: var(--c-font);
+					color: var(--c-light);
 					&:hover {
-						text-decoration: none;
+						background: var(--c-font);
 					}
 				}
 			}

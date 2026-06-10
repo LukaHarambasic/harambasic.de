@@ -31,7 +31,7 @@ const Element = element;
 			margin: var(--xl) 0 var(--m) 0;
 			width: 30ch;
 			font-family: var(--font-family-serif);
-			font-size: var(--font-xl);
+			font-size: var(--fs-h2);
 			font-weight: 500;
 			line-height: 1.2;
 			letter-spacing: var(--tracking-heading);
@@ -46,7 +46,7 @@ const Element = element;
 			margin: var(--l) 0 var(--m) 0;
 			width: 30ch;
 			font-family: var(--font-family-serif);
-			font-size: var(--font-l);
+			font-size: var(--fs-h3);
 			font-weight: 500;
 			line-height: 1.2;
 			letter-spacing: var(--tracking-heading);
@@ -67,10 +67,11 @@ const Element = element;
 		}
 		:global(hr) {
 			margin: var(--l) 0;
+			width: 3.5rem;
 			height: 2px;
 			border: none;
-			border-radius: 10rem;
-			background: var(--c-surface-accent);
+			border-radius: 1px;
+			background: var(--c-font);
 		}
 		:global(a) {
 			color: var(--c-font);

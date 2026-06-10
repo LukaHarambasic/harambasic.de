@@ -161,10 +161,19 @@ const activeGroupedEntries = tags
 
 			> h2 {
 				font-family: var(--font-family-serif);
-				font-size: var(--font-l);
+				font-size: var(--fs-h2);
 				font-weight: 500;
 				line-height: 1.2;
 				letter-spacing: var(--tracking-heading);
+				&::after {
+					content: '';
+					display: block;
+					margin-top: var(--s);
+					width: 3.5rem;
+					height: 2px;
+					border-radius: 1px;
+					background: var(--c-font);
+				}
 			}
 
 			&.archive {
@@ -550,7 +559,7 @@ const activeGroupedEntries = tags
 				margin: 0;
 				color: var(--c-font);
 				font-family: var(--font-family-serif);
-				font-size: var(--font-xl);
+				font-size: var(--fs-h3);
 				font-weight: 500;
 				line-height: 1.2;
 				letter-spacing: var(--tracking-heading);
@@ -621,10 +630,11 @@ const activeGroupedEntries = tags
 				.title {
 					strong {
 						display: inline;
-						font-family: var(--font-family);
-						font-size: var(--font-m);
-						font-weight: 700;
+						font-family: var(--font-family-serif);
+						font-size: var(--fs-h3);
+						font-weight: 500;
 						line-height: 1.2;
+						letter-spacing: var(--tracking-heading);
 					}
 				}
 				p {

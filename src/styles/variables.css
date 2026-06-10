@@ -1,10 +1,10 @@
 :root {
-	--c-surface: #ffedf9;
-	--c-surface-accent: rgba(45, 10, 46, 0.06);
-	--c-light: #fff9fc;
+	--c-surface: #fff8fc;
+	--c-surface-accent: #fbdcef;
+	--c-light: #ffedf9;
 	--c-font: #2d0a2e;
-	--c-font-accent-dark: #6f5a6c;
-	--c-font-accent-super-light: rgba(45, 10, 46, 0.12);
+	--c-font-accent-dark: #5d4a5b;
+	--c-font-accent-super-light: #dbc1d8;
 	--c-backdrop: rgba(45, 10, 46, 0.7);
 	--c-current-work-bg: #2d0a2e;
 	--c-current-work-text: #ffedf9;
@@ -17,6 +17,10 @@
 	--font-m: 1rem;
 	--font-l: 1.25rem;
 	--font-xl: 1.5rem;
+	--fs-display: clamp(2.25rem, 5vw, 3.5rem);
+	--fs-h1: 1.75rem;
+	--fs-h2: 1.5rem;
+	--fs-h3: 1.25rem;
 	--font-letter-spacing-headline: 0;
 	--tracking-display: -0.022em;
 	--tracking-heading: -0.012em;
@@ -25,7 +29,7 @@
 	--transition-time: 0.15s;
 	--transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
 	--transition: all var(--transition-time) var(--transition-ease);
-	--border-radius: 12px;
+	--border-radius: 18px;
 	--border-radius-small: 8px;
 	--border-radius-pill: 999px;
 	--box-shadow: 0 2px 8px rgba(45, 10, 46, 0.06), 0 1px 2px rgba(45, 10, 46, 0.04);
@@ -47,12 +51,12 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		--c-surface: #3c133d;
-		--c-surface-accent: rgba(255, 237, 249, 0.08);
+		--c-surface-accent: #4f1f50;
 		--c-border: rgba(255, 237, 249, 0.12);
 		--c-light: #2d0a2e;
 		--c-font: #ffedf9;
 		--c-font-accent-dark: #c9a6c4;
-		--c-font-accent-super-light: rgba(255, 237, 249, 0.15);
+		--c-font-accent-super-light: #653366;
 		--c-backdrop: rgba(22, 4, 26, 0.85);
 		--c-current-work-bg: #16041a;
 		--c-accent-italic: #e8b366;
