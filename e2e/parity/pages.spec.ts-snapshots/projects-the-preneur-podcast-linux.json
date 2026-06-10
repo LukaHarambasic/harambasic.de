@@ -1,0 +1,31 @@
+{
+  "url": "/projects/the-preneur-podcast",
+  "status": 200,
+  "title": "The Preneur (Podcast) | Luka Harambasic",
+  "description": "Podcast around entrepreneurship.",
+  "ogImage": "https://harambasic.de/social/the-preneur-podcast.png",
+  "h1": "The Preneur (Podcast)",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

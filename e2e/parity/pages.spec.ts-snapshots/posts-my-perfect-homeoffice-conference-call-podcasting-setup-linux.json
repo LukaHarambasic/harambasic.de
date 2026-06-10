@@ -1,0 +1,31 @@
+{
+  "url": "/posts/my-perfect-homeoffice-conference-call-podcasting-setup",
+  "status": 200,
+  "title": "My perfect Home-Office Conference Call & Podcasting Setup | Luka Harambasic",
+  "description": "Overview for my perfect Homeoffice Conference Call & Podcasting Setup.",
+  "ogImage": "https://harambasic.de/social/my-perfect-homeoffice-conference-call-podcasting-setup.png",
+  "h1": "My perfect Home-Office Conference Call & Podcasting Setup",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

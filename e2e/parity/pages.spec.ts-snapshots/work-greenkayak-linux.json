@@ -1,0 +1,31 @@
+{
+  "url": "/work/greenkayak",
+  "status": 200,
+  "title": "GreenKayak | Luka Harambasic",
+  "description": "GreenKayak is an environmental NGO that engages people in the fight for cleaner oceans. Collect trash and therefore paddle for free.",
+  "ogImage": "https://harambasic.de/social/greenkayak.png",
+  "h1": "GreenKayak",
+  "landmarks": {
+    "header": 3,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

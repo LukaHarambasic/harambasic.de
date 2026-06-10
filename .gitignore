@@ -21,3 +21,8 @@ vite.config.ts.timestamp-*
 .claude/cache/
 
 .plans
+
+# Playwright
+/test-results
+/playwright-report
+/blob-report

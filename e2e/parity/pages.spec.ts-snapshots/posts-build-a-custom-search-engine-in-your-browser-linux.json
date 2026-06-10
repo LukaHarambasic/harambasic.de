@@ -1,0 +1,31 @@
+{
+  "url": "/posts/build-a-custom-search-engine-in-your-browser",
+  "status": 200,
+  "title": "Build a custom search engine in your browser | Luka Harambasic",
+  "description": "I show you why custom search engines in your browser are a nice tool and how I use them.",
+  "ogImage": "https://harambasic.de/social/build-a-custom-search-engine-in-your-browser.png",
+  "h1": "Build a custom search engine in your browser",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

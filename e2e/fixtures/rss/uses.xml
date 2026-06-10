@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+            <channel>
+                <atom:link href="https://harambasic.de/uses/rss" rel="self" type="application/rss+xml" />
+                <title>Luka Harambasic | Uses</title>
+                <link>https://harambasic.de</link>
+                <description>My private playground, publishing my thoughts and ideas. Showing of what I did and playing around with new technologies. In this feed you will stay up to date with my uses.</description>
+                <lastBuildDate>STRIPPED</lastBuildDate>
+					<item>
+					<guid isPermaLink="true">https://harambasic.de/uses/apple-macbook-air</guid>
+					<title>Apple MacBook Air</title>
+					<link>https://harambasic.de/uses/apple-macbook-air</link>
+					<description>Specs: M1 (Processor), 16 GB (Memory), 256 GB (Storage)</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/asus-zenscreen-mb16ac</guid>
+					<title>ASUS ZenScreen MB16AC</title>
+					<link>https://harambasic.de/uses/asus-zenscreen-mb16ac</link>
+					<description>Mobile display, powered over USB-C which gives me a dual display set up almost everywhere.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/bookmark-divider</guid>
+					<title>Bookmark Divider</title>
+					<link>https://harambasic.de/uses/bookmark-divider</link>
+					<description>A tool created by myself to use it as a bookmark divider between my favicon bookmarks.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/clipy</guid>
+					<title>Clipy</title>
+					<link>https://harambasic.de/uses/clipy</link>
+					<description>A clipboard manager for macOS. No more, no less.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/elgato-ring-light</guid>
+					<title>Elgato Ring Light</title>
+					<link>https://harambasic.de/uses/elgato-ring-light</link>
+					<description>Quite expansive, but the warmness (Kelvin) and brightness can be adjusted seamlessly (Mobile &amp; Desktop).</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/elgato-streamdeck</guid>
+					<title>Elgato Streamdeck</title>
+					<link>https://harambasic.de/uses/elgato-streamdeck</link>
+					<description>Programmable keyboard with displays which shows different keys depending on the context.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/enpass</guid>
+					<title>Enpass</title>
+					<link>https://harambasic.de/uses/enpass</link>
+					<description>I bought this password manager before they started the subscription model. Therefore, I can use it without any monthly fees.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/figma</guid>
+					<title>Figma</title>
+					<link>https://harambasic.de/uses/figma</link>
+					<description>Awesome vector tool, you can work live at files and share them easily.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/github-actions</guid>
+					<title>GitHub Actions</title>
+					<link>https://harambasic.de/uses/github-actions</link>
+					<description>As all my projects are on GitHub I&apos;m just happy about such a simple solution for automation.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/google-workspace</guid>
+					<title>Google Workspace</title>
+					<link>https://harambasic.de/uses/google-workspace</link>
+					<description>In my case it is used privately, but it is also very easy to set up for small to large organizations.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/google-webfonts-helper</guid>
+					<title>google webfonts helper</title>
+					<link>https://harambasic.de/uses/google-webfonts-helper</link>
+					<description>Tool to help you host Google fonts without the CDN. Why should you care? GDPR, Performance, Control.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/logitech-streamcam</guid>
+					<title>Logitech Streamcam</title>
+					<link>https://harambasic.de/uses/logitech-streamcam</link>
+					<description>Supports default mounting options and produces a pretty good Full HD image.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/netlify</guid>
+					<title>Netlify</title>
+					<link>https://harambasic.de/uses/netlify</link>
+					<description>Connect Netlify to your repository to get a build when you push to main and also get previews in PRs.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/nuxtjs</guid>
+					<title>Nuxt.js</title>
+					<link>https://harambasic.de/uses/nuxtjs</link>
+					<description>Opinionated meta framework for Vue.js.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/playwright</guid>
+					<title>Playwright</title>
+					<link>https://harambasic.de/uses/playwright</link>
+					<description>A Node.js browser automation framework I use it to automate websites which won&apos;t give me API access or to generate images.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/rectangle</guid>
+					<title>Rectangle</title>
+					<link>https://harambasic.de/uses/rectangle</link>
+					<description>Move and snap windows in macOS via mouse and shortcuts.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/rode-ntusb-mini</guid>
+					<title>Rode NT-USB Mini</title>
+					<link>https://harambasic.de/uses/rode-ntusb-mini</link>
+					<description>Nice quality (as far as I can tell) and can be used without an arm.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/slack</guid>
+					<title>Slack</title>
+					<link>https://harambasic.de/uses/slack</link>
+					<description>If there is a new side project with multiple people I tend to directly create a workspace to streamline the communication.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/vercel</guid>
+					<title>Vercel</title>
+					<link>https://harambasic.de/uses/vercel</link>
+					<description>Same as Netlify, but I prefer Vercel for projects with serverless functions.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/vs-code</guid>
+					<title>VS Code</title>
+					<link>https://harambasic.de/uses/vs-code</link>
+					<description>As I&apos;m not a big fan of TextEdit (macOS) I use VS Code as my primarily text editor. And nowadays also for Astro.js.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/vuejs</guid>
+					<title>Vue.js</title>
+					<link>https://harambasic.de/uses/vuejs</link>
+					<description>My favorite JS framework, as it lets you use what the web was made with: HTML and CSS! And Single File Components are just awesome.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/vueresumecomponent</guid>
+					<title>vue-resume-component</title>
+					<link>https://harambasic.de/uses/vueresumecomponent</link>
+					<description>My first npm package which powered the CV of a previous version of this page.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/webstorm</guid>
+					<title>WebStorm</title>
+					<link>https://harambasic.de/uses/webstorm</link>
+					<description>I like it as it just works and has all the features I need built-in.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/workflowy</guid>
+					<title>WorkFlowy</title>
+					<link>https://harambasic.de/uses/workflowy</link>
+					<description>My go-to knowledge app, you could also call it a note app. Basically it is an endless list.</description>
+					<pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/alttab</guid>
+					<title>AltTab</title>
+					<link>https://harambasic.de/uses/alttab</link>
+					<description>A better and customizable version of CMD + Tab on Mac.</description>
+					<pubDate>Sat, 25 Nov 2023 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/homebrew</guid>
+					<title>Homebrew</title>
+					<link>https://harambasic.de/uses/homebrew</link>
+					<description>Installing all the stuff the easy way, for nerds on Mac.</description>
+					<pubDate>Sat, 25 Nov 2023 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/raycast</guid>
+					<title>Raycast</title>
+					<link>https://harambasic.de/uses/raycast</link>
+					<description>Nicer version of Spotlight for Mac.</description>
+					<pubDate>Sat, 25 Nov 2023 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/sveltekit</guid>
+					<title>SvelteKit</title>
+					<link>https://harambasic.de/uses/sveltekit</link>
+					<description>Opinionated meta framework for Svelte (used for his website).</description>
+					<pubDate>Sat, 25 Nov 2023 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/airpod-pro-2</guid>
+					<title>AirPod Pro 2</title>
+					<link>https://harambasic.de/uses/airpod-pro-2</link>
+					<description>Had the first version, got the second one but sadly still have them with a Lighntning-Port. USB-C for the win!</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/anker-prime-charger</guid>
+					<title>Anker Prime Charger</title>
+					<link>https://harambasic.de/uses/anker-prime-charger</link>
+					<description>As far as I know the smallest 100W charger (enough to charge a Macbook Pro) with 2x USB-Cand 2x USB-A.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/anker-nano-power-bank</guid>
+					<title>Anker Nano Power Bank</title>
+					<link>https://harambasic.de/uses/anker-nano-power-bank</link>
+					<description>Had a MagSafe Powerbank but as I&apos;m now on Android I needed a replacement. Tech spec: 10.000mAh, 30W, integrated USB-C cable.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/vortrieb-modell-12</guid>
+					<title>Vortrieb Modell 1.2</title>
+					<link>https://harambasic.de/uses/vortrieb-modell-12</link>
+					<description>All black city bike for my daily commute. I love it. Just a front basket for my backpack is missing.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/camelbak-chute-mag-12-l</guid>
+					<title>Camelbak Chute Mag (1.2 l)</title>
+					<link>https://harambasic.de/uses/camelbak-chute-mag-12-l</link>
+					<description>I fell in love with big water bottles, my old one broke and I got this one as a present. Dropped it multiple times and nothing happened.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/chatgpt</guid>
+					<title>ChatGPT</title>
+					<link>https://harambasic.de/uses/chatgpt</link>
+					<description>I have the Plus version from work. I use it in different situations, dedicated post will follow.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/electric-tape-blue</guid>
+					<title>Electric Tape (blue)</title>
+					<link>https://harambasic.de/uses/electric-tape-blue</link>
+					<description>I&apos;m getting around a bit, leacing with two room mates. I needed something to mark everything that is mine so that I won&apos;t forget it, but also other know that it&apos;s mine.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/fritzvold-minimal-wallet</guid>
+					<title>Fritzvold Minimal Wallet</title>
+					<link>https://harambasic.de/uses/fritzvold-minimal-wallet</link>
+					<description>I&apos;m not a fan of these sliding wallets, but I also want something small that can hold a few coins and bills. Recycled paper artificial leather that is super durable.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/ghostty</guid>
+					<title>Ghostty</title>
+					<link>https://harambasic.de/uses/ghostty</link>
+					<description>Used Warp, but got to much AI, to much account, to much pushy in updates and it was slow. Giving Ghostty now a shot.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/google-keep</guid>
+					<title>Google Keep</title>
+					<link>https://harambasic.de/uses/google-keep</link>
+					<description>Use for more valatile notes, not knowledge that should be persisted, use it as &quot;App&quot; via Safari on my MacBook to have it in my dock.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/ipad-air-13-m2</guid>
+					<title>iPad Air 13&quot; (M2)</title>
+					<link>https://harambasic.de/uses/ipad-air-13-m2</link>
+					<description>Always wanted an iPad with a large screen to also use it as a second screen when needed. And as I got to love the Apple silicons I also wanted at least a M1.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/loop-quiet-2-kinetic</guid>
+					<title>Loop Quiet 2 Kinetic</title>
+					<link>https://harambasic.de/uses/loop-quiet-2-kinetic</link>
+					<description>Got these earplugs recommended and have to say they fit perfectly, they dont fall out. I also love the little case so I can just throw them in my backback.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/macbook-pro-14-m2-pro</guid>
+					<title>MacBook Pro 14&quot; (M2 Pro)</title>
+					<link>https://harambasic.de/uses/macbook-pro-14-m2-pro</link>
+					<description>My work laptop.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/notion</guid>
+					<title>Notion</title>
+					<link>https://harambasic.de/uses/notion</link>
+					<description>Used it for private stuff, heavily during my studies and now at work.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/perplexity-ai</guid>
+					<title>Perplexity AI</title>
+					<link>https://harambasic.de/uses/perplexity-ai</link>
+					<description>I use it for more complex search queries where I know I&apos;ll have to visit multiple sites to gather that information.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/pixel-9-pro</guid>
+					<title>Pixel 9 Pro</title>
+					<link>https://harambasic.de/uses/pixel-9-pro</link>
+					<description>Have been the last four years with the iPhone 12. Wanted to go back to the roots. With the most pinkish case. Post will follow.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/raspberry-pi-5-8-gb</guid>
+					<title>Raspberry Pi 5 (8 GB)</title>
+					<link>https://harambasic.de/uses/raspberry-pi-5-8-gb</link>
+					<description>Set up with Ansible and Docker, right now running Home Assistent with Zigbee. Next on the list: OpenVPN, AdGuard. Post will follow.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/standard-notes</guid>
+					<title>Standard Notes</title>
+					<link>https://harambasic.de/uses/standard-notes</link>
+					<description>My knowledge base, see it as how others use Obsidian. Out of the box sync on multiple devices and web access are important for me. The free version is enough and it is e2e encrypted.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/peak-design-tech-pouch</guid>
+					<title>Peak Design Tech Pouch</title>
+					<link>https://harambasic.de/uses/peak-design-tech-pouch</link>
+					<description>Bring a little bit more organization to your tech. I&apos;m not using it at the moment as I heavily reduced what I bring with me. But might become more relevant again.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/todoist</guid>
+					<title>Todoist</title>
+					<link>https://harambasic.de/uses/todoist</link>
+					<description>My go-to todo list. It exists for that single purpose and doesn&apos;t try to be more. I have a pro subscription. I use it at work and for private tasks.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/wandrd-prvke-21-l</guid>
+					<title>Wandrd PRVKE (21 l)</title>
+					<link>https://harambasic.de/uses/wandrd-prvke-21-l</link>
+					<description>Water-resistant 21L backpack for biking to work and travel. Features attachable waist and accessory straps for versatility.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/uses/withings-scanwatch-2</guid>
+					<title>Withings ScanWatch 2</title>
+					<link>https://harambasic.de/uses/withings-scanwatch-2</link>
+					<description>Love that people don&apos;t spot that it is a Smart Watch. Love the month-long battery time. But it&apos;s not working at the moment, need to fix it.</description>
+					<pubDate>Sun, 05 Jan 2025 00:00:00 GMT</pubDate>
+					
+				</item>
+				</channel>
+        </rss>

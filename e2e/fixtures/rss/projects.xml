@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+            <channel>
+                <atom:link href="https://harambasic.de/projects/rss" rel="self" type="application/rss+xml" />
+                <title>Luka Harambasic | Projects</title>
+                <link>https://harambasic.de</link>
+                <description>My private playground, publishing my thoughts and ideas. Showing of what I did and playing around with new technologies. In this feed you will stay up to date with my projects.</description>
+                <lastBuildDate>STRIPPED</lastBuildDate>
+					<item>
+					<guid isPermaLink="true">https://harambasic.de/projects/active-ambassadors</guid>
+					<title>Active Ambassadors</title>
+					<link>https://harambasic.de/projects/active-ambassadors</link>
+					<description>Raising awareness for NGOs.</description>
+					<pubDate>Mon, 21 Dec 2020 00:00:00 GMT</pubDate>
+					<content:encoded><![CDATA[<p>A friend of mine thought that we could do something good with our skills whilst raising awarness for NGOs. I set up our work environment: <a href="https://slack.com/intl/en-de/">Slack</a>, <a href="https://www.google.com/intl/en_in/drive/">Google Drive</a>, <a href="https://meet.google.com/">Google Meet</a>, Website (<a href="https://nuxtjs.org/">Nuxt.js</a>, <a href="https://prismic.io/">Prismic</a>, <a href="https://www.netlify.com/">Netlify</a>), <a href="https://airtable.com/">Airtable</a>, <a href="https://mailchimp.com/">Mailchimp</a>, and <a href="https://ifttt.com/">IFTTT</a>. Currently, we are shifting our knowledge and task management towards <a href="https://www.notion.so/">Notion</a>.</p>]]></content:encoded>
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/projects/arbeitskreis-brse</guid>
+					<title>Arbeitskreis Börse</title>
+					<link>https://harambasic.de/projects/arbeitskreis-brse</link>
+					<description>Germany&apos;s largest student finance society.</description>
+					<pubDate>Mon, 21 Dec 2020 00:00:00 GMT</pubDate>
+					<content:encoded><![CDATA[<p>Together with my colleague, we moved more than 1000 accounts from a simple mail server to <a href="https://workspace.google.com/">Google Workspaces</a>. Similar to this also the member management which had historically grown and only existed in Excel sheets so far, was migrated to <a href="https://easyverein.com/">EasyVerein</a>. Additionally, we digitalized the expense reimbursement process.</p>]]></content:encoded>
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/projects/coronawarnapp</guid>
+					<title>Corona-Warn-App</title>
+					<link>https://harambasic.de/projects/coronawarnapp</link>
+					<description>App to trace infection chains of COVID-19.</description>
+					<pubDate>Mon, 21 Dec 2020 00:00:00 GMT</pubDate>
+					<content:encoded><![CDATA[<p>I worked on the Android version of the German Corona-Warn-App. In the beginning, I focused on the UI implementation for version 1.0.0, which was released after only 50 days of development. A few weeks later, I took on even more responsibility and facilitated the development as team lead and scrum master.</p>]]></content:encoded>
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/projects/cvresume-template-figma</guid>
+					<title>CV/Resume template Figma</title>
+					<link>https://harambasic.de/projects/cvresume-template-figma</link>
+					<description>Template to create a CV/Resume in Figma.</description>
+					<pubDate>Mon, 21 Dec 2020 00:00:00 GMT</pubDate>
+					<content:encoded><![CDATA[<p>Why bother with Word, a graphics program, or some generator when creating your CV? I went through all that, only to discover Figma—and it was fantastic. But then, Figma's auto layouts arrived, and I went all in. Friends, and more than 100 strangers, are already using the template. It's incredibly easy to adapt—the overall structure, colors, and just about everything else. Let me know if you land your next job with it!</p>]]></content:encoded>
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/projects/qsummit</guid>
+					<title>Q-Summit</title>
+					<link>https://harambasic.de/projects/qsummit</link>
+					<description>Germany’s largest conference for entrepreneurship organized by students.</description>
+					<pubDate>Mon, 21 Dec 2020 00:00:00 GMT</pubDate>
+					<content:encoded><![CDATA[<p>Initially I set up the first version of the infrastructure, the focus was getting things done instead of doing it perfectly. Thereafter, I continuously improved the tech stack and introduced tools like <a href="https://slack.com/">Slack</a>, <a href="https://workspace.google.com/">Google Workspace</a>, <a href="https://zapier.com/">Zapier</a> and <a href="https://www.hubspot.com/">HubSpot</a> to fully leverage the benefits of cloud tools and facilitate the collaboration of more than 100 students.</p>]]></content:encoded>
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/projects/techmob-show-podcast</guid>
+					<title>Techmob Show (Podcast)</title>
+					<link>https://harambasic.de/projects/techmob-show-podcast</link>
+					<description>Podast where three friends are talking tech.</description>
+					<pubDate>Mon, 21 Dec 2020 00:00:00 GMT</pubDate>
+					<content:encoded><![CDATA[<p>Three friends needed to talk quite often about technology. Most of the time it could even be described as entertaining. They were also curious about how a podcast works. So why not start one? The Techmob Show was born. The first season contains eight to ten episodes, eight are published, ten are recorded. It's like Schrödinger's cat.</p>]]></content:encoded>
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/projects/the-preneur-podcast</guid>
+					<title>The Preneur (Podcast)</title>
+					<link>https://harambasic.de/projects/the-preneur-podcast</link>
+					<description>Podcast around entrepreneurship.</description>
+					<pubDate>Mon, 21 Dec 2020 00:00:00 GMT</pubDate>
+					<content:encoded><![CDATA[<p>During the period when I co-founded and hosted the podcast, it was known as "Technopreneur". We conducted interviews with founders of impact startups based in Copenhagen. We constructed our own studio, which accommodated recordings with up to four people. Following the production of twelve episodes, we transferred ownership of the podcast, an action that entailed a rebranding to "The Preneur".</p>]]></content:encoded>
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/projects/greenkayak-app</guid>
+					<title>GreenKayak App</title>
+					<link>https://harambasic.de/projects/greenkayak-app</link>
+					<description>NGO that engages people in the fight against ocean pollution.</description>
+					<pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate>
+					<content:encoded><![CDATA[<p>GreenKayak's booking system was exclusively web-based, which relinquished control over parts of the booking experience and data collection. An integral component of this NGO's business model involves reporting the amount of trash collected, a process that was analog and error-prone until the app's release. I orchestrated the planning and design of the app and managed its development with an external agency. Since its launch, the app has garnered over 10,000 downloads and engaged more than 16,000 volunteers in the 2023 season.</p>]]></content:encoded>
+				</item><item>
+					<guid isPermaLink="true">https://harambasic.de/projects/koben-raft</guid>
+					<title>Koben (Raft)</title>
+					<link>https://harambasic.de/projects/koben-raft</link>
+					<description>Best raft in Copenhagen.</description>
+					<pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate>
+					<content:encoded><![CDATA[<p>What should I say? It's amazing! We've spent countless fun hours on this raft. Most of the materials were sourced from a recycling depot, and we bought the engine secondhand. We built it in less than 24 hours, without any formal plan. Interestingly, most of the people involved are from the software industry. "Koben" which stands for "crowbar," was the only tool we purchased, for disassembling the pallets. If you're ever in Copenhagen and fancy a ride, just let me know!</p>]]></content:encoded>
+				</item>
+				</channel>
+        </rss>

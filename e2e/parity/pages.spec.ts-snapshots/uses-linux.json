@@ -1,0 +1,31 @@
+{
+  "url": "/uses",
+  "status": 200,
+  "title": "Tools and gear I actually use | Luka Harambasic",
+  "description": "An overview of the software, hardware, and workflows I rely on in my daily work and life. No affiliate fluff, just what's on my desk and in my stack, and why I use it.",
+  "ogImage": "https://harambasic.de/social/tools-and-gear-i-actually-use.png",
+  "h1": "Tools and gear I actually use",
+  "landmarks": {
+    "header": 1,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

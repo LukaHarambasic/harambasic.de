@@ -1,0 +1,31 @@
+{
+  "url": "/projects/cvresume-template-figma",
+  "status": 200,
+  "title": "CV/Resume template Figma | Luka Harambasic",
+  "description": "Template to create a CV/Resume in Figma.",
+  "ogImage": "https://harambasic.de/social/cvresume-template-figma.png",
+  "h1": "CV/Resume template Figma",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

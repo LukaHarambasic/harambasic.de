@@ -1,0 +1,31 @@
+{
+  "url": "/imprint",
+  "status": 200,
+  "title": "Imprint | Luka Harambasic",
+  "description": "Imprint, not more, but also not less.",
+  "ogImage": "https://harambasic.de/social/imprint.png",
+  "h1": null,
+  "landmarks": {
+    "header": 1,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

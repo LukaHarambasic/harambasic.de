@@ -1,0 +1,31 @@
+{
+  "url": "/posts/pdf-cvresume-from-figma-template-with-auto-layout",
+  "status": 200,
+  "title": "PDF CV/Resume from Figma template with Auto Layout | Luka Harambasic",
+  "description": "A simple one-page CV/Resume template that heavily relies on Auto Layout makes it super easy to adjust.",
+  "ogImage": "https://harambasic.de/social/pdf-cvresume-from-figma-template-with-auto-layout.png",
+  "h1": "PDF CV/Resume from Figma template with Auto Layout",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

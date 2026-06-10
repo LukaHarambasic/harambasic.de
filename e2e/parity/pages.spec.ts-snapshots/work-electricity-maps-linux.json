@@ -1,0 +1,31 @@
+{
+  "url": "/work/electricity-maps",
+  "status": 200,
+  "title": "Electricity Maps | Luka Harambasic",
+  "description": "The world’s most comprehensive  electricity data platform. Helping organizations make informed decisions about their energy usage.",
+  "ogImage": "https://harambasic.de/social/electricity-maps.png",
+  "h1": "Electricity Maps",
+  "landmarks": {
+    "header": 3,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

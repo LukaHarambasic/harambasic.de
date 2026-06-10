@@ -1,0 +1,31 @@
+{
+  "url": "/posts/my-nerd-path-10-years-of-personal-development",
+  "status": 200,
+  "title": "My nerd path - 10+ years of (personal) development | Luka Harambasic",
+  "description": "This post shows how I acquired my technical knowledge and illustrates where my interests lie and how they have developed over almost 15 years.",
+  "ogImage": "https://harambasic.de/social/my-nerd-path-10-years-of-personal-development.png",
+  "h1": "My nerd path - 10+ years of (personal) development",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

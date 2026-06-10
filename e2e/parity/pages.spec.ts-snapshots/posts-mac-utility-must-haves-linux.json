@@ -1,0 +1,31 @@
+{
+  "url": "/posts/mac-utility-must-haves",
+  "status": 200,
+  "title": "Mac utility must haves | Luka Harambasic",
+  "description": "Explore my essential Mac utilities, including clipboard enhancements, window management, and more.",
+  "ogImage": "https://harambasic.de/social/mac-utility-must-haves.png",
+  "h1": "Mac utility must haves",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

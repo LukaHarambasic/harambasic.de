@@ -1,0 +1,31 @@
+{
+  "url": "/",
+  "status": 200,
+  "title": "Luka Harambasic",
+  "description": "My private playground, publishing my thoughts and ideas. Showing of what I did and playing around with new technologies.",
+  "ogImage": "https://harambasic.de/social/default.png",
+  "h1": "Heyho, I'm Luka!",
+  "landmarks": {
+    "header": 1,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "url": "/posts/quickly-copying-paths-to-the-terminal-on-macos",
+  "status": 200,
+  "title": "Quickly copying paths to the terminal on macOS | Luka Harambasic",
+  "description": "Quickly copying paths to the terminal on macOS",
+  "ogImage": "https://harambasic.de/social/quickly-copying-paths-to-the-terminal-on-macos.png",
+  "h1": "Quickly copying paths to the terminal on macOS",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

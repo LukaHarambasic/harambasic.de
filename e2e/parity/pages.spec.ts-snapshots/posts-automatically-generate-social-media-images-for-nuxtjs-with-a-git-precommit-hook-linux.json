@@ -1,0 +1,31 @@
+{
+  "url": "/posts/automatically-generate-social-media-images-for-nuxtjs-with-a-git-precommit-hook",
+  "status": 200,
+  "title": "Automatically generate social media images for Nuxt.js with a git pre-commit hook | Luka Harambasic",
+  "description": "Generate social media images for a nuxt/content project in a git pre-commit hook, this logic can be adapted to any other CMS.",
+  "ogImage": "https://harambasic.de/social/automatically-generate-social-media-images-for-nuxtjs-with-a-git-precommit-hook.png",
+  "h1": "Automatically generate social media images for Nuxt.js with a git pre-commit hook",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

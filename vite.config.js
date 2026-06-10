@@ -4,5 +4,10 @@ import { defineConfig } from 'vite';
 
 // Add vitest again
 export default defineConfig({
-	plugins: [enhancedImages(), sveltekit()]
+	plugins: [enhancedImages(), sveltekit()],
+	// Unit tests live in src/ (*.test.ts). The e2e/ Playwright specs (*.spec.ts) are
+	// run by Playwright, not Vitest — keep Vitest from scanning them.
+	test: {
+		include: ['src/**/*.{test,spec}.ts']
+	}
 });

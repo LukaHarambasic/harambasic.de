@@ -1,0 +1,31 @@
+{
+  "url": "/posts/almost-free-setup-for-ngos-startups-and-side-projects",
+  "status": 200,
+  "title": "Almost free setup for NGOs, startups and side projects | Luka Harambasic",
+  "description": "I want to inspire you how you can set up a professional working environment for your next idea with almost no money.",
+  "ogImage": "https://harambasic.de/social/almost-free-setup-for-ngos-startups-and-side-projects.png",
+  "h1": "Almost free setup for NGOs, startups and side projects",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

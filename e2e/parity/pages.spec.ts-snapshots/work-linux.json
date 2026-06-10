@@ -1,0 +1,31 @@
+{
+  "url": "/work",
+  "status": 200,
+  "title": "Building products that matter for people & the planet | Luka Harambasic",
+  "description": "My professional journey across different companies and roles. Each entry represents a company where I've worked, with multiple positions and experiences.",
+  "ogImage": "https://harambasic.de/social/building-products-that-matter-for-people-the-planet.png",
+  "h1": "Building products that matter for people & the planet",
+  "landmarks": {
+    "header": 1,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

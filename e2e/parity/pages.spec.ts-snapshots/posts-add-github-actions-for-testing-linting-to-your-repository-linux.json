@@ -1,0 +1,31 @@
+{
+  "url": "/posts/add-github-actions-for-testing-linting-to-your-repository",
+  "status": 200,
+  "title": "Add GitHub Actions for testing & linting to your repository | Luka Harambasic",
+  "description": "GitHub Actions are easy to configure and should be used in all npm/yarn based projects.",
+  "ogImage": "https://harambasic.de/social/add-github-actions-for-testing-linting-to-your-repository.png",
+  "h1": "Add GitHub Actions for testing & linting to your repository",
+  "landmarks": {
+    "header": 2,
+    "nav": 1,
+    "main": 1,
+    "footer": 2,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/work",
+    "/projects",
+    "/uses",
+    "/posts"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}
