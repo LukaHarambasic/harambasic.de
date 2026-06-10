@@ -223,6 +223,14 @@ const rel = external ? 'external' : undefined;
 				justify-content: flex-start;
 				align-items: flex-start;
 				gap: var(--m);
+				/* Title + subtitle only (no excerpt): tighten the pair and center
+				   it against the media box so the header aligns visually. */
+				&:has(.meta):not(:has(.excerpt)) {
+					align-items: center;
+					.heading {
+						gap: var(--xxs);
+					}
+				}
 			}
 			.media {
 				display: flex;
