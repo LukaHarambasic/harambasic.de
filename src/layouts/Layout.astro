@@ -1,0 +1,179 @@
+---
+import '../styles/reset.css';
+import '../styles/fonts.css';
+import '../styles/variables.css';
+import '../styles/base.css';
+import '../styles/code.css';
+import LayoutHeader from '../components/LayoutHeader.astro';
+import LayoutFooter from '../components/LayoutFooter.astro';
+import ContactDialog from '../components/ContactDialog.astro';
+import { getSlug } from '$lib/util/helper';
+
+interface Props {
+	title?: string;
+	description: string;
+	isDetailPage?: boolean;
+}
+
+const { title = '', description, isDetailPage = false } = Astro.props;
+
+// Build-time only (Netlify sets both; CI passes them; local falls back).
+const permalink = process.env.DEPLOY_PRIME_URL || process.env.URL || 'https://harambasic.de';
+const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic';
+const slug = title ? getSlug(title) : '';
+const socialImg = slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`;
+const socialImgAlt = fullTitle;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<script
+			data-goatcounter="https://luha.goatcounter.com/count"
+			async
+			src="//gc.zgo.at/count.js"
+			is:inline></script>
+		<!-- Global Metadata -->
+		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="#e2ebf0" />
+		<meta name="HandheldFriendly" content="True" />
+		<link rel="icon" href="/favicon.svg" />
+		<!-- Primary Meta Tags -->
+		<title>{fullTitle}</title>
+		<meta name="title" content={fullTitle} />
+		<meta name="description" content={description} />
+		<!-- Open Graph / Facebook -->
+		<meta name="og:type" content="website" />
+		<meta name="og:site_name" content="Luka Harambasic" />
+		<meta name="og:url" content={permalink} />
+		<meta name="og:title" content={fullTitle} />
+		<meta name="og:description" content={description} />
+		<meta name="og:image" content={socialImg} />
+		<meta name="og:image:alt" content={socialImgAlt} />
+		<meta name="og:image:width" content="1200" />
+		<meta name="og:image:height" content="630" />
+		<!-- Twitter -->
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@luka_harambasic" />
+		<meta name="twitter:url" content={permalink} />
+		<meta name="twitter:image" content={socialImg} />
+		<meta name="twitter:image:alt" content={socialImgAlt} />
+	</head>
+	<body>
+		<a id="skip-link" href="#main">Skip to main content</a>
+		<div class="container">
+			<LayoutHeader />
+			<main id="main">
+				<slot name="hero" />
+				{
+					isDetailPage ? (
+						<div class="golden-ratio">
+							<slot />
+						</div>
+					) : (
+						<slot />
+					)
+				}
+			</main>
+			<LayoutFooter />
+		</div>
+		<ContactDialog />
+	</body>
+</html>
+
+<script>
+	// Contact dialog: open on #contact hash from any page; clear hash on close.
+	function initContact() {
+		const dialog = document.getElementById('contact-dialog') as HTMLDialogElement | null;
+		if (!dialog || dialog.dataset.init === 'true') return;
+		dialog.dataset.init = 'true';
+		const openIfHash = () => {
+			if (location.hash === '#contact' && !dialog.open) dialog.showModal();
+		};
+		openIfHash();
+		window.addEventListener('hashchange', openIfHash);
+		dialog.addEventListener('click', (e) => {
+			if (e.target === dialog) dialog.close();
+		});
+		dialog.addEventListener('close', () => {
+			if (location.hash === '#contact') {
+				history.replaceState(null, '', location.pathname + location.search);
+			}
+		});
+	}
+
+	// Clipboard buttons: copy once (matches the old `once` semantics).
+	function initClipboard() {
+		document.querySelectorAll<HTMLElement>('[data-clipboard]').forEach((btn) => {
+			if (btn.dataset.init === 'true') return;
+			btn.dataset.init = 'true';
+			btn.addEventListener(
+				'click',
+				() => {
+					if (btn.dataset.clipboard) navigator.clipboard.writeText(btn.dataset.clipboard);
+				},
+				{ once: true }
+			);
+		});
+	}
+
+	initContact();
+	initClipboard();
+</script>
+
+<style>
+	#skip-link {
+		position: absolute;
+		transform: translateX(-100%);
+		&:focus {
+			position: unset;
+			transform: unset;
+		}
+	}
+	.container {
+		display: grid;
+		padding: var(--xl) 0;
+		width: 100%;
+		height: auto;
+		min-height: 100vh;
+		row-gap: var(--xl);
+		grid-template-areas: '. header .' '. main .' '. footer .';
+		grid-template-rows: auto 1fr auto;
+		grid-template-columns: 1fr var(--layout-xl) 1fr;
+		@media screen and (width <= 86rem) {
+			grid-template-columns: 4rem minmax(0, 1fr) 4rem;
+		}
+		@media screen and (width <= 32rem) {
+			padding: var(--l) 0;
+			row-gap: var(--l);
+			grid-template-columns: 2rem minmax(0, 1fr) 2rem;
+		}
+		> :global(header) {
+			grid-area: header;
+		}
+		> main {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: center;
+			align-content: stretch;
+			gap: var(--xl);
+			grid-area: main;
+			.golden-ratio {
+				margin: 0 auto;
+				width: 100%;
+				max-width: calc(var(--layout-xl) * 0.618);
+				@media screen and (width <= 48rem) {
+					width: 100%;
+				}
+			}
+		}
+		> :global(footer) {
+			grid-area: footer;
+		}
+	}
+</style>

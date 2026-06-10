@@ -1,0 +1,13 @@
+---
+interface Props {
+	preText: string;
+	items: string[];
+}
+
+const { preText, items } = Astro.props;
+---
+
+<ul class="meta-list">
+	<li><strong>{preText}</strong></li>
+	{items.map((item) => <li>{item}</li>)}
+</ul>

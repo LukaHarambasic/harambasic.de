@@ -10,7 +10,7 @@ import path from 'path';
 import { readdirSync } from 'fs';
 
 export const ROOT_PATH = process.cwd();
-export const SOCIAL_PATH = `${ROOT_PATH}/static/social`;
+export const SOCIAL_PATH = `${ROOT_PATH}/public/social`;
 
 export const doesImageAlreadyExist = (slug) => {
 	const files = readdirSync(SOCIAL_PATH);

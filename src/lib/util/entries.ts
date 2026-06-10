@@ -23,7 +23,7 @@ export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
 	};
 }
 
-export function getDate(rawString: string): EntryDate {
+export function getDate(rawString: string | Date): EntryDate {
 	if (!rawString || rawString === 'undefined') {
 		throw new Error(`Invalid date string: "${rawString}". Date cannot be empty or undefined.`);
 	}

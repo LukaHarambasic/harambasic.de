@@ -1,46 +1,64 @@
-# create-svelte
+# harambasic.de
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Personal site of Luka Harambasic — posts, projects, work, and uses. Built with
+[Astro](https://astro.build) as a fully static site.
 
-## Creating a project
+## Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- **Astro** (static output, no adapter) — content collections, `astro:assets`, static endpoints
+- **TypeScript** + **PostCSS** (postcss-nested, postcss-sorting, autoprefixer, cssnano)
+- **Shiki** (`one-dark-pro`) for code highlighting; **astro-icon** (`@iconify-json/ph`) for build-time inline SVG icons
+- **Vitest** (unit) + **Playwright** (e2e parity suite)
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+bun install
+bun run dev      # astro dev
 ```
 
 ## Building
 
-To create a production version of your app:
-
 ```bash
-npm run build
+bun run build    # astro build -> dist/
+bun run preview  # astro preview --port 4173
 ```
 
-You can preview the production build with `npm run preview`.
+`og:image` URLs are resolved at build time from `DEPLOY_PRIME_URL` / `URL` (Netlify
+sets both; locally they fall back to `https://harambasic.de`).
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Quality gate
 
-## Data structure
+```bash
+bun run validate     # format + check + lint + test + build
+bun run check        # astro check (types)
+bun run lint         # prettier + eslint + stylelint
+bun run test         # vitest unit tests
+bun run test:ui      # playwright parity suite (builds + previews first)
+```
 
-- random data accessed on home
-- one general feed with posts, bookmarks and projects - later maybe posts from mastodon
-- posts, bookmarks and projects need their dedicated tags - so only tags that are used in this category
-- there also needs to be a combined tags list from posts, bookmarks and projects
-- also filter needs to work
+Git hooks (Husky) enforce the same gate on every commit. See `CLAUDE.md`.
+
+## Content
+
+Markdown lives in `src/content/` (`posts/`, `projects/`, `uses/`, `work/`; dormant
+`snippets/`, `shareables/`). Slugs derive from the frontmatter **title**, not the
+filename (`scripts/audit-slugs.js` guards this). Images for projects/uses/work live in
+`src/assets/img/`; inline post images and SVG logos are served from `public/`.
+
+```bash
+bun run newPost           # scaffold a new post + public/posts/<slug>/
+bun run socialMedia:auto  # generate social-preview images into public/social/
+bun run validate:content  # validate frontmatter
+bun run audit:slugs       # verify slug/cross-reference/social-image integrity
+```
+
+## Feeds
+
+Six RSS endpoints with hand-rolled XML for exact-shape stability: `/rss`, `/feeds/rss`,
+`/posts/rss`, `/projects/rss`, `/uses/rss`, `/work/rss`. The merged feed sorts newest-first;
+section feeds sort oldest-first (intentional).
+
+## Deployment
+
+Netlify builds `bun run build` and serves `dist/` (`netlify.toml`).

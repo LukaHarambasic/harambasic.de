@@ -1,0 +1,114 @@
+---
+const links = [
+	{ name: 'Home', url: '/' },
+	{ name: 'Work', url: '/work' },
+	{ name: 'Projects', url: '/projects' },
+	{ name: 'Uses', url: '/uses' },
+	{ name: 'Posts', url: '/posts' }
+];
+
+const pathname = Astro.url.pathname;
+// Matches the old loose `includes` rule exactly: '/posts/some-slug' keeps Posts active.
+function isActiveRoute(url: string): boolean {
+	if (url === '/' && pathname === '/') return true;
+	if (url !== '/') return pathname.includes(url);
+	return false;
+}
+---
+
+<header>
+	<div class="logo">
+		<a href="/">Luka Harambasic</a>
+	</div>
+	<nav>
+		<ul>
+			{
+				links.map(({ name, url }) => (
+					<li>
+						<a href={url} class:list={[{ 'is-active': isActiveRoute(url) }]}>
+							{name}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+</header>
+
+<style>
+	header {
+		display: flex;
+		width: 100%;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: flex-start;
+		align-content: stretch;
+		@media screen and (width <= 48rem) {
+			flex-direction: column;
+			align-items: center;
+			gap: var(--l);
+		}
+	}
+	.logo {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: center;
+		align-content: center;
+		gap: var(--m);
+		a {
+			color: var(--c-font);
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 900;
+			letter-spacing: var(--font-letter-spacing-headline);
+			text-decoration: none;
+			@media screen and (width <= 48rem) {
+				text-align: center;
+			}
+			&:hover {
+				text-decoration: underline;
+				text-decoration-thickness: var(--underline-thickness);
+			}
+		}
+	}
+	nav {
+		ul {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: flex-start;
+			align-content: stretch;
+			gap: var(--m);
+			@media screen and (width <= 48rem) {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+			li {
+				a {
+					color: var(--c-font);
+					font-family: var(--font-family);
+					font-size: var(--font-m);
+					font-weight: 600;
+					letter-spacing: var(--font-letter-spacing-headline);
+					text-decoration: none;
+					transition: var(--transition);
+					&:hover {
+						text-decoration: underline;
+						text-decoration-thickness: var(--underline-thickness);
+					}
+				}
+				.is-active {
+					text-decoration: underline;
+					text-decoration-thickness: var(--underline-thickness);
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+		}
+	}
+</style>

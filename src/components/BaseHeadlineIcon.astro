@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	title?: string;
+	icon?: string;
+}
+
+const { title = '', icon = '' } = Astro.props;
+---
+
+<h3><Icon class="icon" name={icon} /><span>{title}</span></h3>
+
+<style>
+	h3 {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: center;
+		align-content: center;
+		gap: 0.25rem;
+		span {
+			font-family: var(--font-family);
+			font-size: var(--font-m);
+			font-weight: 900;
+			line-height: 1.2;
+			letter-spacing: var(--font-letter-spacing-headline);
+		}
+		:global(.icon) {
+			size: 1rem;
+		}
+	}
+</style>

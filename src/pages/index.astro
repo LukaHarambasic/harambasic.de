@@ -1,0 +1,601 @@
+---
+import { Image, Picture } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import BaseRichText from '../components/BaseRichText.astro';
+import { Icon } from 'astro-icon/components';
+import profileImg from '../assets/img/profile.jpeg';
+import { getPosts, getProjects, getUses, getWork } from '$lib/content';
+import {
+	getMergedFeedEntries,
+	getLayoutOrderedEntries,
+	getInitialVisibleCount,
+	getTargetVisibleCount,
+	type MergedFeedEntry
+} from '$lib/util/mergedFeed';
+import {
+	getProjectImage,
+	getUsesImage,
+	getWorkImage,
+	isSvgImage,
+	IMAGE_WIDTHS,
+	IMAGE_FORMATS
+} from '$lib/images';
+
+const description =
+	'My private playground, publishing my thoughts and ideas. Showing of what I did and playing around with new technologies.';
+
+const SVG_PATH_PREFIX: Record<string, string> = {
+	Projects: '/projects/',
+	Uses: '/uses/',
+	Work: '/work/'
+};
+const getSvgSrc = (category: string, imageName: string) =>
+	SVG_PATH_PREFIX[category] ? `${SVG_PATH_PREFIX[category]}${imageName}` : '';
+function getEntryImage(entry: { category: string; image: string }) {
+	if (entry.category === 'Projects') return getProjectImage(entry.image);
+	if (entry.category === 'Uses') return getUsesImage(entry.image);
+	if (entry.category === 'Work') return getWorkImage(entry.image);
+	return null;
+}
+
+const [posts, projects, uses, work] = await Promise.all([
+	getPosts(),
+	getProjects(),
+	getUses(),
+	getWork()
+]);
+
+const INITIAL_TARGET = 6;
+const layoutOrdered = getLayoutOrderedEntries(getMergedFeedEntries(posts, projects, uses, work));
+const initialCount = getInitialVisibleCount(layoutOrdered, INITIAL_TARGET);
+
+// Group into table rows (Uses come in pairs; everything else is full-width).
+function buildRows(entries: MergedFeedEntry[]): MergedFeedEntry[][] {
+	const rows: MergedFeedEntry[][] = [];
+	let i = 0;
+	while (i < entries.length) {
+		const entry = entries[i];
+		const next = entries[i + 1];
+		if (entry.category === 'Uses' && next !== undefined && next.category === 'Uses') {
+			rows.push([entry, next]);
+			i += 2;
+		} else {
+			rows.push([entry]);
+			i += 1;
+		}
+	}
+	return rows;
+}
+
+const allRows = buildRows(layoutOrdered);
+// Cumulative entry count covered through each row.
+let cumulative = 0;
+const rowEntryEnd = allRows.map((row) => (cumulative += row.length));
+
+// Precompute the show-more entry-count steps, then map to visible-row counts so the
+// orphan-avoidance math (tested TS) stays out of the client script.
+const entrySteps: number[] = [initialCount];
+let c = initialCount;
+while (c < layoutOrdered.length) {
+	c = getTargetVisibleCount(layoutOrdered, c, 6);
+	entrySteps.push(c);
+}
+const rowSteps = entrySteps.map((s) => rowEntryEnd.filter((end) => end <= s).length);
+const initialRows = rowSteps[0] ?? allRows.length;
+---
+
+<Layout description={description}>
+	<section class="heyho">
+		<div class="inner">
+			<Image
+				src={profileImg}
+				alt="Profile of Luka Harambasic"
+				class="profile"
+				widths={IMAGE_WIDTHS}
+				sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+			/>
+			<div class="content">
+				<BaseRichText>
+					<h1>Heyho, I'm Luka!</h1>
+					<p>
+						I'm a German/Croatian, based in the beautiful Copenhagen (Denmark). Right now, I'm
+						building with the PLG squad at <a href="https://www.electricitymaps.com/"
+							>Electricity Maps</a
+						>. Feel free to explore my past
+						<a href="/projects">projects</a>
+						or check out my <a href="https://www.linkedin.com/in/harambasic/">LinkedIn profile</a>.
+						I'm right now incredibly hyped about automation and AI. Whether you want to geek out
+						over that or start a conversation about handball, woodworking, cooking, and
+						sustainability, feel free to <a href="#contact">say hi</a>.
+					</p>
+				</BaseRichText>
+			</div>
+		</div>
+	</section>
+	<section class="featured">
+		<h2>Feed</h2>
+		<p class="feed-intro">
+			A combined feed of everything on this site: posts, projects, uses, and work. Ordered by last
+			updated, so sometimes old entries might appear at the top.
+		</p>
+		<div class="feed" data-row-steps={JSON.stringify(rowSteps)}>
+			<table class="feed-table">
+				<tbody>
+					{
+						allRows.map((row, rowIndex) => (
+							<tr data-row={rowIndex} hidden={rowIndex >= initialRows}>
+								{row.map((entry) => {
+									const imageData = getEntryImage(entry);
+									return (
+										<td colspan={row.length === 1 ? 2 : 1}>
+											<a
+												href={entry.href}
+												rel={entry.href.startsWith('http') ? 'external' : undefined}
+												class="link"
+												aria-label={`View ${entry.title}`}
+											>
+												<div class="thumb">
+													<div class="inner">
+														{entry.category === 'Posts' ? (
+															<Icon name="ph:file-text-duotone" class="thumb-icon" />
+														) : entry.image && isSvgImage(entry.image) ? (
+															<>
+																<span class="thumb-loader" aria-hidden="true" />
+																<div class="thumb-media">
+																	<img
+																		src={getSvgSrc(entry.category, entry.image)}
+																		alt={entry.title}
+																	/>
+																</div>
+															</>
+														) : entry.image && imageData ? (
+															<>
+																<span class="thumb-loader" aria-hidden="true" />
+																<div class="thumb-media">
+																	<Picture
+																		src={imageData}
+																		widths={IMAGE_WIDTHS}
+																		formats={IMAGE_FORMATS}
+																		sizes="(min-width:768px) 64px, 48px"
+																		alt={entry.title}
+																		loading="lazy"
+																		decoding="async"
+																	/>
+																</div>
+															</>
+														) : (
+															<Icon name="ph:empty-duotone" class="thumb-icon" />
+														)}
+													</div>
+												</div>
+												<div class="content">
+													<span class="label">{entry.category}</span>
+													<strong class="title">{entry.title}</strong>
+													{entry.updated?.display && (
+														<time class="date" datetime={entry.updated?.raw?.toString()}>
+															{entry.updated.display}
+														</time>
+													)}
+													{entry.description && <p class="description">{entry.description}</p>}
+												</div>
+												<div class="external-link">
+													<Icon
+														name={
+															entry.isExternal
+																? 'ph:arrow-square-out-bold'
+																: 'ph:arrow-up-right-bold'
+														}
+													/>
+												</div>
+											</a>
+										</td>
+									);
+								})}
+							</tr>
+						))
+					}
+				</tbody>
+			</table>
+			<div class="actions">
+				<button type="button" class="btn" data-feed-more hidden={rowSteps.length <= 1}
+					>Show more</button
+				>
+				<button type="button" class="btn" data-feed-less hidden>Show less</button>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	function initFeed() {
+		document.querySelectorAll('[data-row-steps]').forEach((feed) => {
+			const el = feed as HTMLElement;
+			if (el.dataset.feedInit === 'true') return;
+			el.dataset.feedInit = 'true';
+			const steps: number[] = JSON.parse(el.dataset.rowSteps || '[]');
+			const rows = Array.from(el.querySelectorAll<HTMLElement>('tr[data-row]'));
+			const moreBtn = el.querySelector<HTMLButtonElement>('[data-feed-more]');
+			const lessBtn = el.querySelector<HTMLButtonElement>('[data-feed-less]');
+			if (!moreBtn || !lessBtn || steps.length === 0) return;
+			let stepIndex = 0;
+			const apply = () => {
+				const visibleRows = steps[stepIndex];
+				rows.forEach((row, i) => {
+					row.hidden = i >= visibleRows;
+				});
+				moreBtn.hidden = stepIndex >= steps.length - 1;
+				lessBtn.hidden = stepIndex === 0;
+			};
+			moreBtn.addEventListener('click', () => {
+				if (stepIndex < steps.length - 1) {
+					stepIndex++;
+					apply();
+				}
+			});
+			lessBtn.addEventListener('click', () => {
+				stepIndex = 0;
+				apply();
+			});
+			apply();
+		});
+	}
+
+	function initFeedImages() {
+		document.querySelectorAll<HTMLElement>('.thumb-media').forEach((media) => {
+			if (media.dataset.imgInit === 'true') return;
+			media.dataset.imgInit = 'true';
+			const img = media.querySelector('img');
+			const loader = media.parentElement?.querySelector<HTMLElement>('.thumb-loader');
+			const done = () => {
+				media.classList.add('loaded');
+				if (loader) loader.hidden = true;
+			};
+			if (!img || img.complete) {
+				done();
+				return;
+			}
+			img.addEventListener('load', done, { once: true });
+			img.addEventListener('error', done, { once: true });
+		});
+	}
+
+	initFeed();
+	initFeedImages();
+</script>
+
+<style>
+	.heyho {
+		display: flex;
+		position: relative;
+		margin: var(--xl) 0;
+		width: var(--layout-l);
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+		gap: var(--l);
+		@media screen and (width <= 56rem) {
+			width: 100%;
+		}
+		.inner {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: flex-start;
+			align-content: stretch;
+			gap: var(--l);
+			@media screen and (width <= 44rem) {
+				flex-direction: column;
+			}
+			.profile {
+				size: 14.5rem;
+				border-radius: var(--border-radius);
+				@media screen and (width <= 32rem) {
+					width: 100%;
+					height: auto;
+				}
+			}
+			.content {
+				h1 {
+					margin: 0 0 0.5rem;
+					font-family: var(--font-family);
+					font-size: var(--font-l);
+					font-weight: 900;
+					letter-spacing: var(--font-letter-spacing-headline);
+				}
+				p {
+					font-weight: normal;
+					line-height: 1.5;
+					a {
+						line-break: loose;
+					}
+				}
+			}
+		}
+	}
+	.featured {
+		--feed-border: color-mix(in srgb, var(--c-border) 80%, var(--c-font-accent-super-light));
+
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+		gap: var(--l);
+
+		h2 {
+			margin: var(--xl) 0 var(--m) 0;
+			font-family: var(--font-family);
+			font-size: var(--font-xl);
+			font-weight: 900;
+			line-height: 1.2;
+			letter-spacing: var(--font-letter-spacing-headline);
+			text-align: center;
+		}
+
+		.feed-intro {
+			margin: 0 0 var(--l);
+			max-width: 36rem;
+			align-self: center;
+			color: var(--c-font-accent-dark);
+			font-size: var(--font-m);
+			line-height: 1.5;
+			text-align: center;
+		}
+
+		.feed {
+			display: flex;
+			width: 100%;
+			flex-direction: column;
+			gap: var(--m);
+		}
+
+		.feed-table {
+			width: 100%;
+			border-radius: var(--border-radius);
+			table-layout: fixed;
+			border-collapse: collapse;
+			overflow: hidden;
+			@media screen and (width <= 68.75rem) {
+				display: block;
+			}
+			tbody {
+				@media screen and (width <= 68.75rem) {
+					display: block;
+				}
+				tr {
+					@media screen and (width <= 68.75rem) {
+						display: block;
+					}
+					&:last-child {
+						@media screen and (width > 68.75rem) {
+							td {
+								border-bottom: none;
+							}
+						}
+						@media screen and (width <= 68.75rem) {
+							td:last-child {
+								border-bottom: none;
+							}
+						}
+					}
+					td {
+						border-bottom: 1px solid var(--feed-border);
+						vertical-align: top;
+						@media screen and (width > 68.75rem) {
+							&:first-child:not(:only-child) {
+								border-right: 1px solid var(--feed-border);
+							}
+						}
+						@media screen and (width <= 68.75rem) {
+							display: block;
+							width: 100%;
+							.link {
+								height: auto;
+							}
+						}
+						&:hover {
+							background: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
+							.external-link {
+								color: var(--c-font);
+							}
+						}
+						.link {
+							display: flex;
+							position: relative;
+							padding: var(--l);
+							width: 100%;
+							min-width: 0;
+							height: 100%;
+							min-height: 0;
+							flex: 1 1 auto;
+							flex-direction: row;
+							align-items: flex-start;
+							gap: var(--m);
+							color: inherit;
+							text-decoration: none;
+							transition: background var(--transition);
+							box-sizing: border-box;
+							@media screen and (width <= 42rem) {
+								flex-direction: column;
+							}
+						}
+						.thumb {
+							display: flex;
+							width: 3rem;
+							flex-shrink: 0;
+							flex-direction: row;
+							justify-content: center;
+							align-items: flex-start;
+							.inner {
+								display: flex;
+								position: relative;
+								width: 3rem;
+								min-height: 3rem;
+								border-radius: var(--border-radius-small);
+								flex-shrink: 0;
+								flex-direction: row;
+								justify-content: center;
+								align-items: center;
+								overflow: hidden;
+								.thumb-loader {
+									display: block;
+									position: absolute;
+									top: 50%;
+									left: 50%;
+									z-index: 1;
+									width: 0.75rem;
+									height: 0.75rem;
+									border-radius: 50%;
+									background: color-mix(in srgb, var(--c-font-accent-super-light) 65%, transparent);
+									animation: feed-thumb-pulse 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+									transform: translate(-50%, -50%);
+									transform-origin: center;
+									will-change: transform, opacity;
+								}
+								.thumb-media {
+									display: flex;
+									opacity: 0;
+									position: relative;
+									z-index: 2;
+									width: 100%;
+									justify-content: center;
+									align-items: center;
+									transition: opacity 220ms ease-out;
+									&.loaded {
+										opacity: 1;
+									}
+									img {
+										display: block;
+										width: 100%;
+										height: auto;
+										vertical-align: top;
+									}
+									:global(picture) {
+										display: block;
+										width: 100%;
+										height: auto;
+										vertical-align: top;
+									}
+								}
+								:global(.thumb-icon) {
+									display: flex;
+									width: 100%;
+									height: 100%;
+									min-height: 3rem;
+									flex-shrink: 0;
+									justify-content: center;
+									align-items: center;
+									color: var(--c-font-accent-dark);
+								}
+								:global(.thumb-icon svg) {
+									width: 1.5rem;
+									height: 1.5rem;
+								}
+							}
+						}
+						.content {
+							display: flex;
+							min-width: 0;
+							flex: 1;
+							flex-direction: column;
+							gap: var(--xs);
+						}
+						.label {
+							color: var(--c-font-accent-dark);
+							font-size: var(--font-s);
+							font-weight: 600;
+							letter-spacing: 0.05em;
+							text-transform: uppercase;
+						}
+						.title {
+							display: block;
+							font-family: var(--font-family);
+							font-size: var(--font-m);
+							font-weight: 900;
+							line-height: 1.2;
+							letter-spacing: var(--font-letter-spacing-headline);
+						}
+						.date {
+							color: var(--c-font-accent-dark);
+							font-size: var(--font-s);
+							font-weight: 400;
+							font-style: italic;
+						}
+						.description {
+							margin: 0;
+							color: var(--c-font-accent-dark);
+							font-size: var(--font-m);
+							line-height: 1.5;
+						}
+						.external-link {
+							display: flex;
+							position: absolute;
+							top: var(--l);
+							right: var(--l);
+							z-index: 10;
+							width: 1.5rem;
+							height: 1.5rem;
+							flex-shrink: 0;
+							justify-content: center;
+							align-items: center;
+							color: var(--c-font-accent-super-light);
+							transition: var(--transition);
+							pointer-events: none;
+						}
+						.external-link :global(svg) {
+							width: 1rem;
+							height: 1rem;
+						}
+					}
+				}
+			}
+		}
+
+		.actions {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: var(--m);
+		}
+
+		.btn {
+			padding: var(--s) var(--m);
+			border: 1px solid var(--c-border);
+			border-radius: var(--border-radius);
+			background: color-mix(in srgb, var(--c-surface-accent) 60%, transparent);
+			color: var(--c-font);
+			font-family: var(--font-family);
+			font-size: var(--font-s);
+			font-weight: 600;
+			transition: var(--transition);
+			cursor: pointer;
+			&:hover {
+				background: color-mix(in srgb, var(--c-surface-accent) 80%, transparent);
+			}
+		}
+	}
+
+	@keyframes feed-thumb-pulse {
+		0% {
+			opacity: 0.3;
+			transform: translate(-50%, -50%) scale(0.75);
+		}
+		35% {
+			opacity: 0.6;
+			transform: translate(-50%, -50%) scale(1);
+		}
+		70% {
+			opacity: 0.42;
+			transform: translate(-50%, -50%) scale(1.2);
+		}
+		100% {
+			opacity: 0.3;
+			transform: translate(-50%, -50%) scale(0.75);
+		}
+	}
+</style>
