@@ -8,6 +8,7 @@ import TableOfContent from '../../components/TableOfContent.astro';
 import { Icon } from 'astro-icon/components';
 import { buildNestedToc } from '$lib/toc';
 import { getSlug, formatDate } from '$lib/util/helper';
+import { getPermalink } from '$lib/permalink';
 
 export async function getStaticPaths() {
 	const entries = await getCollection('posts');
@@ -21,8 +22,7 @@ const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 const toc = buildNestedToc(headings);
 
-const permalink = process.env.DEPLOY_PRIME_URL || process.env.URL || 'https://harambasic.de';
-const authorUrl = permalink;
+const authorUrl = getPermalink();
 const publishedIso = entry.data.published.toISOString();
 const publishedDisplay = formatDate(entry.data.published);
 const tldr = entry.data.tldr;

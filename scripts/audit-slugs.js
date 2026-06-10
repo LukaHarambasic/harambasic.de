@@ -102,7 +102,7 @@ for (const e of all.projects) {
 }
 
 // 4. social images for posts + uses
-for (const type of ['posts', 'uses']) {
+for (const type of TYPES) {
 	for (const e of all[type]) {
 		const png = join(SOCIAL, `${e.slug}.png`);
 		if (!existsSync(png)) {

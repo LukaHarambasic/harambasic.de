@@ -9,6 +9,7 @@ import LayoutHeader from '../components/LayoutHeader.astro';
 import LayoutFooter from '../components/LayoutFooter.astro';
 import ContactDialog from '../components/ContactDialog.astro';
 import { getSlug } from '$lib/util/helper';
+import { getPermalink } from '$lib/permalink';
 
 interface Props {
 	title?: string;
@@ -18,11 +19,17 @@ interface Props {
 
 const { title = '', description, isDetailPage = false } = Astro.props;
 
-// Build-time only (Netlify sets both; CI passes them; local falls back).
-const permalink = process.env.DEPLOY_PRIME_URL || process.env.URL || 'https://harambasic.de';
+const permalink = getPermalink();
 const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic';
 const slug = title ? getSlug(title) : '';
-const socialImg = slug ? `${permalink}/social/${slug}.png` : `${permalink}/social/default.png`;
+// og:image falls back to default.png unless the title-slug preview actually
+// exists, so it can never 404. Lazy glob: only the keys are read at build time,
+// nothing from public/ is imported or processed.
+const socialImages = import.meta.glob('/public/social/*.png');
+const socialImg =
+	slug && `/public/social/${slug}.png` in socialImages
+		? `${permalink}/social/${slug}.png`
+		: `${permalink}/social/default.png`;
 const socialImgAlt = fullTitle;
 ---
 

@@ -1,22 +1,23 @@
 import { readFileSync, readdirSync } from 'fs';
 import fm from 'front-matter';
-import yaml from 'js-yaml';
 import { chromium } from 'playwright';
-import { ROOT_PATH, doesImageAlreadyExist, fileToMeta, generateImage } from './util.js';
+import { ROOT_PATH, doesImageAlreadyExist, generateImage } from './util.js';
 
-const POSTS_PATH = `${ROOT_PATH}/src/content/posts`;
-const LISTS_PATH = `${ROOT_PATH}/src/content/uses`;
+// All content types with detail pages / og:image references.
+const CONTENT_TYPES = ['posts', 'projects', 'uses', 'work'];
 
+// Copied verbatim from src/lib/util/helper.ts — must run outside the toolchain.
 export function getSlug(str) {
 	if (!str) return '';
-	const slug = str
-		.trim()
-		.toLowerCase()
-		// remove all chars which aren't characters, numbers or spaces
-		.replace(/[^a-zA-Z0-9\s]+/g, '')
-		// replace all spaces with dashes
-		.replace(/\s+/g, '-');
-	return slug;
+	return (
+		str
+			.trim()
+			.toLowerCase()
+			// remove all chars which aren't characters, numbers or spaces
+			.replace(/[^a-zA-Z0-9\s]+/g, '')
+			// replace all spaces with dashes
+			.replace(/\s+/g, '-')
+	);
 }
 
 const generateSocialMediaPreview = async () => {
@@ -25,18 +26,21 @@ const generateSocialMediaPreview = async () => {
 	console.log('-------------------------------------');
 	const browser = await chromium.launch();
 	const page = await browser.newPage();
-	const posts = readdirSync(POSTS_PATH).map((name) => fileToMeta(name, POSTS_PATH));
-	const lists = readdirSync(LISTS_PATH).map((name) => fileToMeta(name, LISTS_PATH));
-	const files = [...posts, ...lists];
-	for (const file of files) {
-		const data = readFileSync(file.path, 'utf8');
-		const content = file.type === 'md' ? fm(data) : yaml.load(data);
-		const title = file.type === 'md' ? content.attributes.title : content.title;
-		if (!doesImageAlreadyExist(file.slug)) {
-			console.log('🆕 Post/List:', title);
-			await generateImage(page, title, file.slug);
-		} else {
-			console.log('🛑 Post/List:', title);
+	for (const type of CONTENT_TYPES) {
+		const dir = `${ROOT_PATH}/src/content/${type}`;
+		const files = readdirSync(dir).filter((name) => name.endsWith('.md'));
+		for (const name of files) {
+			const { attributes } = fm(readFileSync(`${dir}/${name}`, 'utf8'));
+			const title = attributes.title;
+			// og:image is keyed by the routed slug, which derives from the TITLE,
+			// never the filename — see scripts/audit-slugs.js (AM-002).
+			const slug = getSlug(title);
+			if (!doesImageAlreadyExist(slug)) {
+				console.log(`🆕 ${type}:`, title);
+				await generateImage(page, title, slug);
+			} else {
+				console.log(`🛑 ${type}:`, title);
+			}
 		}
 	}
 	await browser.close();
