@@ -241,6 +241,8 @@ const rel = external ? 'external' : undefined;
 					display: block;
 					width: 100%;
 					height: 100%;
+					/* Concentric with the media box: outer radius minus the inner padding. */
+					border-radius: calc(var(--border-radius-small) - var(--xxs));
 					object-fit: contain;
 				}
 			}
