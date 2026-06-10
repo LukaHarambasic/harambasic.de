@@ -181,7 +181,7 @@ const relatedColumns = relatedProjects.length >= 3 ? 3 : relatedProjects.length 
 		font-family: var(--font-family);
 		font-size: var(--font-m);
 		font-weight: 400;
-		line-height: 1.6;
+		line-height: 1.5;
 	}
 	.positions {
 		display: flex;
@@ -245,17 +245,9 @@ const relatedColumns = relatedProjects.length >= 3 ? 3 : relatedProjects.length 
 		line-height: 1.5;
 		white-space: nowrap;
 	}
-	.position-content {
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-m);
-		line-height: 1.6;
-	}
+	/* Prose styling comes from BaseRichText so the body reads exactly like
+	   the posts and projects details. */
 	.content {
 		width: 100%;
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
-		font-size: var(--font-m);
-		line-height: 1.6;
 	}
 </style>
