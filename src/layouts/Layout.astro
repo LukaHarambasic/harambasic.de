@@ -4,7 +4,7 @@ import '../styles/fonts.css';
 import '../styles/variables.css';
 import '../styles/base.css';
 import '../styles/code.css';
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter, fade } from 'astro:transitions';
 import LayoutHeader from '../components/LayoutHeader.astro';
 import LayoutFooter from '../components/LayoutFooter.astro';
 import ContactDialog from '../components/ContactDialog.astro';
@@ -27,7 +27,7 @@ const socialImgAlt = fullTitle;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate={fade({ duration: '0.08s' })}>
 	<head>
 		<meta charset="utf-8" />
 		<ClientRouter />
