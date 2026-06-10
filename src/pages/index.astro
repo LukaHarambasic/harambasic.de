@@ -41,10 +41,8 @@ const [posts, projects, uses, work] = await Promise.all([
 	getWork()
 ]);
 
-// One stream, sorted by last update; the newest entry is the featured card,
-// the rest render as calm single-column rows.
-const merged = getMergedFeedEntries(posts, projects, uses, work);
-const [latest, ...rows] = merged;
+// One stream, sorted by last update, rendered as a two-column row grid.
+const rows = getMergedFeedEntries(posts, projects, uses, work);
 
 const INITIAL_ROWS = 6;
 const STEP = 6;
@@ -104,24 +102,7 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 			updated, so sometimes old entries might appear at the top.
 		</p>
 		<div class="feed" data-feed-steps={JSON.stringify(steps)}>
-			{
-				latest && (
-					<Entry
-						variant="card"
-						featured
-						href={latest.href}
-						title={latest.title}
-						titleTag="h3"
-						eyebrow={latest.category}
-						meta={latest.updated.display}
-						metaDatetime={latest.updated.raw.toISOString()}
-						excerpt={latest.description}
-						external={latest.isExternal}
-						aria-label={`View ${latest.title}`}
-					/>
-				)
-			}
-			<EntryList>
+			<EntryList columns={2}>
 				{
 					rows.map((entry, index) => {
 						const media = rowMedia(entry);
@@ -233,7 +214,6 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 		display: flex;
 		margin: 0 auto;
 		width: 100%;
-		max-width: calc(var(--layout-xl) * 0.618);
 		flex-direction: column;
 		flex-wrap: nowrap;
 		justify-content: flex-start;

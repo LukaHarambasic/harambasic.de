@@ -84,11 +84,12 @@ const activeGroupedEntries = tags
 		}
 		<section class="group">
 			<h2>Archive</h2>
-			<EntryList>
+			<EntryList columns={4}>
 				{
 					inactiveEntries.map((entry) => (
 						<li class="h-feed">
 							<Entry
+								condensed
 								href={entry.url}
 								title={entry.title}
 								excerpt={entry.description}

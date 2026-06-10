@@ -29,13 +29,12 @@ const sizes = '(min-width:1080px) 400px, (min-width:768px) 50vw, 100vw';
 	<Hero slot="hero" title={title} description={description} />
 	<EntryList columns={3}>
 		{
-			filteredAndSorted.map((entry, index) => {
+			filteredAndSorted.map((entry) => {
 				const imageData = getProjectImage(entry.image);
 				return (
 					<li>
 						<Entry
 							variant="gallery"
-							featured={index === 0}
 							href={entry.relativePath}
 							title={entry.title}
 							excerpt={entry.description}

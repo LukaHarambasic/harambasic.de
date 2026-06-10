@@ -13,44 +13,26 @@ const description =
 
 const posts = await getPosts();
 const sorted = filterAndSort(posts, 'all', SORT_DEFAULTS.POST, SortDirection.Desc);
-const [latest, ...rest] = sorted;
 ---
 
 <Layout title={title} description={description}>
 	<Hero slot="hero" title={title} description={description} />
 	<div class="posts-container">
-		{
-			latest && (
-				<Entry
-					variant="card"
-					featured
-					href={latest.relativePath}
-					title={latest.title}
-					meta={latest.published.display}
-					metaDatetime={latest.published.raw.toISOString()}
-					excerpt={latest.description}
-					class="h-feed"
-					aria-label={`View post: ${latest.title}`}
-				/>
-			)
-		}
-		{
-			rest.length > 0 && (
-				<EntryList>
-					{rest.map((post) => (
-						<li class="h-feed">
-							<Entry
-								href={post.relativePath}
-								title={post.title}
-								meta={post.published.display}
-								metaDatetime={post.published.raw.toISOString()}
-								aria-label={`View post: ${post.title}`}
-							/>
-						</li>
-					))}
-				</EntryList>
-			)
-		}
+		<EntryList>
+			{
+				sorted.map((post) => (
+					<li class="h-feed">
+						<Entry
+							href={post.relativePath}
+							title={post.title}
+							meta={post.published.display}
+							metaDatetime={post.published.raw.toISOString()}
+							aria-label={`View post: ${post.title}`}
+						/>
+					</li>
+				))
+			}
+		</EntryList>
 	</div>
 </Layout>
 
@@ -59,8 +41,8 @@ const [latest, ...rest] = sorted;
 		display: flex;
 		margin-right: auto;
 		margin-left: auto;
-		width: 100%;
-		max-width: calc(var(--layout-xl) * 0.618);
+		width: 90ch;
+		max-width: 100%;
 		flex-direction: column;
 		gap: var(--l);
 	}

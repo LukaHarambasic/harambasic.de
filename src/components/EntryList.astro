@@ -2,10 +2,10 @@
 /**
  * Layout shell for Entry items. Callers render `<li>` children:
  * columns=1 → rule-separated rows (one --c-line hairline between items),
- * columns=2/3 → card/gallery grid with the shared gutter.
+ * columns=2/3/4 → grid with the shared gutter.
  */
 interface Props {
-	columns?: 1 | 2 | 3;
+	columns?: 1 | 2 | 3 | 4;
 	class?: string;
 }
 
@@ -23,22 +23,35 @@ const { columns = 1, class: className } = Astro.props;
 		width: 100%;
 		list-style: none;
 
+		> :global(li[hidden]) {
+			display: none;
+		}
+
 		&[data-columns='1'] {
 			display: flex;
 			flex-direction: column;
+			/* Minimal air between the hover fill and the divider hairline. */
 			> :global(li:not(:last-child)) {
+				padding-bottom: var(--xs);
 				border-bottom: 1px solid var(--c-line);
+			}
+			> :global(li:not(:first-child)) {
+				padding-top: var(--xs);
 			}
 		}
 
 		&[data-columns='2'],
-		&[data-columns='3'] {
+		&[data-columns='3'],
+		&[data-columns='4'] {
 			display: grid;
 			align-items: stretch;
 			gap: var(--l);
 			> :global(li) {
 				display: flex;
 				min-width: 0;
+			}
+			> :global(li[hidden]) {
+				display: none;
 			}
 			> :global(li > .entry) {
 				flex: 1;
@@ -56,6 +69,16 @@ const { columns = 1, class: className } = Astro.props;
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}
 			@media screen and (width <= 48rem) {
+				grid-template-columns: 1fr;
+			}
+		}
+		&[data-columns='4'] {
+			gap: var(--m);
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			@media screen and (width <= 62rem) {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+			@media screen and (width <= 42rem) {
 				grid-template-columns: 1fr;
 			}
 		}

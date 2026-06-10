@@ -21,6 +21,7 @@ interface Props {
 	excerpt?: string;
 	external?: boolean;
 	featured?: boolean;
+	condensed?: boolean;
 	class?: string;
 	[key: string]: unknown;
 }
@@ -36,6 +37,7 @@ const {
 	excerpt,
 	external = false,
 	featured = false,
+	condensed = false,
 	class: className,
 	...rest
 } = Astro.props;
@@ -45,7 +47,7 @@ const hasMedia = Astro.slots.has('media');
 const rel = external ? 'external' : undefined;
 ---
 
-<a href={href} class:list={['entry', variant, className, { featured }]} rel={rel} {...rest}>
+<a href={href} class:list={['entry', variant, className, { featured, condensed }]} rel={rel} {...rest}>
 	{
 		variant === 'card' ? (
 			<Fragment>
@@ -66,9 +68,9 @@ const rel = external ? 'external' : undefined;
 							) : (
 								<span class="meta">{meta}</span>
 							))}
+						{excerpt && <p class="excerpt">{excerpt}</p>}
 					</div>
 				</div>
-				{excerpt && <p class="excerpt">{excerpt}</p>}
 				<slot />
 			</Fragment>
 		) : (
@@ -273,6 +275,23 @@ const rel = external ? 'external' : undefined;
 			.affordance {
 				top: var(--m);
 				right: var(--m);
+			}
+		}
+
+		/* Modifier: condensed — tighter padding and smaller type for dense lists */
+		&.condensed {
+			padding: var(--s) var(--m);
+			padding-right: calc(var(--m) + 1.5rem);
+			gap: var(--xs);
+			.affordance {
+				top: var(--s);
+				right: var(--s);
+			}
+			.title {
+				font-size: var(--font-m);
+			}
+			.excerpt {
+				font-size: var(--font-s);
 			}
 		}
 

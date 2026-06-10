@@ -24,7 +24,6 @@ const imageData = hasImage && !isSvg ? getWorkImage(entry.image) : null;
 	href={`/work/${entry.slug}`}
 	title={entry.title}
 	meta={entry.location}
-	excerpt={entry.description}
 	featured={featured}
 	class={className}
 	aria-label={`View details for ${entry.title}`}
@@ -60,6 +59,7 @@ const imageData = hasImage && !isSvg ? getWorkImage(entry.image) : null;
 			))
 		}
 	</div>
+	<p class="description">{entry.description}</p>
 	<div class="card-footer">
 		{
 			relatedProjects.length > 0 ? (
@@ -99,6 +99,14 @@ const imageData = hasImage && !isSvg ? getWorkImage(entry.image) : null;
 			white-space: nowrap;
 		}
 	}
+	.description {
+		margin: 0;
+		color: var(--c-font-accent-dark);
+		font-family: var(--font-family);
+		font-size: var(--font-m);
+		font-weight: 400;
+		line-height: 1.5;
+	}
 	.card-footer {
 		margin-top: auto;
 		padding-top: var(--m);
@@ -112,6 +120,7 @@ const imageData = hasImage && !isSvg ? getWorkImage(entry.image) : null;
 	}
 	:global(.entry.featured) {
 		.positions .row,
+		.description,
 		.card-footer {
 			color: var(--c-inverted-text-muted);
 		}
