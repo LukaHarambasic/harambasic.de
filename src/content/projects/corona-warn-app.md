@@ -22,4 +22,6 @@ tags:
   - Android Developer
 ---
 
-I worked on the Android version of the German Corona-Warn-App. In the beginning, I focused on the UI implementation for version 1.0.0, which was released after only 50 days of development. A few weeks later, I took on even more responsibility and facilitated the development as team lead and scrum master.
+Android version of the German COVID tracing app. I joined early: the whole thing was built from scratch in 50 days, and I focused on the UI for version 1.0.0. A few weeks after launch I took over as team lead and scrum master for the Android team.
+
+48 million downloads. Shipping hotfixes for half of Germany at 2am. A 16-year-old community contributor who turned out to be one of the most knowledgeable people on the project. A weird, intense, formative thing to have worked on.

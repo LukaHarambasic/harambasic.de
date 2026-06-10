@@ -21,4 +21,4 @@ tags:
   - Website
 ---
 
-Initially I set up the first version of the infrastructure, the focus was getting things done instead of doing it perfectly. Thereafter, I continuously improved the tech stack and introduced tools like [Slack](https://slack.com/), [Google Workspace](https://workspace.google.com/), [Zapier](https://zapier.com/) and [HubSpot](https://www.hubspot.com/) to fully leverage the benefits of cloud tools and facilitate the collaboration of more than 100 students.
+Built the first version of the infrastructure with one goal: get it working, figure out perfect later. Then kept improving it. Added [Slack](https://slack.com/), [Google Workspace](https://workspace.google.com/), [Zapier](https://zapier.com/), and [HubSpot](https://www.hubspot.com/) over time. At peak, more than 100 students were running Germany's largest student entrepreneurship conference off this stack.

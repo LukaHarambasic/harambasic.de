@@ -19,12 +19,7 @@ positions:
       - Grid Services: Took ownership of the domain, expanding beyond FCR-D (DK, SE, UK) our portfolio to include aFRR (DK) and overhauling the UX to make complex flexibility markets accessible.
       - Monta Control: Rebranded and repositioned an internal utility ("CPI tool") into a customer-facing product that became Monta's AI playground.
 
-      I've always been the "Tools Guy". I simply love tinkering with new tech, so I naturally ended up helping my colleagues figure out how to use AI to automate the boring parts of our jobs.
-
-      - Enablement: Ran cross-department knowledge sharing and 1:1 sessions to up-level colleagues, helping them build their own automations.
-      - Zapier Workflows: Built automations to scan sales and CS transcripts, ensuring I stayed on top of real customer needs and could proactively support colleagues when problems spiked (one of my fav automations).
-      - Automation & AI Squad: Joined the squad to push these topics across the entire company, also hosted a hackathon.
-      - First MCP Server: Built Monta's first MCP server to control the entire CPMS via prompts, hooking it up to internal systems to automate QA and generate instant, customized customer demos.
+      On the side, I was doing what I usually do: automating things and helping colleagues figure out AI tools. Zapier workflows to scan sales and CS transcripts so I never missed a real customer problem (one of my favorites). Cross-department sessions where people actually walked away with something they'd built. A hackathon. And eventually Monta's first MCP server: control the entire CPMS via prompts, hooked into internal systems to automate QA and generate instant customer demos.
 
       I learned a shit ton 😞
   - title: Product Owner

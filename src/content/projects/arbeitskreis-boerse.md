@@ -17,4 +17,4 @@ tags:
   - Website
 ---
 
-Together with my colleague, we moved more than 1000 accounts from a simple mail server to [Google Workspaces](https://workspace.google.com/). Similar to this also the member management which had historically grown and only existed in Excel sheets so far, was migrated to [EasyVerein](https://easyverein.com/). Additionally, we digitalized the expense reimbursement process.
+Moved 1,000+ member accounts off a creaky mail server to [Google Workspace](https://workspace.google.com/). Member management had been growing in Excel for years: migrated that to [EasyVerein](https://easyverein.com/) too. Digitized the expense reimbursement process while we were at it. Classic unglamorous IT work, but it made a real difference for how the club ran.
