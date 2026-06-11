@@ -95,6 +95,7 @@ const relatedColumns = relatedProjects.length >= 3 ? 3 : relatedProjects.length 
 									title={project.title}
 									titleTag="h3"
 									excerpt={project.description}
+									aria-label={`View project ${project.title}`}
 								>
 									{projectImageData && (
 										<Picture
@@ -125,13 +126,18 @@ const relatedColumns = relatedProjects.length >= 3 ? 3 : relatedProjects.length 
 								<div class="position-title-group">
 									<h2 class="position-title">{position.title}</h2>
 									{position.employmentType && (
-										<div class="employment-type">{position.employmentType}</div>
+										<p class="employment-type">{position.employmentType}</p>
 									)}
 								</div>
-								<div class="position-dates">
-									{formatDateDisplay(position.startDate)} –{' '}
-									{position.endDate ? formatDateDisplay(position.endDate) : 'Present'}
-								</div>
+								<p class="position-dates">
+									<time datetime={position.startDate}>{formatDateDisplay(position.startDate)}</time>{' '}
+									–{' '}
+									{position.endDate ? (
+										<time datetime={position.endDate}>{formatDateDisplay(position.endDate)}</time>
+									) : (
+										'Present'
+									)}
+								</p>
 							</header>
 							<div class="position-content">
 								<BaseRichText>
@@ -178,9 +184,7 @@ const relatedColumns = relatedProjects.length >= 3 ? 3 : relatedProjects.length 
 	.description {
 		margin: 0;
 		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
 		font-size: var(--font-m);
-		font-weight: 400;
 		line-height: 1.5;
 	}
 	.positions {
@@ -191,13 +195,13 @@ const relatedColumns = relatedProjects.length >= 3 ? 3 : relatedProjects.length 
 	}
 	.position-section {
 		display: flex;
-		padding-bottom: var(--l);
-		border-bottom: 1px solid var(--c-line);
+		padding-block-end: var(--l);
+		border-block-end: 1px solid var(--c-line);
 		flex-direction: column;
 		gap: var(--s);
 		&:last-child {
-			padding-bottom: 0;
-			border-bottom: none;
+			padding-block-end: 0;
+			border-block-end: none;
 		}
 	}
 	.position-header {
@@ -229,19 +233,16 @@ const relatedColumns = relatedProjects.length >= 3 ? 3 : relatedProjects.length 
 	.employment-type {
 		margin: 0;
 		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
 		font-size: var(--font-s);
-		font-weight: 400;
 		font-style: italic;
 		line-height: 1.5;
 		text-transform: capitalize;
 	}
 	.position-dates {
+		margin: 0;
 		flex-shrink: 0;
 		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
 		font-size: var(--font-s);
-		font-weight: 400;
 		line-height: 1.5;
 		white-space: nowrap;
 	}

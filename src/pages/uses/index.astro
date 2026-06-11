@@ -106,7 +106,7 @@ const activeGroupedEntries = tags
 <style>
 	.wrapper {
 		display: flex;
-		margin: 0 auto;
+		margin-inline: auto;
 		width: 90ch;
 		max-width: 100%;
 		flex-direction: column;
@@ -126,11 +126,11 @@ const activeGroupedEntries = tags
 				letter-spacing: var(--tracking-heading);
 				&::after {
 					display: block;
-					margin-top: var(--s);
-					width: 3.5rem;
-					height: 2px;
-					border-radius: 1px;
-					background: var(--c-font);
+					margin-block-start: var(--s);
+					width: var(--deco-bar-width);
+					height: var(--deco-bar-height);
+					border-radius: var(--deco-bar-radius);
+					background: var(--deco-bar-color);
 					content: '';
 				}
 			}

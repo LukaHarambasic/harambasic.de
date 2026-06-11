@@ -48,7 +48,7 @@ const past = cards
 					entry={current.entry}
 					relatedProjects={getRelatedProjects(current.entry)}
 					featured
-					class="current-card"
+					class="golden-ratio"
 				/>
 			)
 		}
@@ -69,18 +69,10 @@ const past = cards
 <style>
 	.work-container {
 		display: flex;
-		margin: 0 auto;
+		margin-inline: auto;
 		width: 100%;
 		max-width: var(--layout-xl);
 		flex-direction: column;
 		gap: var(--xl);
-
-		:global(.entry.current-card) {
-			margin: 0 auto;
-			width: 61.8%;
-			@media screen and (width <= 48rem) {
-				width: 100%;
-			}
-		}
 	}
 </style>

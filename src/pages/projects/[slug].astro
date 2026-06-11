@@ -57,7 +57,7 @@ if (relatedSlugs.length > 0) {
 		{
 			links.length > 0 && (
 				<Fragment>
-					<div class="sep" aria-hidden="true" />
+					<hr class="sep" />
 					<nav class="links" aria-label="Project links">
 						{links.map((link) => (
 							<a href={link.url} target="_blank" rel="noopener noreferrer external">
@@ -80,6 +80,7 @@ if (relatedSlugs.length > 0) {
 									title={work.title}
 									titleTag="h3"
 									meta={work.location}
+									aria-label={`View work at ${work.title}`}
 								/>
 							</li>
 						))}
@@ -109,7 +110,7 @@ if (relatedSlugs.length > 0) {
 		width: 100%;
 		height: 0;
 		border: none;
-		border-bottom: 1px solid var(--c-line);
+		border-block-end: 1px solid var(--c-line);
 	}
 	.links {
 		display: flex;
@@ -128,7 +129,6 @@ if (relatedSlugs.length > 0) {
 		width: 100%;
 		h3 {
 			margin: 0 0 var(--s) 0;
-			font-family: var(--font-family);
 			font-size: var(--font-m);
 			font-weight: 700;
 		}

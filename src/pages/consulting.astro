@@ -70,7 +70,7 @@ const stats = [
 	>
 		<a class="btn-book" href={CAL_URL}>Book a call</a>
 	</Hero>
-	<section class="intro">
+	<section class="intro golden-ratio">
 		<p class="lede">
 			Over 10 years in tech: product roles at <a href="/work/sap">SAP</a>, <a href="/work/monta"
 				>Monta</a
@@ -110,7 +110,7 @@ const stats = [
 			}
 		</dl>
 	</section>
-	<section class="cta-block">
+	<section class="cta-block golden-ratio">
 		<p class="eyebrow">Let's talk</p>
 		<p class="cta-headline">Figuring out AI, automation, or product direction?</p>
 		<p class="cta-body">
@@ -135,11 +135,11 @@ const stats = [
 		text-transform: uppercase;
 		&::after {
 			display: block;
-			margin: var(--s) 0 0;
-			width: 3.5rem;
-			height: 2px;
-			border-radius: 1px;
-			background: var(--c-font);
+			margin-block-start: var(--s);
+			width: var(--deco-bar-width);
+			height: var(--deco-bar-height);
+			border-radius: var(--deco-bar-radius);
+			background: var(--deco-bar-color);
 			content: '';
 		}
 	}
@@ -176,14 +176,8 @@ const stats = [
 	}
 	.intro {
 		display: flex;
-		margin: 0 auto;
-		width: 61.8%;
-		max-width: calc(var(--layout-xl) * 0.618);
 		flex-direction: column;
 		gap: var(--m);
-		@media screen and (width <= 48rem) {
-			width: 100%;
-		}
 		.lede {
 			margin: 0;
 			font-family: var(--font-family-serif);
@@ -251,7 +245,6 @@ const stats = [
 			list-style: none;
 			h3 {
 				margin: 0 0 var(--xxs);
-				font-family: var(--font-family);
 				font-size: var(--font-m);
 				font-weight: 700;
 			}
@@ -293,26 +286,21 @@ const stats = [
 	}
 	.cta-block {
 		display: flex;
-		margin: var(--l) auto 0;
+		margin-block-start: var(--l);
 		padding: var(--l);
-		width: 61.8%;
-		max-width: calc(var(--layout-xl) * 0.618);
 		border-radius: var(--border-radius);
 		background: var(--c-inverted);
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--m);
-		@media screen and (width <= 48rem) {
-			width: 100%;
-		}
-		@media screen and (width <= 32rem) {
+
+		--deco-bar-color: var(--c-accent-honey);
+
+		@media screen and (width <= 30rem) {
 			padding: var(--m);
 		}
 		.eyebrow {
 			color: var(--c-inverted-text-muted);
-			&::after {
-				background: var(--c-accent-honey);
-			}
 		}
 		.cta-headline {
 			margin: 0;

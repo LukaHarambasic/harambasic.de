@@ -25,6 +25,23 @@ const Element = element;
 			max-width: 100%;
 			border-radius: var(--border-radius);
 		}
+		:global(h1) {
+			margin: 0 0 var(--m) 0;
+			font-family: var(--font-family-serif);
+			font-size: var(--fs-h1);
+			font-weight: 500;
+			line-height: 1.2;
+			letter-spacing: var(--tracking-heading);
+			&::after {
+				display: block;
+				margin-block-start: var(--s);
+				width: var(--deco-bar-width);
+				height: var(--deco-bar-height);
+				border-radius: var(--deco-bar-radius);
+				background: var(--deco-bar-color);
+				content: '';
+			}
+		}
 		:global(h2) {
 			margin: var(--xl) 0 var(--m) 0;
 			width: 30ch;
@@ -65,11 +82,15 @@ const Element = element;
 		}
 		:global(hr) {
 			margin: var(--l) 0;
-			width: 3.5rem;
-			height: 2px;
+			width: var(--deco-bar-width);
+			height: var(--deco-bar-height);
 			border: none;
-			border-radius: 1px;
-			background: var(--c-font);
+			border-radius: var(--deco-bar-radius);
+			background: var(--deco-bar-color);
+		}
+		:global(address) {
+			margin-block-end: var(--l);
+			font-style: normal;
 		}
 		:global(a) {
 			color: var(--c-font);
