@@ -4,6 +4,8 @@ import Layout from '../layouts/Layout.astro';
 import BaseRichText from '../components/BaseRichText.astro';
 import Entry from '../components/Entry.astro';
 import EntryList from '../components/EntryList.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { personSchema, websiteSchema } from '$lib/jsonld';
 import { Icon } from 'astro-icon/components';
 import profileImg from '../assets/img/profile.jpeg';
 import { getPosts, getProjects, getUses, getWork } from '$lib/content';
@@ -61,6 +63,10 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 ---
 
 <Layout description={description}>
+	<Fragment slot="head">
+		<JsonLd schema={personSchema()} />
+		<JsonLd schema={websiteSchema()} />
+	</Fragment>
 	<section class="heyho">
 		<h1>Heyho,<br />I'm Luka!</h1>
 		<div class="inner">

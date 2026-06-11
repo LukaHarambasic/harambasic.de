@@ -15,11 +15,21 @@ interface Props {
 	title?: string;
 	description: string;
 	isDetailPage?: boolean;
+	ogType?: 'website' | 'article';
+	publishedTime?: string;
 }
 
-const { title = '', description, isDetailPage = false } = Astro.props;
+const {
+	title = '',
+	description,
+	isDetailPage = false,
+	ogType = 'website',
+	publishedTime
+} = Astro.props;
 
 const permalink = getPermalink();
+// Page-specific absolute URL for canonical/og:url (permalink alone is the site root).
+const canonicalUrl = new URL(Astro.url.pathname, permalink).href;
 const fullTitle = title ? `${title} | Luka Harambasic` : 'Luka Harambasic';
 const slug = title ? getSlug(title) : '';
 // og:image falls back to default.png unless the title-slug preview actually
@@ -49,28 +59,59 @@ const socialImgAlt = fullTitle;
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2d0a2e" />
 		<meta name="HandheldFriendly" content="True" />
 		<link rel="icon" href="/favicon.svg" />
+		<!-- Above-the-fold fonts (body, headings, nav); the rest load on demand -->
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/fonts/hanken-grotesk-v12-latin-regular.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/fonts/hanken-grotesk-v12-latin-600.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/fonts/newsreader-v26-latin-500.woff2"
+			crossorigin
+		/>
 		<!-- Primary Meta Tags -->
 		<title>{fullTitle}</title>
 		<meta name="title" content={fullTitle} />
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
 		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={ogType} />
 		<meta property="og:site_name" content="Luka Harambasic" />
-		<meta property="og:url" content={permalink} />
+		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:title" content={fullTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={socialImg} />
 		<meta property="og:image:alt" content={socialImgAlt} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		{
+			ogType === 'article' && publishedTime && (
+				<meta property="article:published_time" content={publishedTime} />
+			)
+		}
+		{ogType === 'article' && <meta property="article:author" content="Luka Harambasic" />}
 		<!-- Twitter -->
 		<meta name="twitter:title" content={fullTitle} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@luka_harambasic" />
-		<meta name="twitter:url" content={permalink} />
+		<meta name="twitter:creator" content="@luka_harambasic" />
+		<meta name="twitter:url" content={canonicalUrl} />
 		<meta name="twitter:image" content={socialImg} />
 		<meta name="twitter:image:alt" content={socialImgAlt} />
+		<slot name="head" />
 	</head>
 	<body>
 		<a id="skip-link" href="#main">Skip to main content</a>

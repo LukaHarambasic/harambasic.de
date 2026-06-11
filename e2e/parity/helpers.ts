@@ -41,7 +41,7 @@ export function htmlUrlInventory(): string[] {
 	urls.push('/projects', ...slugsFor('projects').map((s) => `/projects/${s}`));
 	urls.push('/work', ...slugsFor('work').map((s) => `/work/${s}`));
 	urls.push('/uses');
-	urls.push('/feeds', '/imprint', '/data-privacy');
+	urls.push('/consulting', '/feeds', '/imprint', '/data-privacy');
 	return urls;
 }
 

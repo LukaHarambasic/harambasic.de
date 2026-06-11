@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+
+const title = 'Page not found';
+const description = 'This page does not exist or has been moved.';
+---
+
+<Layout title={title} description={description}>
+	<Hero slot="hero" title="Page not found" description={description} />
+	<section class="not-found golden-ratio">
+		<p>
+			Maybe the address changed, or the page never existed. Start over on the
+			<a href="/">homepage</a> or browse the <a href="/posts">posts</a>,
+			<a href="/projects">projects</a>, and <a href="/work">work</a>.
+		</p>
+	</section>
+</Layout>
+
+<style>
+	.not-found {
+		p {
+			margin: 0;
+			color: var(--c-font-accent-dark);
+			font-size: var(--font-m);
+			line-height: 1.5;
+		}
+		a {
+			color: var(--c-font);
+			text-decoration: underline;
+			text-decoration-thickness: var(--underline-thickness);
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+</style>
