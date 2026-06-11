@@ -103,7 +103,11 @@ function isActiveRoute(url: string): boolean {
 					font-size: var(--font-m);
 					font-weight: 600;
 					text-decoration: none;
-					transition: var(--transition);
+
+					/* Background fades as usual; the underline color and radius switch instantly, no morph. */
+					transition:
+						background var(--transition-time) var(--transition-ease),
+						border-block-end-color 0s;
 					&:hover {
 						background: var(--c-surface-accent);
 					}
@@ -121,6 +125,7 @@ function isActiveRoute(url: string): boolean {
 					border-block-end-color: transparent;
 					background: var(--c-inverted);
 					color: var(--c-inverted-text);
+					transition: var(--transition);
 					&:hover {
 						box-shadow: var(--shadow-md);
 						background: var(--c-inverted);
