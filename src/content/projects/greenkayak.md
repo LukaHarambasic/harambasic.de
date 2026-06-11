@@ -21,6 +21,4 @@ tags:
   - User Research
 ---
 
-GreenKayak ran their whole booking via web, which meant a patchy experience and analog trash reporting (someone literally writing things down). I scoped the MVP, built Figma prototypes, tested with users, and managed the external agency building it.
-
-10,000+ downloads. 16,000+ volunteers in the 2023 season. The app still runs.
+GreenKayak's booking ran entirely through the web, which meant little control over the booking experience and data collection. A core part of the NGO's model is reporting the amount of trash collected, and that process was analog and error-prone until the app. I planned and designed the app and managed its development with an external agency. Since launch it has passed 20,000 downloads and engaged more than 16,000 volunteers in the 2023 season alone.

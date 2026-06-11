@@ -21,4 +21,4 @@ tags:
   - Website
 ---
 
-Built the first version of the infrastructure with one goal: get it working, figure out perfect later. Then kept improving it. Added [Slack](https://slack.com/), [Google Workspace](https://workspace.google.com/), [Zapier](https://zapier.com/), and [HubSpot](https://www.hubspot.com/) over time. At peak, more than 100 students were running Germany's largest student entrepreneurship conference off this stack.
+I set up the first version of the infrastructure with one focus: getting things done instead of doing it perfectly. From there I kept improving the stack and introduced tools like [Slack](https://slack.com/), [Google Workspace](https://workspace.google.com/), [Zapier](https://zapier.com/) and [HubSpot](https://www.hubspot.com/), so more than 100 students could run Germany's largest student entrepreneurship conference together.

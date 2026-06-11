@@ -21,4 +21,4 @@ tags:
   - Process Automation
 ---
 
-A friend had the idea: use our skills to help NGOs get found. I set up the whole stack. Slack, Google Workspace, a [Nuxt.js](https://nuxtjs.org/) site on [Netlify](https://www.netlify.com/) with [Prismic](https://prismic.io/), [Airtable](https://airtable.com/) for data, [Mailchimp](https://mailchimp.com/) for outreach, [IFTTT](https://ifttt.com/) for the automation glue. Small project, early days of me figuring out what I could wire together with cloud tools.
+A friend of mine had the idea that we could do something good with our skills while raising awareness for NGOs. I set up our work environment: [Slack](https://slack.com/intl/en-de/), [Google Drive](https://www.google.com/intl/en_in/drive/), [Google Meet](https://meet.google.com/), Website ([Nuxt.js](https://nuxtjs.org/), [Prismic](https://prismic.io/), [Netlify](https://www.netlify.com/)), [Airtable](https://airtable.com/), [Mailchimp](https://mailchimp.com/), and [IFTTT](https://ifttt.com/). Early days of me figuring out what I could wire together with cloud tools.
