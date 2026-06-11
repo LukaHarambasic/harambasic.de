@@ -199,10 +199,16 @@ const socialImgAlt = fullTitle;
 <style>
 	#skip-link {
 		position: absolute;
-		transform: translateX(-100%);
+		z-index: 1;
+		inset-block-start: var(--xs);
+		inset-inline-start: var(--xs);
+		padding: var(--xs) var(--m);
+		border-radius: var(--border-radius-small);
+		background: var(--c-font);
+		color: var(--c-light);
+		transform: translateY(-200%);
 		&:focus {
-			position: unset;
-			transform: unset;
+			transform: translateY(0);
 		}
 	}
 	.container {
@@ -235,14 +241,6 @@ const socialImgAlt = fullTitle;
 			align-content: stretch;
 			gap: var(--xl);
 			grid-area: main;
-			.golden-ratio {
-				margin: 0 auto;
-				width: 100%;
-				max-width: calc(var(--layout-xl) * 0.618);
-				@media screen and (width <= 48rem) {
-					width: 100%;
-				}
-			}
 		}
 		> :global(footer) {
 			grid-area: footer;
