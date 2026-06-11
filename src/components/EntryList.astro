@@ -13,15 +13,24 @@ interface Props {
 const { columns = 1, divided = true, class: className } = Astro.props;
 ---
 
-<ul
-	class:list={['entry-list', className]}
-	data-columns={columns}
-	data-divided={columns === 1 && divided ? 'true' : 'false'}
->
-	<slot />
-</ul>
+<!-- The wrapper establishes the @container query context: a container query can
+     never match the container element itself, so the list needs an ancestor. -->
+<div class="entry-list-container">
+	<ul
+		class:list={['entry-list', className]}
+		data-columns={columns}
+		data-divided={columns === 1 && divided ? 'true' : 'false'}
+	>
+		<slot />
+	</ul>
+</div>
 
 <style>
+	.entry-list-container {
+		width: 100%;
+		container-type: inline-size;
+		container-name: entry-list;
+	}
 	.entry-list {
 		margin: 0;
 		padding: 0;
@@ -42,11 +51,11 @@ const { columns = 1, divided = true, class: className } = Astro.props;
 			/* Minimal air between the hover fill and the divider hairline. */
 			&[data-divided='true'] {
 				> :global(li:not(:last-child)) {
-					padding-bottom: var(--xs);
-					border-bottom: 1px solid var(--c-line);
+					padding-block-end: var(--xs);
+					border-block-end: 1px solid var(--c-line);
 				}
 				> :global(li:not(:first-child)) {
-					padding-top: var(--xs);
+					padding-block-start: var(--xs);
 				}
 			}
 		}
@@ -70,26 +79,26 @@ const { columns = 1, divided = true, class: className } = Astro.props;
 		}
 		&[data-columns='2'] {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
-			@media screen and (width <= 48rem) {
+			@container entry-list (width <= 40rem) {
 				grid-template-columns: 1fr;
 			}
 		}
 		&[data-columns='3'] {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-			@media screen and (width <= 62rem) {
+			@container entry-list (width <= 54rem) {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}
-			@media screen and (width <= 48rem) {
+			@container entry-list (width <= 40rem) {
 				grid-template-columns: 1fr;
 			}
 		}
 		&[data-columns='4'] {
 			gap: var(--m);
 			grid-template-columns: repeat(4, minmax(0, 1fr));
-			@media screen and (width <= 62rem) {
+			@container entry-list (width <= 54rem) {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}
-			@media screen and (width <= 42rem) {
+			@container entry-list (width <= 34rem) {
 				grid-template-columns: 1fr;
 			}
 		}

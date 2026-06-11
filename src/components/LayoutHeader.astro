@@ -18,13 +18,11 @@ function isActiveRoute(url: string): boolean {
 ---
 
 <header>
-	<div class="logo">
-		<a href="/">
-			<img src="/logo.svg" alt="" width="32" height="32" class="mark" />
-			<span class="wordmark"><span>Luka</span><span>Harambasic</span></span>
-		</a>
-	</div>
-	<nav>
+	<a class="logo" href="/">
+		<img src="/logo.svg" alt="" width="32" height="32" class="mark" />
+		<span class="wordmark"><span>Luka</span><span>Harambasic</span></span>
+	</a>
+	<nav aria-label="Main">
 		<ul>
 			{
 				links.map(({ name, url }) => (
@@ -56,29 +54,19 @@ function isActiveRoute(url: string): boolean {
 	}
 	.logo {
 		display: flex;
-		flex-direction: row;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
 		align-items: center;
-		align-content: center;
-		gap: var(--m);
-		a {
-			display: flex;
-			align-items: center;
-			gap: var(--xs);
-			color: var(--c-font);
-			font-family: var(--font-family);
-			font-size: var(--font-m);
-			font-weight: 700;
-			line-height: 1.2;
-			text-decoration: none;
-			@media screen and (width <= 48rem) {
-				text-align: center;
-			}
-			&:hover {
-				text-decoration: underline;
-				text-decoration-thickness: var(--underline-thickness);
-			}
+		gap: var(--xs);
+		color: var(--c-font);
+		font-size: var(--font-m);
+		font-weight: 700;
+		line-height: 1.2;
+		text-decoration: none;
+		@media screen and (width <= 48rem) {
+			text-align: center;
+		}
+		&:hover {
+			text-decoration: underline;
+			text-decoration-thickness: var(--underline-thickness);
 		}
 		.wordmark {
 			display: flex;
@@ -110,7 +98,6 @@ function isActiveRoute(url: string): boolean {
 					padding: var(--xxs) var(--s);
 					border-radius: var(--border-radius-pill);
 					color: var(--c-font);
-					font-family: var(--font-family);
 					font-size: var(--font-m);
 					font-weight: 600;
 					text-decoration: none;

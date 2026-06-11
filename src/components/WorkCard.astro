@@ -46,19 +46,23 @@ const imageData = hasImage && !isSvg ? getWorkImage(entry.image) : null;
 			)
 		)
 	}
-	<div class="positions">
+	<dl class="positions">
 		{
 			sortedPositions.map((position) => (
 				<div class="row">
-					<span class="position-title">{position.title}</span>
-					<span class="dates">
-						{formatDateDisplay(position.startDate)} –{' '}
-						{position.endDate ? formatDateDisplay(position.endDate) : 'Present'}
-					</span>
+					<dt class="position-title">{position.title}</dt>
+					<dd class="dates">
+						<time datetime={position.startDate}>{formatDateDisplay(position.startDate)}</time> –{' '}
+						{position.endDate ? (
+							<time datetime={position.endDate}>{formatDateDisplay(position.endDate)}</time>
+						) : (
+							'Present'
+						)}
+					</dd>
 				</div>
 			))
 		}
-	</div>
+	</dl>
 	<p class="description">{entry.description}</p>
 	<div class="card-footer">
 		{
@@ -74,6 +78,7 @@ const imageData = hasImage && !isSvg ? getWorkImage(entry.image) : null;
 <style>
 	.positions {
 		display: flex;
+		margin: 0;
 		width: 100%;
 		min-width: 0;
 		flex-direction: column;
@@ -84,8 +89,7 @@ const imageData = hasImage && !isSvg ? getWorkImage(entry.image) : null;
 			align-items: baseline;
 			gap: var(--m);
 			grid-template-columns: 1fr auto;
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
+			color: var(--entry-muted);
 			font-size: var(--font-s);
 			line-height: 1.5;
 		}
@@ -94,38 +98,24 @@ const imageData = hasImage && !isSvg ? getWorkImage(entry.image) : null;
 			font-weight: 500;
 		}
 		.dates {
-			font-weight: 400;
-			text-align: right;
+			margin: 0;
+			text-align: end;
 			white-space: nowrap;
 		}
 	}
 	.description {
 		margin: 0;
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
+		color: var(--entry-muted);
 		font-size: var(--font-m);
-		font-weight: 400;
 		line-height: 1.5;
 	}
 	.card-footer {
-		margin-top: auto;
-		padding-top: var(--m);
+		margin-block-start: auto;
+		padding-block-start: var(--m);
 		width: 100%;
-		border-top: 1px solid var(--c-line);
-		color: var(--c-font-accent-dark);
-		font-family: var(--font-family);
+		border-block-start: 1px solid var(--entry-line);
+		color: var(--entry-muted);
 		font-size: var(--font-s);
-		font-weight: 400;
 		line-height: 1.5;
-	}
-	:global(.entry.featured) {
-		.positions .row,
-		.description,
-		.card-footer {
-			color: var(--c-inverted-text-muted);
-		}
-		.card-footer {
-			border-top-color: var(--c-inverted-line);
-		}
 	}
 </style>

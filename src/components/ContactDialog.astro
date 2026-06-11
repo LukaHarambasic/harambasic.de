@@ -11,42 +11,48 @@ import BaseSegmentedButtons from './BaseSegmentedButtons.astro';
 				Drop a line. Talk AI, automation, product direction, or just say hi. Pick whatever channel
 				works.
 			</p>
-			<div class="contact">
+			<dl class="contact">
 				<div class="group">
-					<div class="meta">
+					<dt class="meta">
 						<strong>E-Mail</strong>
 						<small>luka@harambasic.de</small>
-					</div>
-					<BaseSegmentedButtons>
-						<a href="mailto:luka@harambasic.de">Write</a>
-						<button class="button" type="button" data-clipboard="luka@harambasic.de">Copy</button>
-					</BaseSegmentedButtons>
+					</dt>
+					<dd>
+						<BaseSegmentedButtons>
+							<a href="mailto:luka@harambasic.de">Write</a>
+							<button class="button" type="button" data-clipboard="luka@harambasic.de">Copy</button>
+						</BaseSegmentedButtons>
+					</dd>
 				</div>
 				<div class="group">
-					<div class="meta">
+					<dt class="meta">
 						<strong>Socials</strong>
 						<small>Get in touch!</small>
-					</div>
-					<BaseSegmentedButtons>
-						<a
-							href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B"
-							>Signal</a
-						>
-						<a href="https://www.linkedin.com/in/harambasic/">LinkedIn</a>
-						<a href="https://bsky.app/profile/harambasic.de">BlueSky</a>
-						<a href="https://github.com/LukaHarambasic">GitHub</a>
-					</BaseSegmentedButtons>
+					</dt>
+					<dd>
+						<BaseSegmentedButtons>
+							<a
+								href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B"
+								>Signal</a
+							>
+							<a href="https://www.linkedin.com/in/harambasic/">LinkedIn</a>
+							<a href="https://bsky.app/profile/harambasic.de">BlueSky</a>
+							<a href="https://github.com/LukaHarambasic">GitHub</a>
+						</BaseSegmentedButtons>
+					</dd>
 				</div>
 				<div class="group">
-					<div class="meta">
+					<dt class="meta">
 						<strong>Book a time</strong>
 						<small>Wanna talk?</small>
-					</div>
-					<BaseSegmentedButtons>
-						<a href="https://cal.com/luhara/1">Book</a>
-					</BaseSegmentedButtons>
+					</dt>
+					<dd>
+						<BaseSegmentedButtons>
+							<a href="https://cal.com/luhara/1">Book</a>
+						</BaseSegmentedButtons>
+					</dd>
 				</div>
-			</div>
+			</dl>
 		</div>
 		<form method="dialog">
 			<button class="close" aria-label="Close"><Icon name="ph:x-circle-bold" /></button>
@@ -57,16 +63,13 @@ import BaseSegmentedButtons from './BaseSegmentedButtons.astro';
 <style>
 	dialog {
 		margin: auto;
-		width: 54em;
+		width: min(54em, calc(100vw - 2 * var(--l)));
 		border: var(--border);
 		border-radius: var(--border-radius);
 		background: var(--c-light);
 		color: var(--c-font);
 		&::backdrop {
-			background: rgba(45, 10, 46, 0.7);
-			@media (prefers-color-scheme: dark) {
-				background: rgba(22, 4, 26, 0.85);
-			}
+			background: var(--c-backdrop);
 		}
 		.content {
 			padding: var(--xl);
@@ -79,8 +82,8 @@ import BaseSegmentedButtons from './BaseSegmentedButtons.astro';
 
 				display: flex;
 				position: absolute;
-				top: var(--l);
-				right: var(--l);
+				inset-block-start: var(--l);
+				inset-inline-end: var(--l);
 				z-index: 3000;
 				padding: var(--icon-padding);
 				size: calc(var(--icon-size) + var(--icon-padding) * 2);
@@ -105,8 +108,8 @@ import BaseSegmentedButtons from './BaseSegmentedButtons.astro';
 					}
 				}
 				@media screen and (width <= 48rem) {
-					top: var(--m);
-					right: var(--m);
+					inset-block-start: var(--m);
+					inset-inline-end: var(--m);
 				}
 			}
 		}
@@ -150,35 +153,28 @@ import BaseSegmentedButtons from './BaseSegmentedButtons.astro';
 		}
 		.contact {
 			display: flex;
+			margin: 0;
 			width: 100%;
 			flex-direction: column;
-			flex-wrap: nowrap;
-			justify-content: flex-start;
-			align-items: stretch;
-			align-content: stretch;
 			.group {
 				display: flex;
 				padding: var(--l);
-				border-bottom: 1px solid var(--c-border);
+				border-block-end: 1px solid var(--c-border);
 				flex-direction: row;
-				flex-wrap: nowrap;
 				justify-content: space-between;
 				align-items: flex-start;
-				align-content: stretch;
-				@media screen and (width <= 40rem) {
+				@media screen and (width <= 48rem) {
 					flex-direction: column;
 					gap: var(--l);
+				}
+				dd {
+					margin: 0;
 				}
 				.meta {
 					display: flex;
 					flex-direction: column;
-					flex-wrap: nowrap;
-					justify-content: flex-start;
-					align-items: stretch;
-					align-content: stretch;
 					strong {
-						margin: 0 0 var(--xs) 0;
-						font-family: var(--font-family);
+						margin-block-end: var(--xs);
 						font-size: var(--font-m);
 						font-weight: 600;
 						line-height: 1.2;
