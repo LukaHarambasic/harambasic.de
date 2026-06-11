@@ -17,6 +17,7 @@ Browser support policy: only adopt features that are **Baseline Widely Available
 ## 1. CSS
 
 **Theming**
+
 - All theme-dependent colors are `light-dark(lightValue, darkValue)` tokens in
   `src/styles/variables.css`, switched by `color-scheme: light dark` on `html`
   (base.css). Never add a `@media (prefers-color-scheme: dark)` token block.
@@ -26,13 +27,14 @@ Browser support policy: only adopt features that are **Baseline Widely Available
 - No hardcoded hex/rgba in components; everything resolves to a `--c-*` token.
 
 **Layout and responsiveness**
+
 - Canonical viewport breakpoints, always as literals in the modern range syntax
   `@media screen and (width <= X)`: **30rem / 48rem / 62rem / 86rem**. Do not
   invent new breakpoints without a strong reason.
 - When layout depends on the COMPONENT's width (grids, cards in varying
   containers), use container queries, not viewport queries. Pattern: EntryList
   renders a wrapper div with `container-type: inline-size; container-name:
-  entry-list` (a container query can never match the container element itself,
+entry-list` (a container query can never match the container element itself,
   which is why the wrapper exists). Children respond with
   `@container entry-list (width <= ...)`.
 - Grid for 2D layout and explicit column counts, flexbox for 1D flow. No
@@ -45,6 +47,7 @@ Browser support policy: only adopt features that are **Baseline Widely Available
   `padding-block`, `inset-inline-end`, `border-block-end`, `text-align: end`.
 
 **Shared patterns (reuse, never re-implement)**
+
 - `.golden-ratio` (base.css): the centered 61.8% reading column. Any centered
   narrow section uses this class, never a copied width rule.
 - Decorative bar: the short rule under eyebrows/headings is a local `::after`
@@ -56,6 +59,7 @@ Browser support policy: only adopt features that are **Baseline Widely Available
   state; never reach into another component with `:global(.entry...)`.
 
 **Redundancy rules**
+
 - Never declare what already inherits: `font-family: var(--font-family)` (body
   sets it; reset.css gives form controls `font: inherit`), `font-weight: 400`,
   default `flex-wrap`/`justify-content`/`align-content` values.
@@ -65,6 +69,7 @@ Browser support policy: only adopt features that are **Baseline Widely Available
   and astro-icon SVGs, with a comment when it crosses a component boundary.
 
 **Typography and polish**
+
 - base.css sets `text-wrap: balance` on headings and `text-wrap: pretty` on
   paragraphs; don't repeat per component.
 - `background-clip: text` gradients only behind
@@ -74,6 +79,7 @@ Browser support policy: only adopt features that are **Baseline Widely Available
   per-component motion overrides that bypass it.
 
 **Tooling decisions (settled, don't relitigate)**
+
 - Keep postcss-nested (stylelint/postcss-sorting toolchain is verified with it);
   no native-nesting migration as a side effect of another change.
 - No `@layer`: Astro's scoped styles already win specificity naturally.

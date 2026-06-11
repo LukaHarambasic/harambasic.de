@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import EntryList from '../../components/EntryList.astro';
+import ExperienceCard from '../../components/ExperienceCard.astro';
+import { getExperience } from '$lib/content';
+
+const title = "Where I've worked and what I built";
+const description =
+	'Product roles across climate tech and energy, one failed startup, podcasts, an NGO, and a lot of iteration on what good product work actually looks like.';
+
+const experienceEntries = await getExperience();
+
+// Current = any position with endDate === null; past sorted by most recent start date.
+const cards = experienceEntries.map((entry) => ({
+	entry,
+	isCurrent: entry.positions.some((position) => position.endDate === null)
+}));
+const current = cards.find((card) => card.isCurrent) ?? null;
+const past = cards
+	.filter((card) => !card.isCurrent)
+	.sort((a, b) => {
+		const aLatest = Math.max(...a.entry.positions.map((p) => new Date(p.startDate).getTime()));
+		const bLatest = Math.max(...b.entry.positions.map((p) => new Date(p.startDate).getTime()));
+		return bLatest - aLatest;
+	});
+---
+
+<Layout title={title} description={description}>
+	<Hero slot="hero" title={title} description={description} />
+	<div class="experience-container">
+		{current && <ExperienceCard entry={current.entry} featured class="golden-ratio" />}
+		{
+			past.length > 0 && (
+				<EntryList columns={2}>
+					{past.map((card) => (
+						<li>
+							<ExperienceCard entry={card.entry} />
+						</li>
+					))}
+				</EntryList>
+			)
+		}
+	</div>
+</Layout>
+
+<style>
+	.experience-container {
+		display: flex;
+		margin-inline: auto;
+		width: 100%;
+		max-width: var(--layout-xl);
+		flex-direction: column;
+		gap: var(--xl);
+	}
+</style>

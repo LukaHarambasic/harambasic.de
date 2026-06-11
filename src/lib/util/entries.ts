@@ -2,18 +2,17 @@ import type { UsesEntry } from '$lib/types/usesEntry';
 import type { EntryDate } from '$lib/types/entry';
 import type { EntryType } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
-import type { Project } from '$lib/types/project';
 import type { Tag } from '$lib/types/tag';
 import { formatDateDisplay, getSlug, sortAlphabetical } from './helper';
-import type { WorkEntry } from '$lib/types/workEntry';
+import type { ExperienceEntry } from '$lib/types/experienceEntry';
 
-export function findBySlug(entry: Post | Project | UsesEntry | WorkEntry, slug: string): boolean {
+export function findBySlug(entry: Post | UsesEntry | ExperienceEntry, slug: string): boolean {
 	return entry.slug === slug;
 }
 
 export function getTag(display: string, type: EntryType, iniCount = 0): Tag {
 	const slug = getSlug(display);
-	const path = type === 'uses' ? 'uses' : type === 'work' ? 'work' : `${type}s`;
+	const path = type === 'uses' ? 'uses' : type === 'experience' ? 'experience' : `${type}s`;
 	return {
 		display,
 		slug: slug,
@@ -44,14 +43,14 @@ export function getDate(rawString: string | Date): EntryDate {
 }
 
 export function filterByTag(
-	entry: Post | Project | UsesEntry | WorkEntry,
+	entry: Post | UsesEntry | ExperienceEntry,
 	filterTagSlug: string
 ): boolean {
 	if (filterTagSlug === 'all' || filterTagSlug === '') return true;
 	return entry.tags.some((tag) => tag.slug === filterTagSlug);
 }
 
-export function getUniqueTags(entries: Project[] | UsesEntry[] | Post[] | WorkEntry[]): Tag[] {
+export function getUniqueTags(entries: UsesEntry[] | Post[] | ExperienceEntry[]): Tag[] {
 	// Filter out undefined/null entries and ensure tags exist
 	const validEntries = entries.filter((entry) => entry && entry.tags && Array.isArray(entry.tags));
 

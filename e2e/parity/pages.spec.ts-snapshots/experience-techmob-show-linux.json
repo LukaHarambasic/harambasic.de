@@ -1,0 +1,31 @@
+{
+  "url": "/experience/techmob-show",
+  "status": 200,
+  "title": "Techmob Show | Luka Harambasic",
+  "description": "Podcast where three friends talk tech, mostly entertaining, occasionally informative.",
+  "ogImage": "https://harambasic.de/social/techmob-show.png",
+  "h1": "Techmob Show",
+  "landmarks": {
+    "header": 3,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/experience",
+    "/uses",
+    "/posts",
+    "/consulting"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

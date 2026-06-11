@@ -35,23 +35,6 @@ const posts = defineCollection({
 	})
 });
 
-const projects = defineCollection({
-	loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		image: imageField,
-		imageAlt: z.string().optional(),
-		published: z.coerce.date(),
-		updated: z.coerce.date(),
-		prio: z.number(),
-		status: z.enum(['active', 'inactive']),
-		links: z.array(z.object({ title: z.string(), url: z.string() })).default([]),
-		tags: z.array(z.string()),
-		relatedWork: z.array(z.string()).optional()
-	})
-});
-
 const uses = defineCollection({
 	loader: glob({ pattern: '**/*.md', base: './src/content/uses' }),
 	schema: z.object({
@@ -71,8 +54,8 @@ const uses = defineCollection({
 	})
 });
 
-const work = defineCollection({
-	loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
+const experience = defineCollection({
+	loader: glob({ pattern: '**/*.md', base: './src/content/experience' }),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
@@ -90,7 +73,6 @@ const work = defineCollection({
 				employmentType: employmentType.optional()
 			})
 		),
-		relatedProjects: z.array(z.string()).optional(),
 		tags: z.array(z.string())
 	})
 });
@@ -119,4 +101,4 @@ const shareables = defineCollection({
 	})
 });
 
-export const collections = { posts, projects, uses, work, snippets, shareables };
+export const collections = { posts, uses, experience, snippets, shareables };

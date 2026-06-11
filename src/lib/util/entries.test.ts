@@ -1,5 +1,5 @@
 import type { EntryDate } from '$lib/types/entry';
-import type { Project } from '$lib/types/project';
+import type { Post } from '$lib/types/post';
 import type { Tag } from '$lib/types/tag';
 import { expect, test } from 'vitest';
 import { findBySlug, getDate, getTag } from './entries';
@@ -7,7 +7,7 @@ import { findBySlug, getDate, getTag } from './entries';
 test('findBySlug - find entry by slug', async () => {
 	const entry = {
 		slug: 'test-slug-for-testing-purpose-only'
-	} as Project;
+	} as Post;
 	expect(findBySlug(entry, 'test-slug-for-testing-purpose-only')).toBe(true);
 });
 
@@ -15,11 +15,11 @@ test('getTag - generate a tag based on display text and type maybe with an initi
 	const resultTag: Tag = {
 		display: 'test',
 		slug: 'test',
-		relativePath: '/projects?tag=test',
+		relativePath: '/experience?tag=test',
 		count: 0,
-		type: 'project'
+		type: 'experience'
 	};
-	expect(getTag('test', 'project')).toStrictEqual(resultTag);
+	expect(getTag('test', 'experience')).toStrictEqual(resultTag);
 });
 
 test('getDate - generate date based on string', async () => {

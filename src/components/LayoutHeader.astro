@@ -1,11 +1,10 @@
 ---
-const links = [
+const links: Array<{ name: string; url: string; isCta?: boolean }> = [
 	{ name: 'Home', url: '/' },
-	{ name: 'Consulting', url: '/consulting' },
-	{ name: 'Work', url: '/work' },
-	{ name: 'Projects', url: '/projects' },
+	{ name: 'Experience', url: '/experience' },
 	{ name: 'Uses', url: '/uses' },
-	{ name: 'Posts', url: '/posts' }
+	{ name: 'Posts', url: '/posts' },
+	{ name: 'Work with me', url: '/consulting', isCta: true }
 ];
 
 const pathname = Astro.url.pathname;
@@ -25,9 +24,9 @@ function isActiveRoute(url: string): boolean {
 	<nav aria-label="Main">
 		<ul>
 			{
-				links.map(({ name, url }) => (
+				links.map(({ name, url, isCta }) => (
 					<li>
-						<a href={url} class:list={[{ 'is-active': isActiveRoute(url) }]}>
+						<a href={url} class:list={[{ 'is-active': isActiveRoute(url), cta: isCta }]}>
 							{name}
 						</a>
 					</li>
@@ -96,6 +95,9 @@ function isActiveRoute(url: string): boolean {
 				a {
 					display: block;
 					padding: var(--xxs) var(--s);
+
+					/* Always-on transparent border so the active state doesn't shift layout. */
+					border-block-end: var(--underline-thickness) solid transparent;
 					border-radius: var(--border-radius-pill);
 					color: var(--c-font);
 					font-size: var(--font-m);
@@ -107,10 +109,22 @@ function isActiveRoute(url: string): boolean {
 					}
 				}
 				.is-active {
-					background: var(--c-font);
-					color: var(--c-light);
+					/* Flat underline at rest; on hover the pill background takes over (radius back, no border). */
+					border-block-end-color: var(--c-font);
+					border-radius: 0;
 					&:hover {
-						background: var(--c-font);
+						border-block-end-color: transparent;
+						border-radius: var(--border-radius-pill);
+					}
+				}
+				.cta {
+					border-block-end-color: transparent;
+					background: var(--c-inverted);
+					color: var(--c-inverted-text);
+					&:hover {
+						box-shadow: var(--shadow-md);
+						background: var(--c-inverted);
+						transform: translateY(-2px);
 					}
 				}
 			}

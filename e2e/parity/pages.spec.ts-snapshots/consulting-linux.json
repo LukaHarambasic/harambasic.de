@@ -1,9 +1,9 @@
 {
   "url": "/consulting",
   "status": 200,
-  "title": "Consulting | Luka Harambasic",
+  "title": "Work with me | Luka Harambasic",
   "description": "I help startups put AI to work: strategy, automation, and product, advised and built by one person. Based in Copenhagen.",
-  "ogImage": "https://harambasic.de/social/consulting.png",
+  "ogImage": "https://harambasic.de/social/default.png",
   "h1": "I help you put AI to work.",
   "landmarks": {
     "header": 1,
@@ -14,11 +14,10 @@
   },
   "navHrefs": [
     "/",
-    "/consulting",
-    "/work",
-    "/projects",
+    "/experience",
     "/uses",
-    "/posts"
+    "/posts",
+    "/consulting"
   ],
   "footerHrefs": [
     "https://www.linkedin.com/in/harambasic/",

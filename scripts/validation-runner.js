@@ -12,14 +12,18 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
 // Content type mapping
-const CONTENT_TYPES = ['post', 'project', 'uses', 'shareable'];
+const CONTENT_TYPES = ['post', 'experience', 'uses', 'shareable'];
+
+// 'uses' and 'experience' folders are not pluralized
+function folderNameFor(entryType) {
+	return entryType === 'uses' || entryType === 'experience' ? entryType : `${entryType}s`;
+}
 
 /**
  * Get content folder path for a given entry type
  */
 function getContentFolderPath(entryType, contentRoot) {
-	const folderName = entryType === 'uses' ? 'uses' : `${entryType}s`;
-	return join(contentRoot, folderName);
+	return join(contentRoot, folderNameFor(entryType));
 }
 
 /**
@@ -75,9 +79,9 @@ function validateEntry(rawEntry, entryType, filePath) {
 		}
 	}
 
-	if (entryType === 'project') {
-		if (!frontmatter.links) {
-			errors.push('Projects require a links field');
+	if (entryType === 'experience') {
+		if (!frontmatter.positions || !Array.isArray(frontmatter.positions)) {
+			errors.push('Experience entries require a positions array');
 		}
 	}
 
@@ -165,7 +169,7 @@ async function validateContentType(entryType, contentRoot) {
 
 		for (const fileName of markdownFiles) {
 			const filePath = join(folderPath, fileName);
-			const relativePath = `src/content/${entryType === 'uses' ? 'uses' : `${entryType}s`}/${fileName}`;
+			const relativePath = `src/content/${folderNameFor(entryType)}/${fileName}`;
 
 			try {
 				const { frontmatter, body, content } = await parseMarkdownFile(filePath);

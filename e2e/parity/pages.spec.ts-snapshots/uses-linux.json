@@ -14,11 +14,10 @@
   },
   "navHrefs": [
     "/",
-    "/consulting",
-    "/work",
-    "/projects",
+    "/experience",
     "/uses",
-    "/posts"
+    "/posts",
+    "/consulting"
   ],
   "footerHrefs": [
     "https://www.linkedin.com/in/harambasic/",

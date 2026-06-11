@@ -2,9 +2,8 @@ import type {
 	ContentStatus,
 	EntryType,
 	PostSortProperty,
-	ProjectSortProperty,
 	UsesEntrySortProperty,
-	WorkEntrySortProperty
+	ExperienceEntrySortProperty
 } from './enums';
 import type { Tag } from './tag';
 import type { Link } from './generic';
@@ -31,11 +30,7 @@ export interface RawEntry {
 	tldr?: string;
 	discussion?: string;
 	links?: Link[];
-	prio?: number;
-	imageAlt?: string;
-	relatedProjects?: string[];
-	relatedWork?: string[];
-	// Work entry specific fields
+	// Experience entry specific fields
 	location?: string;
 	employmentType?: 'full-time' | 'part-time' | 'contract' | 'internship';
 	positions?: Array<{
@@ -58,7 +53,7 @@ export interface EntryDate {
  * with computed fields like slug and paths, and transformed data like parsed dates and tags.
  *
  * @interface BaseEntry
- * @property {EntryType} type - The type of content (post, project, uses, work)
+ * @property {EntryType} type - The type of content (post, uses, experience)
  * @property {string} slug - URL-friendly version of the title
  * @property {string} relativePath - Relative path for routing (e.g., "/posts/my-post")
  * @property {string} fullPath - Complete URL including domain
@@ -85,10 +80,6 @@ export interface BaseEntry {
 // Legacy Entry interface for backward compatibility - maps to BaseEntry
 export type Entry = BaseEntry;
 
-export type SortProperty =
-	| PostSortProperty
-	| ProjectSortProperty
-	| UsesEntrySortProperty
-	| WorkEntrySortProperty;
+export type SortProperty = PostSortProperty | UsesEntrySortProperty | ExperienceEntrySortProperty;
 
 export type StatusFilter = ContentStatus;

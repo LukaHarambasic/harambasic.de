@@ -10,7 +10,6 @@ import {
 	sortDate,
 	sortNumber,
 	isValidPostSortProperty,
-	isValidProjectSortProperty,
 	isValidSortDirection
 } from './helper';
 
@@ -146,14 +145,6 @@ test('isValidPostSortProperty - validate post sort properties', async () => {
 	expect(isValidPostSortProperty('updated')).toBe(true);
 	expect(isValidPostSortProperty('priority')).toBe(false);
 	expect(isValidPostSortProperty('invalid')).toBe(false);
-});
-
-test('isValidProjectSortProperty - validate project sort properties', async () => {
-	expect(isValidProjectSortProperty('title')).toBe(true);
-	expect(isValidProjectSortProperty('published')).toBe(true);
-	expect(isValidProjectSortProperty('updated')).toBe(true);
-	expect(isValidProjectSortProperty('priority')).toBe(true);
-	expect(isValidProjectSortProperty('invalid')).toBe(false);
 });
 
 test('isValidSortDirection - validate sort directions', async () => {

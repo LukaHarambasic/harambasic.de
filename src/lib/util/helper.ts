@@ -1,11 +1,6 @@
 import type { StatusFilter } from '$lib/types/entry';
-import type {
-	SortDirection,
-	PostSortProperty,
-	ProjectSortProperty,
-	UsesEntrySortProperty
-} from '$lib/types/enums';
-import { BASE_SORT_PROPERTIES, PROJECT_SORT_PROPERTIES, SORT_DIRECTIONS } from '$lib/types/enums';
+import type { SortDirection, PostSortProperty, UsesEntrySortProperty } from '$lib/types/enums';
+import { BASE_SORT_PROPERTIES, SORT_DIRECTIONS } from '$lib/types/enums';
 
 // solution inspired by https://www.designcise.com/web/tutorial/how-to-fix-replaceall-is-not-a-function-javascript-error
 // implementation inspired by https://futurestud.io/tutorials/node-js-string-replace-all-appearances
@@ -64,10 +59,6 @@ export function isValidSortProperty<T extends string>(
 
 export function isValidPostSortProperty(value: string): value is PostSortProperty {
 	return isValidSortProperty(value, BASE_SORT_PROPERTIES);
-}
-
-export function isValidProjectSortProperty(value: string): value is ProjectSortProperty {
-	return isValidSortProperty(value, PROJECT_SORT_PROPERTIES);
 }
 
 export function isValidUsesEntrySortProperty(value: string): value is UsesEntrySortProperty {

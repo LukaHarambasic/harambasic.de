@@ -1,0 +1,31 @@
+{
+  "url": "/experience/sparkle",
+  "status": 200,
+  "title": "Sparkle | Luka Harambasic",
+  "description": "Solar energy startup that pivoted through multiple models, from solar fintech to enabling apartment renters to participate in the green transition.",
+  "ogImage": "https://harambasic.de/social/sparkle.png",
+  "h1": "Sparkle",
+  "landmarks": {
+    "header": 3,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/experience",
+    "/uses",
+    "/posts",
+    "/consulting"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

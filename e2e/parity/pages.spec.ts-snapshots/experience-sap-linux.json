@@ -1,0 +1,31 @@
+{
+  "url": "/experience/sap",
+  "status": 200,
+  "title": "SAP | Luka Harambasic",
+  "description": "Enterprise software company providing business solutions for finance, HR, supply chain, and customer experience across industries worldwide.",
+  "ogImage": "https://harambasic.de/social/sap.png",
+  "h1": "SAP",
+  "landmarks": {
+    "header": 4,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/experience",
+    "/uses",
+    "/posts",
+    "/consulting"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

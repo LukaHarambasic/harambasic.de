@@ -1,0 +1,31 @@
+{
+  "url": "/experience/active-ambassadors",
+  "status": 200,
+  "title": "Active Ambassadors | Luka Harambasic",
+  "description": "Non-profit side project raising awareness for NGOs. I co-founded it and built the whole digital setup, from website to automations.",
+  "ogImage": "https://harambasic.de/social/active-ambassadors.png",
+  "h1": "Active Ambassadors",
+  "landmarks": {
+    "header": 3,
+    "nav": 1,
+    "main": 1,
+    "footer": 1,
+    "skipLink": 1
+  },
+  "navHrefs": [
+    "/",
+    "/experience",
+    "/uses",
+    "/posts",
+    "/consulting"
+  ],
+  "footerHrefs": [
+    "https://www.linkedin.com/in/harambasic/",
+    "https://github.com/LukaHarambasic",
+    "https://bsky.app/profile/harambasic.de",
+    "/feeds",
+    "/imprint",
+    "/data-privacy",
+    "#contact"
+  ]
+}

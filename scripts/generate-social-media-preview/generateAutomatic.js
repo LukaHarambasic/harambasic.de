@@ -4,7 +4,7 @@ import { chromium } from 'playwright';
 import { ROOT_PATH, doesImageAlreadyExist, generateImage } from './util.js';
 
 // All content types with detail pages / og:image references.
-const CONTENT_TYPES = ['posts', 'projects', 'uses', 'work'];
+const CONTENT_TYPES = ['posts', 'uses', 'experience'];
 
 // Copied verbatim from src/lib/util/helper.ts - must run outside the toolchain.
 export function getSlug(str) {

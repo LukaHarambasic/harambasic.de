@@ -12,16 +12,12 @@ export function isSvgImage(imageName: string): boolean {
 // Eager glob maps replacing the enhanced-img globs. Raster only (same extension
 // set as the old enhanced-img config) - SVGs are intentionally excluded so they
 // fall through to the plain <img src="/uses/..."> public path.
-const projectImages = import.meta.glob<{ default: ImageMetadata }>(
-	'/src/assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
-	{ eager: true }
-);
 const usesImages = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/img/uses/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 	{ eager: true }
 );
-const workImages = import.meta.glob<{ default: ImageMetadata }>(
-	'/src/assets/img/work/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
+const experienceImages = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/assets/img/experience/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 	{ eager: true }
 );
 
@@ -35,12 +31,9 @@ function lookup(
 	return mod ? mod.default : null;
 }
 
-export function getProjectImage(name: string): ImageMetadata | null {
-	return lookup(projectImages, 'projects', name);
-}
 export function getUsesImage(name: string): ImageMetadata | null {
 	return lookup(usesImages, 'uses', name);
 }
-export function getWorkImage(name: string): ImageMetadata | null {
-	return lookup(workImages, 'work', name);
+export function getExperienceImage(name: string): ImageMetadata | null {
+	return lookup(experienceImages, 'experience', name);
 }

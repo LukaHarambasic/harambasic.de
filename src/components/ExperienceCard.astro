@@ -1,0 +1,102 @@
+---
+import { Picture } from 'astro:assets';
+import Entry from './Entry.astro';
+import type { ExperienceEntry } from '$lib/types/experienceEntry';
+import { getExperienceImage, isSvgImage, IMAGE_WIDTHS, IMAGE_FORMATS } from '$lib/images';
+import { formatDateDisplay, sortPositionsByDate } from '$lib/util/helper';
+
+interface Props {
+	entry: ExperienceEntry;
+	featured?: boolean;
+	class?: string;
+}
+
+const { entry, featured = false, class: className } = Astro.props;
+const sortedPositions = sortPositionsByDate(entry.positions);
+const hasImage = entry.image && entry.image !== 'TODO';
+const isSvg = hasImage ? isSvgImage(entry.image) : false;
+const imageData = hasImage && !isSvg ? getExperienceImage(entry.image) : null;
+---
+
+<Entry
+	variant="card"
+	href={`/experience/${entry.slug}`}
+	title={entry.title}
+	meta={entry.location}
+	featured={featured}
+	class={className}
+	aria-label={`View details for ${entry.title}`}
+>
+	{
+		isSvg ? (
+			<img slot="media" src={`/experience/${entry.image}`} alt={entry.title} />
+		) : (
+			imageData && (
+				<Picture
+					slot="media"
+					src={imageData}
+					widths={IMAGE_WIDTHS}
+					formats={IMAGE_FORMATS}
+					sizes="(min-width:768px) 64px, 48px"
+					alt={entry.title}
+					loading="lazy"
+					decoding="async"
+				/>
+			)
+		)
+	}
+	<dl class="positions">
+		{
+			sortedPositions.map((position) => (
+				<div class="row">
+					<dt class="position-title">{position.title}</dt>
+					<dd class="dates">
+						<time datetime={position.startDate}>{formatDateDisplay(position.startDate)}</time> –{' '}
+						{position.endDate ? (
+							<time datetime={position.endDate}>{formatDateDisplay(position.endDate)}</time>
+						) : (
+							'Present'
+						)}
+					</dd>
+				</div>
+			))
+		}
+	</dl>
+	<p class="description">{entry.description}</p>
+</Entry>
+
+<style>
+	.positions {
+		display: flex;
+		margin: 0;
+		width: 100%;
+		min-width: 0;
+		flex-direction: column;
+		gap: var(--xs);
+		.row {
+			display: grid;
+			width: 100%;
+			align-items: baseline;
+			gap: var(--m);
+			grid-template-columns: 1fr auto;
+			color: var(--entry-muted);
+			font-size: var(--font-s);
+			line-height: 1.5;
+		}
+		.position-title {
+			min-width: 0;
+			font-weight: 500;
+		}
+		.dates {
+			margin: 0;
+			text-align: end;
+			white-space: nowrap;
+		}
+	}
+	.description {
+		margin: 0;
+		color: var(--entry-muted);
+		font-size: var(--font-m);
+		line-height: 1.5;
+	}
+</style>

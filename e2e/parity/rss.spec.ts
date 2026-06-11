@@ -9,14 +9,13 @@ import { RSS_FEEDS, slugsFor } from './helpers';
  * carry <content:encoded>.
  */
 
-const SECTION_FOR_FEED: Record<string, 'posts' | 'projects' | 'uses' | 'work'> = {
+const SECTION_FOR_FEED: Record<string, 'posts' | 'uses' | 'experience'> = {
 	'/posts/rss': 'posts',
-	'/projects/rss': 'projects',
 	'/uses/rss': 'uses',
-	'/work/rss': 'work'
+	'/experience/rss': 'experience'
 };
 
-const FULL_CONTENT_FEEDS = new Set(['/posts/rss', '/projects/rss', '/work/rss']);
+const FULL_CONTENT_FEEDS = new Set(['/posts/rss', '/experience/rss']);
 const MERGED_FEEDS = new Set(['/rss', '/feeds/rss']);
 
 function countOccurrences(haystack: string, needle: string): number {
@@ -38,13 +37,10 @@ for (const feed of RSS_FEEDS) {
 
 		if (MERGED_FEEDS.has(feed)) {
 			const total =
-				slugsFor('posts').length +
-				slugsFor('projects').length +
-				slugsFor('uses').length +
-				slugsFor('work').length;
+				slugsFor('posts').length + slugsFor('uses').length + slugsFor('experience').length;
 			expect(itemCount, `merged feed item count`).toBe(total);
 			// Every section is represented as a <category>.
-			for (const category of ['Posts', 'Projects', 'Uses', 'Work']) {
+			for (const category of ['Posts', 'Uses', 'Experience']) {
 				expect(body).toContain(`<category>${category}</category>`);
 			}
 			return;

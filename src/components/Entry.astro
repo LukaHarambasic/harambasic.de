@@ -5,7 +5,7 @@ import { Icon } from 'astro-icon/components';
  * The one list-item anatomy, in three presets:
  * - row: text-forward, sits in a rule-separated EntryList (posts, feed, uses archive)
  * - card: filled surface with a logo+title header (work, uses essentials/hardware)
- * - gallery: media-forward, image on top (projects)
+ * - gallery: media-forward, image on top
  *
  * Two states everywhere: hover (tint fill + arrow nudge) and featured (inverted
  * plum surface = "the live/pinned/latest one").
@@ -118,7 +118,7 @@ const rel = external ? 'external' : undefined;
 		text-decoration: none;
 		transition: var(--transition);
 
-		/* Inherited theming hooks so slotted content (e.g. WorkCard) can follow
+		/* Inherited theming hooks so slotted content (e.g. ExperienceCard) can follow
 		   the featured/inverted state without reaching into Entry internals. */
 		--entry-muted: var(--c-font-accent-dark);
 		--entry-line: var(--c-line);

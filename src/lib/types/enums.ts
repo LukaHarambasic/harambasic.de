@@ -1,4 +1,4 @@
-export type EntryType = 'post' | 'project' | 'uses' | 'work';
+export type EntryType = 'post' | 'uses' | 'experience';
 
 // Sort direction constants and types
 export const SORT_DIRECTIONS = ['ASC', 'DESC'] as const;
@@ -15,28 +15,24 @@ export enum TagSortProperty {
 
 // Sort property constants
 export const BASE_SORT_PROPERTIES = ['title', 'published', 'updated'] as const;
-export const PROJECT_SORT_PROPERTIES = [...BASE_SORT_PROPERTIES, 'priority'] as const;
 
 // Base sort properties
 type BaseSortProperty = 'title' | 'published' | 'updated';
 
 // Specific types with extensions
 export type PostSortProperty = BaseSortProperty;
-export type ProjectSortProperty = BaseSortProperty | 'priority';
 export type UsesEntrySortProperty = BaseSortProperty;
-export type WorkEntrySortProperty = BaseSortProperty;
+export type ExperienceEntrySortProperty = BaseSortProperty;
 
 // Centralized default configuration
 export const SORT_DEFAULTS = {
 	POST: 'published' as const,
-	PROJECT: 'priority' as const,
 	USES_ENTRY: 'published' as const,
-	WORK_ENTRY: 'published' as const
+	EXPERIENCE_ENTRY: 'published' as const
 } as const;
 
 // Single status type for all content
 export type ContentStatus = 'active' | 'inactive' | 'all';
 
-// Aliases for specific content types (for backward compatibility)
-export type ProjectStatus = ContentStatus;
+// Alias for specific content types (for backward compatibility)
 export type UsesEntryStatus = ContentStatus;

@@ -3,16 +3,13 @@ import type {
 	ContentStatus,
 	SortDirection,
 	PostSortProperty,
-	ProjectSortProperty,
 	UsesEntrySortProperty,
-	ProjectStatus,
 	UsesEntryStatus,
-	WorkEntrySortProperty
+	ExperienceEntrySortProperty
 } from '$lib/types/enums';
 import type { Post } from '$lib/types/post';
-import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { WorkEntry } from '$lib/types/workEntry';
+import type { ExperienceEntry } from '$lib/types/experienceEntry';
 import { filterByTag } from './entries';
 import { sortAlphabetical } from './helper';
 
@@ -27,7 +24,7 @@ export function filterByStatus<T extends BaseEntry & { status?: ContentStatus }>
 export function sortByProperty<T extends BaseEntry>(
 	a: T,
 	b: T,
-	property: 'title' | 'published' | 'updated' | 'priority'
+	property: 'title' | 'published' | 'updated'
 ): number {
 	switch (property) {
 		case 'title':
@@ -36,11 +33,6 @@ export function sortByProperty<T extends BaseEntry>(
 			return a.published.raw.getTime() - b.published.raw.getTime();
 		case 'updated':
 			return a.updated.raw.getTime() - b.updated.raw.getTime();
-		case 'priority':
-			if ('prio' in a && 'prio' in b) {
-				return (a as T & { prio: number }).prio - (b as T & { prio: number }).prio;
-			}
-			return 0;
 		default:
 			return 0;
 	}
@@ -49,7 +41,7 @@ export function sortByProperty<T extends BaseEntry>(
 export interface FilterAndSortOptions {
 	filterTagSlug?: string;
 	filterStatus?: ContentStatus;
-	sortProperty: 'title' | 'published' | 'updated' | 'priority';
+	sortProperty: 'title' | 'published' | 'updated';
 	sortDirection: SortDirection;
 }
 
@@ -61,13 +53,6 @@ export function filterAndSort(
 	sortDirection: SortDirection
 ): Post[];
 export function filterAndSort(
-	entries: Project[],
-	filterTagSlug: string,
-	filterStatus: ProjectStatus,
-	sortProperty: ProjectSortProperty,
-	sortDirection: SortDirection
-): Project[];
-export function filterAndSort(
 	entries: UsesEntry[],
 	filterTagSlug: string,
 	filterStatus: UsesEntryStatus,
@@ -75,12 +60,12 @@ export function filterAndSort(
 	sortDirection: SortDirection
 ): UsesEntry[];
 export function filterAndSort(
-	entries: WorkEntry[],
+	entries: ExperienceEntry[],
 	filterTagSlug: string,
 	filterStatus: ContentStatus,
-	sortProperty: WorkEntrySortProperty,
+	sortProperty: ExperienceEntrySortProperty,
 	sortDirection: SortDirection
-): WorkEntry[];
+): ExperienceEntry[];
 // Generic implementation with options object
 export function filterAndSort<T extends BaseEntry>(
 	entries: T[],
@@ -93,14 +78,12 @@ export function filterAndSort<T extends BaseEntry>(
 	filterStatusOrSortProperty?:
 		| ContentStatus
 		| PostSortProperty
-		| ProjectSortProperty
 		| UsesEntrySortProperty
-		| WorkEntrySortProperty,
+		| ExperienceEntrySortProperty,
 	sortPropertyOrSortDirection?:
-		| ProjectSortProperty
 		| UsesEntrySortProperty
 		| PostSortProperty
-		| WorkEntrySortProperty
+		| ExperienceEntrySortProperty
 		| SortDirection,
 	sortDirection?: SortDirection
 ): T[] {
@@ -110,25 +93,25 @@ export function filterAndSort<T extends BaseEntry>(
 	if (typeof optionsOrFilterTagSlug === 'string') {
 		// Positional parameters: determine which overload pattern based on number of arguments
 		if (sortDirection !== undefined) {
-			// Pattern: (entries, filterTagSlug, filterStatus, sortProperty, sortDirection) - Project or UsesEntry
+			// Pattern: (entries, filterTagSlug, filterStatus, sortProperty, sortDirection) - UsesEntry or ExperienceEntry
 			options = {
 				filterTagSlug: optionsOrFilterTagSlug,
 				filterStatus: filterStatusOrSortProperty as ContentStatus,
-				sortProperty: sortPropertyOrSortDirection as 'title' | 'published' | 'updated' | 'priority',
+				sortProperty: sortPropertyOrSortDirection as 'title' | 'published' | 'updated',
 				sortDirection: sortDirection
 			};
 		} else if (sortPropertyOrSortDirection !== undefined) {
 			// Pattern: (entries, filterTagSlug, sortProperty, sortDirection) - Post
 			options = {
 				filterTagSlug: optionsOrFilterTagSlug,
-				sortProperty: filterStatusOrSortProperty as 'title' | 'published' | 'updated' | 'priority',
+				sortProperty: filterStatusOrSortProperty as 'title' | 'published' | 'updated',
 				sortDirection: sortPropertyOrSortDirection as SortDirection
 			};
 		} else {
 			// Fallback (shouldn't happen with proper overloads)
 			options = {
 				filterTagSlug: optionsOrFilterTagSlug,
-				sortProperty: filterStatusOrSortProperty as 'title' | 'published' | 'updated' | 'priority',
+				sortProperty: filterStatusOrSortProperty as 'title' | 'published' | 'updated',
 				sortDirection: 'DESC'
 			};
 		}
@@ -142,7 +125,7 @@ export function filterAndSort<T extends BaseEntry>(
 	const filterTagSlug = options.filterTagSlug;
 	if (filterTagSlug !== undefined) {
 		filtered = filtered.filter((entry) =>
-			filterByTag(entry as unknown as Post | Project | UsesEntry | WorkEntry, filterTagSlug)
+			filterByTag(entry as unknown as Post | UsesEntry | ExperienceEntry, filterTagSlug)
 		);
 	}
 

@@ -1,65 +1,27 @@
 ---
-import { Image, Picture } from 'astro:assets';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import BaseRichText from '../components/BaseRichText.astro';
-import Entry from '../components/Entry.astro';
+import BaseSegmentedButtons from '../components/BaseSegmentedButtons.astro';
 import EntryList from '../components/EntryList.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { personSchema, websiteSchema } from '$lib/jsonld';
-import { Icon } from 'astro-icon/components';
 import profileImg from '../assets/img/profile.jpeg';
-import { getPosts, getProjects, getUses, getWork } from '$lib/content';
-import { getMergedFeedEntries, type MergedFeedEntry } from '$lib/util/mergedFeed';
-import {
-	getProjectImage,
-	getUsesImage,
-	getWorkImage,
-	isSvgImage,
-	IMAGE_WIDTHS,
-	IMAGE_FORMATS
-} from '$lib/images';
+import { getExperience } from '$lib/content';
+import type { ExperienceEntry } from '$lib/types/experienceEntry';
 
 const description =
 	'Luka Harambasic. Product and AI consulting, past work in climate tech and energy. Based in Copenhagen.';
 
-const SVG_PATH_PREFIX: Record<string, string> = {
-	Projects: '/projects/',
-	Uses: '/uses/',
-	Work: '/work/'
-};
-const getSvgSrc = (category: string, imageName: string) =>
-	SVG_PATH_PREFIX[category] ? `${SVG_PATH_PREFIX[category]}${imageName}` : '';
-function getEntryImage(entry: { category: string; image: string }) {
-	if (entry.category === 'Projects') return getProjectImage(entry.image);
-	if (entry.category === 'Uses') return getUsesImage(entry.image);
-	if (entry.category === 'Work') return getWorkImage(entry.image);
-	return null;
-}
+const experience = await getExperience();
 
-const [posts, projects, uses, work] = await Promise.all([
-	getPosts(),
-	getProjects(),
-	getUses(),
-	getWork()
-]);
-
-// One stream, sorted by last update, rendered as a two-column row grid.
-const rows = getMergedFeedEntries(posts, projects, uses, work);
-
-const INITIAL_ROWS = 6;
-const STEP = 6;
-const steps: number[] = [];
-for (let n = Math.min(INITIAL_ROWS, rows.length); ; n += STEP) {
-	n = Math.min(n, rows.length);
-	steps.push(n);
-	if (n >= rows.length) break;
-}
-
-const rowMedia = (entry: MergedFeedEntry) => ({
-	isPost: entry.category === 'Posts',
-	isSvg: !!entry.image && isSvgImage(entry.image),
-	imageData: entry.image ? getEntryImage(entry) : null
-});
+// Most recent roles by latest position start date (current roles sort first naturally).
+const latestStart = (entry: ExperienceEntry): number =>
+	Math.max(...entry.positions.map((position) => new Date(position.startDate).getTime()));
+const recentExperience = [...experience]
+	.sort((a, b) => latestStart(b) - latestStart(a))
+	.slice(0, 3);
 ---
 
 <Layout description={description}>
@@ -96,6 +58,20 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 			</BaseRichText>
 		</div>
 	</section>
+	<section class="highlights">
+		<p class="eyebrow">Experience</p>
+		<h2>Where I've worked and what I built</h2>
+		<EntryList columns={3}>
+			{
+				recentExperience.map((entry) => (
+					<li>
+						<ExperienceCard entry={entry} />
+					</li>
+				))
+			}
+		</EntryList>
+		<a class="more-link" href="/experience">All experience</a>
+	</section>
 	<section class="consulting-banner">
 		<p class="eyebrow">Harambasic Consulting</p>
 		<h2>I help you put AI to work.</h2>
@@ -105,71 +81,77 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 		</p>
 		<a class="btn-book" href="https://cal.com/luhara/harambasic-consulting">Book a call</a>
 	</section>
-	<section class="featured">
-		<h2>Feed</h2>
-		<p class="feed-intro">
-			A combined feed of everything on this site: posts, projects, uses, and work. Ordered by last
-			updated, so sometimes old entries might appear at the top.
+	<section class="contact golden-ratio">
+		<p class="eyebrow">Get in touch</p>
+		<h2>Say hi.</h2>
+		<p class="sub">
+			Drop a line. Talk AI, automation, product direction, or just say hi. Pick whatever channel
+			works.
 		</p>
-		<div class="feed" data-feed-steps={JSON.stringify(steps)}>
-			<EntryList columns={2}>
-				{
-					rows.map((entry, index) => {
-						const media = rowMedia(entry);
-						return (
-							<li data-feed-item hidden={index >= INITIAL_ROWS}>
-								<Entry
-									variant="card"
-									href={entry.href}
-									title={entry.title}
-									titleTag="h3"
-									eyebrow={entry.category}
-									meta={entry.updated.display}
-									metaDatetime={entry.updated.raw.toISOString()}
-									excerpt={entry.description}
-									external={entry.isExternal}
-									aria-label={`View ${entry.title}`}
-								>
-									{media.isPost ? (
-										<Icon slot="media" name="ph:file-text-duotone" class="thumb-icon" />
-									) : media.isSvg ? (
-										<img
-											slot="media"
-											src={getSvgSrc(entry.category, entry.image)}
-											alt={entry.title}
-											loading="lazy"
-										/>
-									) : media.imageData ? (
-										<Picture
-											slot="media"
-											src={media.imageData}
-											widths={IMAGE_WIDTHS}
-											formats={IMAGE_FORMATS}
-											sizes="(min-width:768px) 64px, 48px"
-											alt={entry.title}
-											loading="lazy"
-											decoding="async"
-										/>
-									) : (
-										<Icon slot="media" name="ph:empty-duotone" class="thumb-icon" />
-									)}
-								</Entry>
-							</li>
-						);
-					})
-				}
-			</EntryList>
-			<div class="actions">
-				<button type="button" class="btn" data-feed-more hidden={steps.length <= 1}
-					>Show more</button
-				>
-				<button type="button" class="btn" data-feed-less hidden>Show less</button>
+		<dl class="channels">
+			<div class="group">
+				<dt class="meta">
+					<strong>E-Mail</strong>
+					<small>luka@harambasic.de</small>
+				</dt>
+				<dd>
+					<BaseSegmentedButtons>
+						<a href="mailto:luka@harambasic.de">Write</a>
+						<button class="button" type="button" data-clipboard="luka@harambasic.de">Copy</button>
+					</BaseSegmentedButtons>
+				</dd>
 			</div>
-		</div>
+			<div class="group">
+				<dt class="meta">
+					<strong>Socials</strong>
+					<small>Get in touch!</small>
+				</dt>
+				<dd>
+					<BaseSegmentedButtons>
+						<a
+							href="https://signal.me/#eu/nEQUfJVmtAbHirhDccRIQMkqWOiIiq2/7VROG9o/YrlzrC9ejHlCxYgFg1HMGx2B"
+							>Signal</a
+						>
+						<a href="https://www.linkedin.com/in/harambasic/">LinkedIn</a>
+						<a href="https://bsky.app/profile/harambasic.de">BlueSky</a>
+						<a href="https://github.com/LukaHarambasic">GitHub</a>
+					</BaseSegmentedButtons>
+				</dd>
+			</div>
+			<div class="group">
+				<dt class="meta">
+					<strong>Book a time</strong>
+					<small>Wanna talk?</small>
+				</dt>
+				<dd>
+					<BaseSegmentedButtons>
+						<a href="https://cal.com/luhara/1">Book</a>
+					</BaseSegmentedButtons>
+				</dd>
+			</div>
+		</dl>
 	</section>
 </Layout>
 
 <style>
+	.eyebrow {
+		margin: 0;
+		color: var(--c-font-accent-dark);
+		font-family: var(--font-family-code);
+		font-size: var(--font-s);
+		font-weight: 500;
+		letter-spacing: var(--tracking-eyebrow);
+		text-transform: uppercase;
+		&::after {
+			display: block;
+			margin-block-start: var(--s);
+			width: var(--deco-bar-width);
+			height: var(--deco-bar-height);
+			border-radius: var(--deco-bar-radius);
+			background: var(--deco-bar-color);
+			content: '';
+		}
+	}
 	.heyho {
 		display: flex;
 		position: relative;
@@ -241,22 +223,7 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 			padding: var(--m);
 		}
 		.eyebrow {
-			margin: 0;
 			color: var(--c-inverted-text-muted);
-			font-family: var(--font-family-code);
-			font-size: var(--font-s);
-			font-weight: 500;
-			letter-spacing: var(--tracking-eyebrow);
-			text-transform: uppercase;
-			&::after {
-				display: block;
-				margin-block-start: var(--s);
-				width: var(--deco-bar-width);
-				height: var(--deco-bar-height);
-				border-radius: var(--deco-bar-radius);
-				background: var(--deco-bar-color);
-				content: '';
-			}
 		}
 		h2 {
 			margin: 0;
@@ -289,77 +256,84 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 			}
 		}
 	}
-	.featured {
+	.highlights {
 		display: flex;
-		margin-inline: auto;
+		margin-block-start: var(--xl);
 		width: 100%;
 		flex-direction: column;
 		gap: var(--l);
-
 		h2 {
-			margin: var(--xl) 0 var(--m) 0;
+			margin: 0;
 			font-family: var(--font-family-serif);
 			font-size: var(--fs-h2);
 			font-weight: 500;
 			line-height: 1.2;
 			letter-spacing: var(--tracking-heading);
-			text-align: center;
-			&::after {
-				display: block;
-				margin-block-start: var(--s);
-				margin-inline: auto;
-				width: var(--deco-bar-width);
-				height: var(--deco-bar-height);
-				border-radius: var(--deco-bar-radius);
-				background: var(--deco-bar-color);
-				content: '';
+		}
+		.more-link {
+			align-self: flex-start;
+			color: var(--c-font);
+			font-size: var(--font-m);
+			font-weight: 500;
+			text-decoration: underline;
+			text-decoration-thickness: var(--underline-thickness);
+			&:hover {
+				text-decoration: none;
 			}
 		}
-
-		.feed-intro {
-			margin: 0 0 var(--l);
+	}
+	.contact {
+		display: flex;
+		margin-block-start: var(--xl);
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--m);
+		h2 {
+			margin: 0;
+			font-family: var(--font-family-serif);
+			font-size: var(--fs-h2);
+			font-weight: 500;
+			letter-spacing: var(--tracking-heading);
+		}
+		.sub {
+			margin: 0;
 			max-width: 36rem;
-			align-self: center;
 			color: var(--c-font-accent-dark);
 			font-size: var(--font-m);
 			line-height: 1.5;
-			text-align: center;
 		}
-
-		.feed {
+		.channels {
 			display: flex;
+			margin: 0;
 			width: 100%;
 			flex-direction: column;
-			gap: var(--l);
-			:global(.thumb-icon) {
-				display: block;
-				padding: var(--s);
-				width: 100%;
-				height: auto;
-				min-height: 3rem;
-				color: var(--c-font-accent-dark);
-			}
-		}
-
-		.actions {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			gap: var(--m);
-		}
-
-		.btn {
-			padding: var(--s) var(--m);
-			border: 1px solid var(--c-line);
-			border-radius: var(--border-radius);
-			background: var(--c-tint);
-			color: var(--c-font);
-			font-size: var(--font-s);
-			font-weight: 600;
-			transition: var(--transition);
-			cursor: pointer;
-			&:hover {
-				background: color-mix(in srgb, var(--c-surface-accent) 80%, transparent);
+			.group {
+				display: flex;
+				padding: var(--l);
+				border-block-end: 1px solid var(--c-border);
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: flex-start;
+				@media screen and (width <= 48rem) {
+					flex-direction: column;
+					gap: var(--l);
+				}
+				dd {
+					margin: 0;
+				}
+				.meta {
+					display: flex;
+					flex-direction: column;
+					strong {
+						margin-block-end: var(--xs);
+						font-size: var(--font-m);
+						font-weight: 600;
+						line-height: 1.2;
+					}
+					small {
+						font-size: var(--font-s);
+					}
+				}
 			}
 		}
 	}

@@ -173,39 +173,6 @@ const socialImgAlt = fullTitle;
 		});
 	}
 
-	// Home feed: precomputed visible-item steps drive Show more / Show less.
-	function bindFeed() {
-		document.querySelectorAll<HTMLElement>('[data-feed-steps]').forEach((el) => {
-			if (el.dataset.feedInit === 'true') return;
-			el.dataset.feedInit = 'true';
-			const steps: number[] = JSON.parse(el.dataset.feedSteps || '[]');
-			const items = Array.from(el.querySelectorAll<HTMLElement>('li[data-feed-item]'));
-			const moreBtn = el.querySelector<HTMLButtonElement>('[data-feed-more]');
-			const lessBtn = el.querySelector<HTMLButtonElement>('[data-feed-less]');
-			if (!moreBtn || !lessBtn || steps.length === 0) return;
-			let stepIndex = 0;
-			const apply = () => {
-				const visible = steps[stepIndex];
-				items.forEach((item, i) => {
-					item.hidden = i >= visible;
-				});
-				moreBtn.hidden = stepIndex >= steps.length - 1;
-				lessBtn.hidden = stepIndex === 0;
-			};
-			moreBtn.addEventListener('click', () => {
-				if (stepIndex < steps.length - 1) {
-					stepIndex++;
-					apply();
-				}
-			});
-			lessBtn.addEventListener('click', () => {
-				stepIndex = 0;
-				apply();
-			});
-			apply();
-		});
-	}
-
 	// Global listeners: the module runs once even with the client router.
 	window.addEventListener('hashchange', openContactIfHash);
 
@@ -224,7 +191,6 @@ const socialImgAlt = fullTitle;
 	document.addEventListener('astro:page-load', () => {
 		bindContactDialog();
 		bindClipboard();
-		bindFeed();
 		openContactIfHash();
 		// GoatCounter auto-counts the initial load; count SPA navigations manually.
 		if (firstPageLoad) {

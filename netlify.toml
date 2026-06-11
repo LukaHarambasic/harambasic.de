@@ -4,3 +4,23 @@
 
 [build.environment]
   NODE_VERSION = "24"
+
+[[redirects]]
+  from = "/work/*"
+  to = "/experience/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/work"
+  to = "/experience"
+  status = 301
+
+[[redirects]]
+  from = "/projects/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/projects"
+  to = "/"
+  status = 301

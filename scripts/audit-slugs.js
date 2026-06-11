@@ -12,7 +12,6 @@
  * feeds:
  *   - title-slug collisions within a content type (FATAL - two entries fight
  *     for the same URL)
- *   - relatedProjects / relatedWork cross-references that don't resolve (FATAL)
  *   - missing social images for posts/uses (WARN - og:image would 404)
  *
  * Filename-vs-title divergence is reported as INFO only: it is expected and
@@ -34,7 +33,7 @@ function getSlug(str) {
 
 const CONTENT = join(process.cwd(), 'src', 'content');
 const SOCIAL = join(process.cwd(), 'public', 'social');
-const TYPES = ['posts', 'projects', 'uses', 'work'];
+const TYPES = ['posts', 'uses', 'experience'];
 
 function loadEntries(type) {
 	const dir = join(CONTENT, type);
@@ -78,30 +77,7 @@ for (const type of TYPES) {
 	}
 }
 
-// 3. cross-references resolve (against title-slugs)
-const projectSlugs = new Set(all.projects.map((e) => e.slug));
-const workSlugs = new Set(all.work.map((e) => e.slug));
-
-for (const e of all.work) {
-	for (const ref of e.data.relatedProjects ?? []) {
-		if (!projectSlugs.has(ref)) {
-			console.error(`FATAL: work/${e.file} relatedProjects "${ref}" does not resolve to a project`);
-			fatal++;
-		}
-	}
-}
-for (const e of all.projects) {
-	for (const ref of e.data.relatedWork ?? []) {
-		if (!workSlugs.has(ref)) {
-			console.error(
-				`FATAL: projects/${e.file} relatedWork "${ref}" does not resolve to a work entry`
-			);
-			fatal++;
-		}
-	}
-}
-
-// 4. social images for posts + uses
+// 3. social images for posts + uses
 for (const type of TYPES) {
 	for (const e of all[type]) {
 		const png = join(SOCIAL, `${e.slug}.png`);

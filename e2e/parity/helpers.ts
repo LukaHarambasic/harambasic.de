@@ -21,7 +21,7 @@ const CONTENT_ROOT = join(process.cwd(), 'src', 'content');
 type FrontmatterAttrs = { title?: string };
 
 /** Read every markdown file's title-derived slug for a content type. */
-export function slugsFor(type: 'posts' | 'projects' | 'uses' | 'work'): string[] {
+export function slugsFor(type: 'posts' | 'uses' | 'experience'): string[] {
 	const dir = join(CONTENT_ROOT, type);
 	return readdirSync(dir)
 		.filter((f) => f.endsWith('.md'))
@@ -38,8 +38,7 @@ export function slugsFor(type: 'posts' | 'projects' | 'uses' | 'work'): string[]
 export function htmlUrlInventory(): string[] {
 	const urls: string[] = ['/'];
 	urls.push('/posts', ...slugsFor('posts').map((s) => `/posts/${s}`));
-	urls.push('/projects', ...slugsFor('projects').map((s) => `/projects/${s}`));
-	urls.push('/work', ...slugsFor('work').map((s) => `/work/${s}`));
+	urls.push('/experience', ...slugsFor('experience').map((s) => `/experience/${s}`));
 	urls.push('/uses');
 	urls.push('/consulting', '/feeds', '/imprint', '/data-privacy');
 	return urls;
@@ -55,8 +54,7 @@ export const RSS_FEEDS = [
 	'/rss',
 	'/feeds/rss',
 	'/posts/rss',
-	'/projects/rss',
-	'/work/rss',
+	'/experience/rss',
 	'/uses/rss'
 ] as const;
 

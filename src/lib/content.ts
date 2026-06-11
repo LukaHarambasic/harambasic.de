@@ -1,8 +1,7 @@
 import { getCollection } from 'astro:content';
 import type { Post } from '$lib/types/post';
-import type { Project } from '$lib/types/project';
 import type { UsesEntry } from '$lib/types/usesEntry';
-import type { WorkEntry, Position } from '$lib/types/workEntry';
+import type { ExperienceEntry, Position } from '$lib/types/experienceEntry';
 import type { Tag } from '$lib/types/tag';
 import type { EntryType } from '$lib/types/enums';
 import { getDate, getTag } from '$lib/util/entries';
@@ -19,7 +18,7 @@ function byId<T extends { id: string }>(entries: T[]): T[] {
 }
 
 function relativePathFor(type: EntryType, slug: string): string {
-	const segment = type === 'uses' ? 'uses' : type === 'work' ? 'work' : `${type}s`;
+	const segment = type === 'uses' ? 'uses' : type === 'experience' ? 'experience' : `${type}s`;
 	return `/${segment}/${slug}`;
 }
 
@@ -57,31 +56,6 @@ export async function getPosts(): Promise<Post[]> {
 	});
 }
 
-export async function getProjects(): Promise<Project[]> {
-	const entries = byId(await getCollection('projects'));
-	return entries.map((entry) => {
-		const slug = getSlug(entry.data.title);
-		return {
-			type: 'project',
-			slug,
-			relativePath: relativePathFor('project', slug),
-			fullPath: `${BASE_URL}${relativePathFor('project', slug)}`,
-			title: entry.data.title,
-			description: entry.data.description,
-			image: entry.data.image,
-			tags: tags(entry.data.tags, 'project'),
-			published: getDate(entry.data.published),
-			updated: getDate(entry.data.updated),
-			links: entry.data.links,
-			prio: entry.data.prio,
-			status: entry.data.status,
-			imageAlt: entry.data.imageAlt ?? entry.data.title,
-			relatedWork: entry.data.relatedWork,
-			html: ''
-		};
-	});
-}
-
 export async function getUses(): Promise<UsesEntry[]> {
 	const entries = byId(await getCollection('uses'));
 	return entries.map((entry) => {
@@ -104,8 +78,8 @@ export async function getUses(): Promise<UsesEntry[]> {
 	});
 }
 
-export async function getWork(): Promise<WorkEntry[]> {
-	const entries = byId(await getCollection('work'));
+export async function getExperience(): Promise<ExperienceEntry[]> {
+	const entries = byId(await getCollection('experience'));
 	return Promise.all(
 		entries.map(async (entry) => {
 			const slug = getSlug(entry.data.title);
@@ -119,20 +93,19 @@ export async function getWork(): Promise<WorkEntry[]> {
 				}))
 			);
 			return {
-				type: 'work',
+				type: 'experience',
 				slug,
-				relativePath: relativePathFor('work', slug),
-				fullPath: `${BASE_URL}${relativePathFor('work', slug)}`,
+				relativePath: relativePathFor('experience', slug),
+				fullPath: `${BASE_URL}${relativePathFor('experience', slug)}`,
 				title: entry.data.title,
 				description: entry.data.description,
 				image: entry.data.image,
-				tags: tags(entry.data.tags, 'work'),
+				tags: tags(entry.data.tags, 'experience'),
 				published: getDate(entry.data.published),
 				updated: getDate(entry.data.updated),
 				location: entry.data.location,
 				employmentType: entry.data.employmentType,
 				positions,
-				relatedProjects: entry.data.relatedProjects ?? [],
 				html: ''
 			};
 		})
