@@ -1,0 +1,341 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { Icon } from 'astro-icon/components';
+
+const title = 'Consulting';
+const description =
+	'I help startups put AI to work: strategy, automation, and product, advised and built by one person. Based in Copenhagen.';
+
+const CAL_URL = 'https://cal.com/luhara/harambasic-consulting';
+const EMAIL = 'hi@harambasic.de';
+
+const pillars = [
+	{
+		name: 'AI',
+		icon: 'ph:sparkle-duotone',
+		services: [
+			{
+				title: 'AI strategy',
+				text: 'Where AI actually fits in your product or ops. What to build, buy, or skip. Calls I have made from inside teams.'
+			},
+			{
+				title: 'AI workshops',
+				text: 'Hands-on sessions built around your actual tools and problems. People leave with something running.'
+			}
+		]
+	},
+	{
+		name: 'Product',
+		icon: 'ph:compass-duotone',
+		services: [
+			{
+				title: 'Product strategy',
+				text: 'Roadmap, PLG motions, self-serve flows, pricing experiments. Strategy that survives contact with reality.'
+			},
+			{
+				title: 'Prototyping',
+				text: 'When validating beats planning, I build it. Production code, Figma prototypes, MCP servers, whatever answers fastest.'
+			}
+		]
+	},
+	{
+		name: 'Automation',
+		icon: 'ph:flow-arrow-duotone',
+		services: [
+			{
+				title: 'Workflow automation',
+				text: 'n8n flows covering support triage, CRM enrichment, internal tooling, and data pipelines.'
+			},
+			{
+				title: 'Agents & integrations',
+				text: 'Custom AI agents, MCP server integrations, wiring your tools together so work moves on its own.'
+			}
+		]
+	}
+];
+
+const stats = [
+	{ value: '50+', label: 'colleagues trained in hands-on AI workshops' },
+	{ value: '3,000+', label: 'connected homes scaled from zero' },
+	{ value: '>90%', label: 'automated resolution in AI-first customer support' }
+];
+---
+
+<Layout title={title} description={description}>
+	<Hero
+		slot="hero"
+		title="I help you put AI to work."
+		description="Strategy and execution across AI, automation, and product. I advise and I build, sometimes in the same day."
+	>
+		<a class="btn-book" href={CAL_URL}>Book a call</a>
+	</Hero>
+	<section class="intro">
+		<p class="lede">
+			Over 10 years in tech: product roles at <a href="/work/sap">SAP</a>, <a href="/work/monta"
+				>Monta</a
+			>, and <a href="/work/electricity-maps">Electricity Maps</a>, a technical background, and
+			<em>a deep urge to automate everything I touch</em>. I have always been the tools guy, the one
+			colleagues ask what to use or whether something can be automated. Now I do that for startups.
+		</p>
+	</section>
+	<section class="services">
+		<p class="eyebrow">What I do</p>
+		<ul class="pillars">
+			{
+				pillars.map((pillar) => (
+					<li class="pillar">
+						<Icon name={pillar.icon} class="pillar-icon" />
+						<h2>{pillar.name}</h2>
+						<ul class="service-list">
+							{pillar.services.map((service) => (
+								<li>
+									<h3>{service.title}</h3>
+									<p>{service.text}</p>
+								</li>
+							))}
+						</ul>
+					</li>
+				))
+			}
+		</ul>
+		<dl class="stats">
+			{
+				stats.map((stat) => (
+					<div class="stat">
+						<dt>{stat.value}</dt>
+						<dd>{stat.label}</dd>
+					</div>
+				))
+			}
+		</dl>
+	</section>
+	<section class="cta-block">
+		<p class="eyebrow">Let's talk</p>
+		<p class="cta-headline">Figuring out AI, automation, or product direction?</p>
+		<p class="cta-body">
+			I work with founders and small teams who want someone who can advise and build. A short call
+			is enough to see if I can help.
+		</p>
+		<div class="actions">
+			<a class="btn-book" href={CAL_URL}>Book a call</a>
+			<a class="btn-mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.eyebrow {
+		margin: 0;
+		color: var(--c-font-accent-dark);
+		font-family: var(--font-family-code);
+		font-size: var(--font-s);
+		font-weight: 500;
+		letter-spacing: var(--tracking-eyebrow);
+		text-transform: uppercase;
+		&::after {
+			display: block;
+			margin: var(--s) 0 0;
+			width: 3.5rem;
+			height: 2px;
+			border-radius: 1px;
+			background: var(--c-font);
+			content: '';
+		}
+	}
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--m);
+	}
+	.btn-book {
+		padding: var(--xs) var(--m);
+		border-radius: var(--border-radius-pill);
+		background: var(--c-inverted);
+		align-self: flex-start;
+		color: var(--c-inverted-text);
+		font-size: var(--font-m);
+		font-weight: 600;
+		text-decoration: none;
+		transition: var(--transition);
+		&:hover {
+			box-shadow: var(--shadow-md);
+			transform: translateY(-2px);
+		}
+	}
+	.btn-mail {
+		color: var(--c-font);
+		font-size: var(--font-m);
+		font-weight: 500;
+		text-decoration: underline;
+		text-decoration-thickness: var(--underline-thickness);
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	.intro {
+		display: flex;
+		margin: 0 auto;
+		width: 61.8%;
+		max-width: calc(var(--layout-xl) * 0.618);
+		flex-direction: column;
+		gap: var(--m);
+		@media screen and (width <= 48rem) {
+			width: 100%;
+		}
+		.lede {
+			margin: 0;
+			font-family: var(--font-family-serif);
+			font-size: var(--font-xl);
+			font-weight: 500;
+			line-height: 1.45;
+			letter-spacing: var(--tracking-heading);
+			em {
+				color: var(--c-accent-italic);
+			}
+			a {
+				color: var(--c-font);
+				text-decoration: underline;
+				text-decoration-thickness: var(--underline-thickness);
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	.services {
+		display: flex;
+		margin: var(--l) 0 0;
+		width: 100%;
+		flex-direction: column;
+		gap: var(--l);
+		.pillars {
+			display: grid;
+			margin: 0;
+			padding: 0;
+			gap: var(--l);
+			grid-template-columns: repeat(3, 1fr);
+			list-style: none;
+			@media screen and (width <= 48rem) {
+				grid-template-columns: 1fr;
+			}
+		}
+		.pillar {
+			display: flex;
+			padding: var(--l);
+			border-radius: var(--border-radius);
+			box-shadow: var(--ring-hairline);
+			background: var(--c-tint);
+			flex-direction: column;
+			gap: var(--m);
+			h2 {
+				margin: 0;
+				font-family: var(--font-family-serif);
+				font-size: var(--fs-h2);
+				font-weight: 500;
+				letter-spacing: var(--tracking-heading);
+			}
+		}
+		:global(.pillar-icon) {
+			width: 1.75rem;
+			height: 1.75rem;
+			color: var(--c-font);
+		}
+		.service-list {
+			display: flex;
+			margin: 0;
+			padding: 0;
+			flex-direction: column;
+			gap: var(--m);
+			list-style: none;
+			h3 {
+				margin: 0 0 var(--xxs);
+				font-family: var(--font-family);
+				font-size: var(--font-m);
+				font-weight: 700;
+			}
+			p {
+				margin: 0;
+				color: var(--c-font-accent-dark);
+				font-size: var(--font-m);
+				line-height: 1.5;
+			}
+		}
+	}
+	.stats {
+		display: grid;
+		margin: 0;
+		gap: var(--l);
+		grid-template-columns: repeat(3, 1fr);
+		@media screen and (width <= 48rem) {
+			grid-template-columns: 1fr;
+		}
+	}
+	.stat {
+		display: flex;
+		padding: 0 var(--l);
+		flex-direction: column;
+		gap: var(--xxs);
+		dt {
+			font-family: var(--font-family-serif);
+			font-size: var(--fs-display);
+			font-weight: 500;
+			letter-spacing: var(--tracking-display);
+		}
+		dd {
+			margin: 0;
+			max-width: 14rem;
+			color: var(--c-font-accent-dark);
+			font-size: var(--font-s);
+			line-height: 1.4;
+		}
+	}
+	.cta-block {
+		display: flex;
+		margin: var(--l) auto 0;
+		padding: var(--l);
+		width: 61.8%;
+		max-width: calc(var(--layout-xl) * 0.618);
+		border-radius: var(--border-radius);
+		background: var(--c-inverted);
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--m);
+		@media screen and (width <= 48rem) {
+			width: 100%;
+		}
+		@media screen and (width <= 32rem) {
+			padding: var(--m);
+		}
+		.eyebrow {
+			color: var(--c-inverted-text-muted);
+			&::after {
+				background: var(--c-accent-honey);
+			}
+		}
+		.cta-headline {
+			margin: 0;
+			color: var(--c-inverted-text);
+			font-family: var(--font-family-serif);
+			font-size: var(--fs-h2);
+			font-weight: 500;
+			letter-spacing: var(--tracking-heading);
+			text-wrap: balance;
+		}
+		.cta-body {
+			margin: 0;
+			max-width: 36rem;
+			color: var(--c-inverted-text-muted);
+			font-size: var(--font-m);
+			line-height: 1.5;
+		}
+		.btn-book {
+			background: var(--c-inverted-text);
+			color: var(--c-inverted);
+		}
+		.btn-mail {
+			color: var(--c-inverted-text);
+		}
+	}
+</style>

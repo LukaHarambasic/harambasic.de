@@ -109,7 +109,7 @@ export async function buildMergedItems(): Promise<RSSFeedItem[]> {
 	].sort(byPubDateDesc);
 }
 
-/** atom:link rel="self" — @astrojs/rss doesn't emit it; validators expect it. */
+/** atom:link rel="self" - @astrojs/rss doesn't emit it; validators expect it. */
 export function selfLink(path: string): { xmlns: Record<string, string>; customData: string } {
 	return {
 		xmlns: { atom: 'http://www.w3.org/2005/Atom' },

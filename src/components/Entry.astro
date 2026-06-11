@@ -47,7 +47,12 @@ const hasMedia = Astro.slots.has('media');
 const rel = external ? 'external' : undefined;
 ---
 
-<a href={href} class:list={['entry', variant, className, { featured, condensed }]} rel={rel} {...rest}>
+<a
+	href={href}
+	class:list={['entry', variant, className, { featured, condensed }]}
+	rel={rel}
+	{...rest}
+>
 	{
 		variant === 'card' ? (
 			<Fragment>
@@ -180,7 +185,7 @@ const rel = external ? 'external' : undefined;
 			line-height: 1.5;
 		}
 
-		/* Preset: row — text-forward, media as a small thumb on the left */
+		/* Preset: row - text-forward, media as a small thumb on the left */
 		&.row {
 			padding: var(--l);
 			padding-right: calc(var(--l) + 1.5rem + var(--xs));
@@ -209,7 +214,7 @@ const rel = external ? 'external' : undefined;
 			}
 		}
 
-		/* Preset: card — filled surface, logo+title header, structured body */
+		/* Preset: card - filled surface, logo+title header, structured body */
 		&.card {
 			padding: var(--l);
 			border: 1px solid var(--c-surface-accent);
@@ -223,6 +228,7 @@ const rel = external ? 'external' : undefined;
 				justify-content: flex-start;
 				align-items: flex-start;
 				gap: var(--m);
+
 				/* Title + subtitle only (no excerpt): tighten the pair and center
 				   it against the media box so the header aligns visually. */
 				&:has(.meta):not(:has(.excerpt)) {
@@ -249,6 +255,7 @@ const rel = external ? 'external' : undefined;
 					display: block;
 					width: 100%;
 					height: 100%;
+
 					/* Concentric with the media box: outer radius minus the inner padding. */
 					border-radius: calc(var(--border-radius-small) - var(--xxs));
 					object-fit: contain;
@@ -256,7 +263,7 @@ const rel = external ? 'external' : undefined;
 			}
 		}
 
-		/* Preset: gallery — media-forward, image on top */
+		/* Preset: gallery - media-forward, image on top */
 		&.gallery {
 			border: 1px solid var(--c-surface-accent);
 			border-radius: var(--border-radius);
@@ -290,7 +297,7 @@ const rel = external ? 'external' : undefined;
 			}
 		}
 
-		/* Modifier: condensed — tighter padding and smaller type for dense lists */
+		/* Modifier: condensed - tighter padding and smaller type for dense lists */
 		&.condensed {
 			padding: var(--s) var(--m);
 			padding-right: calc(var(--m) + 1.5rem);
@@ -307,7 +314,7 @@ const rel = external ? 'external' : undefined;
 			}
 		}
 
-		/* State: featured — the inverted plum surface, the one site-wide signal
+		/* State: featured - the inverted plum surface, the one site-wide signal
 		   for "this is the live/pinned/latest one". */
 		&.featured {
 			border-color: var(--c-inverted-line);

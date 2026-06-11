@@ -1,10 +1,10 @@
 # AM-013: Project + Work Detail Pages
 
-**Phase:** 6 — Pages: Detail | **Size:** M | **Depends on:** AM-009, AM-005, AM-006
+**Phase:** 6 - Pages: Detail | **Size:** M | **Depends on:** AM-009, AM-005, AM-006
 
 ## Goal
 
-Build `/projects/[slug]` and `/work/[slug]` with cross-references (relatedWork / relatedProjects), golden-ratio layouts, and per-position rendered markdown — matching the SvelteKit `Entry.svelte` components.
+Build `/projects/[slug]` and `/work/[slug]` with cross-references (relatedWork / relatedProjects), golden-ratio layouts, and per-position rendered markdown - matching the SvelteKit `Entry.svelte` components.
 
 ## Scope / Tasks
 
@@ -25,7 +25,7 @@ Build `/projects/[slug]` and `/work/[slug]` with cross-references (relatedWork /
 6. `getStaticPaths()` from `getWork()`.
 7. Resolve related projects via `entry.data.relatedProjects`.
 8. Render company description: `render(workEntry)` markdown body.
-9. Positions: sort with `sortPositionsByDate` (startDate DESC); render each position's `content` through `renderPositionContent()` from `$lib/markdown` (markdown-in-YAML); position card shows title, date range (`formatDateDisplay`, null endDate → "Present"), employment type. First position styled without divider, the rest with dividers — as today.
+9. Positions: sort with `sortPositionsByDate` (startDate DESC); render each position's `content` through `renderPositionContent()` from `$lib/markdown` (markdown-in-YAML); position card shows title, date range (`formatDateDisplay`, null endDate → "Present"), employment type. First position styled without divider, the rest with dividers - as today.
 10. Structure (port `work/[slug]/Entry.svelte`): `EntryHeader` inline mode with company logo leading (raster via `getWorkImage` + `<Image>`, SVG plain `<img>`), location in meta; description; related-project cards; positions list.
 11. Layout: `title`, `description`, `isDetailPage: true`.
 
@@ -39,6 +39,6 @@ Build `/projects/[slug]` and `/work/[slug]` with cross-references (relatedWork /
 
 ## Notes / Parity traps
 
-- `renderPositionContent` is async — render positions in the page frontmatter with `await Promise.all(...)`, not in markup.
+- `renderPositionContent` is async - render positions in the page frontmatter with `await Promise.all(...)`, not in markup.
 - The dark current-employer styling is **only** on the `/work` index card, never on detail pages.
 - Date display "Present" / month-year formats must match the AM-001 page fixtures exactly (RSS dates are separate, AM-014).

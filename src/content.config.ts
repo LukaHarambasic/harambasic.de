@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 // Frontmatter-only schemas (html/toc come from render(), never frontmatter).
-// `image: 'TODO'` is a real value in post frontmatter — the image helpers map it to null.
+// `image: 'TODO'` is a real value in post frontmatter - the image helpers map it to null.
 
 const employmentType = z.enum(['full-time', 'part-time', 'contract', 'internship']);
 
@@ -15,7 +15,7 @@ const ymdNullable = z
 	.transform((v) => (v == null ? null : toYmd(v)));
 
 // `image:` is sometimes written empty (→ null). Treat empty/missing as 'TODO',
-// which the image helpers map to "no image" — same as the old getImageFromGlob.
+// which the image helpers map to "no image" - same as the old getImageFromGlob.
 const imageField = z
 	.string()
 	.nullish()
@@ -95,7 +95,7 @@ const work = defineCollection({
 	})
 });
 
-// Dormant collections — defined so their writers (fetch-shareable) and routes-to-be
+// Dormant collections - defined so their writers (fetch-shareable) and routes-to-be
 // validate, but no routes consume them today. Permissive schemas.
 const snippets = defineCollection({
 	loader: glob({ pattern: '**/*.md', base: './src/content/snippets' }),

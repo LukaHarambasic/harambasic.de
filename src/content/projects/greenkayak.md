@@ -21,4 +21,4 @@ tags:
   - User Research
 ---
 
-GreenKayak's booking system was exclusively web-based, which relinquished control over parts of the booking experience and data collection. An integral component of this NGO's business model involves reporting the amount of trash collected, a process that was analog and error-prone until the app's release. I orchestrated the planning and design of the app and managed its development with an external agency. Since its launch, the app has garnered over 10,000 downloads and engaged more than 16,000 volunteers in the 2023 season.
+GreenKayak's booking ran entirely through the web, which meant little control over the booking experience and data collection. A core part of the NGO's model is reporting the amount of trash collected, and that process was analog and error-prone until the app. I planned and designed the app and managed its development with an external agency. Since launch it has passed 20,000 downloads and engaged more than 16,000 volunteers in the 2023 season alone.

@@ -1,5 +1,5 @@
 /*
- * Code-block container styling — replaces the retired highlight.css.
+ * Code-block container styling - replaces the retired highlight.css.
  *
  * Token colors AND the background come from Shiki's `one-dark-pro` theme, applied
  * inline on the `<pre class="astro-code">` element (background #282c34, matching

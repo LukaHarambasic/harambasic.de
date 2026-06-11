@@ -38,6 +38,7 @@ const { columns = 1, divided = true, class: className } = Astro.props;
 			&[data-divided='false'] {
 				gap: var(--l);
 			}
+
 			/* Minimal air between the hover fill and the divider hairline. */
 			&[data-divided='true'] {
 				> :global(li:not(:last-child)) {

@@ -1,7 +1,7 @@
 /**
  * Build-time site origin for absolute URLs in meta tags (og:image, og:url).
- * Netlify sets DEPLOY_PRIME_URL on every build — including production, where it
- * points at the branch permalink (main--*.netlify.app) — so production must use
+ * Netlify sets DEPLOY_PRIME_URL on every build - including production, where it
+ * points at the branch permalink (main--*.netlify.app) - so production must use
  * the canonical URL (process.env.URL) instead. CONTEXT distinguishes the two;
  * local/CI builds fall back to the canonical domain.
  */

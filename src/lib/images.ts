@@ -1,6 +1,6 @@
 import type { ImageMetadata, ImageOutputFormat } from 'astro';
 
-// Shared <Picture> output config — mirrors the old enhanced-img widths/formats.
+// Shared <Picture> output config - mirrors the old enhanced-img widths/formats.
 export const IMAGE_WIDTHS = [400, 640, 1280];
 export const IMAGE_FORMATS: ImageOutputFormat[] = ['avif', 'webp'];
 
@@ -10,7 +10,7 @@ export function isSvgImage(imageName: string): boolean {
 }
 
 // Eager glob maps replacing the enhanced-img globs. Raster only (same extension
-// set as the old enhanced-img config) — SVGs are intentionally excluded so they
+// set as the old enhanced-img config) - SVGs are intentionally excluded so they
 // fall through to the plain <img src="/uses/..."> public path.
 const projectImages = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/img/projects/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',

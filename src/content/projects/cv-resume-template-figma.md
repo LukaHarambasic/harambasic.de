@@ -14,4 +14,4 @@ tags:
   - UI Design
 ---
 
-Why bother with Word, a graphics program, or some generator when creating your CV? I went through all that, only to discover Figma—and it was fantastic. But then, Figma's auto layouts arrived, and I went all in. Friends, and more than 100 strangers, are already using the template. It's incredibly easy to adapt—the overall structure, colors, and just about everything else. Let me know if you land your next job with it!
+Why bother with Word, a graphics program, or some generator when creating your CV? I went through all that, only to discover Figma. And it was fantastic. But then Figma's auto layouts arrived, and I went all in. Friends, and more than 100 strangers, are already using the template. It's incredibly easy to adapt: the overall structure, colors, and just about everything else. Let me know if you land your next job with it!

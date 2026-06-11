@@ -1,10 +1,10 @@
 # AM-019: View Transitions
 
-**Phase:** 11 — Post-Parity Enhancements | **Size:** S | **Depends on:** AM-017 (coordinate with AM-020)
+**Phase:** 11 - Post-Parity Enhancements | **Size:** S | **Depends on:** AM-017 (coordinate with AM-020)
 
 ## Goal
 
-Add Astro's client router for smooth cross-page transitions — restoring some of the SPA feel SvelteKit's client router provided, without a framework runtime.
+Add Astro's client router for smooth cross-page transitions - restoring some of the SPA feel SvelteKit's client router provided, without a framework runtime.
 
 ## Scope / Tasks
 
@@ -13,10 +13,10 @@ Add Astro's client router for smooth cross-page transitions — restoring some o
    ```js
    document.addEventListener('astro:page-load', init);
    ```
-   Ensure listeners aren't doubled (idempotent init — AM-015 already structured them as named functions for this).
+   Ensure listeners aren't doubled (idempotent init - AM-015 already structured them as named functions for this).
 3. **Feed endpoints**: links to `/rss` etc. from `/feeds` must trigger full navigation, not client-side routing of an XML document. Verify the router's opt-out behavior for non-HTML targets; add `data-astro-reload` on those links if needed (the Astro equivalent of the old `data-sveltekit-reload`).
 4. **Persisted elements**: consider `transition:persist` on the header/nav if it visibly flashes; keep defaults unless a flash is observed.
-5. **Reduced motion**: Astro's view transitions respect `prefers-reduced-motion` by falling back — verify, and align with AM-020's guards.
+5. **Reduced motion**: Astro's view transitions respect `prefers-reduced-motion` by falling back - verify, and align with AM-020's guards.
 6. Run the full parity suite + manual nav pass (back/forward buttons, hash `#contact` navigation across pages, scroll restoration).
 
 ## Acceptance Criteria
@@ -29,4 +29,4 @@ Add Astro's client router for smooth cross-page transitions — restoring some o
 
 ## Notes / Parity traps
 
-- GoatCounter counts page loads — with a client router, SPA-style navigations need manual counting (`window.goatcounter.count()` on `astro:page-load`) or analytics under-reports. Implement the manual count hook.
+- GoatCounter counts page loads - with a client router, SPA-style navigations need manual counting (`window.goatcounter.count()` on `astro:page-load`) or analytics under-reports. Implement the manual count hook.

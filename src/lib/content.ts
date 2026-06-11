@@ -29,7 +29,7 @@ function tags(values: string[], type: EntryType): Tag[] {
 
 /**
  * Typed accessors over Astro content collections. The routed slug is always
- * derived from the frontmatter title via getSlug() (never the file id) — see
+ * derived from the frontmatter title via getSlug() (never the file id) - see
  * AM-002. `html`/`toc` are populated by `render()` at the page/feed level, not
  * here, so they default to empty in the view models.
  */

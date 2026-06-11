@@ -1,4 +1,4 @@
-# Astro Migration — harambasic.de
+# Astro Migration - harambasic.de
 
 Full rewrite of this SvelteKit 5 static site to **Astro**, staying as close to Astro idioms as possible: content collections, `astro:assets`, static endpoints, astro-icon, built-in Shiki. No Svelte remains afterward.
 
@@ -14,11 +14,11 @@ Full rewrite of this SvelteKit 5 static site to **Astro**, staying as close to A
 
 1. **RSS: port the custom `generateXml`/`generateMergedXml` verbatim**, not `@astrojs/rss`. Exact output parity is a hard requirement; the quirky sorts (sections ASC, merged DESC), `content:encoded`, and `<category>` shape are already encoded in tested pure functions.
 2. **Shiki `one-dark-pro`** replaces rehype-highlight + highlight.css. Astro-native, near-identical visuals to the current One Dark theme; code blocks stay always-dark.
-3. **Slugs derive from the title** (`getSlug(title)`), never the filename — enforced in the entry accessor layer; AM-002 audits filename/title divergence up front so URLs and RSS `<guid>`s never change.
+3. **Slugs derive from the title** (`getSlug(title)`), never the filename - enforced in the entry accessor layer; AM-002 audits filename/title divergence up front so URLs and RSS `<guid>`s never change.
 4. **TOC from Astro's native `render()` headings** + a pure nested-tree builder; the custom remark TOC plugin is retired.
 5. **Vanilla JS only** for the four interactive behaviors (contact dialog via `#contact` hash, home-feed show more/less, clipboard copy, status filter if production actually renders it). Progressive enhancement: feed rows server-rendered with `hidden`.
 6. **In-place rewrite on `feat/astro-migration`**: Astro replaces SvelteKit at the repo root; `src/content/` and `scripts/` survive nearly untouched; `static/` → `public/`, build output `build/` → `dist/`; `main` untouched until the final PR.
-7. **Retired architecture**: `MarkdownProcessor`/`RemarkRehypeProcessor`/`TocPlugin`/`ImagePlugin`/`HtmlSanitizer`, `FileSystemContentService`, `entryConfigs`/`api.server` — Astro's content layer replaces them. Only the pure utility functions (and their tests) survive.
+7. **Retired architecture**: `MarkdownProcessor`/`RemarkRehypeProcessor`/`TocPlugin`/`ImagePlugin`/`HtmlSanitizer`, `FileSystemContentService`, `entryConfigs`/`api.server` - Astro's content layer replaces them. Only the pure utility functions (and their tests) survive.
 8. **Parity harness first** (Phase 0): Playwright snapshots + RSS fixtures captured from the *current* SvelteKit build become the acceptance bar for the final cutover.
 
 ## Phases & tickets
@@ -85,18 +85,18 @@ AM-001 → AM-002 → AM-003 → AM-004 → AM-005 → AM-006 → AM-007 → AM-
 
 ## Risks & parity traps
 
-- **Slug title-vs-filename mismatch** — slugs (and RSS guids) derive from titles, Astro ids from filenames. AM-002 gates this before any code is built.
-- **Feed sort quirk** — section feeds sort published **ASC**, merged feed **DESC**. Looks like a bug; it's production behavior. Preserve.
-- **`lastBuildDate`** changes every build — always stripped before fixture comparison.
-- **Social image URLs** — `${DEPLOY_PRIME_URL || URL || 'https://harambasic.de'}/social/{getSlug(title)}.png`; env vars must reach `astro build` (Netlify sets them; CI passes them), and a PNG must exist per title.
-- **Work positions** — `positions[].content` is markdown inside YAML; rendered at build via `renderPositionContent()` (remark → rehype → stringify), used by the work detail page and work RSS `content:encoded`.
-- **Golden-ratio wrapper** — only on the three detail routes (`/posts/[slug]`, `/projects/[slug]`, `/work/[slug]`); `/feeds` gets no hero.
-- **`#contact`** opens a dialog, not an anchor — SvelteKit needed `handleMissingId: 'ignore'`; Astro needs nothing, but the hash listener must run on every page.
-- **Svelte vs Astro `:global()`** scoping semantics differ slightly — re-verify each `:global` usage (BaseCard image globals, BaseSegmentedButtons children).
-- **Shiki vs hljs markup** — code-block internals intentionally differ; parity snapshots exclude them, everything else must match.
+- **Slug title-vs-filename mismatch** - slugs (and RSS guids) derive from titles, Astro ids from filenames. AM-002 gates this before any code is built.
+- **Feed sort quirk** - section feeds sort published **ASC**, merged feed **DESC**. Looks like a bug; it's production behavior. Preserve.
+- **`lastBuildDate`** changes every build - always stripped before fixture comparison.
+- **Social image URLs** - `${DEPLOY_PRIME_URL || URL || 'https://harambasic.de'}/social/{getSlug(title)}.png`; env vars must reach `astro build` (Netlify sets them; CI passes them), and a PNG must exist per title.
+- **Work positions** - `positions[].content` is markdown inside YAML; rendered at build via `renderPositionContent()` (remark → rehype → stringify), used by the work detail page and work RSS `content:encoded`.
+- **Golden-ratio wrapper** - only on the three detail routes (`/posts/[slug]`, `/projects/[slug]`, `/work/[slug]`); `/feeds` gets no hero.
+- **`#contact`** opens a dialog, not an anchor - SvelteKit needed `handleMissingId: 'ignore'`; Astro needs nothing, but the hash listener must run on every page.
+- **Svelte vs Astro `:global()`** scoping semantics differ slightly - re-verify each `:global` usage (BaseCard image globals, BaseSegmentedButtons children).
+- **Shiki vs hljs markup** - code-block internals intentionally differ; parity snapshots exclude them, everything else must match.
 - **View transitions** (AM-019) require idempotent script re-init on `astro:page-load` and a manual GoatCounter count hook, or analytics under-report.
-- **Dormant collections** — snippets (1 entry) and shareables (0) are defined but have no routes, exactly as today.
-- **`image: TODO`** appears in real frontmatter — schemas must allow it; image helpers return null for it.
+- **Dormant collections** - snippets (1 entry) and shareables (0) are defined but have no routes, exactly as today.
+- **`image: TODO`** appears in real frontmatter - schemas must allow it; image helpers return null for it.
 
 ## Ticket format
 
@@ -104,7 +104,7 @@ Every ticket follows:
 
 ```markdown
 # AM-0NN: Title
-**Phase:** N — Name | **Size:** S/M/L | **Depends on:** AM-0XX, AM-0YY
+**Phase:** N - Name | **Size:** S/M/L | **Depends on:** AM-0XX, AM-0YY
 
 ## Goal
 ## Scope / Tasks

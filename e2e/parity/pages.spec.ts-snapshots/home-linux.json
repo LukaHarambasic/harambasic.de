@@ -2,9 +2,9 @@
   "url": "/",
   "status": 200,
   "title": "Luka Harambasic",
-  "description": "My private playground, publishing my thoughts and ideas. Showing of what I did and playing around with new technologies.",
+  "description": "Luka Harambasic. Product and AI consulting, past work in climate tech and energy. Based in Copenhagen.",
   "ogImage": "https://harambasic.de/social/default.png",
-  "h1": "Heyho, I'm Luka!",
+  "h1": "Heyho,I'm Luka!",
   "landmarks": {
     "header": 1,
     "nav": 1,
@@ -14,6 +14,7 @@
   },
   "navHrefs": [
     "/",
+    "/consulting",
     "/work",
     "/projects",
     "/uses",

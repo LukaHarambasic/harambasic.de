@@ -22,4 +22,4 @@ tags:
   - Android Developer
 ---
 
-I worked on the Android version of the German Corona-Warn-App. In the beginning, I focused on the UI implementation for version 1.0.0, which was released after only 50 days of development. A few weeks later, I took on even more responsibility and facilitated the development as team lead and scrum master.
+I worked on the Android version of the German Corona-Warn-App. In the beginning, I focused on the UI implementation for version 1.0.0, which was released after only 50 days of development. A few weeks later I took over as team lead and scrum master.

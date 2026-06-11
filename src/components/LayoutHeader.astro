@@ -1,6 +1,7 @@
 ---
 const links = [
 	{ name: 'Home', url: '/' },
+	{ name: 'Consulting', url: '/consulting' },
 	{ name: 'Work', url: '/work' },
 	{ name: 'Projects', url: '/projects' },
 	{ name: 'Uses', url: '/uses' },
@@ -98,7 +99,7 @@ function isActiveRoute(url: string): boolean {
 			justify-content: flex-start;
 			align-items: flex-start;
 			align-content: stretch;
-			gap: var(--m);
+			gap: var(--xxs);
 			@media screen and (width <= 48rem) {
 				flex-wrap: wrap;
 				justify-content: center;

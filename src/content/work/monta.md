@@ -21,8 +21,8 @@ positions:
 
       I've always been the "Tools Guy". I simply love tinkering with new tech, so I naturally ended up helping my colleagues figure out how to use AI to automate the boring parts of our jobs.
 
-      - Enablement: Ran cross-department knowledge sharing and 1:1 sessions to up-level colleagues, helping them build their own automations.
-      - Zapier Workflows: Built automations to scan sales and CS transcripts, ensuring I stayed on top of real customer needs and could proactively support colleagues when problems spiked (one of my fav automations).
+      - Enablement: Ran cross-department sessions and 1:1s, helping colleagues build their own automations.
+      - Zapier Workflows: Built automations to scan sales and CS transcripts, so I stayed on top of real customer problems and could jump in when something spiked (one of my fav automations).
       - Automation & AI Squad: Joined the squad to push these topics across the entire company, also hosted a hackathon.
       - First MCP Server: Built Monta's first MCP server to control the entire CPMS via prompts, hooking it up to internal systems to automate QA and generate instant, customized customer demos.
 

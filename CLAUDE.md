@@ -352,7 +352,7 @@ When updating existing code:
 
 - **Unit Tests**: Vitest (`vitest.config.ts`, scoped to `src/**/*.test.ts`)
 - **E2E Tests**: Playwright parity suite in `e2e/` (builds + previews on port 4173)
-- Parity snapshots (`e2e/parity/*-snapshots/`) are byte-stable — never reformat them; RSS feeds are validated structurally (no fixtures)
+- Parity snapshots (`e2e/parity/*-snapshots/`) are byte-stable - never reformat them; RSS feeds are validated structurally (no fixtures)
 
 ### Build & Deployment
 

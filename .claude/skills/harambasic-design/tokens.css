@@ -1,5 +1,5 @@
 /* ============================================================
-   Harambasic Consulting — design tokens (flattened, self-contained)
+   Harambasic Consulting - design tokens (flattened, self-contained)
    Reference document for the harambasic-design skill.
    Two brand colours, derived from the portrait mark:
      Aubergine ink  #2d0a2e   (the line, the type, the depth)
@@ -13,7 +13,7 @@
 	--aub-800: #3c133d;
 	--aub-700: #4f1f50;
 	--aub-600: #653366;
-	--aub-500: #7e4a7d; /* mauve mid — matches the logo's midtones */
+	--aub-500: #7e4a7d; /* mauve mid - matches the logo's midtones */
 	--aub-400: #9a6a98;
 	--aub-300: #bb95b9;
 	--aub-200: #dbc1d8;
@@ -42,7 +42,7 @@
 	--honey-100: #f9ecd5;
 	--honey-300: #efc88c;
 	--honey-400: #e8b366;
-	--honey-500: #e0a24a; /* ACCENT — honey */
+	--honey-500: #e0a24a; /* ACCENT - honey */
 	--honey-600: #c9883a;
 	--honey-700: #a66c2c;
 
@@ -50,7 +50,7 @@
 	--clay-100: #f6e2d9;
 	--clay-300: #e0a892;
 	--clay-400: #d4866c;
-	--clay-500: #c76b4e; /* ACCENT — clay */
+	--clay-500: #c76b4e; /* ACCENT - clay */
 	--clay-600: #aa5439;
 
 	/* ---- Semantic hues (tuned warm to fit the family) ------ */
@@ -61,14 +61,14 @@
 	--red-500: #c24a4a;
 	--red-100: #f6dada;
 
-	/* ---- Semantic aliases — use these, not raw scales ------ */
+	/* ---- Semantic aliases - use these, not raw scales ------ */
 
 	/* Text */
 	--text-strong: var(--aub-900);
 	--text-body: #3a2438;
 	--text-muted: #6f5a6c;
 	--text-subtle: #8f7c8c;
-	--text-on-ink: var(--rose-100); /* pink type on aubergine — on-brand */
+	--text-on-ink: var(--rose-100); /* pink type on aubergine - on-brand */
 	--text-on-ink-muted: #c9a6c4;
 	--text-link: var(--aub-700);
 
@@ -88,7 +88,7 @@
 	--hairline: rgba(45, 10, 46, 0.14); /* fine editorial rules */
 	--border-on-ink: rgba(255, 237, 249, 0.18);
 
-	/* Primary action — aubergine with pink type */
+	/* Primary action - aubergine with pink type */
 	--accent: var(--aub-900);
 	--accent-hover: var(--aub-800);
 	--accent-press: var(--aub-950);
@@ -129,16 +129,16 @@
 	--fw-bold: 700;
 
 	/* ---- Type scale (editorial) ----------------------------- */
-	--fs-display: 4.5rem; /* 72 — hero serif */
+	--fs-display: 4.5rem; /* 72 - hero serif */
 	--fs-h1: 3rem; /* 48 */
 	--fs-h2: 2.25rem; /* 36 */
 	--fs-h3: 1.5rem; /* 24 */
 	--fs-h4: 1.25rem; /* 20 */
-	--fs-body-lg: 1.1875rem; /* 19 — lead paragraphs */
-	--fs-body: 1.0625rem; /* 17 — default body */
+	--fs-body-lg: 1.1875rem; /* 19 - lead paragraphs */
+	--fs-body: 1.0625rem; /* 17 - default body */
 	--fs-body-sm: 0.9375rem; /* 15 */
 	--fs-caption: 0.8125rem; /* 13 */
-	--fs-eyebrow: 0.75rem; /* 12 — mono uppercase label */
+	--fs-eyebrow: 0.75rem; /* 12 - mono uppercase label */
 
 	/* ---- Line heights --------------------------------------- */
 	--lh-display: 1.04;
@@ -187,7 +187,7 @@
 	--bw-regular: 1.5px;
 	--bw-bold: 2px;
 
-	/* ---- Shadows — low, soft, aubergine-tinted ------------------- */
+	/* ---- Shadows - low, soft, aubergine-tinted ------------------- */
 	--shadow-xs: 0 1px 2px rgba(45, 10, 46, 0.06);
 	--shadow-sm: 0 2px 8px rgba(45, 10, 46, 0.06), 0 1px 2px rgba(45, 10, 46, 0.04);
 	--shadow-md: 0 6px 24px rgba(45, 10, 46, 0.09), 0 2px 6px rgba(45, 10, 46, 0.05);
@@ -208,7 +208,7 @@
 }
 
 /* ============================================================
-   Dark theme — site extension (not part of the original system).
+   Dark theme - site extension (not part of the original system).
    Derived from the ink surfaces; all text pairs are WCAG AAA
    on #2d0a2e (see SKILL.md for the contrast table).
    ============================================================ */

@@ -1,10 +1,10 @@
 {
   "url": "/work",
   "status": 200,
-  "title": "Building products that matter for people & the planet | Luka Harambasic",
-  "description": "My professional journey across different companies and roles. Each entry represents a company where I've worked, with multiple positions and experiences.",
-  "ogImage": "https://harambasic.de/social/building-products-that-matter-for-people-the-planet.png",
-  "h1": "Building products that matter for people & the planet",
+  "title": "Where I've worked and what I built | Luka Harambasic",
+  "description": "Product roles across climate tech and energy, one failed startup, and a lot of iteration on what good product work actually looks like.",
+  "ogImage": "https://harambasic.de/social/default.png",
+  "h1": "Where I've worked and what I built",
   "landmarks": {
     "header": 1,
     "nav": 1,
@@ -14,6 +14,7 @@
   },
   "navHrefs": [
     "/",
+    "/consulting",
     "/work",
     "/projects",
     "/uses",

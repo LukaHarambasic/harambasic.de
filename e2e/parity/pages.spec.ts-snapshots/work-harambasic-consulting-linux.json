@@ -1,12 +1,12 @@
 {
-  "url": "/uses",
+  "url": "/work/harambasic-consulting",
   "status": 200,
-  "title": "Tools and gear I actually use | Luka Harambasic",
-  "description": "An overview of the software, hardware, and workflows I rely on in my daily work and life. No affiliate fluff, just what's on my desk and in my stack, and why I use it.",
-  "ogImage": "https://harambasic.de/social/tools-and-gear-i-actually-use.png",
-  "h1": "Tools and gear I actually use",
+  "title": "Harambasic Consulting | Luka Harambasic",
+  "description": "My consulting practice, combining product, AI and automation for startups.",
+  "ogImage": "https://harambasic.de/social/default.png",
+  "h1": "Harambasic Consulting",
   "landmarks": {
-    "header": 1,
+    "header": 3,
     "nav": 1,
     "main": 1,
     "footer": 1,
