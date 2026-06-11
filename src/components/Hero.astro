@@ -10,6 +10,7 @@ const { title, description } = Astro.props;
 <section class="hero">
 	<h1 class="title">{title}</h1>
 	<p class="description">{description}</p>
+	<slot />
 </section>
 
 <style>

@@ -143,11 +143,11 @@ It also offers solutions for screenshots, clipboard management, and window manag
 
 ## Useful shortcuts
 
-I use shortcuts besides these utilities—besides copy and paste—on a daily basis.
+I use shortcuts besides these utilities, besides copy and paste, on a daily basis.
 
-**CTRL + L**—In Notion and Figma (I don't know if there are others), it copies the URL of what you currently have open directly to your clipboard. Quickly share a Notion page via Slack or link a Figma screen in a Jira ticket.
+**CTRL + L**: In Notion and Figma (I don't know if there are others), it copies the URL of what you currently have open directly to your clipboard. Quickly share a Notion page via Slack or link a Figma screen in a Jira ticket.
 
-**CTRL + K**—This opens a similar command palette like Spotlight/Raycast in multiple applications and websites (e.g., Jira, Figma, Notion, Slack) that lets you perform all kinds of tasks, depending on the application.
+**CTRL + K**: This opens a similar command palette like Spotlight/Raycast in multiple applications and websites (e.g., Jira, Figma, Notion, Slack) that lets you perform all kinds of tasks, depending on the application.
 
 ## Closing thoughts
 

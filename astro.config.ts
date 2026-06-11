@@ -7,7 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://harambasic.de',
-	output: 'static', // pure static output — no adapter needed; Netlify serves dist/
+	output: 'static', // pure static output - no adapter needed; Netlify serves dist/
 	trailingSlash: 'never',
 	// Exclude the extensionless RSS endpoints from the sitemap (HTML pages only).
 	integrations: [icon(), sitemap({ filter: (page) => !page.endsWith('/rss') })],

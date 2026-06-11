@@ -1,4 +1,4 @@
-# AM-002 — Audit Results & Decisions
+# AM-002 - Audit Results & Decisions
 
 `node scripts/audit-slugs.js` → **0 fatal, 22 warnings**.
 
@@ -11,7 +11,7 @@ Filenames diverge from title-slugs for many entries (e.g. `corona-warn-app.md` �
 The plan offered two resolutions: rename files, or document an exception. **We document
 the exception** because:
 
-1. **AM-003 requires `src/content/` byte-identical to `main`** — renaming would violate it.
+1. **AM-003 requires `src/content/` byte-identical to `main`** - renaming would violate it.
 2. **AM-005 mandates slugs derive from the title regardless** (`getSlug(data.title)` in the
    accessor layer, never the Astro filename `id`). So URLs/`<guid>`s stay correct without
    any rename or `content.config.ts` slug override.

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { htmlUrlInventory, urlKey } from './helpers';
 
 /**
- * Parity snapshots of page STRUCTURE and METADATA — not full-page HTML.
+ * Parity snapshots of page STRUCTURE and METADATA - not full-page HTML.
  * Code-block markup (rehype-highlight -> Shiki) and image markup
  * (enhanced-img -> astro:assets) intentionally change across the migration,
  * so they are deliberately excluded from these snapshots.

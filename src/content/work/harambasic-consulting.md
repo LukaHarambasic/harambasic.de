@@ -1,6 +1,6 @@
 ---
 title: Harambasic Consulting
-description: Independent consulting combining product, AI and automation for startups.
+description: My consulting practice, combining product, AI and automation for startups.
 image: harambasic_consulting.png
 published: 2026-06-01
 updated: 2026-06-10

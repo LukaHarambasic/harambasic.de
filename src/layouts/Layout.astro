@@ -165,8 +165,19 @@ const socialImgAlt = fullTitle;
 		});
 	}
 
-	// Global listeners — the module runs once even with the client router.
+	// Global listeners: the module runs once even with the client router.
 	window.addEventListener('hashchange', openContactIfHash);
+
+	// Open the dialog directly on #contact link clicks. Hash-only navigations
+	// don't reliably fire hashchange under the client router (e.g. the footer
+	// link), so the hashchange listener alone misses them.
+	document.addEventListener('click', (e) => {
+		const link = (e.target as Element | null)?.closest?.('a[href="#contact"]');
+		if (!link) return;
+		e.preventDefault();
+		const dialog = document.getElementById('contact-dialog') as HTMLDialogElement | null;
+		if (dialog && !dialog.open) dialog.showModal();
+	});
 
 	let firstPageLoad = true;
 	document.addEventListener('astro:page-load', () => {

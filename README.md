@@ -1,11 +1,11 @@
 # harambasic.de
 
-Personal site of Luka Harambasic — posts, projects, work, and uses. Built with
+Personal site of Luka Harambasic - posts, projects, work, and uses. Built with
 [Astro](https://astro.build) as a fully static site.
 
 ## Stack
 
-- **Astro** (static output, no adapter) — content collections, `astro:assets`, static endpoints
+- **Astro** (static output, no adapter) - content collections, `astro:assets`, static endpoints
 - **TypeScript** + **PostCSS** (postcss-nested, postcss-sorting, autoprefixer, cssnano)
 - **Shiki** (`one-dark-pro`) for code highlighting; **astro-icon** (`@iconify-json/ph`) for build-time inline SVG icons
 - **Vitest** (unit) + **Playwright** (e2e parity suite)

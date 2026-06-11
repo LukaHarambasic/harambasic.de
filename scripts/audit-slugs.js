@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 /**
- * AM-002 — Slug parity audit.
+ * AM-002 - Slug parity audit.
  *
  * Entry slugs (and therefore every URL and RSS <guid>) derive from the
  * frontmatter TITLE via getSlug(title), never from the filename. Astro content
  * collections derive their internal id from the filename, but the migration's
- * accessor layer (src/lib/entries.ts) computes the routed slug from the title —
+ * accessor layer (src/lib/entries.ts) computes the routed slug from the title -
  * so the filename and the title-slug are allowed to diverge.
  *
  * This script is a permanent guard for the things that actually break URLs and
  * feeds:
- *   - title-slug collisions within a content type (FATAL — two entries fight
+ *   - title-slug collisions within a content type (FATAL - two entries fight
  *     for the same URL)
  *   - relatedProjects / relatedWork cross-references that don't resolve (FATAL)
- *   - missing social images for posts/uses (WARN — og:image would 404)
+ *   - missing social images for posts/uses (WARN - og:image would 404)
  *
  * Filename-vs-title divergence is reported as INFO only: it is expected and
  * handled by deriving slugs from the title. Run standalone (no Vite/TS).
@@ -22,7 +22,7 @@ import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import fm from 'front-matter';
 
-// Copied verbatim from src/lib/util/helper.ts — must run outside the toolchain.
+// Copied verbatim from src/lib/util/helper.ts - must run outside the toolchain.
 function getSlug(str) {
 	if (!str) return '';
 	return str

@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import fm from 'front-matter';
 
 /**
- * Slug derivation — copied verbatim from src/lib/util/helper.ts getSlug().
+ * Slug derivation - copied verbatim from src/lib/util/helper.ts getSlug().
  * The parity harness must run framework-independently (against the SvelteKit
  * build now and the Astro build later), so it cannot import from $lib.
  */

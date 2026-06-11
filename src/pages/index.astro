@@ -62,11 +62,12 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 
 <Layout description={description}>
 	<section class="heyho">
+		<h1>Heyho,<br />I'm Luka!</h1>
 		<div class="inner">
 			{
 				/* LCP element: load eagerly at high priority, sized to its real display width
 			    (14.5rem desktop, full container width below 32rem) instead of the shared
-			    detail-page widths — the old sizes pulled the 1280w variant for a ~350px slot. */
+			    detail-page widths - the old sizes pulled the 1280w variant for a ~350px slot. */
 			}
 			<Image
 				src={profileImg}
@@ -79,17 +80,26 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 			/>
 			<div class="content">
 				<BaseRichText>
-					<h1>Heyho, I'm Luka!</h1>
 					<p>
-						German/Croatian living in Copenhagen. Running <a href="/work">Harambasic Consulting</a> right
-						now: AI, automation, and product for startups. Before that I spent a few years doing product
-						at <a href="https://www.electricitymaps.com/">Electricity Maps</a> and Monta, mostly in the
-						energy space. AI and automation are where most of my thinking goes. If you want to geek out
-						over that, or talk handball, woodworking, or cooking, <a href="#contact">say hi</a>.
+						German/Croatian living in Copenhagen. By day I'm a product manager (new gig starting in
+						August), and next to that I do <a href="/consulting">consulting</a>: AI, automation, and
+						product for startups. This site has been around for years, rebuilt every time a new
+						framework caught my eye. It's my little playground on the web, and the place to learn
+						what I can help you with. If you want to geek out over AI and automation, or talk
+						handball, woodworking, or cooking, <a href="#contact">say hi</a>.
 					</p>
 				</BaseRichText>
 			</div>
 		</div>
+	</section>
+	<section class="consulting-banner">
+		<p class="eyebrow">Harambasic Consulting</p>
+		<h2>I help you put AI to work.</h2>
+		<p class="sub">
+			Strategy and execution across AI, automation, and product for startups. I advise and I build,
+			sometimes in the same day.
+		</p>
+		<a class="btn-book" href="https://cal.com/luhara/harambasic-consulting">Book a call</a>
 	</section>
 	<section class="featured">
 		<h2>Feed</h2>
@@ -159,7 +169,7 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 	.heyho {
 		display: flex;
 		position: relative;
-		margin: var(--xl) 0;
+		margin: var(--xl) 0 0;
 		width: var(--layout-l);
 		flex-direction: column;
 		flex-wrap: nowrap;
@@ -169,6 +179,16 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 		gap: var(--l);
 		@media screen and (width <= 56rem) {
 			width: 100%;
+		}
+		h1 {
+			margin: 0;
+			font-family: var(--font-family-serif);
+			font-size: clamp(3rem, 9vw, 6rem);
+			font-weight: 600;
+			line-height: 1;
+			letter-spacing: var(--tracking-display);
+			text-align: center;
+			white-space: nowrap;
 		}
 		.inner {
 			display: flex;
@@ -190,13 +210,6 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 				}
 			}
 			.content {
-				h1 {
-					margin: 0 0 var(--s);
-					font-family: var(--font-family-serif);
-					font-size: var(--fs-h1);
-					font-weight: 600;
-					letter-spacing: var(--tracking-heading);
-				}
 				p {
 					font-weight: normal;
 					line-height: 1.5;
@@ -204,6 +217,71 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 						line-break: loose;
 					}
 				}
+			}
+		}
+	}
+	.consulting-banner {
+		display: flex;
+		margin: var(--xl) 0 0;
+		padding: var(--l);
+		width: var(--layout-l);
+		border-radius: var(--border-radius);
+		background: var(--c-inverted);
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--m);
+		@media screen and (width <= 56rem) {
+			width: 100%;
+		}
+		@media screen and (width <= 32rem) {
+			padding: var(--m);
+		}
+		.eyebrow {
+			margin: 0;
+			color: var(--c-inverted-text-muted);
+			font-family: var(--font-family-code);
+			font-size: var(--font-s);
+			font-weight: 500;
+			letter-spacing: var(--tracking-eyebrow);
+			text-transform: uppercase;
+			&::after {
+				display: block;
+				margin: var(--s) 0 0;
+				width: 3.5rem;
+				height: 2px;
+				border-radius: 1px;
+				background: var(--c-accent-honey);
+				content: '';
+			}
+		}
+		h2 {
+			margin: 0;
+			color: var(--c-inverted-text);
+			font-family: var(--font-family-serif);
+			font-size: var(--fs-h1);
+			font-weight: 500;
+			letter-spacing: var(--tracking-heading);
+			text-wrap: balance;
+		}
+		.sub {
+			margin: 0;
+			max-width: 36rem;
+			color: var(--c-inverted-text-muted);
+			font-size: var(--font-m);
+			line-height: 1.5;
+		}
+		.btn-book {
+			padding: var(--xs) var(--m);
+			border-radius: var(--border-radius-pill);
+			background: var(--c-inverted-text);
+			color: var(--c-inverted);
+			font-size: var(--font-m);
+			font-weight: 600;
+			text-decoration: none;
+			transition: var(--transition);
+			&:hover {
+				box-shadow: var(--shadow-md);
+				transform: translateY(-2px);
 			}
 		}
 	}

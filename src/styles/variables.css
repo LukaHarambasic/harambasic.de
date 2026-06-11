@@ -1,5 +1,5 @@
 :root {
-	/* Color roles — every surface/text/divider on the site resolves to these.
+	/* Color roles - every surface/text/divider on the site resolves to these.
 	   bg: --c-light · surface: --c-surface · ink: --c-font · ink-muted: --c-font-accent-dark
 	   tint: --c-tint · inverted: --c-inverted (+ --c-inverted-text) · line: --c-line */
 	--c-surface: #fde6f4;

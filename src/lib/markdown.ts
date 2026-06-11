@@ -7,7 +7,7 @@ import rehypeStringify from 'rehype-stringify';
 /**
  * Render markdown-in-YAML (work `positions[].content`) to an HTML string.
  *
- * Direct port of the retired `processPositionContent` from entryConfigs.ts —
+ * Direct port of the retired `processPositionContent` from entryConfigs.ts -
  * same remark -> remark-rehype -> rehype-stringify pipeline, so the output is
  * byte-identical to the old work detail page and work RSS `content:encoded`.
  */
@@ -24,8 +24,8 @@ export async function renderPositionContent(markdown: string): Promise<string> {
 /**
  * Render a markdown body to an HTML string for RSS `content:encoded`.
  *
- * Mirrors the retired MarkdownProcessor's non-code chain (plain remark — no GFM
- * or smartypants — plus rehype-slug + rehype-autolink-headings), so heading
+ * Mirrors the retired MarkdownProcessor's non-code chain (plain remark - no GFM
+ * or smartypants - plus rehype-slug + rehype-autolink-headings), so heading
  * anchors, links, images, and prose match the captured RSS fixtures. Code-block
  * internals intentionally differ from the old hljs output and are normalized out
  * of the fixture comparison.

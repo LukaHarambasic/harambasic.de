@@ -1,6 +1,6 @@
 # AM-003: Astro Project Scaffold
 
-**Phase:** 1 — Scaffold | **Size:** M | **Depends on:** AM-001, AM-002
+**Phase:** 1 - Scaffold | **Size:** M | **Depends on:** AM-001, AM-002
 
 ## Goal
 
@@ -9,7 +9,7 @@ Bootstrap a clean Astro project **in place** on the `feat/astro-migration` branc
 ## Scope / Tasks
 
 1. Create branch `feat/astro-migration` from `main`.
-2. Remove SvelteKit-specific files: `svelte.config.js`, `vite.config.ts`, `src/app.html`, `src/app.d.ts`, `src/routes/` (the Svelte components inside route folders are ported in later tickets — keep the branch's git history as the reference, nothing else is needed). Keep `src/content/`, `src/assets/`, `src/lib/` (pruned in later tickets), `scripts/`, `e2e/`.
+2. Remove SvelteKit-specific files: `svelte.config.js`, `vite.config.ts`, `src/app.html`, `src/app.d.ts`, `src/routes/` (the Svelte components inside route folders are ported in later tickets - keep the branch's git history as the reference, nothing else is needed). Keep `src/content/`, `src/assets/`, `src/lib/` (pruned in later tickets), `scripts/`, `e2e/`.
 3. Update `package.json`:
    - Remove: `@sveltejs/kit`, `@sveltejs/adapter-static`, `@sveltejs/vite-plugin-svelte`, `@sveltejs/enhanced-img`, `svelte`, `svelte-check`, `@iconify/svelte`, `eslint-plugin-svelte`, `prettier-plugin-svelte`, svelte-specific stylelint config if any
    - Add: `astro`, `@astrojs/check`, `astro-icon`, `@iconify-json/ph`
@@ -48,6 +48,6 @@ Bootstrap a clean Astro project **in place** on the `feat/astro-migration` branc
 
 ## Notes / Parity traps
 
-- Do NOT add `@astrojs/netlify` — a pure static build needs no adapter; Netlify serves `dist/` directly (config updated in AM-004).
+- Do NOT add `@astrojs/netlify` - a pure static build needs no adapter; Netlify serves `dist/` directly (config updated in AM-004).
 - `setting site:` is required later by `@astrojs/sitemap` (AM-018) and harmless now.
 - `.gitignore`: swap `.svelte-kit/`, `build/` for `.astro/`, `dist/`.
