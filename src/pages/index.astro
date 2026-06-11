@@ -4,6 +4,8 @@ import Layout from '../layouts/Layout.astro';
 import BaseRichText from '../components/BaseRichText.astro';
 import Entry from '../components/Entry.astro';
 import EntryList from '../components/EntryList.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { personSchema, websiteSchema } from '$lib/jsonld';
 import { Icon } from 'astro-icon/components';
 import profileImg from '../assets/img/profile.jpeg';
 import { getPosts, getProjects, getUses, getWork } from '$lib/content';
@@ -61,6 +63,10 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 ---
 
 <Layout description={description}>
+	<Fragment slot="head">
+		<JsonLd schema={personSchema()} />
+		<JsonLd schema={websiteSchema()} />
+	</Fragment>
 	<section class="heyho">
 		<h1>Heyho,<br />I'm Luka!</h1>
 		<div class="inner">
@@ -78,18 +84,16 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 				loading="eager"
 				fetchpriority="high"
 			/>
-			<div class="content">
-				<BaseRichText>
-					<p>
-						German/Croatian living in Copenhagen. By day I'm a product manager (new gig starting in
-						August), and next to that I do <a href="/consulting">consulting</a>: AI, automation, and
-						product for startups. This site has been around for years, rebuilt every time a new
-						framework caught my eye. It's my little playground on the web, and the place to learn
-						what I can help you with. If you want to geek out over AI and automation, or talk
-						handball, woodworking, or cooking, <a href="#contact">say hi</a>.
-					</p>
-				</BaseRichText>
-			</div>
+			<BaseRichText class="bio">
+				<p>
+					German/Croatian living in Copenhagen. By day I'm a product manager (new gig starting in
+					August), and next to that I do <a href="/consulting">consulting</a>: AI, automation, and
+					product for startups. This site has been around for years, rebuilt every time a new
+					framework caught my eye. It's my little playground on the web, and the place to learn what
+					I can help you with. If you want to geek out over AI and automation, or talk handball,
+					woodworking, or cooking, <a href="#contact">say hi</a>.
+				</p>
+			</BaseRichText>
 		</div>
 	</section>
 	<section class="consulting-banner">
@@ -169,13 +173,9 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 	.heyho {
 		display: flex;
 		position: relative;
-		margin: var(--xl) 0 0;
+		margin-block-start: var(--xl);
 		width: var(--layout-l);
 		flex-direction: column;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		align-items: stretch;
-		align-content: stretch;
 		gap: var(--l);
 		@media screen and (width <= 56rem) {
 			width: 100%;
@@ -189,16 +189,19 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 			letter-spacing: var(--tracking-display);
 			text-align: center;
 			white-space: nowrap;
+
+			/* Subtle brand gradient; only when the text can actually carry it */
+			@supports (background-clip: text) or (-webkit-background-clip: text) {
+				background: linear-gradient(105deg, var(--c-font) 55%, var(--c-accent-italic));
+				background-clip: text;
+				color: transparent;
+			}
 		}
 		.inner {
 			display: flex;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			justify-content: flex-start;
 			align-items: flex-start;
-			align-content: stretch;
 			gap: var(--l);
-			@media screen and (width <= 44rem) {
+			@media screen and (width <= 48rem) {
 				flex-direction: column;
 			}
 			.profile {
@@ -209,20 +212,18 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 					height: auto;
 				}
 			}
-			.content {
-				p {
-					font-weight: normal;
-					line-height: 1.5;
-					a {
-						line-break: loose;
-					}
+			:global(.bio p) {
+				font-weight: normal;
+				line-height: 1.5;
+				a {
+					line-break: loose;
 				}
 			}
 		}
 	}
 	.consulting-banner {
 		display: flex;
-		margin: var(--xl) 0 0;
+		margin-block-start: var(--xl);
 		padding: var(--l);
 		width: var(--layout-l);
 		border-radius: var(--border-radius);
@@ -230,10 +231,13 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--m);
+
+		--deco-bar-color: var(--c-accent-honey);
+
 		@media screen and (width <= 56rem) {
 			width: 100%;
 		}
-		@media screen and (width <= 32rem) {
+		@media screen and (width <= 30rem) {
 			padding: var(--m);
 		}
 		.eyebrow {
@@ -246,11 +250,11 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 			text-transform: uppercase;
 			&::after {
 				display: block;
-				margin: var(--s) 0 0;
-				width: 3.5rem;
-				height: 2px;
-				border-radius: 1px;
-				background: var(--c-accent-honey);
+				margin-block-start: var(--s);
+				width: var(--deco-bar-width);
+				height: var(--deco-bar-height);
+				border-radius: var(--deco-bar-radius);
+				background: var(--deco-bar-color);
 				content: '';
 			}
 		}
@@ -287,13 +291,9 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 	}
 	.featured {
 		display: flex;
-		margin: 0 auto;
+		margin-inline: auto;
 		width: 100%;
 		flex-direction: column;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		align-items: stretch;
-		align-content: stretch;
 		gap: var(--l);
 
 		h2 {
@@ -306,11 +306,12 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 			text-align: center;
 			&::after {
 				display: block;
-				margin: var(--s) auto 0;
-				width: 3.5rem;
-				height: 2px;
-				border-radius: 1px;
-				background: var(--c-font);
+				margin-block-start: var(--s);
+				margin-inline: auto;
+				width: var(--deco-bar-width);
+				height: var(--deco-bar-height);
+				border-radius: var(--deco-bar-radius);
+				background: var(--deco-bar-color);
 				content: '';
 			}
 		}
@@ -353,7 +354,6 @@ const rowMedia = (entry: MergedFeedEntry) => ({
 			border-radius: var(--border-radius);
 			background: var(--c-tint);
 			color: var(--c-font);
-			font-family: var(--font-family);
 			font-size: var(--font-s);
 			font-weight: 600;
 			transition: var(--transition);

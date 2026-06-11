@@ -6,8 +6,10 @@ import BaseRichText from '../../components/BaseRichText.astro';
 import DetailLayout from '../../components/DetailLayout.astro';
 import EntryHeader from '../../components/EntryHeader.astro';
 import TableOfContent from '../../components/TableOfContent.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { Icon } from 'astro-icon/components';
 import { buildNestedToc } from '$lib/toc';
+import { articleSchema } from '$lib/jsonld';
 import { getSlug, formatDateDisplay } from '$lib/util/helper';
 import { getPermalink } from '$lib/permalink';
 
@@ -27,9 +29,25 @@ const authorUrl = getPermalink();
 const publishedIso = entry.data.published.toISOString();
 const publishedDisplay = formatDateDisplay(entry.data.published);
 const tldr = entry.data.tldr;
+const canonicalUrl = new URL(Astro.url.pathname, getPermalink()).href;
 ---
 
-<Layout title={entry.data.title} description={entry.data.description} isDetailPage>
+<Layout
+	title={entry.data.title}
+	description={entry.data.description}
+	isDetailPage
+	ogType="article"
+	publishedTime={publishedIso}
+>
+	<JsonLd
+		slot="head"
+		schema={articleSchema({
+			title: entry.data.title,
+			description: entry.data.description,
+			url: canonicalUrl,
+			publishedTime: publishedIso
+		})}
+	/>
 	<DetailLayout class="h-entry post-entry">
 		<EntryHeader title={entry.data.title}>
 			<Fragment slot="meta">
@@ -55,7 +73,7 @@ const tldr = entry.data.tldr;
 				}
 			</Fragment>
 		</EntryHeader>
-		<div class="sep" aria-hidden="true"></div>
+		<hr class="sep" />
 
 		{
 			tldr && (
@@ -65,7 +83,7 @@ const tldr = entry.data.tldr;
 							<Fragment set:html={tldr} />
 						</BaseCallout>
 					</div>
-					<div class="sep" aria-hidden="true" />
+					<hr class="sep" />
 				</>
 			)
 		}
@@ -84,7 +102,7 @@ const tldr = entry.data.tldr;
 							<TableOfContent nodes={toc} />
 						</div>
 					</details>
-					<div class="sep" aria-hidden="true" />
+					<hr class="sep" />
 				</>
 			)
 		}
@@ -101,6 +119,8 @@ const tldr = entry.data.tldr;
 </Layout>
 
 <style>
+	/* Reaches into EntryHeader's meta slot: the microformat author link is page
+	   markup rendered inside the component, so there is no scoped alternative. */
 	:global(.post-entry .entry-header .meta .author-link) {
 		color: var(--c-font);
 		font-style: normal;
@@ -111,7 +131,7 @@ const tldr = entry.data.tldr;
 		width: 100%;
 		height: 0;
 		border: none;
-		border-bottom: 1px solid var(--c-line);
+		border-block-end: 1px solid var(--c-line);
 	}
 	.toc-details {
 		margin: 0;
@@ -125,7 +145,6 @@ const tldr = entry.data.tldr;
 			align-items: center;
 			gap: var(--s);
 			color: var(--c-font);
-			font-family: var(--font-family);
 			font-size: var(--font-m);
 			font-weight: 600;
 			list-style: none;
@@ -139,7 +158,7 @@ const tldr = entry.data.tldr;
 		}
 		&[open] {
 			.toc-summary {
-				margin-bottom: var(--m);
+				margin-block-end: var(--m);
 			}
 			.toc-icon {
 				transform: rotate(180deg);
@@ -167,7 +186,6 @@ const tldr = entry.data.tldr;
 		text-align: center;
 		a {
 			color: var(--c-font);
-			font-family: var(--font-family);
 			font-size: var(--font-m);
 			font-weight: 600;
 			text-decoration: none;

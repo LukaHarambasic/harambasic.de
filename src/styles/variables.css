@@ -1,21 +1,24 @@
 :root {
 	/* Color roles - every surface/text/divider on the site resolves to these.
 	   bg: --c-light · surface: --c-surface · ink: --c-font · ink-muted: --c-font-accent-dark
-	   tint: --c-tint · inverted: --c-inverted (+ --c-inverted-text) · line: --c-line */
-	--c-surface: #fde6f4;
-	--c-surface-accent: #fbdcef;
-	--c-light: #ffedf9;
-	--c-font: #2d0a2e;
-	--c-font-accent-dark: #54424f;
-	--c-font-accent-super-light: #dbc1d8;
-	--c-backdrop: rgba(45, 10, 46, 0.7);
+	   tint: --c-tint · inverted: --c-inverted (+ --c-inverted-text) · line: --c-line
+	   Theming: light-dark() per token, switched by color-scheme on html (base.css). */
+	--c-surface: light-dark(#fde6f4, #3c133d);
+	--c-surface-accent: light-dark(#fbdcef, #4f1f50);
+	--c-light: light-dark(#ffedf9, #2d0a2e);
+	--c-font: light-dark(#2d0a2e, #ffedf9);
+	--c-font-accent-dark: light-dark(#54424f, #c9a6c4);
+	--c-font-accent-super-light: light-dark(#dbc1d8, #653366);
+	--c-backdrop: light-dark(rgba(45, 10, 46, 0.7), rgba(22, 4, 26, 0.85));
 	--c-tint: color-mix(in srgb, var(--c-surface-accent) 40%, transparent);
-	--c-inverted: #2d0a2e;
+	--c-inverted: light-dark(#2d0a2e, #16041a);
 	--c-inverted-text: #ffedf9;
 	--c-inverted-text-muted: rgba(255, 237, 249, 0.8);
 	--c-inverted-line: rgba(255, 237, 249, 0.18);
 	--c-accent-honey: #e0a24a;
-	--c-accent-italic: #653366;
+	--c-accent-italic: light-dark(#653366, #e8b366);
+	--c-selection-bg: light-dark(#efc88c, #e0a24a);
+	--c-selection-text: #16041a;
 	--font-family: 'Hanken Grotesk', -apple-system, 'Segoe UI', helvetica, arial, sans-serif;
 	--font-family-serif: 'Newsreader', 'Iowan Old Style', georgia, serif;
 	--font-family-code: 'IBM Plex Mono', ui-monospace, 'SF Mono', menlo, consolas, monospace;
@@ -25,8 +28,8 @@
 	--font-l: 1.25rem;
 	--font-xl: 1.5rem;
 	--fs-display: clamp(2.25rem, 5vw, 3.5rem);
-	--fs-h1: 1.75rem;
-	--fs-h2: 1.5rem;
+	--fs-h1: clamp(1.5rem, 3.5vw, 1.75rem);
+	--fs-h2: clamp(1.25rem, 2.5vw, 1.5rem);
 	--fs-h3: 1.25rem;
 	--font-letter-spacing-headline: 0;
 	--tracking-display: -0.022em;
@@ -36,15 +39,28 @@
 	--transition-time: 0.15s;
 	--transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
 	--transition: all var(--transition-time) var(--transition-ease);
-	--border-radius: 18px;
-	--border-radius-small: 8px;
+	--border-radius: 1.125rem;
+	--border-radius-small: 0.5rem;
 	--border-radius-pill: 999px;
-	--box-shadow: 0 2px 8px rgba(45, 10, 46, 0.06), 0 1px 2px rgba(45, 10, 46, 0.04);
-	--shadow-md: 0 6px 24px rgba(45, 10, 46, 0.09), 0 2px 6px rgba(45, 10, 46, 0.05);
-	--ring-hairline: inset 0 0 0 1px rgba(45, 10, 46, 0.08);
-	--c-line: rgba(45, 10, 46, 0.12);
+
+	/* light-dark() is a color function, so it wraps the shadow colors, not the shadow lists */
+	--box-shadow:
+		0 2px 8px light-dark(rgba(45, 10, 46, 0.06), rgba(22, 4, 26, 0.25)),
+		0 1px 2px light-dark(rgba(45, 10, 46, 0.04), rgba(22, 4, 26, 0.2));
+	--shadow-md:
+		0 6px 24px light-dark(rgba(45, 10, 46, 0.09), rgba(22, 4, 26, 0.35)),
+		0 2px 6px light-dark(rgba(45, 10, 46, 0.05), rgba(22, 4, 26, 0.25));
+	--ring-hairline: inset 0 0 0 1px light-dark(rgba(45, 10, 46, 0.08), rgba(255, 237, 249, 0.1));
+	--c-line: light-dark(rgba(45, 10, 46, 0.12), rgba(255, 237, 249, 0.12));
 	--c-border: var(--c-line);
 	--border: 1px solid var(--c-border);
+
+	/* Decorative bar - the short rule rendered via ::after under eyebrows/headings.
+	   Override --deco-bar-color locally on inverted/honey surfaces. */
+	--deco-bar-width: 3.5rem;
+	--deco-bar-height: 2px;
+	--deco-bar-radius: 1px;
+	--deco-bar-color: var(--c-font);
 	--xxs: 0.25rem;
 	--xs: 0.5rem;
 	--s: 0.75rem;
@@ -56,23 +72,10 @@
 	--layout-l: 48rem;
 	--layout-m: 36rem;
 }
-@media (prefers-color-scheme: dark) {
-	:root {
-		--c-surface: #3c133d;
-		--c-surface-accent: #4f1f50;
-		--c-line: rgba(255, 237, 249, 0.12);
-		--c-light: #2d0a2e;
-		--c-font: #ffedf9;
-		--c-font-accent-dark: #c9a6c4;
-		--c-font-accent-super-light: #653366;
-		--c-backdrop: rgba(22, 4, 26, 0.85);
-		--c-inverted: #16041a;
-		--c-inverted-text: #ffedf9;
-		--c-inverted-text-muted: rgba(255, 237, 249, 0.8);
-		--c-inverted-line: rgba(255, 237, 249, 0.18);
-		--c-accent-italic: #e8b366;
-		--box-shadow: 0 2px 8px rgba(22, 4, 26, 0.25), 0 1px 2px rgba(22, 4, 26, 0.2);
-		--shadow-md: 0 6px 24px rgba(22, 4, 26, 0.35), 0 2px 6px rgba(22, 4, 26, 0.25);
-		--ring-hairline: inset 0 0 0 1px rgba(255, 237, 249, 0.1);
-	}
-}
+
+/* Canonical breakpoints (literal values - custom properties cannot be used in @media):
+   30rem  tiny phones (stack segmented buttons, tighten gutters)
+   48rem  primary column collapse (golden-ratio goes full width, grids stack)
+   62rem  3-col grids drop to 2-col
+   86rem  layout gutters switch from 1fr to fixed
+   Component-width-dependent layout uses @container (see EntryList) instead. */

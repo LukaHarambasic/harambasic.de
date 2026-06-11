@@ -1,0 +1,11 @@
+---
+import type { JsonLdSchema } from '$lib/jsonld';
+
+interface Props {
+	schema: JsonLdSchema;
+}
+
+const { schema } = Astro.props;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />

@@ -1,3 +1,21 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Immutable self-hosted fonts (filenames are versioned, e.g. *-v12-*)
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Hashed build assets
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Social preview images (regenerated on content changes)
+/social/*
+  Cache-Control: public, max-age=86400
+
 /rss
   Content-Type: application/xml; charset=UTF-8
 /feeds/rss

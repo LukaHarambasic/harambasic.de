@@ -47,3 +47,11 @@ for (const url of htmlUrlInventory()) {
 		expect(JSON.stringify(snapshot, null, 2)).toMatchSnapshot(`${urlKey(url)}.json`);
 	});
 }
+
+// Outside the inventory loop: the status differs between `astro preview` and
+// Netlify (which serves dist/404.html with a real 404), so only structure is asserted.
+test('page: 404 renders the not-found page', async ({ page }) => {
+	await page.goto('/this-page-does-not-exist');
+	expect(await page.title()).toContain('Page not found');
+	expect(await page.locator('main#main h1').first().textContent()).toContain('Page not found');
+});

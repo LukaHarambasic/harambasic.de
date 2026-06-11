@@ -1,5 +1,8 @@
 html {
 	scroll-behavior: smooth;
+
+	/* Enables light-dark() token resolution (variables.css) and correct UA form/scrollbar colors */
+	color-scheme: light dark;
 }
 body {
 	background: var(--c-light);
@@ -9,8 +12,30 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 ::selection {
-	background: #efc88c;
-	color: #16041a;
+	background: var(--c-selection-bg);
+	color: var(--c-selection-text);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+p {
+	text-wrap: pretty;
+}
+
+/* Centered narrow reading column (61.8% of the layout, golden ratio).
+   The one shared width pattern across hero, detail pages, and narrow sections. */
+.golden-ratio {
+	margin-inline: auto;
+	width: 61.8%;
+	max-width: calc(var(--layout-xl) * 0.618);
+	@media screen and (width <= 48rem) {
+		width: 100%;
+	}
 }
 :-moz-any-link {
 	text-decoration-thickness: var(--underline-thickness);

@@ -118,6 +118,11 @@ const rel = external ? 'external' : undefined;
 		text-decoration: none;
 		transition: var(--transition);
 
+		/* Inherited theming hooks so slotted content (e.g. WorkCard) can follow
+		   the featured/inverted state without reaching into Entry internals. */
+		--entry-muted: var(--c-font-accent-dark);
+		--entry-line: var(--c-line);
+
 		&:hover {
 			background: color-mix(in srgb, var(--c-surface-accent) 40%, var(--entry-bg, transparent));
 			.affordance {
@@ -129,8 +134,8 @@ const rel = external ? 'external' : undefined;
 		.affordance {
 			display: flex;
 			position: absolute;
-			top: var(--l);
-			right: var(--l);
+			inset-block-start: var(--l);
+			inset-inline-end: var(--l);
 			width: 1.5rem;
 			height: 1.5rem;
 			flex-shrink: 0;
@@ -154,8 +159,7 @@ const rel = external ? 'external' : undefined;
 			gap: var(--xs);
 		}
 		.eyebrow {
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
+			color: var(--entry-muted);
 			font-size: var(--font-xs);
 			font-weight: 600;
 			letter-spacing: var(--tracking-eyebrow);
@@ -170,30 +174,26 @@ const rel = external ? 'external' : undefined;
 			letter-spacing: var(--tracking-heading);
 		}
 		.meta {
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
+			color: var(--entry-muted);
 			font-size: var(--font-s);
-			font-weight: 400;
 			line-height: 1.5;
 		}
 		.excerpt {
 			margin: 0;
-			color: var(--c-font-accent-dark);
-			font-family: var(--font-family);
+			color: var(--entry-muted);
 			font-size: var(--font-m);
-			font-weight: 400;
 			line-height: 1.5;
 		}
 
 		/* Preset: row - text-forward, media as a small thumb on the left */
 		&.row {
 			padding: var(--l);
-			padding-right: calc(var(--l) + 1.5rem + var(--xs));
+			padding-inline-end: calc(var(--l) + 1.5rem + var(--xs));
 			border-radius: var(--border-radius);
 			flex-direction: row;
 			align-items: flex-start;
 			gap: var(--m);
-			@media screen and (width <= 42rem) {
+			@container entry-list (width <= 34rem) {
 				flex-direction: column;
 			}
 			.media {
@@ -224,7 +224,7 @@ const rel = external ? 'external' : undefined;
 			--entry-bg: var(--c-surface);
 			.head {
 				display: flex;
-				padding-right: calc(1.5rem + var(--xs));
+				padding-inline-end: calc(1.5rem + var(--xs));
 				justify-content: flex-start;
 				align-items: flex-start;
 				gap: var(--m);
@@ -292,19 +292,19 @@ const rel = external ? 'external' : undefined;
 				padding: var(--l);
 			}
 			.affordance {
-				top: var(--m);
-				right: var(--m);
+				inset-block-start: var(--m);
+				inset-inline-end: var(--m);
 			}
 		}
 
 		/* Modifier: condensed - tighter padding and smaller type for dense lists */
 		&.condensed {
 			padding: var(--s) var(--m);
-			padding-right: calc(var(--m) + 1.5rem);
+			padding-inline-end: calc(var(--m) + 1.5rem);
 			gap: var(--xs);
 			.affordance {
-				top: var(--s);
-				right: var(--s);
+				inset-block-start: var(--s);
+				inset-inline-end: var(--s);
 			}
 			.title {
 				font-size: var(--font-m);
@@ -320,15 +320,12 @@ const rel = external ? 'external' : undefined;
 			border-color: var(--c-inverted-line);
 
 			--entry-bg: var(--c-inverted);
+			--entry-muted: var(--c-inverted-text-muted);
+			--entry-line: var(--c-inverted-line);
 
 			color: var(--c-inverted-text);
 			&:hover {
 				background: var(--c-inverted);
-			}
-			.eyebrow,
-			.meta,
-			.excerpt {
-				color: var(--c-inverted-text-muted);
 			}
 			.affordance {
 				color: var(--c-inverted-text-muted);
