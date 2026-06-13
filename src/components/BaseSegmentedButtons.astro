@@ -18,17 +18,16 @@
 		align-items: flex-start;
 		align-content: stretch;
 		overflow: hidden;
-		@media screen and (width <= 30rem) {
-			width: 100%;
 
-			/* Pill radius on a tall vertical stack balloons into huge dome corners;
-			   drop to the normal radius once the buttons stack. */
-			border-radius: var(--border-radius);
-			flex-direction: column;
+		/* On mobile the label and buttons stack, so the row stretches to full width
+		   instead of collapsing into a column. */
+		@media screen and (width <= 48rem) {
+			width: 100%;
 		}
 		> :global(*) {
 			margin: 0;
 			padding: var(--xs) var(--m);
+			min-width: 0;
 			border: none;
 			border-right: 1px solid var(--c-surface-accent);
 			background: transparent;
@@ -48,12 +47,16 @@
 			&:last-child {
 				border-right: none;
 			}
-			@media screen and (width <= 30rem) {
-				width: 100%;
-				border-right: none;
-				&:not(:last-child) {
-					border-bottom: 1px solid var(--c-surface-accent);
-				}
+
+			/* Each segment stretches evenly to fill the full-width row on mobile. */
+			@media screen and (width <= 48rem) {
+				flex: 1;
+			}
+
+			/* Tighter padding/size on phones so multi-segment rows (e.g. socials) fit. */
+			@media screen and (width <= 32rem) {
+				padding-inline: var(--xs);
+				font-size: var(--font-s);
 			}
 		}
 	}

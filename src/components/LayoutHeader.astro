@@ -5,7 +5,7 @@ const links: Array<{ name: string; url: string; isCta?: boolean }> = [
 	// Uses is intentionally hidden for now: the page + its RSS still build and are
 	// reachable by direct URL, just not linked from the nav, sitemap, or feeds list.
 	{ name: 'Posts', url: '/posts' },
-	{ name: "Let's automate some sh*t.", url: '/consulting', isCta: true }
+	{ name: "Let's automate some sh*t", url: '/consulting', isCta: true }
 ];
 
 const pathname = Astro.url.pathname;
@@ -91,6 +91,9 @@ function isActiveRoute(url: string): boolean {
 			@media screen and (width <= 48rem) {
 				flex-wrap: wrap;
 				justify-content: center;
+
+				/* Wider row gap so the CTA has breathing room when it wraps to its own line. */
+				row-gap: var(--m);
 			}
 			li {
 				a {

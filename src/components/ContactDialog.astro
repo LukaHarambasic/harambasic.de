@@ -15,12 +15,12 @@ import BaseSegmentedButtons from './BaseSegmentedButtons.astro';
 				<div class="group">
 					<dt class="meta">
 						<strong>E-Mail</strong>
-						<small>luka@harambasic.de</small>
+						<small>hi@harambasic.de</small>
 					</dt>
 					<dd>
 						<BaseSegmentedButtons>
-							<a href="mailto:luka@harambasic.de">Write</a>
-							<button class="button" type="button" data-clipboard="luka@harambasic.de">Copy</button>
+							<a href="mailto:hi@harambasic.de">Write</a>
+							<button class="button" type="button" data-clipboard="hi@harambasic.de">Copy</button>
 						</BaseSegmentedButtons>
 					</dd>
 				</div>
@@ -165,10 +165,18 @@ import BaseSegmentedButtons from './BaseSegmentedButtons.astro';
 				align-items: flex-start;
 				@media screen and (width <= 48rem) {
 					flex-direction: column;
-					gap: var(--l);
+
+					/* Drop the horizontal padding so the buttons span the full width. */
+					padding-inline: 0;
+
+					/* Tighter gap between the label and its buttons once stacked. */
+					gap: var(--s);
 				}
 				dd {
 					margin: 0;
+					@media screen and (width <= 48rem) {
+						width: 100%;
+					}
 				}
 				.meta {
 					display: flex;
