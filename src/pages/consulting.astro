@@ -82,34 +82,36 @@ const stats = [
 	</section>
 	<section class="services">
 		<p class="eyebrow">What I do</p>
-		<ul class="pillars">
-			{
-				pillars.map((pillar) => (
-					<li class="pillar">
-						<Icon name={pillar.icon} class="pillar-icon" />
-						<h2>{pillar.name}</h2>
-						<ul class="service-list">
-							{pillar.services.map((service) => (
-								<li>
-									<h3>{service.title}</h3>
-									<p>{service.text}</p>
-								</li>
-							))}
-						</ul>
-					</li>
-				))
-			}
-		</ul>
-		<dl class="stats">
-			{
-				stats.map((stat) => (
-					<div class="stat">
-						<dt>{stat.value}</dt>
-						<dd>{stat.label}</dd>
-					</div>
-				))
-			}
-		</dl>
+		<div class="pillars-stats">
+			<ul class="pillars">
+				{
+					pillars.map((pillar) => (
+						<li class="pillar">
+							<Icon name={pillar.icon} class="pillar-icon" />
+							<h2>{pillar.name}</h2>
+							<ul class="service-list">
+								{pillar.services.map((service) => (
+									<li>
+										<h3>{service.title}</h3>
+										<p>{service.text}</p>
+									</li>
+								))}
+							</ul>
+						</li>
+					))
+				}
+			</ul>
+			<dl class="stats">
+				{
+					stats.map((stat) => (
+						<div class="stat">
+							<dt>{stat.value}</dt>
+							<dd>{stat.label}</dd>
+						</div>
+					))
+				}
+			</dl>
+		</div>
 	</section>
 	<section class="cta-block golden-ratio">
 		<p class="eyebrow">Let's talk</p>
@@ -205,16 +207,40 @@ const stats = [
 		width: 100%;
 		flex-direction: column;
 		gap: var(--l);
-		.pillars {
+		.pillars-stats {
 			display: grid;
-			margin: 0;
-			padding: 0;
 			gap: var(--l);
+			grid-template-areas:
+				'p1 p2 p3'
+				's1 s2 s3';
 			grid-template-columns: repeat(3, 1fr);
-			list-style: none;
+
+			/* On mobile each stat drops directly under its matching pillar card. */
 			@media screen and (width <= 48rem) {
+				grid-template-areas:
+					'p1'
+					's1'
+					'p2'
+					's2'
+					'p3'
+					's3';
 				grid-template-columns: 1fr;
 			}
+		}
+		.pillars {
+			display: contents;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.pillar:nth-of-type(1) {
+			grid-area: p1;
+		}
+		.pillar:nth-of-type(2) {
+			grid-area: p2;
+		}
+		.pillar:nth-of-type(3) {
+			grid-area: p3;
 		}
 		.pillar {
 			display: flex;
@@ -258,13 +284,17 @@ const stats = [
 		}
 	}
 	.stats {
-		display: grid;
+		display: contents;
 		margin: 0;
-		gap: var(--l);
-		grid-template-columns: repeat(3, 1fr);
-		@media screen and (width <= 48rem) {
-			grid-template-columns: 1fr;
-		}
+	}
+	.stat:nth-of-type(1) {
+		grid-area: s1;
+	}
+	.stat:nth-of-type(2) {
+		grid-area: s2;
+	}
+	.stat:nth-of-type(3) {
+		grid-area: s3;
 	}
 	.stat {
 		display: flex;

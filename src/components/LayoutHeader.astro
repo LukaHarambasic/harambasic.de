@@ -71,6 +71,10 @@ function isActiveRoute(url: string): boolean {
 		.wordmark {
 			display: flex;
 			flex-direction: column;
+
+			/* Always left-aligned to the mark, even when the header centers on mobile. */
+			align-items: flex-start;
+			text-align: left;
 		}
 		.mark {
 			display: block;
