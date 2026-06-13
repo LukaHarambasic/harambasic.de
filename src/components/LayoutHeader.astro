@@ -5,7 +5,7 @@ const links: Array<{ name: string; url: string; isCta?: boolean }> = [
 	// Uses is intentionally hidden for now: the page + its RSS still build and are
 	// reachable by direct URL, just not linked from the nav, sitemap, or feeds list.
 	{ name: 'Posts', url: '/posts' },
-	{ name: 'Work with me', url: '/consulting', isCta: true }
+	{ name: "Let's automate some sh*t.", url: '/consulting', isCta: true }
 ];
 
 const pathname = Astro.url.pathname;
@@ -27,7 +27,7 @@ function isActiveRoute(url: string): boolean {
 			{
 				links.map(({ name, url, isCta }) => (
 					<li>
-						<a href={url} class:list={[{ 'is-active': isActiveRoute(url), cta: isCta }]}>
+						<a href={url} class:list={[{ 'is-active': isActiveRoute(url) && !isCta, cta: isCta }]}>
 							{name}
 						</a>
 					</li>
@@ -126,11 +126,12 @@ function isActiveRoute(url: string): boolean {
 					border-block-end-color: transparent;
 					background: var(--c-inverted);
 					color: var(--c-inverted-text);
-					transition: var(--transition);
+
+					/* Stays a filled pill; on hover just the background shifts, matching the
+					   other nav items (no lift, no shadow, no squaring off). */
+					transition: background var(--transition-time) var(--transition-ease);
 					&:hover {
-						box-shadow: var(--shadow-md);
-						background: var(--c-inverted);
-						transform: translateY(-2px);
+						background: color-mix(in srgb, var(--c-inverted) 85%, var(--c-inverted-text));
 					}
 				}
 			}

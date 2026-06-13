@@ -20,6 +20,10 @@
 		overflow: hidden;
 		@media screen and (width <= 30rem) {
 			width: 100%;
+
+			/* Pill radius on a tall vertical stack balloons into huge dome corners;
+			   drop to the normal radius once the buttons stack. */
+			border-radius: var(--border-radius);
 			flex-direction: column;
 		}
 		> :global(*) {

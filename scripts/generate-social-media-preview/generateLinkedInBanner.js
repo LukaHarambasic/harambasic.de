@@ -27,7 +27,10 @@ const generateBanner = async (page, title, slug) => {
 // node scripts/generate-social-media-preview/generateLinkedInBanner.js --title="Custom headline"
 const linkedInBannerGeneration = async (title, slug) => {
 	const browser = await chromium.launch();
-	const page = await browser.newPage();
+	// 2x device scale renders the 1584x396 layout at 3168x792 for a crisp,
+	// high-res banner.
+	const context = await browser.newContext({ deviceScaleFactor: 2 });
+	const page = await context.newPage();
 	await generateBanner(page, title, slug);
 	console.log('🆕 LinkedIn banner:', `${slug}.png`, title ? `(${title})` : '(default)');
 	await browser.close();
