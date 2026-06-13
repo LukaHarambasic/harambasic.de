@@ -10,7 +10,12 @@ export default defineConfig({
 	output: 'static', // pure static output - no adapter needed; Netlify serves dist/
 	trailingSlash: 'never',
 	// Exclude the extensionless RSS endpoints from the sitemap (HTML pages only).
-	integrations: [icon(), sitemap({ filter: (page) => !page.endsWith('/rss') })],
+	// Also exclude /uses (and its detail pages): the section is hidden for now, so it
+	// still builds and is reachable by direct URL, just not advertised in the sitemap.
+	integrations: [
+		icon(),
+		sitemap({ filter: (page) => !page.endsWith('/rss') && !/\/uses(\/|$)/.test(page) })
+	],
 	// Allow access via Tailscale Serve (tailnet-only reverse proxy, see /dev CLAUDE.md).
 	vite: { server: { allowedHosts: ['.hornbill-atlas.ts.net'] } },
 	markdown: {

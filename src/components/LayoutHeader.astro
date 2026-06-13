@@ -2,7 +2,8 @@
 const links: Array<{ name: string; url: string; isCta?: boolean }> = [
 	{ name: 'Home', url: '/' },
 	{ name: 'Experience', url: '/experience' },
-	{ name: 'Uses', url: '/uses' },
+	// Uses is intentionally hidden for now: the page + its RSS still build and are
+	// reachable by direct URL, just not linked from the nav, sitemap, or feeds list.
 	{ name: 'Posts', url: '/posts' },
 	{ name: 'Work with me', url: '/consulting', isCta: true }
 ];
