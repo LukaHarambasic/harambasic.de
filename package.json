@@ -18,6 +18,7 @@
 		"audit:slugs": "node scripts/audit-slugs.js",
 		"socialMedia:auto": "node scripts/generate-social-media-preview/generateAutomatic.js",
 		"socialMedia:manual": "node scripts/generate-social-media-preview/generateManual.js",
+		"socialMedia:linkedin": "node scripts/generate-social-media-preview/generateLinkedInBanner.js",
 		"newPost": "node scripts/generate-post/index.js"
 	},
 	"devDependencies": {
