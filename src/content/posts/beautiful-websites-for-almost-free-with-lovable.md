@@ -178,14 +178,6 @@ You could use Cursor, or Zed, or plain Copilot. The point is really that once th
 
 One honest caveat: you do need a little technical confidence for this path. Claude Code won't push on its own, you have to tell it to commit and push, and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is genuinely a better fit.
 
-## The one exception: harambasic.de
-
-I want to be clear about one thing: this stack is for **simple websites**. Marketing pages, small business sites, portfolios, side projects. Anything where the content is fairly static and the number of pages is small.
-
-For my own site, [harambasic.de](https://harambasic.de), I did the opposite. I designed the visual identity by hand, wrote the code from scratch, and then rewrote the whole thing in [Astro](https://astro.build). That's a very different project. It's a long-lived personal home, I care about every detail, and I want the freedom to add whatever weird content type I come up with next. Lovable would have gotten me somewhere fast, but not somewhere I'd want to live in for years.
-
-The rule of thumb I keep coming back to: if the site is going to change less than once a month and has fewer than ten pages, Lovable + Netlify + Claude Code is unbeatable on price and speed. Anything more ambitious, pick a real framework.
-
 ## Conclusion
 
 If someone in your life needs a small website, I really wouldn't send them to Wix or Squarespace, and I wouldn't tell them to hire a freelancer for something a weekend can solve either. Sit down with them for an afternoon, prompt the site in Lovable, deploy it to Netlify, and use Claude Code to polish the last few bits. Total cost: one domain. Total time: an afternoon.
