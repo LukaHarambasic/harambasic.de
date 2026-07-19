@@ -7,7 +7,7 @@ updated: 2026-07-19
 tags:
   - Tools
   - Development
-tldr: For simple websites the fastest path I have found is: prompt it in Lovable, deploy the exported code to Netlify, then use Claude Code (or similar) for the small tweaks Lovable can't quite nail. The whole stack costs about as much as the domain.
+tldr: "For simple websites the fastest path I have found: prompt it in Lovable, deploy the exported code to Netlify, then use Claude Code (or similar) for the small tweaks Lovable can't quite nail. The whole stack costs about as much as the domain."
 ---
 
 ## Motivation
