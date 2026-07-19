@@ -49,6 +49,8 @@ Here's roughly the shape of a prompt that works for me:
 <<EXAMPLE_PROMPT>>
 ```
 
+_Prompt structure adapted from Felix Haas's [How To Prompt High-End Websites In Lovable](https://designplusai.com/p/how-to-prompt-high-end-websites-in)._
+
 You iterate the same way you'd give feedback to a designer. "The hero is too tall, cut it in half." "Change the accent to a deeper red." "Add a section between services and contact that lists past projects with a photo grid." It picks up small changes quickly and doesn't lose the rest of the site.
 
 Here's what I've built this way so far:
