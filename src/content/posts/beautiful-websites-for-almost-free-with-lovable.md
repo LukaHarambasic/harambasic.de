@@ -99,6 +99,8 @@ That's where I switch to [Claude Code](https://claude.com/code). I clone the rep
 
 You could use Cursor, or Zed, or plain Copilot. The point is that once the code is in a real repo, you have all the normal engineering tools available, and small edits stop being scary.
 
+One honest caveat: you do need a bit of technical confidence to make this work. Claude Code doesn't push automatically. You have to tell it to commit the change and push it, and that means knowing roughly what those words mean. You don't need to write any code yourself, but you need to be comfortable following along in a terminal and prompting with intent. If that sounds like too much friction, the Lovable editor with its daily free credits is genuinely a better fit.
+
 ## The one exception: harambasic.de
 
 I want to be clear about one thing: this stack is for **simple websites**. Marketing pages, small business sites, portfolios, side projects. Anything where the content is fairly static and the number of pages is small.
