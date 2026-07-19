@@ -18,13 +18,14 @@ Over the last year I have landed on a stack that fits that shape almost perfectl
 
 ## The stack
 
-The three pieces are:
+The four pieces are:
 
 1. **Lovable** for generating the site.
-2. **Netlify** for hosting.
-3. **Claude Code** (or Cursor, or whatever you like) for the small edits Lovable is bad at.
+2. **GitHub** as the source of truth for the code.
+3. **Netlify** for hosting and the domain.
+4. **Claude Code** (or Cursor, or whatever you like) for the small edits Lovable is bad at.
 
-That's it. No CMS, no framework decisions, no design system meeting. You prompt, you deploy, you tweak.
+That's it. No CMS, no framework decisions, no design system meeting. You prompt, you push, you deploy, you tweak.
 
 ## Step 1: Prompt it in Lovable
 
@@ -48,9 +49,20 @@ Here are a few examples I built exactly this way:
 
 Each of them took a couple of hours in Lovable, plus a bit of tweaking afterwards. None of them cost more than the domain.
 
-## Step 2: Ship it via Netlify
+## Step 2: Push it to GitHub
 
-Lovable can host the preview for you, but the moment you want a real domain and a proper deployment story, export the code and put it on [Netlify](https://netlify.com). Lovable has a GitHub integration that pushes the project to a repo, and Netlify has a one-click "deploy from GitHub" flow. You connect them once, point your domain at Netlify, and every future change deploys automatically.
+Before you hook up hosting, get the code out of Lovable and into a real repo. Lovable has a built-in GitHub integration: connect your account once, and every change in the Lovable editor is committed to a repo you own. Do this early, even if you're not planning to edit the code by hand yet.
+
+Two reasons this step matters more than it looks:
+
+- **It keeps the Lovable iteration path open.** You still get Lovable's daily free credits. You can go back into the editor whenever you want, tweak a section by prompt, and the changes land in the repo automatically. For non-technical friends, this is the ongoing update flow: "just describe what you want changed."
+- **It unlocks the Claude Code path**, which is how I actually prefer to iterate once the site exists. Clone the repo, edit locally, push. Small changes go from prompt-and-wait to a two-line diff. More on this in Step 4.
+
+If you skip this step and stay inside Lovable's hosted preview, you're locked into their editor and their pricing. A five-minute GitHub connection removes that risk entirely.
+
+## Step 3: Ship it via Netlify
+
+With the code in GitHub, [Netlify](https://netlify.com) is a one-click "deploy from GitHub" flow. You connect the two once, pick the repo, and every push (whether it came from Lovable, Claude Code, or you editing a file by hand) triggers a redeploy. First deploy takes a minute; every future one is automatic.
 
 Why Netlify and not Lovable's own hosting:
 
@@ -59,9 +71,25 @@ Why Netlify and not Lovable's own hosting:
 - The free tier is generous enough that none of the sites above pay for hosting.
 - You get a proper CI/CD pipeline for free, which matters the moment you want to make changes without going back through Lovable.
 
-The only recurring cost is the domain. Everything else fits in the free tier.
+### Getting a domain
 
-## Step 3: Tweak with Claude Code
+The only recurring cost of the whole stack is the domain. Two registrars I'd point anyone at:
+
+- **[Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)** sells domains at wholesale cost, no markup, no upsells. A `.com` is around $10 a year and stays there. This is my default now.
+- **[Namecheap](https://www.namecheap.com)** is the classic option. Slightly more expensive than Cloudflare, but the dashboard is friendlier if you've never touched DNS before.
+
+Avoid GoDaddy and the other loud-marketing registrars. They're not scams, they're just noticeably more expensive and constantly try to sell you things you don't need.
+
+### Pointing the domain at Netlify
+
+Once you own the domain, you have two options for wiring it up:
+
+1. **Let Netlify manage DNS.** In the registrar's dashboard, change the nameservers to the ones Netlify shows you (four `nsN.p<something>.dnsimple.com` addresses). From then on you manage all DNS inside Netlify. Easiest option, and what I'd recommend if you don't already have MX records or other DNS you care about.
+2. **Keep DNS at the registrar.** Add an `A` record for the apex (`@`) pointing at Netlify's load balancer IP, and a `CNAME` for `www` pointing at your Netlify subdomain (`your-site.netlify.app`). Netlify shows you the exact values in the "Domain management" screen. Use this option if you already run email on the domain and don't want to move those records.
+
+Either way, SSL is automatic (Let's Encrypt, wired up by Netlify) and takes a few minutes after the DNS propagates. There is nothing to configure.
+
+## Step 4: Tweak with Claude Code
 
 Lovable is amazing at getting you 90% of the way. The last 10% is where it struggles: pixel-level layout fixes, cross-browser quirks, adding an obscure meta tag for a specific platform, tightening the tailwind config, wiring up a contact form endpoint. Anything that needs precision rather than generation.
 
