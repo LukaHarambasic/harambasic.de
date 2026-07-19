@@ -16,6 +16,8 @@ I keep getting asked the same question by friends and family: "I need a small we
 
 Over the last year I have landed on a stack that fits that shape almost perfectly. It's boring, it's cheap, and the output is honestly better than a lot of what you get from freelancers charging four figures. I want to write it down here so I can stop explaining it in DMs.
 
+> One disclaimer up front: if you don't mind spending money, you can just pay Lovable around €25 per month and get hosting, domain wiring, and ongoing edits all in one place. No hassle, no GitHub, no separate Netlify account. This post is the cheap version, aimed at people who already have a Claude Code subscription and a GitHub account and would rather not add another €25/month line item.
+
 ## The stack
 
 The four pieces are:
