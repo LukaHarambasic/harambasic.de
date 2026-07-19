@@ -173,6 +173,36 @@ const socialImgAlt = fullTitle;
 		});
 	}
 
+	// Copy button injected into every Shiki code block (`<pre class="astro-code">`).
+	// Idempotent via `data-copy-init`; re-runs on astro:page-load after view transitions.
+	function addCodeCopyButtons() {
+		document.querySelectorAll<HTMLPreElement>('pre.astro-code').forEach((pre) => {
+			if (pre.dataset.copyInit === 'true') return;
+			pre.dataset.copyInit = 'true';
+			const btn = document.createElement('button');
+			btn.type = 'button';
+			btn.className = 'code-copy';
+			btn.setAttribute('aria-label', 'Copy code to clipboard');
+			btn.textContent = 'Copy';
+			btn.addEventListener('click', async () => {
+				const source = pre.querySelector('code')?.innerText ?? pre.innerText;
+				try {
+					await navigator.clipboard.writeText(source);
+					btn.textContent = 'Copied';
+					btn.dataset.state = 'copied';
+					window.setTimeout(() => {
+						btn.textContent = 'Copy';
+						delete btn.dataset.state;
+					}, 1500);
+				} catch {
+					btn.textContent = 'Failed';
+					btn.dataset.state = 'failed';
+				}
+			});
+			pre.appendChild(btn);
+		});
+	}
+
 	// Global listeners: the module runs once even with the client router.
 	window.addEventListener('hashchange', openContactIfHash);
 
@@ -191,6 +221,7 @@ const socialImgAlt = fullTitle;
 	document.addEventListener('astro:page-load', () => {
 		bindContactDialog();
 		bindClipboard();
+		addCodeCopyButtons();
 		openContactIfHash();
 		// GoatCounter auto-counts the initial load; count SPA navigations manually.
 		if (firstPageLoad) {

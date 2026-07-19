@@ -1,19 +1,65 @@
 /*
  * Code-block container styling - replaces the retired highlight.css.
  *
- * Token colors AND the background come from Shiki's `one-dark-pro` theme, applied
- * inline on the `<pre class="astro-code">` element (background #282c34, matching
- * the old One Dark highlight.css). This file only restores the *container* styling
- * highlight.css used to provide around the block (the `.hljs` rule): spacing,
- * radius, font, horizontal scroll. Code blocks stay always-dark.
+ * Shiki's `one-dark-pro` theme inlines its token colors on every span. We
+ * override the block background here (via `!important` to beat Shiki's inline
+ * `background:#282c34`) so code blocks read as a warm, brand-aligned deep
+ * aubergine instead of the generic editor grey. Syntax token colors stay
+ * one-dark-pro. Code blocks stay always-dark.
  */
 
 .astro-code {
 	display: block;
+	position: relative;
 	margin: 0 0 var(--l) 0;
 	padding: var(--m);
 	border-radius: var(--border-radius);
+	box-shadow: inset 0 0 0 1px rgba(255, 237, 249, 0.08);
+	background: #1a0620 !important;
 	font-family: var(--font-family-code);
 	font-size: var(--font-m);
 	overflow-x: auto;
+	padding-inline-end: calc(var(--m) + var(--xl));
+}
+
+/* Markdown blocks lean heavily on the muted grey token color (#ABB2BF) for
+   prose runs, which reads flat on the deep aubergine background. Nudge those
+   specific spans to a warm off-white so md prompts and drafts read cleanly.
+   Real syntax tokens (headings, links, inline code) keep their one-dark-pro
+   colors. */
+.astro-code[data-language='markdown'] span[style*='#ABB2BF'],
+.astro-code[data-language='md'] span[style*='#ABB2BF'] {
+	color: #e8d5e5 !important;
+}
+
+.code-copy {
+	position: absolute;
+	z-index: 1;
+	padding: var(--xxs) var(--xs);
+	border: none;
+	border-radius: var(--border-radius-small);
+	background: rgba(255, 237, 249, 0.08);
+	color: rgba(255, 237, 249, 0.85);
+	font-family: var(--font-family-code);
+	font-size: var(--font-xs);
+	transition: var(--transition);
+	cursor: pointer;
+	inset-block-start: var(--xs);
+	inset-inline-end: var(--xs);
+
+	&:hover,
+	&:focus-visible {
+		background: rgba(255, 237, 249, 0.16);
+		color: #ffedf9;
+	}
+
+	&[data-state='copied'] {
+		background: var(--c-accent-honey);
+		color: #16041a;
+	}
+
+	&[data-state='failed'] {
+		background: rgba(224, 108, 117, 0.25);
+		color: #ffedf9;
+	}
 }
