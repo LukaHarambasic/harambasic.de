@@ -36,20 +36,86 @@ That's it. No CMS, no framework decisions, no design system meeting. You prompt,
 
 I've tried a bunch of these prompt-to-site tools and [Lovable](https://lovable.dev) is currently the one producing the nicest-looking output by a good margin. You describe what you want, it generates a React site with a live preview, and you iterate from there.
 
-The trick to getting a good result is being specific about the parts a designer would think about. Instead of "a website for a construction company", give it:
+The trick is being specific about the parts a designer would think about, AND being explicit about the things Lovable will otherwise get wrong. My prompts have grown into a small checklist, grouped by what each rule is actually there for. In rough order of importance:
 
-- The name and one sentence about what the company does.
+**1. What you're actually building.** Without these, Lovable makes something either too thin or too clever.
+
+- The name and one sentence about what the company or person does. Not a marketing line, just what they actually do.
 - A rough sitemap. "Home, services, projects, contact." That's enough.
-- A vibe or references. "Feels like a small Copenhagen architecture studio. Warm, off-white, serif headings, one accent color."
-- Content, even if it's a placeholder. Real names, real service descriptions, a real address. Lovable-generated lorem ipsum is worse than your own draft.
+- Real content, even placeholder. Real service names, real addresses, a real bio. Lovable's lorem ipsum is worse than your own rough draft.
 
-Here's roughly the shape of a prompt that works for me:
+**2. Design direction.** Without references, you get the Lovable house style, and every site starts to look the same.
+
+- A vibe, in one or two sentences. "Feels like a small Copenhagen architecture studio. Warm, off-white, serif headings, one accent color."
+- Two or three reference URLs. Sites you like, Instagram accounts, Dribbble shots, whatever. Lovable pulls inspiration from these instead of averaging over its training data.
+- Animation stack if you care (Framer Motion, Lenis for smooth scroll). Ask for micro-interactions on interactive elements or you get static hover states.
+
+**3. Things Lovable gets wrong by default.** These are the "please just say it" rules. If you don't, you'll notice later and be annoyed.
+
+- **No em dashes anywhere.** Lovable loves them. If you don't ban them explicitly, they appear in every heading and every paragraph.
+- **Don't generate any images unless explicitly asked.** Otherwise you get AI-slop stock photos that don't match the brief. Say "use placeholders where images go."
+- **Fully responsive across all screen sizes.** Obvious, but without this you get a desktop-first layout that breaks on phones.
+- **Fully accessible, and the build (or dev server) should fail on inaccessible markup.** Same reasoning. Otherwise you ship missing alt text, poor contrast, and unreachable focus states, and you'll only notice when someone tells you.
+
+**4. Engineering targets.** The difference between a Lovable preview and something Netlify can actually serve.
+
+- **Production-ready static site, following best practices.** No stray console logs, no unused deps, sensible file layout.
+- **Optimize for performance.** Small bundles, modern image formats, lazy loading where it makes sense.
+- **Optimize for SEO and social media.** Real title/description per page, OG tags, Twitter card, structured data where relevant.
+- **Generate a social preview image per page, at build time.** This must run in CI (Netlify's build), not just locally, since I might never build locally on a family member's site. My own script for [harambasic.de](https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview) is a decent reference.
+
+Here's a template you can adapt. Fill in the `{{placeholders}}`:
 
 ```
-<<EXAMPLE_PROMPT>>
+Create a new website for {{name}} at {{domain}}.
+
+What they do: {{one sentence, plain, no marketing}}.
+
+Sitemap: {{Home, services, projects, contact}}.
+
+Vibe: {{one or two sentences, e.g. "thoughtful, creative, curious, invites the reader to connect. Modern, artsy, minimalistic."}}.
+
+Design references (take inspiration, do not copy):
+- {{URL 1}}
+- {{URL 2}}
+- {{URL 3}}
+
+Animation stack: {{Framer Motion + Lenis for smooth scroll, or leave blank for defaults}}. Micro-interactions on every interactive element.
+
+Technical requirements:
+- Production-ready static site, best practices, no stray console logs or unused deps.
+- Fully responsive across all screen sizes.
+- Fully accessible. Build or dev server must fail on inaccessible markup.
+- Optimize for performance: small bundles, modern image formats, lazy loading where it makes sense.
+- Optimize for SEO and social media: per-page title/description, OG tags, Twitter card.
+- Generate a social preview image per page at build time. Must run in CI (may never run locally). Inspired by https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview.
+
+Rules:
+- No em dashes anywhere.
+- Do not generate any images. Use placeholders where images should go.
+- Do not invent copy. Use my draft below or placeholders.
+
+Content:
+{{names, services, real addresses, existing copy, whatever you have}}
 ```
 
-_Prompt structure adapted from Felix Haas's [How To Prompt High-End Websites In Lovable](https://designplusai.com/p/how-to-prompt-high-end-websites-in)._
+And here's roughly what the filled-in version looked like for Adina's site:
+
+```
+Create a new website for adiadi.art. Use Framer Motion for animations. The product should feel thoughtful, creative, curious, and invite the reader to connect. Modern, artsy, minimalistic.
+
+Two references: https://crete26.netlify.app/ and https://www.instagram.com/julia.martins.miranda/.
+
+Smooth scroll with Lenis or Locomotive Scroll. Micro-interactions on every interactive element. Blow the user's mind with motion, connection, interaction.
+
+Do NOT generate any pictures. Adina is an artist and only her own work goes on the site. Use placeholders for now.
+
+Front page is about the artist herself, with placeholders for a few selected pieces. Then a gallery page with placeholders that looks a little bit like a shop layout, without an actual shop. People should send an email or DM on Instagram if they want to buy a piece. Images do not have detail pages, but one image can have multiple pictures. Clicking opens a near-fullscreen modal so people can see the details.
+
+No em dashes anywhere.
+```
+
+_Prompt structure inspired by Felix Haas's [How To Prompt High-End Websites In Lovable](https://designplusai.com/p/how-to-prompt-high-end-websites-in)._
 
 You iterate the same way you'd give feedback to a designer. "The hero is too tall, cut it in half." "Change the accent to a deeper red." "Add a section between services and contact that lists past projects with a photo grid." It picks up small changes quickly and doesn't lose the rest of the site.
 
