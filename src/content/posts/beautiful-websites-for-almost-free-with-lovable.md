@@ -16,7 +16,7 @@ I keep getting asked the same question by friends and family: "I need a small we
 
 Over the last year I have landed on a stack that fits that shape almost perfectly. It's boring, it's cheap, and the output is honestly better than a lot of what you get from freelancers charging four figures. I want to write it down here so I can stop explaining it in DMs.
 
-> One disclaimer up front: if you don't mind spending money, you can just pay Lovable around €25 per month and get hosting, domain wiring, and ongoing edits all in one place. No hassle, no GitHub, no separate Netlify account. This post is the cheap version, aimed at people who already have a Claude Code subscription and a GitHub account and would rather not add another €25/month line item.
+> Quick disclaimer up front: if you don't mind spending a bit, you can just pay Lovable around €25 per month and get hosting, domain, and ongoing edits in one place. No hassle. Even paying that is a much nicer answer than paying Wix or Squarespace, those builders feel really old school next to what Lovable produces. This post is just the cheap version, for people who already have a Claude Code subscription and a GitHub account and don't want another line item.
 
 ## The stack
 
@@ -31,7 +31,7 @@ That's it. No CMS, no framework decisions, no design system meeting. You prompt,
 
 ## Step 1: Prompt it in Lovable
 
-[Lovable](https://lovable.dev) generates a React site from a text prompt. You describe what you want, it produces the code and a live preview, you iterate.
+I've tried a bunch of these prompt-to-site tools and [Lovable](https://lovable.dev) is currently the one producing the nicest-looking output by a good margin. You describe what you want, it generates a React site with a live preview, and you iterate from there.
 
 The trick to getting a good result is being specific about the parts a designer would think about. Instead of "a website for a construction company", give it:
 
@@ -53,14 +53,14 @@ Each of them took a couple of hours in Lovable, plus a bit of tweaking afterward
 
 ## Step 2: Push it to GitHub
 
-Before you hook up hosting, get the code out of Lovable and into a real repo. Lovable has a built-in GitHub integration: connect your account once, and every change in the Lovable editor is committed to a repo you own. Do this early, even if you're not planning to edit the code by hand yet.
+Before you hook up hosting, get the code out of Lovable and into a real repo. Lovable has a built-in GitHub integration: you connect your account once and every change in the editor is committed to a repo you own. I'd do this early, even if you're not planning to touch the code yourself yet.
 
-Two reasons this step matters more than it looks:
+Two reasons this small step matters more than it looks:
 
-- **It keeps the Lovable iteration path open.** You still get Lovable's daily free credits. You can go back into the editor whenever you want, tweak a section by prompt, and the changes land in the repo automatically. For non-technical friends, this is the ongoing update flow: "just describe what you want changed."
-- **It unlocks the Claude Code path**, which is how I actually prefer to iterate once the site exists. Clone the repo, edit locally, push. Small changes go from prompt-and-wait to a two-line diff. More on this in Step 4.
+- **It keeps the Lovable iteration path open.** You still get Lovable's daily free credits, so you can pop back into the editor whenever you want, tweak a section by prompt, and the changes land in the repo automatically. For friends who never want to open a terminal, this is the ongoing update flow: "just describe what you want changed."
+- **It unlocks the Claude Code path**, which is how I actually prefer to iterate once a site exists. Clone the repo, edit locally, push. Small changes go from prompt-and-wait to a two-line diff. More on that in Step 4.
 
-If you skip this step and stay inside Lovable's hosted preview, you're locked into their editor and their pricing. A five-minute GitHub connection removes that risk entirely.
+If you skip GitHub and stay inside Lovable's hosted preview, you're pretty much locked into their editor and their pricing. A five-minute connection avoids that.
 
 ## Step 3: Ship it via Netlify
 
@@ -80,7 +80,7 @@ The only recurring cost of the whole stack is the domain. Two registrars I'd poi
 - **[Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)** sells domains at wholesale cost, no markup, no upsells. A `.com` is around $10 a year and stays there. This is my default now.
 - **[Namecheap](https://www.namecheap.com)** is the classic option. Slightly more expensive than Cloudflare, but the dashboard is friendlier if you've never touched DNS before.
 
-Avoid GoDaddy and the other loud-marketing registrars. They're not scams, they're just noticeably more expensive and constantly try to sell you things you don't need.
+I'd skip GoDaddy and the other loud-marketing registrars. Nothing scammy, they're just noticeably more expensive and constantly try to sell you stuff you don't need.
 
 ### Pointing the domain at Netlify
 
@@ -89,17 +89,17 @@ Once you own the domain, you have two options for wiring it up:
 1. **Let Netlify manage DNS.** In the registrar's dashboard, change the nameservers to the ones Netlify shows you (four `nsN.p<something>.dnsimple.com` addresses). From then on you manage all DNS inside Netlify. Easiest option, and what I'd recommend if you don't already have MX records or other DNS you care about.
 2. **Keep DNS at the registrar.** Add an `A` record for the apex (`@`) pointing at Netlify's load balancer IP, and a `CNAME` for `www` pointing at your Netlify subdomain (`your-site.netlify.app`). Netlify shows you the exact values in the "Domain management" screen. Use this option if you already run email on the domain and don't want to move those records.
 
-Either way, SSL is automatic (Let's Encrypt, wired up by Netlify) and takes a few minutes after the DNS propagates. There is nothing to configure.
+Either way, SSL is handled for you (Let's Encrypt, wired up by Netlify) and kicks in a few minutes after the DNS propagates. Nothing else to configure.
 
 ## Step 4: Tweak with Claude Code
 
-Lovable is amazing at getting you 90% of the way. The last 10% is where it struggles: pixel-level layout fixes, cross-browser quirks, adding an obscure meta tag for a specific platform, tightening the tailwind config, wiring up a contact form endpoint. Anything that needs precision rather than generation.
+Lovable is really good at getting you 90% of the way. The last 10% is where it starts to struggle: pixel-level layout fixes, cross-browser quirks, adding an obscure meta tag for one specific platform, tightening the tailwind config, wiring up a contact form endpoint. The stuff that needs precision rather than generation.
 
-That's where I switch to [Claude Code](https://claude.com/code). I clone the repo, open it locally, and describe the change. "The mobile nav overlaps the logo, fix it." "The og:image is wrong, generate a proper one and wire it up." "Add a favicon based on the logo." It handles the diff, I check it in the browser, I push. Netlify redeploys within a minute.
+That's where I switch over to [Claude Code](https://claude.com/code). I clone the repo, open it locally, and just describe the change. "The mobile nav overlaps the logo, fix it." "The og:image is wrong, generate a proper one and wire it up." "Add a favicon based on the logo." It handles the diff, I check it in the browser, I push. Netlify redeploys within a minute.
 
-You could use Cursor, or Zed, or plain Copilot. The point is that once the code is in a real repo, you have all the normal engineering tools available, and small edits stop being scary.
+You could use Cursor, or Zed, or plain Copilot. The point is really that once the code is in a real repo, you have all the normal engineering tools available and small edits stop feeling scary.
 
-One honest caveat: you do need a bit of technical confidence to make this work. Claude Code doesn't push automatically. You have to tell it to commit the change and push it, and that means knowing roughly what those words mean. You don't need to write any code yourself, but you need to be comfortable following along in a terminal and prompting with intent. If that sounds like too much friction, the Lovable editor with its daily free credits is genuinely a better fit.
+One honest caveat: you do need a little technical confidence for this path. Claude Code won't push on its own, you have to tell it to commit and push, and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is genuinely a better fit.
 
 ## The one exception: harambasic.de
 
@@ -111,6 +111,6 @@ The rule of thumb I keep coming back to: if the site is going to change less tha
 
 ## Conclusion
 
-If someone in your life needs a small website, don't send them to a builder like Wix or Squarespace, and definitely don't tell them to hire a freelancer for something a weekend can solve. Sit down with them, prompt the site in Lovable, deploy it to Netlify, and use Claude Code to fix the last few things. Total cost: one domain. Total time: an afternoon.
+If someone in your life needs a small website, I really wouldn't send them to Wix or Squarespace, and I wouldn't tell them to hire a freelancer for something a weekend can solve either. Sit down with them for an afternoon, prompt the site in Lovable, deploy it to Netlify, and use Claude Code to polish the last few bits. Total cost: one domain. Total time: an afternoon.
 
-That's a lot of value for very little effort. It's also the first time in years I feel comfortable saying yes when someone asks me to help them get online.
+That's a lot of value for very little effort. Honestly, it's also the first time in years I feel comfortable saying yes when someone asks me to help them get online.
