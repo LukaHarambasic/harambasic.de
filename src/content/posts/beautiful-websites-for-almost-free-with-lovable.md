@@ -56,14 +56,11 @@ You iterate the same way you'd give feedback to a designer. "The hero is too tal
 Here's what I've built this way so far:
 
 - **[meyster.work](https://meyster.work)** is a simple landing page for a side project.
-- **[ivo-bau.de](https://ivo-bau.de)** and **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)** are small sites for my parents' businesses. Both replaced pretty dated previous versions (screenshots below for the before/after).
-
-<!-- TODO: screenshot placeholder, ivo-bau.de previous version -->
-<!-- TODO: screenshot placeholder, zimmer-ludwigshafen.com previous version -->
-
 - **[adiadi.art](https://adiadi.art)** is for my incredibly talented friend and artist Adina. Shopify was on the table so she could sell prints directly, but that's something for later. For now she has a really simple site she can manage herself in Lovable. I tweaked a few bits with Claude Code, but honestly just fine-tuning. It's in her style, the look she wants, expressing her voice.
 
-Each of these took a couple of hours in Lovable, plus a bit of tweaking afterwards. None of them cost more than the domain.
+Next up on the same stack: **[ivo-bau.de](https://ivo-bau.de)** and **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)**, my parents' businesses. Both current sites are pretty dated and I want to rebuild them the same way, but I'm waiting on them to send me photos and copy first. Without decent images and a few real sentences about what they actually do, Lovable will happily generate something that looks fine and says nothing. Once that lands, it's an afternoon each.
+
+Each of the sites above took a couple of hours in Lovable, plus a bit of tweaking afterwards. None of them cost more than the domain.
 
 ## Step 2: Push it to GitHub
 
