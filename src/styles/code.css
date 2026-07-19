@@ -38,8 +38,8 @@
 	padding: var(--xxs) var(--xs);
 	border: none;
 	border-radius: var(--border-radius-small);
-	background: rgba(255, 237, 249, 0.08);
-	color: rgba(255, 237, 249, 0.85);
+	background: #ffedf9;
+	color: #16041a;
 	font-family: var(--font-family-code);
 	font-size: var(--font-xs);
 	transition: var(--transition);
@@ -49,8 +49,8 @@
 
 	&:hover,
 	&:focus-visible {
-		background: rgba(255, 237, 249, 0.16);
-		color: #ffedf9;
+		background: #fbdcef;
+		color: #16041a;
 	}
 
 	&[data-state='copied'] {
