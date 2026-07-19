@@ -40,6 +40,12 @@ The trick to getting a good result is being specific about the parts a designer 
 - A vibe or references. "Feels like a small Copenhagen architecture studio. Warm, off-white, serif headings, one accent color."
 - Content, even if it's a placeholder. Real names, real service descriptions, a real address. Lovable-generated lorem ipsum is worse than your own draft.
 
+Here's roughly the shape of a prompt that works for me:
+
+```
+<<EXAMPLE_PROMPT>>
+```
+
 You iterate the same way you'd give feedback to a designer. "The hero is too tall, cut it in half." "Change the accent to a deeper red." "Add a section between services and contact that lists past projects with a photo grid." It picks up small changes quickly and doesn't lose the rest of the site.
 
 Here are a few examples I built exactly this way:
