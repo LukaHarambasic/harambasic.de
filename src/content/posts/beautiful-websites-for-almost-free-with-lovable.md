@@ -12,11 +12,14 @@ tldr: "For simple websites the fastest path I have found: prompt it in Lovable, 
 
 ## Motivation
 
-I keep getting asked the same question by friends and family: "I need a small website, what do I do?" Sometimes it's for a portfolio, sometimes for a family business, sometimes for a side project. Almost never is it a case where a full CMS, a design system, or a proper agency budget makes sense. What they actually want is a few nice pages that load fast, look good on mobile, and don't cost anything to keep running.
+I get asked the same thing a lot by friends and family: they need a small website, ideally one they can edit themselves later without asking me every time. For a while my answer was "just use Wix or Squarespace." Honest and useful, but for a private person offering their services with no revenue coming in yet, 15 or 20 euros a month feels like a lot. WordPress was the other option, but either you pay a managed host around the same, or you figure out how to run it yourself. None of it felt great.
 
-Over the last year I have landed on a stack that fits that shape almost perfectly. It's boring, it's cheap, and the output is honestly better than a lot of what you get from freelancers charging four figures. I want to write it down here so I can stop explaining it in DMs.
+That answer changed for me recently. Two versions of it work now, both a lot nicer than the old builders:
 
-> Quick disclaimer up front: if you don't mind spending a bit, you can just pay Lovable around €25 per month and get hosting, domain, and ongoing edits in one place. No hassle. Even paying that is a much nicer answer than paying Wix or Squarespace, those builders feel really old school next to what Lovable produces. This post is just the cheap version, for people who already have a Claude Code subscription and a GitHub account and don't want another line item.
+1. **Just pay Lovable** (around €25/month) and get the site, hosting, domain, and ongoing edits in one place. No hassle, and honestly a much nicer answer than Wix or Squarespace, which feel really old school next to what Lovable produces.
+2. **Wire together a workflow** where the only recurring cost is the domain, using tools you probably already have.
+
+This post is about the second one, because it's what I actually use now. If you already have a Claude Code subscription and a GitHub account, this is basically free.
 
 ## The stack
 
@@ -48,14 +51,17 @@ Here's roughly the shape of a prompt that works for me:
 
 You iterate the same way you'd give feedback to a designer. "The hero is too tall, cut it in half." "Change the accent to a deeper red." "Add a section between services and contact that lists past projects with a photo grid." It picks up small changes quickly and doesn't lose the rest of the site.
 
-Here are a few examples I built exactly this way:
+Here's what I've built this way so far:
 
-- [meyster.work](https://meyster.work), for a friend running workshops.
-- [adiadi.art](https://adiadi.art), for the artist Adina.
-- [ivo-bau.de](https://ivo-bau.de), my father's construction business.
-- [zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com), a small carpentry shop.
+- **[meyster.work](https://meyster.work)** is a simple landing page for a side project.
+- **[ivo-bau.de](https://ivo-bau.de)** and **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)** are small sites for my parents' businesses. Both replaced pretty dated previous versions (screenshots below for the before/after).
 
-Each of them took a couple of hours in Lovable, plus a bit of tweaking afterwards. None of them cost more than the domain.
+<!-- TODO: screenshot placeholder, ivo-bau.de previous version -->
+<!-- TODO: screenshot placeholder, zimmer-ludwigshafen.com previous version -->
+
+- **[adiadi.art](https://adiadi.art)** is for my incredibly talented friend and artist Adina. Shopify was on the table so she could sell prints directly, but that's something for later. For now she has a really simple site she can manage herself in Lovable. I tweaked a few bits with Claude Code, but honestly just fine-tuning. It's in her style, the look she wants, expressing her voice.
+
+Each of these took a couple of hours in Lovable, plus a bit of tweaking afterwards. None of them cost more than the domain.
 
 ## Step 2: Push it to GitHub
 
