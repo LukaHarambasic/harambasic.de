@@ -115,7 +115,7 @@ Front page is about the artist herself, with placeholders for a few selected pie
 No em dashes anywhere.
 ```
 
-_Prompt structure inspired by Felix Haas's [How To Prompt High-End Websites In Lovable](https://designplusai.com/p/how-to-prompt-high-end-websites-in)._
+<small>Prompt structure inspired by Felix Haas's <a href="https://designplusai.com/p/how-to-prompt-high-end-websites-in">How To Prompt High-End Websites In Lovable</a>.</small>
 
 You iterate the same way you'd give feedback to a designer. "The hero is too tall, cut it in half." "Change the accent to a deeper red." "Add a section between services and contact that lists past projects with a photo grid." It picks up small changes quickly and doesn't lose the rest of the site.
 
@@ -126,7 +126,7 @@ Here's what I've built this way so far:
 
 Next up on the same stack: **[ivo-bau.de](https://ivo-bau.de)** and **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)**, my parents' businesses. Both current sites are pretty dated and I want to rebuild them the same way, but I'm waiting on them to send me photos and copy first. Without decent images and a few real sentences about what they actually do, Lovable will happily generate something that looks fine and says nothing. Once that lands, it's an afternoon each.
 
-Each of the sites above took a couple of hours in Lovable, plus a bit of tweaking afterwards. None of them cost more than the domain.
+meyster.work and adiadi.art each took a couple of hours in Lovable, plus a bit of tweaking afterwards. Neither cost more than the domain.
 
 ## Step 2: Push it to GitHub
 
@@ -182,7 +182,7 @@ One honest caveat: you do need a little technical confidence for this path. Clau
 
 I want to be clear about one thing: this stack is for **simple websites**. Marketing pages, small business sites, portfolios, side projects. Anything where the content is fairly static and the number of pages is small.
 
-For my own site, [harambasic.de](https://harambasic.de), I did the opposite. I designed the CI identity by hand, wrote the code from scratch, and then rewrote the whole thing in [Astro](https://astro.build). That's a very different project. It's a long-lived personal home, I care about every detail, and I want the freedom to add whatever weird content type I come up with next. Lovable would have gotten me somewhere fast, but not somewhere I'd want to live in for years.
+For my own site, [harambasic.de](https://harambasic.de), I did the opposite. I designed the visual identity by hand, wrote the code from scratch, and then rewrote the whole thing in [Astro](https://astro.build). That's a very different project. It's a long-lived personal home, I care about every detail, and I want the freedom to add whatever weird content type I come up with next. Lovable would have gotten me somewhere fast, but not somewhere I'd want to live in for years.
 
 The rule of thumb I keep coming back to: if the site is going to change less than once a month and has fewer than ten pages, Lovable + Netlify + Claude Code is unbeatable on price and speed. Anything more ambitious, pick a real framework.
 
