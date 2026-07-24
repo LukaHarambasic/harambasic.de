@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import EntryList from '../../components/EntryList.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjects } from '$lib/content';
+
+const title = "Things I've built";
+const description =
+	'Side projects, tools, and experiments. Some are live, some are archived, all taught me something.';
+
+const projects = (await getProjects()).sort(
+	(a, b) => b.published.raw.getTime() - a.published.raw.getTime()
+);
+---
+
+<Layout title={title} description={description}>
+	<Hero slot="hero" title={title} description={description} />
+	<EntryList columns={3}>
+		{
+			projects.map((entry) => (
+				<li>
+					<ProjectCard entry={entry} />
+				</li>
+			))
+		}
+	</EntryList>
+</Layout>

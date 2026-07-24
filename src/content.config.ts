@@ -77,6 +77,22 @@ const experience = defineCollection({
 	})
 });
 
+const projects = defineCollection({
+	loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		image: imageField,
+		published: z.coerce.date(),
+		updated: z.coerce.date(),
+		tags: z.array(z.string()),
+		status: z.enum(['active', 'archived']),
+		role: z.string(),
+		url: z.string().optional(),
+		github: z.string().optional()
+	})
+});
+
 // Dormant collections - defined so their writers (fetch-shareable) and routes-to-be
 // validate, but no routes consume them today. Permissive schemas.
 const snippets = defineCollection({
@@ -101,4 +117,4 @@ const shareables = defineCollection({
 	})
 });
 
-export const collections = { posts, uses, experience, snippets, shareables };
+export const collections = { posts, uses, experience, snippets, shareables, projects };

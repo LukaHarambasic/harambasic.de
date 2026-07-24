@@ -20,16 +20,72 @@
 	font-size: var(--font-m);
 	overflow-x: auto;
 	padding-inline-end: calc(var(--m) + var(--xl));
+
+	/* Desktop: make code blocks a bit wider than the reading column, still centered */
+	@media screen and (width > 62rem) {
+		margin-inline: calc(50% - 26rem); /* Center with 52rem total width */
+		width: 52rem;
+		max-width: none;
+	}
+
+	/* Allow soft wrapping for text/markdown content in code blocks.
+	   Note: Shiki sets data-language on the <pre> element, not <code>. */
+	&[data-language='markdown'],
+	&[data-language='md'],
+	&[data-language='txt'],
+	&[data-language='plaintext'] {
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		overflow-x: visible;
+	}
+
+	/* A <small> caption/attribution directly under a code block belongs to that
+	   block, so pull it in close instead of leaving the full paragraph gap.
+	   Note: the <small> renders wrapped in its own <p>; a single :has() with a
+	   compound relative selector (no nested :has(), which is invalid CSS). */
+	&:has(+ p > small) {
+		margin-block-end: var(--xs);
+	}
 }
 
-/* Markdown blocks lean heavily on the muted grey token color (#ABB2BF) for
-   prose runs, which reads flat on the deep aubergine background. Nudge those
-   specific spans to a warm off-white so md prompts and drafts read cleanly.
-   Real syntax tokens (headings, links, inline code) keep their one-dark-pro
-   colors. */
-.astro-code[data-language='markdown'] span[style*='#ABB2BF'],
+/* Brand-align the markdown token palette. Shiki inlines one-dark-pro's editor
+   colors (cool reds/blues/greens) on every span; on the deep aubergine block
+   those clash and read flat. We remap each markdown token color to a warm,
+   on-brand hue. Scoped to markdown blocks ONLY so real code blocks (js, css, ...)
+   keep their one-dark-pro highlighting untouched. Matching by inline color means
+   a few scopes share a hue (italic + bare URLs; list markers + backticks), which
+   is fine. Grouped one selector list per target color: */
+.astro-code[data-language='markdown'] span[style*='#ABB2BF'], /* prose        */
 .astro-code[data-language='md'] span[style*='#ABB2BF'] {
-	color: #e8d5e5 !important;
+	color: #e8d5e5 !important; /* warm off-white */
+}
+.astro-code[data-language='markdown'] span[style*='#E06C75'], /* headings, () */
+.astro-code[data-language='md'] span[style*='#E06C75'] {
+	color: #ff9ecb !important; /* bright brand pink */
+}
+.astro-code[data-language='markdown'] span[style*='#D19A66'], /* bold         */
+.astro-code[data-language='md'] span[style*='#D19A66'] {
+	color: #f0b15e !important; /* warm amber */
+}
+.astro-code[data-language='markdown'] span[style*='#C678DD'], /* italic, urls */
+.astro-code[data-language='md'] span[style*='#C678DD'] {
+	color: #d8a6d6 !important; /* soft mauve */
+}
+.astro-code[data-language='markdown'] span[style*='#61AFEF'], /* link text    */
+.astro-code[data-language='md'] span[style*='#61AFEF'] {
+	color: #8fc0f0 !important; /* soft sky */
+}
+.astro-code[data-language='markdown'] span[style*='#E5C07B'], /* bullets, ``  */
+.astro-code[data-language='md'] span[style*='#E5C07B'] {
+	color: #e0a24a !important; /* honey (matches {{placeholders}}) */
+}
+.astro-code[data-language='markdown'] span[style*='#98C379'], /* inline code  */
+.astro-code[data-language='md'] span[style*='#98C379'] {
+	color: #9fd98c !important; /* soft mint */
+}
+.astro-code[data-language='markdown'] span[style*='#5C6370'], /* blockquote   */
+.astro-code[data-language='md'] span[style*='#5C6370'] {
+	color: #a88fa4 !important; /* lifted muted mauve */
 }
 
 .code-copy {

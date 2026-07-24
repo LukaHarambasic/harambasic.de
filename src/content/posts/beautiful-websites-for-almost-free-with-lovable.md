@@ -7,8 +7,12 @@ updated: 2026-07-19
 tags:
   - Tools
   - Development
-tldr: "For simple websites the fastest path I have found: prompt it in Lovable, deploy the exported code to Netlify, then use Claude Code (or similar) for the small tweaks Lovable can't quite nail. The whole stack costs about as much as the domain."
+tldr: 'For simple websites the fastest path I have found: prompt it in Lovable, deploy it to Netlify, then use Claude Code (or similar) for the small tweaks. You only have to pay for the domain.'
 ---
+
+## A note before we start
+
+You need to be technically interested to get through this. If the thought of pushing code to GitHub or dealing with DNS settings makes you want to close the tab, this might not be for you. But you don't need a technical background. I don't assume you know React, or what a build step is, or why people argue about CSS frameworks. I assume you're willing to learn a few new concepts and follow instructions. That's it.
 
 ## Motivation
 
@@ -19,43 +23,45 @@ That answer changed for me recently. Two versions of it work now, both a lot nic
 1. **Just pay Lovable** (around €25/month) and get the site, hosting, domain, and ongoing edits in one place. No hassle, and honestly a much nicer answer than Wix or Squarespace, which feel really old school next to what Lovable produces.
 2. **Wire together a workflow** where the only recurring cost is the domain, using tools you probably already have.
 
-This post is about the second one, because it's what I actually use now. If you already have a Claude Code subscription and a GitHub account, this is basically free.
+This post is about the second one, because it's what I actually use now. Technically you don't even need a code assistant like Claude Code, you can stay within Lovable's free 5 credits a day. Slows you down, but also keeps it simple.
 
 ## The stack
 
 The four pieces are:
 
-1. **Lovable** for generating the site.
-2. **GitHub** as the source of truth for the code.
-3. **Netlify** for hosting and the domain.
-4. **Claude Code** (or Cursor, or whatever you like) for the small edits Lovable is bad at.
+1. **Lovable** for generating the site. (free tier)
+2. **GitHub** as the source of truth for the code. (free tier)
+3. **Netlify** for hosting and the domain. (free tier)
+4. Optional: **Claude Code** (or Cursor, or whatever you like) for the small edits Lovable is bad at.
 
-That's it. No CMS, no framework decisions, no design system meeting. You prompt, you push, you deploy, you tweak.
+That's it. No Content Management System (CMS), no framework decisions, no design system. You prompt, you push, you deploy, you tweak.
 
 ## Step 1: Prompt it in Lovable
 
-I've tried a bunch of these prompt-to-site tools and [Lovable](https://lovable.dev) is currently the one producing the nicest-looking output by a good margin. You describe what you want, it generates a React site with a live preview, and you iterate from there.
+I've tried various different ways to produce beautiful websites. [Lovable](https://lovable.dev) is currently the one producing the nicest-looking output by a good margin. You describe what you want, it generates a site with a live preview, and you continue from there.
 
-The trick is being specific about the parts a designer would think about, AND being explicit about the things Lovable will otherwise get wrong. My prompts have grown into a small checklist, grouped by what each rule is actually there for. In rough order of importance:
+The trick is being specific about the parts a designer would think about, and being explicit about the things Lovable will otherwise get wrong. My prompts have grown into a small checklist, grouped by what each rule is actually there for. In rough order of importance:
 
 **1. What you're actually building.** Without these, Lovable makes something either too thin or too clever.
 
 - The name and one sentence about what the company or person does. Not a marketing line, just what they actually do.
-- A rough sitemap. "Home, services, projects, contact." That's enough.
-- Real content, even placeholder. Real service names, real addresses, a real bio. Lovable's lorem ipsum is worse than your own rough draft.
+- A rough sitemap. "Home, services, projects, contact." That's enough. Don't do more than 4 in the beginning, otherwise Lovable will run out of tokens in no time.
+- Real content, even placeholder. Real service names, real addresses, a real bio. Also directly sets the language of your website.
 
-**2. Design direction.** Without references, you get the Lovable house style, and every site starts to look the same.
+**2. Design direction.** Without references, you get the Lovable default style.
 
 - A vibe, in one or two sentences. "Feels like a small Copenhagen architecture studio. Warm, off-white, serif headings, one accent color."
 - Two or three reference URLs. Sites you like, Instagram accounts, Dribbble shots, whatever. Lovable pulls inspiration from these instead of averaging over its training data.
-- Animation stack if you care (Framer Motion, Lenis for smooth scroll). Ask for micro-interactions on interactive elements or you get static hover states.
+- Animation stack if you care (Framer Motion). Ask for micro-interactions on interactive elements or you get standard animations.
+- Provide your logo, or let an existing AI generate you one to get started.
 
 **3. Things Lovable gets wrong by default.** These are the "please just say it" rules. If you don't, you'll notice later and be annoyed.
 
 - **No em dashes anywhere.** Lovable loves them. If you don't ban them explicitly, they appear in every heading and every paragraph.
-- **Don't generate any images unless explicitly asked.** Otherwise you get AI-slop stock photos that don't match the brief. Say "use placeholders where images go."
-- **Fully responsive across all screen sizes.** Obvious, but without this you get a desktop-first layout that breaks on phones.
+- **Don't generate any images unless explicitly asked.** Otherwise you get AI-slop stock photos that don't match the brief, also runs out too quickly out of your free credits. Say "use placeholders where images go."
+- **Fully responsive across all screen sizes.** Obvious, but without this you sometimes get a desktop-first layout that breaks on phones.
 - **Fully accessible, and the build (or dev server) should fail on inaccessible markup.** Same reasoning. Otherwise you ship missing alt text, poor contrast, and unreachable focus states, and you'll only notice when someone tells you.
+- Don't take over the default browser scrolling, never.
 
 **4. Engineering targets.** The difference between a Lovable preview and something Netlify can actually serve.
 
@@ -63,45 +69,60 @@ The trick is being specific about the parts a designer would think about, AND be
 - **Optimize for performance.** Small bundles, modern image formats, lazy loading where it makes sense.
 - **Optimize for SEO and social media.** Real title/description per page, OG tags, Twitter card, structured data where relevant.
 - **Generate a social preview image per page, at build time.** This must run in CI (Netlify's build), not just locally, since I might never build locally on a family member's site. My own script for [harambasic.de](https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview) is a decent reference.
+- Update the favicon in all occasions, no Lovable favicon allowed, make it based on the logo.
 
 Here's a template you can adapt. Fill in the `{{placeholders}}`:
 
-```
-Create a new website for {{name}} at {{domain}}.
+```markdown
+# Website for {{name}} at {{domain}}
 
-What they do: {{one sentence, plain, no marketing}}.
+## What they do
 
-Sitemap: {{Home, services, projects, contact}}.
+{{one sentence, plain, no marketing}}
 
-Vibe: {{one or two sentences, e.g. "thoughtful, creative, curious, invites the reader to connect. Modern, artsy, minimalistic."}}.
+## Sitemap
 
-Design references (take inspiration, do not copy):
+{{Home, services, projects, contact}}
+
+## Vibe
+
+{{one or two sentences, e.g. "thoughtful, creative, curious, invites the reader to connect. Modern, artsy, minimalistic."}}
+
+## Design references
+
+Take inspiration, _do not copy_:
+
 - {{URL 1}}
 - {{URL 2}}
 - {{URL 3}}
 
-Animation stack: {{Framer Motion + Lenis for smooth scroll, or leave blank for defaults}}. Micro-interactions on every interactive element.
+## Animation stack
 
-Technical requirements:
-- Production-ready static site, best practices, no stray console logs or unused deps.
-- Fully responsive across all screen sizes.
-- Fully accessible. Build or dev server must fail on inaccessible markup.
-- Optimize for performance: small bundles, modern image formats, lazy loading where it makes sense.
-- Optimize for SEO and social media: per-page title/description, OG tags, Twitter card.
-- Generate a social preview image per page at build time. Must run in CI (may never run locally). Inspired by https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview.
+{{Framer Motion + Lenis for smooth scroll, or leave blank for defaults}}. **Micro-interactions on every interactive element.**
 
-Rules:
-- No em dashes anywhere.
-- Do not generate any images. Use placeholders where images should go.
-- Do not invent copy. Use my draft below or placeholders.
+## Technical requirements
 
-Content:
+- **Production-ready static site**, best practices, no stray console logs or unused deps.
+- **Fully responsive** across all screen sizes.
+- **Fully accessible.** Build or dev server must fail on inaccessible markup.
+- **Optimize for performance:** small bundles, modern image formats, lazy loading where it makes sense.
+- **Optimize for SEO and social media:** per-page title/description, OG tags, Twitter card.
+- **Generate a social preview image per page at build time.** Must run in CI (may never run locally). Inspired by [my generator script](https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview).
+
+## Rules
+
+- **No em dashes anywhere.**
+- **Do not generate any images.** Use placeholders where images should go.
+- **Do not invent copy.** Use my draft below or placeholders.
+
+## Content
+
 {{names, services, real addresses, existing copy, whatever you have}}
 ```
 
 And here's roughly what the filled-in version looked like for Adina's site:
 
-```
+```markdown
 Create a new website for adiadi.art. Use Framer Motion for animations. The product should feel thoughtful, creative, curious, and invite the reader to connect. Modern, artsy, minimalistic.
 
 Two references: https://crete26.netlify.app/ and https://www.instagram.com/julia.martins.miranda/.
@@ -141,14 +162,14 @@ If you skip GitHub and stay inside Lovable's hosted preview, you're pretty much 
 
 ## Step 3: Ship it via Netlify
 
-With the code in GitHub, [Netlify](https://netlify.com) is a one-click "deploy from GitHub" flow. You connect the two once, pick the repo, and every push (whether it came from Lovable, Claude Code, or you editing a file by hand) triggers a redeploy. First deploy takes a minute; every future one is automatic.
+With the code in GitHub, [Netlify](https://netlify.com) is a one-click "deploy from GitHub" flow. You connect the two once, pick the repo, and every push (whether it came from Lovable, Claude Code, or you editing a file by hand) triggers a redeploy. First deploy takes a minute. Every future one is automatic.
 
 Why Netlify and not Lovable's own hosting:
 
 - You own the code. If Lovable changes pricing or disappears, you still have a working site.
 - Custom domains and DNS are boring and reliable.
 - The free tier is generous enough that none of the sites above pay for hosting.
-- You get a proper CI/CD pipeline for free, which matters the moment you want to make changes without going back through Lovable.
+- You get a proper deployment pipeline for free, which matters the moment you want to make changes without going back through Lovable.
 
 ### Getting a domain
 
@@ -163,20 +184,20 @@ I'd skip GoDaddy and the other loud-marketing registrars. Nothing scammy, they'r
 
 Once you own the domain, you have two options for wiring it up:
 
-1. **Let Netlify manage DNS.** In the registrar's dashboard, change the nameservers to the ones Netlify shows you (four `nsN.p<something>.dnsimple.com` addresses). From then on you manage all DNS inside Netlify. Easiest option, and what I'd recommend if you don't already have MX records or other DNS you care about.
-2. **Keep DNS at the registrar.** Add an `A` record for the apex (`@`) pointing at Netlify's load balancer IP, and a `CNAME` for `www` pointing at your Netlify subdomain (`your-site.netlify.app`). Netlify shows you the exact values in the "Domain management" screen. Use this option if you already run email on the domain and don't want to move those records.
+1. **Let Netlify manage DNS.** In the registrar's dashboard, change the nameservers to the ones Netlify shows you (four addresses starting with `nsN`). From then on you manage all DNS inside Netlify. Easiest option, and what I'd recommend if you don't already have email or other DNS you care about.
+2. **Keep DNS at the registrar.** Add a record for the main domain pointing at Netlify, and another record for `www` pointing at your Netlify subdomain. Netlify shows you the exact values in the "Domain management" screen. Use this option if you already run email on the domain and don't want to move those records.
 
-Either way, SSL is handled for you (Let's Encrypt, wired up by Netlify) and kicks in a few minutes after the DNS propagates. Nothing else to configure.
+Either way, secure connections (SSL) are handled for you and kick in a few minutes after the DNS propagates. Nothing else to configure.
 
 ## Step 4: Tweak with Claude Code
 
-Lovable is really good at getting you 90% of the way. The last 10% is where it starts to struggle: pixel-level layout fixes, cross-browser quirks, adding an obscure meta tag for one specific platform, tightening the tailwind config, wiring up a contact form endpoint. The stuff that needs precision rather than generation.
+Lovable is really good at getting you 90% of the way. The last 10% is where it starts to struggle: pixel-level layout fixes, small browser quirks, adding a specific tag for one platform, adjusting the styling, connecting a contact form. The stuff that needs precision rather than generation.
 
-That's where I switch over to [Claude Code](https://claude.com/code). I clone the repo, open it locally, and just describe the change. "The mobile nav overlaps the logo, fix it." "The og:image is wrong, generate a proper one and wire it up." "Add a favicon based on the logo." It handles the diff, I check it in the browser, I push. Netlify redeploys within a minute.
+That's where I switch over to [Claude Code](https://claude.com/code). I copy the repo, open it locally, and just describe the change. "The mobile nav overlaps the logo, fix it." "The preview image is wrong, generate a proper one and wire it up." "Add a favicon based on the logo." It handles the change, I check it in the browser, I push. Netlify redeploys within a minute.
 
-You could use Cursor, or Zed, or plain Copilot. The point is really that once the code is in a real repo, you have all the normal engineering tools available and small edits stop feeling scary.
+You could use Cursor, or Zed, or plain Copilot. The point is really that once the code is in a real repo, you have all the normal tools available and small edits stop feeling scary.
 
-One honest caveat: you do need a little technical confidence for this path. Claude Code won't push on its own, you have to tell it to commit and push, and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is genuinely a better fit.
+One honest caveat: you do need a little technical confidence for this path. Claude Code won't push on its own, you have to tell it to save and push, and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is genuinely a better fit.
 
 ## Conclusion
 

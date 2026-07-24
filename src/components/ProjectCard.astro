@@ -1,0 +1,60 @@
+---
+import Entry from './Entry.astro';
+import type { ProjectEntry } from '$lib/types/projectEntry';
+
+interface Props {
+	entry: ProjectEntry;
+	featured?: boolean;
+	class?: string;
+}
+
+const { entry, featured = false, class: className } = Astro.props;
+const href = entry.url || entry.github || entry.relativePath;
+const external = !!(entry.url || entry.github);
+---
+
+<Entry
+	variant="card"
+	href={href}
+	title={entry.title}
+	eyebrow={entry.role}
+	featured={featured}
+	external={external}
+	class={className}
+	aria-label={`View ${entry.title}`}
+>
+	<p class="description">{entry.description}</p>
+	{
+		entry.status === 'active' && (
+			<span class="badge" aria-label="Status: Live">
+				Live
+			</span>
+		)
+	}
+</Entry>
+
+<style>
+	.description {
+		margin: 0;
+		color: var(--entry-muted);
+		font-size: var(--font-m);
+		line-height: 1.5;
+	}
+	.badge {
+		display: inline-flex;
+		padding: 2px var(--xs);
+		border-radius: var(--border-radius-pill);
+		background: color-mix(in srgb, var(--c-accent-honey) 25%, transparent);
+		align-self: flex-start;
+		color: var(--c-font);
+		font-family: var(--font-family-code);
+		font-size: var(--font-xs);
+		font-weight: 600;
+		letter-spacing: var(--tracking-eyebrow);
+		text-transform: uppercase;
+	}
+	:global(.entry.featured) .badge {
+		background: color-mix(in srgb, var(--c-accent-honey) 35%, transparent);
+		color: var(--c-inverted-text);
+	}
+</style>

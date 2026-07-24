@@ -1,4 +1,4 @@
-export type EntryType = 'post' | 'uses' | 'experience';
+export type EntryType = 'post' | 'uses' | 'experience' | 'project';
 
 // Sort direction constants and types
 export const SORT_DIRECTIONS = ['ASC', 'DESC'] as const;

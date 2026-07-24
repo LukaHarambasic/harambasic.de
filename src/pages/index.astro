@@ -5,22 +5,28 @@ import BaseRichText from '../components/BaseRichText.astro';
 import BaseSegmentedButtons from '../components/BaseSegmentedButtons.astro';
 import EntryList from '../components/EntryList.astro';
 import ExperienceCard from '../components/ExperienceCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { personSchema, websiteSchema } from '$lib/jsonld';
 import profileImg from '../assets/img/profile.jpeg';
-import { getExperience } from '$lib/content';
+import { getExperience, getProjects } from '$lib/content';
 import type { ExperienceEntry } from '$lib/types/experienceEntry';
 
 const description =
 	'Luka Harambasic. Product and AI consulting, past work in climate tech and energy. Based in Copenhagen.';
 
 const experience = await getExperience();
+const projects = await getProjects();
 
 // Most recent roles by latest position start date (current roles sort first naturally).
 const latestStart = (entry: ExperienceEntry): number =>
 	Math.max(...entry.positions.map((position) => new Date(position.startDate).getTime()));
 const recentExperience = [...experience]
 	.sort((a, b) => latestStart(b) - latestStart(a))
+	.slice(0, 3);
+
+const recentProjects = [...projects]
+	.sort((a, b) => b.published.raw.getTime() - a.published.raw.getTime())
 	.slice(0, 3);
 ---
 
@@ -57,6 +63,20 @@ const recentExperience = [...experience]
 				</p>
 			</BaseRichText>
 		</div>
+	</section>
+	<section class="highlights">
+		<p class="eyebrow">Projects</p>
+		<h2>Things I've built</h2>
+		<EntryList columns={3}>
+			{
+				recentProjects.map((entry) => (
+					<li>
+						<ProjectCard entry={entry} />
+					</li>
+				))
+			}
+		</EntryList>
+		<a class="more-link" href="/projects">All projects</a>
 	</section>
 	<section class="highlights">
 		<p class="eyebrow">Experience</p>

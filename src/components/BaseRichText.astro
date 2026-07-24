@@ -80,6 +80,13 @@ const Element = element;
 				margin-bottom: 0;
 			}
 		}
+
+		/* A list continues the sentence that introduces it ("The pieces are:",
+		   "3. Things ...:"), so hug it to that paragraph instead of the full gap. */
+		:global(> p:has(+ ul)),
+		:global(> p:has(+ ol)) {
+			margin-bottom: var(--s);
+		}
 		:global(hr) {
 			margin: var(--l) 0;
 			width: var(--deco-bar-width);
@@ -106,7 +113,9 @@ const Element = element;
 		}
 		:global(> ul),
 		:global(> ol) {
-			margin: var(--l) 0 var(--l) var(--l);
+			/* No top margin: spacing above a list comes from the preceding
+			   element's margin-bottom (same as paragraphs), so the two never stack. */
+			margin: 0 0 var(--l) var(--l);
 			width: 50ch;
 			@media screen and (width <= 50rem) {
 				width: calc(100% - var(--l));
