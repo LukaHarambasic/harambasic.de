@@ -34,59 +34,14 @@ That's it. No COntent Management System (CMS), no framework decisions, no design
 
 ## Examples
 
-Before the how-to, here is what this stack actually produces. Two sites I have built and now run this way, and two I put together as demos for this post.
-
-Live and in use:
+Before the how-to, here is what this stack actually produces. Two sites I have built and now run this way.
 
 - **[adiadi.art](https://adiadi.art)** is for my incredibly talented friend and artist Adina. Shopify was on the table so she could sell prints directly, but that's something for later. For now she has a really simple site she can manage herself in Lovable. I tweaked a few bits with Claude Code, but honestly just fine-tuning. It's in her style, the look she wants, expressing her voice.
 - **[meyster.work](https://meyster.work)** is a simple landing page for a side project.
 
 Both took a couple of hours in Lovable, plus a bit of tweaking afterwards. Neither cost more than the domain.
 
-Made for this post: my parents' businesses. The construction company, **[ivo-bau.de](https://ivo-bau.de)**, is below as a first-pass demo, a live Lovable build next to the exact prompt behind it, typos and all. **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)** gets the same treatment next. The real sites are still waiting on photos and copy.
-
-<details>
-<summary>ivo-bau.de</summary>
-
-Live demo: [ivo-bau-demo.lovable.app](https://ivo-bau-demo.lovable.app/) (first attempt)
-
-```markdown
-Create a new website for IVO-BAU at ivo-bau.de
-
-What they do: german construction company, dry walls, tiles, and now also carpenter services. its a so called "Meisterbetrieb".
-
-Sitemap: single page, nothing fancy and than also the data privacy and impressum stuff.
-
-Vibe: simple, clear lineas for consturction comapny, clean look. but authentic and personal. its a family owned business with 5 ppl. its a local company, form oppau, ludiwgsahfen. 25 years old.
-
-Design references (take inspiration, do not copy):
-
-- https://www.mn-gbr.com/ - the hero scroll animation is dope, we dont need something that detailed, but something ebfore after would be nice
-- https://malo7.com/innenausbau-heidelberg
-
-Animation stack: Framer Motion, Micro-interactions on special elements interactive element.
-
-Technical requirements:
-
-- Production-ready static site, best practices, no stray console logs or unused deps.
-- Fully responsive across all screen sizes.
-- Fully accessible. Build or dev server must fail on inaccessible markup.
-- Optimize for performance: small bundles, modern image formats, lazy loading where it makes sense.
-- Optimize for SEO and social media: per-page title/description, OG tags, Twitter card.
-- Generate a social preview image per page at build time. Must run in CI (may never run locally). Inspired by https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview.
-
-Rules:
-
-- No em dashes anywhere.
-- Do not generate any images. Use placeholders where images should go.
-- Do not invent copy. Use my draft below or placeholders.
-
-Content:
-
-catch from existing website
-```
-
-</details>
+A full worked example, my parents' construction company **[ivo-bau.de](https://ivo-bau.de)**, is at the end of this post: a live Lovable build next to the exact prompt behind it.
 
 ## Step 1: Prompt it in Lovable
 
@@ -232,6 +187,53 @@ That's where I switch over to [Claude Code](https://claude.com/code). I clone th
 You could use Cursor, or Zed, or plain Copilot. The point is really that once the code is in a real repo, you have all the normal engineering tools available and small edits stop feeling scary.
 
 One honest caveat: you do need a little technical confidence for this path. Claude Code won't push on its own, you have to tell it to commit and push, and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is genuinely a better fit.
+
+## A one-shot example: ivo-bau.de
+
+To show the whole process in one go, here is a first-pass demo I built for my parents' construction company, IVO-BAU. It's a live Lovable build sitting right next to the exact prompt behind it, typos and all. My other parent's business, **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)**, gets the same treatment next. The real sites are still waiting on photos and copy.
+
+Live demo: [ivo-bau-demo.lovable.app](https://ivo-bau-demo.lovable.app/) (first attempt)
+
+<details>
+<summary>The exact prompt</summary>
+
+```markdown
+Create a new website for IVO-BAU at ivo-bau.de
+
+What they do: german construction company, dry walls, tiles, and now also carpenter services. its a so called "Meisterbetrieb".
+
+Sitemap: single page, nothing fancy and than also the data privacy and impressum stuff.
+
+Vibe: simple, clear lineas for consturction comapny, clean look. but authentic and personal. its a family owned business with 5 ppl. its a local company, form oppau, ludiwgsahfen. 25 years old.
+
+Design references (take inspiration, do not copy):
+
+- https://www.mn-gbr.com/ - the hero scroll animation is dope, we dont need something that detailed, but something ebfore after would be nice
+- https://malo7.com/innenausbau-heidelberg
+
+Animation stack: Framer Motion, Micro-interactions on special elements interactive element.
+
+Technical requirements:
+
+- Production-ready static site, best practices, no stray console logs or unused deps.
+- Fully responsive across all screen sizes.
+- Fully accessible. Build or dev server must fail on inaccessible markup.
+- Optimize for performance: small bundles, modern image formats, lazy loading where it makes sense.
+- Optimize for SEO and social media: per-page title/description, OG tags, Twitter card.
+- Generate a social preview image per page at build time. Must run in CI (may never run locally). Inspired by https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview.
+
+Rules:
+
+- No em dashes anywhere.
+- Do not generate any images. Use placeholders where images should go.
+- Do not invent copy. Use my draft below or placeholders.
+
+Content:
+
+catch from existing website
+```
+
+</details>
 
 ## Conclusion
 
