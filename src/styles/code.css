@@ -65,8 +65,8 @@
 	padding: var(--xs);
 	border: none;
 	border-radius: var(--border-radius-small);
-	background: light-dark(#2d0a2e, #ffedf9);
-	color: light-dark(#ffedf9, #16041a);
+	background: transparent;
+	color: light-dark(rgba(45, 10, 46, 0.45), rgba(255, 237, 249, 0.5));
 	transition: var(--transition);
 	cursor: pointer;
 
@@ -75,19 +75,24 @@
 		height: 1rem;
 	}
 
+	/* Subtle by default; hover brings up a faint fill and the full-strength icon. */
 	&:hover,
 	&:focus-visible {
-		background: light-dark(#3c133d, #fbdcef);
-		color: light-dark(#ffedf9, #16041a);
+		background: light-dark(rgba(45, 10, 46, 0.08), rgba(255, 237, 249, 0.12));
+		color: light-dark(rgba(45, 10, 46, 0.85), rgba(255, 237, 249, 0.95));
+		transform: scale(1.12);
+	}
+
+	/* Tactile press: dips under the hover scale. */
+	&:active {
+		transform: scale(0.95);
 	}
 
 	&[data-state='copied'] {
-		background: var(--c-accent-honey);
-		color: #16041a;
+		color: var(--c-accent-honey);
 	}
 
 	&[data-state='failed'] {
-		background: rgba(224, 108, 117, 0.25);
-		color: light-dark(#2d0a2e, #ffedf9);
+		color: light-dark(#c0392b, #ff9a9a);
 	}
 }
