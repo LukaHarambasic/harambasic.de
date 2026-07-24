@@ -235,6 +235,8 @@ catch from existing website
 
 </details>
 
+I want to keep this honest, so I'll show it as is: this was one of the worse one-shot prompts I've done with Lovable. A few things I'd fix next in Claude Code: (1) give it the logo, which I forgot to include; (2) pull the colors and fonts closer to what we already have, some changes are fine, but this drifts too far; (3) add images to bring it to life. To be fair, if you drop the "do not generate any images" rule from the prompt you get a really good initial result, but here I want real, authentic images, nothing generated.
+
 ## Conclusion
 
 If someone in your life needs a small website, I really wouldn't send them to Wix or Squarespace, and I wouldn't tell them to hire a freelancer for something a weekend can solve either. Sit down with them for an afternoon, prompt the site in Lovable, deploy it to Netlify, and use Claude Code to polish the last few bits. Total cost: one domain. Total time: an afternoon.
