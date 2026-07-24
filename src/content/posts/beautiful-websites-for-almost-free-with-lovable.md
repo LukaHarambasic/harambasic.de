@@ -32,6 +32,62 @@ The four pieces are:
 
 That's it. No COntent Management System (CMS), no framework decisions, no design system. You prompt, you push, you deploy, you tweak.
 
+## Examples
+
+Before the how-to, here is what this stack actually produces. Two sites I have built and now run this way, and two I put together as demos for this post.
+
+Live and in use:
+
+- **[adiadi.art](https://adiadi.art)** is for my incredibly talented friend and artist Adina. Shopify was on the table so she could sell prints directly, but that's something for later. For now she has a really simple site she can manage herself in Lovable. I tweaked a few bits with Claude Code, but honestly just fine-tuning. It's in her style, the look she wants, expressing her voice.
+- **[meyster.work](https://meyster.work)** is a simple landing page for a side project.
+
+Both took a couple of hours in Lovable, plus a bit of tweaking afterwards. Neither cost more than the domain.
+
+Made for this post: my parents' businesses. The construction company, **[ivo-bau.de](https://ivo-bau.de)**, is below as a first-pass demo, a live Lovable build next to the exact prompt behind it, typos and all. **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)** gets the same treatment next. The real sites are still waiting on photos and copy.
+
+<details>
+<summary>ivo-bau.de</summary>
+
+Live demo: [ivo-bau-demo.lovable.app](https://ivo-bau-demo.lovable.app/) (first attempt)
+
+```markdown
+Create a new website for IVO-BAU at ivo-bau.de
+
+What they do: german construction company, dry walls, tiles, and now also carpenter services. its a so called "Meisterbetrieb".
+
+Sitemap: single page, nothing fancy and than also the data privacy and impressum stuff.
+
+Vibe: simple, clear lineas for consturction comapny, clean look. but authentic and personal. its a family owned business with 5 ppl. its a local company, form oppau, ludiwgsahfen. 25 years old.
+
+Design references (take inspiration, do not copy):
+
+- https://www.mn-gbr.com/ - the hero scroll animation is dope, we dont need something that detailed, but something ebfore after would be nice
+- https://malo7.com/innenausbau-heidelberg
+
+Animation stack: Framer Motion, Micro-interactions on special elements interactive element.
+
+Technical requirements:
+
+- Production-ready static site, best practices, no stray console logs or unused deps.
+- Fully responsive across all screen sizes.
+- Fully accessible. Build or dev server must fail on inaccessible markup.
+- Optimize for performance: small bundles, modern image formats, lazy loading where it makes sense.
+- Optimize for SEO and social media: per-page title/description, OG tags, Twitter card.
+- Generate a social preview image per page at build time. Must run in CI (may never run locally). Inspired by https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview.
+
+Rules:
+
+- No em dashes anywhere.
+- Do not generate any images. Use placeholders where images should go.
+- Do not invent copy. Use my draft below or placeholders.
+
+Content:
+
+catch from existing website
+```
+
+</details>
+
 ## Step 1: Prompt it in Lovable
 
 I've tried various different ways to produce beautiful websites. [Lovable](https://lovable.dev) is currently the one producing the nicest-looking output by a good margin. You describe what you want, it generates a site with a live preview, and you contniue from there.
@@ -126,60 +182,6 @@ No em dashes anywhere.
 <small>Prompt structure inspired by Felix Haas's <a href="https://designplusai.com/p/how-to-prompt-high-end-websites-in">How To Prompt High-End Websites In Lovable</a>.</small>
 
 You iterate the same way you'd give feedback to a designer. "The hero is too tall, cut it in half." "Change the accent to a deeper red." "Add a section between services and contact that lists past projects with a photo grid." It picks up small changes quickly and doesn't lose the rest of the site.
-
-Here's what I've built this way so far:
-
-- **[adiadi.art](https://adiadi.art)** is for my incredibly talented friend and artist Adina. Shopify was on the table so she could sell prints directly, but that's something for later. For now she has a really simple site she can manage herself in Lovable. I tweaked a few bits with Claude Code, but honestly just fine-tuning. It's in her style, the look she wants, expressing her voice.
-- **[meyster.work](https://meyster.work)** is a simple landing page for a side project.
-
-Next up on the same stack: **[ivo-bau.de](https://ivo-bau.de)** and **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)**, my parents' businesses. Both current sites are pretty dated and I want to rebuild them the same way, but I'm waiting on them to send me photos and copy first. Without decent images and a few real sentences about what they actually do, Lovable will happily generate something that looks fine and says nothing. Once that lands, it's an afternoon each.
-
-adiadi.art and meyster.work each took a couple of hours in Lovable, plus a bit of tweaking afterwards. Neither cost more than the domain.
-
-### Live demos
-
-Here are the actual prompts I used, typos and all, so you can see the real structure rather than a cleaned-up version. Copy one, swap in your own details, and you have a starting point.
-
-<details>
-<summary>ivo-bau.de</summary>
-
-```markdown
-Create a new website for IVO-BAU at ivo-bau.de
-
-What they do: german construction company, dry walls, tiles, and now also carpenter services. its a so called "Meisterbetrieb".
-
-Sitemap: single page, nothing fancy and than also the data privacy and impressum stuff.
-
-Vibe: simple, clear lineas for consturction comapny, clean look. but authentic and personal. its a family owned business with 5 ppl. its a local company, form oppau, ludiwgsahfen. 25 years old.
-
-Design references (take inspiration, do not copy):
-
-- https://www.mn-gbr.com/ - the hero scroll animation is dope, we dont need something that detailed, but something ebfore after would be nice
-- https://malo7.com/innenausbau-heidelberg
-
-Animation stack: Framer Motion, Micro-interactions on special elements interactive element.
-
-Technical requirements:
-
-- Production-ready static site, best practices, no stray console logs or unused deps.
-- Fully responsive across all screen sizes.
-- Fully accessible. Build or dev server must fail on inaccessible markup.
-- Optimize for performance: small bundles, modern image formats, lazy loading where it makes sense.
-- Optimize for SEO and social media: per-page title/description, OG tags, Twitter card.
-- Generate a social preview image per page at build time. Must run in CI (may never run locally). Inspired by https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview.
-
-Rules:
-
-- No em dashes anywhere.
-- Do not generate any images. Use placeholders where images should go.
-- Do not invent copy. Use my draft below or placeholders.
-
-Content:
-
-catch from existing website
-```
-
-</details>
 
 ## Step 2: Push it to GitHub
 
