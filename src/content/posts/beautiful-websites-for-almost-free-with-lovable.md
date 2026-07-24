@@ -10,7 +10,7 @@ tags:
 tldr: 'For simple websites the fastest path I have found: prompt it in Lovable, deploy it to Netlify, then use Claude Code (or similar) for the small tweaks. You only have to pay for the domain.'
 ---
 
-## Motivation
+## Why my answer changed
 
 I've been the website guy for as long as I can remember, and probably always will be. Friends and family need a small website, and then they ask me if I can help. My answer has changed over the years. For a while it was "just use Framer, Wix, Webflow or Squarespace." Useful, but for a private person offering their services or a small business, 15 to 20 euros a month feels like a lot. WordPress was the other option, but either you pay a managed host around the same, or you figure out how to run it yourself. None of it felt great.
 
@@ -32,24 +32,24 @@ The four pieces are:
 
 That's it. No Content Management System (CMS), no framework decisions, no design system. You prompt, you push, you deploy, you tweak.
 
-## Examples
+## What it looks like
 
-Before the how-to, here is what this stack actually produces. Two sites I have built. Will a good designer produce something more beautiful? Yes. But is it easier, cheaper, and still nicer-looking than all the alternatives I know? YES!!
+Before the how-to, here is what this stack actually produces. Two finished sites I've built, so you can see the output first and decide if it's worth reading on. Will a good designer produce something more beautiful? Yes. But is it easier, cheaper, and still nicer-looking than all the alternatives I know? YES!!
 
 - **[adiadi.art](https://adiadi.art)** is for my incredibly talented friend and artist Adina. We considered Shopify so she could sell prints directly, but that's something for later. For now she has a really simple site she can manage herself in Lovable. I tweaked a few bits with Claude Code, but just fine-tuning.
 - **[meyster.work](https://meyster.work)** is a simple landing page for a side project. Nothing fancy.
 
 Both took a couple of runs in Lovable, plus a bit of tweaking afterwards. Neither costs more per month than the domain.
 
-A full worked example, my parents' construction company **[ivo-bau.de](https://ivo-bau.de)**, is in [the one-shot example section](#a-one-shot-example-ivo-baude) at the end of this post: a live Lovable build next to the exact prompt behind it. And to be honest, the most underwhelming one-shot I have done so far.
+If you'd rather see the process than the polished output, jump to [The honest one: ivo-bau.de](#the-honest-one-ivo-baude) at the end. A live Lovable build for my parents' construction company sitting next to the exact prompt behind it, warts included.
 
-## Steps
+## How I do it
 
 ### Step 1: Prompt it in Lovable
 
-I've tried a lot of different ways to produce beautiful websites. [Lovable](https://lovable.dev) is currently the one producing the nicest-looking output by a good margin. You describe what you want, it generates a site with a live preview, and you take it from there.
+[Lovable](https://lovable.dev) is where the whole thing starts. You describe what you want, it generates a site with a live preview, and you take it from there.
 
-They have some magic sauce, but even that trips over the same things every time. My draft prompt below is my attempt to steer around them. First I'll walk through the reasoning behind each point so you know why it exists. If you just want the prompt, skip ahead and copy it. I broke it up into four categories:
+The output is genuinely nice, but the same few things trip it up every single time. The prompt below is my attempt to steer around them. First I'll walk through the reasoning behind each part so you know why it's there. If you just want the prompt, skip ahead and copy it. Four categories:
 
 #### 1. What you're actually building.
 
@@ -191,7 +191,7 @@ I download the code to my computer, open it in Claude Code, and just describe th
 
 One caveat: you do need a little technical confidence for this path. Claude Code won't send changes back up on its own, you have to tell it to save the change and publish it (in git terms: "commit" and "push"), and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is genuinely a better fit.
 
-## A one-shot example: ivo-bau.de
+## The honest one: ivo-bau.de
 
 To show the whole process in one go, here is a first-pass demo I built for my parents' construction company, IVO-BAU. It's a live Lovable build sitting right next to the exact prompt behind it, typos and all. My other parent's business, **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)**, gets the same treatment next. The real sites are still waiting on photos and copy.
 
@@ -251,6 +251,8 @@ The things I'd fix next in Claude Code:
 2. pull the colors and fonts closer to what we already have, some changes are fine, but this drifts too far
 3. add images to bring it to life. To be fair, if you drop the "do not generate any images" rule from the prompt you get a really good initial result, but here I want real, authentic images, nothing generated.
 
-## Conclusion
+## The next time a friend asks
 
-If you or someone in your life needs a small website, I really wouldn't send them to Wix or Squarespace, and I wouldn't tell them to hire a freelancer for something a weekend can solve either. Sit down with them for an afternoon, prompt the site in Lovable, deploy it to Netlify, and use Claude Code to polish the last few bits. Total cost: one domain. Total time: an afternoon. Outcome: something they can keep maintaining themselves, even without a technical background.
+So the next time a friend or family member asks me if I can help with a small website, this is what I'll say. Not Wix, not Squarespace, and not "hire a freelancer for something a weekend can solve." Sit down with them for an afternoon, prompt it in Lovable, deploy it to Netlify, polish the last few bits in Claude Code. Total cost: one domain. Total time: an afternoon. Outcome: something they can keep maintaining themselves, even without a technical background.
+
+That's the answer I wish I'd had years ago.
