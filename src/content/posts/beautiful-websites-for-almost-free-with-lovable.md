@@ -12,7 +12,7 @@ tldr: 'For simple websites the fastest path I have found: prompt it in Lovable, 
 
 ## Motivation
 
-I have been, and quite likely always will be, the website guy. Friends and family need a small website, and then they ask me if I can help. My answer has changed over the last years. For a while it was "just use Framer, Wix, Webflow or Squarespace." Useful, but for a private person offering their services or a small business, 15 to 20 euros a month feels like a lot. WordPress was the other option, but either you pay a managed host around the same, or you figure out how to run it yourself. None of it felt great.
+I've been the website guy for as long as I can remember, and probably always will be. Friends and family need a small website, and then they ask me if I can help. My answer has changed over the years. For a while it was "just use Framer, Wix, Webflow or Squarespace." Useful, but for a private person offering their services or a small business, 15 to 20 euros a month feels like a lot. WordPress was the other option, but either you pay a managed host around the same, or you figure out how to run it yourself. None of it felt great.
 
 That answer changed for me recently. Two versions of it work now, both a lot nicer than the old school alternatives:
 
@@ -26,7 +26,7 @@ This post is about the second one, because it's what I actually use now. Technic
 The four pieces are:
 
 1. **Lovable** for generating the site. (free tier)
-2. **GitHub** the home for your code. (free tier)
+2. **GitHub** as the home for your code. (free tier)
 3. **Netlify** for hosting and the domain. (free tier)
 4. Optional: **Claude Code** (or Cursor, or whatever you like) for the small edits.
 
@@ -34,7 +34,7 @@ That's it. No Content Management System (CMS), no framework decisions, no design
 
 ## Examples
 
-Before the how-to, here is what this stack actually produces. Two sites I have built. Will a good designer produce something more beautiful? Yes. But does it look better, easier and cheaper than all the other alternatives? YES!!
+Before the how-to, here is what this stack actually produces. Two sites I have built. Will a good designer produce something more beautiful? Yes. But is it easier, cheaper, and still nicer-looking than all the alternatives I know? YES!!
 
 - **[adiadi.art](https://adiadi.art)** is for my incredibly talented friend and artist Adina. We considered Shopify so she could sell prints directly, but that's something for later. For now she has a really simple site she can manage herself in Lovable. I tweaked a few bits with Claude Code, but just fine-tuning.
 - **[meyster.work](https://meyster.work)** is a simple landing page for a side project. Nothing fancy.
@@ -47,9 +47,9 @@ A full worked example, my parents' construction company **[ivo-bau.de](https://i
 
 ### Step 1: Prompt it in Lovable
 
-I've tried various different ways to produce beautiful websites. [Lovable](https://lovable.dev) is currently the one producing the nicest-looking output by a good margin. You describe what you want, it generates a site with a live preview, and you continue from there.
+I've tried a lot of different ways to produce beautiful websites. [Lovable](https://lovable.dev) is currently the one producing the nicest-looking output by a good margin. You describe what you want, it generates a site with a live preview, and you take it from there.
 
-They have some magic sauce, but even that makes the same mistakes over and over. My draft prompt below tries to guide it in the right direction. First I'll walk through the reasoning behind each point so you know why it exists, but if you just want the prompt, copy it and adjust it. I broke it up into four categories:
+They have some magic sauce, but even that trips over the same things every time. My draft prompt below is my attempt to steer around them. First I'll walk through the reasoning behind each point so you know why it exists. If you just want the prompt, skip ahead and copy it. I broke it up into four categories:
 
 #### 1. What you're actually building.
 
@@ -76,7 +76,7 @@ They have some magic sauce, but even that makes the same mistakes over and over.
 
 #### 4. How it should be built.
 
-You don't need to understand every term in this section. These bullets are the ones Lovable actually reads to decide _how_ to build the site, not the ones you and I look at once it's live. Copy them in, and know that they're the difference between a site that scores well on Google and phones and one that doesn't.
+Don't worry if you don't know every term here. These bullets are for Lovable, not for you. They're the difference between a site that feels fast on a phone and ranks well on Google, and one that doesn't. Just copy them in.
 
 - Production-ready static site, following best practices. Nothing left over from the AI's draft: no debug messages in the browser console, no unused libraries, clean file layout.
 - Optimize for performance. Small file sizes, modern image formats, and only load what's actually visible on screen. In short: it should feel fast even on a phone.
@@ -253,4 +253,4 @@ The things I'd fix next in Claude Code:
 
 ## Conclusion
 
-If someone in your life or you need a small website, I really wouldn't send them to Wix or Squarespace, and I wouldn't tell them to hire a freelancer for something a weekend can solve either. Sit down with them for an afternoon, prompt the site in Lovable, deploy it to Netlify, and use Claude Code to polish the last few bits. Total cost: one domain. Total time: an afternoon. Outcome: something everyone without technical knowledge can maintain.
+If you or someone in your life needs a small website, I really wouldn't send them to Wix or Squarespace, and I wouldn't tell them to hire a freelancer for something a weekend can solve either. Sit down with them for an afternoon, prompt the site in Lovable, deploy it to Netlify, and use Claude Code to polish the last few bits. Total cost: one domain. Total time: an afternoon. Outcome: something they can keep maintaining themselves, even without a technical background.
