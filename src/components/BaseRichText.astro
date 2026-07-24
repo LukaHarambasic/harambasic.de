@@ -144,6 +144,62 @@ const Element = element;
 				}
 			}
 		}
+
+		/* Accordion: native <details>/<summary>, no JS. Used for the live-demo
+		   prompts so a long block can collapse. The disclosure chevron is a CSS
+		   caret that flips on [open]; motion is covered by the reduced-motion
+		   guard in base.css. */
+		:global(details) {
+			margin-block-end: var(--l);
+			border: var(--border);
+			border-radius: var(--border-radius);
+			background: var(--c-surface);
+			overflow: hidden;
+			&:last-child {
+				margin-block-end: 0;
+			}
+		}
+		:global(summary) {
+			display: flex;
+			padding: var(--s) var(--m);
+			justify-content: space-between;
+			align-items: center;
+			gap: var(--s);
+			font-weight: 600;
+			list-style: none;
+			transition: var(--transition);
+			cursor: pointer;
+			&::-webkit-details-marker {
+				display: none;
+			}
+			&::after {
+				width: 0.5rem;
+				height: 0.5rem;
+				transition: transform var(--transition-time) var(--transition-ease);
+				transform: rotate(45deg);
+				content: '';
+				border-inline-end: 2px solid var(--c-font-accent-dark);
+				border-block-end: 2px solid var(--c-font-accent-dark);
+			}
+			&:hover,
+			&:focus-visible {
+				background: var(--c-surface-accent);
+			}
+		}
+		:global(details[open] summary) {
+			border-block-end: var(--border);
+			&::after {
+				transform: rotate(-135deg);
+			}
+		}
+
+		/* A code block inside an accordion drops the wide-desktop treatment and
+		   sits inset within the panel instead. */
+		:global(details .astro-code) {
+			margin: var(--m);
+			width: auto;
+			max-width: none;
+		}
 		:global(strong) {
 			font-weight: 700;
 		}

@@ -7,7 +7,7 @@ updated: 2026-07-19
 tags:
   - Tools
   - Development
-tldr: "For simple websites the fastest path I have found: prompt it in Lovable, deploy it to Netlify, then use Claude Code (or similar) for the small tweaks. You only have to pay for the domain."
+tldr: 'For simple websites the fastest path I have found: prompt it in Lovable, deploy it to Netlify, then use Claude Code (or similar) for the small tweaks. You only have to pay for the domain.'
 ---
 
 ## Motivation
@@ -42,7 +42,7 @@ The trick is being specific about the parts a designer would think about, and be
 
 - The name and one sentence about what the company or person does. Not a marketing line, just what they actually do.
 - A rough sitemap. "Home, services, projects, contact." That's enough. Don't do more than 4 in the beginning, otherwise Loveable will run out of tokens in no time.
-- Real content, even placeholder. Real service names, real addresses, a real bio. Also directly sets the language of your website. 
+- Real content, even placeholder. Real service names, real addresses, a real bio. Also directly sets the language of your website.
 
 **2. Design direction.** Without references, you get the Lovable default style.
 
@@ -81,6 +81,7 @@ Sitemap: {{Home, services, projects, contact}}.
 Vibe: {{one or two sentences, e.g. "thoughtful, creative, curious, invites the reader to connect. Modern, artsy, minimalistic."}}.
 
 Design references (take inspiration, do not copy):
+
 - {{URL 1}}
 - {{URL 2}}
 - {{URL 3}}
@@ -88,6 +89,7 @@ Design references (take inspiration, do not copy):
 Animation stack: {{Framer Motion + Lenis for smooth scroll, or leave blank for defaults}}. Micro-interactions on every interactive element.
 
 Technical requirements:
+
 - Production-ready static site, best practices, no stray console logs or unused deps.
 - Fully responsive across all screen sizes.
 - Fully accessible. Build or dev server must fail on inaccessible markup.
@@ -96,6 +98,7 @@ Technical requirements:
 - Generate a social preview image per page at build time. Must run in CI (may never run locally). Inspired by https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview.
 
 Rules:
+
 - No em dashes anywhere.
 - Do not generate any images. Use placeholders where images should go.
 - Do not invent copy. Use my draft below or placeholders.
@@ -132,6 +135,51 @@ Here's what I've built this way so far:
 Next up on the same stack: **[ivo-bau.de](https://ivo-bau.de)** and **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)**, my parents' businesses. Both current sites are pretty dated and I want to rebuild them the same way, but I'm waiting on them to send me photos and copy first. Without decent images and a few real sentences about what they actually do, Lovable will happily generate something that looks fine and says nothing. Once that lands, it's an afternoon each.
 
 adiadi.art and meyster.work each took a couple of hours in Lovable, plus a bit of tweaking afterwards. Neither cost more than the domain.
+
+### Live demos
+
+Here are the actual prompts I used, typos and all, so you can see the real structure rather than a cleaned-up version. Copy one, swap in your own details, and you have a starting point.
+
+<details>
+<summary>ivo-bau.de</summary>
+
+```markdown
+Create a new website for IVO-BAU at ivo-bau.de
+
+What they do: german construction company, dry walls, tiles, and now also carpenter services. its a so called "Meisterbetrieb".
+
+Sitemap: single page, nothing fancy and than also the data privacy and impressum stuff.
+
+Vibe: simple, clear lineas for consturction comapny, clean look. but authentic and personal. its a family owned business with 5 ppl. its a local company, form oppau, ludiwgsahfen. 25 years old.
+
+Design references (take inspiration, do not copy):
+
+- https://www.mn-gbr.com/ - the hero scroll animation is dope, we dont need something that detailed, but something ebfore after would be nice
+- https://malo7.com/innenausbau-heidelberg
+
+Animation stack: Framer Motion, Micro-interactions on special elements interactive element.
+
+Technical requirements:
+
+- Production-ready static site, best practices, no stray console logs or unused deps.
+- Fully responsive across all screen sizes.
+- Fully accessible. Build or dev server must fail on inaccessible markup.
+- Optimize for performance: small bundles, modern image formats, lazy loading where it makes sense.
+- Optimize for SEO and social media: per-page title/description, OG tags, Twitter card.
+- Generate a social preview image per page at build time. Must run in CI (may never run locally). Inspired by https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview.
+
+Rules:
+
+- No em dashes anywhere.
+- Do not generate any images. Use placeholders where images should go.
+- Do not invent copy. Use my draft below or placeholders.
+
+Content:
+
+catch from existing website
+```
+
+</details>
 
 ## Step 2: Push it to GitHub
 
