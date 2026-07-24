@@ -1,11 +1,12 @@
 /*
- * Code-block container styling - replaces the retired highlight.css.
+ * Code-block container styling.
  *
- * Shiki's `one-dark-pro` theme inlines its token colors on every span. We
- * override the block background here (via `!important` to beat Shiki's inline
- * `background:#282c34`) so code blocks read as a warm, brand-aligned deep
- * aubergine instead of the generic editor grey. Syntax token colors stay
- * one-dark-pro. Code blocks stay always-dark.
+ * Shiki emits dual-theme CSS variables (--shiki-light / --shiki-dark) on the block
+ * and on every token span (astro.config.ts sets themes + defaultColor: false, so no
+ * color is baked in). We resolve the right one per page theme with light-dark(), so
+ * code blocks follow light / dark like the rest of the site. Token hues come from
+ * one-light / one-dark-pro; only the background is brand-tinted: a soft pink in
+ * light, deep aubergine in dark.
  */
 
 .astro-code {
@@ -13,13 +14,19 @@
 	position: relative;
 	margin: 0 0 var(--l) 0;
 	padding: var(--m);
+	padding-inline-end: calc(var(--m) + var(--xl));
 	border-radius: var(--border-radius);
-	box-shadow: inset 0 0 0 1px rgba(255, 237, 249, 0.08);
-	background: #1a0620 !important;
+	box-shadow: inset 0 0 0 1px light-dark(rgba(45, 10, 46, 0.1), rgba(255, 237, 249, 0.08));
+	background: light-dark(#fbe9f3, #1a0620);
+	color: light-dark(var(--shiki-light), var(--shiki-dark));
 	font-family: var(--font-family-code);
 	font-size: var(--font-m);
 	overflow-x: auto;
-	padding-inline-end: calc(var(--m) + var(--xl));
+
+	/* Each token span carries its own --shiki-light / --shiki-dark. */
+	span {
+		color: light-dark(var(--shiki-light), var(--shiki-dark));
+	}
 
 	/* Desktop: make code blocks a bit wider than the reading column, still centered */
 	@media screen and (width > 62rem) {
@@ -48,65 +55,25 @@
 	}
 }
 
-/* Brand-align the markdown token palette. Shiki inlines one-dark-pro's editor
-   colors (cool reds/blues/greens) on every span; on the deep aubergine block
-   those clash and read flat. We remap each markdown token color to a warm,
-   on-brand hue. Scoped to markdown blocks ONLY so real code blocks (js, css, ...)
-   keep their one-dark-pro highlighting untouched. Matching by inline color means
-   a few scopes share a hue (italic + bare URLs; list markers + backticks), which
-   is fine. Grouped one selector list per target color: */
-.astro-code[data-language='markdown'] span[style*='#ABB2BF'], /* prose        */
-.astro-code[data-language='md'] span[style*='#ABB2BF'] {
-	color: #e8d5e5 !important; /* warm off-white */
-}
-.astro-code[data-language='markdown'] span[style*='#E06C75'], /* headings, () */
-.astro-code[data-language='md'] span[style*='#E06C75'] {
-	color: #ff9ecb !important; /* bright brand pink */
-}
-.astro-code[data-language='markdown'] span[style*='#D19A66'], /* bold         */
-.astro-code[data-language='md'] span[style*='#D19A66'] {
-	color: #f0b15e !important; /* warm amber */
-}
-.astro-code[data-language='markdown'] span[style*='#C678DD'], /* italic, urls */
-.astro-code[data-language='md'] span[style*='#C678DD'] {
-	color: #d8a6d6 !important; /* soft mauve */
-}
-.astro-code[data-language='markdown'] span[style*='#61AFEF'], /* link text    */
-.astro-code[data-language='md'] span[style*='#61AFEF'] {
-	color: #8fc0f0 !important; /* soft sky */
-}
-.astro-code[data-language='markdown'] span[style*='#E5C07B'], /* bullets, ``  */
-.astro-code[data-language='md'] span[style*='#E5C07B'] {
-	color: #e0a24a !important; /* honey (matches {{placeholders}}) */
-}
-.astro-code[data-language='markdown'] span[style*='#98C379'], /* inline code  */
-.astro-code[data-language='md'] span[style*='#98C379'] {
-	color: #9fd98c !important; /* soft mint */
-}
-.astro-code[data-language='markdown'] span[style*='#5C6370'], /* blockquote   */
-.astro-code[data-language='md'] span[style*='#5C6370'] {
-	color: #a88fa4 !important; /* lifted muted mauve */
-}
-
 .code-copy {
 	position: absolute;
 	z-index: 1;
+	inset-block-start: var(--xs);
+	inset-inline-end: var(--xs);
 	padding: var(--xxs) var(--xs);
 	border: none;
 	border-radius: var(--border-radius-small);
-	background: #ffedf9;
-	color: #16041a;
+	background: light-dark(#2d0a2e, #ffedf9);
+	color: light-dark(#ffedf9, #16041a);
 	font-family: var(--font-family-code);
 	font-size: var(--font-xs);
 	transition: var(--transition);
 	cursor: pointer;
-	inset-block-start: var(--xs);
-	inset-inline-end: var(--xs);
 
 	&:hover,
 	&:focus-visible {
-		background: #fbdcef;
-		color: #16041a;
+		background: light-dark(#3c133d, #fbdcef);
+		color: light-dark(#ffedf9, #16041a);
 	}
 
 	&[data-state='copied'] {
@@ -116,6 +83,6 @@
 
 	&[data-state='failed'] {
 		background: rgba(224, 108, 117, 0.25);
-		color: #ffedf9;
+		color: light-dark(#2d0a2e, #ffedf9);
 	}
 }
