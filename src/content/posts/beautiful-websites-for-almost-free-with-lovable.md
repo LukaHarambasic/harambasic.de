@@ -237,16 +237,16 @@ catch from existing website
 
 I want to keep this honest, so I'll show it as is: this was one of the worse one-shot prompts I've done with Lovable. Reasons why it went in a direction that I didn't want:
 
-- didn't specify to follow the existing color scheme, or use the existing website as a base
-- didn't upload the new logo that I created
-- wasn't specific enough with the fonts
-- the reference website in general was maybe too much. I only liked the hero animation, but Lovable took the whole site into account and copied that style
+- Didn't specify to follow the existing color scheme, or use the existing website as a base
+- Didn't upload the new logo that I created
+- Wasn't specific enough with the fonts
+- The reference website in general was maybe too much. I only liked the hero animation, but Lovable took the whole site into account and copied that style
 
 The things I'd fix next in Claude Code:
 
-1. give it the logo, which I forgot to include
-2. pull the colors and fonts closer to what we already have, some changes are fine, but this drifts too far
-3. add images to bring it to life. To be fair, if you drop the "do not generate any images" rule from the prompt you get a really good initial result, but here I want real, authentic images, nothing generated.
+1. Give it the logo, which I forgot to include
+2. Pull the colors and fonts closer to what we already have, some changes are fine, but this drifts too far
+3. Add images to bring it to life. To be fair, if you drop the "do not generate any images" rule from the prompt you get a really good initial result, but here I want real, authentic images, nothing generated.
 
 ## The next time a friend asks
 
