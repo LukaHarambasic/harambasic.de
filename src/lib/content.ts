@@ -2,7 +2,6 @@ import { getCollection } from 'astro:content';
 import type { Post } from '$lib/types/post';
 import type { UsesEntry } from '$lib/types/usesEntry';
 import type { ExperienceEntry, Position } from '$lib/types/experienceEntry';
-import type { ProjectEntry } from '$lib/types/projectEntry';
 import type { Tag } from '$lib/types/tag';
 import type { EntryType } from '$lib/types/enums';
 import { getDate, getTag } from '$lib/util/entries';
@@ -111,29 +110,6 @@ export async function getExperience(): Promise<ExperienceEntry[]> {
 			};
 		})
 	);
-}
-
-export async function getProjects(): Promise<ProjectEntry[]> {
-	const entries = byId(await getCollection('projects'));
-	return entries.map((entry) => {
-		const slug = getSlug(entry.data.title);
-		return {
-			type: 'project' as const,
-			slug,
-			relativePath: relativePathFor('project', slug),
-			fullPath: `${BASE_URL}${relativePathFor('project', slug)}`,
-			title: entry.data.title,
-			description: entry.data.description,
-			image: entry.data.image,
-			tags: tags(entry.data.tags, 'project'),
-			published: getDate(entry.data.published),
-			updated: getDate(entry.data.updated),
-			status: entry.data.status,
-			role: entry.data.role,
-			url: entry.data.url ?? '',
-			github: entry.data.github ?? ''
-		};
-	});
 }
 
 // Re-export the tag aggregation so pages import everything entry-related from one place.
