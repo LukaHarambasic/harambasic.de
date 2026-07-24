@@ -193,10 +193,15 @@ const Element = element;
 			}
 		}
 
-		/* A code block inside an accordion drops the wide-desktop treatment and
-		   sits inset within the panel instead. */
-		:global(details .astro-code) {
+		/* Panel content (anything under the summary: the demo link, the code
+		   block) sits inset from the border with standard spacing. */
+		:global(details > :not(summary)) {
 			margin: var(--m);
+		}
+
+		/* A code block inside also drops the wide-desktop treatment so it fits
+		   the panel. */
+		:global(details .astro-code) {
 			width: auto;
 			max-width: none;
 		}
