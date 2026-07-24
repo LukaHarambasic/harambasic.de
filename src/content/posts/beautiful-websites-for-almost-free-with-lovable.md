@@ -140,7 +140,7 @@ No em dashes anywhere.
 
 <small>Prompt inspired by Felix Haas's <a href="https://designplusai.com/p/how-to-prompt-high-end-websites-in">How To Prompt High-End Websites In Lovable</a>.</small>
 
-And from there you iterate, either in Lovable or like I describe in [Step 4](#step-4-tweak-with-claude-code). "The hero is too tall, cut it in half." "Change the accent to a deeper red." "Add a section between services and contact that lists past projects with a photo grid."
+And from there you iterate, either in Lovable or like I describe in [Step 4](#step-4-tweak-with-claude-code). "The hero is too tall, cut it in half." "Add a section between services and contact that lists past projects with a photo grid."
 
 ### Step 2: Push it to GitHub
 
@@ -180,13 +180,13 @@ SSL (the `https://` padlock in the browser) is set up for you automatically and 
 
 ### Step 4: Tweak with Claude Code
 
-Lovable is really good at getting you started. But you need to do more after the first run, you need to tweak it. You can do that in Lovable too, but it's comparably expensive. So I'd recommend Claude Code or a similar tool, but only if you already pay for one. Otherwise, you might as well pay Lovable.
+Lovable is really good at getting you started, but after the first run you'll want to tweak it. You can do that in Lovable too, but it's comparably expensive. So I'd recommend Claude Code or a similar tool, but only if you already pay for one. Otherwise, you might as well pay Lovable.
 
 I download the code to my computer, open it in Claude Code, and just describe the change. "The mobile nav overlaps the logo, fix it." "The social media preview image is wrong, create a new one with a bigger title in the bottom left corner and wire it up." "Add a favicon based on the logo." It makes the edit, I check it in the browser, I send the change back up (to GitHub). Netlify redeploys within a few minutes.
 
 > You could use Cursor, or Zed, or plain Copilot. The point is really that once the code is in a real repo, you have all the normal editor tools available and small edits stop feeling scary.
 
-One caveat: you do need a little technical confidence for this path. Claude Code won't send changes back up on its own, you have to tell it to save the change and publish it (in git terms: "commit" and "push"), and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is genuinely a better fit.
+One caveat: you do need a little technical confidence for this path. Claude Code won't send changes back up on its own, you have to tell it to save the change and publish it (in git terms: "commit" and "push"), and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is the better fit.
 
 ## The honest one: ivo-bau.de
 
