@@ -173,6 +173,14 @@ const socialImgAlt = fullTitle;
 		});
 	}
 
+	// Phosphor (ph) copy + check icons, inlined so the JS-built button matches the
+	// site's astro-icon set without a build-time component. Decorative: the button
+	// carries the accessible label, so the SVGs are aria-hidden.
+	const COPY_ICON =
+		'<svg viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></svg>';
+	const CHECK_ICON =
+		'<svg viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>';
+
 	// Copy button injected into every Shiki code block (`<pre class="astro-code">`).
 	// Idempotent via `data-copy-init`; re-runs on astro:page-load after view transitions.
 	function addCodeCopyButtons() {
@@ -183,20 +191,26 @@ const socialImgAlt = fullTitle;
 			btn.type = 'button';
 			btn.className = 'code-copy';
 			btn.setAttribute('aria-label', 'Copy code to clipboard');
-			btn.textContent = 'Copy';
+			btn.innerHTML = COPY_ICON;
 			btn.addEventListener('click', async () => {
 				const source = pre.querySelector('code')?.innerText ?? pre.innerText;
 				try {
 					await navigator.clipboard.writeText(source);
-					btn.textContent = 'Copied';
+					btn.innerHTML = CHECK_ICON;
 					btn.dataset.state = 'copied';
+					btn.setAttribute('aria-label', 'Copied to clipboard');
 					window.setTimeout(() => {
-						btn.textContent = 'Copy';
+						btn.innerHTML = COPY_ICON;
 						delete btn.dataset.state;
+						btn.setAttribute('aria-label', 'Copy code to clipboard');
 					}, 1500);
 				} catch {
-					btn.textContent = 'Failed';
 					btn.dataset.state = 'failed';
+					btn.setAttribute('aria-label', 'Copy failed');
+					window.setTimeout(() => {
+						delete btn.dataset.state;
+						btn.setAttribute('aria-label', 'Copy code to clipboard');
+					}, 1500);
 				}
 			});
 			pre.appendChild(btn);
