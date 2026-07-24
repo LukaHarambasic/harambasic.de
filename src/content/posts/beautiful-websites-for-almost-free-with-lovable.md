@@ -30,7 +30,7 @@ The four pieces are:
 3. **Netlify** for hosting and the domain. (free tier)
 4. Optional: **Claude Code** (or Cursor, or whatever you like) for the small edits.
 
-That's it. No Content Management System (CMS), no framework decisions, no design system. You prompt, you push, you deploy, you tweak.
+No Content Management System (CMS), no framework decisions, no design system to fight with. You prompt, you push, you deploy, you tweak.
 
 ## What it looks like
 
@@ -49,7 +49,7 @@ If you'd rather see the process than the polished output, jump to [The honest on
 
 [Lovable](https://lovable.dev) is where the whole thing starts. You describe what you want, it generates a site with a live preview, and you take it from there.
 
-The output is genuinely nice, but the same few things trip it up every single time. The prompt below is my attempt to steer around them. First I'll walk through the reasoning behind each part so you know why it's there. If you just want the prompt, skip ahead and copy it. Four categories:
+The output is nice, but the same few things trip it up every single time. The prompt below is my attempt to steer around them. First I'll walk through the reasoning behind each part so you know why it's there. If you just want the prompt, skip ahead and copy it. Four categories:
 
 #### 1. What you're actually building.
 
@@ -174,12 +174,9 @@ Technically you can also get it at Netlify, but that might lock you in more than
 
 #### Pointing the domain at Netlify
 
-Once you own the domain, you have two options for wiring it up. DNS is the phone book that maps a domain to a server. Both options do the same thing (point your domain at Netlify), they just decide _who_ manages the phone book.
+Once you own the domain, keep DNS at your registrar and just point two records at Netlify. On Netlify's "Domain management" screen you'll see an `A` record for the bare domain and a `CNAME` for `www`. Paste both into your registrar's DNS panel exactly as shown. Keeping DNS at the registrar means you don't have to move anything else (like email records) over to Netlify.
 
-1. **Let Netlify manage DNS.** In the registrar's dashboard, change the nameservers (the "phone book operator" for your domain) to the ones Netlify shows you. From then on you manage all DNS inside Netlify. Easiest option, and what I'd recommend if you don't already run email on this domain.
-2. **Keep DNS at the registrar.** Add the two DNS entries Netlify shows you on its "Domain management" screen (an `A` record for the bare domain and a `CNAME` for `www`), and paste them into your registrar's DNS panel exactly as shown. Use this option if you already run email on the domain and don't want to move those records over to Netlify.
-
-Either way, SSL (the `https://` padlock in the browser) is set up for you automatically and turns on a few minutes after the DNS change goes live. Nothing else to configure.
+SSL (the `https://` padlock in the browser) is set up for you automatically and turns on a few minutes after the DNS change goes live. Nothing else to configure.
 
 ### Step 4: Tweak with Claude Code
 
@@ -253,6 +250,4 @@ The things I'd fix next in Claude Code:
 
 ## The next time a friend asks
 
-So the next time a friend or family member asks me if I can help with a small website, this is what I'll say. Not Wix, not Squarespace, and not "hire a freelancer for something a weekend can solve." Sit down with them for an afternoon, prompt it in Lovable, deploy it to Netlify, polish the last few bits in Claude Code. Total cost: one domain. Total time: an afternoon. Outcome: something they can keep maintaining themselves, even without a technical background.
-
-That's the answer I wish I'd had years ago.
+So the next time a friend or family member asks me if I can help with a small website, this is what I'll say. Not Wix, not Squarespace, and not "hire a freelancer for something a weekend can solve." Sit down with them for an afternoon, prompt it in Lovable, deploy it to Netlify, polish the last few bits in Claude Code. One domain to pay for, one afternoon of work, and they can keep maintaining it themselves without a technical background.
