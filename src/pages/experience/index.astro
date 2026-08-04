@@ -32,7 +32,17 @@ const past = cards
 <Layout title={title} description={description}>
 	<Hero slot="hero" title={title} description={description} />
 	<div class="experience-container">
-		{current.map((card) => <ExperienceCard entry={card.entry} featured class="golden-ratio" />)}
+		{
+			current.length > 0 && (
+				<EntryList columns={2}>
+					{current.map((card) => (
+						<li>
+							<ExperienceCard entry={card.entry} featured />
+						</li>
+					))}
+				</EntryList>
+			)
+		}
 		{
 			past.length > 0 && (
 				<EntryList columns={2}>
