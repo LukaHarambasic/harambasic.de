@@ -26,7 +26,7 @@ positions:
     startDate: 2016-09-01
     endDate: 2019-09-30
     content: |
-      This is a collection of the 3-month rotations I completed during my "Dual Study" program (Duales Studium). It wasn't just fetching coffee; the program requires switching between university theory and full-time practical work blocks every quarter. I was integrated as a full team member in every rotation, building a full-stack foundation across UX Design, Engineering, and Consulting.
+      3-month rotations during my "Dual Study" program (Duales Studium), switching between uni theory and full-time practical blocks every quarter. Real team member each time, not the intern getting coffee. Ended up with a full-stack foundation across UX Design, Engineering, and Consulting.
 
       - Bachelor Thesis (SuccessFactors): Evaluated JavaScript Frontend Frameworks for enterprise use, conducting trend and requirement analysis.
       - Analytics Cloud (UX Design): Worked directly with customers to create User Journey Maps and Personas, building clickable prototypes in Sketch.
