@@ -10,7 +10,7 @@ positions:
     startDate: 2019-06-01
     endDate: 2021-06-30
     content: |
-      Three friends needed to talk quite often about technology. Most of the time it could even be described as entertaining. We were also curious about how a podcast works. So why not start one? The Techmob Show was born. The first season contains eight to ten episodes: eight are published, ten are recorded. It's like Schrödinger's cat.
+      Three friends who kept talking about tech anyway. Sometimes even entertainingly. We were curious how a podcast actually works, so we started one. Season one has eight to ten episodes: eight got published, ten got recorded. Schrödinger's cat.
 
       Find it on [Instagram](https://www.instagram.com/techmobshow/) and [GitHub](https://github.com/Techmob-Show).
 tags:

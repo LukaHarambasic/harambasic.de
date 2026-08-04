@@ -1,6 +1,6 @@
 ---
 title: Electricity Maps
-description: The world’s most comprehensive  electricity data platform. Helping organizations make informed decisions about their energy usage.
+description: The world’s most comprehensive electricity data platform. Companies use it to figure out where their energy actually comes from and what to do about it.
 image: electricity_maps.png
 published: 2025-10-01
 updated: 2026-05-31
