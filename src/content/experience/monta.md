@@ -32,7 +32,7 @@ positions:
     endDate: 2023-02-28
     employmentType: part-time
     content: |
-      This was my "first date" with Monta, working part-time alongside my full-time Master's. I focused on the B2B side (the legacy Portal), getting my crash course in the EV industry and figuring out what on earth a CPMS actually is.
+      My first stint at Monta, part-time alongside my full-time Master's. I focused on the B2B side (the legacy Portal), getting my crash course in the EV industry and figuring out what on earth a CPMS actually is.
 
       I got my hands dirty early on, even coding fully functional internal tools that eventually got productized. This was way before the "vibe coding" era, so I actually had to write the code myself, including a beautiful daylight time shift (or however you call this) bug that took me forever to debug 😊.
 
