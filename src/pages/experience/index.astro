@@ -4,6 +4,7 @@ import Hero from '../../components/Hero.astro';
 import EntryList from '../../components/EntryList.astro';
 import ExperienceCard from '../../components/ExperienceCard.astro';
 import { getExperience } from '$lib/content';
+import type { ExperienceEntry } from '$lib/types/experienceEntry';
 
 const title = "Where I've worked and what I built";
 const description =
@@ -12,24 +13,36 @@ const description =
 const experienceEntries = await getExperience();
 
 // Current = any position with endDate === null; past sorted by most recent start date.
+const latestStart = (entry: ExperienceEntry): number =>
+	Math.max(...entry.positions.map((position) => new Date(position.startDate).getTime()));
 const cards = experienceEntries.map((entry) => ({
 	entry,
 	isCurrent: entry.positions.some((position) => position.endDate === null)
 }));
-const current = cards.find((card) => card.isCurrent) ?? null;
+// There can be more than one current role (day job plus consulting) - feature all
+// of them, or an entry silently disappears from the page.
+const current = cards
+	.filter((card) => card.isCurrent)
+	.sort((a, b) => latestStart(b.entry) - latestStart(a.entry));
 const past = cards
 	.filter((card) => !card.isCurrent)
-	.sort((a, b) => {
-		const aLatest = Math.max(...a.entry.positions.map((p) => new Date(p.startDate).getTime()));
-		const bLatest = Math.max(...b.entry.positions.map((p) => new Date(p.startDate).getTime()));
-		return bLatest - aLatest;
-	});
+	.sort((a, b) => latestStart(b.entry) - latestStart(a.entry));
 ---
 
 <Layout title={title} description={description}>
 	<Hero slot="hero" title={title} description={description} />
 	<div class="experience-container">
-		{current && <ExperienceCard entry={current.entry} featured class="golden-ratio" />}
+		{
+			current.length > 0 && (
+				<EntryList columns={2}>
+					{current.map((card) => (
+						<li>
+							<ExperienceCard entry={card.entry} featured />
+						</li>
+					))}
+				</EntryList>
+			)
+		}
 		{
 			past.length > 0 && (
 				<EntryList columns={2}>

@@ -64,6 +64,9 @@ const experience = defineCollection({
 		updated: z.coerce.date(),
 		location: z.string(),
 		employmentType: employmentType.optional(),
+		// Optional link target for the card. Defaults to the entry's own detail page;
+		// set it when another page tells the story better (e.g. consulting).
+		url: z.string().optional(),
 		positions: z.array(
 			z.object({
 				title: z.string(),

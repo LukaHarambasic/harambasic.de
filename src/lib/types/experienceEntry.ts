@@ -11,6 +11,7 @@ export interface Position {
 export interface ExperienceEntry extends BaseEntry {
 	location: string;
 	employmentType?: 'full-time' | 'part-time' | 'contract' | 'internship';
+	url?: string; // Card link override; falls back to the entry's detail page.
 	positions: Position[];
 	html: string; // Optional general company information from markdown body
 }

@@ -1,17 +1,18 @@
 ---
 title: Harambasic Consulting
-description: My consulting practice, combining product, AI and automation for startups.
+description: A few selected projects a year. AI, automation, and product for startups. I advise, and I build.
 image: harambasic_consulting.png
 published: 2026-06-01
-updated: 2026-06-10
+updated: 2026-08-04
 location: Copenhagen, Denmark
 employmentType: full-time
+url: /consulting
 positions:
   - title: Wizard
-    startDate: 2026-06-01
+    startDate: 2026-05-01
     endDate: null
     content: |
-      I've always been the tools guy 🧙. The one colleagues come to with "what should I use for this?" or "can you help me automate that?" I have a technical background, I think in products, and I have a deep urge to automate everything I touch.
+      I've always been the tools guy 🧙. The one colleagues come to with "what should I use for this?" or "can you help me automate that?" I have a technical background, I think in products, and I automate everything I touch.
 
       I work hands-on. I advise, and I also build. Sometimes that's a strategy session, sometimes it's a working automation by end of day.
 

@@ -128,10 +128,15 @@ function validateEntry(rawEntry, entryType, filePath) {
 		}
 	}
 
-	// URL validation for fields that should be URLs
+	// URL validation for fields that should be URLs. Site-relative targets like
+	// "/consulting" are valid too (experience cards can point at a page on this
+	// site); everything else still has to be an absolute URL.
 	if (frontmatter.url && typeof frontmatter.url === 'string') {
+		const target = frontmatter.url.startsWith('/')
+			? `https://harambasic.de${frontmatter.url}`
+			: frontmatter.url;
 		try {
-			new URL(frontmatter.url);
+			new URL(target);
 		} catch {
 			errors.push('Invalid URL format in url field');
 		}

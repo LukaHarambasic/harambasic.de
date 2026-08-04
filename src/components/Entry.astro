@@ -229,10 +229,10 @@ const rel = external ? 'external' : undefined;
 				align-items: flex-start;
 				gap: var(--m);
 
-				/* Title + subtitle only (no excerpt): tighten the pair and center
-				   it against the media box so the header aligns visually. */
+				/* Title + subtitle only (no excerpt): tighten the pair. The media box
+				   stays top-aligned, so the logo sits next to the title, not the
+				   middle of the title/subtitle stack. */
 				&:has(.meta):not(:has(.excerpt)) {
-					align-items: center;
 					.heading {
 						gap: var(--xxs);
 					}
