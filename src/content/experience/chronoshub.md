@@ -1,7 +1,7 @@
 ---
 title: ChronosHub
 description: A publishing platform for scholarly publishers, institutions, and funders. It covers manuscript submission, peer review, APCs, and open access agreements.
-image: TODO
+image: chronoshub.png
 published: 2026-08-01
 updated: 2026-08-04
 location: Copenhagen, Denmark

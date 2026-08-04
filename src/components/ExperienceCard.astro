@@ -20,7 +20,7 @@ const imageData = hasImage && !isSvg ? getExperienceImage(entry.image) : null;
 
 <Entry
 	variant="card"
-	href={`/experience/${entry.slug}`}
+	href={entry.url ?? `/experience/${entry.slug}`}
 	title={entry.title}
 	meta={entry.location}
 	featured={featured}

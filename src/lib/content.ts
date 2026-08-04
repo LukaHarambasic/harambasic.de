@@ -105,6 +105,7 @@ export async function getExperience(): Promise<ExperienceEntry[]> {
 				updated: getDate(entry.data.updated),
 				location: entry.data.location,
 				employmentType: entry.data.employmentType,
+				url: entry.data.url,
 				positions,
 				html: ''
 			};

@@ -1,11 +1,12 @@
 ---
 title: Harambasic Consulting
-description: My consulting practice, combining product, AI and automation for startups.
+description: A few projects a year. AI, automation, and product for startups. I advise, and I build.
 image: harambasic_consulting.png
 published: 2026-06-01
-updated: 2026-06-10
+updated: 2026-08-04
 location: Copenhagen, Denmark
 employmentType: full-time
+url: /consulting
 positions:
   - title: Wizard
     startDate: 2026-06-01
