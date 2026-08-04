@@ -1,6 +1,6 @@
 ---
 title: Harambasic Consulting
-description: A few selected projects per year. AI, automation, and product for startups. I advise, and I build.
+description: A few selected projects a year. AI, automation, and product for startups. I advise, and I build.
 image: harambasic_consulting.png
 published: 2026-06-01
 updated: 2026-08-04
