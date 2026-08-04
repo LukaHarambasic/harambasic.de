@@ -9,7 +9,7 @@ employmentType: full-time
 url: /consulting
 positions:
   - title: Wizard
-    startDate: 2026-06-01
+    startDate: 2026-05-01
     endDate: null
     content: |
       I've always been the tools guy 🧙. The one colleagues come to with "what should I use for this?" or "can you help me automate that?" I have a technical background, I think in products, and I have a deep urge to automate everything I touch.
