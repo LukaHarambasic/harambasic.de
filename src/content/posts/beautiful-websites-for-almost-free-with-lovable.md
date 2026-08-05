@@ -30,11 +30,11 @@ The four pieces are:
 3. **Netlify** for hosting and the domain. (free tier)
 4. Optional: **Claude Code** (or Cursor, or whatever you like) for the small edits.
 
-No Content Management System (CMS), no framework decisions, no design system to fight with. You prompt, you push, you deploy, you tweak.
+No Content Management System (CMS), no framework decisions, no design system to fight with. You prompt, push the code to GitHub, and Netlify takes it from there.
 
 ## What it looks like
 
-Before the how-to, here is what this stack actually produces. Two finished sites I've built, so you can see the output first and decide if it's worth reading on. Will a good designer produce something more beautiful? Yes. But is it easier, cheaper, and still nicer-looking than all the alternatives I know? YES!!
+Before the how-to, here is what this stack actually produces. Two finished sites I've built, so you can see the output first and decide if it's worth reading on. A good designer will still make something more beautiful. But nothing I know is easier, cheaper, and still this good-looking. YES!!
 
 - **[adiadi.art](https://adiadi.art)** is for my incredibly talented friend and artist Adina. We considered Shopify so she could sell prints directly, but that's something for later. For now she has a really simple site she can manage herself in Lovable. I tweaked a few bits with Claude Code, but just fine-tuning.
 - **[meyster.work](https://meyster.work)** is a simple landing page for a side project. Nothing fancy.
@@ -42,6 +42,8 @@ Before the how-to, here is what this stack actually produces. Two finished sites
 Both took a couple of runs in Lovable, plus a bit of tweaking afterwards. Neither costs more per month than the domain.
 
 If you'd rather see the process than the polished output, jump to [The honest one: ivo-bau.de](#the-honest-one-ivo-baude) at the end. A live Lovable build for my parents' construction company sitting next to the exact prompt behind it, warts included.
+
+I sat on this post for a while, not sure it was mine to write. Explaining how to use Lovable's free tier and work around the paid parts felt a bit like telling people how to dodge what they might otherwise just pay for. Then Tyler Bruno from the Lovable team wrote [Here's where you're wrong about hosting on Lovable](https://www.linkedin.com/pulse/heres-where-youre-wrong-hosting-lovable-tyler-bruno-jxpcc/), and his framing settled it: "Exit is open on purpose. Staying has to be a choice." So here's the detail, in a way anyone can follow.
 
 ## How I do it
 
@@ -79,7 +81,7 @@ The output is nice, but the same few things trip it up every single time. The pr
 Don't worry if you don't know every term here. These bullets are for Lovable, not for you. They're the difference between a site that feels fast on a phone and ranks well on Google, and one that doesn't. Just copy them in.
 
 - Production-ready static site, following best practices. Nothing left over from the AI's draft: no debug messages in the browser console, no unused libraries, clean file layout.
-- Optimize for performance. Small file sizes, modern image formats, and only load what's actually visible on screen. In short: it should feel fast even on a phone.
+- Optimize for performance. Small file sizes, modern image formats, and only load what's actually visible on screen. It should feel fast even on a phone.
 - Optimize for SEO and social media. A real title and description per page, plus the tags that decide what your link looks like when someone shares it on LinkedIn, WhatsApp, or Google.
 - Generate a social preview image per page, at build time. This has to run whenever Netlify redeploys, not just on my laptop, because I might never open the project locally again once it's live. My own script for [harambasic.de](https://github.com/LukaHarambasic/harambasic.de/tree/main/scripts/generate-social-media-preview) is a decent reference.
 - Update the favicon (the little icon in the browser tab) in all cases. No default Lovable favicon allowed, make it based on the logo.
@@ -180,13 +182,13 @@ SSL (the `https://` padlock in the browser) is set up for you automatically and 
 
 ### Step 4: Tweak with Claude Code
 
-Lovable is really good at getting you started, but after the first run you'll want to tweak it. You can do that in Lovable too, but it's comparably expensive. So I'd recommend Claude Code or a similar tool, but only if you already pay for one. Otherwise, you might as well pay Lovable.
+Lovable gets you started fast, but after the first run you'll want to tweak it. You can do that in Lovable too, but it's comparably expensive. So I'd recommend Claude Code or a similar tool, but only if you already pay for one. Otherwise, you might as well pay Lovable.
 
 I download the code to my computer, open it in Claude Code, and just describe the change. "The mobile nav overlaps the logo, fix it." "The social media preview image is wrong, create a new one with a bigger title in the bottom left corner and wire it up." "Add a favicon based on the logo." It makes the edit, I check it in the browser, I send the change back up (to GitHub). Netlify redeploys within a few minutes.
 
-> You could use Cursor, or Zed, or plain Copilot. The point is really that once the code is in a real repo, you have all the normal editor tools available and small edits stop feeling scary.
+> You could use Cursor, or Zed, or plain Copilot. Once the code is in a real repo, you have all the normal editor tools available and small edits stop feeling scary.
 
-One caveat: you do need a little technical confidence for this path. Claude Code won't send changes back up on its own, you have to tell it to save the change and publish it (in git terms: "commit" and "push"), and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is the better fit.
+You do need a little technical confidence for this path though. Claude Code won't send changes back up on its own, you have to tell it to save the change and publish it (in git terms: "commit" and "push"), and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is the better fit.
 
 ## The honest one: ivo-bau.de
 
@@ -235,7 +237,7 @@ catch from existing website
 
 </details>
 
-I want to keep this honest, so I'll show it as is: this was one of the worse one-shot prompts I've done with Lovable. Reasons why it went in a direction that I didn't want:
+This was one of the worse one-shot prompts I've done with Lovable. Why it went sideways:
 
 - Didn't specify to follow the existing color scheme, or use the existing website as a base
 - Didn't upload the new logo that I created
@@ -246,8 +248,8 @@ The things I'd fix next in Claude Code:
 
 1. Give it the logo, which I forgot to include
 2. Pull the colors and fonts closer to what we already have, some changes are fine, but this drifts too far
-3. Add images to bring it to life. To be fair, if you drop the "do not generate any images" rule from the prompt you get a really good initial result, but here I want real, authentic images, nothing generated.
+3. Add images to bring it to life. To be fair, if you drop the "do not generate any images" rule from the prompt you get a strong initial result, but here I want real, authentic images, nothing generated.
 
 ## The next time a friend asks
 
-So the next time a friend or family member asks me if I can help with a small website, this is what I'll say. Not Wix, not Squarespace, and not "hire a freelancer for something a weekend can solve." Sit down with them for an afternoon, prompt it in Lovable, deploy it to Netlify, polish the last few bits in Claude Code. One domain to pay for, one afternoon of work, and they can keep maintaining it themselves without a technical background.
+So the next time a friend or family member asks me if I can help with a small website, this is what I'll say: block an afternoon together and we'll build it. One domain to pay for, one afternoon of work, and they can keep maintaining it themselves without a technical background.
