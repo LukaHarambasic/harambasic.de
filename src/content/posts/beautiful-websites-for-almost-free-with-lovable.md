@@ -10,7 +10,7 @@ tags:
 tldr: 'For simple websites the fastest path I have found: prompt it in Lovable, deploy it to Netlify, then use Claude Code (or similar) for the small tweaks. You only have to pay for the domain.'
 ---
 
-## Why my answer changed
+## What I used to tell people
 
 I've been the website guy for as long as I can remember, and probably always will be. Friends and family need a small site, and then they ask me if I can help. For years my answer was one of two things, and I never really liked either of them.
 
