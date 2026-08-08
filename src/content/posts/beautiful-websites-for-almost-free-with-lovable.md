@@ -49,6 +49,8 @@ Both took a couple of runs in Lovable, plus a bit of tweaking afterwards. Neithe
 
 If you'd rather see the process than the polished output, jump to [The honest one: ivo-bau.de](#the-honest-one-ivo-baude). A live Lovable build for my parents' construction company sitting next to the exact prompt behind it, warts included.
 
+## Why I'm publishing this
+
 I sat on this post for a while, not sure it was mine to write. Explaining how to use Lovable's free tier and work around the paid parts felt a bit like telling people how to dodge what they might otherwise just pay for. Then Tyler Bruno from the Lovable team wrote [Here's where you're wrong about hosting on Lovable](https://www.linkedin.com/pulse/heres-where-youre-wrong-hosting-lovable-tyler-bruno-jxpcc/), and his framing settled it: "Exit is open on purpose. Staying has to be a choice." So here's the detail, in a way anyone can follow.
 
 ## How I do it
@@ -59,13 +61,13 @@ I sat on this post for a while, not sure it was mine to write. Explaining how to
 
 The output is nice, but the same few things trip it up every single time. The prompt below is my attempt to steer around them. First I'll walk through the reasoning behind each part so you know why it's there. If you just want the prompt, skip ahead and copy it. Four categories:
 
-#### 1. What you're actually building.
+#### What you're actually building
 
 - The name and one sentence about what the company or person does. Not a marketing line, just what they actually do.
 - A rough sitemap. "Home, services, projects, contact." That's enough. Don't do more than 4 in the beginning, otherwise Lovable will run out of tokens in no time.
 - Real service names, real addresses, a real bio. Also directly sets the language of your website.
 
-#### 2. Design direction.
+#### Design direction
 
 - A vibe, in one or two sentences. "Feels like a small Copenhagen architecture studio. Warm, off-white, serif headings, one accent color."
 - Two or three reference URLs. Sites you like, Dribbble, whatever. Or just paste/upload images. Lovable pulls inspiration from these instead of averaging over its training data.
@@ -74,7 +76,7 @@ The output is nice, but the same few things trip it up every single time. The pr
 
 > Tip: Use Claude, ChatGPT, Gemini or whatever to generate a design direction for you: colors, fonts, etc. This helps you not burn your valuable Lovable tokens on it.
 
-#### 3. Things Lovable gets wrong by default.
+#### Things Lovable gets wrong by default
 
 - No em dashes anywhere. Lovable loves them. If you don't ban them explicitly, they appear in every heading and every paragraph.
 - Don't generate any images unless explicitly asked. Otherwise you get AI stock photos that don't match the brief, and it burns through your free credits too quickly.
@@ -82,7 +84,7 @@ The output is nice, but the same few things trip it up every single time. The pr
 - Fully accessible, and the build (or dev server) should fail on inaccessible markup. Same reason. Otherwise you ship missing alt text, poor contrast, and unreachable focus states, and you'll only notice when someone tells you.
 - Don't take over the default browser scrolling, ever. AI tends to do that, and I hate it on every website, it's the worst.
 
-#### 4. How it should be built.
+#### How it should be built
 
 Don't worry if you don't know every term here. These bullets are for Lovable, not for you. They're the difference between a site that feels fast on a phone and ranks well on Google, and one that doesn't. Just copy them in.
 
