@@ -3,7 +3,7 @@ title: Beautiful websites for almost free with Lovable
 description: How I build small websites for friends, family, and side projects with Lovable, Netlify, and a bit of Claude Code polish.
 image:
 published: 2026-07-24
-updated: 2026-07-24
+updated: 2026-08-08
 tags:
   - Tools
   - Development
@@ -12,25 +12,31 @@ tldr: 'For simple websites the fastest path I have found: prompt it in Lovable, 
 
 ## Why my answer changed
 
-I've been the website guy for as long as I can remember, and probably always will be. Friends and family need a small website, and then they ask me if I can help. My answer has changed over the years. For a while it was "just use Framer, Wix, Webflow or Squarespace." Useful, but for a private person offering their services or a small business, 15 to 20 euros a month feels like a lot. WordPress was the other option, but either you pay a managed host around the same, or you figure out how to run it yourself. None of it felt great.
+I've been the website guy for as long as I can remember, and probably always will be. Friends and family need a small site, and then they ask me if I can help. For years my answer was one of two things, and I never really liked either of them.
 
-That answer changed for me recently. Two versions of it work now, both a lot nicer than the old school alternatives:
+**"Just use Framer, Wix, Webflow, or Squarespace."** Fine for a while, but 15 to 20 euros a month adds up. For a private person offering their services or a small business, that recurring cost feels like a lot for something that mostly just sits there.
 
-1. **Just pay Lovable** (€25/month) and get the site, hosting, domain, and ongoing edits in one place. No hassle, and honestly a much nicer answer than Wix or Squarespace, which feel really old school next to what Lovable produces.
+**"WordPress it."** Either pay a managed host in the same price range, or figure out how to run it yourself. Both roads are worse than they used to be, and neither is something I want to hand a friend.
+
+Recently the answer shifted, because two better options actually landed:
+
+1. **Just pay Lovable** (€25/month). Site, hosting, domain, ongoing edits by prompt, one bill. Honestly a much nicer product than Wix or Squarespace, which feel really old school next to what Lovable produces.
 2. **Wire together a workflow** where the only recurring cost is the domain, using tools you probably already have.
 
-This post is about the second one, because it's what I actually use now. Technically you don't even need a coding assistant like Claude Code, you can stay within Lovable's free 5 credits a day. Slows you down, but also keeps it simple.
+This post is about the second one, because it's what I actually use. The claim is narrow: for a friend, family member, or small business who wants a site that looks current, is easy to update, and doesn't need a shop or a CMS, this stack beats both the €20/month builders and the DIY WordPress route. You keep control of the code, they can still update copy in the Lovable editor, and the only bill is the domain (~$10/year). Technically you don't even need a coding assistant like Claude Code, you can stay within Lovable's free 5 credits a day. Slows you down, but also keeps it simple.
 
 ## The stack
 
-The four pieces are:
+Four pieces:
 
-1. **Lovable** for generating the site. (free tier)
-2. **GitHub** as the home for your code. (free tier)
-3. **Netlify** for hosting and the domain. (free tier)
+1. **Lovable** for generating the site. (free tier, 5 credits/day)
+2. **GitHub** as the home for the code. (free tier)
+3. **Netlify** for hosting and DNS. (free tier)
 4. Optional: **Claude Code** (or Cursor, or whatever you like) for the small edits.
 
-No Content Management System (CMS), no framework decisions, no design system to fight with. You prompt, push the code to GitHub, and Netlify takes it from there.
+No Content Management System (CMS), no framework decision, no design system to fight with. You prompt, push the code to GitHub, and Netlify takes it from there.
+
+The reason this combination works, and the reason it's cheap, is that each tool does one job and none of them locks you in. Lovable is the fastest way I know to a decent-looking first draft. GitHub is the escape hatch: if any of the other tools changes pricing or disappears, you still own working code and can move it in an afternoon. Netlify is a one-click deploy on top of GitHub, and the free tier is generous enough that a small site never touches the paid limits. Claude Code is optional but the reason the "no ongoing cost" version works, because the small tweaks you'd otherwise burn Lovable credits on happen locally.
 
 ## What it looks like
 
@@ -41,7 +47,7 @@ Before the how-to, here is what this stack actually produces. Two finished sites
 
 Both took a couple of runs in Lovable, plus a bit of tweaking afterwards. Neither costs more per month than the domain.
 
-If you'd rather see the process than the polished output, jump to [The honest one: ivo-bau.de](#the-honest-one-ivo-baude) at the end. A live Lovable build for my parents' construction company sitting next to the exact prompt behind it, warts included.
+If you'd rather see the process than the polished output, jump to [The honest one: ivo-bau.de](#the-honest-one-ivo-baude). A live Lovable build for my parents' construction company sitting next to the exact prompt behind it, warts included.
 
 I sat on this post for a while, not sure it was mine to write. Explaining how to use Lovable's free tier and work around the paid parts felt a bit like telling people how to dodge what they might otherwise just pay for. Then Tyler Bruno from the Lovable team wrote [Here's where you're wrong about hosting on Lovable](https://www.linkedin.com/pulse/heres-where-youre-wrong-hosting-lovable-tyler-bruno-jxpcc/), and his framing settled it: "Exit is open on purpose. Staying has to be a choice." So here's the detail, in a way anyone can follow.
 
@@ -146,33 +152,33 @@ And from there you iterate, either in Lovable or like I describe in [Step 4](#st
 
 ### Step 2: Push it to GitHub
 
-Before you hook up hosting, you need to get the code out of Lovable and into a repository (repo). Lovable has a built-in GitHub integration: you connect your account once and every change in the editor is committed to a repo you own.
+Before hosting, get the code out of Lovable and into a repository (repo) you own. Lovable's built-in GitHub integration handles this: connect your account once, and every change in the editor commits to a repo you control.
 
-This gives you three things:
+This one step is what makes the rest of the stack work, for three reasons:
 
-- **It keeps the Lovable iteration path open.** You still get Lovable's daily free credits, so you can go back into the editor whenever you want, tweak a section by prompt, and the changes land in the repo automatically. For friends who never want to open a terminal, this is the ongoing update flow: "just describe what you want changed."
-- **It unlocks the Claude Code path**, which is how I actually prefer to iterate once a site exists. Download the code to your computer, edit it there, send the change back. Small changes go from prompt-and-wait to a two-line edit. More on that in [Step 4](#step-4-tweak-with-claude-code).
-- **It hooks up hosting.** That's where Netlify pulls the code from to bring it to your website. More on that in [Step 3](#step-3-ship-it-via-netlify).
+- **The Lovable iteration path stays open.** Daily free credits still count, so you can go back into the editor whenever you want, tweak a section by prompt, and the changes land in the repo automatically. For friends who never want to open a terminal, this is the ongoing update flow: "just describe what you want changed."
+- **The Claude Code path unlocks.** Download the code to your computer, edit it there, send the change back. Small changes go from prompt-and-wait to a two-line edit. More on that in [Step 4](#step-4-tweak-with-claude-code).
+- **Hosting hooks up cleanly.** That's where Netlify pulls the code from to bring it to your website. More on that in [Step 3](#step-3-ship-it-via-netlify).
 
-If you skip GitHub and stay inside Lovable's hosted preview, you're pretty much locked into their editor and their pricing.
+Skip GitHub and stay inside Lovable's hosted preview and you're pretty much locked into their editor and their pricing. That's the trade you avoid by doing this step even though it feels like an extra thing.
 
 ### Step 3: Ship it via Netlify
 
-With the code in GitHub, [Netlify](https://netlify.com) is a one-click "deploy from GitHub" flow. You connect the two once, pick the repo, and every push (whether it came from Lovable, Claude Code, or you editing a file by hand) triggers a redeploy. Might take a minute or two for every deploy.
+With the code in GitHub, [Netlify](https://netlify.com) is a one-click "deploy from GitHub" flow. Connect the two once, pick the repo, and every push (whether from Lovable, Claude Code, or you editing a file by hand) triggers a redeploy. A minute or two per deploy.
 
-Why Netlify and not Lovable's own hosting:
+Netlify over Lovable's own hosting for two reasons:
 
-- You own the code. If Lovable changes pricing or disappears, you still have a working site.
-- The free tier is generous enough, unless the website really takes off.
+- **You own the code.** If Lovable changes pricing or disappears, you still have a working site and can move it anywhere else in an afternoon.
+- **The free tier is generous enough** that a small site never touches the paid limits, unless the site really takes off.
 
 #### Getting a domain
 
 The only recurring cost of the whole stack is the domain. Two registrars I'd point anyone at:
 
-- **[Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)** sells domains at wholesale cost, no markup, no upsells. A `.com` is around $10 a year and stays there. This is my default now.
+- **[Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)** sells domains at wholesale cost, no markup, no upsells. A `.com` is around $10 a year and stays there. My default now.
 - **[Namecheap](https://www.namecheap.com)** is the classic option. Slightly more expensive than Cloudflare, but the dashboard is friendlier if you've never touched DNS before.
 
-Technically you can also get it at Netlify, but that might lock you in more than you like. Haven't done it, but also wouldn't recommend.
+You can technically buy the domain at Netlify too, but that ties DNS to the same vendor as hosting, and I'd rather keep those separable. Haven't tried it, wouldn't recommend.
 
 #### Pointing the domain at Netlify
 
@@ -182,17 +188,17 @@ SSL (the `https://` padlock in the browser) is set up for you automatically and 
 
 ### Step 4: Tweak with Claude Code
 
-Lovable gets you started fast, but after the first run you'll want to tweak it. You can do that in Lovable too, but it's comparably expensive. So I'd recommend Claude Code or a similar tool, but only if you already pay for one. Otherwise, you might as well pay Lovable.
+Lovable gets you started fast, but after the first run you'll want to tweak. You can do that in Lovable, and it works. It's just comparably expensive: each tweak eats credits, and simple edits shouldn't need an LLM to reason about the whole app. So if you already pay for a coding assistant, that's the cheaper path. If you don't, stick with Lovable's daily free credits and skip this step.
 
-I download the code to my computer, open it in Claude Code, and just describe the change. "The mobile nav overlaps the logo, fix it." "The social media preview image is wrong, create a new one with a bigger title in the bottom left corner and wire it up." "Add a favicon based on the logo." It makes the edit, I check it in the browser, I send the change back up (to GitHub). Netlify redeploys within a few minutes.
+The loop I use: download the code, open it in Claude Code, describe the change. "The mobile nav overlaps the logo, fix it." "The social media preview image is wrong, create a new one with a bigger title in the bottom left corner and wire it up." "Add a favicon based on the logo." It makes the edit, I check it in the browser, I send the change back up (to GitHub). Netlify redeploys within a few minutes.
 
-> You could use Cursor, or Zed, or plain Copilot. Once the code is in a real repo, you have all the normal editor tools available and small edits stop feeling scary.
+> Cursor, Zed, or plain Copilot all work here too. Once the code is in a real repo, all the normal editor tools apply and small edits stop feeling scary.
 
-You do need a little technical confidence for this path though. Claude Code won't send changes back up on its own, you have to tell it to save the change and publish it (in git terms: "commit" and "push"), and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is the better fit.
+The one honest caveat: this path needs a little technical confidence. Claude Code won't send changes back up on its own, you have to tell it to save the change and publish it (in git terms: "commit" and "push"), and that means being roughly comfortable with what those words mean. You don't have to write any code yourself, but you do have to be okay following along in a terminal. If that sounds like too much friction, the Lovable editor with its daily free credits is the better fit, and that's a totally fine place to land.
 
 ## The honest one: ivo-bau.de
 
-To show the whole process in one go, here is a first-pass demo I built for my parents' construction company, IVO-BAU. It's a live Lovable build sitting right next to the exact prompt behind it, typos and all. My other parent's business, **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)**, gets the same treatment next. The real sites are still waiting on photos and copy.
+To show the whole process in one go, here's a first-pass demo I built for my parents' construction company, IVO-BAU. A live Lovable build sitting right next to the exact prompt behind it, typos and all. My other parent's business, **[zimmer-ludwigshafen.com](https://zimmer-ludwigshafen.com)**, gets the same treatment next. The real sites are still waiting on photos and copy.
 
 Live demo: [ivo-bau-demo.lovable.app](https://ivo-bau-demo.lovable.app/) (first attempt)
 
@@ -237,19 +243,23 @@ catch from existing website
 
 </details>
 
-This was one of the worse one-shot prompts I've done with Lovable. Why it went sideways:
+This was one of the worse one-shot prompts I've done with Lovable. Four things went sideways, all fixable, and worth naming because they show what the prompt template above is actually protecting against:
 
-- Didn't specify to follow the existing color scheme, or use the existing website as a base
-- Didn't upload the new logo that I created
-- Wasn't specific enough with the fonts
-- The reference website in general was maybe too much. I only liked the hero animation, but Lovable took the whole site into account and copied that style
+- **No color-scheme direction.** I didn't tell it to follow the existing colors or use the current site as a base. It picked its own palette and drifted.
+- **No logo uploaded.** I forgot. Lovable generated a placeholder, and everything downstream (favicon, social image) was built off the wrong mark.
+- **Not specific enough with the fonts.** Same drift, different axis.
+- **Too much reference site.** I only liked the hero animation on `mn-gbr.com`, but Lovable took the whole site into account and copied the general style. Reference URLs are strong signals, use them narrowly.
 
-The things I'd fix next in Claude Code:
+The fixes are all cheap and all in Claude Code:
 
-1. Give it the logo, which I forgot to include
-2. Pull the colors and fonts closer to what we already have, some changes are fine, but this drifts too far
-3. Add images to bring it to life. To be fair, if you drop the "do not generate any images" rule from the prompt you get a strong initial result, but here I want real, authentic images, nothing generated.
+1. Give it the logo, which I forgot to include.
+2. Pull the colors and fonts closer to what we already have. Some drift is fine, this one drifts too far.
+3. Add real images to bring it to life. Dropping the "do not generate any images" rule would give a stronger first pass, but here I want authentic photos, nothing generated.
+
+The reason this failure is worth including: the failure modes are boring and predictable, which is exactly why the prompt template exists in the first place.
 
 ## The next time a friend asks
 
-So the next time a friend or family member asks me if I can help with a small website, this is what I'll say: block an afternoon together and we'll build it. One domain to pay for, one afternoon of work, and they can keep maintaining it themselves without a technical background.
+Next time a friend or family member asks for help with a small website, this is the answer: block an afternoon together and we'll build it. One domain to pay for, one afternoon of work, and they can keep maintaining it themselves without a technical background.
+
+The thing that surprised me building these: the "small website" market has become weirdly good. Two years ago the choice was Wix-tier polish for €20/month, or a dev-tier setup only I could maintain. Now the same €0/month setup produces something a friend can be proud of, and something a friend can keep updating without me. The gap between "professional tool" and "friend with a laptop" got really small. Worth using.
