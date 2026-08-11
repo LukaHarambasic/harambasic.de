@@ -13,7 +13,7 @@ positions:
     content: |
       I was rehired to build "Product Led Support" to stop tickets from out-scaling our agents, but when big enterprise clients landed we pivoted to maintaining the exports and notification service (push, sms, email). Then came the chance to lead a Home Energy Management Systems (HEMS) project with a large Danish utility.
 
-      After a year we hit a wall. We were "shipping our org chart": three squads (Grid, Load Management, HEMS) all trying to control the same EV charge session. I pushed to merge them into one End-to-End Energy Management squad and strategy.
+      After a year we hit a wall. We were "shipping our org chart": three squads (Grid, Load Management, HEMS) all trying to control the same EV charge session. I managed to merge them into one End-to-End Energy Management squad with one strategy.
 
       - Scaled HEMS: 0 to 3,000+ connected homes supporting Solar inverters, Smart Meter readers (MQTT, HTTP) and CT-Clamps via OCPP.
       - Grid Services: Took ownership, expanded beyond FCR-D (DK, SE, UK) to include aFRR (DK), overhauled the UX to make complex flexibility markets accessible.
