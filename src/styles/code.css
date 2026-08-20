@@ -1,19 +1,98 @@
 /*
- * Code-block container styling - replaces the retired highlight.css.
+ * Code-block container styling.
  *
- * Token colors AND the background come from Shiki's `one-dark-pro` theme, applied
- * inline on the `<pre class="astro-code">` element (background #282c34, matching
- * the old One Dark highlight.css). This file only restores the *container* styling
- * highlight.css used to provide around the block (the `.hljs` rule): spacing,
- * radius, font, horizontal scroll. Code blocks stay always-dark.
+ * Shiki emits dual-theme CSS variables (--shiki-light / --shiki-dark) on the block
+ * and on every token span (astro.config.ts sets themes + defaultColor: false, so no
+ * color is baked in). We resolve the right one per page theme with light-dark(), so
+ * code blocks follow light / dark like the rest of the site. Token hues come from
+ * one-light / one-dark-pro; only the background is brand-tinted: a soft pink in
+ * light, deep aubergine in dark.
  */
 
 .astro-code {
 	display: block;
+	position: relative;
 	margin: 0 0 var(--l) 0;
 	padding: var(--m);
+	padding-inline-end: calc(var(--m) + var(--xl));
 	border-radius: var(--border-radius);
+	box-shadow: inset 0 0 0 1px light-dark(rgba(45, 10, 46, 0.1), rgba(255, 237, 249, 0.08));
+	background: light-dark(#fbe9f3, #1a0620);
+	color: light-dark(var(--shiki-light), var(--shiki-dark));
 	font-family: var(--font-family-code);
 	font-size: var(--font-m);
 	overflow-x: auto;
+
+	/* Each token span carries its own --shiki-light / --shiki-dark. */
+	span {
+		color: light-dark(var(--shiki-light), var(--shiki-dark));
+	}
+
+	/* Desktop: make code blocks a bit wider than the reading column, still centered */
+	@media screen and (width > 62rem) {
+		margin-inline: calc(50% - 26rem); /* Center with 52rem total width */
+		width: 52rem;
+		max-width: none;
+	}
+
+	/* Allow soft wrapping for text/markdown content in code blocks.
+	   Note: Shiki sets data-language on the <pre> element, not <code>. */
+	&[data-language='markdown'],
+	&[data-language='md'],
+	&[data-language='txt'],
+	&[data-language='plaintext'] {
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		overflow-x: visible;
+	}
+
+	/* A <small> caption/attribution directly under a code block belongs to that
+	   block, so pull it in close instead of leaving the full paragraph gap.
+	   Note: the <small> renders wrapped in its own <p>; a single :has() with a
+	   compound relative selector (no nested :has(), which is invalid CSS). */
+	&:has(+ p > small) {
+		margin-block-end: var(--xs);
+	}
+}
+
+.code-copy {
+	display: grid;
+	position: absolute;
+	z-index: 1;
+	inset-block-start: var(--xs);
+	inset-inline-end: var(--xs);
+	place-items: center;
+	padding: var(--xs);
+	border: none;
+	border-radius: var(--border-radius-small);
+	background: transparent;
+	color: light-dark(rgba(45, 10, 46, 0.45), rgba(255, 237, 249, 0.5));
+	transition: var(--transition);
+	cursor: pointer;
+
+	& svg {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	/* Subtle by default; hover brings up a faint fill and the full-strength icon. */
+	&:hover,
+	&:focus-visible {
+		background: light-dark(rgba(45, 10, 46, 0.08), rgba(255, 237, 249, 0.12));
+		color: light-dark(rgba(45, 10, 46, 0.85), rgba(255, 237, 249, 0.95));
+		transform: scale(1.12);
+	}
+
+	/* Tactile press: dips under the hover scale. */
+	&:active {
+		transform: scale(0.95);
+	}
+
+	&[data-state='copied'] {
+		color: var(--c-accent-honey);
+	}
+
+	&[data-state='failed'] {
+		color: light-dark(#c0392b, #ff9a9a);
+	}
 }
