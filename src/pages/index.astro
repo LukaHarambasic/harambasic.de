@@ -30,7 +30,6 @@ const recentExperience = [...experience]
 		<JsonLd schema={websiteSchema()} />
 	</Fragment>
 	<section class="heyho">
-		<h1>Heyho,<br />I'm Luka!</h1>
 		<div class="inner">
 			{
 				/* LCP element: load eagerly at high priority, sized to its real display width
@@ -46,16 +45,19 @@ const recentExperience = [...experience]
 				loading="eager"
 				fetchpriority="high"
 			/>
-			<BaseRichText class="bio">
-				<p>
-					German/Croatian living in Copenhagen. By day I'm a Senior Agentic Product Manager at
-					<a href="https://www.chronoshub.io">ChronosHub</a>, and next to that I do
-					<a href="/consulting">consulting</a>: AI, automation, and product for startups. If you
-					want to geek out over AI and automation, or talk handball, woodworking, or cooking, <a
-						href="#contact">say hi</a
-					>.
-				</p>
-			</BaseRichText>
+			<div class="content">
+				<h1>Heyho,<br />I'm Luka!</h1>
+				<BaseRichText class="bio">
+					<p>
+						German/Croatian living in Copenhagen. By day I'm a Senior Agentic Product Manager at
+						<a href="https://www.chronoshub.io">ChronosHub</a>, and next to that I do
+						<a href="/consulting">consulting</a>: AI, automation, and product for startups. If you
+						want to geek out over AI and automation, or talk handball, woodworking, or cooking, <a
+							href="#contact">say hi</a
+						>.
+					</p>
+				</BaseRichText>
+			</div>
 		</div>
 	</section>
 	<section class="highlights">
@@ -150,31 +152,10 @@ const recentExperience = [...experience]
 		}
 	}
 	.heyho {
-		display: flex;
-		position: relative;
 		margin-block-start: var(--xl);
 		width: var(--layout-l);
-		flex-direction: column;
-		gap: var(--l);
 		@media screen and (width <= 56rem) {
 			width: 100%;
-		}
-		h1 {
-			margin: 0;
-			font-family: var(--font-family-serif);
-			font-size: clamp(2.5rem, 7.5vw, 5rem);
-			font-weight: 600;
-			line-height: 1;
-			letter-spacing: var(--tracking-display);
-			text-align: center;
-			white-space: nowrap;
-
-			/* Subtle brand gradient; only when the text can actually carry it */
-			@supports (background-clip: text) or (-webkit-background-clip: text) {
-				background: linear-gradient(105deg, var(--c-font) 55%, var(--c-accent-italic));
-				background-clip: text;
-				color: transparent;
-			}
 		}
 		.inner {
 			display: flex;
@@ -185,10 +166,32 @@ const recentExperience = [...experience]
 			}
 			.profile {
 				size: 14.5rem;
+				flex-shrink: 0;
 				border-radius: var(--border-radius);
 				@media screen and (width <= 32rem) {
 					width: 100%;
 					height: auto;
+				}
+			}
+			.content {
+				display: flex;
+				flex-direction: column;
+				gap: var(--m);
+			}
+			h1 {
+				margin: 0;
+				font-family: var(--font-family-serif);
+				font-size: clamp(2.5rem, 7.5vw, 5rem);
+				font-weight: 600;
+				line-height: 1;
+				letter-spacing: var(--tracking-display);
+				text-align: left;
+
+				/* Subtle brand gradient; only when the text can actually carry it */
+				@supports (background-clip: text) or (-webkit-background-clip: text) {
+					background: linear-gradient(105deg, var(--c-font) 55%, var(--c-accent-italic));
+					background-clip: text;
+					color: transparent;
 				}
 			}
 			:global(.bio p) {
