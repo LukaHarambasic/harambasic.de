@@ -74,12 +74,6 @@ const recentExperience = [...experience]
 		</EntryList>
 		<a class="more-link" href="/experience">All experience</a>
 	</section>
-	<section class="consulting-banner">
-		<p class="eyebrow">Consulting</p>
-		<h2>Only a few projects a year.</h2>
-		<p class="sub">AI, automation, and product for startups. I advise, and I build.</p>
-		<a class="btn-book" href="https://cal.com/luhara/harambasic-consulting">Book a call</a>
-	</section>
 	<section class="contact golden-ratio">
 		<p class="eyebrow">Get in touch</p>
 		<h2>Say hi.</h2>
@@ -201,61 +195,6 @@ const recentExperience = [...experience]
 				a {
 					line-break: loose;
 				}
-			}
-		}
-	}
-	.consulting-banner {
-		display: flex;
-		margin-block-start: var(--xl);
-
-		/* Roomier than the default card padding so the CTA card feels more spacious. */
-		padding: calc(var(--l) + var(--m));
-		width: var(--layout-l);
-		border-radius: var(--border-radius);
-		background: var(--c-inverted);
-		flex-direction: column;
-		align-items: flex-start;
-		gap: var(--m);
-
-		--deco-bar-color: var(--c-accent-honey);
-
-		@media screen and (width <= 56rem) {
-			width: 100%;
-		}
-		@media screen and (width <= 30rem) {
-			padding: var(--l);
-		}
-		.eyebrow {
-			color: var(--c-inverted-text-muted);
-		}
-		h2 {
-			margin: 0;
-			color: var(--c-inverted-text);
-			font-family: var(--font-family-serif);
-			font-size: var(--fs-h1);
-			font-weight: 500;
-			letter-spacing: var(--tracking-heading);
-			text-wrap: balance;
-		}
-		.sub {
-			margin: 0;
-			max-width: 36rem;
-			color: var(--c-inverted-text-muted);
-			font-size: var(--font-m);
-			line-height: 1.5;
-		}
-		.btn-book {
-			padding: var(--xs) var(--m);
-			border-radius: var(--border-radius-pill);
-			background: var(--c-inverted-text);
-			color: var(--c-inverted);
-			font-size: var(--font-m);
-			font-weight: 600;
-			text-decoration: none;
-			transition: var(--transition);
-			&:hover {
-				box-shadow: var(--shadow-md);
-				transform: translateY(-2px);
 			}
 		}
 	}
