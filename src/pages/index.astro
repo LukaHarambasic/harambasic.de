@@ -227,9 +227,13 @@ const recentExperience = [...experience]
 	.contact {
 		display: flex;
 		margin-block-start: var(--xl);
+		width: var(--layout-l);
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--m);
+		@media screen and (width <= 56rem) {
+			width: 100%;
+		}
 		h2 {
 			margin: 0;
 			font-family: var(--font-family-serif);
