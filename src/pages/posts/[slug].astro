@@ -113,9 +113,6 @@ const canonicalUrl = new URL(Astro.url.pathname, getPermalink()).href;
 			</BaseRichText>
 		</section>
 	</DetailLayout>
-	<footer class="page-footer">
-		<a href="/posts/rss">RSS Feed</a>
-	</footer>
 </Layout>
 
 <style>
@@ -179,20 +176,6 @@ const canonicalUrl = new URL(Astro.url.pathname, getPermalink()).href;
 		}
 		.toc-body {
 			padding: 0;
-		}
-	}
-	.page-footer {
-		margin: var(--l) 0 0 0;
-		text-align: center;
-		a {
-			color: var(--c-font);
-			font-size: var(--font-m);
-			font-weight: 600;
-			text-decoration: none;
-			&:hover {
-				text-decoration: underline;
-				text-decoration-thickness: var(--underline-thickness);
-			}
 		}
 	}
 </style>

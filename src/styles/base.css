@@ -26,6 +26,10 @@ h6 {
 p {
 	text-wrap: pretty;
 }
+small {
+	color: var(--c-font-accent-dark);
+	font-size: var(--font-s);
+}
 
 /* Centered narrow reading column (61.8% of the layout, golden ratio).
    The one shared width pattern across hero, detail pages, and narrow sections. */
